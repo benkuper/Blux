@@ -1,0 +1,71 @@
+{
+  "mainLayout": {
+    "type": 1,
+    "width": 1920,
+    "height": 997,
+    "direction": 2,
+    "shifters": [
+      {
+        "type": 1,
+        "width": 1920,
+        "height": 997,
+        "direction": 1,
+        "shifters": [
+          {
+            "type": 0,
+            "width": 210,
+            "height": 997,
+            "currentContent": "Objects",
+            "tabs": [
+              {
+                "name": "Objects"
+              }
+            ]
+          },
+          {
+            "type": 0,
+            "width": 1197,
+            "height": 997,
+            "currentContent": "Objects Grid View",
+            "tabs": [
+              {
+                "name": "Objects Grid View"
+              }
+            ]
+          },
+          {
+            "type": 1,
+            "width": 501,
+            "height": 997,
+            "direction": 2,
+            "shifters": [
+              {
+                "type": 0,
+                "width": 501,
+                "height": 567,
+                "currentContent": "Inspector",
+                "tabs": [
+                  {
+                    "name": "Inspector"
+                  }
+                ]
+              },
+              {
+                "type": 0,
+                "width": 501,
+                "height": 423,
+                "currentContent": "Logger",
+                "tabs": [
+                  {
+                    "name": "Logger"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "windows": null
+}

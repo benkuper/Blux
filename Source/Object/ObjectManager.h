@@ -9,3 +9,17 @@
 */
 
 #pragma once
+
+#include "Object.h"
+
+class ObjectManager :
+    public BaseManager<Object>
+{
+public:
+    juce_DeclareSingleton(ObjectManager, true);
+
+    ObjectManager();
+    ~ObjectManager();
+
+    Factory<Object> factory;
+};

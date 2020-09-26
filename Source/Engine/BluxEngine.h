@@ -16,4 +16,9 @@ class BluxEngine : public Engine
 public:
     BluxEngine();
     ~BluxEngine();
+
+    void clearInternal() override;
+
+    var getJSONData() override;
+    void loadJSONDataInternalEngine(var data, ProgressTask * task) override;
 };

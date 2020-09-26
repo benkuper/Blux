@@ -14,6 +14,8 @@ public:
     MainComponent();
     ~MainComponent() override;
 
+    void init() override;
+
 private:
     //==============================================================================
     // Your private member variables go here...

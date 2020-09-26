@@ -9,3 +9,16 @@
 */
 
 #include "ObjectManager.h"
+
+juce_ImplementSingleton(ObjectManager);
+
+ObjectManager::ObjectManager() :
+    BaseManager("Objects")
+{
+    managerFactory = &factory;
+    factory.defs.add(Factory<Object>::Definition::createDef("", "Object", &Object::create));
+}
+
+ObjectManager::~ObjectManager()
+{
+}

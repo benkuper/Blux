@@ -9,3 +9,14 @@
 */
 
 #include "Object.h"
+
+Object::Object(var params) :
+    BaseItem(params.getProperty("name","Object")),
+    objectType(params.getProperty("type","Object").toString())
+{
+    itemDataType = "Object";
+}
+
+Object::~Object()
+{
+}

@@ -1,11 +1,42 @@
 #include "MainComponent.h"
 
+#include "Object/ui/ObjectManagerUI.h"
+#include "Object/ui/ObjectManagerGridUI.h"
+
+String getAppVersion();
+ApplicationProperties& getAppProperties();
+ApplicationCommandManager& getCommandManager();
+
+
 //==============================================================================
 MainComponent::MainComponent()
 {
     setSize (800,600);
+	getCommandManager().registerAllCommandsForTarget(this);
 }
 
 MainComponent::~MainComponent()
 {
+}
+
+void MainComponent::init()
+{
+	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(ObjectManager::getInstance()->niceName, &ObjectManagerUI::create));
+	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Objects Grid View", &ObjectManagerGridUI::create));
+	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Groups", &GroupManagerUI::create));
+	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Interfaces", &InterfaceManagerUI::create));
+	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage Layouts", &StageLayoutManagerUI::create));
+	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 2D View", &Stage2DView::create));
+	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 3D View", &Stage3DView::create));
+	
+
+	OrganicMainContentComponent::init();
+
+	String lastVersion = getAppProperties().getUserSettings()->getValue("lastVersion", "");
+
+	if (lastVersion != getAppVersion())
+	{
+		//WelcomeScreen w;
+		//DialogWindow::showModalDialog("Welcome", &w, getTopLevelComponent(), Colours::black, true);
+	}
 }

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="0.1.0"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0"
               headerPath="../../Source">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
+      <FILE id="s4JRaV" name="crash.png" compile="0" resource="1" file="Resources/crash.png"/>
+      <FILE id="hRyytp" name="default.bluxlayout" compile="0" resource="1"
+            file="Resources/default.bluxlayout"/>
       <FILE id="kxAIe6" name="icon.png" compile="0" resource="1" file="Resources/icon.png"/>
       <FILE id="Nutaiv" name="icon2.png" compile="0" resource="1" file="Resources/icon2.png"/>
       <FILE id="f1oDk9" name="icon3.png" compile="0" resource="1" file="Resources/icon3.png"/>
+      <FILE id="AkkWvI" name="icon128.png" compile="0" resource="1" file="Resources/icon128.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
-      <GROUP id="{16558FC8-A881-5FFD-F2BA-1E725B22DC38}" name="UI">
-        <FILE id="Sd26AT" name="AssetManager.cpp" compile="1" resource="0"
-              file="Source/UI/AssetManager.cpp"/>
-        <FILE id="aduvbj" name="AssetManager.h" compile="0" resource="0" file="Source/UI/AssetManager.h"/>
-      </GROUP>
       <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
         <GROUP id="{A1CD121E-9B16-9040-8954-4E6DC9DD384E}" name="DMX">
           <GROUP id="{20CB527A-3FDC-CFCF-2853-F56E8351E593}" name="device">
@@ -82,18 +81,44 @@
       </GROUP>
       <GROUP id="{A160C785-C903-CCE2-D4B9-153AA0DB551D}" name="Interface">
         <GROUP id="{DF6E12F7-E69D-2F0E-3EA6-A2EF5A333D40}" name="interfaces">
+          <GROUP id="{1A79CB5C-332E-5D0C-A97F-DDBFF8832D03}" name="ui">
+            <FILE id="aaHhZ7" name="InterfaceManagerUI.cpp" compile="1" resource="0"
+                  file="Source/Interface/interfaces/ui/InterfaceManagerUI.cpp"/>
+            <FILE id="HA4OF7" name="InterfaceManagerUI.h" compile="0" resource="0"
+                  file="Source/Interface/interfaces/ui/InterfaceManagerUI.h"/>
+            <FILE id="usa1Jb" name="InterfaceUI.cpp" compile="1" resource="0" file="Source/Interface/interfaces/ui/InterfaceUI.cpp"/>
+            <FILE id="rhXN0H" name="InterfaceUI.h" compile="0" resource="0" file="Source/Interface/interfaces/ui/InterfaceUI.h"/>
+          </GROUP>
           <GROUP id="{9A7BE87B-C8D1-83B7-8FEF-96EB4AA1FFD8}" name="serial">
+            <GROUP id="{5303D141-D5DD-DAAA-6FE3-3542817B60F8}" name="ui">
+              <FILE id="s27Y7V" name="SerialInterfaceUI.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/serial/ui/SerialInterfaceUI.cpp"/>
+              <FILE id="zrua4W" name="SerialInterfaceUI.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/serial/ui/SerialInterfaceUI.h"/>
+            </GROUP>
             <FILE id="L6HN1q" name="SerialInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/serial/SerialInterface.cpp"/>
             <FILE id="qeobtQ" name="SerialInterface.h" compile="0" resource="0"
                   file="Source/Interface/interfaces/serial/SerialInterface.h"/>
           </GROUP>
           <GROUP id="{7E98C9EB-5E94-A855-7F6B-1651BB613019}" name="osc">
+            <GROUP id="{65E176ED-1CED-189A-136E-C8E96FE76FF9}" name="ui">
+              <FILE id="j2YAHT" name="OSCInterfaceUI.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/osc/ui/OSCInterfaceUI.cpp"/>
+              <FILE id="T6Qp3I" name="OSCInterfaceUI.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/osc/ui/OSCInterfaceUI.h"/>
+            </GROUP>
             <FILE id="WUiXGB" name="OSCInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/osc/OSCInterface.cpp"/>
             <FILE id="F22DGO" name="OSCInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/osc/OSCInterface.h"/>
           </GROUP>
           <GROUP id="{8DC395E5-1176-555B-3A2E-A27F368DDD43}" name="dmx">
+            <GROUP id="{F4E7C7B4-AE43-5E8E-0F03-BC19CDED6EC0}" name="ui">
+              <FILE id="E9B8Vy" name="DMXInterfaceUI.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/dmx/DMXInterfaceUI.cpp"/>
+              <FILE id="COiv6d" name="DMXInterfaceUI.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/dmx/DMXInterfaceUI.h"/>
+            </GROUP>
             <FILE id="W9dn5Y" name="DMXInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/dmx/DMXInterface.cpp"/>
             <FILE id="Az6ANW" name="DMXInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/dmx/DMXInterface.h"/>
@@ -107,14 +132,41 @@
               file="Source/Interface/InterfaceManager.h"/>
       </GROUP>
       <GROUP id="{BDE623DE-EA68-A95C-6206-7F26C54B47AD}" name="Scene">
-        <FILE id="e2oGyq" name="Scene.cpp" compile="1" resource="0" file="Source/Scene.cpp"/>
-        <FILE id="nNa3YT" name="Scene.h" compile="0" resource="0" file="Source/Scene.h"/>
-        <FILE id="vk7PLg" name="SceneManager.cpp" compile="1" resource="0"
-              file="Source/SceneManager.cpp"/>
-        <FILE id="rqGDsX" name="SceneManager.h" compile="0" resource="0" file="Source/SceneManager.h"/>
+        <GROUP id="{0FFC71F4-F9C1-E6A2-CB12-E59C0B6610C6}" name="ui">
+          <FILE id="ySbqQr" name="SceneManagerUI.cpp" compile="1" resource="0"
+                file="Source/Scene/ui/SceneManagerUI.cpp"/>
+          <FILE id="Fa9b0K" name="SceneManagerUI.h" compile="0" resource="0"
+                file="Source/Scene/ui/SceneManagerUI.h"/>
+          <FILE id="JE4AoA" name="SceneUI.cpp" compile="1" resource="0" file="Source/Scene/ui/SceneUI.cpp"/>
+          <FILE id="nMCDTg" name="SceneUI.h" compile="0" resource="0" file="Source/Scene/ui/SceneUI.h"/>
+        </GROUP>
+        <FILE id="hLfxcg" name="Scene.cpp" compile="1" resource="0" file="Source/Scene/Scene.cpp"/>
+        <FILE id="PfFXUY" name="Scene.h" compile="0" resource="0" file="Source/Scene/Scene.h"/>
+        <FILE id="eZqsGC" name="SceneManager.cpp" compile="1" resource="0"
+              file="Source/Scene/SceneManager.cpp"/>
+        <FILE id="k1c4Hy" name="SceneManager.h" compile="0" resource="0" file="Source/Scene/SceneManager.h"/>
       </GROUP>
       <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Behaviour">
+        <GROUP id="{EEB89B66-A685-FC8C-64AB-5A15E087594F}" name="ui">
+          <FILE id="JpOd69" name="BehaviourEditor.cpp" compile="1" resource="0"
+                file="Source/Behaviour/BehaviourEditor.cpp"/>
+          <FILE id="vjtZfa" name="BehaviourEditor.h" compile="0" resource="0"
+                file="Source/Behaviour/BehaviourEditor.h"/>
+          <FILE id="p38dRm" name="BehaviourManagerEditor.cpp" compile="1" resource="0"
+                file="Source/Behaviour/BehaviourManagerEditor.cpp"/>
+          <FILE id="E6gaH2" name="BehaviourManagerEditor.h" compile="0" resource="0"
+                file="Source/Behaviour/BehaviourManagerEditor.h"/>
+        </GROUP>
         <GROUP id="{72DCD2A0-DF64-B02B-2D23-A18B4F78BB3B}" name="Filter">
+          <GROUP id="{B901BBA9-D5B1-3AA4-8B4D-4505889441CB}" name="ui">
+            <FILE id="Ko1Xgx" name="FilterEditor.cpp" compile="1" resource="0"
+                  file="Source/Behaviour/Filter/ui/FilterEditor.cpp"/>
+            <FILE id="dfhzf7" name="FilterEditor.h" compile="0" resource="0" file="Source/Behaviour/Filter/ui/FilterEditor.h"/>
+            <FILE id="ld7u6o" name="FilterManagerEditor.cpp" compile="1" resource="0"
+                  file="Source/Behaviour/Filter/ui/FilterManagerEditor.cpp"/>
+            <FILE id="qruq4m" name="FilterManagerEditor.h" compile="0" resource="0"
+                  file="Source/Behaviour/Filter/ui/FilterManagerEditor.h"/>
+          </GROUP>
           <FILE id="YCWxiF" name="Filter.cpp" compile="1" resource="0" file="Source/Behaviour/Filter/Filter.cpp"/>
           <FILE id="zAEZdy" name="Filter.h" compile="0" resource="0" file="Source/Behaviour/Filter/Filter.h"/>
           <FILE id="QlzDDm" name="FilterManager.cpp" compile="1" resource="0"
@@ -129,7 +181,32 @@
               file="Source/Behaviour/BehaviourManager.h"/>
       </GROUP>
       <GROUP id="{BDEDD473-3A74-D6C8-68AB-E73419566401}" name="Object">
+        <GROUP id="{0D505A17-A541-05DA-73C0-C2BE863C2F7B}" name="ui">
+          <FILE id="j68vpv" name="ObjectGridUI.cpp" compile="1" resource="0"
+                file="Source/Object/ui/ObjectGridUI.cpp"/>
+          <FILE id="wSoAW0" name="ObjectGridUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectGridUI.h"/>
+          <FILE id="u2WMrp" name="ObjectManagerGridUI.cpp" compile="1" resource="0"
+                file="Source/Object/ui/ObjectManagerGridUI.cpp"/>
+          <FILE id="gbwgnK" name="ObjectManagerGridUI.h" compile="0" resource="0"
+                file="Source/Object/ui/ObjectManagerGridUI.h"/>
+          <FILE id="BFGHWg" name="ObjectManagerUI.cpp" compile="1" resource="0"
+                file="Source/Object/ui/ObjectManagerUI.cpp"/>
+          <FILE id="WWP2PU" name="ObjectManagerUI.h" compile="0" resource="0"
+                file="Source/Object/ui/ObjectManagerUI.h"/>
+          <FILE id="LgV40T" name="ObjectUI.cpp" compile="1" resource="0" file="Source/Object/ui/ObjectUI.cpp"/>
+          <FILE id="IKzu7l" name="ObjectUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectUI.h"/>
+        </GROUP>
         <GROUP id="{2D556B5D-011C-AC0B-A39D-48669A5D10F4}" name="Component">
+          <GROUP id="{3C60E087-9AC6-70D2-8137-28A3A4FB4E2D}" name="ui">
+            <FILE id="F0jPzI" name="ComponentManagerEditor.cpp" compile="1" resource="0"
+                  file="Source/Object/Component/ui/ComponentManagerEditor.cpp"/>
+            <FILE id="qLZ274" name="ComponentManagerEditor.h" compile="0" resource="0"
+                  file="Source/Object/Component/ui/ComponentManagerEditor.h"/>
+            <FILE id="QrJWvW" name="ObjectComponentEditor.cpp" compile="1" resource="0"
+                  file="Source/Object/Component/ui/ObjectComponentEditor.cpp"/>
+            <FILE id="ichN37" name="ObjectComponentEditor.h" compile="0" resource="0"
+                  file="Source/Object/Component/ui/ObjectComponentEditor.h"/>
+          </GROUP>
           <GROUP id="{95663C75-73C8-432B-C499-B0F789F06966}" name="components">
             <GROUP id="{CF76E215-E97D-AE67-ACE1-5AD7F346A4C2}" name="color">
               <GROUP id="{87AB848E-C914-468E-D082-FCE320ED076C}" name="ColorSource">
@@ -207,6 +284,11 @@
       <GROUP id="{CBABD9B6-7B70-7D3F-7A9F-AE1857C9E963}" name="Engine">
         <FILE id="Mv31r2" name="BluxEngine.cpp" compile="1" resource="0" file="Source/Engine/BluxEngine.cpp"/>
         <FILE id="DZeUuZ" name="BluxEngine.h" compile="0" resource="0" file="Source/Engine/BluxEngine.h"/>
+      </GROUP>
+      <GROUP id="{16558FC8-A881-5FFD-F2BA-1E725B22DC38}" name="UI">
+        <FILE id="Sd26AT" name="AssetManager.cpp" compile="1" resource="0"
+              file="Source/UI/AssetManager.cpp"/>
+        <FILE id="aduvbj" name="AssetManager.h" compile="0" resource="0" file="Source/UI/AssetManager.h"/>
       </GROUP>
       <FILE id="JEY5pW" name="Main.h" compile="0" resource="0" file="Source/Main.h"/>
       <FILE id="PI7LmD" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
