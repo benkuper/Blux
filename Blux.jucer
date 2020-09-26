@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="0.1.0">
+  <MAINGROUP id="JrFmSt" name="Blux">
+    <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
+      <FILE id="kxAIe6" name="icon.png" compile="0" resource="1" file="Resources/icon.png"/>
+      <FILE id="Nutaiv" name="icon2.png" compile="0" resource="1" file="Resources/icon2.png"/>
+      <FILE id="f1oDk9" name="icon3.png" compile="0" resource="1" file="Resources/icon3.png"/>
+    </GROUP>
+    <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
+        <GROUP id="{A1CD121E-9B16-9040-8954-4E6DC9DD384E}" name="DMX">
+          <GROUP id="{20CB527A-3FDC-CFCF-2853-F56E8351E593}" name="device">
+            <FILE id="MmraqT" name="DMXArtNetDevice.cpp" compile="1" resource="0"
+                  file="Source/Common/DMX/device/DMXArtNetDevice.cpp"/>
+            <FILE id="ufTuHP" name="DMXArtNetDevice.h" compile="0" resource="0"
+                  file="Source/Common/DMX/device/DMXArtNetDevice.h"/>
+            <FILE id="UN6EQw" name="DMXDevice.cpp" compile="1" resource="0" file="Source/Common/DMX/device/DMXDevice.cpp"/>
+            <FILE id="RbE0oS" name="DMXDevice.h" compile="0" resource="0" file="Source/Common/DMX/device/DMXDevice.h"/>
+            <FILE id="z7eHrl" name="DMXEnttecProDevice.cpp" compile="1" resource="0"
+                  file="Source/Common/DMX/device/DMXEnttecProDevice.cpp"/>
+            <FILE id="NfZvCM" name="DMXEnttecProDevice.h" compile="0" resource="0"
+                  file="Source/Common/DMX/device/DMXEnttecProDevice.h"/>
+            <FILE id="weDNNK" name="DMXOpenUSBDevice.cpp" compile="1" resource="0"
+                  file="Source/Common/DMX/device/DMXOpenUSBDevice.cpp"/>
+            <FILE id="qytN6V" name="DMXOpenUSBDevice.h" compile="0" resource="0"
+                  file="Source/Common/DMX/device/DMXOpenUSBDevice.h"/>
+            <FILE id="EXbR2F" name="DMXSerialDevice.cpp" compile="1" resource="0"
+                  file="Source/Common/DMX/device/DMXSerialDevice.cpp"/>
+            <FILE id="cCIRxU" name="DMXSerialDevice.h" compile="0" resource="0"
+                  file="Source/Common/DMX/device/DMXSerialDevice.h"/>
+          </GROUP>
+          <FILE id="u8jGJ4" name="DMXManager.cpp" compile="1" resource="0" file="Source/Common/DMX/DMXManager.cpp"/>
+          <FILE id="PWnqIi" name="DMXManager.h" compile="0" resource="0" file="Source/Common/DMX/DMXManager.h"/>
+        </GROUP>
+        <GROUP id="{555F8E88-CB3B-0BD6-7F40-052569C2E398}" name="Serial">
+          <GROUP id="{E88CCBF0-A061-08C6-C1B4-A7EFD40F48F2}" name="lib">
+            <GROUP id="{3651A516-02E9-8A93-E800-7BE012044195}" name="cobs">
+              <FILE id="jF5xSJ" name="cobs.cpp" compile="1" resource="0" file="Source/Common/Serial/lib/cobs/cobs.cpp"/>
+              <FILE id="HWywOp" name="cobs.h" compile="0" resource="0" file="Source/Common/Serial/lib/cobs/cobs.h"/>
+            </GROUP>
+            <GROUP id="{770585B2-E217-5973-78F6-DC55B5494084}" name="serial">
+              <GROUP id="{6A9C6765-F8FD-D32E-84AA-969FA028294B}" name="impl">
+                <GROUP id="{210E8914-268B-BC89-EAD4-3D732A6229D7}" name="list_ports">
+                  <FILE id="Jcue5h" name="list_ports_linux.cc" compile="1" resource="0"
+                        file="Source/Common/Serial/lib/serial/impl/list_ports/list_ports_linux.cc"/>
+                  <FILE id="QoR8UR" name="list_ports_osx.cc" compile="1" resource="0"
+                        file="Source/Common/Serial/lib/serial/impl/list_ports/list_ports_osx.cc"/>
+                  <FILE id="oXfoUM" name="list_ports_win.cc" compile="1" resource="0"
+                        file="Source/Common/Serial/lib/serial/impl/list_ports/list_ports_win.cc"/>
+                </GROUP>
+                <FILE id="N7wXFz" name="unix.cc" compile="1" resource="0" file="Source/Common/Serial/lib/serial/impl/unix.cc"/>
+                <FILE id="uqaSDN" name="win.cc" compile="1" resource="0" file="Source/Common/Serial/lib/serial/impl/win.cc"/>
+              </GROUP>
+              <FILE id="TsWzCf" name="serial.cc" compile="1" resource="0" file="Source/Common/Serial/lib/serial/serial.cc"/>
+            </GROUP>
+          </GROUP>
+          <FILE id="n4nolj" name="SerialDevice.cpp" compile="1" resource="0"
+                file="Source/Common/Serial/SerialDevice.cpp"/>
+          <FILE id="MDE2XB" name="SerialDevice.h" compile="0" resource="0" file="Source/Common/Serial/SerialDevice.h"/>
+          <FILE id="tPM0M6" name="SerialDeviceParameter.cpp" compile="1" resource="0"
+                file="Source/Common/Serial/SerialDeviceParameter.cpp"/>
+          <FILE id="XEQpgc" name="SerialDeviceParameter.h" compile="0" resource="0"
+                file="Source/Common/Serial/SerialDeviceParameter.h"/>
+          <FILE id="QRrEDT" name="SerialManager.cpp" compile="1" resource="0"
+                file="Source/Common/Serial/SerialManager.cpp"/>
+          <FILE id="Vv7DYk" name="SerialManager.h" compile="0" resource="0" file="Source/Common/Serial/SerialManager.h"/>
+        </GROUP>
+        <GROUP id="{56DFA39C-55A8-FC10-9726-CD97D06D0038}" name="Zeroconf">
+          <FILE id="Uuz4Ko" name="ZeroconfManager.cpp" compile="1" resource="0"
+                file="Source/Common/Zeroconf/ZeroconfManager.cpp"/>
+          <FILE id="bxGJzT" name="ZeroconfManager.h" compile="0" resource="0"
+                file="Source/Common/Zeroconf/ZeroconfManager.h"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{A160C785-C903-CCE2-D4B9-153AA0DB551D}" name="Interface">
+        <GROUP id="{DF6E12F7-E69D-2F0E-3EA6-A2EF5A333D40}" name="interfaces">
+          <GROUP id="{9A7BE87B-C8D1-83B7-8FEF-96EB4AA1FFD8}" name="serial">
+            <FILE id="L6HN1q" name="SerialInterface.cpp" compile="1" resource="0"
+                  file="Source/Interface/interfaces/serial/SerialInterface.cpp"/>
+            <FILE id="qeobtQ" name="SerialInterface.h" compile="0" resource="0"
+                  file="Source/Interface/interfaces/serial/SerialInterface.h"/>
+          </GROUP>
+          <GROUP id="{7E98C9EB-5E94-A855-7F6B-1651BB613019}" name="osc">
+            <FILE id="WUiXGB" name="OSCInterface.cpp" compile="1" resource="0"
+                  file="Source/Interface/interfaces/osc/OSCInterface.cpp"/>
+            <FILE id="F22DGO" name="OSCInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/osc/OSCInterface.h"/>
+          </GROUP>
+          <GROUP id="{8DC395E5-1176-555B-3A2E-A27F368DDD43}" name="dmx">
+            <FILE id="W9dn5Y" name="DMXInterface.cpp" compile="1" resource="0"
+                  file="Source/Interface/interfaces/dmx/DMXInterface.cpp"/>
+            <FILE id="Az6ANW" name="DMXInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/dmx/DMXInterface.h"/>
+          </GROUP>
+        </GROUP>
+        <FILE id="dtEzCG" name="Interface.cpp" compile="1" resource="0" file="Source/Interface/Interface.cpp"/>
+        <FILE id="zmYbjR" name="Interface.h" compile="0" resource="0" file="Source/Interface/Interface.h"/>
+        <FILE id="RagX1a" name="InterfaceManager.cpp" compile="1" resource="0"
+              file="Source/Interface/InterfaceManager.cpp"/>
+        <FILE id="xuu9WP" name="InterfaceManager.h" compile="0" resource="0"
+              file="Source/Interface/InterfaceManager.h"/>
+      </GROUP>
+      <GROUP id="{BDE623DE-EA68-A95C-6206-7F26C54B47AD}" name="Scene">
+        <FILE id="e2oGyq" name="Scene.cpp" compile="1" resource="0" file="Source/Scene.cpp"/>
+        <FILE id="nNa3YT" name="Scene.h" compile="0" resource="0" file="Source/Scene.h"/>
+        <FILE id="vk7PLg" name="SceneManager.cpp" compile="1" resource="0"
+              file="Source/SceneManager.cpp"/>
+        <FILE id="rqGDsX" name="SceneManager.h" compile="0" resource="0" file="Source/SceneManager.h"/>
+      </GROUP>
+      <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Behaviour">
+        <GROUP id="{72DCD2A0-DF64-B02B-2D23-A18B4F78BB3B}" name="Filter">
+          <FILE id="YCWxiF" name="Filter.cpp" compile="1" resource="0" file="Source/Behaviour/Filter/Filter.cpp"/>
+          <FILE id="zAEZdy" name="Filter.h" compile="0" resource="0" file="Source/Behaviour/Filter/Filter.h"/>
+          <FILE id="QlzDDm" name="FilterManager.cpp" compile="1" resource="0"
+                file="Source/Behaviour/Filter/FilterManager.cpp"/>
+          <FILE id="dOP21Y" name="FilterManager.h" compile="0" resource="0" file="Source/Behaviour/Filter/FilterManager.h"/>
+        </GROUP>
+        <FILE id="IrUq7C" name="Behaviour.cpp" compile="1" resource="0" file="Source/Behaviour/Behaviour.cpp"/>
+        <FILE id="zDU2cq" name="Behaviour.h" compile="0" resource="0" file="Source/Behaviour/Behaviour.h"/>
+        <FILE id="HfX0Rk" name="BehaviourManager.cpp" compile="1" resource="0"
+              file="Source/Behaviour/BehaviourManager.cpp"/>
+        <FILE id="LHLiND" name="BehaviourManager.h" compile="0" resource="0"
+              file="Source/Behaviour/BehaviourManager.h"/>
+      </GROUP>
+      <GROUP id="{BDEDD473-3A74-D6C8-68AB-E73419566401}" name="Object">
+        <GROUP id="{2D556B5D-011C-AC0B-A39D-48669A5D10F4}" name="Component">
+          <GROUP id="{95663C75-73C8-432B-C499-B0F789F06966}" name="components">
+            <GROUP id="{CF76E215-E97D-AE67-ACE1-5AD7F346A4C2}" name="color">
+              <GROUP id="{87AB848E-C914-468E-D082-FCE320ED076C}" name="ColorSource">
+                <GROUP id="{28B33676-EA96-00A3-3DA9-131593960068}" name="sources"/>
+                <FILE id="xcVDyf" name="ColorSource.cpp" compile="1" resource="0" file="Source/Object/Component/components/color/ColorSource/ColorSource.cpp"/>
+                <FILE id="CtfGAw" name="ColorSource.h" compile="0" resource="0" file="Source/Object/Component/components/color/ColorSource/ColorSource.h"/>
+              </GROUP>
+              <FILE id="mksmBH" name="ColorComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/color/ColorComponent.cpp"/>
+              <FILE id="CsIHMw" name="ColorComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/color/ColorComponent.h"/>
+            </GROUP>
+            <GROUP id="{263A09DA-4344-1913-249B-4D36C0555590}" name="gobo">
+              <FILE id="t3Q31E" name="GoboComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/gobo/GoboComponent.cpp"/>
+              <FILE id="kcsXYk" name="GoboComponent.h" compile="0" resource="0" file="Source/Object/Component/components/gobo/GoboComponent.h"/>
+            </GROUP>
+            <GROUP id="{41CCF3AD-7E9C-36C2-C6B9-1B67A42D4804}" name="intensity">
+              <FILE id="VSA3Tn" name="IntensityComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/intensity/IntensityComponent.cpp"/>
+              <FILE id="ECNIUC" name="IntensityComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/intensity/IntensityComponent.h"/>
+            </GROUP>
+            <GROUP id="{239F4EC2-7966-39A9-2B2D-5781C77AE6EA}" name="laser">
+              <GROUP id="{9EF086BC-6748-F711-D859-9DF946C70D99}" name="LaserPattern">
+                <FILE id="zdhddT" name="LaserPattern.cpp" compile="1" resource="0"
+                      file="Source/Object/Component/components/laser/LaserPattern/LaserPattern.cpp"/>
+                <FILE id="Stuavs" name="LaserPattern.h" compile="0" resource="0" file="Source/Object/Component/components/laser/LaserPattern/LaserPattern.h"/>
+              </GROUP>
+              <FILE id="oXQEeJ" name="LaserComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/laser/LaserComponent.cpp"/>
+              <FILE id="yvE4IK" name="LaserComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/laser/LaserComponent.h"/>
+            </GROUP>
+            <GROUP id="{DBD3032D-A58D-D970-2A00-DE3A3C3F9B60}" name="pantilt">
+              <FILE id="xUonqJ" name="PanTiltComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/pantilt/PanTiltComponent.cpp"/>
+              <FILE id="rXw4rx" name="PanTiltComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/pantilt/PanTiltComponent.h"/>
+            </GROUP>
+            <GROUP id="{6B99AB6C-A26F-2CD2-E7EF-C565EBB5C1E5}" name="servo">
+              <FILE id="JKHmhX" name="ServoComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/servo/ServoComponent.cpp"/>
+              <FILE id="fWOV2W" name="ServoComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/servo/ServoComponent.h"/>
+            </GROUP>
+            <GROUP id="{55AC1F61-6490-0735-69B9-A7EC49956ED5}" name="stepper">
+              <FILE id="eTrqyy" name="StepperComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/stepper/StepperComponent.cpp"/>
+              <FILE id="thJWzC" name="StepperComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/stepper/StepperComponent.h"/>
+            </GROUP>
+            <GROUP id="{B3938BE1-FE2D-67BE-2B0D-1B5EC2E61811}" name="strobe">
+              <FILE id="Alno29" name="StrobeComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/strobe/StrobeComponent.cpp"/>
+              <FILE id="WA66HQ" name="StrobeComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/strobe/StrobeComponent.h"/>
+            </GROUP>
+          </GROUP>
+          <FILE id="NGl0Is" name="ComponentManager.cpp" compile="1" resource="0"
+                file="Source/Object/Component/ComponentManager.cpp"/>
+          <FILE id="dK4Ol4" name="ComponentManager.h" compile="0" resource="0"
+                file="Source/Object/Component/ComponentManager.h"/>
+          <FILE id="IrmXPU" name="ObjectComponent.cpp" compile="1" resource="0"
+                file="Source/Object/Component/ObjectComponent.cpp"/>
+          <FILE id="CI7DAq" name="ObjectComponent.h" compile="0" resource="0"
+                file="Source/Object/Component/ObjectComponent.h"/>
+        </GROUP>
+        <FILE id="t0IkrV" name="Object.cpp" compile="1" resource="0" file="Source/Object/Object.cpp"/>
+        <FILE id="kbSpDH" name="Object.h" compile="0" resource="0" file="Source/Object/Object.h"/>
+        <FILE id="hpmPnR" name="ObjectManager.cpp" compile="1" resource="0"
+              file="Source/Object/ObjectManager.cpp"/>
+        <FILE id="sUZJmR" name="ObjectManager.h" compile="0" resource="0" file="Source/Object/ObjectManager.h"/>
+      </GROUP>
+      <GROUP id="{CBABD9B6-7B70-7D3F-7A9F-AE1857C9E963}" name="Engine">
+        <FILE id="Mv31r2" name="BluxEngine.cpp" compile="1" resource="0" file="Source/Engine/BluxEngine.cpp"/>
+        <FILE id="DZeUuZ" name="BluxEngine.h" compile="0" resource="0" file="Source/Engine/BluxEngine.h"/>
+      </GROUP>
+      <FILE id="JEY5pW" name="Main.h" compile="0" resource="0" file="Source/Main.h"/>
+      <FILE id="PI7LmD" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="OVCLjt" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="UViOEW" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" ORGANICUI_USE_SERVUS="1" ORGANICUI_USE_WEBSERVER="1"/>
+  <EXPORTFORMATS>
+    <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="kxAIe6" bigIcon="kxAIe6"
+            externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Blux" binaryPath="Binaries/Debug"
+                       headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+                       libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Blux" binaryPath="Binaries/"
+                       headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+                       libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_organicui" path="Modules"/>
+        <MODULEPATH id="juce_timeline" path="Modules"/>
+        <MODULEPATH id="juce_simpleweb" path="Modules"/>
+      </MODULEPATHS>
+    </VS2019>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_organicui" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_simpleweb" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_timeline" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
