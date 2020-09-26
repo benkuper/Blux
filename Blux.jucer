@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="0.1.0">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="0.1.0"
+              headerPath="../../Source">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
       <FILE id="kxAIe6" name="icon.png" compile="0" resource="1" file="Resources/icon.png"/>
@@ -9,6 +10,11 @@
       <FILE id="f1oDk9" name="icon3.png" compile="0" resource="1" file="Resources/icon3.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{16558FC8-A881-5FFD-F2BA-1E725B22DC38}" name="UI">
+        <FILE id="Sd26AT" name="AssetManager.cpp" compile="1" resource="0"
+              file="Source/UI/AssetManager.cpp"/>
+        <FILE id="aduvbj" name="AssetManager.h" compile="0" resource="0" file="Source/UI/AssetManager.h"/>
+      </GROUP>
       <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
         <GROUP id="{A1CD121E-9B16-9040-8954-4E6DC9DD384E}" name="DMX">
           <GROUP id="{20CB527A-3FDC-CFCF-2853-F56E8351E593}" name="device">

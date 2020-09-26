@@ -1,19 +1,11 @@
 /*
   ==============================================================================
 
-    BluxEngine.h
-    Created: 26 Sep 2020 10:01:11am
+    AssetManager.cpp
+    Created: 26 Sep 2020 2:38:52pm
     Author:  bkupe
 
   ==============================================================================
 */
 
-#pragma once
-#include "JuceHeader.h"
-
-class BluxEngine : public Engine
-{
-public:
-    BluxEngine();
-    ~BluxEngine();
-};
+#include "AssetManager.h"

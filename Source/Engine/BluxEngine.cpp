@@ -9,3 +9,13 @@
 */
 
 #include "BluxEngine.h"
+
+BluxEngine::BluxEngine() :
+    Engine("Blux",".blux")
+{
+    mainEngine = this;
+}
+
+BluxEngine::~BluxEngine()
+{
+}
