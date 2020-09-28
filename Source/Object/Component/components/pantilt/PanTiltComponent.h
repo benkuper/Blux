@@ -9,3 +9,16 @@
 */
 
 #pragma once
+
+#include "../../ObjectComponent.h"
+
+class PanTiltComponent :
+    public ObjectComponent
+{
+public:
+    PanTiltComponent(var params);
+    ~PanTiltComponent();
+
+    String getTypeString() const override { return "PanTilt"; }
+    static PanTiltComponent* create(var params) { return new PanTiltComponent(params); }
+};

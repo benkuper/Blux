@@ -208,6 +208,18 @@
                   file="Source/Object/Component/ui/ObjectComponentEditor.h"/>
           </GROUP>
           <GROUP id="{95663C75-73C8-432B-C499-B0F789F06966}" name="components">
+            <GROUP id="{8EEE3204-0175-82FC-77AE-8C2E21AF19B4}" name="script">
+              <GROUP id="{31D85460-7635-885C-9A8D-AA8F79DFB629}" name="ui">
+                <FILE id="rY1yDK" name="ScriptComponentEditor.cpp" compile="1" resource="0"
+                      file="Source/Object/Component/components/script/ui/ScriptComponentEditor.cpp"/>
+                <FILE id="jhuKu5" name="ScriptComponentEditor.h" compile="0" resource="0"
+                      file="Source/Object/Component/components/script/ui/ScriptComponentEditor.h"/>
+              </GROUP>
+              <FILE id="T42Rte" name="ScriptComponent.cpp" compile="1" resource="0"
+                    file="Source/Object/Component/components/script/ScriptComponent.cpp"/>
+              <FILE id="gBXRlP" name="ScriptComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/script/ScriptComponent.h"/>
+            </GROUP>
             <GROUP id="{CF76E215-E97D-AE67-ACE1-5AD7F346A4C2}" name="color">
               <GROUP id="{87AB848E-C914-468E-D082-FCE320ED076C}" name="ColorSource">
                 <GROUP id="{28B33676-EA96-00A3-3DA9-131593960068}" name="sources"/>

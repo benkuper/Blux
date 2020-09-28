@@ -9,3 +9,16 @@
 */
 
 #pragma once
+
+#include "../../ObjectComponent.h"
+
+class ServoComponent :
+    public ObjectComponent
+{
+public:
+    ServoComponent(var params);
+    ~ServoComponent();
+
+    String getTypeString() const override { return "Servo"; }
+    static ServoComponent* create(var params) { return new ServoComponent(params); }
+};

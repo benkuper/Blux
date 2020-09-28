@@ -22,4 +22,7 @@ public:
     ~ObjectManager();
 
     Factory<Object> factory;
+
+
+    void updateFactoryDefinitions();
 };

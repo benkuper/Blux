@@ -9,3 +9,12 @@
 */
 
 #include "ServoComponent.h"
+
+ServoComponent::ServoComponent(var params) :
+    ObjectComponent(getTypeString(), params)
+{
+}
+
+ServoComponent::~ServoComponent()
+{
+}

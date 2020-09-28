@@ -16,9 +16,38 @@ ObjectManager::ObjectManager() :
     BaseManager("Objects")
 {
     managerFactory = &factory;
-    factory.defs.add(Factory<Object>::Definition::createDef("", "Object", &Object::create));
+    itemDataType = "Object";
+
+    updateFactoryDefinitions();
 }
 
 ObjectManager::~ObjectManager()
 {
+}
+
+void ObjectManager::updateFactoryDefinitions()
+{
+    File objectsFolder = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName)+"/objects");
+    Array<File> objectsList = objectsFolder.findChildFiles(File::findDirectories, false);
+    for (auto& of : objectsList)
+    {
+        File defFile = of.getChildFile("definition.json");
+        if (!defFile.existsAsFile())
+        {
+            LOGWARNING("Object " << of.getFileName() << " definition file not found");
+            continue;
+        }
+
+        var def = JSON::parse(defFile);
+        if (!def.isObject() || !def.hasProperty("name"))
+        {
+            LOGWARNING("Object " << of.getFileName() << "definition file is not valid");
+            continue;
+        }
+        
+        def.getDynamicObject()->setProperty("path", of.getFullPathName());
+
+        Image img = ImageCache::getFromFile(of.getChildFile("icon.png"));
+        factory.defs.add(Factory<Object>::Definition::createDef(def.getProperty("menu","").toString(), def.getProperty("name","[noname]").toString(), &Object::create, def)->addIcon(img));
+    }
 }

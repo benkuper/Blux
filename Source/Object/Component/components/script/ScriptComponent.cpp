@@ -1,20 +1,20 @@
 /*
   ==============================================================================
 
-    LaserComponent.cpp
-    Created: 26 Sep 2020 2:20:24pm
+    ScriptComponent.cpp
+    Created: 28 Sep 2020 9:07:14pm
     Author:  bkupe
 
   ==============================================================================
 */
 
-#include "LaserComponent.h"
+#include "ScriptComponent.h"
 
-LaserComponent::LaserComponent(var params) :
+ScriptComponent::ScriptComponent(var params) :
     ObjectComponent(getTypeString(), params)
 {
 }
 
-LaserComponent::~LaserComponent()
+ScriptComponent::~ScriptComponent()
 {
 }

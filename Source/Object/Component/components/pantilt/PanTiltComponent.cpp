@@ -9,3 +9,12 @@
 */
 
 #include "PanTiltComponent.h"
+
+PanTiltComponent::PanTiltComponent(var params) :
+    ObjectComponent(getTypeString(), params)
+{
+}
+
+PanTiltComponent::~PanTiltComponent()
+{
+}

@@ -9,3 +9,16 @@
 */
 
 #pragma once
+
+#include "../../ObjectComponent.h"
+
+class GoboComponent :
+    public ObjectComponent
+{
+public:
+    GoboComponent(var params);
+    ~GoboComponent();
+
+    String getTypeString() const override { return "Gobo"; }
+    static GoboComponent* create(var params) { return new GoboComponent(params); }
+};

@@ -9,3 +9,13 @@
 */
 
 #include "IntensityComponent.h"
+
+IntensityComponent::IntensityComponent(var params) :
+    ObjectComponent(getTypeString(), params)
+{
+    value = addFloatParameter("Value", "Value of the intensity. This will automatically be converted to 0-255 or whatever the output protocol is.", .5f, 0, 1);
+}
+
+IntensityComponent::~IntensityComponent()
+{
+}

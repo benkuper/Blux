@@ -9,3 +9,12 @@
 */
 
 #include "StepperComponent.h"
+
+StepperComponent::StepperComponent(var params) :
+    ObjectComponent(getTypeString(), params)
+{
+}
+
+StepperComponent::~StepperComponent()
+{
+}

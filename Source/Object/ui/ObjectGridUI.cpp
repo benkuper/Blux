@@ -48,11 +48,7 @@ void ObjectGridUI::paint(Graphics& g)
 
 void ObjectGridUI::updateThumbnail()
 {
-	if (item->customThumbnailPath.isNotEmpty())
-	{
-		objectImage = ImageCache::getFromFile(item->customThumbnailPath);
-	}
-
+	if (item->customThumbnailPath.existsAsFile()) objectImage = ImageCache::getFromFile(item->customThumbnailPath);
 	if (objectImage.getWidth() == 0) objectImage = BluxAssetManager::getImage("icon128");
 
 	repaint();

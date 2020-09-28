@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "JuceHeader.h"
+#include "Component/ComponentManager.h"
 
 class Object :
     public BaseItem
@@ -22,7 +22,9 @@ public:
     String objectType;
 
     //ui
-    String customThumbnailPath;
+    File customThumbnailPath;
+
+    ComponentManager componentManager;
 
     String getTypeString() const override { return objectType; }
     

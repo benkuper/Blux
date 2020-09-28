@@ -9,3 +9,18 @@
 */
 
 #pragma once
+
+#include "ObjectComponent.h"
+
+class ComponentManager :
+    public BaseManager<ObjectComponent>
+{
+public:
+    ComponentManager();
+    ~ComponentManager();
+
+    Factory<ObjectComponent> factory;
+
+
+    void addComponentFromDefinition(StringRef type, var definition);
+};

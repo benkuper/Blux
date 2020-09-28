@@ -9,3 +9,16 @@
 */
 
 #pragma once
+
+#include "../../ObjectComponent.h"
+
+class LaserComponent :
+    public ObjectComponent
+{
+public:
+    LaserComponent(var params);
+    ~LaserComponent();
+
+    String getTypeString() const override { return "Laser"; }
+    static LaserComponent* create(var params) { return new LaserComponent(params); }
+};
