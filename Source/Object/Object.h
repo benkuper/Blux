@@ -20,11 +20,11 @@ public:
     virtual ~Object();
 
     String objectType;
+    var objectData;
+    ComponentManager componentManager;
 
     //ui
     File customThumbnailPath;
-
-    ComponentManager componentManager;
 
     String getTypeString() const override { return objectType; }
     

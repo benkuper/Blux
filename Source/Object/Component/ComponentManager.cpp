@@ -45,3 +45,22 @@ void ComponentManager::addComponentFromDefinition(StringRef type, var definition
     c->setupFromJSONDefinition(definition);
     addItem(c);
 }
+
+var ComponentManager::getJSONData()
+{
+    var data = ControllableContainer::getJSONData();
+    var cData;
+    for (auto& c : items) cData.append(c->getJSONData());
+    data.getDynamicObject()->setProperty("components",cData);
+
+    return data;
+}
+
+void ComponentManager::loadJSONDataInternal(var data)
+{
+    ControllableContainer::loadJSONDataInternal(data);
+
+    //Doing an index based loading, this may be improved but should be enough as long as objects don't change their components structure 
+    var cData = data.getProperty("components", var());
+    for (int i = 0; i < cData.size() && i < items.size(); i++) items[i]->loadJSONData(cData[i]);
+}

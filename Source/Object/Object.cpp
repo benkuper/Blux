@@ -11,8 +11,9 @@
 #include "Object.h"
 
 Object::Object(var params) :
-    BaseItem(params.getProperty("name","Object")),
-    objectType(params.getProperty("type","Object").toString())
+    BaseItem(params.getProperty("name", "Object")),
+    objectType(params.getProperty("type", "Object").toString()),
+    objectData(params)
 {
     saveAndLoadRecursiveData = true;
    

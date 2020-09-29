@@ -23,4 +23,7 @@ public:
 
 
     void addComponentFromDefinition(StringRef type, var definition);
+
+    var getJSONData() override;
+    void loadJSONDataInternal(var data) override;
 };
