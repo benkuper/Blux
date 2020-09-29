@@ -173,12 +173,12 @@ void DMXInterface::updateValuesFromComponent(Object* o, ObjectComponent* c)
 	}
 }
 
-void DMXInterface::updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter* p)
+void DMXInterface::updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter * p, var value)
 {
 	Interface::updateValuesFromComponent(o, c);
 	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
 	jassert(dmxParams != nullptr);
-	sendDMXValue(dmxParams->startChannel->intValue() + c->paramChannelMap[p], p->floatValue() * 255); //remap to 0-255 automatically
+	sendDMXValue(dmxParams->startChannel->intValue() + c->paramChannelMap[p], (float)value * 255); //remap to 0-255 automatically
 }
 
 

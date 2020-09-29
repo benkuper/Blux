@@ -42,6 +42,8 @@ public:
     void onContainerParameterChangedInternal(Parameter* p) override;
     void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 
+    void computeAndSendValue(ObjectComponent * c, Parameter* p);
+
     String getTypeString() const override { return objectType; }
     
     static Object* create(var params) { return new Object(params); }

@@ -71,6 +71,8 @@ void ObjectGridUI::mouseDown(const MouseEvent& e)
 
 void ObjectGridUI::mouseDrag(const MouseEvent& e)
 {
+	BaseItemMinimalUI::mouseDrag(e);
+
 	if (e.mods.isLeftButtonDown() && e.mods.isAltDown())
 	{
 		const float pixelRange = 200;

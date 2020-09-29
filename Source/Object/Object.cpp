@@ -81,14 +81,24 @@ void Object::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Con
 {
     BaseItem::onControllableFeedbackUpdateInternal(cc, c);
 
+    if (!enabled->boolValue()) return;
+
     if (c->type != Parameter::TRIGGER)
     {
         if (ObjectComponent* oc = c->getParentAs<ObjectComponent>())
         {
-            if (Interface* i = dynamic_cast<Interface*>(targetInterface->targetContainer.get()))
-            {
-                i->updateValuesFromParameter(this, oc, (Parameter*)c);
-            }
+            if(targetInterface->targetContainer != nullptr) computeAndSendValue(oc, (Parameter *)c);
         }
+    }
+}
+
+void Object::computeAndSendValue(ObjectComponent* c, Parameter* p)
+{
+    if (!enabled->boolValue() || !c->enabled) return;
+    if (Interface* i = dynamic_cast<Interface*>(targetInterface->targetContainer.get()))
+    {
+        var value = p->getValue();
+        
+        i->updateValuesFromParameter(this, c, p, value);
     }
 }

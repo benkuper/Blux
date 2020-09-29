@@ -14,6 +14,32 @@
       <FILE id="AkkWvI" name="icon128.png" compile="0" resource="1" file="Resources/icon128.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{B57CF847-3047-16DF-4845-D8732946DCE6}" name="Group">
+        <GROUP id="{C262AD5B-824E-A612-0CF9-ACCAA4C68811}" name="groups">
+          <GROUP id="{1DCBC331-2D06-FDDC-9492-94E180D328BE}" name="virtual">
+            <FILE id="Fo6QYF" name="VirtualGroup.cpp" compile="1" resource="0"
+                  file="Source/Group/groups/virtual/VirtualGroup.cpp"/>
+            <FILE id="a99xWr" name="VirtualGroup.h" compile="0" resource="0" file="Source/Group/groups/virtual/VirtualGroup.h"/>
+          </GROUP>
+          <GROUP id="{3B3394BA-5CE5-46E7-E78D-94FEF10F2491}" name="object">
+            <FILE id="qJmIK4" name="ObjectGroup.cpp" compile="1" resource="0" file="Source/Group/groups/object/ObjectGroup.cpp"/>
+            <FILE id="jShn3E" name="ObjectGroup.h" compile="0" resource="0" file="Source/Group/groups/object/ObjectGroup.h"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{CE681629-8F5D-DFE0-A7B6-D9BADD728E72}" name="ui">
+          <FILE id="O609yq" name="GroupManagerUI.cpp" compile="1" resource="0"
+                file="Source/Group/ui/GroupManagerUI.cpp"/>
+          <FILE id="mZwHNd" name="GroupManagerUI.h" compile="0" resource="0"
+                file="Source/Group/ui/GroupManagerUI.h"/>
+          <FILE id="VI0mr8" name="GroupUI.cpp" compile="1" resource="0" file="Source/Group/ui/GroupUI.cpp"/>
+          <FILE id="KAofQs" name="GroupUI.h" compile="0" resource="0" file="Source/Group/ui/GroupUI.h"/>
+        </GROUP>
+        <FILE id="FrED1B" name="Group.cpp" compile="1" resource="0" file="Source/Group/Group.cpp"/>
+        <FILE id="q9J2yz" name="Group.h" compile="0" resource="0" file="Source/Group/Group.h"/>
+        <FILE id="vtxRJh" name="GroupManager.cpp" compile="1" resource="0"
+              file="Source/Group/GroupManager.cpp"/>
+        <FILE id="NcAxFS" name="GroupManager.h" compile="0" resource="0" file="Source/Group/GroupManager.h"/>
+      </GROUP>
       <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
         <GROUP id="{A1CD121E-9B16-9040-8954-4E6DC9DD384E}" name="DMX">
           <GROUP id="{20CB527A-3FDC-CFCF-2853-F56E8351E593}" name="device">

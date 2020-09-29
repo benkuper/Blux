@@ -13,6 +13,7 @@
 #include "Interface/InterfaceManager.h"
 #include "Common/DMX/DMXManager.h"
 #include "Common/Serial/SerialManager.h"
+#include "Group/GroupManager.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
@@ -20,10 +21,12 @@ BluxEngine::BluxEngine() :
 	mainEngine = this;
 	addChildControllableContainer(ObjectManager::getInstance());
 	addChildControllableContainer(InterfaceManager::getInstance());
+	addChildControllableContainer(GroupManager::getInstance());
 }
 
 BluxEngine::~BluxEngine()
 {
+	GroupManager::deleteInstance();
 	ObjectManager::deleteInstance();
 	InterfaceManager::deleteInstance();
 	DMXManager::deleteInstance();
@@ -32,6 +35,7 @@ BluxEngine::~BluxEngine()
 
 void BluxEngine::clearInternal()
 {
+	GroupManager::getInstance()->clear();
 	ObjectManager::getInstance()->clear();
 	InterfaceManager::getInstance()->clear();
 }
@@ -41,11 +45,9 @@ var BluxEngine::getJSONData()
 	var data = Engine::getJSONData();
 
 	//save here
-	var oData = ObjectManager::getInstance()->getJSONData();
-	if (!oData.isVoid() && oData.getDynamicObject()->getProperties().size() > 0) data.getDynamicObject()->setProperty(ObjectManager::getInstance()->shortName, oData);
-
-	var iData = InterfaceManager::getInstance()->getJSONData();
-	if (!iData.isVoid() && iData.getDynamicObject()->getProperties().size() > 0) data.getDynamicObject()->setProperty(InterfaceManager::getInstance()->shortName, iData);
+	data.getDynamicObject()->setProperty(ObjectManager::getInstance()->shortName, ObjectManager::getInstance()->getJSONData());
+	data.getDynamicObject()->setProperty(InterfaceManager::getInstance()->shortName, InterfaceManager::getInstance()->getJSONData());
+	data.getDynamicObject()->setProperty(GroupManager::getInstance()->shortName, GroupManager::getInstance()->getJSONData());
 
 	return data;
 
@@ -58,10 +60,13 @@ void BluxEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 	bluxTask->start();
 
 	InterfaceManager::getInstance()->loadJSONData(data.getProperty(InterfaceManager::getInstance()->shortName, var()));
-	bluxTask->setProgress(1);
-	bluxTask->end();
-
-	ObjectManager::getInstance()->loadJSONData(data.getProperty(ObjectManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.5f);
 
+	ObjectManager::getInstance()->loadJSONData(data.getProperty(ObjectManager::getInstance()->shortName, var()));
+	bluxTask->setProgress(.7f);
+
+	GroupManager::getInstance()->loadJSONData(data.getProperty(GroupManager::getInstance()->shortName, var()));
+
+	bluxTask->setProgress(1);
+	bluxTask->end();
 }
