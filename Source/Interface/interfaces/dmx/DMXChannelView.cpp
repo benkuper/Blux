@@ -1,11 +1,11 @@
 /*
   ==============================================================================
 
-    InterfaceManagerUI.cpp
-    Created: 26 Sep 2020 7:48:12pm
+    DMXChannelView.cpp
+    Created: 29 Sep 2020 3:47:33pm
     Author:  bkupe
 
   ==============================================================================
 */
 
-#include "InterfaceManagerUI.h"
+#include "DMXChannelView.h"

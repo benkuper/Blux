@@ -21,7 +21,6 @@ public:
 
     Factory<ObjectComponent> factory;
 
-
     void addComponentFromDefinition(StringRef type, var definition);
 
     var getJSONData() override;

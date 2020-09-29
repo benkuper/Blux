@@ -14,17 +14,32 @@ ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 	BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
 {
 	animateItemOnAdd = false;
+
+	thumbSizeUI.reset(manager->gridThumbSize->createSlider());
+	addAndMakeVisible(thumbSizeUI.get());
+
+	manager->addAsyncCoalescedContainerListener(this);
+
 	addExistingItems();
 }
 
 ObjectManagerGridUI::~ObjectManagerGridUI()
 {
+	if(!inspectable.wasObjectDeleted()) manager->removeAsyncContainerListener(this);
+}
+
+void ObjectManagerGridUI::resizedInternalHeader(Rectangle<int>& r)
+{
+	BaseManagerShapeShifterUI::resizedInternalHeader(r);
+	thumbSizeUI->setBounds(r.removeFromLeft(200).reduced(2));
 }
 
 void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
 {
 	viewport.setBounds(r); 
 	
+	const int thumbSize = manager->gridThumbSize->floatValue();
+
 	int numThumbs = itemsUI.size();
 	int numThumbPerLine = jmin(r.getWidth() / (thumbSize + gap), numThumbs);
 	int numLines = numThumbs == 0 ? 0 : ceil(numThumbs * 1.f / numThumbPerLine);
@@ -42,7 +57,6 @@ void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
 	{
 		if (index % numThumbPerLine == 0)
 		{
-
 			int numThumbsInThisLine = jmin(numThumbs - index, numThumbPerLine);
 			int lineWidth = numThumbsInThisLine * (thumbSize + gap) - gap;
 
@@ -61,10 +75,12 @@ void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
 
 }
 
-
-void ObjectManagerGridUI::setThumbSize(int value)
+void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
 {
-	if (thumbSize == value) return;
-	thumbSize = value;
-	resized();
+	switch (e.type)
+	{
+	case ContainerAsyncEvent::ControllableFeedbackUpdate:
+		if (e.targetControllable == manager->gridThumbSize) resized();
+		break;
+	}
 }

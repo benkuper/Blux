@@ -1,20 +1,20 @@
 /*
   ==============================================================================
 
-    OSCInterface.cpp
-    Created: 26 Sep 2020 1:52:46pm
+    BentoInterface.cpp
+    Created: 29 Sep 2020 3:56:02pm
     Author:  bkupe
 
   ==============================================================================
 */
 
-#include "OSCInterface.h"
+#include "BentoInterface.h"
 
-OSCInterface::OSCInterface() :
+BentoInterface::BentoInterface() :
     Interface(getTypeString())
 {
 }
 
-OSCInterface::~OSCInterface()
+BentoInterface::~BentoInterface()
 {
 }

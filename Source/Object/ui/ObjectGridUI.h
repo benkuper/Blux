@@ -24,4 +24,7 @@ public:
 	void paint(Graphics& g) override;
 
 	virtual void updateThumbnail();
+
+	virtual void mouseDown(const MouseEvent& e) override;
+	virtual void mouseDrag(const MouseEvent& e) override;
 };

@@ -9,3 +9,25 @@
 */
 
 #include "InterfaceManager.h"
+
+#include "interfaces/dmx/DMXInterface.h"
+#include "interfaces/osc/OSCInterface.h"
+#include "interfaces/serial/SerialInterface.h"
+#include "interfaces/bento/BentoInterface.h"
+
+juce_ImplementSingleton(InterfaceManager)
+
+InterfaceManager::InterfaceManager() :
+    BaseManager("Interfaces")
+{
+    managerFactory = &factory;
+
+    factory.defs.add(Factory<Interface>::Definition::createDef("", "DMX", &DMXInterface::create));
+    factory.defs.add(Factory<Interface>::Definition::createDef("", "OSC", &OSCInterface::create));
+    factory.defs.add(Factory<Interface>::Definition::createDef("", "Serial", &SerialInterface::create));
+    factory.defs.add(Factory<Interface>::Definition::createDef("", "Bento", &BentoInterface::create));
+}
+
+InterfaceManager::~InterfaceManager()
+{
+}

@@ -9,3 +9,12 @@
 */
 
 #include "InterfaceUI.h"
+
+InterfaceUI::InterfaceUI(Interface* item) :
+    BaseItemUI(item)
+{
+}
+
+InterfaceUI::~InterfaceUI()
+{
+}

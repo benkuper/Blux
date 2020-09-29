@@ -80,44 +80,38 @@
         </GROUP>
       </GROUP>
       <GROUP id="{A160C785-C903-CCE2-D4B9-153AA0DB551D}" name="Interface">
+        <GROUP id="{1A79CB5C-332E-5D0C-A97F-DDBFF8832D03}" name="ui">
+          <FILE id="zxGxm8" name="InterfaceManagerUI.cpp" compile="1" resource="0"
+                file="Source/Interface/ui/InterfaceManagerUI.cpp"/>
+          <FILE id="O7moTs" name="InterfaceManagerUI.h" compile="0" resource="0"
+                file="Source/Interface/ui/InterfaceManagerUI.h"/>
+          <FILE id="PRPsLa" name="InterfaceUI.cpp" compile="1" resource="0" file="Source/Interface/ui/InterfaceUI.cpp"/>
+          <FILE id="ikECD1" name="InterfaceUI.h" compile="0" resource="0" file="Source/Interface/ui/InterfaceUI.h"/>
+        </GROUP>
         <GROUP id="{DF6E12F7-E69D-2F0E-3EA6-A2EF5A333D40}" name="interfaces">
-          <GROUP id="{1A79CB5C-332E-5D0C-A97F-DDBFF8832D03}" name="ui">
-            <FILE id="aaHhZ7" name="InterfaceManagerUI.cpp" compile="1" resource="0"
-                  file="Source/Interface/interfaces/ui/InterfaceManagerUI.cpp"/>
-            <FILE id="HA4OF7" name="InterfaceManagerUI.h" compile="0" resource="0"
-                  file="Source/Interface/interfaces/ui/InterfaceManagerUI.h"/>
-            <FILE id="usa1Jb" name="InterfaceUI.cpp" compile="1" resource="0" file="Source/Interface/interfaces/ui/InterfaceUI.cpp"/>
-            <FILE id="rhXN0H" name="InterfaceUI.h" compile="0" resource="0" file="Source/Interface/interfaces/ui/InterfaceUI.h"/>
+          <GROUP id="{14022091-655A-3652-8B43-E5DBAF4F1B23}" name="bento">
+            <FILE id="waaFg0" name="BentoInterface.cpp" compile="1" resource="0"
+                  file="Source/Interface/interfaces/bento/BentoInterface.cpp"/>
+            <FILE id="dP2ac2" name="BentoInterface.h" compile="0" resource="0"
+                  file="Source/Interface/interfaces/bento/BentoInterface.h"/>
           </GROUP>
           <GROUP id="{9A7BE87B-C8D1-83B7-8FEF-96EB4AA1FFD8}" name="serial">
-            <GROUP id="{5303D141-D5DD-DAAA-6FE3-3542817B60F8}" name="ui">
-              <FILE id="s27Y7V" name="SerialInterfaceUI.cpp" compile="1" resource="0"
-                    file="Source/Interface/interfaces/serial/ui/SerialInterfaceUI.cpp"/>
-              <FILE id="zrua4W" name="SerialInterfaceUI.h" compile="0" resource="0"
-                    file="Source/Interface/interfaces/serial/ui/SerialInterfaceUI.h"/>
-            </GROUP>
             <FILE id="L6HN1q" name="SerialInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/serial/SerialInterface.cpp"/>
             <FILE id="qeobtQ" name="SerialInterface.h" compile="0" resource="0"
                   file="Source/Interface/interfaces/serial/SerialInterface.h"/>
           </GROUP>
           <GROUP id="{7E98C9EB-5E94-A855-7F6B-1651BB613019}" name="osc">
-            <GROUP id="{65E176ED-1CED-189A-136E-C8E96FE76FF9}" name="ui">
-              <FILE id="j2YAHT" name="OSCInterfaceUI.cpp" compile="1" resource="0"
-                    file="Source/Interface/interfaces/osc/ui/OSCInterfaceUI.cpp"/>
-              <FILE id="T6Qp3I" name="OSCInterfaceUI.h" compile="0" resource="0"
-                    file="Source/Interface/interfaces/osc/ui/OSCInterfaceUI.h"/>
-            </GROUP>
             <FILE id="WUiXGB" name="OSCInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/osc/OSCInterface.cpp"/>
             <FILE id="F22DGO" name="OSCInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/osc/OSCInterface.h"/>
           </GROUP>
           <GROUP id="{8DC395E5-1176-555B-3A2E-A27F368DDD43}" name="dmx">
             <GROUP id="{F4E7C7B4-AE43-5E8E-0F03-BC19CDED6EC0}" name="ui">
-              <FILE id="E9B8Vy" name="DMXInterfaceUI.cpp" compile="1" resource="0"
-                    file="Source/Interface/interfaces/dmx/DMXInterfaceUI.cpp"/>
-              <FILE id="COiv6d" name="DMXInterfaceUI.h" compile="0" resource="0"
-                    file="Source/Interface/interfaces/dmx/DMXInterfaceUI.h"/>
+              <FILE id="P4Lsso" name="DMXChannelView.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/dmx/DMXChannelView.cpp"/>
+              <FILE id="Bbnj9z" name="DMXChannelView.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/dmx/DMXChannelView.h"/>
             </GROUP>
             <FILE id="W9dn5Y" name="DMXInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/dmx/DMXInterface.cpp"/>

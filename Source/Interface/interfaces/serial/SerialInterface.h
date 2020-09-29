@@ -9,3 +9,16 @@
 */
 
 #pragma once
+
+#include "../../Interface.h"
+
+class SerialInterface :
+    public Interface
+{
+public:
+    SerialInterface();
+    ~SerialInterface();
+
+    String getTypeString() const override { return "Serial"; }
+    static SerialInterface* create(var params) { return new SerialInterface(); };
+};

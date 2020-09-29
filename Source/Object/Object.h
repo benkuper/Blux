@@ -21,12 +21,38 @@ public:
 
     String objectType;
     var objectData;
+
+    TargetParameter* targetInterface;
+    std::unique_ptr<ControllableContainer> interfaceParameters;
+    var interfaceGhostData;
+
+    
     ComponentManager componentManager;
 
     //ui
     File customThumbnailPath;
+    Parameter* slideManipParameter;
+    float slideManipValueRef;
+
+    void rebuildInterfaceParams();
+
+    template<class T>
+    T* getComponent();
+
+    void onContainerParameterChangedInternal(Parameter* p) override;
+    void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 
     String getTypeString() const override { return objectType; }
     
     static Object* create(var params) { return new Object(params); }
 };
+
+template<class T>
+T* Object::getComponent()
+{
+    for (auto& c : componentManager.items)
+    {
+        if (T* result = dynamic_cast<T*>(c)) return result;
+    }
+    return nullptr;
+}

@@ -9,3 +9,23 @@
 */
 
 #pragma once
+
+#include "JuceHeader.h"
+class Object;
+class ObjectComponent;
+
+class Interface :
+    public BaseItem
+{
+public:
+    Interface(String name = "Interface");
+    virtual ~Interface();
+
+    BoolParameter* logIncomingData;
+    BoolParameter* logOutgoingData;
+
+    virtual void updateValuesFromComponent(Object* o, ObjectComponent* c) {}
+    virtual void updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter * p) {}
+
+    virtual ControllableContainer* getInterfaceParams() { return new ControllableContainer("Interface parameters"); }
+};

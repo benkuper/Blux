@@ -13,20 +13,19 @@
 #include "../ObjectManager.h"
 
 class ObjectManagerGridUI :
-	public BaseManagerShapeShifterUI<ObjectManager, Object, ObjectGridUI>
+	public BaseManagerShapeShifterUI<ObjectManager, Object, ObjectGridUI>,
+	public ContainerAsyncListener
 {
 public:
 	ObjectManagerGridUI(const String& name);
 	~ObjectManagerGridUI();
 
-	int thumbSize = 128;
-	const int gap = 2;
-	const int headerHeight = 16;
-	const int headerGap = 4;
 
+	std::unique_ptr<IntSliderUI> thumbSizeUI;
+
+	void resizedInternalHeader(Rectangle<int>& r) override;
 	void resizedInternalContent(Rectangle<int> &r) override;
-
-	void setThumbSize(int value);
+	void newMessage(const ContainerAsyncEvent& e) override;
 
 	static ObjectManagerGridUI* create(const String& name) { return new ObjectManagerGridUI(name); }
 };

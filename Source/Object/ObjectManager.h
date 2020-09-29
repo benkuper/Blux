@@ -18,6 +18,9 @@ class ObjectManager :
 public:
     juce_DeclareSingleton(ObjectManager, true);
 
+    //ui
+    IntParameter * gridThumbSize;
+
     ObjectManager();
     ~ObjectManager();
 

@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    OSCInterface.h
-    Created: 26 Sep 2020 1:52:46pm
+    BentoInterface.h
+    Created: 29 Sep 2020 3:56:02pm
     Author:  bkupe
 
   ==============================================================================
@@ -12,13 +12,13 @@
 
 #include "../../Interface.h"
 
-class OSCInterface :
+class BentoInterface :
     public Interface
 {
 public:
-    OSCInterface();
-    ~OSCInterface();
+    BentoInterface();
+    ~BentoInterface();
 
-    String getTypeString() const override { return "OSC"; }
-    static OSCInterface* create(var params) { return new OSCInterface(); };
+    String getTypeString() const override { return "Bento"; }
+    static BentoInterface* create(var params) { return new BentoInterface(); };
 };

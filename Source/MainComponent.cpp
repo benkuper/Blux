@@ -2,6 +2,7 @@
 
 #include "Object/ui/ObjectManagerUI.h"
 #include "Object/ui/ObjectManagerGridUI.h"
+#include "Interface/ui/InterfaceManagerUI.h"
 
 String getAppVersion();
 ApplicationProperties& getAppProperties();
@@ -23,8 +24,9 @@ void MainComponent::init()
 {
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(ObjectManager::getInstance()->niceName, &ObjectManagerUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Objects Grid View", &ObjectManagerGridUI::create));
+	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Interfaces", &InterfaceManagerUI::create));
+
 	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Groups", &GroupManagerUI::create));
-	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Interfaces", &InterfaceManagerUI::create));
 	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage Layouts", &StageLayoutManagerUI::create));
 	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 2D View", &Stage2DView::create));
 	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 3D View", &Stage3DView::create));

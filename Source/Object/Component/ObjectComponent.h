@@ -19,5 +19,8 @@ public:
     ObjectComponent(String name = "Component", var params = var());
     virtual ~ObjectComponent();
 
+    //dmx
+    HashMap<Parameter*, int> paramChannelMap;
+
     virtual void setupFromJSONDefinition(var data);
 };

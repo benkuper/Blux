@@ -22,6 +22,7 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 
 	autoHideWhenDragging = false;
 
+
 	setRepaintsOnMouseActivity(true);
 	//object->addAsyncModelListener(this);
 }
@@ -52,4 +53,31 @@ void ObjectGridUI::updateThumbnail()
 	if (objectImage.getWidth() == 0) objectImage = BluxAssetManager::getImage("icon128");
 
 	repaint();
+}
+
+void ObjectGridUI::mouseDown(const MouseEvent& e)
+{
+	BaseItemMinimalUI::mouseDown(e);
+
+	if (e.mods.isLeftButtonDown() && e.mods.isAltDown())
+	{
+		Array<Object *> objects = InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>();
+		for (auto& o : objects)
+		{
+			if (o->slideManipParameter != nullptr) o->slideManipValueRef = o->slideManipParameter->floatValue();
+		}
+	}
+}
+
+void ObjectGridUI::mouseDrag(const MouseEvent& e)
+{
+	if (e.mods.isLeftButtonDown() && e.mods.isAltDown())
+	{
+		const float pixelRange = 200;
+		Array<Object*> objects = InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>();
+		for (auto& o : objects)
+		{
+			if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(o->slideManipValueRef - e.getDistanceFromDragStartY() / pixelRange);
+		}
+	}
 }
