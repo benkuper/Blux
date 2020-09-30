@@ -13,20 +13,25 @@
 juce_ImplementSingleton(ObjectManager);
 
 ObjectManager::ObjectManager() :
-    BaseManager("Objects")
+    BaseManager("Objects"),
+    Thread("Object compute")
 {
     managerFactory = &factory;
     itemDataType = "Object";
 
     gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 64, 32, 128);
     gridThumbSize->hideInEditor = true;
+    
+    startThread();
 
     updateFactoryDefinitions();
 }
 
 ObjectManager::~ObjectManager()
 {
+    stopThread(1000);
 }
+
 
 void ObjectManager::updateFactoryDefinitions()
 {
@@ -52,5 +57,21 @@ void ObjectManager::updateFactoryDefinitions()
 
         Image img = ImageCache::getFromFile(of.getChildFile("icon.png"));
         factory.defs.add(Factory<Object>::Definition::createDef(def.getProperty("menu","").toString(), def.getProperty("name","[noname]").toString(), &Object::create, def)->addIcon(img));
+    }
+}
+
+
+void ObjectManager::run()
+{
+    while (!threadShouldExit()) 
+    {
+        long millisBefore = Time::getMillisecondCounter();
+        items.getLock().enter();
+        for (auto& o : items)  o->checkAndComputeComponentValuesIfNeeded();
+        items.getLock().exit();
+        long millisAfter = Time::getMillisecondCounter();
+
+        long millisToSleep = jmax<long>(1, 30-(millisAfter-millisBefore));
+        sleep(millisToSleep);
     }
 }

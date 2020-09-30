@@ -27,7 +27,6 @@ public:
     std::unique_ptr<ControllableContainer> interfaceParameters;
     var interfaceGhostData;
 
-    
     ComponentManager componentManager;
     EffectManager effectManager;
 
@@ -44,8 +43,8 @@ public:
     void onContainerParameterChangedInternal(Parameter* p) override;
     void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 
+    void checkAndComputeComponentValuesIfNeeded();
     void computeComponentValues(ObjectComponent* c);
-    //void sendComponentParameter(ObjectComponent * c, Parameter * p);
 
     String getTypeString() const override { return objectType; }
     

@@ -26,11 +26,11 @@ EffectManager::~EffectManager()
 {
 }
 
-void EffectManager::processComponentValues(ObjectComponent* c, var& values)
+void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& values)
 {
     for (auto& e: items)
     {
         if (!e->enabled->boolValue()) continue;
-        e->processComponentValues(c, values);
+        e->processComponentValues(o, c, values);
     }
 }

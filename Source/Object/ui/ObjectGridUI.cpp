@@ -14,7 +14,8 @@
 #include "../Component/components/intensity/IntensityComponent.h"
 
 ObjectGridUI::ObjectGridUI(Object* object) :
-	BaseItemMinimalUI(object)
+	BaseItemMinimalUI(object),
+	shouldRepaint(false)
 {
 	//bgColor = item->isBeingEdited ? BLUE_COLOR.darker().withSaturation(.3f) : bgColor = BG_COLOR.brighter(.1f);
 
@@ -26,6 +27,8 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 
 	setRepaintsOnMouseActivity(true);
 	//object->addAsyncModelListener(this);
+
+	startTimerHz(20);
 }
 
 ObjectGridUI::~ObjectGridUI()
@@ -76,7 +79,7 @@ void ObjectGridUI::updateThumbnail()
 	if (item->customThumbnailPath.existsAsFile()) objectImage = ImageCache::getFromFile(item->customThumbnailPath);
 	if (objectImage.getWidth() == 0) objectImage = BluxAssetManager::getImage("icon128");
 
-	repaint();
+	shouldRepaint = true;
 }
 
 void ObjectGridUI::mouseDown(const MouseEvent& e)
@@ -112,6 +115,15 @@ void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 {
 	if (IntensityComponent* ic = c->getParentAs<IntensityComponent>())
 	{
-		if (c == ic->value) repaint();
+		shouldRepaint = true;
+	}
+}
+
+void ObjectGridUI::timerCallback()
+{
+	if (shouldRepaint)
+	{
+		repaint();
+		shouldRepaint = false;
 	}
 }

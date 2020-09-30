@@ -28,7 +28,7 @@ public:
     ComponentManager();
     ~ComponentManager();
 
-    void addComponentFromDefinition(StringRef type, var definition);
+    void addComponentFromDefinition(StringRef type, var definition, bool canBeRemoved = false);
 
     var getJSONData() override;
     void loadJSONDataInternal(var data) override;

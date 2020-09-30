@@ -186,6 +186,7 @@
           <GROUP id="{769D393A-6D2C-BDC6-422B-8D022A54DEC6}" name="noise">
             <FILE id="Kx2YCO" name="NoiseEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/noise/NoiseEffect.cpp"/>
             <FILE id="UxhEgu" name="NoiseEffect.h" compile="0" resource="0" file="Source/Effect/effects/noise/NoiseEffect.h"/>
+            <FILE id="d4Qr1T" name="PerlinNoise.hpp" compile="0" resource="0" file="Source/Effect/effects/noise/PerlinNoise.hpp"/>
           </GROUP>
         </GROUP>
         <GROUP id="{11ABDC7F-4CBF-C8CB-0BA7-C89E429B21F7}" name="Filter">

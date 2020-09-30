@@ -89,7 +89,7 @@ void BluxEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 	SceneManager::getInstance()->loadJSONData(data.getProperty(SceneManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.4f);
 	
-	GlobalEffectManager::getInstance()->loadJSONData(data.getProperty(SceneManager::getInstance()->shortName, var()));
+	GlobalEffectManager::getInstance()->loadJSONData(data.getProperty(GlobalEffectManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.5f);
 
 	PresetManager::getInstance()->loadJSONData(data.getProperty(PresetManager::getInstance()->shortName, var()));

@@ -13,11 +13,14 @@
 #include "../Object.h"
 
 class ObjectGridUI :
-	public BaseItemMinimalUI<Object>
+	public BaseItemMinimalUI<Object>,
+	public Timer
 {
 public:
 	ObjectGridUI(Object* model);
 	~ObjectGridUI();
+
+	bool shouldRepaint;
 
 	Image objectImage;
 
@@ -29,4 +32,6 @@ public:
 	virtual void mouseDrag(const MouseEvent& e) override;
 
 	void controllableFeedbackUpdateInternal(Controllable* c) override;
+
+	void timerCallback() override;
 };

@@ -10,8 +10,7 @@
 
 #pragma once
 #include "../../Effect.h"
-
-class ObjectComponent;
+#include "PerlinNoise.hpp"
 
 class NoiseEffect :
     public Effect
@@ -25,7 +24,9 @@ public:
     FloatParameter* amplitude;
     FloatParameter* frequency;
 
-    void processComponentValues(ObjectComponent* c, var &values) override;
+    siv::PerlinNoise perlin;
+
+    void processComponentValues(Object * o, ObjectComponent* c, var &values) override;
 
     String getTypeString() const override { return "Noise"; }
     static NoiseEffect* create(var params) { return new NoiseEffect(params); }

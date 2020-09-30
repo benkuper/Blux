@@ -13,7 +13,8 @@
 #include "Object.h"
 
 class ObjectManager :
-    public BaseManager<Object>
+    public BaseManager<Object>,
+    public Thread
 {
 public:
     juce_DeclareSingleton(ObjectManager, true);
@@ -26,6 +27,8 @@ public:
 
     Factory<Object> factory;
 
-
     void updateFactoryDefinitions();
+
+    void run() override;
+
 };

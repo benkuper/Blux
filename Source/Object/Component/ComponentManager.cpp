@@ -33,9 +33,10 @@ ComponentManager::~ComponentManager()
 {
 }
 
-void ComponentManager::addComponentFromDefinition(StringRef type, var definition)
+void ComponentManager::addComponentFromDefinition(StringRef type, var definition, bool canBeRemoved)
 {
     ObjectComponent* c = managerFactory->create(type);
+    c->userCanRemove = canBeRemoved;
     c->setupFromJSONDefinition(definition);
     addItem(c);
 }

@@ -12,7 +12,8 @@
 #include "ui/ObjectComponentEditor.h"
 
 ObjectComponent::ObjectComponent(String name, var params) :
-    BaseItem(name)
+    BaseItem(name),
+    isDirty(true)
 {
 }
 
@@ -25,7 +26,19 @@ void ObjectComponent::addComputedParameter(Parameter* p, int channel, Parameter 
     p->setControllableFeedbackOnly(true);
     computedParameters.add(p);
     computedParamMap.set(p, originalParameter);
+    addParameter(p);
+    p->hideInEditor = true;
     paramChannels.add(channel);
+}
+
+void ObjectComponent::onContainerParameterChangedInternal(Parameter* p)
+{
+    BaseItem::onContainerParameterChangedInternal(p);
+    
+    if (p == enabled) isDirty = true;
+    if (!enabled->boolValue()) return;
+    
+    isDirty = true;
 }
 
 var ObjectComponent::getOriginalComputedValues()

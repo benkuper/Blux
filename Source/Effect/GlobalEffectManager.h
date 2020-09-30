@@ -19,8 +19,9 @@ public:
     EffectGroup();
     ~EffectGroup();
 
-    String getTypeString() const override { return "EffectGroup"; }
     EffectManager effectManager;
+
+    String getTypeString() const override { return "EffectGroup"; }
 };
 
 class GlobalEffectManager :
@@ -31,5 +32,8 @@ public:
 
     GlobalEffectManager();
     ~GlobalEffectManager();
+
+
+    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values);
 
 };

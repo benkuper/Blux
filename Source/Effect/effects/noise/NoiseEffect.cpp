@@ -9,7 +9,7 @@
 */
 
 #include "NoiseEffect.h"
-#include "Object/Component/ObjectComponent.h"
+#include "Object/Object.h"
 
 NoiseEffect::NoiseEffect(var params) :
     Effect(getTypeString(), params)
@@ -25,7 +25,21 @@ NoiseEffect::~NoiseEffect()
 {
 }
 
-void NoiseEffect::processComponentValues(ObjectComponent* c, var& values)
+void NoiseEffect::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
-    values[0] = (float)values[0] + amplitude->floatValue();
+    float noiseVal = 0;
+    float time = (Time::getMillisecondCounter() / 1000.0f) * frequency->floatValue();
+    NoiseType t = type->getValueDataAsEnum<NoiseType>();
+    switch (t)
+    {
+    case PERLIN:
+        noiseVal = perlin.noise(time) * 2;
+        break;
+
+    case SINE:
+        noiseVal = sinf(time * float_Pi);
+        break;
+    }
+
+    values[0] = (float)values[0] + noiseVal * amplitude->floatValue();
 }

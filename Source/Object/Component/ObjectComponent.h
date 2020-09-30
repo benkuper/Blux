@@ -20,11 +20,16 @@ public:
     virtual ~ObjectComponent();
 
     //dmx
-    OwnedArray<Parameter> computedParameters;
+    Array<Parameter *> computedParameters;
     HashMap<Parameter*, Parameter*> computedParamMap;
     Array<int> paramChannels;
 
+    //compute
+    bool isDirty;
+
     void addComputedParameter(Parameter* p, int channel, Parameter* originalParameter = nullptr);
+
+    void onContainerParameterChangedInternal(Parameter* p) override;
 
     virtual var getOriginalComputedValues();
 

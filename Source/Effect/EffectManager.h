@@ -12,6 +12,7 @@
 
 #include "Effect.h"
 
+class Object;
 class ObjectComponent;
 
 class EffectManager :
@@ -23,5 +24,5 @@ public:
 
     Factory<Effect> factory;
 
-    virtual void processComponentValues(ObjectComponent * c, var &values);
+    virtual void processComponentValues(Object * o, ObjectComponent * c, var &values);
 };
