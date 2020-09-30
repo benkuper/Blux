@@ -9,3 +9,12 @@
 */
 
 #include "SceneUI.h"
+
+SceneUI::SceneUI(Scene* scene) :
+    BaseItemUI(scene)
+{
+}
+
+SceneUI::~SceneUI()
+{
+}

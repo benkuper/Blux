@@ -12,14 +12,21 @@
 
 #include "ObjectComponent.h"
 
+class ComponentFactory :
+    public Factory<ObjectComponent>
+{
+public:
+    juce_DeclareSingleton(ComponentFactory, true);
+    ComponentFactory();
+    ~ComponentFactory() {}
+};
+
 class ComponentManager :
     public BaseManager<ObjectComponent>
 {
 public:
     ComponentManager();
     ~ComponentManager();
-
-    Factory<ObjectComponent> factory;
 
     void addComponentFromDefinition(StringRef type, var definition);
 

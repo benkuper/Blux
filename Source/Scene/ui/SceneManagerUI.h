@@ -9,3 +9,17 @@
 */
 
 #pragma once
+
+#include "../SceneManager.h"
+#include "SceneUI.h"
+
+class SceneManagerUI :
+    public BaseManagerShapeShifterUI<SceneManager, Scene, SceneUI>
+{
+public:
+    SceneManagerUI(const String &name);
+    ~SceneManagerUI();
+
+    static SceneManagerUI* create(const String& name) { return new SceneManagerUI(name); }
+
+};

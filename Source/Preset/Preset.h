@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    SceneUI.h
-    Created: 26 Sep 2020 7:49:24pm
+    Preset.h
+    Created: 30 Sep 2020 2:15:43pm
     Author:  bkupe
 
   ==============================================================================
@@ -10,12 +10,14 @@
 
 #pragma once
 
-#include "../Scene.h"
+#include "JuceHeader.h"
 
-class SceneUI :
-    public BaseItemUI<Scene>
+class Preset :
+    public BaseItem
 {
 public:
-    SceneUI(Scene* scene);
-    virtual ~SceneUI();
+    Preset();
+    ~Preset();
+
+    String getTypeString() const override { return "Preset"; }
 };

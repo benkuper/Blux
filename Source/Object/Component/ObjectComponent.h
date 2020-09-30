@@ -20,7 +20,14 @@ public:
     virtual ~ObjectComponent();
 
     //dmx
-    HashMap<Parameter*, int> paramChannelMap;
+    OwnedArray<Parameter> computedParameters;
+    HashMap<Parameter*, Parameter*> computedParamMap;
+    Array<int> paramChannels;
+
+    void addComputedParameter(Parameter* p, int channel, Parameter* originalParameter = nullptr);
+
+    virtual var getOriginalComputedValues();
 
     virtual void setupFromJSONDefinition(var data);
+    InspectableEditor* getEditor(bool isRoot) override;
 };

@@ -43,6 +43,8 @@ Object::Object(var params) :
 
     componentManager.userCanAddItemsManually = params.getProperty("isCustom", false);
     addChildControllableContainer(&componentManager);
+
+    addChildControllableContainer(&effectManager);
 }
 
 Object::~Object()
@@ -87,18 +89,44 @@ void Object::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Con
     {
         if (ObjectComponent* oc = c->getParentAs<ObjectComponent>())
         {
-            if(targetInterface->targetContainer != nullptr) computeAndSendValue(oc, (Parameter *)c);
+            if (targetInterface->targetContainer != nullptr)
+            {
+                if (!oc->computedParameters.contains((Parameter*)c)) computeComponentValues(oc);
+                //else sendComponentParameter(oc, ((Parameter*)c));
+            }
         }
     }
 }
 
-void Object::computeAndSendValue(ObjectComponent* c, Parameter* p)
+
+void Object::computeComponentValues(ObjectComponent* c)
 {
     if (!enabled->boolValue() || !c->enabled) return;
     if (Interface* i = dynamic_cast<Interface*>(targetInterface->targetContainer.get()))
     {
-        var value = p->getValue();
-        
-        i->updateValuesFromParameter(this, c, p, value);
+        //local effects
+        var values = c->getOriginalComputedValues();
+
+        DBG("Before : " << (float)values[0]);
+        effectManager.processComponentValues(c, values);
+        DBG("After : " << (float)values[0]);
+
+        int index = 0;
+        for (auto& p : c->computedParameters)
+        {
+            p->setValue(values[index++]);
+        }
+
+        i->updateValuesFromComponent(this, c);
     }
 }
+
+
+//void Object::sendComponentParameter(ObjectComponent* c, Parameter* p)
+//{
+//    if (!enabled->boolValue() || !c->enabled) return;
+//    if (Interface* i = dynamic_cast<Interface*>(targetInterface->targetContainer.get()))
+//    {
+//        i->updateValuesFromParameter(this, c, p, p->floatValue());
+//    }
+//}

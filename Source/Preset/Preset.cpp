@@ -1,11 +1,20 @@
 /*
   ==============================================================================
 
-    Behaviour.h
-    Created: 26 Sep 2020 10:03:07am
+    Preset.cpp
+    Created: 30 Sep 2020 2:15:43pm
     Author:  bkupe
 
   ==============================================================================
 */
 
-#pragma once
+#include "Preset.h"
+
+Preset::Preset() :
+    BaseItem(getTypeString())
+{
+}
+
+Preset::~Preset()
+{
+}

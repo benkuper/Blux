@@ -9,3 +9,17 @@
 */
 
 #pragma once
+
+#include "Scene.h"
+
+class SceneManager :
+    public BaseManager<Scene>
+{
+public:
+    juce_DeclareSingleton(SceneManager, true);
+
+    SceneManager();
+    ~SceneManager();
+
+    Factory<Scene> factory;
+};

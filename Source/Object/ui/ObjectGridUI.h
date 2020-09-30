@@ -27,4 +27,6 @@ public:
 
 	virtual void mouseDown(const MouseEvent& e) override;
 	virtual void mouseDrag(const MouseEvent& e) override;
+
+	void controllableFeedbackUpdateInternal(Controllable* c) override;
 };

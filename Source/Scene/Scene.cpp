@@ -9,3 +9,12 @@
 */
 
 #include "Scene.h"
+
+Scene::Scene(const String& name) :
+    BaseItem(name, false)
+{
+}
+
+Scene::~Scene()
+{
+}

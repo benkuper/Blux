@@ -166,26 +166,23 @@ void DMXInterface::updateValuesFromComponent(Object* o, ObjectComponent* c)
 	jassert(dmxParams != nullptr);
 
 	int startChannel = dmxParams->startChannel->intValue();
-	HashMap<Parameter*, int>::Iterator it(c->paramChannelMap);
-	while (it.next())
+	for(int i=0;i<c->computedParameters.size();i++)
 	{
-		sendDMXValue(startChannel + it.getValue(), it.getKey()->floatValue() * 255); //remap to 0-255 automatically
+		sendDMXValue(startChannel + c->paramChannels[i], c->computedParameters[i]->floatValue() * 255); //remap to 0-255 automatically
 	}
 }
 
-void DMXInterface::updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter * p, var value)
-{
-	Interface::updateValuesFromComponent(o, c);
-	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
-	jassert(dmxParams != nullptr);
-	sendDMXValue(dmxParams->startChannel->intValue() + c->paramChannelMap[p], (float)value * 255); //remap to 0-255 automatically
-}
 
-
+//void DMXInterface::updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter * p)
+//{
+//	Interface::updateValuesFromComponent(o, c);
+//	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
+//	jassert(dmxParams != nullptr);
+//	sendDMXValue(dmxParams->startChannel->intValue() + c->paramChannels[c->computedParameters.indexOf(p)], p->floatValue() * 255); //remap to 0-255 automatically
+//}
 
 
 // DMX PARAMS
-
 DMXInterface::DMXParams::DMXParams() :
 	ControllableContainer("DMX Params")
 {

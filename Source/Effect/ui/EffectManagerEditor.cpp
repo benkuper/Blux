@@ -1,11 +1,11 @@
 /*
   ==============================================================================
 
-    FilterManager.h
-    Created: 26 Sep 2020 2:13:19pm
+    EffectManagerEditor.cpp
+    Created: 30 Sep 2020 12:39:05pm
     Author:  bkupe
 
   ==============================================================================
 */
 
-#pragma once
+#include "EffectManagerEditor.h"

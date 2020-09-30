@@ -11,6 +11,7 @@
 #pragma once
 
 #include "Component/ComponentManager.h"
+#include "Effect/EffectManager.h"
 
 class Object :
     public BaseItem
@@ -28,6 +29,7 @@ public:
 
     
     ComponentManager componentManager;
+    EffectManager effectManager;
 
     //ui
     File customThumbnailPath;
@@ -42,7 +44,8 @@ public:
     void onContainerParameterChangedInternal(Parameter* p) override;
     void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 
-    void computeAndSendValue(ObjectComponent * c, Parameter* p);
+    void computeComponentValues(ObjectComponent* c);
+    //void sendComponentParameter(ObjectComponent * c, Parameter * p);
 
     String getTypeString() const override { return objectType; }
     

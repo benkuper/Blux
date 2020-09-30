@@ -14,6 +14,21 @@
       <FILE id="AkkWvI" name="icon128.png" compile="0" resource="1" file="Resources/icon128.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{6FB74C4A-A0E6-B037-4FBF-A28F2A49E7EB}" name="Preset">
+        <GROUP id="{65080FBC-0FCC-55BE-74B9-06453DB21DC3}" name="ui">
+          <FILE id="qJWy9W" name="PresetManagerUI.cpp" compile="1" resource="0"
+                file="Source/Preset/ui/PresetManagerUI.cpp"/>
+          <FILE id="mkzNMp" name="PresetManagerUI.h" compile="0" resource="0"
+                file="Source/Preset/ui/PresetManagerUI.h"/>
+          <FILE id="XI1mRR" name="PresetUI.cpp" compile="1" resource="0" file="Source/Preset/ui/PresetUI.cpp"/>
+          <FILE id="uxJtrL" name="PresetUI.h" compile="0" resource="0" file="Source/Preset/ui/PresetUI.h"/>
+        </GROUP>
+        <FILE id="gNiPTv" name="Preset.cpp" compile="1" resource="0" file="Source/Preset/Preset.cpp"/>
+        <FILE id="lxG9TK" name="Preset.h" compile="0" resource="0" file="Source/Preset/Preset.h"/>
+        <FILE id="QNIthM" name="PresetManager.cpp" compile="1" resource="0"
+              file="Source/Preset/PresetManager.cpp"/>
+        <FILE id="hS57R2" name="PresetManager.h" compile="0" resource="0" file="Source/Preset/PresetManager.h"/>
+      </GROUP>
       <GROUP id="{B57CF847-3047-16DF-4845-D8732946DCE6}" name="Group">
         <GROUP id="{C262AD5B-824E-A612-0CF9-ACCAA4C68811}" name="groups">
           <GROUP id="{1DCBC331-2D06-FDDC-9492-94E180D328BE}" name="virtual">
@@ -166,39 +181,59 @@
               file="Source/Scene/SceneManager.cpp"/>
         <FILE id="k1c4Hy" name="SceneManager.h" compile="0" resource="0" file="Source/Scene/SceneManager.h"/>
       </GROUP>
-      <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Behaviour">
-        <GROUP id="{EEB89B66-A685-FC8C-64AB-5A15E087594F}" name="ui">
-          <FILE id="JpOd69" name="BehaviourEditor.cpp" compile="1" resource="0"
-                file="Source/Behaviour/BehaviourEditor.cpp"/>
-          <FILE id="vjtZfa" name="BehaviourEditor.h" compile="0" resource="0"
-                file="Source/Behaviour/BehaviourEditor.h"/>
-          <FILE id="p38dRm" name="BehaviourManagerEditor.cpp" compile="1" resource="0"
-                file="Source/Behaviour/BehaviourManagerEditor.cpp"/>
-          <FILE id="E6gaH2" name="BehaviourManagerEditor.h" compile="0" resource="0"
-                file="Source/Behaviour/BehaviourManagerEditor.h"/>
-        </GROUP>
-        <GROUP id="{72DCD2A0-DF64-B02B-2D23-A18B4F78BB3B}" name="Filter">
-          <GROUP id="{B901BBA9-D5B1-3AA4-8B4D-4505889441CB}" name="ui">
-            <FILE id="Ko1Xgx" name="FilterEditor.cpp" compile="1" resource="0"
-                  file="Source/Behaviour/Filter/ui/FilterEditor.cpp"/>
-            <FILE id="dfhzf7" name="FilterEditor.h" compile="0" resource="0" file="Source/Behaviour/Filter/ui/FilterEditor.h"/>
-            <FILE id="ld7u6o" name="FilterManagerEditor.cpp" compile="1" resource="0"
-                  file="Source/Behaviour/Filter/ui/FilterManagerEditor.cpp"/>
-            <FILE id="qruq4m" name="FilterManagerEditor.h" compile="0" resource="0"
-                  file="Source/Behaviour/Filter/ui/FilterManagerEditor.h"/>
+      <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Effect">
+        <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{769D393A-6D2C-BDC6-422B-8D022A54DEC6}" name="noise">
+            <FILE id="Kx2YCO" name="NoiseEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/noise/NoiseEffect.cpp"/>
+            <FILE id="UxhEgu" name="NoiseEffect.h" compile="0" resource="0" file="Source/Effect/effects/noise/NoiseEffect.h"/>
           </GROUP>
-          <FILE id="YCWxiF" name="Filter.cpp" compile="1" resource="0" file="Source/Behaviour/Filter/Filter.cpp"/>
-          <FILE id="zAEZdy" name="Filter.h" compile="0" resource="0" file="Source/Behaviour/Filter/Filter.h"/>
-          <FILE id="QlzDDm" name="FilterManager.cpp" compile="1" resource="0"
-                file="Source/Behaviour/Filter/FilterManager.cpp"/>
-          <FILE id="dOP21Y" name="FilterManager.h" compile="0" resource="0" file="Source/Behaviour/Filter/FilterManager.h"/>
         </GROUP>
-        <FILE id="IrUq7C" name="Behaviour.cpp" compile="1" resource="0" file="Source/Behaviour/Behaviour.cpp"/>
-        <FILE id="zDU2cq" name="Behaviour.h" compile="0" resource="0" file="Source/Behaviour/Behaviour.h"/>
-        <FILE id="HfX0Rk" name="BehaviourManager.cpp" compile="1" resource="0"
-              file="Source/Behaviour/BehaviourManager.cpp"/>
-        <FILE id="LHLiND" name="BehaviourManager.h" compile="0" resource="0"
-              file="Source/Behaviour/BehaviourManager.h"/>
+        <GROUP id="{11ABDC7F-4CBF-C8CB-0BA7-C89E429B21F7}" name="Filter">
+          <GROUP id="{F17755BA-DA05-000D-678F-57CA7F0A403A}" name="filters">
+            <GROUP id="{A62E3CDA-402A-AD22-FDC5-1AD35CF4412D}" name="component">
+              <FILE id="y0jPWe" name="ComponentFilter.cpp" compile="1" resource="0"
+                    file="Source/Effect/Filter/filters/component/ComponentFilter.cpp"/>
+              <FILE id="tllte7" name="ComponentFilter.h" compile="0" resource="0"
+                    file="Source/Effect/Filter/filters/component/ComponentFilter.h"/>
+            </GROUP>
+          </GROUP>
+          <GROUP id="{38E09493-E6CE-264A-31CE-E893F7AD62AB}" name="ui">
+            <FILE id="JD7CTs" name="FilterEditor.cpp" compile="1" resource="0"
+                  file="Source/Effect/Filter/ui/FilterEditor.cpp"/>
+            <FILE id="bV1Pti" name="FilterEditor.h" compile="0" resource="0" file="Source/Effect/Filter/ui/FilterEditor.h"/>
+            <FILE id="HL6n9Z" name="FilterManagerEditor.cpp" compile="1" resource="0"
+                  file="Source/Effect/Filter/ui/FilterManagerEditor.cpp"/>
+            <FILE id="aUHe0c" name="FilterManagerEditor.h" compile="0" resource="0"
+                  file="Source/Effect/Filter/ui/FilterManagerEditor.h"/>
+          </GROUP>
+          <FILE id="b0Xfjj" name="Filter.cpp" compile="1" resource="0" file="Source/Effect/Filter/Filter.cpp"/>
+          <FILE id="yciycN" name="Filter.h" compile="0" resource="0" file="Source/Effect/Filter/Filter.h"/>
+          <FILE id="fTtGNO" name="FilterManager.cpp" compile="1" resource="0"
+                file="Source/Effect/Filter/FilterManager.cpp"/>
+          <FILE id="vHyhiE" name="FilterManager.h" compile="0" resource="0" file="Source/Effect/Filter/FilterManager.h"/>
+        </GROUP>
+        <GROUP id="{EEB89B66-A685-FC8C-64AB-5A15E087594F}" name="ui">
+          <FILE id="ilFOkO" name="EffectEditor.cpp" compile="1" resource="0"
+                file="Source/Effect/ui/EffectEditor.cpp"/>
+          <FILE id="bVhbzu" name="EffectEditor.h" compile="0" resource="0" file="Source/Effect/ui/EffectEditor.h"/>
+          <FILE id="z6Od7Y" name="EffectManagerEditor.cpp" compile="1" resource="0"
+                file="Source/Effect/ui/EffectManagerEditor.cpp"/>
+          <FILE id="dyn5uV" name="EffectManagerEditor.h" compile="0" resource="0"
+                file="Source/Effect/ui/EffectManagerEditor.h"/>
+          <FILE id="YWhey8" name="GlobalEffectManagerUI.cpp" compile="1" resource="0"
+                file="Source/Effect/ui/GlobalEffectManagerUI.cpp"/>
+          <FILE id="I0mNv0" name="GlobalEffectManagerUI.h" compile="0" resource="0"
+                file="Source/Effect/ui/GlobalEffectManagerUI.h"/>
+        </GROUP>
+        <FILE id="RsUAKV" name="GlobalEffectManager.cpp" compile="1" resource="0"
+              file="Source/Effect/GlobalEffectManager.cpp"/>
+        <FILE id="lhfaXD" name="GlobalEffectManager.h" compile="0" resource="0"
+              file="Source/Effect/GlobalEffectManager.h"/>
+        <FILE id="mCAwuu" name="EffectManager.cpp" compile="1" resource="0"
+              file="Source/Effect/EffectManager.cpp"/>
+        <FILE id="YF8lHC" name="EffectManager.h" compile="0" resource="0" file="Source/Effect/EffectManager.h"/>
+        <FILE id="rHIezh" name="Effect.cpp" compile="1" resource="0" file="Source/Effect/Effect.cpp"/>
+        <FILE id="J1DRSC" name="Effect.h" compile="0" resource="0" file="Source/Effect/Effect.h"/>
       </GROUP>
       <GROUP id="{BDEDD473-3A74-D6C8-68AB-E73419566401}" name="Object">
         <GROUP id="{0D505A17-A541-05DA-73C0-C2BE863C2F7B}" name="ui">

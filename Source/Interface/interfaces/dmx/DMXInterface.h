@@ -56,7 +56,7 @@ public:
     ControllableContainer* getInterfaceParams() override { return new DMXParams(); }
 
     void updateValuesFromComponent(Object* o, ObjectComponent* c) override;
-    void updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter * p, var value) override;
+    //void updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter * p) override;
 
     String getTypeString() const override { return "DMX"; }
     static DMXInterface* create(var params) { return new DMXInterface(); };

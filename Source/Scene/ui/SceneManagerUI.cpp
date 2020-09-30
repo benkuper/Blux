@@ -9,3 +9,12 @@
 */
 
 #include "SceneManagerUI.h"
+
+SceneManagerUI::SceneManagerUI(const String& name) :
+    BaseManagerShapeShifterUI(name, SceneManager::getInstance())
+{
+}
+
+SceneManagerUI::~SceneManagerUI()
+{
+}

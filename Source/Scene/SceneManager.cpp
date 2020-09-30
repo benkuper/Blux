@@ -9,3 +9,16 @@
 */
 
 #include "SceneManager.h"
+
+juce_ImplementSingleton(SceneManager)
+
+SceneManager::SceneManager() :
+    BaseManager("Scenes")
+{
+    managerFactory = &factory;
+    factory.defs.add(Factory<Scene>::Definition::createDef("", "Scene", &Scene::create));
+}
+
+SceneManager::~SceneManager()
+{
+}

@@ -1,11 +1,20 @@
 /*
   ==============================================================================
 
-    BehaviourManager.cpp
-    Created: 26 Sep 2020 10:03:03am
+    PresetUI.cpp
+    Created: 30 Sep 2020 2:16:00pm
     Author:  bkupe
 
   ==============================================================================
 */
 
-#include "BehaviourManager.h"
+#include "PresetUI.h"
+
+PresetUI::PresetUI(Preset* item) :
+    BaseItemUI(item)
+{
+}
+
+PresetUI::~PresetUI()
+{
+}
