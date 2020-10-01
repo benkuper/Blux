@@ -11,6 +11,7 @@
 #include "EffectManager.h"
 
 #include "effects/noise/NoiseEffect.h"
+#include "effects/override/OverrideEffect.h"
 
 EffectManager::EffectManager() :
     BaseManager("Effects")
@@ -18,7 +19,8 @@ EffectManager::EffectManager() :
     itemDataType = "Effect";
 
     managerFactory = &factory;
-    
+   
+    factory.defs.add(Factory<Effect>::Definition::createDef("", "Override (Float)", &OverrideFloatEffect::create));
     factory.defs.add(Factory<Effect>::Definition::createDef("", "Noise", &NoiseEffect::create));
 }
 

@@ -14,6 +14,7 @@
 
 class ObjectManager :
     public BaseManager<Object>,
+    public Object::ObjectListener,
     public Thread
 {
 public:
@@ -28,6 +29,14 @@ public:
     Factory<Object> factory;
 
     void updateFactoryDefinitions();
+
+    void addItemInternal(Object* o, var data) override;
+    void removeItemInternal(Object* o) override;
+
+    int getFirstAvailableObjectID();
+    Object* getObjectWithID(int id, Object * excludeObject = nullptr);
+
+    void objectIDChanged(Object * o, int previousID) override;
 
     void run() override;
 

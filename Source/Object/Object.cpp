@@ -12,11 +12,14 @@
 #include "Interface/InterfaceManager.h"
 #include "Object/Component/components/intensity/IntensityComponent.h"
 #include "Effect/GlobalEffectManager.h"
+#include "Group/GroupManager.h"
+#include "Scene/SceneManager.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
 	objectType(params.getProperty("type", "Object").toString()),
-	objectData(params)
+	objectData(params),
+	previousID(-1)
 {
 	saveAndLoadRecursiveData = true;
 
@@ -26,6 +29,7 @@ Object::Object(var params) :
 	File iconFile = File(params.getProperty("path", "")).getChildFile("icon.png");
 	if (iconFile.existsAsFile()) customThumbnailPath = iconFile;
 
+	globalID = addIntParameter("Global ID", "Virtual ID that is used in many places of Blux to filter, alter effects, etc.", 0, 0);
 
 	targetInterface = addTargetParameter("Interface", "The interface to link this object to", InterfaceManager::getInstance());
 	targetInterface->targetType = TargetParameter::CONTAINER;
@@ -78,6 +82,11 @@ void Object::onContainerParameterChangedInternal(Parameter* p)
 	{
 		rebuildInterfaceParams();
 	}
+	else if (p == globalID)
+	{
+		objectListeners.call(&ObjectListener::objectIDChanged, this, previousID);
+		previousID = globalID->intValue();
+	}
 }
 
 void Object::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
@@ -121,6 +130,12 @@ void Object::computeComponentValues(ObjectComponent* c)
 	{
 		//local effects
 		effectManager.processComponentValues(this, c, values);
+
+		//scene effects
+		SceneManager::getInstance()->processComponentValues(this, c, values);
+
+		//group effects
+		GroupManager::getInstance()->processComponentValues(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
 
 		//global effects
 		GlobalEffectManager::getInstance()->processComponentValues(this, c, values);

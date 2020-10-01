@@ -22,3 +22,8 @@ SceneManager::SceneManager() :
 SceneManager::~SceneManager()
 {
 }
+
+void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
+{
+    //to implement
+}

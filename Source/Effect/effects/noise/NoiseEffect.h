@@ -23,10 +23,12 @@ public:
     EnumParameter * type;
     FloatParameter* amplitude;
     FloatParameter* frequency;
+    FloatParameter* offset;
+    FloatParameter* offsetByID;
 
     siv::PerlinNoise perlin;
 
-    void processComponentValues(Object * o, ObjectComponent* c, var &values) override;
+    var getProcessedComponentValuesInternal(Object * o, ObjectComponent* c, var values) override;
 
     String getTypeString() const override { return "Noise"; }
     static NoiseEffect* create(var params) { return new NoiseEffect(params); }

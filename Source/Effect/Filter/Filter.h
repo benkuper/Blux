@@ -12,10 +12,14 @@
 
 #include "JuceHeader.h"
 
+class Object;
+
 class Filter :
     public BaseItem
 {
 public:
     Filter(const String &name = "Filter");
     virtual ~Filter();
+
+    virtual int getFilteredIDForObject(Object* o);
 };

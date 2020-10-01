@@ -9,6 +9,7 @@
 */
 
 #include "Filter.h"
+#include "Object/Object.h"
 
 Filter::Filter(const String& name) :
     BaseItem(name)
@@ -20,4 +21,9 @@ Filter::Filter(const String& name) :
 
 Filter::~Filter()
 {
+}
+
+int Filter::getFilteredIDForObject(Object* o)
+{
+    return -1;
 }

@@ -11,6 +11,8 @@
 #pragma once
 
 #include "Scene.h"
+class Object;
+class ObjectComponent;
 
 class SceneManager :
     public BaseManager<Scene>
@@ -22,4 +24,8 @@ public:
     ~SceneManager();
 
     Factory<Scene> factory;
+
+
+    void processComponentValues(Object* o, ObjectComponent* c, var& values);
+
 };

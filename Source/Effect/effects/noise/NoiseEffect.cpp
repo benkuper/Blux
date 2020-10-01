@@ -19,16 +19,19 @@ NoiseEffect::NoiseEffect(var params) :
 
     amplitude = addFloatParameter("Amplitude", "Amplitude of the noise", 1, 0);
     frequency = addFloatParameter("Frequency", "Frequency of the noise", 1, .0001f);
+    offset = addFloatParameter("Time Offset", "Time Offset", 0);
+    offsetByID = addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
 }
 
 NoiseEffect::~NoiseEffect()
 {
 }
 
-void NoiseEffect::processComponentValues(Object* o, ObjectComponent* c, var& values)
+var NoiseEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values)
 {
     float noiseVal = 0;
-    float time = (Time::getMillisecondCounter() / 1000.0f) * frequency->floatValue();
+    int id = filterManager.getFilteredIDForObject(o);
+    float time = ((Time::getMillisecondCounter() / 1000.0f) + offset->floatValue() + offsetByID->floatValue() * id) * frequency->floatValue();
     NoiseType t = type->getValueDataAsEnum<NoiseType>();
     switch (t)
     {
@@ -42,4 +45,6 @@ void NoiseEffect::processComponentValues(Object* o, ObjectComponent* c, var& val
     }
 
     values[0] = (float)values[0] + noiseVal * amplitude->floatValue();
+
+    return values;
 }

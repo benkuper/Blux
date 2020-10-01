@@ -183,6 +183,12 @@
       </GROUP>
       <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Effect">
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{448FBE9F-BB3E-D4C2-BE7E-C573A112D794}" name="override">
+            <FILE id="fgKWtR" name="OverrideEffect.cpp" compile="1" resource="0"
+                  file="Source/Effect/effects/override/OverrideEffect.cpp"/>
+            <FILE id="iMhDCG" name="OverrideEffect.h" compile="0" resource="0"
+                  file="Source/Effect/effects/override/OverrideEffect.h"/>
+          </GROUP>
           <GROUP id="{769D393A-6D2C-BDC6-422B-8D022A54DEC6}" name="noise">
             <FILE id="Kx2YCO" name="NoiseEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/noise/NoiseEffect.cpp"/>
             <FILE id="UxhEgu" name="NoiseEffect.h" compile="0" resource="0" file="Source/Effect/effects/noise/NoiseEffect.h"/>

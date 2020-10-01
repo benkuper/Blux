@@ -24,6 +24,10 @@ public:
 
 	Image objectImage;
 
+	std::unique_ptr<IntParameterLabelUI> globalIDUI;
+	std::unique_ptr<FloatSliderUI> intensityUI;
+	std::unique_ptr<FloatSliderUI> computedIntensityUI;
+
 	void paint(Graphics& g) override;
 
 	virtual void updateThumbnail();

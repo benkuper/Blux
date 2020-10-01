@@ -30,10 +30,14 @@ public:
     ComponentManager componentManager;
     EffectManager effectManager;
 
+    IntParameter* globalID;
+    int previousID;
+
     //ui
     File customThumbnailPath;
     Parameter* slideManipParameter;
     float slideManipValueRef;
+
 
     void rebuildInterfaceParams();
 
@@ -46,8 +50,21 @@ public:
     void checkAndComputeComponentValuesIfNeeded();
     void computeComponentValues(ObjectComponent* c);
 
+    //Listener
+    class  ObjectListener
+    {
+    public:
+        /** Destructor. */
+        virtual ~ObjectListener() {}
+        virtual void objectIDChanged(Object * o, int previousID) {}
+    };
+
+    ListenerList<ObjectListener> objectListeners;
+    void addObjectListener(ObjectListener* newListener) { objectListeners.add(newListener); }
+    void removeObjectListener(ObjectListener* listener) { objectListeners.remove(listener); }
+
+
     String getTypeString() const override { return objectType; }
-    
     static Object* create(var params) { return new Object(params); }
 };
 

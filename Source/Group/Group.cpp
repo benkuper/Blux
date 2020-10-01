@@ -9,13 +9,27 @@
 */
 
 #include "Group.h"
+#include "Object/Object.h"
 
 Group::Group(String name) :
     BaseItem(name)
 {
+    saveAndLoadRecursiveData = true;
+
+    addChildControllableContainer(&effectManager);
 }
 
 Group::~Group()
 {
 
+}
+
+bool Group::containsObject(Object* o)
+{
+    return false;
+}
+
+void Group::processComponentValues(Object* o, ObjectComponent* c, var& values)
+{
+    effectManager.processComponentValues(o, c, values);
 }

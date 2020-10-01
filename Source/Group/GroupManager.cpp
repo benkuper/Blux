@@ -10,7 +10,6 @@
 
 #include "GroupManager.h"
 #include "groups/object/ObjectGroup.h"
-
 juce_ImplementSingleton(GroupManager)
 
 GroupManager::GroupManager() :
@@ -23,4 +22,13 @@ GroupManager::GroupManager() :
 
 GroupManager::~GroupManager()
 {
+}
+
+void GroupManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
+{
+    for (auto& g : items)
+    {
+        if (!g->enabled->boolValue()) continue;
+        if (g->containsObject(o)) g->processComponentValues(o,  c, values);
+    }
 }

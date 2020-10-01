@@ -30,6 +30,9 @@ public:
     void addObject(Object* o);
     TargetParameter* getTargetParamForObject(Object* o);
 
+    bool containsObject(Object* o) override;
+
+
     static TargetParameter* createObjectTarget(ControllableContainer* cc);
 
     var getJSONData() override;

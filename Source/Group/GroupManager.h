@@ -11,6 +11,8 @@
 #pragma once
 
 #include "Group.h"
+class Object;
+class ObjectComponent;
 
 class GroupManager :
     public BaseManager<Group>
@@ -22,4 +24,6 @@ public:
     ~GroupManager();
 
     Factory<Group> factory;
+
+    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values);
 };

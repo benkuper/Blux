@@ -20,4 +20,6 @@ public:
     ~FilterManager();
 
     Factory<Filter> factory;
+
+    int getFilteredIDForObject(Object* o);
 };

@@ -17,7 +17,7 @@ ObjectGroup::ObjectGroup() :
 {
     objectsCC.userCanAddControllables = true;
     objectsCC.customUserCreateControllableFunc = &ObjectGroup::createObjectTarget;
-    addChildControllableContainer(&objectsCC);
+    addChildControllableContainer(&objectsCC, false, 0);
 }
 
 ObjectGroup::~ObjectGroup()
@@ -79,6 +79,11 @@ TargetParameter* ObjectGroup::getTargetParamForObject(Object* o)
     }
 
     return nullptr;
+}
+
+bool ObjectGroup::containsObject(Object* o)
+{
+    return getTargetParamForObject(o) != nullptr;
 }
 
 var ObjectGroup::getJSONData()
