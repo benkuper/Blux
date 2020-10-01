@@ -38,6 +38,8 @@ public:
 
     void objectIDChanged(Object * o, int previousID) override;
 
+    void saveSceneData(var &sceneData);
+
     void run() override;
 
 };

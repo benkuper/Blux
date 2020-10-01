@@ -34,5 +34,8 @@ public:
     virtual var getOriginalComputedValues();
 
     virtual void setupFromJSONDefinition(var data);
+
+    void saveSceneData(var &sceneData);
+
     InspectableEditor* getEditor(bool isRoot) override;
 };

@@ -18,4 +18,6 @@ class SceneUI :
 public:
     SceneUI(Scene* scene);
     virtual ~SceneUI();
+
+    void mouseDown(const MouseEvent& e) override;
 };

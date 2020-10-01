@@ -32,3 +32,8 @@ void GroupManager::processComponentValues(Object* o, ObjectComponent* c, var& va
         if (g->containsObject(o)) g->processComponentValues(o,  c, values);
     }
 }
+
+void GroupManager::saveSceneData(var& sceneData)
+{
+    for (auto& i : items) i->saveSceneData(sceneData);
+}

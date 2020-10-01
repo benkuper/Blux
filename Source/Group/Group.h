@@ -26,4 +26,6 @@ public:
     virtual bool containsObject(Object* o);
 
     void processComponentValues(Object* o, ObjectComponent* c, var& values);
+
+    void saveSceneData(var& sceneData);
 };

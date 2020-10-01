@@ -95,6 +95,11 @@ void ObjectManager::objectIDChanged(Object* o, int previousID)
     if (to != nullptr) to->globalID->setValue(previousID);
 }
 
+void ObjectManager::saveSceneData(var &sceneData)
+{
+    for (auto& o : items) o->saveSceneData(sceneData);
+}
+
 void ObjectManager::run()
 {
     while (!threadShouldExit()) 

@@ -21,5 +21,6 @@ public:
 
     Factory<Filter> factory;
 
+    void saveSceneData(var &sceneData);
     int getFilteredIDForObject(Object* o);
 };

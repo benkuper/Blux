@@ -50,6 +50,8 @@ public:
     void checkAndComputeComponentValuesIfNeeded();
     void computeComponentValues(ObjectComponent* c);
 
+    void saveSceneData(var &sceneData);
+
     //Listener
     class  ObjectListener
     {

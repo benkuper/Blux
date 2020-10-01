@@ -30,6 +30,8 @@ public:
 
     void addComponentFromDefinition(StringRef type, var definition, bool canBeRemoved = false);
 
+    void saveSceneData(var &sceneData);
+
     var getJSONData() override;
     void loadJSONDataInternal(var data) override;
 };

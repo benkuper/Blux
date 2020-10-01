@@ -21,5 +21,8 @@ public:
     Filter(const String &name = "Filter");
     virtual ~Filter();
 
+
     virtual int getFilteredIDForObject(Object* o);
+
+    void saveSceneData(var& sceneData);
 };

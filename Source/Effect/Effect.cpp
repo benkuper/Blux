@@ -52,6 +52,21 @@ var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, v
     return values;
 }
 
+void Effect::saveSceneData(var &sceneData)
+{
+    Array<WeakReference<Parameter>> params = getAllParameters();
+    for (auto& p : params)
+    {
+        if (!p->hideInEditor && !p->isControllableFeedbackOnly) //BIG HACK to avoid listSize ViewUISize, etc.. should be in a proper list
+        {
+            sceneData.getDynamicObject()->setProperty(p->controlAddress, p->value);
+        }
+    } 
+    sceneData.getDynamicObject()->setProperty(weight->getControlAddress(), weight->value);
+
+    filterManager.saveSceneData(sceneData);
+}
+
 InspectableEditor* Effect::getEditor(bool isRoot)
 {
     return new EffectEditor(this, isRoot);

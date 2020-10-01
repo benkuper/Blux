@@ -41,6 +41,11 @@ void ComponentManager::addComponentFromDefinition(StringRef type, var definition
     addItem(c);
 }
 
+void ComponentManager::saveSceneData(var &sceneData)
+{
+    for (auto& c : items) c->saveSceneData(sceneData);
+}
+
 var ComponentManager::getJSONData()
 {
     var data = ControllableContainer::getJSONData();

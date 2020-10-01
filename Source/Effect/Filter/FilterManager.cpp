@@ -25,6 +25,11 @@ FilterManager::~FilterManager()
 {
 }
 
+void FilterManager::saveSceneData(var& sceneData)
+{
+    for (auto& i : items) i->saveSceneData(sceneData);
+}
+
 int FilterManager::getFilteredIDForObject(Object* o)
 {
     for (auto& e : items)

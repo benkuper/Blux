@@ -18,3 +18,13 @@ SceneUI::SceneUI(Scene* scene) :
 SceneUI::~SceneUI()
 {
 }
+
+void SceneUI::mouseDown(const MouseEvent& e)
+{
+    BaseItemUI::mouseDown(e);
+    if (e.mods.isAltDown())
+    {
+        if (e.mods.isCommandDown()) item->saveScene();
+        else item->loadScene();
+    }
+}

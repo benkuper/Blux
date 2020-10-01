@@ -156,6 +156,13 @@ void Object::computeComponentValues(ObjectComponent* c)
 	}
 }
 
+void Object::saveSceneData(var &sceneData)
+{
+	//sceneData.getDynamicObject()->setProperty(globalID->getControlAddress(), globalID->intValue()); //needs better handling from ObjectManager auto ID stuff
+	componentManager.saveSceneData(sceneData);
+	effectManager.saveSceneData(sceneData);
+}
+
 
 //void Object::sendComponentParameter(ObjectComponent* c, Parameter* p)
 //{

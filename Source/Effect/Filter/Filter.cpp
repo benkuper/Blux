@@ -27,3 +27,15 @@ int Filter::getFilteredIDForObject(Object* o)
 {
     return -1;
 }
+
+void Filter::saveSceneData(var& sceneData)
+{
+    Array<WeakReference<Parameter>> params = getAllParameters();
+    for (auto& p : params)
+    {
+        if (!p->hideInEditor && !p->isControllableFeedbackOnly) //BIG HACK to avoid listSize ViewUISize, etc.. should be in a proper list
+        {
+            sceneData.getDynamicObject()->setProperty(p->controlAddress, p->value);
+        }
+    }
+}

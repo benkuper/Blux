@@ -32,6 +32,11 @@ void GlobalEffectManager::processComponentValues(Object* o, ObjectComponent* c, 
     }
 }
 
+void GlobalEffectManager::saveSceneData(var& sceneData)
+{
+    for (auto& i : items) i->saveSceneData(sceneData);
+}
+
 EffectGroup::EffectGroup() :
     BaseItem("Effect Group")
 {
@@ -41,4 +46,10 @@ EffectGroup::EffectGroup() :
 
 EffectGroup::~EffectGroup()
 {
+}
+
+void EffectGroup::saveSceneData(var& sceneData)
+{
+    sceneData.getDynamicObject()->setProperty(enabled->getControlAddress(), enabled->boolValue());
+    effectManager.saveSceneData(sceneData);
 }

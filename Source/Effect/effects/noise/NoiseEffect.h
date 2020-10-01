@@ -13,7 +13,8 @@
 #include "PerlinNoise.hpp"
 
 class NoiseEffect :
-    public Effect
+    public Effect,
+    public HighResolutionTimer
 {
 public:
     NoiseEffect(var params = var());
@@ -28,8 +29,16 @@ public:
 
     siv::PerlinNoise perlin;
 
+    double timeAtLastUpdate;
+    double curTime;
+
     var getProcessedComponentValuesInternal(Object * o, ObjectComponent* c, var values) override;
+
+    void onContainerParameterChangedInternal(Parameter* p)override;
+
+    virtual void hiResTimerCallback() override;
 
     String getTypeString() const override { return "Noise"; }
     static NoiseEffect* create(var params) { return new NoiseEffect(params); }
+
 };

@@ -36,3 +36,10 @@ void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& 
         e->processComponentValues(o, c, values);
     }
 }
+
+void EffectManager::saveSceneData(var &sceneData)
+{
+    var eData(new DynamicObject());
+    for (auto& e : items) e->saveSceneData(sceneData);
+
+}

@@ -33,3 +33,9 @@ void Group::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
     effectManager.processComponentValues(o, c, values);
 }
+
+void Group::saveSceneData(var& sceneData)
+{
+    sceneData.getDynamicObject()->setProperty(enabled->getControlAddress(), enabled->boolValue());
+    effectManager.saveSceneData(sceneData);
+}

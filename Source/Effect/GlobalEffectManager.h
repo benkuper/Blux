@@ -21,6 +21,8 @@ public:
 
     EffectManager effectManager;
 
+    void saveSceneData(var& sceneData);
+
     String getTypeString() const override { return "EffectGroup"; }
 };
 
@@ -33,7 +35,8 @@ public:
     GlobalEffectManager();
     ~GlobalEffectManager();
 
-
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values);
+
+    void saveSceneData(var& sceneData);
 
 };
