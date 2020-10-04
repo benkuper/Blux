@@ -11,10 +11,15 @@
 #include "ObjectComponent.h"
 #include "ui/ObjectComponentEditor.h"
 
-ObjectComponent::ObjectComponent(String name, var params) :
+const String ObjectComponent::typeNames[TYPES_MAX]{ "Intensity", "Color", "Gobo", "Laser", "PanTilt", "Servo", "Stepper", "Strobe", "Script", "Custom" };
+
+ObjectComponent::ObjectComponent(String name, ComponentType componentType, var params) :
 	BaseItem(name),
+	componentType(componentType),
 	isDirty(true)
 {
+	canBeCopiedAndPasted = false;
+	canBeReorderedInEditor = false;
 }
 
 ObjectComponent::~ObjectComponent()

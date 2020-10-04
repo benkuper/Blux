@@ -12,14 +12,12 @@
 #include "UI/AssetManager.h"
 #include "../ObjectManager.h"
 #include "../Component/components/intensity/IntensityComponent.h"
+#include "../Component/components/color/ColorComponent.h"
 
 ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),
 	shouldRepaint(false)
 {
-	//bgColor = item->isBeingEdited ? BLUE_COLOR.darker().withSaturation(.3f) : bgColor = BG_COLOR.brighter(.1f);
-
-	setSize(128,128);
 	updateThumbnail();
 
 	autoHideWhenDragging = false;
@@ -37,13 +35,19 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 		addAndMakeVisible(intensityUI.get());
 	}
 
+	if (ColorComponent* cc = item->getComponent<ColorComponent>())
+	{
+		computedColorUI.reset((ColorParameterUI *)((ColorParameter*)cc->computedParameters[0]->createDefaultUI()));
+		addAndMakeVisible(computedColorUI.get());
+	}
+
 	globalIDUI.reset(item->globalID->createLabelUI());
 	addAndMakeVisible(globalIDUI.get());
 
 	setRepaintsOnMouseActivity(true);
-	//object->addAsyncModelListener(this);
 
-	//startTimerHz(20);
+	setSize(128, 128);
+
 }
 
 ObjectGridUI::~ObjectGridUI()
@@ -58,13 +62,7 @@ void ObjectGridUI::paint(Graphics& g)
 
 	Rectangle<int> r = getLocalBounds();
 
-	globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
-
-	if (computedIntensityUI != nullptr)
-	{
-		computedIntensityUI->setBounds(r.removeFromBottom(10).reduced(2));
-		intensityUI->setBounds(r.removeFromBottom(10).reduced(2));
-	}
+	r.removeFromBottom(20);
 
 	/*if (IntensityComponent* ic = item->getComponent<IntensityComponent>())
 	{
@@ -94,6 +92,28 @@ void ObjectGridUI::paint(Graphics& g)
 		g.drawFittedText(item->niceName, getLocalBounds().reduced(4), Justification::centred, 3);
 	}
 
+
+}
+
+void ObjectGridUI::resized()
+{
+	Rectangle<int> r = getLocalBounds();
+
+	globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
+
+	if (computedColorUI != nullptr)
+	{
+		Rectangle<int> cr = getLocalBounds().removeFromRight(30).removeFromTop(30).reduced(4);
+		computedColorUI->setBounds(cr);
+	}
+	
+	if (computedIntensityUI != nullptr)
+	{
+		computedIntensityUI->setBounds(r.removeFromBottom(10).reduced(2));
+		intensityUI->setBounds(r.removeFromBottom(10).reduced(2));
+	}
+
+	
 }
 
 

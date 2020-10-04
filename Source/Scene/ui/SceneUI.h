@@ -19,5 +19,12 @@ public:
     SceneUI(Scene* scene);
     virtual ~SceneUI();
 
+    std::unique_ptr<TriggerButtonUI> loadUI;
+    std::unique_ptr<FloatSliderUI> loadProgressUI;
+
+    void resizedInternalHeader(Rectangle<int>& r) override;
+
     void mouseDown(const MouseEvent& e) override;
+
+    void controllableFeedbackUpdateInternal(Controllable* c) override;
 };

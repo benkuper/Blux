@@ -21,7 +21,7 @@ public:
 
     ObjectComponent* component;
 
-    std::unique_ptr<ControllableUI> computedUI;
+    OwnedArray<ControllableUI> computedUI;
 
     void resizedInternalHeaderItemInternal(Rectangle<int>& r) override;
 };

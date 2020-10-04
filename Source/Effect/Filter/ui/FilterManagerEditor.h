@@ -9,3 +9,18 @@
 */
 
 #pragma once
+
+#include "../FilterManager.h"
+#include "Common/ComponentSelector/ui/ComponentSelectorUI.h"
+
+class FilterManagerEditor :
+    public GenericManagerEditor<Filter>
+{
+public:
+    FilterManagerEditor(FilterManager * manager , bool isRoot);
+    ~FilterManagerEditor();
+
+    ComponentSelectorUI componentSelectorUI;
+
+    void resizedInternalHeader(Rectangle<int>& r) override;
+};

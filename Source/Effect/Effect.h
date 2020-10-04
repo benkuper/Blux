@@ -25,7 +25,7 @@ public:
     FilterManager filterManager;
 
     void processComponentValues(Object* o, ObjectComponent* c, var& values);
-    virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values);
+    virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values);
 
     void saveSceneData(var &sceneData);
 

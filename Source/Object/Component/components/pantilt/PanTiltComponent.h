@@ -19,6 +19,9 @@ public:
     PanTiltComponent(var params);
     ~PanTiltComponent();
 
+    FloatParameter* pan;
+    FloatParameter* tilt;
+
     String getTypeString() const override { return "PanTilt"; }
     static PanTiltComponent* create(var params) { return new PanTiltComponent(params); }
 };

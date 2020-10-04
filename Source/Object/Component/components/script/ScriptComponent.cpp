@@ -11,7 +11,7 @@
 #include "ScriptComponent.h"
 
 ScriptComponent::ScriptComponent(var params) :
-    ObjectComponent(getTypeString(), params)
+    ObjectComponent(getTypeString(), SCRIPT, params)
 {
 }
 

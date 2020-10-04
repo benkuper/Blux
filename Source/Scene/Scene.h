@@ -13,8 +13,7 @@
 #include "JuceHeader.h"
 
 class Scene :
-    public BaseItem,
-    public Thread
+    public BaseItem
 {
 public:
     Scene(const String & name = "Scene");
@@ -26,23 +25,29 @@ public:
     Trigger* loadTrigger;
     FloatParameter* defaultLoadTime;
 
-    var dataAtLoad;
-    var dataToLoad; //optimized list with only what has changed from state at load
-    float loadTime;
     FloatParameter* loadProgress;
     Automation interpolationCurve;
-    
+    BoolParameter* isCurrent;
+
     void saveScene();
     var getSceneData();
-    void loadScene(float time = -1);
 
     void updateScene(); //used to resync with current objects and data that might not have been saved
-
+    void loadScene();
 
     void onContainerTriggerTriggered(Trigger* t) override;
 
-    void run() override;
-    void lerpSceneParams(float weight);
+    class  SceneListener
+    {
+    public:
+        /** Destructor. */
+        virtual ~SceneListener() {}
+        virtual void askForLoadScene(Scene* i) {}
+    };
+
+    ListenerList<SceneListener> sceneListeners;
+    void addSceneListener(SceneListener* newListener) { sceneListeners.add(newListener); }
+    void removeSceneListener(SceneListener* listener) { sceneListeners.remove(listener); }
 
     var getJSONData() override;
     void loadJSONDataItemInternal(var data) override;

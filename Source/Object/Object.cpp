@@ -122,7 +122,7 @@ void Object::checkAndComputeComponentValuesIfNeeded()
 
 void Object::computeComponentValues(ObjectComponent* c)
 {
-	if (!enabled->boolValue() || !c->enabled->boolValue()) return;
+	if (!enabled->boolValue() || !c->enabled->boolValue() || Engine::mainEngine->isClearing) return;
 
 	var values = c->getOriginalComputedValues();
 

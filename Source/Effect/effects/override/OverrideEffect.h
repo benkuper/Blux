@@ -33,8 +33,23 @@ public:
 
     FloatParameter* value;
     
-    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values) override;
+    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values) override;
 
     String getTypeString() const override { return "Override (Number)"; }
     static OverrideFloatEffect* create(var params) { return new OverrideFloatEffect(params); }
+};
+
+class OverrideColorEffect :
+    public OverrideEffect
+{
+public:
+    OverrideColorEffect(var params = var());
+    virtual ~OverrideColorEffect();
+
+    ColorParameter* value;
+
+    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values) override;
+
+    String getTypeString() const override { return "Override (Color)"; }
+    static OverrideColorEffect* create(var params) { return new OverrideColorEffect(params); }
 };

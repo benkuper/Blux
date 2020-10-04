@@ -16,11 +16,14 @@ class FilterManager :
     public BaseManager<Filter>
 {
 public:
-    FilterManager(bool hasComponentFilter = true, bool hasObjectFilter = true);
+    FilterManager();
     ~FilterManager();
 
     Factory<Filter> factory;
+    ComponentSelector componentSelector;
 
     void saveSceneData(var &sceneData);
-    int getFilteredIDForObject(Object* o);
+    int getFilteredIDForComponent(Object* o, ObjectComponent * c);
+
+    InspectableEditor* getEditor(bool isRoot) override;
 };

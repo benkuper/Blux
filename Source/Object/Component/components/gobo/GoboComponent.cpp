@@ -11,7 +11,7 @@
 #include "GoboComponent.h"
 
 GoboComponent::GoboComponent(var params) :
-    ObjectComponent(getTypeString(), params)
+    ObjectComponent(getTypeString(), GOBO, params)
 {
 }
 

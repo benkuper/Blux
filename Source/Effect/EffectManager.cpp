@@ -12,6 +12,7 @@
 
 #include "effects/noise/NoiseEffect.h"
 #include "effects/override/OverrideEffect.h"
+#include "effects/automation/AutomationEffect.h"
 
 EffectManager::EffectManager() :
     BaseManager("Effects")
@@ -20,8 +21,10 @@ EffectManager::EffectManager() :
 
     managerFactory = &factory;
    
-    factory.defs.add(Factory<Effect>::Definition::createDef("", "Override (Float)", &OverrideFloatEffect::create));
+    factory.defs.add(Factory<Effect>::Definition::createDef("", "Override (Number)", &OverrideFloatEffect::create));
+    factory.defs.add(Factory<Effect>::Definition::createDef("", "Override (Color)", &OverrideColorEffect::create));
     factory.defs.add(Factory<Effect>::Definition::createDef("", "Noise", &NoiseEffect::create));
+    factory.defs.add(Factory<Effect>::Definition::createDef("", "Automation", &AutomationEffect::create));
 }
 
 EffectManager::~EffectManager()

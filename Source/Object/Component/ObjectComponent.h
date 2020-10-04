@@ -16,8 +16,13 @@ class ObjectComponent :
     public BaseItem
 {
 public:
-    ObjectComponent(String name = "Component", var params = var());
+    enum ComponentType { INTENSITY, COLOR, GOBO, LASER, PANTILT, SERVO, STEPPER, STROBE, SCRIPT, CUSTOM, TYPES_MAX };
+    static const String typeNames[TYPES_MAX]; 
+
+    ObjectComponent(String name = "Component", ComponentType componentType = CUSTOM, var params = var());
     virtual ~ObjectComponent();
+    
+    ComponentType componentType;
 
     //dmx
     Array<Parameter *> computedParameters;

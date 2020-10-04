@@ -11,7 +11,7 @@
 #include "LaserComponent.h"
 
 LaserComponent::LaserComponent(var params) :
-    ObjectComponent(getTypeString(), params)
+    ObjectComponent(getTypeString(), LASER, params)
 {
 }
 

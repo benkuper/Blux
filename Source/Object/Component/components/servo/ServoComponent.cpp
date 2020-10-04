@@ -11,7 +11,7 @@
 #include "ServoComponent.h"
 
 ServoComponent::ServoComponent(var params) :
-    ObjectComponent(getTypeString(), params)
+    ObjectComponent(getTypeString(), SERVO,  params)
 {
 }
 

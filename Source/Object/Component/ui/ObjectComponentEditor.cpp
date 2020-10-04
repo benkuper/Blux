@@ -14,10 +14,10 @@ ObjectComponentEditor::ObjectComponentEditor(ObjectComponent* component, bool is
     BaseItemEditor(component, isRoot),
     component(component)
 {
-    if (component->computedParameters.size() > 0)
+    for (int i = 0; i < component->computedParameters.size(); i++)
     {
-        computedUI.reset(component->computedParameters[0]->createDefaultUI());
-        addAndMakeVisible(computedUI.get());
+        computedUI.add(component->computedParameters[i]->createDefaultUI());
+        addAndMakeVisible(computedUI[i]);
     }
 }
 
@@ -27,9 +27,9 @@ ObjectComponentEditor::~ObjectComponentEditor()
 
 void ObjectComponentEditor::resizedInternalHeaderItemInternal(Rectangle<int>& r)
 {
-    if (computedUI != nullptr)
+    for (int i = computedUI.size() - 1; i >= 0; i--)
     {
-        computedUI->setBounds(r.removeFromRight(150).reduced(2));
+        computedUI[i]->setBounds(r.removeFromRight(100).reduced(2));
     }
 
 }

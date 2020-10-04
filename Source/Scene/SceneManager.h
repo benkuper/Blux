@@ -15,7 +15,10 @@ class Object;
 class ObjectComponent;
 
 class SceneManager :
-    public BaseManager<Scene>
+    public BaseManager<Scene>,
+    public Inspectable::InspectableListener,
+    public Scene::SceneListener,
+    public Thread
 {
 public:
     juce_DeclareSingleton(SceneManager, true);
@@ -25,6 +28,23 @@ public:
 
     Factory<Scene> factory;
 
+    var dataAtLoad;
+    var dataToLoad; //optimized list with only what has changed from state at load
+    float loadTime;
+
+    Scene* currentScene;
+
+    void addItemInternal(Scene* s, var data) override;
+    void removeItemInternal(Scene* s) override;
+
+    void loadScene(Scene* s, float time = -1);
+
+    void run() override;
+    void lerpSceneParams(float weight);
+
+    void askForLoadScene(Scene* s) override;
+
+    void inspectableDestroyed(Inspectable* i) override;
 
     void processComponentValues(Object* o, ObjectComponent* c, var& values);
 

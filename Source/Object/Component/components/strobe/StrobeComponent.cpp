@@ -11,7 +11,7 @@
 #include "StrobeComponent.h"
 
 StrobeComponent::StrobeComponent(var params) :
-    ObjectComponent(getTypeString(), params)
+    ObjectComponent(getTypeString(), STROBE, params)
 {
 }
 

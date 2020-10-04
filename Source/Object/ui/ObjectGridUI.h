@@ -27,8 +27,10 @@ public:
 	std::unique_ptr<IntParameterLabelUI> globalIDUI;
 	std::unique_ptr<FloatSliderUI> intensityUI;
 	std::unique_ptr<FloatSliderUI> computedIntensityUI;
+	std::unique_ptr<ColorParameterUI> computedColorUI;
 
 	void paint(Graphics& g) override;
+	void resized() override;
 
 	virtual void updateThumbnail();
 

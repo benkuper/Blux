@@ -14,7 +14,7 @@
 
 class NoiseEffect :
     public Effect,
-    public HighResolutionTimer
+    public Timer
 {
 public:
     NoiseEffect(var params = var());
@@ -24,19 +24,19 @@ public:
     EnumParameter * type;
     FloatParameter* amplitude;
     FloatParameter* frequency;
-    FloatParameter* offset;
     FloatParameter* offsetByID;
+    FloatParameter* offsetByValue;
 
     siv::PerlinNoise perlin;
 
     double timeAtLastUpdate;
     double curTime;
 
-    var getProcessedComponentValuesInternal(Object * o, ObjectComponent* c, var values) override;
+    var getProcessedComponentValuesInternal(Object * o, ObjectComponent* c, int id, var values) override;
 
     void onContainerParameterChangedInternal(Parameter* p)override;
 
-    virtual void hiResTimerCallback() override;
+    virtual void timerCallback() override;
 
     String getTypeString() const override { return "Noise"; }
     static NoiseEffect* create(var params) { return new NoiseEffect(params); }

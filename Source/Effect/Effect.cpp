@@ -29,15 +29,19 @@ Effect::~Effect()
 
 void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
-    var pValues = getProcessedComponentValuesInternal(o, c, values.clone());
-    jassert(pValues.size() == values.size());
+    int id = filterManager.getFilteredIDForComponent(o, c);
+    if (id == -1) return;
+
+    var pValues = getProcessedComponentValuesInternal(o, c, id, values.clone());
+    jassert(pValues.size() == values.size() );
     for (int i = 0; i < values.size(); i++)
     {
         if (values[i].isArray())
         {
+            jassert(pValues[i].isArray());
             for (int j = 0; j < values[i].size(); j++)
             {
-                values[i] = jmap<float>(weight->floatValue(), values[i][j], pValues[i][j]);
+                values[i][j] = jmap<float>(weight->floatValue(), values[i][j], pValues[i][j]);
             }
         }
         else
@@ -47,7 +51,7 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values)
     }
 }
 
-var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values)
+var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values)
 {
     return values;
 }

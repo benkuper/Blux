@@ -19,7 +19,7 @@ ObjectManager::ObjectManager() :
     managerFactory = &factory;
     itemDataType = "Object";
 
-    gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 64, 32, 128);
+    gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 128, 32, 256);
     gridThumbSize->hideInEditor = true;
     
     startThread();

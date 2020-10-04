@@ -20,6 +20,7 @@ public:
     ~EffectGroup();
 
     EffectManager effectManager;
+    ComponentSelector componentSelector;
 
     void saveSceneData(var& sceneData);
 

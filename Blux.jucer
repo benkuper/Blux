@@ -56,6 +56,18 @@
         <FILE id="NcAxFS" name="GroupManager.h" compile="0" resource="0" file="Source/Group/GroupManager.h"/>
       </GROUP>
       <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
+        <GROUP id="{137B22EF-3249-961C-2E0C-8DA0CED6D6AB}" name="ComponentSelector">
+          <GROUP id="{E7D4A0FE-FBC4-75CA-B2FB-85C60C79C120}" name="ui">
+            <FILE id="oR4Unx" name="ComponentSelectorUI.cpp" compile="1" resource="0"
+                  file="Source/Common/ComponentSelector/ui/ComponentSelectorUI.cpp"/>
+            <FILE id="d8BXYf" name="ComponentSelectorUI.h" compile="0" resource="0"
+                  file="Source/Common/ComponentSelector/ui/ComponentSelectorUI.h"/>
+          </GROUP>
+          <FILE id="Kelt6x" name="ComponentSelector.cpp" compile="1" resource="0"
+                file="Source/Common/ComponentSelector/ComponentSelector.cpp"/>
+          <FILE id="mLJRTY" name="ComponentSelector.h" compile="0" resource="0"
+                file="Source/Common/ComponentSelector/ComponentSelector.h"/>
+        </GROUP>
         <GROUP id="{A1CD121E-9B16-9040-8954-4E6DC9DD384E}" name="DMX">
           <GROUP id="{20CB527A-3FDC-CFCF-2853-F56E8351E593}" name="device">
             <FILE id="MmraqT" name="DMXArtNetDevice.cpp" compile="1" resource="0"
@@ -183,6 +195,18 @@
       </GROUP>
       <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Effect">
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{8E13BCDA-D974-1658-0DED-4E4A7D293EAA}" name="automation">
+            <GROUP id="{FF7025B5-5227-3E4D-E602-A574B12D3223}" name="ui">
+              <FILE id="qQCNLL" name="AutomationEffectEditor.cpp" compile="1" resource="0"
+                    file="Source/Effect/effects/automation/ui/AutomationEffectEditor.cpp"/>
+              <FILE id="JY0mm8" name="AutomationEffectEditor.h" compile="0" resource="0"
+                    file="Source/Effect/effects/automation/ui/AutomationEffectEditor.h"/>
+            </GROUP>
+            <FILE id="XAwOmz" name="AutomationEffect.cpp" compile="1" resource="0"
+                  file="Source/Effect/effects/automation/AutomationEffect.cpp"/>
+            <FILE id="Zh1xQq" name="AutomationEffect.h" compile="0" resource="0"
+                  file="Source/Effect/effects/automation/AutomationEffect.h"/>
+          </GROUP>
           <GROUP id="{448FBE9F-BB3E-D4C2-BE7E-C573A112D794}" name="override">
             <FILE id="fgKWtR" name="OverrideEffect.cpp" compile="1" resource="0"
                   file="Source/Effect/effects/override/OverrideEffect.cpp"/>
@@ -197,11 +221,9 @@
         </GROUP>
         <GROUP id="{11ABDC7F-4CBF-C8CB-0BA7-C89E429B21F7}" name="Filter">
           <GROUP id="{F17755BA-DA05-000D-678F-57CA7F0A403A}" name="filters">
-            <GROUP id="{A62E3CDA-402A-AD22-FDC5-1AD35CF4412D}" name="component">
-              <FILE id="y0jPWe" name="ComponentFilter.cpp" compile="1" resource="0"
-                    file="Source/Effect/Filter/filters/component/ComponentFilter.cpp"/>
-              <FILE id="tllte7" name="ComponentFilter.h" compile="0" resource="0"
-                    file="Source/Effect/Filter/filters/component/ComponentFilter.h"/>
+            <GROUP id="{6282C0E5-25A5-46C6-5C6E-1A43C0016C72}" name="id">
+              <FILE id="JS9t1N" name="IDFilter.cpp" compile="1" resource="0" file="Source/Effect/Filter/filters/id/IDFilter.cpp"/>
+              <FILE id="Weajtz" name="IDFilter.h" compile="0" resource="0" file="Source/Effect/Filter/filters/id/IDFilter.h"/>
             </GROUP>
           </GROUP>
           <GROUP id="{38E09493-E6CE-264A-31CE-E893F7AD62AB}" name="ui">

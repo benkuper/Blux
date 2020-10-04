@@ -11,7 +11,7 @@
 #include "StepperComponent.h"
 
 StepperComponent::StepperComponent(var params) :
-    ObjectComponent(getTypeString(), params)
+    ObjectComponent(getTypeString(), STEPPER, params)
 {
 }
 

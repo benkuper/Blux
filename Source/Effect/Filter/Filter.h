@@ -11,6 +11,8 @@
 #pragma once
 
 #include "JuceHeader.h"
+#include "Object/Component/ObjectComponent.h"
+#include "Common/ComponentSelector/ComponentSelector.h"
 
 class Object;
 
@@ -21,8 +23,10 @@ public:
     Filter(const String &name = "Filter");
     virtual ~Filter();
 
+    BoolParameter* useLocalID;
 
-    virtual int getFilteredIDForObject(Object* o);
-
+    int getFilteredIDForComponent(Object* o, ObjectComponent * c);
+    virtual int getFilteredIDForComponentInternal(Object* o, ObjectComponent* c);
     void saveSceneData(var& sceneData);
+
 };
