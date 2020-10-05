@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Blux
+Exec=Blux
+Icon=blux
+Type=Application
+Categories=AudioVideo;Art;
+Comment=Another way of playing with lights
+Comment[fr]=Une autre manière de jouer avec des lumières
+MimeType=text/blux;
+Name[en]=Blux
+Terminal=false
+StartupNotify=true
+NoDisplay=false
+Name[en_US]=blux.desktop
