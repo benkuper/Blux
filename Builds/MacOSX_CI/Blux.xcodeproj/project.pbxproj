@@ -3063,7 +3063,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
-					"../../External/servus/lib/osx/debug",
 					"JUCER_XCODE_MAC_2F3811D6=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
@@ -3105,6 +3104,9 @@
 					"../../JuceLibraryCode",
 					"$(HOME)/JUCE/Modules",
 					"../../Modules",
+					"../../External/servus/include",
+					"../../External/dnssd/include",
+					"../../External/serial/include",
 					"../../Source",
 					"$(inherited)",
 				);
@@ -3113,14 +3115,16 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"../../External/servus/include\"",
-					"\"../../External/dnssd/include\"",
+					"\"../../External/servus/lib/osx/debug\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = (
 					"../../JuceLibraryCode",
 					"$(HOME)/JUCE/Modules",
 					"../../Modules",
+					"../../External/servus/include",
+					"../../External/dnssd/include",
+					"../../External/serial/include",
 					"../../Source",
 				);
 				OTHER_LDFLAGS = "-lServus";
@@ -3146,7 +3150,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
-					"../../External/servus/lib/osx/release",
 					"JUCER_XCODE_MAC_2F3811D6=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
@@ -3188,6 +3191,9 @@
 					"../../JuceLibraryCode",
 					"$(HOME)/JUCE/Modules",
 					"../../Modules",
+					"../../External/servus/include",
+					"../../External/dnssd/include",
+					"../../External/serial/include",
 					"../../Source",
 					"$(inherited)",
 				);
@@ -3196,8 +3202,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"../../External/servus/include\"",
-					"\"../../External/dnssd/include\"",
+					"\"../../External/servus/lib/osx/release\"",
 				);
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -3205,6 +3210,9 @@
 					"../../JuceLibraryCode",
 					"$(HOME)/JUCE/Modules",
 					"../../Modules",
+					"../../External/servus/include",
+					"../../External/dnssd/include",
+					"../../External/serial/include",
 					"../../Source",
 				);
 				OTHER_LDFLAGS = "-lServus";
