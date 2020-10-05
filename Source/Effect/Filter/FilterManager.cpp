@@ -53,3 +53,16 @@ InspectableEditor* FilterManager::getEditor(bool isRoot)
 {
     return new FilterManagerEditor(this, isRoot);
 }
+
+var FilterManager::getJSONData()
+{
+    var data = BaseManager::getJSONData();
+    data.getDynamicObject()->setProperty("selectedComponents", componentSelector.getJSONData());
+    return data;
+}
+
+void FilterManager::loadJSONDataManagerInternal(var data)
+{
+    BaseManager::loadJSONDataManagerInternal(data);
+    componentSelector.loadJSONData(data.getProperty("selectedComponents", var()));
+}

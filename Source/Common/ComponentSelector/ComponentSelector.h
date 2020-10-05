@@ -19,4 +19,7 @@ public:
     ~ComponentSelector();
 
     HashMap<ObjectComponent::ComponentType, bool> selectedComponents;
+
+    var getJSONData();
+    void loadJSONData(var data);
 };

@@ -26,4 +26,7 @@ public:
     int getFilteredIDForComponent(Object* o, ObjectComponent * c);
 
     InspectableEditor* getEditor(bool isRoot) override;
+
+    var getJSONData() override;
+    void loadJSONDataManagerInternal(var data) override;
 };

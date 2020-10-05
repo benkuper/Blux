@@ -33,8 +33,9 @@ Scene::Scene(const String& name) :
     interpolationCurve.items[0]->easingType->setValueWithData(Easing::BEZIER);
     interpolationCurve.addKey(1, 1, false);
     interpolationCurve.selectItemWhenCreated = false;
-    interpolationCurve.hideEditorHeader = true;
     addChildControllableContainer(&interpolationCurve);
+
+    addChildControllableContainer(&sequenceManager);
 }
 
 Scene::~Scene()

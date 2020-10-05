@@ -11,6 +11,7 @@
 #pragma once
 
 #include "JuceHeader.h"
+#include "Sequence/BluxSequenceManager.h"
 
 class Scene :
     public BaseItem
@@ -28,6 +29,8 @@ public:
     FloatParameter* loadProgress;
     Automation interpolationCurve;
     BoolParameter* isCurrent;
+
+    BluxSequenceManager sequenceManager;
 
     void saveScene();
     var getSceneData();

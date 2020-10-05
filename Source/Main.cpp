@@ -15,6 +15,7 @@ void BluxApplication::initialiseInternal(const String&)
     engine.reset(new BluxEngine());
 	mainComponent.reset(new MainComponent());
 
+
 	//Call after engine init
 	AppUpdater::getInstance()->setURLs(URL("http://benjamin.kuperberg.fr/blux/releases/update.json"), "http://benjamin.kuperberg.fr/blux/user/data/", "Chataigne");
 	HelpBox::getInstance()->helpURL = URL("http://benjamin.kuperberg.fr/blux/help/");

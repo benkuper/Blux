@@ -14,6 +14,58 @@
       <FILE id="AkkWvI" name="icon128.png" compile="0" resource="1" file="Resources/icon128.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{19F4E516-10FC-FA0A-C9A6-135346379876}" name="Audio">
+        <GROUP id="{AD18FB93-C831-88F5-3171-4DE9C92E692A}" name="ui">
+          <FILE id="cxR8NV" name="AudioManagerHardwareEditor.cpp" compile="1"
+                resource="0" file="Source/Audio/ui/AudioManagerHardwareEditor.cpp"/>
+          <FILE id="U162XE" name="AudioManagerHardwareEditor.h" compile="0" resource="0"
+                file="Source/Audio/ui/AudioManagerHardwareEditor.h"/>
+        </GROUP>
+        <FILE id="Jp4A8n" name="AudioManager.cpp" compile="1" resource="0"
+              file="Source/Audio/AudioManager.cpp"/>
+        <FILE id="mUVkYL" name="AudioManager.h" compile="0" resource="0" file="Source/Audio/AudioManager.h"/>
+      </GROUP>
+      <GROUP id="{460B3213-E16F-2CB9-9A88-70D86283C04B}" name="Sequence">
+        <GROUP id="{47A4E042-1EFE-5733-D500-651382570D61}" name="layers">
+          <GROUP id="{AB827E54-9C49-D8A3-319B-C9ACAD9DDE01}" name="action">
+            <FILE id="Bpf2hH" name="ActionLayer.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/ActionLayer.cpp"/>
+            <FILE id="NS2oZm" name="ActionLayer.h" compile="0" resource="0" file="Source/Sequence/layers/action/ActionLayer.h"/>
+          </GROUP>
+          <GROUP id="{1E78F76D-6C26-5DA6-F248-E187A041660A}" name="automation">
+            <FILE id="Cs1tIN" name="AutomationLayer.cpp" compile="1" resource="0"
+                  file="Source/Sequence/layers/automation/AutomationLayer.cpp"/>
+            <FILE id="tiQyHr" name="AutomationLayer.h" compile="0" resource="0"
+                  file="Source/Sequence/layers/automation/AutomationLayer.h"/>
+          </GROUP>
+          <GROUP id="{EA89BD15-9538-2C68-FB3A-00C34175E063}" name="colorsource">
+            <FILE id="yRP0Uj" name="ColorSourceLayer.cpp" compile="1" resource="0"
+                  file="Source/Sequence/layers/colorsource/ColorSourceLayer.cpp"/>
+            <FILE id="N5TpDK" name="ColorSourceLayer.h" compile="0" resource="0"
+                  file="Source/Sequence/layers/colorsource/ColorSourceLayer.h"/>
+          </GROUP>
+          <GROUP id="{0E87EE68-1F11-8706-650F-45FAB01E0AA7}" name="effect">
+            <FILE id="R5w4Cg" name="EffectLayer.cpp" compile="1" resource="0" file="Source/Sequence/layers/effect/EffectLayer.cpp"/>
+            <FILE id="BvxoZk" name="EffectLayer.h" compile="0" resource="0" file="Source/Sequence/layers/effect/EffectLayer.h"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{AE5943CE-1256-27AF-6FA1-07A5B0B5A099}" name="ui">
+          <FILE id="SXFrz4" name="GlobalSequenceManagerUI.cpp" compile="1" resource="0"
+                file="Source/Sequence/ui/GlobalSequenceManagerUI.cpp"/>
+          <FILE id="QGlHRy" name="GlobalSequenceManagerUI.h" compile="0" resource="0"
+                file="Source/Sequence/ui/GlobalSequenceManagerUI.h"/>
+        </GROUP>
+        <FILE id="i7qrmB" name="BluxSequence.cpp" compile="1" resource="0"
+              file="Source/Sequence/BluxSequence.cpp"/>
+        <FILE id="qVw89s" name="BluxSequence.h" compile="0" resource="0" file="Source/Sequence/BluxSequence.h"/>
+        <FILE id="J6ZdE0" name="BluxSequenceManager.cpp" compile="1" resource="0"
+              file="Source/Sequence/BluxSequenceManager.cpp"/>
+        <FILE id="lkXFzT" name="BluxSequenceManager.h" compile="0" resource="0"
+              file="Source/Sequence/BluxSequenceManager.h"/>
+        <FILE id="gFUUsK" name="GlobalSequenceManager.cpp" compile="1" resource="0"
+              file="Source/Sequence/GlobalSequenceManager.cpp"/>
+        <FILE id="KoLJCC" name="GlobalSequenceManager.h" compile="0" resource="0"
+              file="Source/Sequence/GlobalSequenceManager.h"/>
+      </GROUP>
       <GROUP id="{6FB74C4A-A0E6-B037-4FBF-A28F2A49E7EB}" name="Preset">
         <GROUP id="{65080FBC-0FCC-55BE-74B9-06453DB21DC3}" name="ui">
           <FILE id="qJWy9W" name="PresetManagerUI.cpp" compile="1" resource="0"
@@ -406,40 +458,121 @@
                        libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../../Softwares/JUCE/modules"/>
-        <MODULEPATH id="juce_osc" path="../../../../Softwares/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics"/>
+        <MODULEPATH id="juce_audio_devices" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_opengl" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_osc" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_organicui" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
       </MODULEPATHS>
     </VS2019>
+    <VS2019 targetFolder="Builds/VisualStudio2019_CI" extraDefs="JUCE_SUPPORT_CARBON=0"
+            externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" binaryPath="Binaries/CI" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+                       libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"/>
+        <CONFIGURATION isDebug="0" name="Release" binaryPath="Binaries/CI" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+                       libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_timeline" path="Modules"/>
+        <MODULEPATH id="juce_simpleweb" path="Modules"/>
+        <MODULEPATH id="juce_osc" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_organicui" path="Modules"/>
+        <MODULEPATH id="juce_opengl" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_core" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../JUCE/Modules"/>
+      </MODULEPATHS>
+    </VS2019>
+    <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
+               bigIcon="kxAIe6">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" libraryPath="../../External/servus/include&#10;../../External/dnssd/include"
+                       defines="../../External/servus/lib/osx/debug"/>
+        <CONFIGURATION isDebug="0" name="Release" libraryPath="../../External/servus/include&#10;../../External/dnssd/include"
+                       defines="../../External/servus/lib/osx/release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_timeline" path="Modules"/>
+        <MODULEPATH id="juce_simpleweb" path="Modules"/>
+        <MODULEPATH id="juce_osc" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_organicui" path="Modules"/>
+        <MODULEPATH id="juce_opengl" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_gui_extra" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_gui_basics" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_graphics" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_events" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_data_structures" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_core" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_utils" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_processors" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_formats" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_devices" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_basics" path="~/JUCE/Modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed"
+                externalLibraries="Servus&#10;usb-1.0" smallIcon="kxAIe6" bigIcon="kxAIe6">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0&#10;"
+                       libraryPath="../../External/servus/lib/linux&#10;/usr/lib/x86_64-linux-gnu/"/>
+        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0"
+                       libraryPath="../../External/servus/lib/linux&#10;/usr/lib/x86_64-linux-gnu/"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_timeline" path="Modules"/>
+        <MODULEPATH id="juce_simpleweb" path="Modules"/>
+        <MODULEPATH id="juce_osc" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_organicui" path="Modules"/>
+        <MODULEPATH id="juce_opengl" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_gui_extra" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_gui_basics" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_graphics" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_events" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_data_structures" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_core" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_utils" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_processors" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_formats" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_devices" path="~/JUCE/Modules"/>
+        <MODULEPATH id="juce_audio_basics" path="~/JUCE/Modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
   </EXPORTFORMATS>
   <MODULES>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
-    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_organicui" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_simpleweb" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_timeline" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
