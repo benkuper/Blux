@@ -67,7 +67,7 @@ Builds/VisualStudio2017/\.vs/
 Builds/VisualStudio2019/\.vs/
 Builds/VisualStudio2019/packages/
 Builds/VisualStudio2017_Win7/
-
+Builds/MacOSX_CI/build
 *.exe
 
 *.AppImage
@@ -76,3 +76,5 @@ Builds/VisualStudio2017_Win7/
 
 
 Builds/VisualStudio2019/
+
+*.pkg

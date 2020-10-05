@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0"
-              headerPath="../../Source">
+              headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
       <FILE id="s4JRaV" name="crash.png" compile="0" resource="1" file="Resources/crash.png"/>
@@ -506,10 +506,10 @@
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
                bigIcon="kxAIe6">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" libraryPath="../../External/servus/include&#10;../../External/dnssd/include"
-                       defines="../../External/servus/lib/osx/debug"/>
-        <CONFIGURATION isDebug="0" name="Release" libraryPath="../../External/servus/include&#10;../../External/dnssd/include"
-                       defines="../../External/servus/lib/osx/release"/>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/serial/include"
+                       libraryPath="../../External/servus/lib/osx/debug"/>
+        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/serial/include"
+                       libraryPath="../../External/servus/lib/osx/release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_timeline" path="Modules"/>
@@ -578,5 +578,6 @@
   </MODULES>
   <LIVE_SETTINGS>
     <WINDOWS/>
+    <OSX/>
   </LIVE_SETTINGS>
 </JUCERPROJECT>
