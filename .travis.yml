@@ -17,11 +17,11 @@ matrix:
       dist: bionic
       sudo: required
       env: TARGET_SYSTEM=linux-x64 BUILD_FOLDER=LinuxMakefile 
-    - os: linux
-      arch: amd64
-      dist: bionic
-      sudo: required
-      env: TARGET_SYSTEM=linux-armhf BUILD_FOLDER=Raspberry
+#    - os: linux
+#      arch: amd64
+#      dist: bionic
+#      sudo: required
+#      env: TARGET_SYSTEM=linux-armhf BUILD_FOLDER=Raspberry
 
 before_install:
 - |
