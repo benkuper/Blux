@@ -18,7 +18,6 @@ IDFilter::IDFilter() :
     //mode = addEnumParameter("Mode", "Filtering mode");
     //mode->addOption("Include", true)->addOption("Exclude", false);
 
-    saveAndLoadRecursiveData = true;
     ids.userCanAddControllables = true;
     ids.userAddControllablesFilters.add(IntParameter::getTypeStringStatic());
     addChildControllableContainer(&ids);
@@ -28,9 +27,9 @@ IDFilter::~IDFilter()
 {
 }
 
-int IDFilter::getFilteredIDForComponentInternal(Object* o, ObjectComponent* c)
+FilterResult IDFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)
 {
     int oid = o->globalID->intValue();
-    for (int i = 0; i < ids.controllables.size(); i++) if (oid == ((IntParameter*)ids.controllables[i])->intValue()) return i;
-    return -1;
+    for (int i = 0; i < ids.controllables.size(); i++) if (oid == ((IntParameter*)ids.controllables[i])->intValue()) return FilterResult({ i, 1 });
+    return FilterResult();
 }

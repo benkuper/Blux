@@ -78,11 +78,8 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/BluxSequence_2a48d45d.o \
   $(JUCE_OBJDIR)/BluxSequenceManager_466a6d1a.o \
   $(JUCE_OBJDIR)/GlobalSequenceManager_cb8c30a4.o \
-  $(JUCE_OBJDIR)/PresetManagerUI_9055fc58.o \
-  $(JUCE_OBJDIR)/PresetUI_9483ea47.o \
-  $(JUCE_OBJDIR)/Preset_bc005410.o \
-  $(JUCE_OBJDIR)/PresetManager_886e07.o \
   $(JUCE_OBJDIR)/VirtualGroup_a546084.o \
+  $(JUCE_OBJDIR)/ObjectGroupUI_12bfbd67.o \
   $(JUCE_OBJDIR)/ObjectGroup_7a75e2fc.o \
   $(JUCE_OBJDIR)/GroupManagerUI_a384828e.o \
   $(JUCE_OBJDIR)/GroupUI_ec4c54d1.o \
@@ -124,6 +121,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/AutomationEffect_61919d9e.o \
   $(JUCE_OBJDIR)/OverrideEffect_e23d03be.o \
   $(JUCE_OBJDIR)/NoiseEffect_c7be2ff4.o \
+  $(JUCE_OBJDIR)/LayoutFilter_5fed8dbb.o \
   $(JUCE_OBJDIR)/IDFilter_c5e2757b.o \
   $(JUCE_OBJDIR)/FilterEditor_a7d98c68.o \
   $(JUCE_OBJDIR)/FilterManagerEditor_be3a7ba9.o \
@@ -135,10 +133,11 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/GlobalEffectManager_4563d864.o \
   $(JUCE_OBJDIR)/EffectManager_d19a2247.o \
   $(JUCE_OBJDIR)/Effect_e214e7d0.o \
-  $(JUCE_OBJDIR)/ObjectGridUI_33e92eed.o \
-  $(JUCE_OBJDIR)/ObjectManagerGridUI_ec4b46fe.o \
-  $(JUCE_OBJDIR)/ObjectManagerUI_c91fab98.o \
-  $(JUCE_OBJDIR)/ObjectUI_8614e307.o \
+  $(JUCE_OBJDIR)/Object2DView_8be7c075.o \
+  $(JUCE_OBJDIR)/StageLayout2DView_26fddaaa.o \
+  $(JUCE_OBJDIR)/StageLayoutManagerUI_a71558f8.o \
+  $(JUCE_OBJDIR)/StageLayout_51c72c4c.o \
+  $(JUCE_OBJDIR)/StageLayoutManager_d6a51a4b.o \
   $(JUCE_OBJDIR)/ComponentManagerEditor_74c3307f.o \
   $(JUCE_OBJDIR)/ObjectComponentEditor_f7541853.o \
   $(JUCE_OBJDIR)/ScriptComponentEditor_62940c12.o \
@@ -155,12 +154,17 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/StrobeComponent_2e66226e.o \
   $(JUCE_OBJDIR)/ComponentManager_46725c33.o \
   $(JUCE_OBJDIR)/ObjectComponent_b60fdce5.o \
+  $(JUCE_OBJDIR)/ObjectGridUI_33e92eed.o \
+  $(JUCE_OBJDIR)/ObjectManagerGridUI_ec4b46fe.o \
+  $(JUCE_OBJDIR)/ObjectManagerUI_c91fab98.o \
+  $(JUCE_OBJDIR)/ObjectUI_8614e307.o \
   $(JUCE_OBJDIR)/Object_c32f2810.o \
   $(JUCE_OBJDIR)/ObjectManager_a2c31a07.o \
   $(JUCE_OBJDIR)/BluxEngine_89bca27d.o \
   $(JUCE_OBJDIR)/AssetManager_74710ad9.o \
   $(JUCE_OBJDIR)/Main_90ebc5c2.o \
   $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o \
+  $(JUCE_OBJDIR)/MainComponentCommands_b1179f4d.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
@@ -244,29 +248,14 @@ $(JUCE_OBJDIR)/GlobalSequenceManager_cb8c30a4.o: ../../Source/Sequence/GlobalSeq
 	@echo "Compiling GlobalSequenceManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/PresetManagerUI_9055fc58.o: ../../Source/Preset/ui/PresetManagerUI.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling PresetManagerUI.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/PresetUI_9483ea47.o: ../../Source/Preset/ui/PresetUI.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling PresetUI.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/Preset_bc005410.o: ../../Source/Preset/Preset.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling Preset.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/PresetManager_886e07.o: ../../Source/Preset/PresetManager.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling PresetManager.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/VirtualGroup_a546084.o: ../../Source/Group/groups/virtual/VirtualGroup.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling VirtualGroup.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ObjectGroupUI_12bfbd67.o: ../../Source/Group/groups/object/ui/ObjectGroupUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectGroupUI.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ObjectGroup_7a75e2fc.o: ../../Source/Group/groups/object/ObjectGroup.cpp
@@ -474,6 +463,11 @@ $(JUCE_OBJDIR)/NoiseEffect_c7be2ff4.o: ../../Source/Effect/effects/noise/NoiseEf
 	@echo "Compiling NoiseEffect.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/LayoutFilter_5fed8dbb.o: ../../Source/Effect/Filter/filters/layout/LayoutFilter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LayoutFilter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/IDFilter_c5e2757b.o: ../../Source/Effect/Filter/filters/id/IDFilter.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling IDFilter.cpp"
@@ -529,24 +523,29 @@ $(JUCE_OBJDIR)/Effect_e214e7d0.o: ../../Source/Effect/Effect.cpp
 	@echo "Compiling Effect.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/ObjectGridUI_33e92eed.o: ../../Source/Object/ui/ObjectGridUI.cpp
+$(JUCE_OBJDIR)/Object2DView_8be7c075.o: ../../Source/Layout/ui/Object2DView.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ObjectGridUI.cpp"
+	@echo "Compiling Object2DView.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/ObjectManagerGridUI_ec4b46fe.o: ../../Source/Object/ui/ObjectManagerGridUI.cpp
+$(JUCE_OBJDIR)/StageLayout2DView_26fddaaa.o: ../../Source/Layout/ui/StageLayout2DView.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ObjectManagerGridUI.cpp"
+	@echo "Compiling StageLayout2DView.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/ObjectManagerUI_c91fab98.o: ../../Source/Object/ui/ObjectManagerUI.cpp
+$(JUCE_OBJDIR)/StageLayoutManagerUI_a71558f8.o: ../../Source/Layout/ui/StageLayoutManagerUI.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ObjectManagerUI.cpp"
+	@echo "Compiling StageLayoutManagerUI.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/ObjectUI_8614e307.o: ../../Source/Object/ui/ObjectUI.cpp
+$(JUCE_OBJDIR)/StageLayout_51c72c4c.o: ../../Source/Layout/StageLayout.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ObjectUI.cpp"
+	@echo "Compiling StageLayout.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/StageLayoutManager_d6a51a4b.o: ../../Source/Layout/StageLayoutManager.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling StageLayoutManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ComponentManagerEditor_74c3307f.o: ../../Source/Object/Component/ui/ComponentManagerEditor.cpp
@@ -629,6 +628,26 @@ $(JUCE_OBJDIR)/ObjectComponent_b60fdce5.o: ../../Source/Object/Component/ObjectC
 	@echo "Compiling ObjectComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/ObjectGridUI_33e92eed.o: ../../Source/Object/ui/ObjectGridUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectGridUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ObjectManagerGridUI_ec4b46fe.o: ../../Source/Object/ui/ObjectManagerGridUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectManagerGridUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ObjectManagerUI_c91fab98.o: ../../Source/Object/ui/ObjectManagerUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectManagerUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ObjectUI_8614e307.o: ../../Source/Object/ui/ObjectUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/Object_c32f2810.o: ../../Source/Object/Object.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Object.cpp"
@@ -657,6 +676,11 @@ $(JUCE_OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o: ../../Source/MainComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling MainComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/MainComponentCommands_b1179f4d.o: ../../Source/MainComponentCommands.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MainComponentCommands.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_ce4232d4.o: ../../JuceLibraryCode/BinaryData.cpp

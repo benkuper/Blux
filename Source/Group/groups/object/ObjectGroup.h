@@ -14,30 +14,67 @@
 
 class Object;
 
+
+
+class ObjectTarget :
+    public BaseItem
+{
+public:
+    ObjectTarget();
+    ~ObjectTarget();
+
+    Object* currentObject;
+    WeakReference<Inspectable> objectRef;
+
+    TargetParameter * target;
+
+    void onContainerParameterChangedInternal(Parameter* p) override;
+
+    InspectableEditor* getEditor(bool isRoot) override;
+
+    //Listener
+    class  ObjectTargetListener
+    {
+    public:
+        /** Destructor. */
+        virtual ~ObjectTargetListener() {}
+        virtual void targetChanged(Object* newTarget, Object * previousTarget) {}
+    };
+
+    ListenerList<ObjectTargetListener> objectTargetListeners;
+    void addObjectTargetListener(ObjectTargetListener* newListener) { objectTargetListeners.add(newListener); }
+    void removeObjectTargetListener(ObjectTargetListener* listener) { objectTargetListeners.remove(listener); }
+
+
+    String getTypeString() const override { return "ObjectTarget"; }
+};
+
+
 class ObjectGroup :
-    public Group
+    public Group,
+    public BaseManager<ObjectTarget>::ManagerListener,
+    public ObjectTarget::ObjectTargetListener
 {
 public:
     ObjectGroup();
     ~ObjectGroup();
 
-    ControllableContainer objectsCC;
+    BaseManager<ObjectTarget> objectsCC;
 
-    void childStructureChanged(ControllableContainer* cc) override;
-    void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
+    void itemAdded(ObjectTarget* i) override;
+    void itemRemoved(ObjectTarget * i) override;
+    void targetChanged(Object * newTarget, Object * previousTarget) override;
+
     void rebuildLinkedObjects();
 
     void addObject(Object* o);
-    TargetParameter* getTargetParamForObject(Object* o);
+    void addObjects(Array<Object*> oList);
+    ObjectTarget * getTargetForObject(Object* o);
 
     bool containsObject(Object* o) override;
 
+    virtual Array<Object*> getObjects() override;
 
-    static TargetParameter* createObjectTarget(ControllableContainer* cc);
-
-    var getJSONData() override;
-    void loadJSONDataInternal(var data) override;
-    void afterLoadJSONDataInternal() override;
 
     String getTypeString() const override { return "Object Group"; }
     static ObjectGroup* create(var params) { return new ObjectGroup(); }

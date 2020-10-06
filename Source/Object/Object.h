@@ -32,6 +32,10 @@ public:
 
     IntParameter* globalID;
     int previousID;
+    
+    BoolParameter* excludeFromScenes;
+
+    Point3DParameter* stagePosition;
 
     //ui
     File customThumbnailPath;

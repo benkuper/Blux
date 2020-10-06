@@ -17,7 +17,7 @@ Filter::Filter(const String& name) :
     BaseItem(name)
 {
     itemDataType = "Filter";
-
+    saveAndLoadRecursiveData = true;
     useLocalID = addBoolParameter("Use Local ID", "If enabled, this will use the generated ID from this filter instead of the object's global ID", false);
     showInspectorOnSelect = false;
 
@@ -27,19 +27,19 @@ Filter::~Filter()
 {
 }
 
-int Filter::getFilteredIDForComponent(Object* o, ObjectComponent* c)
+FilterResult Filter::getFilteredResultForComponent(Object* o, ObjectComponent* c)
 {
-    if (!enabled->boolValue()) return -1;
+    if (!enabled->boolValue()) return FilterResult();
     
-    int localID = getFilteredIDForComponentInternal(o, c);
-    if (localID == -1) return -1;
+    FilterResult r = getFilteredResultForComponentInternal(o, c);
+    if (r.id == -1) return r;
 
-    return useLocalID->boolValue() ? localID : o->globalID->intValue();
+    return FilterResult({ useLocalID->boolValue() ? r.id : o->globalID->intValue(), r.weight });
 }
 
-int Filter::getFilteredIDForComponentInternal(Object* o, ObjectComponent* c)
+FilterResult Filter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)
 {
-    return o->globalID->intValue();
+    return FilterResult({ o->globalID->intValue(), 1 });
 }
 
 void Filter::saveSceneData(var& sceneData)
@@ -47,6 +47,7 @@ void Filter::saveSceneData(var& sceneData)
     Array<WeakReference<Parameter>> params = getAllParameters();
     for (auto& p : params)
     {
+        if (p->type == Parameter::ENUM || p->type == Parameter::TARGET) continue;
         if (!p->hideInEditor && !p->isControllableFeedbackOnly) //BIG HACK to avoid listSize ViewUISize, etc.. should be in a proper list
         {
             sceneData.getDynamicObject()->setProperty(p->controlAddress, p->value);

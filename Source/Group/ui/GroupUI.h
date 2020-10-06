@@ -20,5 +20,13 @@ public:
     ~GroupUI();
 
 
+    bool flashMode;
+
+    virtual void mouseDown(const MouseEvent& e) override;
+    virtual void mouseDrag(const MouseEvent& e) override;
+    virtual void mouseUp(const MouseEvent& e) override;
+    
+    virtual bool keyStateChanged(bool isDown) override;
+
     void itemDropped(const DragAndDropTarget::SourceDetails& details) override;
 };

@@ -161,11 +161,8 @@
     <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp"/>
-    <ClCompile Include="..\..\Source\Preset\ui\PresetManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Preset\ui\PresetUI.cpp"/>
-    <ClCompile Include="..\..\Source\Preset\Preset.cpp"/>
-    <ClCompile Include="..\..\Source\Preset\PresetManager.cpp"/>
     <ClCompile Include="..\..\Source\Group\groups\virtual\VirtualGroup.cpp"/>
+    <ClCompile Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.cpp"/>
     <ClCompile Include="..\..\Source\Group\groups\object\ObjectGroup.cpp"/>
     <ClCompile Include="..\..\Source\Group\ui\GroupManagerUI.cpp"/>
     <ClCompile Include="..\..\Source\Group\ui\GroupUI.cpp"/>
@@ -207,6 +204,7 @@
     <ClCompile Include="..\..\Source\Effect\effects\automation\AutomationEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\override\OverrideEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\noise\NoiseEffect.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Filter\filters\id\IDFilter.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Filter\ui\FilterEditor.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Filter\ui\FilterManagerEditor.cpp"/>
@@ -218,10 +216,11 @@
     <ClCompile Include="..\..\Source\Effect\GlobalEffectManager.cpp"/>
     <ClCompile Include="..\..\Source\Effect\EffectManager.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Effect.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerGridUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectUI.cpp"/>
+    <ClCompile Include="..\..\Source\Layout\ui\Object2DView.cpp"/>
+    <ClCompile Include="..\..\Source\Layout\ui\StageLayout2DView.cpp"/>
+    <ClCompile Include="..\..\Source\Layout\ui\StageLayoutManagerUI.cpp"/>
+    <ClCompile Include="..\..\Source\Layout\StageLayout.cpp"/>
+    <ClCompile Include="..\..\Source\Layout\StageLayoutManager.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.cpp"/>
@@ -238,12 +237,17 @@
     <ClCompile Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ComponentManager.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ObjectComponent.cpp"/>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp"/>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerGridUI.cpp"/>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerUI.cpp"/>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectUI.cpp"/>
     <ClCompile Include="..\..\Source\Object\Object.cpp"/>
     <ClCompile Include="..\..\Source\Object\ObjectManager.cpp"/>
     <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp"/>
     <ClCompile Include="..\..\Source\UI\AssetManager.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
+    <ClCompile Include="..\..\Source\MainComponentCommands.cpp"/>
     <ClCompile Include="..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2879,11 +2883,8 @@
     <ClInclude Include="..\..\Source\Sequence\BluxSequence.h"/>
     <ClInclude Include="..\..\Source\Sequence\BluxSequenceManager.h"/>
     <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h"/>
-    <ClInclude Include="..\..\Source\Preset\ui\PresetManagerUI.h"/>
-    <ClInclude Include="..\..\Source\Preset\ui\PresetUI.h"/>
-    <ClInclude Include="..\..\Source\Preset\Preset.h"/>
-    <ClInclude Include="..\..\Source\Preset\PresetManager.h"/>
     <ClInclude Include="..\..\Source\Group\groups\virtual\VirtualGroup.h"/>
+    <ClInclude Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.h"/>
     <ClInclude Include="..\..\Source\Group\groups\object\ObjectGroup.h"/>
     <ClInclude Include="..\..\Source\Group\ui\GroupManagerUI.h"/>
     <ClInclude Include="..\..\Source\Group\ui\GroupUI.h"/>
@@ -2920,6 +2921,7 @@
     <ClInclude Include="..\..\Source\Effect\effects\override\OverrideEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\noise\NoiseEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\noise\PerlinNoise.hpp"/>
+    <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\id\IDFilter.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\ui\FilterEditor.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\ui\FilterManagerEditor.h"/>
@@ -2931,10 +2933,11 @@
     <ClInclude Include="..\..\Source\Effect\GlobalEffectManager.h"/>
     <ClInclude Include="..\..\Source\Effect\EffectManager.h"/>
     <ClInclude Include="..\..\Source\Effect\Effect.h"/>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h"/>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectManagerGridUI.h"/>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectManagerUI.h"/>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectUI.h"/>
+    <ClInclude Include="..\..\Source\Layout\ui\Object2DView.h"/>
+    <ClInclude Include="..\..\Source\Layout\ui\StageLayout2DView.h"/>
+    <ClInclude Include="..\..\Source\Layout\ui\StageLayoutManagerUI.h"/>
+    <ClInclude Include="..\..\Source\Layout\StageLayout.h"/>
+    <ClInclude Include="..\..\Source\Layout\StageLayoutManager.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.h"/>
@@ -2951,6 +2954,10 @@
     <ClInclude Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ComponentManager.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ObjectComponent.h"/>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h"/>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectManagerGridUI.h"/>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectManagerUI.h"/>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectUI.h"/>
     <ClInclude Include="..\..\Source\Object\Object.h"/>
     <ClInclude Include="..\..\Source\Object\ObjectManager.h"/>
     <ClInclude Include="..\..\Source\Engine\BluxEngine.h"/>
@@ -2997,7 +3004,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\utilities\juce_Interpolators.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\utilities\juce_Reverb.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\utilities\juce_SmoothedValue.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_basics\juce_audio_basics.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_basics\juce_audio_basics.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\audio_io\juce_AudioDeviceManager.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\audio_io\juce_AudioIODevice.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\audio_io\juce_AudioIODeviceType.h"/>
@@ -3068,7 +3075,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\native\juce_MidiDataConcatenator.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\sources\juce_AudioSourcePlayer.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\sources\juce_AudioTransportSource.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\juce_audio_devices.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_devices\juce_audio_devices.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\codecs\flac\libFLAC\include\private\all.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\codecs\flac\libFLAC\include\private\bitmath.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\codecs\flac\libFLAC\include\private\bitreader.h"/>
@@ -3167,7 +3174,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\format\juce_BufferingAudioFormatReader.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\format\juce_MemoryMappedAudioFormatReader.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\sampler\juce_Sampler.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_formats\juce_audio_formats.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_formats\juce_audio_formats.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\format\juce_AudioPluginFormat.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\format\juce_AudioPluginFormatManager.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\base\source\classfactoryhelpers.h"/>
@@ -3263,7 +3270,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\utilities\juce_AudioProcessorValueTreeState.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\utilities\juce_ParameterAttachments.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\utilities\juce_RangedAudioParameter.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_processors\juce_audio_processors.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_processors\juce_audio_processors.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\audio_cd\juce_AudioCDBurner.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\audio_cd\juce_AudioCDReader.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\gui\juce_AudioAppComponent.h"/>
@@ -3276,7 +3283,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\gui\juce_MidiKeyboardComponent.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\players\juce_AudioProcessorPlayer.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\players\juce_SoundPlayer.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_utils\juce_audio_utils.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_utils\juce_audio_utils.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\containers\juce_AbstractFifo.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\containers\juce_Array.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\containers\juce_ArrayAllocationBase.h"/>
@@ -3415,7 +3422,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\zip\juce_GZIPCompressorOutputStream.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\zip\juce_GZIPDecompressorInputStream.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\zip\juce_ZipFile.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_core\juce_core.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\juce_core.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\app_properties\juce_ApplicationProperties.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\app_properties\juce_PropertiesFile.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\undomanager\juce_UndoableAction.h"/>
@@ -3425,7 +3432,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\values\juce_ValueTree.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\values\juce_ValueWithDefault.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_data_structures\juce_data_structures.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_data_structures\juce_data_structures.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_events\broadcasters\juce_ActionBroadcaster.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_events\broadcasters\juce_ActionListener.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_events\broadcasters\juce_AsyncUpdater.h"/>
@@ -3450,7 +3457,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_events\native\juce_win32_WinRTWrapper.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_events\timers\juce_MultiTimer.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_events\timers\juce_Timer.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_events\juce_events.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_events\juce_events.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\colour\juce_Colour.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\colour\juce_ColourGradient.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\colour\juce_Colours.h"/>
@@ -3509,7 +3516,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\native\juce_win32_Direct2DGraphicsContext.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\placement\juce_Justification.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\placement\juce_RectanglePlacement.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_graphics\juce_graphics.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_graphics\juce_graphics.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\application\juce_Application.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\buttons\juce_ArrowButton.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\buttons\juce_Button.h"/>
@@ -3650,7 +3657,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\windows\juce_ThreadWithProgressWindow.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\windows\juce_TooltipWindow.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\windows\juce_TopLevelWindow.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\juce_gui_basics.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\juce_gui_basics.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\code_editor\juce_CodeDocument.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\code_editor\juce_CodeEditorComponent.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\code_editor\juce_CodeTokeniser.h"/>
@@ -3679,7 +3686,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\misc\juce_SystemTrayIconComponent.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\misc\juce_WebBrowserComponent.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\native\juce_mac_CarbonViewWrapperComponent.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_extra\juce_gui_extra.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\geometry\juce_Draggable3DOrientation.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\geometry\juce_Matrix3D.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\geometry\juce_Quaternion.h"/>
@@ -3701,7 +3708,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\opengl\juce_OpenGLShaderProgram.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\opengl\juce_OpenGLTexture.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\utils\juce_OpenGLAppComponent.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_opengl\juce_opengl.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_opengl\juce_opengl.h"/>
     <ClInclude Include="..\..\Modules\juce_organicui\app\CrashHandler.h"/>
     <ClInclude Include="..\..\Modules\juce_organicui\app\OrganicApplication.h"/>
     <ClInclude Include="..\..\Modules\juce_organicui\app\OrganicMainComponent.h"/>
@@ -3897,7 +3904,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_osc\osc\juce_OSCSender.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_osc\osc\juce_OSCTimeTag.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_osc\osc\juce_OSCTypes.h"/>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_osc\juce_osc.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_osc\juce_osc.h"/>
     <ClInclude Include="..\..\Modules\juce_simpleweb\asio\asio\include\asio\detail\impl\dev_poll_reactor.hpp"/>
     <ClInclude Include="..\..\Modules\juce_simpleweb\asio\asio\include\asio\detail\impl\epoll_reactor.hpp"/>
     <ClInclude Include="..\..\Modules\juce_simpleweb\asio\asio\include\asio\detail\impl\kqueue_reactor.hpp"/>

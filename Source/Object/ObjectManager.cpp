@@ -20,8 +20,11 @@ ObjectManager::ObjectManager() :
     itemDataType = "Object";
 
     gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 128, 32, 256);
-    gridThumbSize->hideInEditor = true;
     
+    defaultFlashValue = addFloatParameter("Flash Value", "Flash Value", .5f, 0, 1);
+
+    blackOut = addBoolParameter("Black Out", "Force 0 on all computed values", false);
+
     startThread();
 
     updateFactoryDefinitions();
@@ -35,10 +38,14 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::updateFactoryDefinitions()
 {
+    factory.defs.clear();
+
     File objectsFolder = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName)+"/objects");
     Array<File> objectsList = objectsFolder.findChildFiles(File::findDirectories, false);
-    for (auto& of : objectsList)
+
+    for (int i = objectsList.size() - 1; i >= 0; i--) //reverse loop because directory listing is inverted
     {
+        File of = objectsList[i];
         File defFile = of.getChildFile("definition.json");
         if (!defFile.existsAsFile())
         {

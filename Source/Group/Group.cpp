@@ -15,7 +15,7 @@ Group::Group(String name) :
     BaseItem(name)
 {
     saveAndLoadRecursiveData = true;
-
+ 
     addChildControllableContainer(&effectManager);
 }
 

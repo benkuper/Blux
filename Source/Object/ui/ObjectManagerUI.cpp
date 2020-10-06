@@ -13,6 +13,7 @@
 ObjectManagerUI::ObjectManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
 {
+    addExistingItems();
 }
 
 ObjectManagerUI::~ObjectManagerUI()

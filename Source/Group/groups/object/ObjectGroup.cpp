@@ -9,14 +9,15 @@
 */
 
 #include "ObjectGroup.h"
+#include "ui/ObjectGroupUI.h"
 #include "Object/ObjectManager.h"
 
 ObjectGroup::ObjectGroup() :
     Group(getTypeString()),
     objectsCC("Objects")
 {
-    objectsCC.userCanAddControllables = true;
-    objectsCC.customUserCreateControllableFunc = &ObjectGroup::createObjectTarget;
+    objectsCC.addBaseManagerListener(this);
+    objectsCC.selectItemWhenCreated = false;
     addChildControllableContainer(&objectsCC, false, 0);
 }
 
@@ -24,58 +25,74 @@ ObjectGroup::~ObjectGroup()
 {
 }
 
-TargetParameter * ObjectGroup::createObjectTarget(ControllableContainer* cc)
+void ObjectGroup::itemAdded(ObjectTarget* i)
 {
-    TargetParameter* tp = cc->addTargetParameter("Object", "Object to be part of this group", ObjectManager::getInstance());
-    tp->targetType = TargetParameter::CONTAINER;
-    tp->maxDefaultSearchLevel = 0;
-    tp->saveValueOnly = false;
-    tp->isRemovableByUser = true;
-    return tp;
+    i->addObjectTargetListener(this);
+    if (i->currentObject != nullptr) registerLinkedInspectable(i->currentObject);
 }
 
-void ObjectGroup::childStructureChanged(ControllableContainer* cc)
+void ObjectGroup::itemRemoved(ObjectTarget* i)
 {
-    Group::childStructureChanged(cc);
-    if (isCurrentlyLoadingData) return;
-    if (cc == &objectsCC) rebuildLinkedObjects();
+    i->removeObjectTargetListener(this);
+    if(!i->objectRef.wasObjectDeleted()) unregisterLinkedInspectable(i->currentObject);
 }
 
-void ObjectGroup::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
+void ObjectGroup::targetChanged(Object* newTarget, Object* previousTarget)
 {
-    Group::onControllableFeedbackUpdateInternal(cc, c);
-    if (isCurrentlyLoadingData) return;
-
-    if (cc == &objectsCC)
-    {
-        rebuildLinkedObjects();
-    }
+    if (previousTarget != nullptr) unregisterLinkedInspectable(previousTarget);
+    if(newTarget != nullptr) registerLinkedInspectable(newTarget);
 }
+
 
 void ObjectGroup::rebuildLinkedObjects()
 {
-    if (isCurrentlyLoadingData) return;
-    for (auto& l : linkedInspectables) unregisterLinkedInspectable(l);
+    if (isCurrentlyLoadingData || isClearing || Engine::mainEngine->isClearing) return;
+    for (auto& l : linkedInspectables)
+    {
+        unregisterLinkedInspectable(l);
+    }
     for (auto& c : objectsCC.controllables)
     {
-        if (Object* o = dynamic_cast<Object*>(((TargetParameter*)c)->targetContainer.get())) registerLinkedInspectable(o);
+        if (Object* o = dynamic_cast<Object*>(((TargetParameter*)c)->targetContainer.get()))
+        {
+            registerLinkedInspectable(o);
+        }
     }
 }
 
 void ObjectGroup::addObject(Object* o)
 {
     if (o == nullptr) return;
-    if (getTargetParamForObject(o) != nullptr) return;
-    TargetParameter* tp = ObjectGroup::createObjectTarget(&objectsCC);
-    tp->setValueFromTarget(o);
+    if (getTargetForObject(o) != nullptr) return;
+    ObjectTarget* ot = objectsCC.addItem();
+    ot->target->setValueFromTarget(o);
 }
 
-TargetParameter* ObjectGroup::getTargetParamForObject(Object* o)
+void ObjectGroup::addObjects(Array<Object*> oList)
 {
-    for (auto& c : objectsCC.controllables)
+    Array<Object*> existingObjects;
+    for (auto& t : objectsCC.items)
     {
-        TargetParameter* tp = (TargetParameter*)c;
-        if (tp->targetContainer == o) return tp;
+        if (!t->objectRef.wasObjectDeleted()) existingObjects.add(t->currentObject);
+    }
+
+    Array<ObjectTarget*> targets;
+    for (auto& o : oList)
+    {
+        if (existingObjects.contains(o)) continue; //already there
+        ObjectTarget* ot = new ObjectTarget();
+        ot->target->setValueFromTarget(o);
+        targets.add(ot);
+    }
+
+    objectsCC.addItems(targets);
+}
+
+ObjectTarget * ObjectGroup::getTargetForObject(Object* o)
+{
+    for (auto& t : objectsCC.items)
+    {
+        if (!t->objectRef.wasObjectDeleted() && t->currentObject == o) return t;
     }
 
     return nullptr;
@@ -83,30 +100,50 @@ TargetParameter* ObjectGroup::getTargetParamForObject(Object* o)
 
 bool ObjectGroup::containsObject(Object* o)
 {
-    return getTargetParamForObject(o) != nullptr;
+    return getTargetForObject(o) != nullptr;
 }
 
-var ObjectGroup::getJSONData()
+Array<Object*> ObjectGroup::getObjects()
 {
-    var data = Group::getJSONData();
-    var oData;
-    for (auto& tp : objectsCC.controllables)
+    Array<Object*> result;
+    for (auto& t : objectsCC.items)
     {
-        if (Object* o = dynamic_cast<Object*>(((TargetParameter*)tp)->targetContainer.get())) oData.append(o->shortName);
+        if (!t->objectRef.wasObjectDeleted() && t->currentObject != nullptr) result.add(t->currentObject);
     }
-    data.getDynamicObject()->setProperty("objects", oData);
-
-    return data;
+    return result;
 }
 
-void ObjectGroup::loadJSONDataInternal(var data)
+
+ObjectTarget::ObjectTarget() :
+    BaseItem("Target",false),
+    currentObject(nullptr)
 {
-    Group::loadJSONDataInternal(data);
-    var oData = data.getProperty("objects", var());
-    for (int i = 0; i < oData.size(); i++) addObject(ObjectManager::getInstance()->getItemWithName(oData[i], false));
+    showInspectorOnSelect = false;
+    target = addTargetParameter("Target", "", ObjectManager::getInstance());
+    target->maxDefaultSearchLevel = 0;
+    target->targetType = TargetParameter::CONTAINER;
+    target->hideInEditor = true;
+    editorCanBeCollapsed = false;
 }
 
-void ObjectGroup::afterLoadJSONDataInternal()
+ObjectTarget::~ObjectTarget()
 {
-    rebuildLinkedObjects();
+}
+
+void ObjectTarget::onContainerParameterChangedInternal(Parameter* p)
+{
+    BaseItem::onContainerParameterChangedInternal(p);
+
+    if (p == target)
+    {
+        Object* prev = objectRef.wasObjectDeleted() ? nullptr : currentObject;
+        currentObject = (Object *)target->targetContainer.get();
+        objectRef = target->targetContainer;
+        objectTargetListeners.call(&ObjectTargetListener::targetChanged, prev, currentObject);
+    }
+}
+
+InspectableEditor* ObjectTarget::getEditor(bool isRoot)
+{
+    return new ObjectTargetEditor(this, isRoot);
 }

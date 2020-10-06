@@ -13,6 +13,7 @@
 GroupManagerUI::GroupManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, GroupManager::getInstance())
 {
+    addExistingItems();
 }
 
 GroupManagerUI::~GroupManagerUI()

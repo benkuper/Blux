@@ -14,6 +14,7 @@
 #include "Effect/GlobalEffectManager.h"
 #include "Group/GroupManager.h"
 #include "Scene/SceneManager.h"
+#include "Object/ObjectManager.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
@@ -23,6 +24,7 @@ Object::Object(var params) :
 {
 	saveAndLoadRecursiveData = true;
 
+	editorIsCollapsed = true;
 
 	itemDataType = "Object";
 
@@ -30,6 +32,8 @@ Object::Object(var params) :
 	if (iconFile.existsAsFile()) customThumbnailPath = iconFile;
 
 	globalID = addIntParameter("Global ID", "Virtual ID that is used in many places of Blux to filter, alter effects, etc.", 0, 0);
+	stagePosition = addPoint3DParameter("Stage Position", "Position on stage, can be animated with stage layouts");
+	excludeFromScenes = addBoolParameter("Exclude From Scenes", "If enabled, this object will not be modified when loading scenes", false);
 
 	targetInterface = addTargetParameter("Interface", "The interface to link this object to", InterfaceManager::getInstance());
 	targetInterface->targetType = TargetParameter::CONTAINER;
@@ -87,6 +91,14 @@ void Object::onContainerParameterChangedInternal(Parameter* p)
 		objectListeners.call(&ObjectListener::objectIDChanged, this, previousID);
 		previousID = globalID->intValue();
 	}
+	else if (p == stagePosition)
+	{
+		viewUIPosition->setPoint(stagePosition->x, stagePosition->y);
+	}
+	else if (p == viewUIPosition)
+	{
+		if(!isCurrentlyLoadingData) stagePosition->setVector(viewUIPosition->x, viewUIPosition->y, stagePosition->z);
+	}
 }
 
 void Object::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
@@ -116,7 +128,9 @@ void Object::checkAndComputeComponentValuesIfNeeded()
 	for (auto& c : componentManager.items)
 	{
 		if (!c->enabled->boolValue()) continue;
-		if (c->isDirty || effectManager.items.size() > 0 || GlobalEffectManager::getInstance()->items.size() > 0) computeComponentValues(c); //to do here, implement a cleaner way to know if an object should recompute (effects may not need constant recompute, and are not targetting all components.)
+		//if (c->isDirty || effectManager.items.size() > 0 || GlobalEffectManager::getInstance()->items.size() > 0);
+		 //to do here, implement a cleaner way to know if an object should recompute (effects may not need constant recompute, and are not targetting all components.)
+		computeComponentValues(c); //right now, always compute
 	}
 }
 
@@ -124,28 +138,34 @@ void Object::computeComponentValues(ObjectComponent* c)
 {
 	if (!enabled->boolValue() || !c->enabled->boolValue() || Engine::mainEngine->isClearing) return;
 
-	var values = c->getOriginalComputedValues();
 
-	if (!values.isVoid())
+	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
-		//local effects
-		effectManager.processComponentValues(this, c, values);
-
-		//scene effects
-		SceneManager::getInstance()->processComponentValues(this, c, values);
-
-		//group effects
-		GroupManager::getInstance()->processComponentValues(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
-
-		//global effects
-		GlobalEffectManager::getInstance()->processComponentValues(this, c, values);
-
-		int index = 0;
-		for (auto& p : c->computedParameters)
+		for (auto& p : c->computedParameters) p->setValue(0);
+	}
+	else
+	{
+		var values = c->getOriginalComputedValues();
+		if (!values.isVoid())
 		{
-			p->setValue(values[index++]);
-		}
+			//local effects
+			effectManager.processComponentValues(this, c, values);
 
+			//scene effects
+			SceneManager::getInstance()->processComponentValues(this, c, values);
+
+			//group effects
+			GroupManager::getInstance()->processComponentValues(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
+
+			//global effects
+			GlobalEffectManager::getInstance()->processComponentValues(this, c, values);
+
+			int index = 0;
+			for (auto& p : c->computedParameters)
+			{
+				p->setValue(values[index++]);
+			}
+		}
 	}
 
 	c->isDirty = false;
@@ -158,6 +178,7 @@ void Object::computeComponentValues(ObjectComponent* c)
 
 void Object::saveSceneData(var &sceneData)
 {
+	if (excludeFromScenes->boolValue()) return;
 	//sceneData.getDynamicObject()->setProperty(globalID->getControlAddress(), globalID->intValue()); //needs better handling from ObjectManager auto ID stuff
 	componentManager.saveSceneData(sceneData);
 	effectManager.saveSceneData(sceneData);

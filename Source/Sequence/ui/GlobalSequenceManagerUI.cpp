@@ -13,6 +13,7 @@
 GlobalSequenceManagerUI::GlobalSequenceManagerUI(const String& name) :
     SequenceManagerUI(name, GlobalSequenceManager::getInstance())
 {
+    addExistingItems();
 }
 
 GlobalSequenceManagerUI::~GlobalSequenceManagerUI()

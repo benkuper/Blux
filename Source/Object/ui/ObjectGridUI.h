@@ -21,6 +21,7 @@ public:
 	~ObjectGridUI();
 
 	bool shouldRepaint;
+	bool transparentBG;
 
 	Image objectImage;
 
@@ -29,6 +30,8 @@ public:
 	std::unique_ptr<FloatSliderUI> computedIntensityUI;
 	std::unique_ptr<ColorParameterUI> computedColorUI;
 
+	bool flashMode;
+
 	void paint(Graphics& g) override;
 	void resized() override;
 
@@ -36,6 +39,9 @@ public:
 
 	virtual void mouseDown(const MouseEvent& e) override;
 	virtual void mouseDrag(const MouseEvent& e) override;
+	virtual void mouseUp(const MouseEvent& e) override;
+
+	virtual bool keyStateChanged(bool isDown) override;
 
 	void controllableFeedbackUpdateInternal(Controllable* c) override;
 

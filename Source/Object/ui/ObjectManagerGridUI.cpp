@@ -13,10 +13,21 @@
 ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 	BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
 {
+	contentIsFlexible = true;
 	animateItemOnAdd = false;
 
 	thumbSizeUI.reset(manager->gridThumbSize->createSlider());
 	addAndMakeVisible(thumbSizeUI.get());
+	thumbSizeUI->useCustomBGColor = true;
+	thumbSizeUI->customBGColor = BG_COLOR.darker(.2f);
+
+	flashValueUI.reset(manager->defaultFlashValue->createSlider());
+	addAndMakeVisible(flashValueUI.get());
+	flashValueUI->useCustomBGColor = true;
+	flashValueUI->customBGColor = BG_COLOR.darker(.2f);
+
+	blackOutUI.reset(manager->blackOut->createButtonToggle());
+	addAndMakeVisible(blackOutUI.get());
 
 	manager->addAsyncCoalescedContainerListener(this);
 
@@ -31,7 +42,11 @@ ObjectManagerGridUI::~ObjectManagerGridUI()
 void ObjectManagerGridUI::resizedInternalHeader(Rectangle<int>& r)
 {
 	BaseManagerShapeShifterUI::resizedInternalHeader(r);
-	thumbSizeUI->setBounds(r.removeFromLeft(200).reduced(2));
+	thumbSizeUI->setBounds(r.removeFromLeft(200).reduced(3));
+	r.removeFromLeft(8);
+	flashValueUI->setBounds(r.removeFromLeft(200).reduced(3));
+	r.removeFromLeft(8);
+	blackOutUI->setBounds(r.removeFromLeft(150).reduced(3));
 }
 
 void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)

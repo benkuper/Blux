@@ -32,14 +32,11 @@
     <Filter Include="Blux\Source\Sequence">
       <UniqueIdentifier>{96B68C2C-BBC0-E73F-1BF3-844F78CFBAFE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Preset\ui">
-      <UniqueIdentifier>{F6A05127-CF8D-E0E0-C18A-A09C1B3D14CE}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Preset">
-      <UniqueIdentifier>{C0C73F84-51EE-2D94-99ED-896936529BA6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blux\Source\Group\groups\virtual">
       <UniqueIdentifier>{922F89D4-9FBE-4BA5-5556-84AE6371675E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Group\groups\object\ui">
+      <UniqueIdentifier>{4C763952-DC99-D5D1-D9F8-65E629A6A5E9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Group\groups\object">
       <UniqueIdentifier>{54E1EAE5-C551-1AF0-03A2-C0B9A0DCDB41}</UniqueIdentifier>
@@ -134,6 +131,9 @@
     <Filter Include="Blux\Source\Effect\effects">
       <UniqueIdentifier>{B782456C-AFC3-0956-5827-2E9CE20849DB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Effect\Filter\filters\layout">
+      <UniqueIdentifier>{48B631A3-C848-4640-27AE-4FA828B8D37D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Effect\Filter\filters\id">
       <UniqueIdentifier>{2BAFC658-6717-09B6-9D57-59E7331B210E}</UniqueIdentifier>
     </Filter>
@@ -152,8 +152,11 @@
     <Filter Include="Blux\Source\Effect">
       <UniqueIdentifier>{71FF0C22-9F65-97F8-521A-EE88FE7F29F3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Object\ui">
-      <UniqueIdentifier>{6D3142D5-3D8E-0B45-6738-90DF48440332}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Layout\ui">
+      <UniqueIdentifier>{549EFF42-8E47-8E68-E5A2-B0696436614F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Layout">
+      <UniqueIdentifier>{79DADA6C-3EF8-A71B-707F-68A0F9A003A1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Object\Component\ui">
       <UniqueIdentifier>{4D1343A4-D6A8-883F-3A93-DF66FCE0539A}</UniqueIdentifier>
@@ -199,6 +202,9 @@
     </Filter>
     <Filter Include="Blux\Source\Object\Component">
       <UniqueIdentifier>{296C1962-8B01-436F-3839-403F07426829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\ui">
+      <UniqueIdentifier>{6D3142D5-3D8E-0B45-6738-90DF48440332}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Object">
       <UniqueIdentifier>{B6C83FE7-EC01-0E0A-8353-0E930C118B77}</UniqueIdentifier>
@@ -1000,20 +1006,11 @@
     <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp">
       <Filter>Blux\Source\Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Preset\ui\PresetManagerUI.cpp">
-      <Filter>Blux\Source\Preset\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Preset\ui\PresetUI.cpp">
-      <Filter>Blux\Source\Preset\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Preset\Preset.cpp">
-      <Filter>Blux\Source\Preset</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Preset\PresetManager.cpp">
-      <Filter>Blux\Source\Preset</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Group\groups\virtual\VirtualGroup.cpp">
       <Filter>Blux\Source\Group\groups\virtual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.cpp">
+      <Filter>Blux\Source\Group\groups\object\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Group\groups\object\ObjectGroup.cpp">
       <Filter>Blux\Source\Group\groups\object</Filter>
@@ -1138,6 +1135,9 @@
     <ClCompile Include="..\..\Source\Effect\effects\noise\NoiseEffect.cpp">
       <Filter>Blux\Source\Effect\effects\noise</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.cpp">
+      <Filter>Blux\Source\Effect\Filter\filters\layout</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Effect\Filter\filters\id\IDFilter.cpp">
       <Filter>Blux\Source\Effect\Filter\filters\id</Filter>
     </ClCompile>
@@ -1171,17 +1171,20 @@
     <ClCompile Include="..\..\Source\Effect\Effect.cpp">
       <Filter>Blux\Source\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp">
-      <Filter>Blux\Source\Object\ui</Filter>
+    <ClCompile Include="..\..\Source\Layout\ui\Object2DView.cpp">
+      <Filter>Blux\Source\Layout\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerGridUI.cpp">
-      <Filter>Blux\Source\Object\ui</Filter>
+    <ClCompile Include="..\..\Source\Layout\ui\StageLayout2DView.cpp">
+      <Filter>Blux\Source\Layout\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerUI.cpp">
-      <Filter>Blux\Source\Object\ui</Filter>
+    <ClCompile Include="..\..\Source\Layout\ui\StageLayoutManagerUI.cpp">
+      <Filter>Blux\Source\Layout\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectUI.cpp">
-      <Filter>Blux\Source\Object\ui</Filter>
+    <ClCompile Include="..\..\Source\Layout\StageLayout.cpp">
+      <Filter>Blux\Source\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Layout\StageLayoutManager.cpp">
+      <Filter>Blux\Source\Layout</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.cpp">
       <Filter>Blux\Source\Object\Component\ui</Filter>
@@ -1231,6 +1234,18 @@
     <ClCompile Include="..\..\Source\Object\Component\ObjectComponent.cpp">
       <Filter>Blux\Source\Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerGridUI.cpp">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerUI.cpp">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectUI.cpp">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Object\Object.cpp">
       <Filter>Blux\Source\Object</Filter>
     </ClCompile>
@@ -1247,6 +1262,9 @@
       <Filter>Blux\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
+      <Filter>Blux\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MainComponentCommands.cpp">
       <Filter>Blux\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -4095,20 +4113,11 @@
     <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h">
       <Filter>Blux\Source\Sequence</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Preset\ui\PresetManagerUI.h">
-      <Filter>Blux\Source\Preset\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Preset\ui\PresetUI.h">
-      <Filter>Blux\Source\Preset\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Preset\Preset.h">
-      <Filter>Blux\Source\Preset</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Preset\PresetManager.h">
-      <Filter>Blux\Source\Preset</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Group\groups\virtual\VirtualGroup.h">
       <Filter>Blux\Source\Group\groups\virtual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.h">
+      <Filter>Blux\Source\Group\groups\object\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Group\groups\object\ObjectGroup.h">
       <Filter>Blux\Source\Group\groups\object</Filter>
@@ -4218,6 +4227,9 @@
     <ClInclude Include="..\..\Source\Effect\effects\noise\PerlinNoise.hpp">
       <Filter>Blux\Source\Effect\effects\noise</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.h">
+      <Filter>Blux\Source\Effect\Filter\filters\layout</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\id\IDFilter.h">
       <Filter>Blux\Source\Effect\Filter\filters\id</Filter>
     </ClInclude>
@@ -4251,17 +4263,20 @@
     <ClInclude Include="..\..\Source\Effect\Effect.h">
       <Filter>Blux\Source\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h">
-      <Filter>Blux\Source\Object\ui</Filter>
+    <ClInclude Include="..\..\Source\Layout\ui\Object2DView.h">
+      <Filter>Blux\Source\Layout\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectManagerGridUI.h">
-      <Filter>Blux\Source\Object\ui</Filter>
+    <ClInclude Include="..\..\Source\Layout\ui\StageLayout2DView.h">
+      <Filter>Blux\Source\Layout\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectManagerUI.h">
-      <Filter>Blux\Source\Object\ui</Filter>
+    <ClInclude Include="..\..\Source\Layout\ui\StageLayoutManagerUI.h">
+      <Filter>Blux\Source\Layout\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectUI.h">
-      <Filter>Blux\Source\Object\ui</Filter>
+    <ClInclude Include="..\..\Source\Layout\StageLayout.h">
+      <Filter>Blux\Source\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Layout\StageLayoutManager.h">
+      <Filter>Blux\Source\Layout</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.h">
       <Filter>Blux\Source\Object\Component\ui</Filter>
@@ -4310,6 +4325,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\ObjectComponent.h">
       <Filter>Blux\Source\Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectManagerGridUI.h">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectManagerUI.h">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectUI.h">
+      <Filter>Blux\Source\Object\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Object.h">
       <Filter>Blux\Source\Object</Filter>
@@ -4449,7 +4476,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\utilities\juce_SmoothedValue.h">
       <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
       <Filter>JUCE Modules\juce_audio_basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\audio_io\juce_AudioDeviceManager.h">
@@ -4662,7 +4689,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\sources\juce_AudioTransportSource.h">
       <Filter>JUCE Modules\juce_audio_devices\sources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_devices\juce_audio_devices.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_devices\juce_audio_devices.h">
       <Filter>JUCE Modules\juce_audio_devices</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\codecs\flac\libFLAC\include\private\all.h">
@@ -4959,7 +4986,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\sampler\juce_Sampler.h">
       <Filter>JUCE Modules\juce_audio_formats\sampler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
       <Filter>JUCE Modules\juce_audio_formats</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\format\juce_AudioPluginFormat.h">
@@ -5247,7 +5274,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\utilities\juce_RangedAudioParameter.h">
       <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_processors\juce_audio_processors.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_processors\juce_audio_processors.h">
       <Filter>JUCE Modules\juce_audio_processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\audio_cd\juce_AudioCDBurner.h">
@@ -5286,7 +5313,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\players\juce_SoundPlayer.h">
       <Filter>JUCE Modules\juce_audio_utils\players</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_audio_utils\juce_audio_utils.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_audio_utils\juce_audio_utils.h">
       <Filter>JUCE Modules\juce_audio_utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\containers\juce_AbstractFifo.h">
@@ -5703,7 +5730,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\zip\juce_ZipFile.h">
       <Filter>JUCE Modules\juce_core\zip</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_core\juce_core.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\juce_core.h">
       <Filter>JUCE Modules\juce_core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\app_properties\juce_ApplicationProperties.h">
@@ -5733,7 +5760,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\values\juce_ValueWithDefault.h">
       <Filter>JUCE Modules\juce_data_structures\values</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_data_structures\juce_data_structures.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_data_structures\juce_data_structures.h">
       <Filter>JUCE Modules\juce_data_structures</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_events\broadcasters\juce_ActionBroadcaster.h">
@@ -5808,7 +5835,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_events\timers\juce_Timer.h">
       <Filter>JUCE Modules\juce_events\timers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_events\juce_events.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_events\juce_events.h">
       <Filter>JUCE Modules\juce_events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\colour\juce_Colour.h">
@@ -5985,7 +6012,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\placement\juce_RectanglePlacement.h">
       <Filter>JUCE Modules\juce_graphics\placement</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_graphics\juce_graphics.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_graphics\juce_graphics.h">
       <Filter>JUCE Modules\juce_graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\application\juce_Application.h">
@@ -6408,7 +6435,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\windows\juce_TopLevelWindow.h">
       <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_basics\juce_gui_basics.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\juce_gui_basics.h">
       <Filter>JUCE Modules\juce_gui_basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\code_editor\juce_CodeDocument.h">
@@ -6495,7 +6522,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\native\juce_mac_CarbonViewWrapperComponent.h">
       <Filter>JUCE Modules\juce_gui_extra\native</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\geometry\juce_Draggable3DOrientation.h">
@@ -6561,7 +6588,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\utils\juce_OpenGLAppComponent.h">
       <Filter>JUCE Modules\juce_opengl\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_opengl\juce_opengl.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_opengl\juce_opengl.h">
       <Filter>JUCE Modules\juce_opengl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\app\CrashHandler.h">
@@ -7149,7 +7176,7 @@
     <ClInclude Include="..\..\..\JUCE\modules\juce_osc\osc\juce_OSCTypes.h">
       <Filter>JUCE Modules\juce_osc\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\JUCE\modules\juce_osc\juce_osc.h">
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_osc\juce_osc.h">
       <Filter>JUCE Modules\juce_osc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_simpleweb\asio\asio\include\asio\detail\impl\dev_poll_reactor.hpp">

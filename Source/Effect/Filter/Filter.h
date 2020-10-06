@@ -16,6 +16,12 @@
 
 class Object;
 
+struct FilterResult
+{
+    int id = -1;
+    float weight = 1;
+};
+
 class Filter :
     public BaseItem
 {
@@ -25,8 +31,7 @@ public:
 
     BoolParameter* useLocalID;
 
-    int getFilteredIDForComponent(Object* o, ObjectComponent * c);
-    virtual int getFilteredIDForComponentInternal(Object* o, ObjectComponent* c);
+    FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c);
+    virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c);
     void saveSceneData(var& sceneData);
-
 };

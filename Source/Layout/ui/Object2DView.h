@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    PresetUI.h
-    Created: 30 Sep 2020 2:16:00pm
+    Object2DView.h
+    Created: 6 Oct 2020 10:03:37pm
     Author:  bkupe
 
   ==============================================================================
@@ -10,12 +10,12 @@
 
 #pragma once
 
-#include "../Preset.h"
+#include "Object/ui/ObjectGridUI.h"
 
-class PresetUI :
-    public BaseItemUI<Preset>
+class Object2DView :
+    public ObjectGridUI
 {
 public:
-    PresetUI(Preset* item);
-    ~PresetUI();
+	Object2DView(Object* object);
+	~Object2DView();
 };

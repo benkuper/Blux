@@ -22,6 +22,8 @@ public:
 
 
 	std::unique_ptr<IntSliderUI> thumbSizeUI;
+	std::unique_ptr<FloatSliderUI> flashValueUI;
+	std::unique_ptr<BoolButtonToggleUI> blackOutUI;
 
 	void resizedInternalHeader(Rectangle<int>& r) override;
 	void resizedInternalContent(Rectangle<int> &r) override;

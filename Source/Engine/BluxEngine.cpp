@@ -17,9 +17,8 @@
 #include "Scene/SceneManager.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
-#include "Preset/PresetManager.h"
 #include "Audio/AudioManager.h"
-
+#include "Layout//StageLayoutManager.h"
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
 {
@@ -30,19 +29,20 @@ BluxEngine::BluxEngine() :
 	addChildControllableContainer(SceneManager::getInstance());
 	addChildControllableContainer(GlobalEffectManager::getInstance());
 	addChildControllableContainer(GlobalSequenceManager::getInstance());
-	addChildControllableContainer(PresetManager::getInstance());
+	addChildControllableContainer(StageLayoutManager::getInstance());
 
 	GlobalSettings::getInstance()->addControllableContainerListener(AudioManager::getInstance());
 }
 
 BluxEngine::~BluxEngine()
 {
-	GroupManager::deleteInstance();
+	isClearing = true;
 	ObjectManager::deleteInstance();
+	GroupManager::deleteInstance();
 	SceneManager::deleteInstance();
 	GlobalEffectManager::deleteInstance();
 	GlobalSequenceManager::deleteInstance();
-	PresetManager::deleteInstance();
+	StageLayoutManager::deleteInstance();
 
 	InterfaceManager::deleteInstance();
 	DMXManager::deleteInstance();
@@ -55,12 +55,12 @@ BluxEngine::~BluxEngine()
 
 void BluxEngine::clearInternal()
 {
-	GroupManager::getInstance()->clear();
 	ObjectManager::getInstance()->clear();
+	GroupManager::getInstance()->clear();
 	SceneManager::getInstance()->clear();
 	GlobalEffectManager::getInstance()->clear();
 	GlobalSequenceManager::getInstance()->clear();
-	PresetManager::getInstance()->clear();
+	StageLayoutManager::getInstance()->clear();
 
 	InterfaceManager::getInstance()->clear();
 }
@@ -76,7 +76,7 @@ var BluxEngine::getJSONData()
 	data.getDynamicObject()->setProperty(SceneManager::getInstance()->shortName, SceneManager::getInstance()->getJSONData());
 	data.getDynamicObject()->setProperty(GlobalEffectManager::getInstance()->shortName, GlobalEffectManager::getInstance()->getJSONData());
 	data.getDynamicObject()->setProperty(GlobalSequenceManager::getInstance()->shortName, GlobalSequenceManager::getInstance()->getJSONData());
-	data.getDynamicObject()->setProperty(PresetManager::getInstance()->shortName, PresetManager::getInstance()->getJSONData());
+	data.getDynamicObject()->setProperty(StageLayoutManager::getInstance()->shortName, StageLayoutManager::getInstance()->getJSONData());
 	return data;
 
 }
@@ -105,8 +105,7 @@ void BluxEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 	GlobalSequenceManager::getInstance()->loadJSONData(data.getProperty(GlobalSequenceManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.6f);
 
-
-	PresetManager::getInstance()->loadJSONData(data.getProperty(PresetManager::getInstance()->shortName, var()));
+	StageLayoutManager::getInstance()->loadJSONData(data.getProperty(StageLayoutManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(1);
 	
 	bluxTask->end();

@@ -66,21 +66,6 @@
         <FILE id="KoLJCC" name="GlobalSequenceManager.h" compile="0" resource="0"
               file="Source/Sequence/GlobalSequenceManager.h"/>
       </GROUP>
-      <GROUP id="{6FB74C4A-A0E6-B037-4FBF-A28F2A49E7EB}" name="Preset">
-        <GROUP id="{65080FBC-0FCC-55BE-74B9-06453DB21DC3}" name="ui">
-          <FILE id="qJWy9W" name="PresetManagerUI.cpp" compile="1" resource="0"
-                file="Source/Preset/ui/PresetManagerUI.cpp"/>
-          <FILE id="mkzNMp" name="PresetManagerUI.h" compile="0" resource="0"
-                file="Source/Preset/ui/PresetManagerUI.h"/>
-          <FILE id="XI1mRR" name="PresetUI.cpp" compile="1" resource="0" file="Source/Preset/ui/PresetUI.cpp"/>
-          <FILE id="uxJtrL" name="PresetUI.h" compile="0" resource="0" file="Source/Preset/ui/PresetUI.h"/>
-        </GROUP>
-        <FILE id="gNiPTv" name="Preset.cpp" compile="1" resource="0" file="Source/Preset/Preset.cpp"/>
-        <FILE id="lxG9TK" name="Preset.h" compile="0" resource="0" file="Source/Preset/Preset.h"/>
-        <FILE id="QNIthM" name="PresetManager.cpp" compile="1" resource="0"
-              file="Source/Preset/PresetManager.cpp"/>
-        <FILE id="hS57R2" name="PresetManager.h" compile="0" resource="0" file="Source/Preset/PresetManager.h"/>
-      </GROUP>
       <GROUP id="{B57CF847-3047-16DF-4845-D8732946DCE6}" name="Group">
         <GROUP id="{C262AD5B-824E-A612-0CF9-ACCAA4C68811}" name="groups">
           <GROUP id="{1DCBC331-2D06-FDDC-9492-94E180D328BE}" name="virtual">
@@ -89,6 +74,11 @@
             <FILE id="a99xWr" name="VirtualGroup.h" compile="0" resource="0" file="Source/Group/groups/virtual/VirtualGroup.h"/>
           </GROUP>
           <GROUP id="{3B3394BA-5CE5-46E7-E78D-94FEF10F2491}" name="object">
+            <GROUP id="{39C74A6F-1B37-977D-1B04-D4AC7E9438EA}" name="ui">
+              <FILE id="dxJo3a" name="ObjectGroupUI.cpp" compile="1" resource="0"
+                    file="Source/Group/groups/object/ui/ObjectGroupUI.cpp"/>
+              <FILE id="FUa0om" name="ObjectGroupUI.h" compile="0" resource="0" file="Source/Group/groups/object/ui/ObjectGroupUI.h"/>
+            </GROUP>
             <FILE id="qJmIK4" name="ObjectGroup.cpp" compile="1" resource="0" file="Source/Group/groups/object/ObjectGroup.cpp"/>
             <FILE id="jShn3E" name="ObjectGroup.h" compile="0" resource="0" file="Source/Group/groups/object/ObjectGroup.h"/>
           </GROUP>
@@ -273,6 +263,11 @@
         </GROUP>
         <GROUP id="{11ABDC7F-4CBF-C8CB-0BA7-C89E429B21F7}" name="Filter">
           <GROUP id="{F17755BA-DA05-000D-678F-57CA7F0A403A}" name="filters">
+            <GROUP id="{9966F1D1-58BD-AA61-BF9A-F9ACAD30723B}" name="layout">
+              <FILE id="I9GzH9" name="LayoutFilter.cpp" compile="1" resource="0"
+                    file="Source/Effect/Filter/filters/layout/LayoutFilter.cpp"/>
+              <FILE id="wuyDc4" name="LayoutFilter.h" compile="0" resource="0" file="Source/Effect/Filter/filters/layout/LayoutFilter.h"/>
+            </GROUP>
             <GROUP id="{6282C0E5-25A5-46C6-5C6E-1A43C0016C72}" name="id">
               <FILE id="JS9t1N" name="IDFilter.cpp" compile="1" resource="0" file="Source/Effect/Filter/filters/id/IDFilter.cpp"/>
               <FILE id="Weajtz" name="IDFilter.h" compile="0" resource="0" file="Source/Effect/Filter/filters/id/IDFilter.h"/>
@@ -316,22 +311,28 @@
         <FILE id="rHIezh" name="Effect.cpp" compile="1" resource="0" file="Source/Effect/Effect.cpp"/>
         <FILE id="J1DRSC" name="Effect.h" compile="0" resource="0" file="Source/Effect/Effect.h"/>
       </GROUP>
-      <GROUP id="{BDEDD473-3A74-D6C8-68AB-E73419566401}" name="Object">
-        <GROUP id="{0D505A17-A541-05DA-73C0-C2BE863C2F7B}" name="ui">
-          <FILE id="j68vpv" name="ObjectGridUI.cpp" compile="1" resource="0"
-                file="Source/Object/ui/ObjectGridUI.cpp"/>
-          <FILE id="wSoAW0" name="ObjectGridUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectGridUI.h"/>
-          <FILE id="u2WMrp" name="ObjectManagerGridUI.cpp" compile="1" resource="0"
-                file="Source/Object/ui/ObjectManagerGridUI.cpp"/>
-          <FILE id="gbwgnK" name="ObjectManagerGridUI.h" compile="0" resource="0"
-                file="Source/Object/ui/ObjectManagerGridUI.h"/>
-          <FILE id="BFGHWg" name="ObjectManagerUI.cpp" compile="1" resource="0"
-                file="Source/Object/ui/ObjectManagerUI.cpp"/>
-          <FILE id="WWP2PU" name="ObjectManagerUI.h" compile="0" resource="0"
-                file="Source/Object/ui/ObjectManagerUI.h"/>
-          <FILE id="LgV40T" name="ObjectUI.cpp" compile="1" resource="0" file="Source/Object/ui/ObjectUI.cpp"/>
-          <FILE id="IKzu7l" name="ObjectUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectUI.h"/>
+      <GROUP id="{09275E4E-1CDA-F8FA-5CF5-1577D172EA42}" name="Layout">
+        <GROUP id="{52699E34-782F-8D4B-E460-AA26276B40D7}" name="ui">
+          <FILE id="j7DByP" name="Object2DView.cpp" compile="1" resource="0"
+                file="Source/Layout/ui/Object2DView.cpp"/>
+          <FILE id="IkHU5x" name="Object2DView.h" compile="0" resource="0" file="Source/Layout/ui/Object2DView.h"/>
+          <FILE id="LZ7jZW" name="StageLayout2DView.cpp" compile="1" resource="0"
+                file="Source/Layout/ui/StageLayout2DView.cpp"/>
+          <FILE id="VNgRUs" name="StageLayout2DView.h" compile="0" resource="0"
+                file="Source/Layout/ui/StageLayout2DView.h"/>
+          <FILE id="cOBvPn" name="StageLayoutManagerUI.cpp" compile="1" resource="0"
+                file="Source/Layout/ui/StageLayoutManagerUI.cpp"/>
+          <FILE id="nsK7Jd" name="StageLayoutManagerUI.h" compile="0" resource="0"
+                file="Source/Layout/ui/StageLayoutManagerUI.h"/>
         </GROUP>
+        <FILE id="xqeHDv" name="StageLayout.cpp" compile="1" resource="0" file="Source/Layout/StageLayout.cpp"/>
+        <FILE id="uKAWd5" name="StageLayout.h" compile="0" resource="0" file="Source/Layout/StageLayout.h"/>
+        <FILE id="cPBu8w" name="StageLayoutManager.cpp" compile="1" resource="0"
+              file="Source/Layout/StageLayoutManager.cpp"/>
+        <FILE id="nlFQOX" name="StageLayoutManager.h" compile="0" resource="0"
+              file="Source/Layout/StageLayoutManager.h"/>
+      </GROUP>
+      <GROUP id="{BDEDD473-3A74-D6C8-68AB-E73419566401}" name="Object">
         <GROUP id="{2D556B5D-011C-AC0B-A39D-48669A5D10F4}" name="Component">
           <GROUP id="{3C60E087-9AC6-70D2-8137-28A3A4FB4E2D}" name="ui">
             <FILE id="F0jPzI" name="ComponentManagerEditor.cpp" compile="1" resource="0"
@@ -423,6 +424,21 @@
           <FILE id="CI7DAq" name="ObjectComponent.h" compile="0" resource="0"
                 file="Source/Object/Component/ObjectComponent.h"/>
         </GROUP>
+        <GROUP id="{0D505A17-A541-05DA-73C0-C2BE863C2F7B}" name="ui">
+          <FILE id="j68vpv" name="ObjectGridUI.cpp" compile="1" resource="0"
+                file="Source/Object/ui/ObjectGridUI.cpp"/>
+          <FILE id="wSoAW0" name="ObjectGridUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectGridUI.h"/>
+          <FILE id="u2WMrp" name="ObjectManagerGridUI.cpp" compile="1" resource="0"
+                file="Source/Object/ui/ObjectManagerGridUI.cpp"/>
+          <FILE id="gbwgnK" name="ObjectManagerGridUI.h" compile="0" resource="0"
+                file="Source/Object/ui/ObjectManagerGridUI.h"/>
+          <FILE id="BFGHWg" name="ObjectManagerUI.cpp" compile="1" resource="0"
+                file="Source/Object/ui/ObjectManagerUI.cpp"/>
+          <FILE id="WWP2PU" name="ObjectManagerUI.h" compile="0" resource="0"
+                file="Source/Object/ui/ObjectManagerUI.h"/>
+          <FILE id="LgV40T" name="ObjectUI.cpp" compile="1" resource="0" file="Source/Object/ui/ObjectUI.cpp"/>
+          <FILE id="IKzu7l" name="ObjectUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectUI.h"/>
+        </GROUP>
         <FILE id="t0IkrV" name="Object.cpp" compile="1" resource="0" file="Source/Object/Object.cpp"/>
         <FILE id="kbSpDH" name="Object.h" compile="0" resource="0" file="Source/Object/Object.h"/>
         <FILE id="hpmPnR" name="ObjectManager.cpp" compile="1" resource="0"
@@ -443,6 +459,8 @@
       <FILE id="OVCLjt" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="UViOEW" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
+      <FILE id="oc6XmM" name="MainComponentCommands.cpp" compile="1" resource="0"
+            file="Source/MainComponentCommands.cpp"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" ORGANICUI_USE_SERVUS="1" ORGANICUI_USE_WEBSERVER="1"/>

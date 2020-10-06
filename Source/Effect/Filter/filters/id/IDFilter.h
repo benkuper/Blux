@@ -21,7 +21,7 @@ public:
 
     ControllableContainer ids;
     
-    virtual int getFilteredIDForComponentInternal(Object* o, ObjectComponent * c) override;
+    virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent * c) override;
 
     String getTypeString() const override { return "Filter by ID"; }
     static IDFilter* create(var params) { return new IDFilter(); }

@@ -16,7 +16,9 @@
 
 ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),
-	shouldRepaint(false)
+	shouldRepaint(false),
+	flashMode(false),
+	transparentBG(false)
 {
 	updateThumbnail();
 
@@ -58,7 +60,7 @@ ObjectGridUI::~ObjectGridUI()
 void ObjectGridUI::paint(Graphics& g)
 {
 	g.setColour(bgColor);
-	g.fillRoundedRectangle(getLocalBounds().toFloat(), 2);
+	if(!transparentBG) g.fillRoundedRectangle(getLocalBounds().toFloat(), 2);
 
 	Rectangle<int> r = getLocalBounds();
 
@@ -129,13 +131,15 @@ void ObjectGridUI::mouseDown(const MouseEvent& e)
 {
 	BaseItemMinimalUI::mouseDown(e);
 
-	if (e.mods.isLeftButtonDown() && e.mods.isAltDown())
+	if (e.mods.isAltDown())
 	{
-		Array<Object *> objects = InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>();
+		Array<Object*> objects;
+		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
 		objects.addIfNotAlreadyThere(item);
 		for (auto& o : objects)
 		{
 			if (o->slideManipParameter != nullptr) o->slideManipValueRef = o->slideManipParameter->floatValue();
+			if (e.mods.isRightButtonDown()) if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(ObjectManager::getInstance()->defaultFlashValue->floatValue());
 		}
 	}
 }
@@ -144,10 +148,11 @@ void ObjectGridUI::mouseDrag(const MouseEvent& e)
 {
 	BaseItemMinimalUI::mouseDrag(e);
 
-	if (e.mods.isLeftButtonDown() && e.mods.isAltDown())
+	if (e.mods.isAltDown())
 	{
 		const float pixelRange = 200;
-		Array<Object*> objects = InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>();
+		Array<Object*> objects;
+		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
 		objects.addIfNotAlreadyThere(item);
 		for (auto& o : objects)
 		{
@@ -156,11 +161,73 @@ void ObjectGridUI::mouseDrag(const MouseEvent& e)
 	}
 }
 
+void ObjectGridUI::mouseUp(const MouseEvent& e)
+{
+	BaseItemMinimalUI::mouseUp(e);
+
+	if (e.mods.isAltDown())
+	{
+		Array<Object*> objects;
+		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
+		objects.addIfNotAlreadyThere(item);
+		
+		if (e.mods.isRightButtonDown())
+		{
+			for (auto& o : objects)
+			{
+				if (o->slideManipParameter == nullptr) continue;
+				o->slideManipParameter->setValue(o->slideManipValueRef);
+			}
+		}
+		else
+		{
+			Array<UndoableAction*> actions;
+			for (auto& o : objects) if (o->slideManipParameter != nullptr) actions.add(o->slideManipParameter->setUndoableValue(o->slideManipValueRef, o->slideManipParameter->floatValue(), true));
+			UndoMaster::getInstance()->performActions("Change " + String(actions.size()) << " values ", actions);
+		}
+	}
+}
+
+bool ObjectGridUI::keyStateChanged(bool isDown)
+{
+	if (KeyPress::isKeyCurrentlyDown(KeyPress::createFromDescription("f").getKeyCode()))
+	{
+		flashMode = true;
+
+		Array<Object*> objects;
+		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
+		objects.addIfNotAlreadyThere(item);
+		for (auto& o : objects)
+		{
+			if (o->slideManipParameter != nullptr) o->slideManipValueRef = o->slideManipParameter->floatValue();
+			if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(ObjectManager::getInstance()->defaultFlashValue->floatValue());
+		}
+
+		return true;
+	}
+	else if (flashMode)
+	{
+		Array<Object*> objects;
+		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
+		objects.addIfNotAlreadyThere(item);
+		for (auto& o : objects)
+		{
+			if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(o->slideManipValueRef);
+		}
+		
+		flashMode = false;
+		return true;
+	}
+
+	return false;
+}
+
 void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 {
 	if (IntensityComponent* ic = c->getParentAs<IntensityComponent>())
 	{
 		shouldRepaint = true;
+
 	}
 }
 

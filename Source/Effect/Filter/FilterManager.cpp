@@ -10,6 +10,8 @@
 
 #include "FilterManager.h"
 #include "filters/id/IDFilter.h"
+#include "filters/layout/LayoutFilter.h"
+
 #include "Object/Object.h"
 #include "ui/FilterManagerEditor.h"
 
@@ -20,6 +22,7 @@ FilterManager::FilterManager() :
 
     managerFactory = &factory;
     factory.defs.add(Factory<Filter>::Definition::createDef("", "Filter by ID", &IDFilter::create));
+    factory.defs.add(Factory<Filter>::Definition::createDef("", "Layout Filter", &LayoutFilter::create));
 }
 
 FilterManager::~FilterManager()
@@ -31,22 +34,21 @@ void FilterManager::saveSceneData(var& sceneData)
     for (auto& i : items) i->saveSceneData(sceneData);
 }
 
-int FilterManager::getFilteredIDForComponent(Object* o, ObjectComponent* c)
+FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectComponent* c)
 {
-    if (!componentSelector.selectedComponents[c->componentType]) return -1;
+    if (!componentSelector.selectedComponents[c->componentType]) return FilterResult();
    
     bool hasFilteredAtLeastOnce = false;
-
     for (auto& e : items)
     {
         if (!e->enabled->boolValue()) continue;
         hasFilteredAtLeastOnce = true;
 
-        int id = e->getFilteredIDForComponent(o, c);
-        if (id >= 0) return id;
+        FilterResult r = e->getFilteredResultForComponent(o, c);
+        if (r.id >= 0) return r;
     }
 
-    return hasFilteredAtLeastOnce ? -1 : o->globalID->intValue();
+    return hasFilteredAtLeastOnce ? FilterResult() : FilterResult({ o->globalID->intValue(), 1 });
 }
 
 InspectableEditor* FilterManager::getEditor(bool isRoot)

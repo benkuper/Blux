@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    Preset.h
-    Created: 30 Sep 2020 2:15:43pm
+    StageLayout.h
+    Created: 6 Oct 2020 9:37:41pm
     Author:  bkupe
 
   ==============================================================================
@@ -12,12 +12,17 @@
 
 #include "JuceHeader.h"
 
-class Preset :
+class StageLayout :
     public BaseItem
 {
 public:
-    Preset();
-    ~Preset();
+    StageLayout();
+    ~StageLayout();
 
-    String getTypeString() const override { return "Preset"; }
+    var layoutData;
+
+    void saveLayout();
+
+    var getJSONData() override;
+    void loadJSONDataItemInternal(var data) override;
 };

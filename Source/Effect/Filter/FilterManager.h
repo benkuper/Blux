@@ -23,7 +23,7 @@ public:
     ComponentSelector componentSelector;
 
     void saveSceneData(var &sceneData);
-    int getFilteredIDForComponent(Object* o, ObjectComponent * c);
+    FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c);
 
     InspectableEditor* getEditor(bool isRoot) override;
 

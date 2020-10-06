@@ -19,6 +19,9 @@ Effect::Effect(const String& name, var params) :
     weight = addFloatParameter("Weight", "Weight of this effect",1,0,1);
     weight->hideInEditor = true;
 
+    excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked, this effect won't be saved in scens", false);
+    excludeFromScenes->hideInEditor = true;
+
     addChildControllableContainer(&filterManager);
     showInspectorOnSelect = false;
 }
@@ -29,10 +32,12 @@ Effect::~Effect()
 
 void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
-    int id = filterManager.getFilteredIDForComponent(o, c);
-    if (id == -1) return;
+    FilterResult r = filterManager.getFilteredResultForComponent(o, c);
+    if (r.id == -1) return;
 
-    var pValues = getProcessedComponentValuesInternal(o, c, id, values.clone());
+    float targetWeight = r.weight * weight->floatValue();
+
+    var pValues = getProcessedComponentValuesInternal(o, c, r.id, values.clone());
     jassert(pValues.size() == values.size() );
     for (int i = 0; i < values.size(); i++)
     {
@@ -41,12 +46,12 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values)
             jassert(pValues[i].isArray());
             for (int j = 0; j < values[i].size(); j++)
             {
-                values[i][j] = jmap<float>(weight->floatValue(), values[i][j], pValues[i][j]);
+                values[i][j] = jmap<float>(targetWeight, values[i][j], pValues[i][j]);
             }
         }
         else
         {
-            values[i] = jmap<float>(weight->floatValue(), values[i], pValues[i]);
+            values[i] = jmap<float>(targetWeight, values[i], pValues[i]);
         }
     }
 }
@@ -58,9 +63,12 @@ var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, i
 
 void Effect::saveSceneData(var &sceneData)
 {
+    if (excludeFromScenes->boolValue()) return;
+
     Array<WeakReference<Parameter>> params = getAllParameters();
     for (auto& p : params)
     {
+        if (p->type == Parameter::ENUM || p->type == Parameter::TARGET) continue;
         if (!p->hideInEditor && !p->isControllableFeedbackOnly) //BIG HACK to avoid listSize ViewUISize, etc.. should be in a proper list
         {
             sceneData.getDynamicObject()->setProperty(p->controlAddress, p->value);
@@ -75,39 +83,3 @@ InspectableEditor* Effect::getEditor(bool isRoot)
 {
     return new EffectEditor(this, isRoot);
 }
-
-//ThreadedEffect::ThreadedEffect(const String& name, var params) :
-//    Effect(name, params),
-//    Thread("Effect "+name)
-//{
-//    startThread();
-//}
-//
-//ThreadedEffect::~ThreadedEffect()
-//{
-//    stopThread(1000);
-//}
-//
-//void ThreadedEffect::onContainerParameterChangedInternal(Parameter* p)
-//{
-//    Effect::onContainerParameterChangedInternal(p);
-//
-//    if (p == enabled)
-//    {
-//        if (enabled->boolValue()) startThread();
-//        else stopThread(1000);
-//    }
-//}
-//
-//void ThreadedEffect::run()
-//{
-//    while (!threadShouldExit())
-//    {
-//        long millisBefore = Time::getMillisecondCounter();
-//        runInternal();
-//        long millisAfter = Time::getMillisecondCounter();
-//
-//        long millisToSleep = jmax<long>(1, fps - (millisAfter - millisBefore));
-//        sleep(millisToSleep);
-//    }
-//}

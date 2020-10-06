@@ -13,6 +13,7 @@
 InterfaceManagerUI::InterfaceManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, InterfaceManager::getInstance())
 {
+    addExistingItems();
 }
 
 InterfaceManagerUI::~InterfaceManagerUI()

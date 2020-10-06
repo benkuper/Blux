@@ -13,6 +13,7 @@
 SceneManagerUI::SceneManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, SceneManager::getInstance())
 {
+    addExistingItems();
 }
 
 SceneManagerUI::~SceneManagerUI()

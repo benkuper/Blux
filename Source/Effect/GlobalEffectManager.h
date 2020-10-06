@@ -22,6 +22,8 @@ public:
     EffectManager effectManager;
     ComponentSelector componentSelector;
 
+    BoolParameter* excludeFromScenes;
+
     void saveSceneData(var& sceneData);
 
     String getTypeString() const override { return "EffectGroup"; }

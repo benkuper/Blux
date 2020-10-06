@@ -7,7 +7,8 @@
 #include "Scene/ui/SceneManagerUI.h"
 #include "Effect/ui/GlobalEffectManagerUI.h"
 #include "Sequence/ui/GlobalSequenceManagerUI.h"
-#include "Preset/ui/PresetManagerUI.h"
+#include "Layout/ui/StageLayoutManagerUI.h"
+#include "Layout/ui/StageLayout2DView.h"
 
 String getAppVersion();
 ApplicationProperties& getAppProperties();
@@ -35,12 +36,8 @@ void MainComponent::init()
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Global Effects", &GlobalEffectManagerUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Global Sequences", &GlobalSequenceManagerUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Sequence Editor", &TimeMachineView::create));
-	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Presets", &PresetManagerUI::create));
-
-
-
-	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage Layouts", &StageLayoutManagerUI::create));
-	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 2D View", &Stage2DView::create));
+	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage Layouts", &StageLayoutManagerUI::create));
+	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 2D View", &StageLayout2DView::create));
 	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 3D View", &Stage3DView::create));
 	
 	OrganicMainContentComponent::init();

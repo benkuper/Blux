@@ -20,11 +20,14 @@ class ObjectManager :
 public:
     juce_DeclareSingleton(ObjectManager, true);
 
-    //ui
-    IntParameter * gridThumbSize;
-
     ObjectManager();
     ~ObjectManager();
+
+
+    //ui
+    IntParameter* gridThumbSize;
+    FloatParameter * defaultFlashValue;
+    BoolParameter* blackOut;
 
     Factory<Object> factory;
 
