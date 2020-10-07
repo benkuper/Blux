@@ -14,6 +14,8 @@
 StageLayout2DView::StageLayout2DView(const String& name) :
     BaseManagerShapeShifterViewUI(name, ObjectManager::getInstance())
 {
+    animateItemOnAdd = false;
+
     canZoom = true;
     contentIsFlexible = true;
 
