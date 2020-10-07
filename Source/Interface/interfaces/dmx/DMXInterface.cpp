@@ -168,7 +168,19 @@ void DMXInterface::updateValuesFromComponent(Object* o, ObjectComponent* c)
 	int startChannel = dmxParams->startChannel->intValue();
 	for(int i=0;i<c->computedParameters.size();i++)
 	{
-		sendDMXValue(startChannel + c->paramChannels[i], c->computedParameters[i]->floatValue() * 255); //remap to 0-255 automatically
+		Parameter* p = (Parameter*)c->computedParameters[i];
+		if (p->isComplex())
+		{
+			for (int j = 0; j < p->value.size(); j++)
+			{
+				sendDMXValue(startChannel + c->paramChannels[i]+ j, (float)p->value[j] * 255); //remap to 0-255 automatically
+			}
+		}
+		else
+		{
+			sendDMXValue(startChannel + c->paramChannels[i], p->floatValue() * 255); //remap to 0-255 automatically
+
+		}
 	}
 }
 
