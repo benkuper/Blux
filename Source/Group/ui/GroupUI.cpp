@@ -76,7 +76,7 @@ void GroupUI::mouseUp(const MouseEvent& e)
 		{
 			Array<UndoableAction*> actions;
 			for (auto& o : objects) if (o->slideManipParameter != nullptr) actions.add(o->slideManipParameter->setUndoableValue(o->slideManipValueRef, o->slideManipParameter->floatValue(), true));
-			UndoMaster::getInstance()->performActions("Change " + String(actions.size()) << " values ", actions);
+			UndoMaster::getInstance()->performActions("Change " + String(actions.size()) + " values ", actions);
 		}
 	}
 	else
