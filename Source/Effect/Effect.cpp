@@ -30,12 +30,12 @@ Effect::~Effect()
 {
 }
 
-void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values)
+void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
 {
     FilterResult r = filterManager.getFilteredResultForComponent(o, c);
     if (r.id == -1) return;
 
-    float targetWeight = r.weight * weight->floatValue();
+    float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
     var pValues = getProcessedComponentValuesInternal(o, c, r.id, values.clone());
     jassert(pValues.size() == values.size() );

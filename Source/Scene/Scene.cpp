@@ -12,14 +12,17 @@
 #include "Object/ObjectManager.h"
 #include "Group/GroupManager.h"
 #include "Effect/GlobalEffectManager.h"
+#include "Engine/BluxEngine.h"
 
 Scene::Scene(const String& name) :
     BaseItem(name, false),
     interpolationCurve("Loading Curve")
 {
+    saveAndLoadRecursiveData = true;
+
     saveTrigger = addTrigger("Save","Save the current state of things into this scene");
     loadTrigger = addTrigger("Load", "Load this scene. This will change all parameters to what has been saved in this scene");
-    defaultLoadTime = addFloatParameter("Load Time", "Default load time, used when using the \"Load\" trigger.", 0, 0);
+    defaultLoadTime = addFloatParameter("Load Time", "Default load time, used when using the \"Load\" trigger.", BluxSettings::getInstance()->defaultSceneLoadTime->floatValue(), 0);
     defaultLoadTime->defaultUI = FloatParameter::TIME;
     loadProgress = addFloatParameter("Load Progress", "Progress of the scene loading", 1, 0, 1);
     loadProgress->setControllableFeedbackOnly(true);
@@ -36,6 +39,7 @@ Scene::Scene(const String& name) :
     addChildControllableContainer(&interpolationCurve);
 
     addChildControllableContainer(&sequenceManager);
+    addChildControllableContainer(&effectManager);
 }
 
 Scene::~Scene()
@@ -63,9 +67,9 @@ void Scene::updateScene()
 {
 }
 
-void Scene::loadScene()
+void Scene::loadScene(float loadTime)
 {
-    sceneListeners.call(&SceneListener::askForLoadScene, this);
+    sceneListeners.call(&SceneListener::askForLoadScene, this, loadTime);
 }
 
 void Scene::onContainerTriggerTriggered(Trigger* t)

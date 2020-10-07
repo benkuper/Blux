@@ -277,6 +277,18 @@
 			isa = PBXBuildFile;
 			fileRef = 807E30A108BD9B3FAE2985B6;
 		};
+		F60506DC7FE744C0B94E9604 = {
+			isa = PBXBuildFile;
+			fileRef = 72E2263412DEAB85D3C71483;
+		};
+		C55AC469E948ACCA3FE1312D = {
+			isa = PBXBuildFile;
+			fileRef = 9E0879427050D6F9B806E4C0;
+		};
+		7C6422123DB25294E256CCDB = {
+			isa = PBXBuildFile;
+			fileRef = 763FAF8F812BD782062D936E;
+		};
 		A211AF018CFB358805E70D1B = {
 			isa = PBXBuildFile;
 			fileRef = 9796E952835249636FA40C92;
@@ -611,6 +623,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = BluxSequence.h;
 			path = ../../Source/Sequence/BluxSequence.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		0F50A28950B8D9AF317E3CB5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LayoutFilterStageView.h;
+			path = ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		1039B4197AB2483335623100 = {
@@ -1173,6 +1192,13 @@
 			path = ../../Source/Group/ui/GroupUI.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		5E00C517266F6467ED6DB131 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = GroupFilter.h;
+			path = ../../Source/Effect/Filter/filters/group/GroupFilter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		5F9AA39E209565E59C82855B = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1236,6 +1262,13 @@
 			path = ../../Source/UI/AssetManager.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		72E2263412DEAB85D3C71483 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = GroupFilter.cpp;
+			path = ../../Source/Effect/Filter/filters/group/GroupFilter.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		752995F1BE479C7802AAB58B = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1248,6 +1281,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_gui_extra.mm";
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		763FAF8F812BD782062D936E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = LayoutFilterStageViewUI.cpp;
+			path = ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageViewUI.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		7774C6502DCCE4F2EECD39AE = {
@@ -1598,6 +1638,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = GoboComponent.h;
 			path = ../../Source/Object/Component/components/gobo/GoboComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		9E0879427050D6F9B806E4C0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = LayoutFilterStageView.cpp;
+			path = ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		A0239D1303EFC3FCB068433C = {
@@ -2046,6 +2093,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = DMXInterface.h;
 			path = ../../Source/Interface/interfaces/dmx/DMXInterface.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		E5F21A372DB85E857B40AB69 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LayoutFilterStageViewUI.h;
+			path = ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageViewUI.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		E649076A682AB3D71FE0F8D8 = {
@@ -2701,9 +2755,30 @@
 			name = effects;
 			sourceTree = "<group>";
 		};
+		EC5C318C9EA346A6B83498C7 = {
+			isa = PBXGroup;
+			children = (
+				72E2263412DEAB85D3C71483,
+				5E00C517266F6467ED6DB131,
+			);
+			name = group;
+			sourceTree = "<group>";
+		};
+		6D31CDEF8F9023FDED985333 = {
+			isa = PBXGroup;
+			children = (
+				9E0879427050D6F9B806E4C0,
+				0F50A28950B8D9AF317E3CB5,
+				763FAF8F812BD782062D936E,
+				E5F21A372DB85E857B40AB69,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
 		082863BE11EA19ABD864C692 = {
 			isa = PBXGroup;
 			children = (
+				6D31CDEF8F9023FDED985333,
 				9796E952835249636FA40C92,
 				8D2EEF701D2DE7F2A162AE62,
 			);
@@ -2722,6 +2797,7 @@
 		3A56E46403A0BBEEA26B0183 = {
 			isa = PBXGroup;
 			children = (
+				EC5C318C9EA346A6B83498C7,
 				082863BE11EA19ABD864C692,
 				2AD0343E8DE35E40B1ABFEAA,
 			);
@@ -3492,6 +3568,9 @@
 				74143291006B7C1CD6FF5871,
 				32A02EB03C820779CBD2343D,
 				492DF541C3B98C2D75F23200,
+				F60506DC7FE744C0B94E9604,
+				C55AC469E948ACCA3FE1312D,
+				7C6422123DB25294E256CCDB,
 				A211AF018CFB358805E70D1B,
 				544C24A55566CEEC21A88B7B,
 				FA0AC57964665D2F298B8C1B,

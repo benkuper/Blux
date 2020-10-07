@@ -204,6 +204,9 @@
     <ClCompile Include="..\..\Source\Effect\effects\automation\AutomationEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\override\OverrideEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\noise\NoiseEffect.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageView.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageViewUI.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Filter\filters\id\IDFilter.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Filter\ui\FilterEditor.cpp"/>
@@ -2921,6 +2924,9 @@
     <ClInclude Include="..\..\Source\Effect\effects\override\OverrideEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\noise\NoiseEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\noise\PerlinNoise.hpp"/>
+    <ClInclude Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.h"/>
+    <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageView.h"/>
+    <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageViewUI.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\id\IDFilter.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\ui\FilterEditor.h"/>

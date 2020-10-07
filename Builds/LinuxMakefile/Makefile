@@ -121,6 +121,9 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/AutomationEffect_61919d9e.o \
   $(JUCE_OBJDIR)/OverrideEffect_e23d03be.o \
   $(JUCE_OBJDIR)/NoiseEffect_c7be2ff4.o \
+  $(JUCE_OBJDIR)/GroupFilter_a297b67b.o \
+  $(JUCE_OBJDIR)/LayoutFilterStageView_80bb229f.o \
+  $(JUCE_OBJDIR)/LayoutFilterStageViewUI_7f7d70b3.o \
   $(JUCE_OBJDIR)/LayoutFilter_5fed8dbb.o \
   $(JUCE_OBJDIR)/IDFilter_c5e2757b.o \
   $(JUCE_OBJDIR)/FilterEditor_a7d98c68.o \
@@ -461,6 +464,21 @@ $(JUCE_OBJDIR)/OverrideEffect_e23d03be.o: ../../Source/Effect/effects/override/O
 $(JUCE_OBJDIR)/NoiseEffect_c7be2ff4.o: ../../Source/Effect/effects/noise/NoiseEffect.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling NoiseEffect.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/GroupFilter_a297b67b.o: ../../Source/Effect/Filter/filters/group/GroupFilter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling GroupFilter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/LayoutFilterStageView_80bb229f.o: ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LayoutFilterStageView.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/LayoutFilterStageViewUI_7f7d70b3.o: ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageViewUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LayoutFilterStageViewUI.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/LayoutFilter_5fed8dbb.o: ../../Source/Effect/Filter/filters/layout/LayoutFilter.cpp

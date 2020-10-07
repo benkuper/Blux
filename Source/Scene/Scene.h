@@ -12,6 +12,7 @@
 
 #include "JuceHeader.h"
 #include "Sequence/BluxSequenceManager.h"
+#include "Effect/EffectManager.h"
 
 class Scene :
     public BaseItem
@@ -32,11 +33,13 @@ public:
 
     BluxSequenceManager sequenceManager;
 
+    EffectManager effectManager;
+
     void saveScene();
     var getSceneData();
 
     void updateScene(); //used to resync with current objects and data that might not have been saved
-    void loadScene();
+    void loadScene(float loadTime = -1);
 
     void onContainerTriggerTriggered(Trigger* t) override;
 
@@ -45,7 +48,7 @@ public:
     public:
         /** Destructor. */
         virtual ~SceneListener() {}
-        virtual void askForLoadScene(Scene* i) {}
+        virtual void askForLoadScene(Scene* i, float loadTime) {}
     };
 
     ListenerList<SceneListener> sceneListeners;

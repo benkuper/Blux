@@ -15,6 +15,7 @@ juce_ImplementSingleton(SceneManager)
 SceneManager::SceneManager() :
     BaseManager("Scenes"),
     Thread("Scene Load"),
+    previousScene(nullptr),
     currentScene(nullptr)
 {
     managerFactory = &factory;
@@ -50,6 +51,7 @@ void SceneManager::loadScene(Scene* s, float time)
         currentScene->removeInspectableListener(this);
     }
 
+    previousScene = currentScene;
     currentScene = s;
 
     if (currentScene == nullptr) return;
@@ -147,9 +149,9 @@ void SceneManager::lerpSceneParams(float weight)
     }
 }
 
-void SceneManager::askForLoadScene(Scene* s)
+void SceneManager::askForLoadScene(Scene* s, float loadTime)
 {
-    loadScene(s);
+    loadScene(s, loadTime);
 }
 
 void SceneManager::inspectableDestroyed(Inspectable * i)
@@ -163,5 +165,9 @@ void SceneManager::inspectableDestroyed(Inspectable * i)
 
 void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
-    //to implement
+    if (currentScene == nullptr) return;
+
+    float progressWeight = currentScene->isCurrent->boolValue() ? 1 : currentScene->loadProgress->floatValue();
+    if (previousScene != nullptr &&  progressWeight < 1)  previousScene->effectManager.processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
+    currentScene->effectManager.processComponentValues(o, c, values,  progressWeight);
 }

@@ -21,13 +21,20 @@ public:
 
     enum LayoutMode { RADIUS, AXIS_X, AXIS_Y, AXIS_Z};
     BoolParameter* enableInView;
+    ColorParameter* colorInView;
+
     EnumParameter* mode;
     Point3DParameter* position;
     FloatParameter* size;
     Automation fadeCurve;
 
+    void clearItem() override;
+
     virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c) override;
 
     String getTypeString() const override { return "Layout Filter"; }
     static LayoutFilter * create(var params) { return new LayoutFilter (); }
+
+    static Array<LayoutFilter*> instances;
+    static ChangeBroadcaster broadcaster;
 };

@@ -15,7 +15,9 @@ AutomationEffect::AutomationEffect(var params) :
     automation("Curve"),
     curTime(0)
 {
-    length = addFloatParameter("Length", "Length of this automation", 5, .1f);
+    length = addFloatParameter("Length", "Length of this automation", 2, .1f);
+    length->defaultUI = FloatParameter::TIME;
+
     speed = addFloatParameter("Speed", "The speed at which play this", 1);
     range = addPoint2DParameter("Range", "Range of this automation");
 
@@ -27,6 +29,16 @@ AutomationEffect::AutomationEffect(var params) :
 
     offsetByID = addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
     offsetByValue = addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
+
+    automation.isSelectable = false;
+    automation.length->setValue(length->floatValue());
+    automation.addKey(0,0 , false);
+    automation.items[0]->easingType->setValueWithData(Easing::BEZIER);
+    automation.addKey(.5f, 1, false);
+    automation.items[0]->easingType->setValueWithData(Easing::BEZIER);
+    automation.addKey(1, 0, false);
+    automation.selectItemWhenCreated = false;
+    automation.rangeRemapMode->setValueWithData(Automation::RangeRemapMode::PROPORTIONAL);
 
     addChildControllableContainer(&automation);
     timeAtLastUpdate = Time::getMillisecondCounter() / 1000.0;

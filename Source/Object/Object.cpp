@@ -93,11 +93,11 @@ void Object::onContainerParameterChangedInternal(Parameter* p)
 	}
 	else if (p == stagePosition)
 	{
-		viewUIPosition->setPoint(stagePosition->x, stagePosition->y);
+		viewUIPosition->setPoint(stagePosition->x, stagePosition->z);
 	}
 	else if (p == viewUIPosition)
 	{
-		if(!isCurrentlyLoadingData) stagePosition->setVector(viewUIPosition->x, viewUIPosition->y, stagePosition->z);
+		if(!isCurrentlyLoadingData) stagePosition->setVector(viewUIPosition->x, stagePosition->y, viewUIPosition->y);
 	}
 }
 

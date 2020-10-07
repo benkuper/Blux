@@ -41,7 +41,7 @@ void SceneUI::mouseDown(const MouseEvent& e)
         if (e.mods.isAltDown())
         {
             if (e.mods.isCommandDown()) item->saveScene();
-            else item->loadScene();
+            else item->loadScene(0);
         }
     }
     else if (e.mods.isRightButtonDown())

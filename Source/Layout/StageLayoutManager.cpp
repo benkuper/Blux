@@ -16,6 +16,7 @@ StageLayoutManager::StageLayoutManager() :
     BaseManager("Stage Layouts")
 {
     iconSize = addFloatParameter("Icon Size", "Size of icons in view", .1f, 0, 1);
+    showFilters = addBoolParameter("Show Filters", "If checked, this will show filters in view", true);
 }
 
 StageLayoutManager::~StageLayoutManager()

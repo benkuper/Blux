@@ -131,6 +131,12 @@
     <Filter Include="Blux\Source\Effect\effects">
       <UniqueIdentifier>{B782456C-AFC3-0956-5827-2E9CE20849DB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Effect\Filter\filters\group">
+      <UniqueIdentifier>{FC090AD1-2C05-65EC-4256-E9FF16C5F9FB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Effect\Filter\filters\layout\ui">
+      <UniqueIdentifier>{B7CB9020-C583-A8AB-2919-27E4B91A4CD6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Effect\Filter\filters\layout">
       <UniqueIdentifier>{48B631A3-C848-4640-27AE-4FA828B8D37D}</UniqueIdentifier>
     </Filter>
@@ -1134,6 +1140,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\noise\NoiseEffect.cpp">
       <Filter>Blux\Source\Effect\effects\noise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.cpp">
+      <Filter>Blux\Source\Effect\Filter\filters\group</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageView.cpp">
+      <Filter>Blux\Source\Effect\Filter\filters\layout\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageViewUI.cpp">
+      <Filter>Blux\Source\Effect\Filter\filters\layout\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.cpp">
       <Filter>Blux\Source\Effect\Filter\filters\layout</Filter>
@@ -4226,6 +4241,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\noise\PerlinNoise.hpp">
       <Filter>Blux\Source\Effect\effects\noise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.h">
+      <Filter>Blux\Source\Effect\Filter\filters\group</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageView.h">
+      <Filter>Blux\Source\Effect\Filter\filters\layout\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageViewUI.h">
+      <Filter>Blux\Source\Effect\Filter\filters\layout\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.h">
       <Filter>Blux\Source\Effect\Filter\filters\layout</Filter>

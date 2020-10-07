@@ -103,6 +103,17 @@ bool ObjectGroup::containsObject(Object* o)
     return getTargetForObject(o) != nullptr;
 }
 
+int ObjectGroup::getLocalIDForObject(Object* o)
+{
+    int index = 0;
+    for (auto& t : objectsCC.items)
+    {
+        if (!t->objectRef.wasObjectDeleted() && t->currentObject == o) return index;
+        index++;
+    }
+    return -1;
+}
+
 Array<Object*> ObjectGroup::getObjects()
 {
     Array<Object*> result;

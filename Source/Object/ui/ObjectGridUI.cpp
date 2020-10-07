@@ -21,7 +21,7 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	transparentBG(false)
 {
 	updateThumbnail();
-
+	bringToFrontOnSelect = false;
 	autoHideWhenDragging = false;
 
 	if (IntensityComponent* ic = item->getComponent<IntensityComponent>())

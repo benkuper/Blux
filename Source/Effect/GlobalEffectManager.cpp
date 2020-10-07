@@ -43,8 +43,7 @@ EffectGroup::EffectGroup() :
     saveAndLoadRecursiveData = true;
     addChildControllableContainer(&effectManager);
 
-    excludeFromScenes = addBoolParameter("Exclude From Scens", "If checked, this effect won't be saved in scens", false);
-    excludeFromScenes->hideInEditor = true;
+    excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked, this effect won't be saved in scenes", false);
 }
 
 EffectGroup::~EffectGroup()

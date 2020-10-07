@@ -24,7 +24,7 @@ public:
 
     Factory<Effect> factory;
 
-    virtual void processComponentValues(Object * o, ObjectComponent * c, var &values);
+    virtual void processComponentValues(Object * o, ObjectComponent * c, var &values, float weightMultiplier = 1.0f);
 
     void saveSceneData(var &sceneData);
 };

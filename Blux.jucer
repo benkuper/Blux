@@ -263,7 +263,21 @@
         </GROUP>
         <GROUP id="{11ABDC7F-4CBF-C8CB-0BA7-C89E429B21F7}" name="Filter">
           <GROUP id="{F17755BA-DA05-000D-678F-57CA7F0A403A}" name="filters">
+            <GROUP id="{A62E3CDA-402A-AD22-FDC5-1AD35CF4412D}" name="group">
+              <FILE id="zWKsK2" name="GroupFilter.cpp" compile="1" resource="0" file="Source/Effect/Filter/filters/group/GroupFilter.cpp"/>
+              <FILE id="LmFyZQ" name="GroupFilter.h" compile="0" resource="0" file="Source/Effect/Filter/filters/group/GroupFilter.h"/>
+            </GROUP>
             <GROUP id="{9966F1D1-58BD-AA61-BF9A-F9ACAD30723B}" name="layout">
+              <GROUP id="{2747E1B2-93ED-E1A9-17C6-9C0BE64718BD}" name="ui">
+                <FILE id="GqySta" name="LayoutFilterStageView.cpp" compile="1" resource="0"
+                      file="Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.cpp"/>
+                <FILE id="McGZOz" name="LayoutFilterStageView.h" compile="0" resource="0"
+                      file="Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.h"/>
+                <FILE id="UeWcce" name="LayoutFilterStageViewUI.cpp" compile="1" resource="0"
+                      file="Source/Effect/Filter/filters/layout/ui/LayoutFilterStageViewUI.cpp"/>
+                <FILE id="hdMjZX" name="LayoutFilterStageViewUI.h" compile="0" resource="0"
+                      file="Source/Effect/Filter/filters/layout/ui/LayoutFilterStageViewUI.h"/>
+              </GROUP>
               <FILE id="I9GzH9" name="LayoutFilter.cpp" compile="1" resource="0"
                     file="Source/Effect/Filter/filters/layout/LayoutFilter.cpp"/>
               <FILE id="wuyDc4" name="LayoutFilter.h" compile="0" resource="0" file="Source/Effect/Filter/filters/layout/LayoutFilter.h"/>

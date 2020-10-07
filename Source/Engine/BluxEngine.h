@@ -17,8 +17,21 @@ public:
     BluxEngine();
     ~BluxEngine();
 
+
     void clearInternal() override;
 
     var getJSONData() override;
     void loadJSONDataInternalEngine(var data, ProgressTask * task) override;
+};
+
+class BluxSettings : 
+    public ControllableContainer
+{
+public:
+    juce_DeclareSingleton(BluxSettings, true);
+
+    BluxSettings();
+    ~BluxSettings();
+
+    FloatParameter * defaultSceneLoadTime;
 };

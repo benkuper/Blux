@@ -20,6 +20,7 @@ public:
 
     //ui
     FloatParameter* iconSize;
+    BoolParameter * showFilters;
 
     StageLayoutManager();
     ~StageLayoutManager();

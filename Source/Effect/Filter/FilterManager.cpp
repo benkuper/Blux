@@ -11,6 +11,7 @@
 #include "FilterManager.h"
 #include "filters/id/IDFilter.h"
 #include "filters/layout/LayoutFilter.h"
+#include "filters/group/GroupFilter.h"
 
 #include "Object/Object.h"
 #include "ui/FilterManagerEditor.h"
@@ -22,6 +23,7 @@ FilterManager::FilterManager() :
 
     managerFactory = &factory;
     factory.defs.add(Factory<Filter>::Definition::createDef("", "Filter by ID", &IDFilter::create));
+    factory.defs.add(Factory<Filter>::Definition::createDef("", "Filter by Group", &GroupFilter::create));
     factory.defs.add(Factory<Filter>::Definition::createDef("", "Layout Filter", &LayoutFilter::create));
 }
 

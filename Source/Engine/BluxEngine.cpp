@@ -19,6 +19,8 @@
 #include "Sequence/GlobalSequenceManager.h"
 #include "Audio/AudioManager.h"
 #include "Layout//StageLayoutManager.h"
+
+
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
 {
@@ -31,6 +33,7 @@ BluxEngine::BluxEngine() :
 	addChildControllableContainer(GlobalSequenceManager::getInstance());
 	addChildControllableContainer(StageLayoutManager::getInstance());
 
+	GlobalSettings::getInstance()->addChildControllableContainer(BluxSettings::getInstance());
 	GlobalSettings::getInstance()->addControllableContainerListener(AudioManager::getInstance());
 }
 
@@ -51,6 +54,7 @@ BluxEngine::~BluxEngine()
 	ComponentFactory::deleteInstance();
 
 	AudioManager::deleteInstance();
+	BluxSettings::deleteInstance();
 }
 
 void BluxEngine::clearInternal()
@@ -109,4 +113,17 @@ void BluxEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 	bluxTask->setProgress(1);
 	
 	bluxTask->end();
+}
+
+juce_ImplementSingleton(BluxSettings)
+
+BluxSettings::BluxSettings() :
+	ControllableContainer("Blux Settings")
+{
+	defaultSceneLoadTime = addFloatParameter("Default Scene Load Time", "The default load time to set the scenes to on creation", .5f, 0);
+	defaultSceneLoadTime->defaultUI = FloatParameter::TIME;
+}
+
+BluxSettings::~BluxSettings()
+{
 }

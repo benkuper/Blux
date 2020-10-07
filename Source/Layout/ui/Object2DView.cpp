@@ -16,6 +16,8 @@ Object2DView::Object2DView(Object* object) :
     transparentBG = true;
     autoHideWhenDragging = false;
     drawEmptyDragIcon = true;
+
+    setSize(60, 60);
 }
 
 Object2DView::~Object2DView()

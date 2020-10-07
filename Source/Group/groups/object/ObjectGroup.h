@@ -72,6 +72,7 @@ public:
     ObjectTarget * getTargetForObject(Object* o);
 
     bool containsObject(Object* o) override;
+    int getLocalIDForObject(Object* o) override;
 
     virtual Array<Object*> getObjects() override;
 

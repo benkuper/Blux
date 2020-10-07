@@ -29,6 +29,11 @@ bool Group::containsObject(Object* o)
     return false;
 }
 
+int Group::getLocalIDForObject(Object* o)
+{
+    return -1;
+}
+
 void Group::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
     effectManager.processComponentValues(o, c, values);

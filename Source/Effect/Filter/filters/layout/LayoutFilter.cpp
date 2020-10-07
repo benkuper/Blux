@@ -11,11 +11,15 @@
 #include "LayoutFilter.h"
 #include "Object/Object.h"
 
+Array<LayoutFilter*> LayoutFilter::instances;
+ChangeBroadcaster LayoutFilter::broadcaster;
+
 LayoutFilter::LayoutFilter() :
     Filter(getTypeString()),
     fadeCurve("Fade Curve")
 {
     enableInView = addBoolParameter("Enable in view", "If checked, this effect will be visible in the stage layout view", true);
+    colorInView = addColorParameter("Color in view", "Color in the view", Colours::red);
     mode = addEnumParameter("Mode", "What to check for this filter");
     mode->addOption("Radius", RADIUS)->addOption("X", AXIS_X)->addOption("Y", AXIS_Y)->addOption("Z", AXIS_Z);
     position = addPoint3DParameter("Position", "The position to filter against");
@@ -29,10 +33,18 @@ LayoutFilter::LayoutFilter() :
     fadeCurve.selectItemWhenCreated = false;
     addChildControllableContainer(&fadeCurve);
 
+    instances.addIfNotAlreadyThere(this);
+    broadcaster.sendChangeMessage();
 }
 
 LayoutFilter::~LayoutFilter()
 {
+}
+
+void LayoutFilter::clearItem()
+{
+    instances.removeAllInstancesOf(this);
+    broadcaster.sendChangeMessage();
 }
 
 FilterResult LayoutFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)
@@ -47,9 +59,9 @@ FilterResult LayoutFilter::getFilteredResultForComponentInternal(Object* o, Obje
     switch (m)
     {
     case RADIUS: diff = diffPos.length(); break;
-    case AXIS_X: diff = diffPos.x; break;
-    case AXIS_Y: diff = diffPos.y; break;
-    case AXIS_Z: diff = diffPos.z; break;
+    case AXIS_X: diff = diffPos.x + size->floatValue() / 2; break;
+    case AXIS_Y: diff = diffPos.y + size->floatValue() / 2; break;
+    case AXIS_Z: diff = diffPos.z + size->floatValue() / 2; break;
     }
 
     float p = diff / size->floatValue();

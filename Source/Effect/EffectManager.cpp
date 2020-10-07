@@ -31,12 +31,12 @@ EffectManager::~EffectManager()
 {
 }
 
-void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& values)
+void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& values, float weightMultiplier)
 {
     for (auto& e: items)
     {
         if (!e->enabled->boolValue()) continue;
-        e->processComponentValues(o, c, values);
+        e->processComponentValues(o, c, values, weightMultiplier);
     }
 }
 

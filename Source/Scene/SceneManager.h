@@ -32,17 +32,18 @@ public:
     var dataToLoad; //optimized list with only what has changed from state at load
     float loadTime;
 
+    Scene* previousScene;
     Scene* currentScene;
 
     void addItemInternal(Scene* s, var data) override;
     void removeItemInternal(Scene* s) override;
 
-    void loadScene(Scene* s, float time = -1);
+    void loadScene(Scene* s, float loadTime = -1);
 
     void run() override;
     void lerpSceneParams(float weight);
 
-    void askForLoadScene(Scene* s) override;
+    void askForLoadScene(Scene* s, float loadTime) override;
 
     void inspectableDestroyed(Inspectable* i) override;
 
