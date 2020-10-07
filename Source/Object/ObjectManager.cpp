@@ -71,7 +71,7 @@ void ObjectManager::updateFactoryDefinitions()
 void ObjectManager::addItemInternal(Object* o, var data)
 {
     o->addObjectListener(this);
-    if (!isCurrentlyLoadingData) o->globalID->setValue(getFirstAvailableObjectID());
+    if (!isCurrentlyLoadingData) o->globalID->setValue(getFirstAvailableObjectID(o));
 }
 
 void ObjectManager::removeItemInternal(Object* o)
@@ -79,10 +79,10 @@ void ObjectManager::removeItemInternal(Object* o)
     o->removeObjectListener(this);
 }
 
-int ObjectManager::getFirstAvailableObjectID()
+int ObjectManager::getFirstAvailableObjectID(Object* excludeObject)
 {
     Array<int> ids;
-    for (auto& o : items) ids.add(o->globalID->intValue());
+    for (auto& o : items) if(o != excludeObject) ids.add(o->globalID->intValue());
 
     int id = 0;
     while (ids.contains(id)) id++;

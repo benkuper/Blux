@@ -66,25 +66,6 @@ void ObjectGridUI::paint(Graphics& g)
 
 	r.removeFromBottom(20);
 
-	/*if (IntensityComponent* ic = item->getComponent<IntensityComponent>())
-	{
-		Rectangle<float> ir = r.removeFromBottom(10).reduced(2).toFloat();
-		
-		g.setColour(YELLOW_COLOR.darker(.2f));
-		g.fillRoundedRectangle(ir.withWidth(ir.proportionOfWidth(ic->value->floatValue())),4);
-
-		g.setColour(YELLOW_COLOR.brighter(.2f));
-		g.drawRoundedRectangle(ir, 4, .5f);
-
-		ir = r.removeFromBottom(10).reduced(2).toFloat();
-
-		g.setColour(BLUE_COLOR.darker(.2f));
-		g.fillRoundedRectangle(ir.withWidth(ir.proportionOfWidth(ic->computedParameters[0]->floatValue())), 4);
-
-		g.setColour(BLUE_COLOR.brighter(.2f));
-		g.drawRoundedRectangle(ir, 4, .5f);
-	}*/
-
 	g.setColour(Colours::white.withAlpha(isMouseOver() ? .2f : 1.f));
 	if (objectImage.getWidth() > 0) g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
 
@@ -101,7 +82,8 @@ void ObjectGridUI::resized()
 {
 	Rectangle<int> r = getLocalBounds();
 
-	globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
+	globalIDUI->setVisible(r.getWidth() >= 90);
+	if(globalIDUI->isVisible()) globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
 
 	if (computedColorUI != nullptr)
 	{
@@ -114,8 +96,6 @@ void ObjectGridUI::resized()
 		computedIntensityUI->setBounds(r.removeFromBottom(10).reduced(2));
 		intensityUI->setBounds(r.removeFromBottom(10).reduced(2));
 	}
-
-	
 }
 
 

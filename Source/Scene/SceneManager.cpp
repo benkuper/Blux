@@ -65,7 +65,7 @@ void SceneManager::loadScene(Scene* s, float time)
     currentScene->addInspectableListener(this);
 
 
-    if (time == -1) loadTime = time >= 0 ? time : currentScene->defaultLoadTime->floatValue();
+    loadTime = time >= 0 ? time : currentScene->defaultLoadTime->floatValue();
 
     startThread();
 }

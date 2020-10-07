@@ -120,7 +120,7 @@ juce_ImplementSingleton(BluxSettings)
 BluxSettings::BluxSettings() :
 	ControllableContainer("Blux Settings")
 {
-	defaultSceneLoadTime = addFloatParameter("Default Scene Load Time", "The default load time to set the scenes to on creation", .5f, 0);
+	defaultSceneLoadTime = addFloatParameter("Default Scene Load Time", "The default load time to set the scenes to on creation", 1, 0);
 	defaultSceneLoadTime->defaultUI = FloatParameter::TIME;
 }
 

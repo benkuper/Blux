@@ -36,7 +36,7 @@ public:
     void addItemInternal(Object* o, var data) override;
     void removeItemInternal(Object* o) override;
 
-    int getFirstAvailableObjectID();
+    int getFirstAvailableObjectID(Object * excludeObject = nullptr);
     Object* getObjectWithID(int id, Object * excludeObject = nullptr);
 
     void objectIDChanged(Object * o, int previousID) override;

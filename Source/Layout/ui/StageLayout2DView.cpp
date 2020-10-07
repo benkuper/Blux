@@ -76,6 +76,15 @@ void StageLayout2DView::newMessage(const ContainerAsyncEvent& e)
         {
             filterStageView.setVisible(StageLayoutManager::getInstance()->showFilters->boolValue());
         }
+        else if (e.targetControllable == StageLayoutManager::getInstance()->iconSize)
+        {
+            for (auto& ui : itemsUI)
+            {
+                float s = StageLayoutManager::getInstance()->iconSize->floatValue();
+                ui->setSize(s, s);
+                updateViewUIPosition(ui);
+            }
+        }
         break;
     }
 }

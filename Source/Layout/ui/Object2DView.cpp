@@ -9,6 +9,7 @@
 */
 
 #include "Object2DView.h"
+#include "../StageLayoutManager.h"
 
 Object2DView::Object2DView(Object* object) :
     ObjectGridUI(object)
@@ -17,7 +18,8 @@ Object2DView::Object2DView(Object* object) :
     autoHideWhenDragging = false;
     drawEmptyDragIcon = true;
 
-    setSize(60, 60);
+    float s = StageLayoutManager::getInstance()->iconSize->floatValue();
+    setSize(s, s);
 }
 
 Object2DView::~Object2DView()

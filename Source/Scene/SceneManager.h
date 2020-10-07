@@ -43,7 +43,7 @@ public:
     void run() override;
     void lerpSceneParams(float weight);
 
-    void askForLoadScene(Scene* s, float loadTime) override;
+    void askForLoadScene(Scene* s, float time) override;
 
     void inspectableDestroyed(Inspectable* i) override;
 
