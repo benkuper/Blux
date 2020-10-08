@@ -26,7 +26,7 @@ void DMXInterfaceUI::controllableFeedbackUpdateInternal(Controllable* c)
 
     if (c == dmxInterface->channelTestingMode)
     {
-        bgColor = dmxInterface->channelTestingMode->boolValue() ? YELLOW_COLOR : (BG_COLOR.brighter(.1f));
+        bgColor = dmxInterface->channelTestingMode->boolValue() ? Colours::hotpink.darker() : (BG_COLOR.brighter(.1f));
         repaint();
     }
 }

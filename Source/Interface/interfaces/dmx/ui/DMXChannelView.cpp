@@ -141,11 +141,12 @@ void DMXChannelView::inspectableDestroyed(Inspectable* i)
     rebuildDMXList();
 }
 
-DMXChannelItem::DMXChannelItem(int channel, DMXChannelView * v) :
+DMXChannelItem::DMXChannelItem(int channel, DMXChannelView* v) :
     channel(channel),
     valueAtMouseDown(0),
     value(0),
-    channelView(v)
+    channelView(v),
+    tmpFlash(false)
 {
     setRepaintsOnMouseActivity(true);
 }
@@ -154,8 +155,23 @@ DMXChannelItem::~DMXChannelItem()
 {
 }
 
+void DMXChannelItem::mouseEnter(const MouseEvent& e)
+{
+    tmpFlash = e.mods.isShiftDown();
+    valueAtMouseDown = value;
+    if(tmpFlash) updateDMXValue(1);
+}
+
+void DMXChannelItem::mouseExit(const MouseEvent& e)
+{
+    if(tmpFlash) updateDMXValue(valueAtMouseDown);
+    tmpFlash = false;
+}
+
 void DMXChannelItem::mouseDown(const MouseEvent& e)
 {
+    if (tmpFlash || e.mods.isShiftDown()) return;
+    
     valueAtMouseDown = value;
     if (e.mods.isLeftButtonDown() && !e.mods.isAltDown())
     {
@@ -190,6 +206,8 @@ void DMXChannelItem::mouseDown(const MouseEvent& e)
 
 void DMXChannelItem::mouseDrag(const MouseEvent& e)
 {
+    if (tmpFlash || e.mods.isShiftDown()) return;
+
     if (e.mods.isLeftButtonDown() && e.mods.isAltDown())
     {
         updateDMXValue(valueAtMouseDown - e.getOffsetFromDragStart().y *1.0f / getHeight());
@@ -198,10 +216,27 @@ void DMXChannelItem::mouseDrag(const MouseEvent& e)
 
 void DMXChannelItem::mouseUp(const MouseEvent& e)
 {
+    if (tmpFlash) return;
     if (e.mods.isLeftButtonDown() && !e.mods.isAltDown())
     {
         updateDMXValue(valueAtMouseDown);
     }
+}
+
+void DMXChannelItem::modifierKeysChanged(const ModifierKeys& keys)
+{
+    if (Desktop::getInstance().getMainMouseSource().getCurrentModifiers().isLeftButtonDown()) return;
+    bool shift = keys.isShiftDown();
+    if (tmpFlash != shift)
+    {
+        tmpFlash = shift;
+        if (tmpFlash)
+        {
+            valueAtMouseDown = value;
+            updateDMXValue(1);
+        }
+        else updateDMXValue(valueAtMouseDown);
+   }
 }
 
 void DMXChannelItem::updateDMXValue(float val)
@@ -222,7 +257,7 @@ void DMXChannelItem::paint(Graphics& g)
     g.fillRoundedRectangle(r.toFloat(), 4);
     
 
-    c = GREEN_COLOR.darker();
+    c = Colours::hotpink.darker();
     if (isMouseOver()) c = c.brighter(.2f);
     g.setColour(c);
     g.fillRoundedRectangle(r.withTrimmedTop((1-value) * r.getHeight()).toFloat(),4);
@@ -232,5 +267,5 @@ void DMXChannelItem::paint(Graphics& g)
     
     g.setColour(Colours::white.withAlpha(.8f));
     g.setFont(jlimit<float>(12,20,getHeight() - 30));
-    g.drawText(String(channel), getLocalBounds().toFloat(), Justification::centred, false);
+    g.drawText(String(channel+1), getLocalBounds().toFloat(), Justification::centred, false);
 }
