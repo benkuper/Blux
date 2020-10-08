@@ -9,3 +9,21 @@
 */
 
 #pragma once
+
+#include "Sequence/layers/action/Action.h"
+
+class SequenceAction :
+    public Action
+{
+public:
+    SequenceAction(var params);
+    ~SequenceAction();
+
+    enum ActionType { PLAY_SEQUENCE, STOP_SEQUENCE };
+    ActionType actionType;
+    TargetParameter* sequence;
+
+    void triggerInternal() override;
+
+    static SequenceAction* create(var params) { return new SequenceAction(params); }
+};

@@ -12,11 +12,11 @@
 #include "Scene/SceneManager.h"
 
 SceneAction::SceneAction(var params) :
-    TimeTrigger("Scene Action"),
+    Action(params),
     scene(nullptr),
     time(nullptr)
 {
-    actionType = (ActionType)(int)params.getProperty("type", LOAD_SCENE);
+    actionType = (ActionType)(int)params.getProperty("actionType", LOAD_SCENE);
     
     
     if (actionType == LOAD_SCENE)

@@ -19,3 +19,8 @@ InterfaceManagerUI::InterfaceManagerUI(const String& name) :
 InterfaceManagerUI::~InterfaceManagerUI()
 {
 }
+
+InterfaceUI* InterfaceManagerUI::createUIForItem(Interface* item)
+{
+    return item->createUI();
+}

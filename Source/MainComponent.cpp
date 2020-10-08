@@ -9,6 +9,7 @@
 #include "Sequence/ui/GlobalSequenceManagerUI.h"
 #include "Layout/ui/StageLayoutManagerUI.h"
 #include "Layout/ui/StageLayout2DView.h"
+#include "Interface/interfaces/DMX/ui/DMXChannelView.h"
 
 String getAppVersion();
 ApplicationProperties& getAppProperties();
@@ -38,6 +39,8 @@ void MainComponent::init()
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Sequence Editor", &TimeMachineView::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage Layouts", &StageLayoutManagerUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 2D View", &StageLayout2DView::create));
+	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("DMX Channel Tester", &DMXChannelView::create));
+
 	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 3D View", &Stage3DView::create));
 	
 	OrganicMainContentComponent::init();

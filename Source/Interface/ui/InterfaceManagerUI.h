@@ -20,5 +20,7 @@ public:
     InterfaceManagerUI(const String &name);
     ~InterfaceManagerUI();
 
+    InterfaceUI* createUIForItem(Interface* item) override;
+
     static InterfaceManagerUI* create(const String& name) { return new InterfaceManagerUI(name); }
 };

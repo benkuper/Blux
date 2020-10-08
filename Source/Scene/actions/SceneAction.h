@@ -13,7 +13,7 @@
 #include "Sequence/layers/action/Action.h"
 
 class SceneAction :
-    public TimeTrigger
+    public Action
 {
 public:
     SceneAction(var params);
@@ -25,8 +25,6 @@ public:
     TargetParameter* scene;
     FloatParameter* time;
 
-
     void triggerInternal() override;
-
     static SceneAction* create(var params) { return new SceneAction(params); }
 };

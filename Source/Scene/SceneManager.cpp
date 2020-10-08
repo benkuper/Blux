@@ -105,14 +105,17 @@ void SceneManager::run()
     }
     else
     {
-        while (!threadShouldExit() && currentScene->loadProgress->floatValue() < 1)
+        while (currentScene->loadProgress->floatValue() < 1)
         {
+            if (!Engine::mainEngine->isClearing && !threadShouldExit()) return;
             float curTime = Time::getMillisecondCounter() / 1000.0f;;
             float progress = (curTime - timeAtLoad) / loadTime;
             currentScene->loadProgress->setValue(progress);
             lerpSceneParams(currentScene->interpolationCurve.getValueAtPosition(progress));
             sleep(30);
         }
+
+        if (!Engine::mainEngine->isClearing && !threadShouldExit()) return;
 
         if (currentScene->loadProgress->floatValue() == 1) currentScene->isCurrent->setValue(true);
     }

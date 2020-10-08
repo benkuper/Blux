@@ -16,6 +16,11 @@ class Action :
     public TimeTrigger
 {
 public:
-    Action(const String &name = "Action", var params = var());
+    Action(var params);
     virtual ~Action();
+
+    String typeString;
+
+
+    String getTypeString() const override { return typeString; }
 };

@@ -10,10 +10,16 @@
 
 #include "Action.h"
 
-Action::Action(const String& name, var params)
+Action::Action(var params) :
+    TimeTrigger(params.getProperty("type","Action").toString())
 {
+    flagY->hideInEditor = true;
+    color->hideInEditor = true;
+
+    typeString = params.getProperty("type", "Action").toString();
 }
 
 Action::~Action()
 {
+
 }

@@ -10,6 +10,7 @@
 
 #include "Interface.h"
 #include "Object/Object.h"
+#include "ui/InterfaceUI.h"
 
 Interface::Interface(String name) :
     BaseItem(name)
@@ -20,4 +21,9 @@ Interface::Interface(String name) :
 
 Interface::~Interface()
 {
+}
+
+InterfaceUI* Interface::createUI()
+{
+    return new InterfaceUI(this);
 }

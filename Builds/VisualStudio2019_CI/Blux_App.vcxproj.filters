@@ -1126,7 +1126,10 @@
     <ClCompile Include="..\..\Source\Interface\interfaces\osc\OSCInterface.cpp">
       <Filter>Blux\Source\Interface\interfaces\osc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\DMXChannelView.cpp">
+    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\ui\DMXChannelView.cpp">
+      <Filter>Blux\Source\Interface\interfaces\dmx\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\ui\DMXInterfaceUI.cpp">
       <Filter>Blux\Source\Interface\interfaces\dmx\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Interface\interfaces\dmx\DMXInterface.cpp">
@@ -4242,7 +4245,10 @@
     <ClInclude Include="..\..\Source\Interface\interfaces\osc\OSCInterface.h">
       <Filter>Blux\Source\Interface\interfaces\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Interface\interfaces\dmx\DMXChannelView.h">
+    <ClInclude Include="..\..\Source\Interface\interfaces\dmx\ui\DMXChannelView.h">
+      <Filter>Blux\Source\Interface\interfaces\dmx\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Interface\interfaces\dmx\ui\DMXInterfaceUI.h">
       <Filter>Blux\Source\Interface\interfaces\dmx\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Interface\interfaces\dmx\DMXInterface.h">
@@ -8752,6 +8758,9 @@
     </None>
     <None Include="..\..\Modules\juce_timeline\README.md">
       <Filter>JUCE Modules\juce_timeline</Filter>
+    </None>
+    <None Include=".\icon.ico">
+      <Filter>JUCE Library Code</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

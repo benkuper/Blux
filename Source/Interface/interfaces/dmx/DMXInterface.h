@@ -27,6 +27,8 @@ public:
     std::unique_ptr<DMXDevice> dmxDevice;
     BoolParameter* dmxConnected;
 
+    BoolParameter * channelTestingMode;
+
     void clearItem() override;
 
     void onContainerParameterChanged(Parameter* p) override;
@@ -60,4 +62,6 @@ public:
 
     String getTypeString() const override { return "DMX"; }
     static DMXInterface* create(var params) { return new DMXInterface(); };
+
+    virtual InterfaceUI* createUI() override;
 };

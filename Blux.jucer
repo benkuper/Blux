@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b2"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b3"
               headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -211,10 +211,14 @@
           </GROUP>
           <GROUP id="{8DC395E5-1176-555B-3A2E-A27F368DDD43}" name="dmx">
             <GROUP id="{F4E7C7B4-AE43-5E8E-0F03-BC19CDED6EC0}" name="ui">
-              <FILE id="P4Lsso" name="DMXChannelView.cpp" compile="1" resource="0"
-                    file="Source/Interface/interfaces/dmx/DMXChannelView.cpp"/>
-              <FILE id="Bbnj9z" name="DMXChannelView.h" compile="0" resource="0"
-                    file="Source/Interface/interfaces/dmx/DMXChannelView.h"/>
+              <FILE id="lCJume" name="DMXChannelView.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/dmx/ui/DMXChannelView.cpp"/>
+              <FILE id="luoZn9" name="DMXChannelView.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/dmx/ui/DMXChannelView.h"/>
+              <FILE id="uWIqsr" name="DMXInterfaceUI.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/dmx/ui/DMXInterfaceUI.cpp"/>
+              <FILE id="rM4Tz4" name="DMXInterfaceUI.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/dmx/ui/DMXInterfaceUI.h"/>
             </GROUP>
             <FILE id="W9dn5Y" name="DMXInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/dmx/DMXInterface.cpp"/>
@@ -536,7 +540,8 @@
       </MODULEPATHS>
     </VS2019>
     <VS2019 targetFolder="Builds/VisualStudio2019_CI" extraDefs="JUCE_SUPPORT_CARBON=0"
-            externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib">
+            externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib"
+            smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" binaryPath="Binaries/CI" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"/>

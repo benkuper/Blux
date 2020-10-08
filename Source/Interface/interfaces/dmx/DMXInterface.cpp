@@ -10,6 +10,7 @@
 
 #include "DMXInterface.h"
 #include "Object/Object.h"
+#include "ui/DMXInterfaceUI.h"
 
 DMXInterface::DMXInterface() :
 	Interface(getTypeString())
@@ -23,6 +24,9 @@ DMXInterface::DMXInterface() :
 	dmxConnected->isControllableFeedbackOnly = true;
 	dmxConnected->isSavable = false;
 
+	channelTestingMode = addBoolParameter("Channel Testing Mode", "Is testing with the Channel view ?", false);
+	channelTestingMode->setControllableFeedbackOnly(true);
+	channelTestingMode->hideInEditor = true;
 
 	setCurrentDMXDevice(DMXDevice::create((DMXDevice::Type)(int)dmxType->getValueData()));
 
@@ -160,6 +164,8 @@ void DMXInterface::loadJSONDataInternal(var data)
 
 void DMXInterface::updateValuesFromComponent(Object* o, ObjectComponent* c)
 {
+	if (channelTestingMode->boolValue()) return;
+
 	Interface::updateValuesFromComponent(o, c);
 	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
 	
@@ -184,14 +190,10 @@ void DMXInterface::updateValuesFromComponent(Object* o, ObjectComponent* c)
 	}
 }
 
-
-//void DMXInterface::updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter * p)
-//{
-//	Interface::updateValuesFromComponent(o, c);
-//	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
-//	jassert(dmxParams != nullptr);
-//	sendDMXValue(dmxParams->startChannel->intValue() + c->paramChannels[c->computedParameters.indexOf(p)], p->floatValue() * 255); //remap to 0-255 automatically
-//}
+InterfaceUI* DMXInterface::createUI()
+{
+	return new DMXInterfaceUI(this);
+}
 
 
 // DMX PARAMS

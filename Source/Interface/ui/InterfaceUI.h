@@ -17,5 +17,5 @@ class InterfaceUI :
 {
 public:
     InterfaceUI(Interface* item);
-    ~InterfaceUI();
+    virtual ~InterfaceUI();
 };

@@ -237,9 +237,13 @@
 			isa = PBXBuildFile;
 			fileRef = BE1FBB28C015AC5EEF3302C9;
 		};
-		A4A95B45CC72382776EF1D77 = {
+		F28CAC9AD704509B6AC0C090 = {
 			isa = PBXBuildFile;
-			fileRef = 84BF215E29E1E1A6035467D8;
+			fileRef = F85F3A193455640F0E55418F;
+		};
+		79B6C8080889A3B8716FD0FF = {
+			isa = PBXBuildFile;
+			fileRef = FC956C75BC69E17CBEA8A3AD;
 		};
 		C72B94BD48E00C5C299F5ADE = {
 			isa = PBXBuildFile;
@@ -682,13 +686,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ScriptComponentEditor.h;
 			path = ../../Source/Object/Component/components/script/ui/ScriptComponentEditor.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		1183C1A23810083543F3DCD0 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = DMXChannelView.h;
-			path = ../../Source/Interface/interfaces/dmx/DMXChannelView.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		11BD809E128E9461D258500D = {
@@ -1517,13 +1514,6 @@
 			path = ../../Source/Common/DMX/device/DMXEnttecProDevice.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		84BF215E29E1E1A6035467D8 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = DMXChannelView.cpp;
-			path = ../../Source/Interface/interfaces/dmx/DMXChannelView.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
 		869BA254BAFF98573A170B89 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1620,6 +1610,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = GlobalEffectManagerUI.cpp;
 			path = ../../Source/Effect/ui/GlobalEffectManagerUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		91D8251ED9B80805A02BD255 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = DMXChannelView.h;
+			path = ../../Source/Interface/interfaces/dmx/ui/DMXChannelView.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		91F008B594FA3AE37FE84393 = {
@@ -1970,6 +1967,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = BinaryData.cpp;
 			path = ../../JuceLibraryCode/BinaryData.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		C325D9CA4B30AC1D40C66C14 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = DMXInterfaceUI.h;
+			path = ../../Source/Interface/interfaces/dmx/ui/DMXInterfaceUI.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		C4ADEA9C1F1FA20ABE2B43FC = {
@@ -2336,6 +2340,13 @@
 			path = ../../Source/Engine/BluxEngine.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		F85F3A193455640F0E55418F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = DMXChannelView.cpp;
+			path = ../../Source/Interface/interfaces/dmx/ui/DMXChannelView.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		F8F2037148B3B29178FFD7E6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2390,6 +2401,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = BinaryData.h;
 			path = ../../JuceLibraryCode/BinaryData.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		FC956C75BC69E17CBEA8A3AD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = DMXInterfaceUI.cpp;
+			path = ../../Source/Interface/interfaces/dmx/ui/DMXInterfaceUI.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		FD6A316F377597E01619E229 = {
@@ -2764,8 +2782,10 @@
 		4379386F8E7B8669B9EF9F2D = {
 			isa = PBXGroup;
 			children = (
-				84BF215E29E1E1A6035467D8,
-				1183C1A23810083543F3DCD0,
+				F85F3A193455640F0E55418F,
+				91D8251ED9B80805A02BD255,
+				FC956C75BC69E17CBEA8A3AD,
+				C325D9CA4B30AC1D40C66C14,
 			);
 			name = ui;
 			sourceTree = "<group>";
@@ -3388,7 +3408,7 @@
 					"_DEBUG=1",
 					"DEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b2",
+					"JUCE_APP_VERSION=1.0.0b3",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3475,7 +3495,7 @@
 					"_NDEBUG=1",
 					"NDEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b2",
+					"JUCE_APP_VERSION=1.0.0b3",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3718,7 +3738,8 @@
 				586D951179942E87F84F161C,
 				A126495FBA570004C58B4095,
 				6EE6422964B9D26C43C72EE2,
-				A4A95B45CC72382776EF1D77,
+				F28CAC9AD704509B6AC0C090,
+				79B6C8080889A3B8716FD0FF,
 				C72B94BD48E00C5C299F5ADE,
 				C0FC0BF68198FF880C769574,
 				B82252198C48087845387536,
