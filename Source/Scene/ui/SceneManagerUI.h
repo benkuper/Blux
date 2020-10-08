@@ -20,6 +20,12 @@ public:
     SceneManagerUI(const String &name);
     ~SceneManagerUI();
 
+    std::unique_ptr<TriggerButtonUI> prevSceneUI;
+    std::unique_ptr<TriggerButtonUI> nextSceneUI;
+
+
+    void resizedInternalHeader(Rectangle<int>& r) override;
+
     static SceneManagerUI* create(const String& name) { return new SceneManagerUI(name); }
 
 };

@@ -35,6 +35,9 @@ public:
     Scene* previousScene;
     Scene* currentScene;
 
+    Trigger* loadNextSceneTrigger;
+    Trigger* loadPreviousSceneTrigger;
+
     void addItemInternal(Scene* s, var data) override;
     void removeItemInternal(Scene* s) override;
 
@@ -45,8 +48,11 @@ public:
 
     void askForLoadScene(Scene* s, float time) override;
 
-    void inspectableDestroyed(Inspectable* i) override;
 
     void processComponentValues(Object* o, ObjectComponent* c, var& values);
+
+    void onContainerTriggerTriggered(Trigger* t) override;
+
+    void inspectableDestroyed(Inspectable* i) override;
 
 };

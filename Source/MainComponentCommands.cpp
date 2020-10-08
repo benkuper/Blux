@@ -11,6 +11,7 @@
 
 #include "MainComponent.h"
 #include "Object/ObjectManager.h"
+#include "Scene/SceneManager.h"
 
 namespace BluxCommandIDs
 {
@@ -28,6 +29,8 @@ namespace BluxCommandIDs
 	static const int reloadObjectDefinitions = 0x501;
 
 	static const int flashSelected = 0x700;
+	static const int loadNextScene = 0x800;
+	static const int loadPreviousScene = 0x801;
 
 }
 
@@ -83,11 +86,20 @@ void MainComponent::getCommandInfo(CommandID commandID, ApplicationCommandInfo& 
 		result.addDefaultKeypress(KeyPress::createFromDescription("f").getKeyCode(), ModifierKeys::noModifiers);
 		break;
 
-	
+	case BluxCommandIDs::loadNextScene:
+		result.setInfo("Load Next Scene", "", "Blux", 0);
+		result.addDefaultKeypress(KeyPress::createFromDescription(" ").getKeyCode(), ModifierKeys::commandModifier);
+		break;
+
+	case BluxCommandIDs::loadPreviousScene:
+		result.setInfo("Load Next Scene", "", "Blux", 0);
+		result.addDefaultKeypress(KeyPress::createFromDescription(" ").getKeyCode(), ModifierKeys::commandModifier | ModifierKeys::shiftModifier);
+		break;
+
 	case BluxCommandIDs::exitGuide:
 		result.setInfo("Exit current guide", "", "Guides", result.readOnlyInKeyEditor);
 		result.addDefaultKeypress(KeyPress::escapeKey, ModifierKeys::noModifiers);
-		//result.setActive(Guider::getInstance()->guide != nullptr);
+		result.setActive(false);// Guider::getInstance()->guide != nullptr);
 		break;
 		
 
@@ -116,7 +128,9 @@ void MainComponent::getAllCommands(Array<CommandID>& commands) {
 		//BluxCommandIDs::goToCommunityModules,
 		BluxCommandIDs::reloadObjectDefinitions,
 		BluxCommandIDs::exitGuide,
-		BluxCommandIDs::flashSelected
+		BluxCommandIDs::flashSelected,
+		BluxCommandIDs::loadNextScene,
+		BluxCommandIDs::loadPreviousScene
 	};
 
 	commands.addArray(ids, numElementsInArray(ids));
@@ -154,6 +168,11 @@ PopupMenu MainComponent::getMenuForIndex(int topLevelMenuIndex, const String& me
 	else if (menuName == "Object")
 	{
 		menu.addCommandItem(&getCommandManager(), BluxCommandIDs::flashSelected);
+	}
+	else if (menuName == "Scene")
+	{
+		menu.addCommandItem(&getCommandManager(), BluxCommandIDs::loadPreviousScene);
+		menu.addCommandItem(&getCommandManager(), BluxCommandIDs::loadNextScene);
 	}
 
 	return menu;
@@ -224,6 +243,14 @@ bool MainComponent::perform(const InvocationInfo& info)
 		ObjectManager::getInstance()->updateFactoryDefinitions();
 		break;
 
+	case BluxCommandIDs::loadNextScene:
+		SceneManager::getInstance()->loadNextSceneTrigger->trigger();
+		break;
+
+	case BluxCommandIDs::loadPreviousScene:
+		SceneManager::getInstance()->loadPreviousSceneTrigger->trigger();
+		break;
+
 	//case BluxCommandIDs::exitGuide:
 	//	Guider::getInstance()->setCurrentGuide(nullptr);
 	//	break;
@@ -239,7 +266,8 @@ StringArray MainComponent::getMenuBarNames()
 {
 	StringArray names = OrganicMainContentComponent::getMenuBarNames();
 	names.add("Object");
-	names.add("Guides");
+	names.add("Scene");
+	//names.add("Guides");
 	names.add("Help");
 	return names;
 }

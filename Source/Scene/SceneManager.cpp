@@ -20,6 +20,9 @@ SceneManager::SceneManager() :
 {
     managerFactory = &factory;
     factory.defs.add(Factory<Scene>::Definition::createDef("", "Scene", &Scene::create));
+
+    loadNextSceneTrigger = addTrigger("Load Next Scene", "Load the next scene. If no scene is loaded, will load first one");
+    loadPreviousSceneTrigger = addTrigger("Load Previous Scene", "Load the previous scene. If no scene is loaded, this will do nothing.");
 }
 
 SceneManager::~SceneManager()
@@ -154,15 +157,6 @@ void SceneManager::askForLoadScene(Scene* s, float loadTime)
     loadScene(s, loadTime);
 }
 
-void SceneManager::inspectableDestroyed(Inspectable * i)
-{
-    if (i == currentScene)
-    {
-        stopThread(100);
-        currentScene = nullptr;
-    }
-}
-
 void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
     if (currentScene == nullptr) return;
@@ -170,4 +164,33 @@ void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& va
     float progressWeight = currentScene->isCurrent->boolValue() ? 1 : currentScene->loadProgress->floatValue();
     if (previousScene != nullptr &&  progressWeight < 1)  previousScene->effectManager.processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
     currentScene->effectManager.processComponentValues(o, c, values,  progressWeight);
+}
+
+void SceneManager::onContainerTriggerTriggered(Trigger* t)
+{
+    if (t == loadNextSceneTrigger)
+    {
+        int index = items.indexOf(currentScene) + 1;
+        if (index < items.size())
+        {
+            loadScene(items[index]);
+        }
+    }
+    else if (t == loadPreviousSceneTrigger)
+    {
+        int index = items.indexOf(currentScene) - 1;
+        if (index >= 0)
+        {
+            loadScene(items[index]);
+        }
+    }
+}
+
+void SceneManager::inspectableDestroyed(Inspectable* i)
+{
+    if (i == currentScene)
+    {
+        stopThread(100);
+        currentScene = nullptr;
+    }
 }
