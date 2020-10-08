@@ -92,7 +92,7 @@ void MainComponent::getCommandInfo(CommandID commandID, ApplicationCommandInfo& 
 		break;
 
 	case BluxCommandIDs::loadPreviousScene:
-		result.setInfo("Load Next Scene", "", "Blux", 0);
+		result.setInfo("Load Previous Scene", "", "Blux", 0);
 		result.addDefaultKeypress(KeyPress::createFromDescription(" ").getKeyCode(), ModifierKeys::commandModifier | ModifierKeys::shiftModifier);
 		break;
 

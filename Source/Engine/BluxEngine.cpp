@@ -19,6 +19,7 @@
 #include "Sequence/GlobalSequenceManager.h"
 #include "Audio/AudioManager.h"
 #include "Layout//StageLayoutManager.h"
+#include "Sequence/layers/action/ActionLayer.h"
 
 
 BluxEngine::BluxEngine() :
@@ -52,6 +53,7 @@ BluxEngine::~BluxEngine()
 	SerialManager::deleteInstance();
 
 	ComponentFactory::deleteInstance();
+	ActionFactory::deleteInstance();
 
 	AudioManager::deleteInstance();
 	BluxSettings::deleteInstance();

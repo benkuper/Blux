@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b1"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b2"
               headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -26,8 +26,16 @@
         <FILE id="mUVkYL" name="AudioManager.h" compile="0" resource="0" file="Source/Audio/AudioManager.h"/>
       </GROUP>
       <GROUP id="{460B3213-E16F-2CB9-9A88-70D86283C04B}" name="Sequence">
+        <GROUP id="{388537B4-AA3C-9089-27EF-F615B0E5827C}" name="actions">
+          <FILE id="jaBtu0" name="SequenceAction.cpp" compile="1" resource="0"
+                file="Source/Sequence/actions/SequenceAction.cpp"/>
+          <FILE id="Wm7XRj" name="SequenceAction.h" compile="0" resource="0"
+                file="Source/Sequence/actions/SequenceAction.h"/>
+        </GROUP>
         <GROUP id="{47A4E042-1EFE-5733-D500-651382570D61}" name="layers">
           <GROUP id="{AB827E54-9C49-D8A3-319B-C9ACAD9DDE01}" name="action">
+            <FILE id="K3amnz" name="Action.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/Action.cpp"/>
+            <FILE id="WZefds" name="Action.h" compile="0" resource="0" file="Source/Sequence/layers/action/Action.h"/>
             <FILE id="Bpf2hH" name="ActionLayer.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/ActionLayer.cpp"/>
             <FILE id="NS2oZm" name="ActionLayer.h" compile="0" resource="0" file="Source/Sequence/layers/action/ActionLayer.h"/>
           </GROUP>
@@ -221,6 +229,10 @@
               file="Source/Interface/InterfaceManager.h"/>
       </GROUP>
       <GROUP id="{BDE623DE-EA68-A95C-6206-7F26C54B47AD}" name="Scene">
+        <GROUP id="{51EAA22C-6AA0-0C30-8782-660FF6DF4D59}" name="actions">
+          <FILE id="rKVJJK" name="SceneAction.cpp" compile="1" resource="0" file="Source/Scene/actions/SceneAction.cpp"/>
+          <FILE id="otxcg2" name="SceneAction.h" compile="0" resource="0" file="Source/Scene/actions/SceneAction.h"/>
+        </GROUP>
         <GROUP id="{0FFC71F4-F9C1-E6A2-CB12-E59C0B6610C6}" name="ui">
           <FILE id="ySbqQr" name="SceneManagerUI.cpp" compile="1" resource="0"
                 file="Source/Scene/ui/SceneManagerUI.cpp"/>
@@ -236,6 +248,11 @@
         <FILE id="k1c4Hy" name="SceneManager.h" compile="0" resource="0" file="Source/Scene/SceneManager.h"/>
       </GROUP>
       <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Effect">
+        <GROUP id="{C58CE66D-CF63-C79A-6464-F3EC680FB583}" name="actions">
+          <FILE id="pW4BpS" name="EffectAction.cpp" compile="1" resource="0"
+                file="Source/Effect/actions/EffectAction.cpp"/>
+          <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
+        </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
           <GROUP id="{8E13BCDA-D974-1658-0DED-4E4A7D293EAA}" name="automation">
             <GROUP id="{FF7025B5-5227-3E4D-E602-A574B12D3223}" name="ui">
@@ -347,6 +364,11 @@
               file="Source/Layout/StageLayoutManager.h"/>
       </GROUP>
       <GROUP id="{BDEDD473-3A74-D6C8-68AB-E73419566401}" name="Object">
+        <GROUP id="{3C4E2EC5-8FDF-A9E1-1AC2-141CAEF249C5}" name="actions">
+          <FILE id="VUvhQb" name="ObjectAction.cpp" compile="1" resource="0"
+                file="Source/Object/actions/ObjectAction.cpp"/>
+          <FILE id="z6ngnf" name="ObjectAction.h" compile="0" resource="0" file="Source/Object/actions/ObjectAction.h"/>
+        </GROUP>
         <GROUP id="{2D556B5D-011C-AC0B-A39D-48669A5D10F4}" name="Component">
           <GROUP id="{3C60E087-9AC6-70D2-8137-28A3A4FB4E2D}" name="ui">
             <FILE id="F0jPzI" name="ComponentManagerEditor.cpp" compile="1" resource="0"
@@ -460,6 +482,11 @@
         <FILE id="sUZJmR" name="ObjectManager.h" compile="0" resource="0" file="Source/Object/ObjectManager.h"/>
       </GROUP>
       <GROUP id="{CBABD9B6-7B70-7D3F-7A9F-AE1857C9E963}" name="Engine">
+        <GROUP id="{A2A31778-60D7-E0E8-962B-261B75266474}" name="actions">
+          <FILE id="Sy1oxW" name="GenericAction.cpp" compile="1" resource="0"
+                file="Source/Engine/GenericAction.cpp"/>
+          <FILE id="di4Ym0" name="GenericAction.h" compile="0" resource="0" file="Source/Engine/GenericAction.h"/>
+        </GROUP>
         <FILE id="Mv31r2" name="BluxEngine.cpp" compile="1" resource="0" file="Source/Engine/BluxEngine.cpp"/>
         <FILE id="DZeUuZ" name="BluxEngine.h" compile="0" resource="0" file="Source/Engine/BluxEngine.h"/>
       </GROUP>
@@ -514,7 +541,8 @@
         <CONFIGURATION isDebug="1" name="Debug" binaryPath="Binaries/CI" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"/>
         <CONFIGURATION isDebug="0" name="Release" binaryPath="Binaries/CI" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"/>
+                       libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
+                       alwaysGenerateDebugSymbols="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_timeline" path="Modules"/>

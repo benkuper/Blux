@@ -43,7 +43,7 @@ void SceneManager::removeItemInternal(Scene* s)
 
 void SceneManager::loadScene(Scene* s, float time)
 {
-    if (s == currentScene) return;
+    //if (s == currentScene) return;
 
     stopThread(1000);
    

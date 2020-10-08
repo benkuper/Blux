@@ -11,6 +11,9 @@
     <Filter Include="Blux\Source\Audio">
       <UniqueIdentifier>{71B30977-1984-2838-7462-8D5A66201FFA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Sequence\actions">
+      <UniqueIdentifier>{4AFD7A54-5DD4-AFDF-7377-248AE8959118}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Sequence\layers\action">
       <UniqueIdentifier>{F16A5B3E-6BA7-C928-096D-E5BE3EAE28D0}</UniqueIdentifier>
     </Filter>
@@ -110,11 +113,17 @@
     <Filter Include="Blux\Source\Interface">
       <UniqueIdentifier>{5F8E2D01-88CA-7060-C4A7-976E94E536F8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Scene\actions">
+      <UniqueIdentifier>{908D42AF-D319-073B-D361-E33D3DBB55DA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Scene\ui">
       <UniqueIdentifier>{F850E55A-267A-597D-56E9-2F2F388DCCE9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Scene">
       <UniqueIdentifier>{10C2081F-CBEB-7A90-E45D-C04A3F43893C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Effect\actions">
+      <UniqueIdentifier>{34DAE7F0-D89C-AA58-E8B8-91F231D8F5C0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Effect\effects\automation\ui">
       <UniqueIdentifier>{4157DF3D-FD9F-21E3-149C-1BDF51E81048}</UniqueIdentifier>
@@ -163,6 +172,9 @@
     </Filter>
     <Filter Include="Blux\Source\Layout">
       <UniqueIdentifier>{79DADA6C-3EF8-A71B-707F-68A0F9A003A1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\actions">
+      <UniqueIdentifier>{96E0EF7E-DEFC-6519-B936-2A312EE02D72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Object\Component\ui">
       <UniqueIdentifier>{4D1343A4-D6A8-883F-3A93-DF66FCE0539A}</UniqueIdentifier>
@@ -214,6 +226,9 @@
     </Filter>
     <Filter Include="Blux\Source\Object">
       <UniqueIdentifier>{B6C83FE7-EC01-0E0A-8353-0E930C118B77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Engine\actions">
+      <UniqueIdentifier>{6298BAB9-159C-3B27-DE23-369A90AEF967}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Engine">
       <UniqueIdentifier>{3129FDDE-C83B-BB13-C031-6D4A35FC9980}</UniqueIdentifier>
@@ -988,6 +1003,12 @@
     <ClCompile Include="..\..\Source\Audio\AudioManager.cpp">
       <Filter>Blux\Source\Audio</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
+      <Filter>Blux\Source\Sequence\actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\action\Action.cpp">
+      <Filter>Blux\Source\Sequence\layers\action</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp">
       <Filter>Blux\Source\Sequence\layers\action</Filter>
     </ClCompile>
@@ -1117,6 +1138,9 @@
     <ClCompile Include="..\..\Source\Interface\InterfaceManager.cpp">
       <Filter>Blux\Source\Interface</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Scene\actions\SceneAction.cpp">
+      <Filter>Blux\Source\Scene\actions</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Scene\ui\SceneManagerUI.cpp">
       <Filter>Blux\Source\Scene\ui</Filter>
     </ClCompile>
@@ -1128,6 +1152,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Scene\SceneManager.cpp">
       <Filter>Blux\Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
+      <Filter>Blux\Source\Effect\actions</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\automation\ui\AutomationEffectEditor.cpp">
       <Filter>Blux\Source\Effect\effects\automation\ui</Filter>
@@ -1201,6 +1228,9 @@
     <ClCompile Include="..\..\Source\Layout\StageLayoutManager.cpp">
       <Filter>Blux\Source\Layout</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Object\actions\ObjectAction.cpp">
+      <Filter>Blux\Source\Object\actions</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.cpp">
       <Filter>Blux\Source\Object\Component\ui</Filter>
     </ClCompile>
@@ -1266,6 +1296,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\ObjectManager.cpp">
       <Filter>Blux\Source\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Engine\GenericAction.cpp">
+      <Filter>Blux\Source\Engine\actions</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp">
       <Filter>Blux\Source\Engine</Filter>
@@ -4104,6 +4137,12 @@
     <ClInclude Include="..\..\Source\Audio\AudioManager.h">
       <Filter>Blux\Source\Audio</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h">
+      <Filter>Blux\Source\Sequence\actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\action\Action.h">
+      <Filter>Blux\Source\Sequence\layers\action</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h">
       <Filter>Blux\Source\Sequence\layers\action</Filter>
     </ClInclude>
@@ -4215,6 +4254,9 @@
     <ClInclude Include="..\..\Source\Interface\InterfaceManager.h">
       <Filter>Blux\Source\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Scene\actions\SceneAction.h">
+      <Filter>Blux\Source\Scene\actions</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Scene\ui\SceneManagerUI.h">
       <Filter>Blux\Source\Scene\ui</Filter>
     </ClInclude>
@@ -4226,6 +4268,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Scene\SceneManager.h">
       <Filter>Blux\Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h">
+      <Filter>Blux\Source\Effect\actions</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\automation\ui\AutomationEffectEditor.h">
       <Filter>Blux\Source\Effect\effects\automation\ui</Filter>
@@ -4302,6 +4347,9 @@
     <ClInclude Include="..\..\Source\Layout\StageLayoutManager.h">
       <Filter>Blux\Source\Layout</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Object\actions\ObjectAction.h">
+      <Filter>Blux\Source\Object\actions</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.h">
       <Filter>Blux\Source\Object\Component\ui</Filter>
     </ClInclude>
@@ -4367,6 +4415,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\ObjectManager.h">
       <Filter>Blux\Source\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Engine\GenericAction.h">
+      <Filter>Blux\Source\Engine\actions</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Engine\BluxEngine.h">
       <Filter>Blux\Source\Engine</Filter>
