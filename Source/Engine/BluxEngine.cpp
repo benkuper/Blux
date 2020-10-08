@@ -69,6 +69,11 @@ void BluxEngine::clearInternal()
 	InterfaceManager::getInstance()->clear();
 }
 
+String BluxEngine::getMinimumRequiredFileVersion()
+{
+	return "1.0.0b1";
+}
+
 var BluxEngine::getJSONData()
 {
 	var data = Engine::getJSONData();

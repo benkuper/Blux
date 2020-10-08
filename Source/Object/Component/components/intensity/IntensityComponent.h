@@ -19,7 +19,9 @@ public:
     IntensityComponent(var params);
     ~IntensityComponent();
 
-    FloatParameter* value;
+    Array<FloatParameter*> values;
+
+    void setupFromJSONDefinition(var data) override;
 
     String getTypeString() const override { return "Intensity"; }
     static IntensityComponent* create(var params) { return new IntensityComponent(params); }

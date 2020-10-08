@@ -48,7 +48,7 @@ Object::Object(var params) :
 		for (auto& cp : cProps) componentManager.addComponentFromDefinition(cp.name, cp.value, false);
 	}
 
-	if (IntensityComponent* ic = getComponent<IntensityComponent>())	slideManipParameter = ic->value;
+	if (IntensityComponent* ic = getComponent<IntensityComponent>())	slideManipParameter = ic->values[0];
 
 	componentManager.userCanAddItemsManually = params.getProperty("isCustom", false);
 	addChildControllableContainer(&componentManager);

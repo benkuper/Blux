@@ -67,13 +67,10 @@ var GroupFilter::getJSONData()
     var gData;
     for (auto& c : groups.controllables)
     {
-        for (int i = 0; i < groups.controllables.size(); i++)
+        if (TargetParameter* tp = dynamic_cast<TargetParameter*>(c))
         {
-            if (TargetParameter* tp = dynamic_cast<TargetParameter*>(groups.controllables[i]))
-            {
-                if (tp->targetContainer == nullptr) continue;
-                gData.append(tp->value);
-            }
+            if (tp->targetContainer == nullptr) continue;
+            gData.append(tp->value);
         }
     }
     data.getDynamicObject()->setProperty("groups", gData);

@@ -13,10 +13,30 @@
 IntensityComponent::IntensityComponent(var params) :
     ObjectComponent(getTypeString(), INTENSITY, params)
 {
-    value = addFloatParameter("Value", "Value of the intensity. This will automatically be converted to 0-255 or whatever the output protocol is.", .5f, 0, 1);
-    addComputedParameter(new FloatParameter("Value", "Computed intensity after all effects applied", .5f, 0, 1), 0, value);
+
 }
 
 IntensityComponent::~IntensityComponent()
 {
+}
+
+void IntensityComponent::setupFromJSONDefinition(var data)
+{
+    if (!data.hasProperty("channels"))
+    {
+        var chData(new DynamicObject());
+        chData.getDynamicObject()->setProperty("Value", 0);
+        data.getDynamicObject()->setProperty("channels", chData);
+    }
+
+    NamedValueSet chData = data.getProperty("channels", var()).getDynamicObject()->getProperties();
+    for (auto& ch : chData)
+    {
+        String s = ch.name.toString();
+        FloatParameter* f = addFloatParameter(s, "Value of the intensity. This will automatically be converted to 0-255 or whatever the output protocol is.", .5f, 0, 1);
+        addComputedParameter(new FloatParameter(s, "Computed intensity " + s + " after all effects applied", .5f, 0, 1), ch.value, f);
+        values.add(f);
+    }
+
+
 }

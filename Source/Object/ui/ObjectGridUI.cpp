@@ -31,7 +31,7 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 		computedIntensityUI->showValue = false;
 		addAndMakeVisible(computedIntensityUI.get());
 
-		intensityUI.reset(((FloatParameter*)ic->value)->createSlider());
+		intensityUI.reset(((FloatParameter*)ic->values[0])->createSlider());
 		intensityUI->showLabel = false;
 		intensityUI->showValue = false;
 		addAndMakeVisible(intensityUI.get());
