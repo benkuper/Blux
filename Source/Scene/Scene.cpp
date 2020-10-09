@@ -53,22 +53,24 @@ Scene::~Scene()
 void Scene::saveScene()
 {
     sceneData = getSceneData();
-    int numSavedData = sceneData.getDynamicObject()->getProperties().size();
-    NLOG(niceName, "Scene saved with " << numSavedData << " parameters");
+    SystemClipboard::copyTextToClipboard(JSON::toString(sceneData));
+    NLOG(niceName, "Scene saved");
 }
 
 var Scene::getSceneData()
 {
     var result = var(new DynamicObject());
-    ObjectManager::getInstance()->saveSceneData(result);
-    GroupManager::getInstance()->saveSceneData(result);
-    GlobalEffectManager::getInstance()->saveSceneData(result);
-    SystemClipboard::copyTextToClipboard(JSON::toString(result));
-    return result;
+    result.getDynamicObject()->setProperty(ObjectManager::getInstance()->shortName, ObjectManager::getInstance()->getSceneData());
+    result.getDynamicObject()->setProperty(GroupManager::getInstance()->shortName, GroupManager::getInstance()->getSceneData());
+    result.getDynamicObject()->setProperty(GlobalEffectManager::getInstance()->shortName, GlobalEffectManager::getInstance()->getSceneData());
+    return result; 
 }
 
-void Scene::updateScene()
+void Scene::updateSceneData()
 {
+    ObjectManager::getInstance()->updateSceneData(sceneData);
+    GroupManager::getInstance()->updateSceneData(sceneData);
+    GlobalEffectManager::getInstance()->updateSceneData(sceneData);
 }
 
 void Scene::loadScene(float loadTime)

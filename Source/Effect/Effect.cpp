@@ -10,17 +10,20 @@
 
 #include "Effect.h"
 #include "ui/EffectEditor.h"
+#include "Common/Helpers/SceneHelpers.h"
 
-Effect::Effect(const String& name, var params) :
+Effect::Effect(const String& name, var 
+    params) :
     BaseItem(name)
 {
     saveAndLoadRecursiveData = true;
 
     weight = addFloatParameter("Weight", "Weight of this effect",1,0,1);
+    weight->defaultValue = 0; //this allows for scene lerp default to 0
     weight->hideInEditor = true;
 
     excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked, this effect won't be saved in scens", false);
-    excludeFromScenes->hideInEditor = true;
+    //excludeFromScenes->hideInEditor = true;
 
     addChildControllableContainer(&filterManager);
     showInspectorOnSelect = false;
@@ -36,6 +39,8 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
     if (r.id == -1) return;
 
     float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
+
+    if (targetWeight == 0) return;
 
     var pValues = getProcessedComponentValuesInternal(o, c, r.id, values.clone());
     jassert(pValues.size() == values.size() );
@@ -61,22 +66,22 @@ var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, i
     return values;
 }
 
-void Effect::saveSceneData(var &sceneData)
+var Effect::getSceneData()
+{
+    if (excludeFromScenes->boolValue()) return var(new DynamicObject());
+    var data = SceneHelpers::getParamsSceneData(this, { excludeFromScenes });
+    data.getDynamicObject()->setProperty("filters", filterManager.getSceneData());
+    return data;
+}
+
+void Effect::updateSceneData(var& sceneData)
+{
+}
+
+void Effect::lerpFromSceneData(var startData, var endData, float weight)
 {
     if (excludeFromScenes->boolValue()) return;
-
-    Array<WeakReference<Parameter>> params = getAllParameters();
-    for (auto& p : params)
-    {
-        if (p->type == Parameter::ENUM || p->type == Parameter::TARGET) continue;
-        if (!p->hideInEditor && !p->isControllableFeedbackOnly) //BIG HACK to avoid listSize ViewUISize, etc.. should be in a proper list
-        {
-            sceneData.getDynamicObject()->setProperty(p->controlAddress, p->value);
-        }
-    } 
-    sceneData.getDynamicObject()->setProperty(weight->getControlAddress(), weight->value);
-
-    filterManager.saveSceneData(sceneData);
+    SceneHelpers::lerpSceneParams(this, startData, endData, weight);
 }
 
 InspectableEditor* Effect::getEditor(bool isRoot)

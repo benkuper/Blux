@@ -53,6 +53,9 @@
     <Filter Include="Blux\Source\Group">
       <UniqueIdentifier>{2924489F-ED84-2699-56D2-3A7A0661A327}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Common\Helpers">
+      <UniqueIdentifier>{E4AB837E-197D-92E7-5BED-79D1349DAD55}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Common\ComponentSelector\ui">
       <UniqueIdentifier>{5E5C2E50-7D33-26B7-F5A5-F10355E3B9D0}</UniqueIdentifier>
     </Filter>
@@ -1053,6 +1056,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Group\GroupManager.cpp">
       <Filter>Blux\Source\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Helpers\SceneHelpers.cpp">
+      <Filter>Blux\Source\Common\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.cpp">
       <Filter>Blux\Source\Common\ComponentSelector\ui</Filter>
@@ -4190,6 +4196,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Group\GroupManager.h">
       <Filter>Blux\Source\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h">
+      <Filter>Blux\Source\Common\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.h">
       <Filter>Blux\Source\Common\ComponentSelector\ui</Filter>

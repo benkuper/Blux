@@ -23,6 +23,10 @@ public:
 	bool shouldRepaint;
 	bool transparentBG;
 
+	//preview
+	var previewData;
+	float previewIntensity;
+
 	Image objectImage;
 
 	std::unique_ptr<IntParameterLabelUI> globalIDUI;
@@ -36,6 +40,8 @@ public:
 	void resized() override;
 
 	virtual void updateThumbnail();
+
+	void setPreviewData(var data = var());
 
 	virtual void mouseDown(const MouseEvent& e) override;
 	virtual void mouseDrag(const MouseEvent& e) override;

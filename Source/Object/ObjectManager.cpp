@@ -102,9 +102,20 @@ void ObjectManager::objectIDChanged(Object* o, int previousID)
     if (to != nullptr) to->globalID->setValue(previousID);
 }
 
-void ObjectManager::saveSceneData(var &sceneData)
+var ObjectManager::getSceneData()
 {
-    for (auto& o : items) o->saveSceneData(sceneData);
+    var data(new DynamicObject());
+    for (auto& o : items) data.getDynamicObject()->setProperty(o->shortName, o->getSceneData());
+    return data;
+}
+
+void ObjectManager::updateSceneData(var& sceneData)
+{
+}
+
+void ObjectManager::lerpFromSceneData(var startData, var endData, float weight)
+{
+    for (auto& o : items) o->lerpFromSceneData(startData.getProperty(o->shortName,var()), endData.getProperty(o->shortName, var()), weight);
 }
 
 void ObjectManager::run()

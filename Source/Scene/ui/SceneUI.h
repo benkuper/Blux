@@ -23,7 +23,9 @@ public:
     std::unique_ptr<FloatSliderUI> loadProgressUI;
 
     void resizedInternalHeader(Rectangle<int>& r) override;
-
+    
+    void mouseEnter(const MouseEvent& e) override;
+    void mouseExit(const MouseEvent& e) override;
     void mouseDown(const MouseEvent& e) override;
 
     void controllableFeedbackUpdateInternal(Controllable* c) override;

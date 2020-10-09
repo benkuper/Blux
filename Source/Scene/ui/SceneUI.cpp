@@ -9,6 +9,8 @@
 */
 
 #include "SceneUI.h"
+#include "../SceneManager.h"
+#include "Object/ui/ObjectManagerGridUI.h"
 
 SceneUI::SceneUI(Scene* scene) :
     BaseItemUI(scene)
@@ -31,6 +33,26 @@ void SceneUI::resizedInternalHeader(Rectangle<int>& r)
     loadUI->setBounds(r.removeFromRight(60).reduced(2));
     r.removeFromRight(2);
     loadProgressUI->setBounds(r.removeFromRight(100).reduced(2,4));
+}
+
+void SceneUI::mouseEnter(const MouseEvent& e)
+{
+    BaseItemUI::mouseEnter(e);
+    if (SceneManager::getInstance()->autoPreview->boolValue())
+    {
+        if (ObjectManagerGridUI* grid = ShapeShifterManager::getInstance()->getContentForType<ObjectManagerGridUI>())
+        {
+            grid->setPreviewData(item->sceneData.getProperty(ObjectManager::getInstance()->shortName, var()));
+        }
+    }
+}
+
+void SceneUI::mouseExit(const MouseEvent& e)
+{
+    if (ObjectManagerGridUI* grid = ShapeShifterManager::getInstance()->getContentForType<ObjectManagerGridUI>())
+    {
+        grid->setPreviewData();
+    }
 }
 
 void SceneUI::mouseDown(const MouseEvent& e)

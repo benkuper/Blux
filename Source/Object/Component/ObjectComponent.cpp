@@ -10,6 +10,7 @@
 
 #include "ObjectComponent.h"
 #include "ui/ObjectComponentEditor.h"
+#include "Common/Helpers/SceneHelpers.h" 
 
 const String ObjectComponent::typeNames[TYPES_MAX]{ "Intensity", "Color", "Gobo", "Laser", "PanTilt", "Servo", "Stepper", "Strobe", "Script", "Custom" };
 
@@ -18,6 +19,8 @@ ObjectComponent::ObjectComponent(String name, ComponentType componentType, var p
 	componentType(componentType),
 	isDirty(true)
 {
+
+	excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked ,this will not be included in scene data", false);
 	canBeCopiedAndPasted = false;
 	canBeReorderedInEditor = false;
 }
@@ -62,16 +65,20 @@ void ObjectComponent::setupFromJSONDefinition(var data)
 
 }
 
-void ObjectComponent::saveSceneData(var& sceneData)
+var ObjectComponent::getSceneData()
 {
-	Array<WeakReference<Parameter>> params = getAllParameters();
-	for (auto& p : params)
-	{
-		if (!p->hideInEditor && !p->isControllableFeedbackOnly) //BIG HACK to avoid listSize ViewUISize, etc.. should be in a proper list
-		{
-			sceneData.getDynamicObject()->setProperty(p->controlAddress, p->value);
-		}
-	}
+	if (excludeFromScenes->boolValue()) return var(new DynamicObject());
+	return SceneHelpers::getParamsSceneData(this, { excludeFromScenes });
+}
+
+void ObjectComponent::updateSceneData(var& sceneData)
+{
+}
+
+void ObjectComponent::lerpFromSceneData(var startData, var endData, float weight)
+{
+	if (excludeFromScenes->boolValue()) return;
+	SceneHelpers::lerpSceneParams(this, startData, endData, weight);
 }
 
 InspectableEditor* ObjectComponent::getEditor(bool isRoot)

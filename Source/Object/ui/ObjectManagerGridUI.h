@@ -29,5 +29,7 @@ public:
 	void resizedInternalContent(Rectangle<int> &r) override;
 	void newMessage(const ContainerAsyncEvent& e) override;
 
+	void setPreviewData(var data = var());
+
 	static ObjectManagerGridUI* create(const String& name) { return new ObjectManagerGridUI(name); }
 };

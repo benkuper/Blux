@@ -40,9 +40,18 @@ void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& 
     }
 }
 
-void EffectManager::saveSceneData(var &sceneData)
+var EffectManager::getSceneData()
 {
-    var eData(new DynamicObject());
-    for (auto& e : items) e->saveSceneData(sceneData);
+    var data(new DynamicObject());
+    for (auto& e : items) data.getDynamicObject()->setProperty(e->shortName, e->getSceneData());
+    return data;
+}
 
+void EffectManager::updateSceneData(var& sceneData)
+{
+}
+
+void EffectManager::lerpFromSceneData(var startData, var endData, float weight)
+{
+    for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
 }

@@ -23,9 +23,11 @@ public:
     virtual ~ObjectComponent();
     
     ComponentType componentType;
+    
+    BoolParameter* excludeFromScenes;
 
     //dmx
-    Array<Parameter *> computedParameters;
+    Array<Parameter*> computedParameters;
     HashMap<Parameter*, Parameter*> computedParamMap;
     Array<int> paramChannels;
 
@@ -40,7 +42,9 @@ public:
 
     virtual void setupFromJSONDefinition(var data);
 
-    void saveSceneData(var &sceneData);
+    var getSceneData();
+    void updateSceneData(var& sceneData);
+    void lerpFromSceneData(var startData, var endData, float weight);
 
     InspectableEditor* getEditor(bool isRoot) override;
 };

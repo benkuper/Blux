@@ -176,12 +176,24 @@ void Object::computeComponentValues(ObjectComponent* c)
 	}
 }
 
-void Object::saveSceneData(var &sceneData)
+var Object::getSceneData()
+{
+	if (excludeFromScenes->boolValue()) return var(new DynamicObject());
+	var data(new DynamicObject());
+	data.getDynamicObject()->setProperty(componentManager.shortName, componentManager.getSceneData());
+	data.getDynamicObject()->setProperty(effectManager.shortName,effectManager.getSceneData());
+	return data;
+}
+
+void Object::updateSceneData(var& sceneData)
+{
+}
+
+void Object::lerpFromSceneData(var startData, var endData, float weight)
 {
 	if (excludeFromScenes->boolValue()) return;
-	//sceneData.getDynamicObject()->setProperty(globalID->getControlAddress(), globalID->intValue()); //needs better handling from ObjectManager auto ID stuff
-	componentManager.saveSceneData(sceneData);
-	effectManager.saveSceneData(sceneData);
+	componentManager.lerpFromSceneData(startData.getProperty(componentManager.shortName, var()), endData.getProperty(componentManager.shortName, var()), weight);
+	effectManager.lerpFromSceneData(startData.getProperty(effectManager.shortName, var()), endData.getProperty(effectManager.shortName,var()), weight);
 }
 
 

@@ -30,8 +30,12 @@ public:
     virtual ~Filter();
 
     BoolParameter* useLocalID;
+    BoolParameter* excludeFromScenes;
 
     FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c);
     virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c);
-    void saveSceneData(var& sceneData);
+    
+    var getSceneData();
+    void updateSceneData(var& sceneData);
+    void lerpFromSceneData(var startData, var endData, float weight);
 };

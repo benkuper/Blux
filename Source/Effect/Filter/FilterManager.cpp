@@ -31,9 +31,20 @@ FilterManager::~FilterManager()
 {
 }
 
-void FilterManager::saveSceneData(var& sceneData)
+var FilterManager::getSceneData()
 {
-    for (auto& i : items) i->saveSceneData(sceneData);
+    var data(new DynamicObject());
+    for (auto& i : items) data.getDynamicObject()->setProperty(i->shortName, i->getSceneData());
+    return data;
+}
+
+void FilterManager::updateSceneData(var& sceneData)
+{
+}
+
+void FilterManager::lerpFromSceneData(var startData, var endData, float weight)
+{
+    for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
 }
 
 FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectComponent* c)

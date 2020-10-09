@@ -41,7 +41,9 @@ public:
 
     void objectIDChanged(Object * o, int previousID) override;
 
-    void saveSceneData(var &sceneData);
+    var getSceneData();
+    void updateSceneData(var& sceneData);
+    void lerpFromSceneData(var startData, var endData, float weight);
 
     void run() override;
 

@@ -37,8 +37,7 @@ public:
 
     void saveScene();
     var getSceneData();
-
-    void updateScene(); //used to resync with current objects and data that might not have been saved
+    void updateSceneData(); //used to resync with current objects and data that might not have been saved
     void loadScene(float loadTime = -1);
 
     void onContainerTriggerTriggered(Trigger* t) override;

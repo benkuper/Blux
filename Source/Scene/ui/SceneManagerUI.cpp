@@ -21,6 +21,10 @@ SceneManagerUI::SceneManagerUI(const String& name) :
     prevSceneUI.reset(manager->loadPreviousSceneTrigger->createButtonUI());
     addAndMakeVisible(prevSceneUI.get());
 
+    autoPreviewUI.reset(manager->autoPreview->createButtonToggle());
+    addAndMakeVisible(autoPreviewUI.get());
+
+
     addExistingItems();
 
 }
@@ -36,5 +40,7 @@ void SceneManagerUI::resizedInternalHeader(Rectangle<int>& r)
 
     prevSceneUI->setBounds(r.removeFromLeft(100).reduced(1));
     r.removeFromLeft(8);
-    nextSceneUI->setBounds(r.removeFromLeft(200).reduced(1));
+    nextSceneUI->setBounds(r.removeFromLeft(100).reduced(1));
+    r.removeFromLeft(8);
+    autoPreviewUI->setBounds(r.removeFromLeft(60).reduced(1));
 }

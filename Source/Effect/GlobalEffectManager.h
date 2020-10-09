@@ -24,7 +24,9 @@ public:
 
     BoolParameter* excludeFromScenes;
 
-    void saveSceneData(var& sceneData);
+    var getSceneData();
+    void updateSceneData(var& sceneData);
+    void lerpFromSceneData(var startData, var endData, float weight);
 
     String getTypeString() const override { return "EffectGroup"; }
 };
@@ -40,6 +42,7 @@ public:
 
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values);
 
-    void saveSceneData(var& sceneData);
-
+    var getSceneData();
+    void updateSceneData(var& sceneData);
+    void lerpFromSceneData(var startData, var endData, float weight);
 };

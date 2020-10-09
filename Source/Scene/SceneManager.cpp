@@ -10,6 +10,10 @@
 
 #include "SceneManager.h"
 
+#include "Object/ObjectManager.h"
+#include "Group/GroupManager.h"
+#include "Effect/GlobalEffectManager.h"
+
 juce_ImplementSingleton(SceneManager)
 
 SceneManager::SceneManager() :
@@ -23,6 +27,8 @@ SceneManager::SceneManager() :
 
     loadNextSceneTrigger = addTrigger("Load Next Scene", "Load the next scene. If no scene is loaded, will load first one");
     loadPreviousSceneTrigger = addTrigger("Load Previous Scene", "Load the previous scene. If no scene is loaded, this will do nothing.");
+
+    autoPreview = addBoolParameter("Auto Preview", "If checked, this will force preview when hovering a scene",  false);
 }
 
 SceneManager::~SceneManager()
@@ -78,8 +84,9 @@ void SceneManager::run()
     float timeAtLoad = Time::getMillisecondCounter() / 1000.0f;
     currentScene->loadProgress->setValue(0);
 
-    var rawDataAtLoad = currentScene->getSceneData();
+    var dataAtLoad = currentScene->getSceneData();
      
+    /*
     dataAtLoad = var(new DynamicObject());
     dataToLoad = var(new DynamicObject());
 
@@ -97,32 +104,48 @@ void SceneManager::run()
     }
 
     NLOG(niceName, "Loading Scene " << currentScene->niceName <<", " << numChanged << " changed parameters.");
+    */
 
-    if (loadTime == 0)
+    String oName = ObjectManager::getInstance()->shortName;
+    String gName = GroupManager::getInstance()->shortName;
+    String eName = GlobalEffectManager::getInstance()->shortName;
+    
+    
+    if (loadTime > 0)
     {
-        lerpSceneParams(1);
-        currentScene->isCurrent->setValue(true);
-    }
-    else
-    {
-        while (currentScene->loadProgress->floatValue() < 1)
+        while (!threadShouldExit() && currentScene->loadProgress->floatValue() < 1)
         {
-            if (!Engine::mainEngine->isClearing && !threadShouldExit()) return;
+            if (Engine::mainEngine->isClearing) return;
+
             float curTime = Time::getMillisecondCounter() / 1000.0f;;
             float progress = (curTime - timeAtLoad) / loadTime;
             currentScene->loadProgress->setValue(progress);
-            lerpSceneParams(currentScene->interpolationCurve.getValueAtPosition(progress));
+
+            float weight = currentScene->interpolationCurve.getValueAtPosition(progress);
+
+            ObjectManager::getInstance()->lerpFromSceneData(dataAtLoad.getProperty(oName, var()), currentScene->sceneData.getProperty(oName, var()), weight);
+            GroupManager::getInstance()->lerpFromSceneData(dataAtLoad.getProperty(gName, var()), currentScene->sceneData.getProperty(gName, var()), weight);
+            GlobalEffectManager::getInstance()->lerpFromSceneData(dataAtLoad.getProperty(eName, var()), currentScene->sceneData.getProperty(eName, var()), weight);
+
             sleep(30);
         }
+    }
 
-        if (!Engine::mainEngine->isClearing && !threadShouldExit()) return;
+    if (Engine::mainEngine->isClearing) return;
 
-        if (currentScene->loadProgress->floatValue() == 1) currentScene->isCurrent->setValue(true);
+    
+    if (currentScene->loadProgress->floatValue() == 1)
+    {
+        ObjectManager::getInstance()->lerpFromSceneData(dataAtLoad.getProperty(oName, var()), currentScene->sceneData.getProperty(oName, var()), 1);
+        GroupManager::getInstance()->lerpFromSceneData(dataAtLoad.getProperty(gName, var()), currentScene->sceneData.getProperty(gName, var()), 1);
+        GlobalEffectManager::getInstance()->lerpFromSceneData(dataAtLoad.getProperty(eName, var()), currentScene->sceneData.getProperty(eName, var()), 1);
+        currentScene->isCurrent->setValue(true);
     }
 
     currentScene->loadProgress->setValue(0);
 }
 
+/*
 void SceneManager::lerpSceneParams(float weight)
 {
     NamedValueSet props = currentScene->sceneData.getDynamicObject()->getProperties();
@@ -154,6 +177,7 @@ void SceneManager::lerpSceneParams(float weight)
         }
     }
 }
+*/
 
 void SceneManager::askForLoadScene(Scene* s, float loadTime)
 {

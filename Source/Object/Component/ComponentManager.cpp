@@ -41,10 +41,22 @@ void ComponentManager::addComponentFromDefinition(StringRef type, var definition
     addItem(c);
 }
 
-void ComponentManager::saveSceneData(var &sceneData)
+var ComponentManager::getSceneData()
 {
-    for (auto& c : items) c->saveSceneData(sceneData);
+    var data(new DynamicObject());
+    for (auto& c : items) data.getDynamicObject()->setProperty(c->shortName, c->getSceneData());
+    return data;
 }
+
+void ComponentManager::updateSceneData(var& sceneData)
+{
+}
+
+void ComponentManager::lerpFromSceneData(var startData, var endData, float weight)
+{
+    for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
+}
+
 
 var ComponentManager::getJSONData()
 {

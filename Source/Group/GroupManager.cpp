@@ -33,7 +33,18 @@ void GroupManager::processComponentValues(Object* o, ObjectComponent* c, var& va
     }
 }
 
-void GroupManager::saveSceneData(var& sceneData)
+var GroupManager::getSceneData()
 {
-    for (auto& i : items) i->saveSceneData(sceneData);
+    var data(new DynamicObject());
+    for (auto& i : items) data.getDynamicObject()->setProperty(i->shortName, i->getSceneData());
+    return data;
+}
+
+void GroupManager::updateSceneData(var& sceneData)
+{
+}
+
+void GroupManager::lerpFromSceneData(var startData, var endData, float weight)
+{
+    for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
 }

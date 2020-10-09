@@ -18,7 +18,8 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),
 	shouldRepaint(false),
 	flashMode(false),
-	transparentBG(false)
+	transparentBG(false),
+	previewIntensity(0)
 {
 	updateThumbnail();
 	bringToFrontOnSelect = false;
@@ -64,7 +65,19 @@ void ObjectGridUI::paint(Graphics& g)
 
 	Rectangle<int> r = getLocalBounds();
 
+	
 	r.removeFromBottom(20);
+
+	if (!previewData.isVoid())
+	{
+		Rectangle<float> pr = r.withHeight(12).withBottomY(r.getBottom()).reduced(2).toFloat();
+		g.setColour(Colours::purple.darker(.8f));
+		g.fillRoundedRectangle(pr, 2);
+		g.setColour(Colours::purple);
+		g.fillRoundedRectangle(pr.withWidth(previewIntensity * pr.getWidth()), 2);
+		g.setColour(Colours::purple.brighter());
+		g.drawRoundedRectangle(pr, 2, 1);
+	}
 
 	g.setColour(Colours::white.withAlpha(isMouseOver() ? .2f : 1.f));
 	if (objectImage.getWidth() > 0) g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
@@ -74,8 +87,6 @@ void ObjectGridUI::paint(Graphics& g)
 		g.setColour(Colours::white);
 		g.drawFittedText(item->niceName, getLocalBounds().reduced(4), Justification::centred, 3);
 	}
-
-
 }
 
 void ObjectGridUI::resized()
@@ -105,6 +116,16 @@ void ObjectGridUI::updateThumbnail()
 	if (objectImage.getWidth() == 0) objectImage = BluxAssetManager::getImage("icon128");
 
 	shouldRepaint = true;
+}
+
+void ObjectGridUI::setPreviewData(var data)
+{
+	if (item->excludeFromScenes->boolValue()) return;
+	previewData = data.clone();
+	var iData = previewData.getProperty("components", var()).getProperty("intensity", var()).getProperty("value", var());
+	if (!iData.isVoid()) previewIntensity = (float)iData;
+
+	repaint();
 }
 
 void ObjectGridUI::mouseDown(const MouseEvent& e)

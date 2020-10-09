@@ -141,6 +141,10 @@
 			isa = PBXBuildFile;
 			fileRef = 260A9F31AEA7D218DC2F9CDF;
 		};
+		AFA48691C403245E26810B2A = {
+			isa = PBXBuildFile;
+			fileRef = 6A7063FAB3E5711505908343;
+		};
 		0CF0A6553A4821D73860D4B2 = {
 			isa = PBXBuildFile;
 			fileRef = 8F3C631669E010053C405FFF;
@@ -1304,6 +1308,13 @@
 			path = "../../Modules/juce_organicui";
 			sourceTree = "SOURCE_ROOT";
 		};
+		6A7063FAB3E5711505908343 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = SceneHelpers.cpp;
+			path = ../../Source/Common/Helpers/SceneHelpers.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		6B8F058D33DB1DBF6836037C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1785,6 +1796,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ObjectGroup.h;
 			path = ../../Source/Group/groups/object/ObjectGroup.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		AC703A846AB3D42F740D5C58 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = SceneHelpers.h;
+			path = ../../Source/Common/Helpers/SceneHelpers.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		ACD729553FA681814C25FE4D = {
@@ -2614,6 +2632,15 @@
 			name = Group;
 			sourceTree = "<group>";
 		};
+		8F59BF4543E9DA2420603EBF = {
+			isa = PBXGroup;
+			children = (
+				6A7063FAB3E5711505908343,
+				AC703A846AB3D42F740D5C58,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		7516FF57A56A8E63B3945DBB = {
 			isa = PBXGroup;
 			children = (
@@ -2733,6 +2760,7 @@
 		42778E7BB0B09E9DFB9889EC = {
 			isa = PBXGroup;
 			children = (
+				8F59BF4543E9DA2420603EBF,
 				F7401FCBBD6520A9C2F368F2,
 				218872AAAC71B5B791BB88AC,
 				096FA361D44DAD6D5E53488B,
@@ -3408,7 +3436,7 @@
 					"_DEBUG=1",
 					"DEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b3",
+					"JUCE_APP_VERSION=1.0.0b4",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3495,7 +3523,7 @@
 					"_NDEBUG=1",
 					"NDEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b3",
+					"JUCE_APP_VERSION=1.0.0b4",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3714,6 +3742,7 @@
 				484D4ABD0C9B6DE14F0E6F9C,
 				24439ABD62AB3AACFCEF5B6E,
 				498B996582863A6C2C02C6F5,
+				AFA48691C403245E26810B2A,
 				0CF0A6553A4821D73860D4B2,
 				FE393881960C394D504C9914,
 				A431F3AEA9CAA7A43D94E8B6,

@@ -12,6 +12,8 @@
 #include "Object/Object.h"
 
 #include "ui/FilterEditor.h"
+#include "Common/Helpers/SceneHelpers.h"
+
 
 Filter::Filter(const String& name) :
     BaseItem(name)
@@ -19,6 +21,9 @@ Filter::Filter(const String& name) :
     itemDataType = "Filter";
     saveAndLoadRecursiveData = true;
     useLocalID = addBoolParameter("Use Local ID", "If enabled, this will use the generated ID from this filter instead of the object's global ID", false);
+
+    excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked, this will not be saved in scene", false);
+
     showInspectorOnSelect = false;
 
 }
@@ -42,15 +47,17 @@ FilterResult Filter::getFilteredResultForComponentInternal(Object* o, ObjectComp
     return FilterResult({ o->globalID->intValue(), 1 });
 }
 
-void Filter::saveSceneData(var& sceneData)
+var Filter::getSceneData()
 {
-    Array<WeakReference<Parameter>> params = getAllParameters();
-    for (auto& p : params)
-    {
-        if (p->type == Parameter::ENUM || p->type == Parameter::TARGET) continue;
-        if (!p->hideInEditor && !p->isControllableFeedbackOnly) //BIG HACK to avoid listSize ViewUISize, etc.. should be in a proper list
-        {
-            sceneData.getDynamicObject()->setProperty(p->controlAddress, p->value);
-        }
-    }
+    return SceneHelpers::getParamsSceneData(this, { excludeFromScenes });
+;}
+
+void Filter::updateSceneData(var& sceneData)
+{
+}
+
+void Filter::lerpFromSceneData(var startData, var endData, float weight)
+{
+    if (excludeFromScenes->boolValue()) return;
+    SceneHelpers::lerpSceneParams(this, startData, endData, weight);
 }

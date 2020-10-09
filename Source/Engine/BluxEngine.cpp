@@ -36,6 +36,9 @@ BluxEngine::BluxEngine() :
 
 	GlobalSettings::getInstance()->addChildControllableContainer(BluxSettings::getInstance());
 	GlobalSettings::getInstance()->addControllableContainerListener(AudioManager::getInstance());
+
+	convertURL = "http://benjamin.kuperberg.fr/blux/releases/convert.php";
+	breakingChangesVersions.add("1.0.0b4");
 }
 
 BluxEngine::~BluxEngine()

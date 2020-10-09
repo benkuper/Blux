@@ -39,8 +39,18 @@ void Group::processComponentValues(Object* o, ObjectComponent* c, var& values)
     effectManager.processComponentValues(o, c, values);
 }
 
-void Group::saveSceneData(var& sceneData)
+var Group::getSceneData()
 {
-    sceneData.getDynamicObject()->setProperty(enabled->getControlAddress(), enabled->boolValue());
-    effectManager.saveSceneData(sceneData);
+    var data(new DynamicObject());
+    data.getDynamicObject()->setProperty(effectManager.shortName,effectManager.getSceneData());
+    return data;
+}
+
+void Group::updateSceneData(var& sceneData)
+{
+}
+
+void Group::lerpFromSceneData(var startData, var endData, float weight)
+{
+    effectManager.lerpFromSceneData(startData.getProperty(effectManager.shortName, var()), endData.getProperty(effectManager.shortName, var()), weight);
 }

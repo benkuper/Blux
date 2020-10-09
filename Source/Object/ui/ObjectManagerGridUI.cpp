@@ -99,3 +99,11 @@ void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
 		break;
 	}
 }
+
+void ObjectManagerGridUI::setPreviewData(var data)
+{
+	for (auto& i : itemsUI)
+	{
+		i->setPreviewData(data.getProperty(i->item->shortName, var()));
+	}
+}

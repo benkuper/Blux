@@ -54,7 +54,9 @@ public:
     void checkAndComputeComponentValuesIfNeeded();
     void computeComponentValues(ObjectComponent* c);
 
-    void saveSceneData(var &sceneData);
+    var getSceneData();
+    void updateSceneData(var& sceneData);
+    void lerpFromSceneData(var startData, var endData, float weight);
 
     //Listener
     class  ObjectListener

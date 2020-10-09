@@ -28,8 +28,7 @@ public:
 
     Factory<Scene> factory;
 
-    var dataAtLoad;
-    var dataToLoad; //optimized list with only what has changed from state at load
+
     float loadTime;
 
     Scene* previousScene;
@@ -37,6 +36,7 @@ public:
 
     Trigger* loadNextSceneTrigger;
     Trigger* loadPreviousSceneTrigger;
+    BoolParameter * autoPreview;
 
     void addItemInternal(Scene* s, var data) override;
     void removeItemInternal(Scene* s) override;
@@ -44,10 +44,9 @@ public:
     void loadScene(Scene* s, float loadTime = -1);
 
     void run() override;
-    void lerpSceneParams(float weight);
+    //void lerpSceneParams(float weight);
 
     void askForLoadScene(Scene* s, float time) override;
-
 
     void processComponentValues(Object* o, ObjectComponent* c, var& values);
 

@@ -28,7 +28,9 @@ public:
     void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
     virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values);
 
-    void saveSceneData(var &sceneData);
+    var getSceneData();
+    void updateSceneData(var& sceneData);
+    void lerpFromSceneData(var startData, var endData, float weight);
 
     virtual InspectableEditor* getEditor(bool isRoot) override;
     String getTypeString() const override { return "Effect"; }

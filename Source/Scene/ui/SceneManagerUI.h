@@ -22,6 +22,7 @@ public:
 
     std::unique_ptr<TriggerButtonUI> prevSceneUI;
     std::unique_ptr<TriggerButtonUI> nextSceneUI;
+    std::unique_ptr<BoolButtonToggleUI> autoPreviewUI;
 
 
     void resizedInternalHeader(Rectangle<int>& r) override;

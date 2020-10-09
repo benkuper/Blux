@@ -22,7 +22,10 @@ public:
     Factory<Filter> factory;
     ComponentSelector componentSelector;
 
-    void saveSceneData(var &sceneData);
+    var getSceneData();
+    void updateSceneData(var& sceneData);
+    void lerpFromSceneData(var startData, var endData, float weight);
+
     FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c);
 
     InspectableEditor* getEditor(bool isRoot) override;

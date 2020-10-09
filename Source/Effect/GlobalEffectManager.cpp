@@ -32,9 +32,20 @@ void GlobalEffectManager::processComponentValues(Object* o, ObjectComponent* c, 
     }
 }
 
-void GlobalEffectManager::saveSceneData(var& sceneData)
+var GlobalEffectManager::getSceneData()
 {
-    for (auto& i : items) i->saveSceneData(sceneData);
+    var data(new DynamicObject());
+    for (auto& i : items) data.getDynamicObject()->setProperty(i->shortName, i->getSceneData());
+    return data;
+}
+
+void GlobalEffectManager::updateSceneData(var& sceneData)
+{
+}
+
+void GlobalEffectManager::lerpFromSceneData(var startData, var endData, float weight)
+{
+    for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
 }
 
 EffectGroup::EffectGroup() :
@@ -50,10 +61,20 @@ EffectGroup::~EffectGroup()
 {
 }
 
-void EffectGroup::saveSceneData(var& sceneData)
+var EffectGroup::getSceneData()
+{
+    var data(new DynamicObject());
+    if (excludeFromScenes->boolValue()) return data;
+    data.getDynamicObject()->setProperty(effectManager.shortName, effectManager.getSceneData());
+    return data;
+}
+
+void EffectGroup::updateSceneData(var& sceneData)
+{
+}
+
+void EffectGroup::lerpFromSceneData(var startData, var endData, float weight)
 {
     if (excludeFromScenes->boolValue()) return;
-
-    sceneData.getDynamicObject()->setProperty(enabled->getControlAddress(), enabled->boolValue());
-    effectManager.saveSceneData(sceneData);
+    effectManager.lerpFromSceneData(startData.getProperty(effectManager.shortName, var()), endData.getProperty(effectManager.shortName, var()), weight);
 }
