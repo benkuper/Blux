@@ -16,5 +16,6 @@ class SceneHelpers
 {
 public:
     static var getParamsSceneData(BaseItem* i, Array<Parameter *> excludeParams = Array<Parameter *>());
-    static void lerpSceneParams(BaseItem * i, var startData, var endData, float weight);
+    static void lerpSceneParams(BaseItem* i, var startData, var endData, float weight);
+    static void lerpSceneParam(Parameter * p, var startData, var endData, float weight);
 };

@@ -184,9 +184,9 @@ void DMXChannelItem::mouseDown(const MouseEvent& e)
 
         int result = p.show();
 
-        switch (result)
-        {
-        default:
+        //switch (result)
+        //{
+        //default:
             if (Object* o = ObjectManager::getInstance()->factory.createFromMenuResult(result))
             {
                 o->targetInterface->setValueFromTarget(channelView->currentInterface);
@@ -199,8 +199,8 @@ void DMXChannelItem::mouseDown(const MouseEvent& e)
                 }
                 ObjectManager::getInstance()->addItem(o);
             }
-            break;
-        }
+        //    break;
+        //}
     }
 }
 

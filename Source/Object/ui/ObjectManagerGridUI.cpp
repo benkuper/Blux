@@ -70,6 +70,12 @@ void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
 
 	for (auto& mui : itemsUI)
 	{
+		if (!checkFilterForItem(mui))
+		{
+			mui->setVisible(false);
+			continue;
+		}
+
 		if (index % numThumbPerLine == 0)
 		{
 			int numThumbsInThisLine = jmin(numThumbs - index, numThumbPerLine);

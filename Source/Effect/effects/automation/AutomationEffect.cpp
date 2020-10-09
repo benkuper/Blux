@@ -31,7 +31,7 @@ AutomationEffect::AutomationEffect(var params) :
     offsetByValue = addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
 
     automation.isSelectable = false;
-    automation.length->setValue(length->floatValue());
+    automation.length->setValue(1);
     automation.addKey(0,0 , false);
     automation.items[0]->easingType->setValueWithData(Easing::BEZIER);
     automation.addKey(.5f, 1, false);
@@ -64,7 +64,7 @@ var AutomationEffect::getProcessedComponentValuesInternal(Object* o, ObjectCompo
         float time = curTime + offsetByID->floatValue() * id + offsetByValue->floatValue() * i;
         float relTime = fmodf(time, length->floatValue());
         if (relTime < 0) relTime += length->floatValue();
-        values[i] = automation.getValueAtPosition(relTime);
+        values[i] = automation.getValueAtPosition(relTime / length->floatValue());
     }
 
     return values;
@@ -85,10 +85,6 @@ void AutomationEffect::onContainerParameterChangedInternal(Parameter* p)
         {
             //stopTimer();
         }
-    }
-    else if (p == length)
-    {
-        automation.setLength(length->floatValue());
     }
     else if (p == range)
     {

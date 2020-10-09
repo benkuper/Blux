@@ -22,7 +22,10 @@ public:
     ~Effect();
 
     FloatParameter* weight;
-    BoolParameter* excludeFromScenes;
+
+    enum SceneSaveMode { FULL, WEIGHT_ONLY, NONE };
+    EnumParameter * sceneSaveMode;
+
     FilterManager filterManager;
 
     void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
