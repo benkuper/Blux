@@ -28,11 +28,15 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	if (IntensityComponent* ic = item->getComponent<IntensityComponent>())
 	{
 		computedIntensityUI.reset(((FloatParameter*)ic->computedParameters[0])->createSlider());
+		computedIntensityUI->useCustomBGColor = true;
+		computedIntensityUI->customBGColor = BG_COLOR.darker(.6f);
 		computedIntensityUI->showLabel = false;
 		computedIntensityUI->showValue = false;
 		addAndMakeVisible(computedIntensityUI.get());
 
 		intensityUI.reset(((FloatParameter*)ic->values[0])->createSlider());
+		intensityUI->useCustomBGColor = true;
+		intensityUI->customBGColor = BG_COLOR.darker(.6f);
 		intensityUI->showLabel = false;
 		intensityUI->showValue = false;
 		addAndMakeVisible(intensityUI.get());
@@ -70,13 +74,13 @@ void ObjectGridUI::paint(Graphics& g)
 
 	if (!previewData.isVoid())
 	{
-		Rectangle<float> pr = r.withHeight(12).withBottomY(r.getBottom()).reduced(2).toFloat();
-		g.setColour(Colours::purple.darker(.8f));
-		g.fillRoundedRectangle(pr, 2);
-		g.setColour(Colours::purple);
-		g.fillRoundedRectangle(pr.withWidth(previewIntensity * pr.getWidth()), 2);
+		Rectangle<float> pr = r.withHeight(10).withBottomY(r.getBottom()).reduced(2).toFloat();
+		g.setColour(Colours::purple.darker(1));
+		g.fillRoundedRectangle(pr, 4);
+		g.setColour(Colours::purple.brighter(.3f));
+		g.fillRoundedRectangle(pr.withWidth(previewIntensity * pr.getWidth()), 4);
 		g.setColour(Colours::purple.brighter());
-		g.drawRoundedRectangle(pr, 2, 1);
+		g.drawRoundedRectangle(pr, 4, .5f);
 	}
 
 	g.setColour(Colours::white.withAlpha(isMouseOver() ? .2f : 1.f));
@@ -121,6 +125,8 @@ void ObjectGridUI::updateThumbnail()
 void ObjectGridUI::setPreviewData(var data)
 {
 	if (item->excludeFromScenes->boolValue()) return;
+	if (previewData.isVoid() && data.isVoid()) return; //Avoid repainting all the time
+
 	previewData = data.clone();
 	var iData = previewData.getProperty("components", var()).getProperty("intensity", var()).getProperty("value", var());
 	if (!iData.isVoid()) previewIntensity = (float)iData;

@@ -20,7 +20,8 @@ SceneManager::SceneManager() :
     BaseManager("Scenes"),
     Thread("Scene Load"),
     previousScene(nullptr),
-    currentScene(nullptr)
+    currentScene(nullptr),
+    sceneManagerNotifier(5)
 {
     managerFactory = &factory;
     factory.defs.add(Factory<Scene>::Definition::createDef("", "Scene", &Scene::create));
@@ -79,6 +80,18 @@ void SceneManager::loadScene(Scene* s, float time)
     startThread();
 }
 
+Scene* SceneManager::getNextScene()
+{
+    int index = items.indexOf(currentScene) + 1;
+    return index < items.size() ? items[index] : nullptr;;
+}
+
+Scene* SceneManager::getPreviousScene()
+{
+    int index = items.indexOf(currentScene) - 1;
+    return index >= 0 ? items[index] : nullptr;
+}
+
 void SceneManager::run()
 {
     float timeAtLoad = Time::getMillisecondCounter() / 1000.0f;
@@ -86,30 +99,12 @@ void SceneManager::run()
 
     var dataAtLoad = currentScene->getSceneData();
      
-    /*
-    dataAtLoad = var(new DynamicObject());
-    dataToLoad = var(new DynamicObject());
-
-    int numChanged = 0;
-    NamedValueSet props = currentScene->sceneData.getDynamicObject()->getProperties();
-    for (auto& p : props)
-    {
-        var rawValue = rawDataAtLoad.getDynamicObject()->getProperty(p.name);
-        if (rawValue != p.value)
-        {
-            dataAtLoad.getDynamicObject()->setProperty(p.name, rawValue);
-            dataToLoad.getDynamicObject()->setProperty(p.name, p.value);
-            numChanged++;
-        }
-    }
-
-    NLOG(niceName, "Loading Scene " << currentScene->niceName <<", " << numChanged << " changed parameters.");
-    */
-
     String oName = ObjectManager::getInstance()->shortName;
     String gName = GroupManager::getInstance()->shortName;
     String eName = GlobalEffectManager::getInstance()->shortName;
-    
+
+
+    sceneManagerNotifier.addMessage(new SceneManagerEvent(SceneManagerEvent::SCENE_LOAD_START));
     
     if (loadTime > 0)
     {
@@ -134,7 +129,7 @@ void SceneManager::run()
     if (Engine::mainEngine->isClearing) return;
 
     
-    if (currentScene->loadProgress->floatValue() == 1)
+    if (currentScene->loadProgress->floatValue() == 1 || loadTime == 0)
     {
         ObjectManager::getInstance()->lerpFromSceneData(dataAtLoad.getProperty(oName, var()), currentScene->sceneData.getProperty(oName, var()), 1);
         GroupManager::getInstance()->lerpFromSceneData(dataAtLoad.getProperty(gName, var()), currentScene->sceneData.getProperty(gName, var()), 1);
@@ -143,41 +138,9 @@ void SceneManager::run()
     }
 
     currentScene->loadProgress->setValue(0);
+
+    sceneManagerNotifier.addMessage(new SceneManagerEvent(SceneManagerEvent::SCENE_LOAD_END));
 }
-
-/*
-void SceneManager::lerpSceneParams(float weight)
-{
-    NamedValueSet props = currentScene->sceneData.getDynamicObject()->getProperties();
-    for (auto& p : props)
-    {
-
-        if (Parameter* param = dynamic_cast<Parameter*>(Engine::mainEngine->getControllableForAddress(p.name.toString())))
-        {
-            var val = var();// p.value.clone();
-            var valueAtLoad = dataAtLoad.getProperty(p.name, p.value.clone());
-
-            if (p.value.isArray())
-            {
-                for (int i = 0; i < p.value.size(); i++)
-                {
-                    val.append((float)valueAtLoad[i] + ((float)p.value[i] - (float)valueAtLoad[i]) * weight);
-                }
-            }
-            else if (p.value.isDouble() || p.value.isInt())
-            {
-                val = (float)valueAtLoad + ((float)p.value - (float)valueAtLoad) * weight;
-            }
-            else if (p.value.isBool())
-            {
-                val = weight >= .5f ? valueAtLoad : p.value;
-            }
-
-            param->setValue(val);
-        }
-    }
-}
-*/
 
 void SceneManager::askForLoadScene(Scene* s, float loadTime)
 {
@@ -197,19 +160,11 @@ void SceneManager::onContainerTriggerTriggered(Trigger* t)
 {
     if (t == loadNextSceneTrigger)
     {
-        int index = items.indexOf(currentScene) + 1;
-        if (index < items.size())
-        {
-            loadScene(items[index]);
-        }
+       loadScene(getNextScene());
     }
     else if (t == loadPreviousSceneTrigger)
     {
-        int index = items.indexOf(currentScene) - 1;
-        if (index >= 0)
-        {
-            loadScene(items[index]);
-        }
+        loadScene(getPreviousScene());
     }
 }
 

@@ -11,6 +11,7 @@
 #include "SceneUI.h"
 #include "../SceneManager.h"
 #include "Object/ui/ObjectManagerGridUI.h"
+#include "Layout/ui/StageLayout2DView.h"
 
 SceneUI::SceneUI(Scene* scene) :
     BaseItemUI(scene)
@@ -38,21 +39,14 @@ void SceneUI::resizedInternalHeader(Rectangle<int>& r)
 void SceneUI::mouseEnter(const MouseEvent& e)
 {
     BaseItemUI::mouseEnter(e);
-    if (SceneManager::getInstance()->autoPreview->boolValue())
-    {
-        if (ObjectManagerGridUI* grid = ShapeShifterManager::getInstance()->getContentForType<ObjectManagerGridUI>())
-        {
-            grid->setPreviewData(item->sceneData.getProperty(ObjectManager::getInstance()->shortName, var()));
-        }
-    }
+    if (SceneManager::getInstance()->autoPreview->boolValue()) showPreview(true);
+
 }
 
 void SceneUI::mouseExit(const MouseEvent& e)
 {
-    if (ObjectManagerGridUI* grid = ShapeShifterManager::getInstance()->getContentForType<ObjectManagerGridUI>())
-    {
-        grid->setPreviewData();
-    }
+    BaseItemUI::mouseExit(e);
+    showPreview(false);
 }
 
 void SceneUI::mouseDown(const MouseEvent& e)
@@ -83,6 +77,13 @@ void SceneUI::mouseDown(const MouseEvent& e)
             break;
         }
     }
+}
+
+void SceneUI::showPreview(bool doShow)
+{
+    var d = doShow ? item->sceneData.getProperty(ObjectManager::getInstance()->shortName, var()) : var();
+    if (ObjectManagerGridUI* grid = ShapeShifterManager::getInstance()->getContentForType<ObjectManagerGridUI>()) grid->setPreviewData(d);
+    if (StageLayout2DView* view = ShapeShifterManager::getInstance()->getContentForType<StageLayout2DView>()) view->setPreviewData(d);
 }
 
 void SceneUI::controllableFeedbackUpdateInternal(Controllable* c)

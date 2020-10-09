@@ -28,5 +28,7 @@ public:
     void mouseExit(const MouseEvent& e) override;
     void mouseDown(const MouseEvent& e) override;
 
+    void showPreview(bool doShow);
+
     void controllableFeedbackUpdateInternal(Controllable* c) override;
 };

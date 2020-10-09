@@ -50,6 +50,11 @@ void StageLayout2DView::addItemUIInternal(Object2DView* ui)
     if(filterStageView.isVisible()) filterStageView.toFront(false);
 }
 
+void StageLayout2DView::setPreviewData(var data)
+{
+    for (auto& i : itemsUI) i->setPreviewData(data.getProperty(i->item->shortName, var()));
+}
+
 
 void StageLayout2DView::resized()
 {

@@ -29,6 +29,8 @@ public:
 
     void addItemUIInternal(Object2DView* ui) override;
 
+    void setPreviewData(var data = var());
+
     void resized() override;
 
     void newMessage(const ContainerAsyncEvent& e) override;

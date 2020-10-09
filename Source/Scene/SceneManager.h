@@ -43,6 +43,9 @@ public:
 
     void loadScene(Scene* s, float loadTime = -1);
 
+    Scene* getNextScene();
+    Scene* getPreviousScene();
+
     void run() override;
     //void lerpSceneParams(float weight);
 
@@ -54,4 +57,21 @@ public:
 
     void inspectableDestroyed(Inspectable* i) override;
 
+
+    class SceneManagerEvent
+    {
+    public:
+        enum Type { SCENE_LOAD_START, SCENE_LOAD_END };
+
+        SceneManagerEvent(Type t) : type(t) {}
+        Type type;
+    };
+
+    QueuedNotifier<SceneManagerEvent> sceneManagerNotifier;
+    typedef QueuedNotifier<SceneManagerEvent>::Listener AsyncListener;
+
+
+    void addAsyncSceneManagerListener(AsyncListener* newListener) { sceneManagerNotifier.addListener(newListener); }
+    void addAsyncCoalescedSceneManagerListener(AsyncListener* newListener) { sceneManagerNotifier.addAsyncCoalescedListener(newListener); }
+    void removeAsyncSceneManagerListener(AsyncListener* listener) { sceneManagerNotifier.removeListener(listener); }
 };
