@@ -9,6 +9,7 @@
 */
 
 #include "ObjectManagerGridUI.h"
+#include "Scene/SceneManager.h"
 
 ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 	BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
@@ -28,25 +29,33 @@ ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 
 	blackOutUI.reset(manager->blackOut->createButtonToggle());
 	addAndMakeVisible(blackOutUI.get());
+	activeInSceneUI.reset(manager->filterActiveInScene->createButtonToggle());
+	addAndMakeVisible(activeInSceneUI.get());
 
 	manager->addAsyncCoalescedContainerListener(this);
 
 	addExistingItems();
+
+	//SceneManager::getInstance()->addAsyncSceneManagerListener(this);
 }
 
 ObjectManagerGridUI::~ObjectManagerGridUI()
 {
 	if(!inspectable.wasObjectDeleted()) manager->removeAsyncContainerListener(this);
+	//if(!SceneManager::getInstanceWithoutCreating()) SceneManager::getInstance()->addAsyncSceneManagerListener(this);
 }
 
 void ObjectManagerGridUI::resizedInternalHeader(Rectangle<int>& r)
 {
 	BaseManagerShapeShifterUI::resizedInternalHeader(r);
-	thumbSizeUI->setBounds(r.removeFromLeft(200).reduced(3));
-	r.removeFromLeft(8);
-	flashValueUI->setBounds(r.removeFromLeft(200).reduced(3));
-	r.removeFromLeft(8);
-	blackOutUI->setBounds(r.removeFromLeft(150).reduced(3));
+	r.removeFromLeft(4);
+	activeInSceneUI->setBounds(r.removeFromLeft(100).reduced(3)); 
+	r.removeFromLeft(16);
+	thumbSizeUI->setBounds(r.removeFromLeft(150).reduced(3));
+	r.removeFromLeft(16);
+	flashValueUI->setBounds(r.removeFromLeft(150).reduced(3));
+	r.removeFromLeft(4);
+	blackOutUI->setBounds(r.removeFromLeft(100).reduced(3));
 }
 
 void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
@@ -113,3 +122,24 @@ void ObjectManagerGridUI::setPreviewData(var data)
 		i->setPreviewData(data.getProperty(i->item->shortName, var()));
 	}
 }
+
+bool ObjectManagerGridUI::checkFilterForItem(ObjectGridUI* ui)
+{
+	if (!BaseManagerShapeShifterUI::checkFilterForItem(ui)) return false;
+
+
+	if (manager->filterActiveInScene->boolValue() && SceneManager::getInstance()->currentScene != nullptr)
+	{
+		if (!SceneManager::getInstance()->currentScene->isObjectActiveInScene(ui->item)) return false;
+	}
+
+	return true;
+	
+}
+
+/*
+void ObjectManagerGridUI::newMessage(const SceneManager::SceneManagerEvent& e)
+{
+	if (e.type == e.SCENE_LOAD_START || e.type == e.SCENE_LOAD_END) resized();
+}
+*/

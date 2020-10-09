@@ -23,6 +23,8 @@ SceneUI::SceneUI(Scene* scene) :
     loadProgressUI->setVisible(item->defaultLoadTime->floatValue() > 0);
     loadProgressUI->showLabel = false;
     loadProgressUI->showValue = false;
+
+    acceptedDropTypes.add("Container");
 }
 
 SceneUI::~SceneUI()
@@ -76,6 +78,29 @@ void SceneUI::mouseDown(const MouseEvent& e)
             item->loadScene();
             break;
         }
+    }
+}
+
+void SceneUI::itemDropped(const DragAndDropTarget::SourceDetails& details)
+{
+    String dataType = details.description.getProperty("dataType", "");
+    if (dataType == "Container")
+    {
+        if (BaseItemEditor * bi = dynamic_cast<BaseItemEditor *>(details.sourceComponent.get()))
+        {
+            if (Effect* e = dynamic_cast<Effect*>(bi->item))
+            {
+                item->effectManager.addItemFromData(e->getJSONData());
+            }
+        }
+        else if (GenericManagerEditor<Effect>* gi = dynamic_cast<GenericManagerEditor<Effect>*>(details.sourceComponent.get()))
+        {
+            item->effectManager.loadJSONData(gi->manager->getJSONData());
+        }
+    }
+    else
+    {
+        NLOGWARNING(item->niceName, "Drop not supported for type : " << dataType);
     }
 }
 

@@ -23,11 +23,12 @@ public:
     ObjectManager();
     ~ObjectManager();
 
+    BoolParameter* blackOut;
 
     //ui
     IntParameter* gridThumbSize;
     FloatParameter * defaultFlashValue;
-    BoolParameter* blackOut;
+    BoolParameter* filterActiveInScene;
 
     Factory<Object> factory;
 

@@ -135,6 +135,6 @@ void GroupUI::itemDropped(const DragAndDropTarget::SourceDetails& details)
 	}
 	else
 	{
-		LOG("Drop not supported for type : " << dataType);
+		NLOGWARNING(item->niceName, "Drop not supported for type : " << dataType);
 	}
 }

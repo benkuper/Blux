@@ -20,9 +20,10 @@ Filter::Filter(const String& name) :
 {
     itemDataType = "Filter";
     saveAndLoadRecursiveData = true;
-    useLocalID = addBoolParameter("Use Local ID", "If enabled, this will use the generated ID from this filter instead of the object's global ID", false);
+    useLocalID = addBoolParameter("Use Local ID", "If enabled, this will use the generated ID from this filter instead of the object's global ID", true);
 
     excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked, this will not be saved in scene", false);
+    excludeFromScenes->hideInEditor = true;
 
     showInspectorOnSelect = false;
 

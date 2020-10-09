@@ -13,6 +13,7 @@
 #include "Group/GroupManager.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Engine/BluxEngine.h"
+#include "Object//Component/components/intensity/IntensityComponent.h"
 
 Scene::Scene(const String& name) :
     BaseItem(name, false),
@@ -76,6 +77,32 @@ void Scene::updateSceneData()
 void Scene::loadScene(float loadTime)
 {
     sceneListeners.call(&SceneListener::askForLoadScene, this, loadTime);
+}
+
+bool Scene::isObjectActiveInScene(Object * o)
+{
+    float intensity = sceneData
+        .getProperty(ObjectManager::getInstance()->shortName, var())
+        .getProperty(o->shortName, var())
+        .getProperty(o->componentManager.shortName, var())
+        .getProperty("intensity", var())
+        .getProperty("value", 0);
+
+    bool result = intensity > 0;
+
+    for (auto& e : effectManager.items)
+    {
+        for (auto& f : e->filterManager.items)
+        {
+            if (f->getFilteredResultForComponent(o, o->getComponent<IntensityComponent>()).id != -1)
+            {
+                result = true;
+                break;
+            }
+        }
+    }
+
+    return result;
 }
 
 void Scene::onContainerTriggerTriggered(Trigger* t)

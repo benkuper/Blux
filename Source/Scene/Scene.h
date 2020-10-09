@@ -40,6 +40,8 @@ public:
     void updateSceneData(); //used to resync with current objects and data that might not have been saved
     void loadScene(float loadTime = -1);
 
+    bool isObjectActiveInScene(Object*);
+
     void onContainerTriggerTriggered(Trigger* t) override;
 
     class  SceneListener

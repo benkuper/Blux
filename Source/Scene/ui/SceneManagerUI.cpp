@@ -64,8 +64,7 @@ void SceneManagerUI::mouseExit(const MouseEvent& e)
 
 void SceneManagerUI::resizedInternalHeader(Rectangle<int>& r)
 {
-    Rectangle<int> ar = r.removeFromRight(24);
-    BaseManagerShapeShifterUI::resizedInternalHeader(ar);
+    BaseManagerShapeShifterUI::resizedInternalHeader(r);
 
     prevSceneUI->setBounds(r.removeFromLeft(100).reduced(1));
     r.removeFromLeft(8);

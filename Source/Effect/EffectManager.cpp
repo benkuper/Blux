@@ -25,6 +25,8 @@ EffectManager::EffectManager() :
     factory.defs.add(Factory<Effect>::Definition::createDef("", "Override (Color)", &OverrideColorEffect::create));
     factory.defs.add(Factory<Effect>::Definition::createDef("", "Noise", &NoiseEffect::create));
     factory.defs.add(Factory<Effect>::Definition::createDef("", "Automation", &AutomationEffect::create));
+
+    canBeCopiedAndPasted = true;
 }
 
 EffectManager::~EffectManager()

@@ -18,6 +18,8 @@ Effect::Effect(const String& name, var
 {
 	saveAndLoadRecursiveData = true;
 
+	enabled->setValue(false); //This is to avoid dangerous object manipulation on effect creation
+
 	weight = addFloatParameter("Weight", "Weight of this effect", 1, 0, 1);
 	weight->defaultValue = 0; //this allows for scene lerp default to 0
 	weight->hideInEditor = true;
@@ -30,6 +32,8 @@ Effect::Effect(const String& name, var
 
 	addChildControllableContainer(&filterManager);
 	showInspectorOnSelect = false;
+
+	canBeCopiedAndPasted = true;
 }
 
 Effect::~Effect()

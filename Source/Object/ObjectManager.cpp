@@ -25,6 +25,7 @@ ObjectManager::ObjectManager() :
 
     blackOut = addBoolParameter("Black Out", "Force 0 on all computed values", false);
 
+    filterActiveInScene = addBoolParameter("Show Only active", "Show only active objects in scene", false);
     startThread();
 
     updateFactoryDefinitions();

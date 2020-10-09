@@ -31,6 +31,7 @@ namespace BluxCommandIDs
 	static const int flashSelected = 0x700;
 	static const int loadNextScene = 0x800;
 	static const int loadPreviousScene = 0x801;
+	static const int saveCurrentScene = 0x802;
 
 }
 
@@ -96,6 +97,12 @@ void MainComponent::getCommandInfo(CommandID commandID, ApplicationCommandInfo& 
 		result.addDefaultKeypress(KeyPress::createFromDescription(" ").getKeyCode(), ModifierKeys::commandModifier | ModifierKeys::shiftModifier);
 		break;
 
+	case BluxCommandIDs::saveCurrentScene:
+		result.setInfo("Save Current Scene", "", "Blux", 0);
+		result.addDefaultKeypress(KeyPress::createFromDescription("m").getKeyCode(), ModifierKeys::commandModifier);
+		break;
+
+
 	case BluxCommandIDs::exitGuide:
 		result.setInfo("Exit current guide", "", "Guides", result.readOnlyInKeyEditor);
 		result.addDefaultKeypress(KeyPress::escapeKey, ModifierKeys::noModifiers);
@@ -130,7 +137,8 @@ void MainComponent::getAllCommands(Array<CommandID>& commands) {
 		BluxCommandIDs::exitGuide,
 		BluxCommandIDs::flashSelected,
 		BluxCommandIDs::loadNextScene,
-		BluxCommandIDs::loadPreviousScene
+		BluxCommandIDs::loadPreviousScene,
+		BluxCommandIDs::saveCurrentScene
 	};
 
 	commands.addArray(ids, numElementsInArray(ids));
@@ -173,6 +181,8 @@ PopupMenu MainComponent::getMenuForIndex(int topLevelMenuIndex, const String& me
 	{
 		menu.addCommandItem(&getCommandManager(), BluxCommandIDs::loadPreviousScene);
 		menu.addCommandItem(&getCommandManager(), BluxCommandIDs::loadNextScene);
+		menu.addSeparator();
+		menu.addCommandItem(&getCommandManager(), BluxCommandIDs::saveCurrentScene);
 	}
 
 	return menu;
@@ -249,6 +259,13 @@ bool MainComponent::perform(const InvocationInfo& info)
 
 	case BluxCommandIDs::loadPreviousScene:
 		SceneManager::getInstance()->loadPreviousSceneTrigger->trigger();
+		break;
+
+	case BluxCommandIDs::saveCurrentScene:
+		if (SceneManager::getInstance()->currentScene != nullptr)
+		{
+			SceneManager::getInstance()->currentScene->saveScene();
+		}
 		break;
 
 	//case BluxCommandIDs::exitGuide:
