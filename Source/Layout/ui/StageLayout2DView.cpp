@@ -37,6 +37,8 @@ StageLayout2DView::StageLayout2DView(const String& name) :
 
     StageLayoutManager::getInstance()->addAsyncContainerListener(this);
 
+    setShowSearchBar(true);
+
     addExistingItems();
 }
 

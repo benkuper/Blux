@@ -15,7 +15,7 @@
 
 class SceneManagerUI :
     public BaseManagerShapeShifterUI<SceneManager, Scene, SceneUI>,
-    public SceneManager::AsyncListener
+    public SceneManager::AsyncSceneListener
 {
 public:
     SceneManagerUI(const String &name);

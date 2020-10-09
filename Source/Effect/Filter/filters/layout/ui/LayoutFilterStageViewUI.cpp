@@ -72,7 +72,7 @@ void LayoutFilterStageViewUI::paint(Graphics& g)
 void LayoutFilterStageViewUI::resized()
 {
 	Vector3D<float> pos = filter->position->getVector();
-	Rectangle<float> r = Rectangle<float>().withSize(.1f, .1f).withCentre(Point<float>(pos.x, pos.z));
+	Rectangle<float> r = Rectangle<float>().withSize(.2f, .2f).withCentre(Point<float>(pos.x, pos.z));
 	handle.setBounds(getBoundsInView(r));
 }
 

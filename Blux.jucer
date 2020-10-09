@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b7"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b8"
               headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -263,28 +263,32 @@
           <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
         </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
-          <GROUP id="{8E13BCDA-D974-1658-0DED-4E4A7D293EAA}" name="automation">
-            <GROUP id="{FF7025B5-5227-3E4D-E602-A574B12D3223}" name="ui">
-              <FILE id="qQCNLL" name="AutomationEffectEditor.cpp" compile="1" resource="0"
-                    file="Source/Effect/effects/automation/ui/AutomationEffectEditor.cpp"/>
-              <FILE id="JY0mm8" name="AutomationEffectEditor.h" compile="0" resource="0"
-                    file="Source/Effect/effects/automation/ui/AutomationEffectEditor.h"/>
+          <GROUP id="{5FA832AE-2253-5F82-C146-58F837B90E47}" name="time">
+            <GROUP id="{4C2878D5-F4CF-42E2-9D5B-1E1E5BA6B2AD}" name="automation">
+              <GROUP id="{0500F0A9-6298-E6A7-0E8D-2A27D6C73A9D}" name="ui">
+                <FILE id="t2i3AB" name="AutomationEffectEditor.cpp" compile="1" resource="0"
+                      file="Source/Effect/effects/time/automation/ui/AutomationEffectEditor.cpp"/>
+                <FILE id="XZjeYH" name="AutomationEffectEditor.h" compile="0" resource="0"
+                      file="Source/Effect/effects/time/automation/ui/AutomationEffectEditor.h"/>
+              </GROUP>
+              <FILE id="wUVMNu" name="AutomationEffect.cpp" compile="1" resource="0"
+                    file="Source/Effect/effects/time/automation/AutomationEffect.cpp"/>
+              <FILE id="sGuvzJ" name="AutomationEffect.h" compile="0" resource="0"
+                    file="Source/Effect/effects/time/automation/AutomationEffect.h"/>
             </GROUP>
-            <FILE id="XAwOmz" name="AutomationEffect.cpp" compile="1" resource="0"
-                  file="Source/Effect/effects/automation/AutomationEffect.cpp"/>
-            <FILE id="Zh1xQq" name="AutomationEffect.h" compile="0" resource="0"
-                  file="Source/Effect/effects/automation/AutomationEffect.h"/>
+            <GROUP id="{C425CD3C-D6F6-FCEB-155A-2024BDEFDEC7}" name="noise">
+              <FILE id="Pd2wns" name="NoiseEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/time/noise/NoiseEffect.cpp"/>
+              <FILE id="zS9Ud8" name="NoiseEffect.h" compile="0" resource="0" file="Source/Effect/effects/time/noise/NoiseEffect.h"/>
+              <FILE id="mgrMwK" name="PerlinNoise.hpp" compile="0" resource="0" file="Source/Effect/effects/time/noise/PerlinNoise.hpp"/>
+            </GROUP>
+            <FILE id="yoW9CW" name="TimedEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/time/TimedEffect.cpp"/>
+            <FILE id="mTKbxk" name="TimedEffect.h" compile="0" resource="0" file="Source/Effect/effects/time/TimedEffect.h"/>
           </GROUP>
           <GROUP id="{448FBE9F-BB3E-D4C2-BE7E-C573A112D794}" name="override">
             <FILE id="fgKWtR" name="OverrideEffect.cpp" compile="1" resource="0"
                   file="Source/Effect/effects/override/OverrideEffect.cpp"/>
             <FILE id="iMhDCG" name="OverrideEffect.h" compile="0" resource="0"
                   file="Source/Effect/effects/override/OverrideEffect.h"/>
-          </GROUP>
-          <GROUP id="{769D393A-6D2C-BDC6-422B-8D022A54DEC6}" name="noise">
-            <FILE id="Kx2YCO" name="NoiseEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/noise/NoiseEffect.cpp"/>
-            <FILE id="UxhEgu" name="NoiseEffect.h" compile="0" resource="0" file="Source/Effect/effects/noise/NoiseEffect.h"/>
-            <FILE id="d4Qr1T" name="PerlinNoise.hpp" compile="0" resource="0" file="Source/Effect/effects/noise/PerlinNoise.hpp"/>
           </GROUP>
         </GROUP>
         <GROUP id="{11ABDC7F-4CBF-C8CB-0BA7-C89E429B21F7}" name="Filter">
@@ -364,6 +368,9 @@
                 file="Source/Layout/ui/StageLayoutManagerUI.cpp"/>
           <FILE id="nsK7Jd" name="StageLayoutManagerUI.h" compile="0" resource="0"
                 file="Source/Layout/ui/StageLayoutManagerUI.h"/>
+          <FILE id="yARSmB" name="StageLayoutUI.cpp" compile="1" resource="0"
+                file="Source/Layout/ui/StageLayoutUI.cpp"/>
+          <FILE id="k2nqIO" name="StageLayoutUI.h" compile="0" resource="0" file="Source/Layout/ui/StageLayoutUI.h"/>
         </GROUP>
         <FILE id="xqeHDv" name="StageLayout.cpp" compile="1" resource="0" file="Source/Layout/StageLayout.cpp"/>
         <FILE id="uKAWd5" name="StageLayout.h" compile="0" resource="0" file="Source/Layout/StageLayout.h"/>
@@ -527,21 +534,21 @@
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics"/>
-        <MODULEPATH id="juce_audio_devices" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_formats" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_processors" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_utils" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_core" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_data_structures" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_events" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_graphics" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_gui_basics" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_gui_extra" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_opengl" path="C:\JUCE\modules"/>
-        <MODULEPATH id="juce_osc" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_opengl" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_osc" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_organicui" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
+        <MODULEPATH id="juce_audio_formats" path="D:\Softwares\JUCE\modules"/>
       </MODULEPATHS>
     </VS2019>
     <VS2019 targetFolder="Builds/VisualStudio2019_CI" extraDefs="JUCE_SUPPORT_CARBON=0"
@@ -568,9 +575,9 @@
         <MODULEPATH id="juce_core" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_utils" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../JUCE/modules"/>
       </MODULEPATHS>
     </VS2019>
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
@@ -595,9 +602,9 @@
         <MODULEPATH id="juce_core" path="~/JUCE/modules"/>
         <MODULEPATH id="juce_audio_utils" path="~/JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="~/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="~/JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="~/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="~/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="~/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed"
@@ -622,9 +629,9 @@
         <MODULEPATH id="juce_core" path="~/JUCE/modules"/>
         <MODULEPATH id="juce_audio_utils" path="~/JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="~/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="~/JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="~/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="~/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="~/JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>

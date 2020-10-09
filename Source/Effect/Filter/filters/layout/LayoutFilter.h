@@ -23,6 +23,7 @@ public:
     BoolParameter* enableInView;
     ColorParameter* colorInView;
 
+    TargetParameter* layout;
     EnumParameter* mode;
     Point3DParameter* position;
     FloatParameter* size;

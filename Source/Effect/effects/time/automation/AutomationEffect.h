@@ -10,11 +10,10 @@
 
 #pragma once
 
-#include "../../Effect.h"
+#include "../TimedEffect.h"
 
 class AutomationEffect :
-    public Effect,
-    public Timer
+    public TimedEffect
 {
 public:
     AutomationEffect(var params = var());
@@ -23,21 +22,14 @@ public:
     enum AutomationType { SINE, PERLIN };
 
     FloatParameter* length;
-    FloatParameter* speed;
     Point2DParameter* range;
-    FloatParameter* offsetByID;
-    FloatParameter* offsetByValue;
-    
+    BoolParameter* clipTime;
+
     Automation automation;
 
-    double timeAtLastUpdate;
-    double curTime;
-
-    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values) override;
+    var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, int id, var value, float time) override;
 
     void onContainerParameterChangedInternal(Parameter* p)override;
-
-    virtual void timerCallback() override;
 
     String getTypeString() const override { return "Automation"; }
     static AutomationEffect* create(var params) { return new AutomationEffect(params); }

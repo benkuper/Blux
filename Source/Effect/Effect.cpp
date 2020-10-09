@@ -12,8 +12,7 @@
 #include "ui/EffectEditor.h"
 #include "Common/Helpers/SceneHelpers.h"
 
-Effect::Effect(const String& name, var
-	params) :
+Effect::Effect(const String& name, var params) :
 	BaseItem(name)
 {
 	saveAndLoadRecursiveData = true;

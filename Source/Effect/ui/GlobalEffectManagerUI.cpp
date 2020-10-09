@@ -13,6 +13,7 @@
 GlobalEffectManagerUI::GlobalEffectManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, GlobalEffectManager::getInstance())
 {
+    setShowSearchBar(true);
     addExistingItems();
 }
 

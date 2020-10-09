@@ -26,7 +26,10 @@ public:
 
     virtual void processComponentValues(Object * o, ObjectComponent * c, var &values, float weightMultiplier = 1.0f);
 
+    void resetEffectsTimes();
+
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
+
 };

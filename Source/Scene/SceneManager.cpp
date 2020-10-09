@@ -96,6 +96,7 @@ void SceneManager::run()
 {
     float timeAtLoad = Time::getMillisecondCounter() / 1000.0f;
     currentScene->loadProgress->setValue(0);
+    currentScene->resetEffectTimes();
 
     var dataAtLoad = currentScene->getSceneData();
      

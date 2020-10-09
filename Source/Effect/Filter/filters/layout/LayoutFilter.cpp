@@ -10,6 +10,7 @@
 
 #include "LayoutFilter.h"
 #include "Object/Object.h"
+#include "Layout/StageLayoutManager.h"
 
 Array<LayoutFilter*> LayoutFilter::instances;
 ChangeBroadcaster LayoutFilter::broadcaster;
@@ -18,6 +19,11 @@ LayoutFilter::LayoutFilter() :
     Filter(getTypeString()),
     fadeCurve("Fade Curve")
 {
+    layout = addTargetParameter("Layout", "The layout to use. Leave blank or disable to use current layout", StageLayoutManager::getInstance(), false);
+    layout->maxDefaultSearchLevel = 0;
+    layout->targetType = TargetParameter::CONTAINER;
+    layout->canBeDisabledByUser = true;
+
     enableInView = addBoolParameter("Enable in view", "If checked, this effect will be visible in the stage layout view", true);
     colorInView = addColorParameter("Color in view", "Color in the view", Colours::red);
     mode = addEnumParameter("Mode", "What to check for this filter");
@@ -53,7 +59,8 @@ FilterResult LayoutFilter::getFilteredResultForComponentInternal(Object* o, Obje
    
     LayoutMode m = mode->getValueDataAsEnum<LayoutMode>();
 
-    Vector3D<float> diffPos = o->stagePosition->getVector() - position->getVector();
+    Vector3D<float> pos = (layout->enabled && layout->targetContainer != nullptr) ? ((StageLayout *)layout->targetContainer.get())->getObjectPosition(o) : o->stagePosition->getVector();
+    Vector3D<float> diffPos = pos - position->getVector();
     float diff = 0;
 
     switch (m)

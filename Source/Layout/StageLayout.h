@@ -12,6 +12,8 @@
 
 #include "JuceHeader.h"
 
+class Object;
+
 class StageLayout :
     public BaseItem
 {
@@ -21,7 +23,10 @@ public:
 
     var layoutData;
 
+    void loadLayout();
     void saveLayout();
+
+    Vector3D<float> getObjectPosition(Object * o);
 
     var getJSONData() override;
     void loadJSONDataItemInternal(var data) override;

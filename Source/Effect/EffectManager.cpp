@@ -10,9 +10,9 @@
 
 #include "EffectManager.h"
 
-#include "effects/noise/NoiseEffect.h"
+#include "effects/time/noise/NoiseEffect.h"
 #include "effects/override/OverrideEffect.h"
-#include "effects/automation/AutomationEffect.h"
+#include "effects/time/automation/AutomationEffect.h"
 
 EffectManager::EffectManager() :
     BaseManager("Effects")
@@ -39,6 +39,14 @@ void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& 
     {
         if (!e->enabled->boolValue()) continue;
         e->processComponentValues(o, c, values, weightMultiplier);
+    }
+}
+
+void EffectManager::resetEffectsTimes()
+{
+    for (auto& e : items)
+    {
+        if (TimedEffect * te = dynamic_cast<TimedEffect*>(e)) te->curTime = 0;
     }
 }
 

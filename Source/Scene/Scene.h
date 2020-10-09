@@ -15,7 +15,8 @@
 #include "Effect/EffectManager.h"
 
 class Scene :
-    public BaseItem
+    public BaseItem,
+    public EffectManager::ManagerListener
 {
 public:
     Scene(const String & name = "Scene");
@@ -43,6 +44,10 @@ public:
     bool isObjectActiveInScene(Object*);
 
     void onContainerTriggerTriggered(Trigger* t) override;
+
+    void resetEffectTimes();
+
+    void itemAdded(Effect* e) override;
 
     class  SceneListener
     {

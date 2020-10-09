@@ -34,15 +34,17 @@ ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 
 	manager->addAsyncCoalescedContainerListener(this);
 
+	setShowSearchBar(true);
+
 	addExistingItems();
 
-	//SceneManager::getInstance()->addAsyncSceneManagerListener(this);
+	SceneManager::getInstance()->addAsyncSceneManagerListener(this);
 }
 
 ObjectManagerGridUI::~ObjectManagerGridUI()
 {
 	if(!inspectable.wasObjectDeleted()) manager->removeAsyncContainerListener(this);
-	//if(!SceneManager::getInstanceWithoutCreating()) SceneManager::getInstance()->addAsyncSceneManagerListener(this);
+	if(SceneManager::getInstanceWithoutCreating()) SceneManager::getInstance()->removeAsyncSceneManagerListener(this);
 }
 
 void ObjectManagerGridUI::resizedInternalHeader(Rectangle<int>& r)
@@ -64,7 +66,7 @@ void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
 	
 	const int thumbSize = manager->gridThumbSize->floatValue();
 
-	int numThumbs = itemsUI.size();
+	int numThumbs = getFilteredItems().size();
 	int numThumbPerLine = jmin(r.getWidth() / (thumbSize + gap), numThumbs);
 	int numLines = numThumbs == 0 ? 0 : ceil(numThumbs * 1.f / numThumbPerLine);
 	
@@ -105,15 +107,6 @@ void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
 
 }
 
-void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
-{
-	switch (e.type)
-	{
-	case ContainerAsyncEvent::ControllableFeedbackUpdate:
-		if (e.targetControllable == manager->gridThumbSize) resized();
-		break;
-	}
-}
 
 void ObjectManagerGridUI::setPreviewData(var data)
 {
@@ -121,6 +114,12 @@ void ObjectManagerGridUI::setPreviewData(var data)
 	{
 		i->setPreviewData(data.getProperty(i->item->shortName, var()));
 	}
+}
+
+bool ObjectManagerGridUI::hasFiltering()
+{
+	if (BaseManagerUI::hasFiltering()) return true;
+	return manager->filterActiveInScene->boolValue();
 }
 
 bool ObjectManagerGridUI::checkFilterForItem(ObjectGridUI* ui)
@@ -137,9 +136,18 @@ bool ObjectManagerGridUI::checkFilterForItem(ObjectGridUI* ui)
 	
 }
 
-/*
+
+void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
+{
+	switch (e.type)
+	{
+	case ContainerAsyncEvent::ControllableFeedbackUpdate:
+		if (e.targetControllable == manager->gridThumbSize || e.targetControllable == manager->filterActiveInScene) resized();
+
+		break;
+	}
+}
 void ObjectManagerGridUI::newMessage(const SceneManager::SceneManagerEvent& e)
 {
 	if (e.type == e.SCENE_LOAD_START || e.type == e.SCENE_LOAD_END) resized();
 }
-*/

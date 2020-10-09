@@ -21,10 +21,25 @@ StageLayout::~StageLayout()
 {
 }
 
+void StageLayout::loadLayout()
+{
+    for (auto& o : ObjectManager::getInstance()->items)
+    {
+        o->stagePosition->setVector(getObjectPosition(o));
+    }
+}
+
 void StageLayout::saveLayout()
 {
     layoutData = var(new DynamicObject());
     for (auto& o : ObjectManager::getInstance()->items) layoutData.getDynamicObject()->setProperty(o->shortName, o->stagePosition->getValue());
+}
+
+Vector3D<float> StageLayout::getObjectPosition(Object* o)
+{
+    var p = layoutData.getProperty(o->shortName, var());
+    if (p.isVoid()) return Vector3D<float>();
+    return Vector3D<float>(p[0], p[1], p[2]);
 }
 
 var StageLayout::getJSONData()

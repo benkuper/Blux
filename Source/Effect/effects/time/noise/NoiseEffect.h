@@ -9,12 +9,11 @@
 */
 
 #pragma once
-#include "../../Effect.h"
+#include "../TimedEffect.h"
 #include "PerlinNoise.hpp"
 
 class NoiseEffect :
-    public Effect,
-    public Timer
+    public TimedEffect
 {
 public:
     NoiseEffect(var params = var());
@@ -23,20 +22,9 @@ public:
     enum NoiseType { SINE, PERLIN };
     EnumParameter * type;
     FloatParameter* amplitude;
-    FloatParameter* frequency;
-    FloatParameter* offsetByID;
-    FloatParameter* offsetByValue;
-
     siv::PerlinNoise perlin;
 
-    double timeAtLastUpdate;
-    double curTime;
-
-    var getProcessedComponentValuesInternal(Object * o, ObjectComponent* c, int id, var values) override;
-
-    void onContainerParameterChangedInternal(Parameter* p)override;
-
-    virtual void timerCallback() override;
+    var getProcessedComponentValueTimeInternal(Object * o, ObjectComponent* c, int id, var value, float time) override;
 
     String getTypeString() const override { return "Noise"; }
     static NoiseEffect* create(var params) { return new NoiseEffect(params); }

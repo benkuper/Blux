@@ -285,21 +285,25 @@
 			isa = PBXBuildFile;
 			fileRef = 1F7EA67E3C732584DCB7E74C;
 		};
-		E7FB8FFE14DA35A31F18ACCD = {
+		91805FF9DC64EDBDC812C4C2 = {
 			isa = PBXBuildFile;
-			fileRef = 8D39F270C9B475ED5D1AB1B0;
+			fileRef = 70C923B029144FD11E90F606;
 		};
-		74143291006B7C1CD6FF5871 = {
+		FC11C543EB8FA12D4313812A = {
 			isa = PBXBuildFile;
-			fileRef = FB8CF24788F5B9CE880BF22C;
+			fileRef = 4A623C347590F796F0AD98FD;
+		};
+		CCD6A742008A8D9E87BF612F = {
+			isa = PBXBuildFile;
+			fileRef = A25E1D39A81F561B595294F9;
+		};
+		5A232801EDCE42122BAC543F = {
+			isa = PBXBuildFile;
+			fileRef = 41C52A37E943B014EDAD6F1E;
 		};
 		32A02EB03C820779CBD2343D = {
 			isa = PBXBuildFile;
 			fileRef = 3B4157E878CF22C9643E3956;
-		};
-		492DF541C3B98C2D75F23200 = {
-			isa = PBXBuildFile;
-			fileRef = 807E30A108BD9B3FAE2985B6;
 		};
 		F60506DC7FE744C0B94E9604 = {
 			isa = PBXBuildFile;
@@ -372,6 +376,10 @@
 		87F0EC17F7FFDC3F54CAD6F4 = {
 			isa = PBXBuildFile;
 			fileRef = 0A75AA0C07E164442DD44F90;
+		};
+		1C44521B88A04F78F42A2D9A = {
+			isa = PBXBuildFile;
+			fileRef = 314F53135C79007EA96E1A5D;
 		};
 		A524F0AE0AC9ED71C7330285 = {
 			isa = PBXBuildFile;
@@ -608,6 +616,13 @@
 			path = ../../Source/Object/Component/components/color/ColorComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		05B22342D27FF2CFBB9C939A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = NoiseEffect.h;
+			path = ../../Source/Effect/effects/time/noise/NoiseEffect.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		05FBFE3D06DAAE42C4804D82 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -620,6 +635,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ScriptComponent.h;
 			path = ../../Source/Object/Component/components/script/ScriptComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		08877713E1BB4663B2C9D17E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = AutomationEffectEditor.h;
+			path = ../../Source/Effect/effects/time/automation/ui/AutomationEffectEditor.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		088DE01CBA69E8FEAE0FBF07 = {
@@ -881,6 +903,13 @@
 			path = ../../Source/Interface/InterfaceManager.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		314F53135C79007EA96E1A5D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = StageLayoutUI.cpp;
+			path = ../../Source/Layout/ui/StageLayoutUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		31C24D863378BC9F5222BAFB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -993,11 +1022,11 @@
 			path = ../../Source/MainComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		4180EF591194BFB50542328D = {
+		41C52A37E943B014EDAD6F1E = {
 			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = AutomationEffect.h;
-			path = ../../Source/Effect/effects/automation/AutomationEffect.h;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = TimedEffect.cpp;
+			path = ../../Source/Effect/effects/time/TimedEffect.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		41F42750DF70DE898B65DACC = {
@@ -1082,6 +1111,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ObjectGridUI.h;
 			path = ../../Source/Object/ui/ObjectGridUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		4A623C347590F796F0AD98FD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = AutomationEffect.cpp;
+			path = ../../Source/Effect/effects/time/automation/AutomationEffect.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		4AB581C1C870E10A93ADB0EC = {
@@ -1194,13 +1230,6 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_basics.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_basics.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		56387731B439539BB38040A4 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = PerlinNoise.hpp;
-			path = ../../Source/Effect/effects/noise/PerlinNoise.hpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		5650497C69AE697368015199 = {
@@ -1343,6 +1372,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_processors.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		70C923B029144FD11E90F606 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = AutomationEffectEditor.cpp;
+			path = ../../Source/Effect/effects/time/automation/ui/AutomationEffectEditor.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		729BA0D6D6500BCC30E86121 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1455,13 +1491,6 @@
 			path = ../../Source/Sequence/layers/colorsource/ColorSourceLayer.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		7ECF9A1AFB0C53C08B32CF15 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = AutomationEffectEditor.h;
-			path = ../../Source/Effect/effects/automation/ui/AutomationEffectEditor.h;
-			sourceTree = "SOURCE_ROOT";
-		};
 		7EF479132F2D470A4B3D1221 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -1474,13 +1503,6 @@
 			lastKnownFileType = image.png;
 			name = crash.png;
 			path = ../../Resources/crash.png;
-			sourceTree = "SOURCE_ROOT";
-		};
-		807E30A108BD9B3FAE2985B6 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = NoiseEffect.cpp;
-			path = ../../Source/Effect/effects/noise/NoiseEffect.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		8090CA2B84C69589869D05F6 = {
@@ -1560,13 +1582,6 @@
 			path = ../../Source/Effect/Filter/filters/layout/LayoutFilter.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		8D39F270C9B475ED5D1AB1B0 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = AutomationEffectEditor.cpp;
-			path = ../../Source/Effect/effects/automation/ui/AutomationEffectEditor.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
 		8EB7EF056F1EF54C4E4FE7C3 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1623,6 +1638,13 @@
 			path = ../../Source/Effect/ui/GlobalEffectManagerUI.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		91B51EF38C21754319B7330F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = TimedEffect.h;
+			path = ../../Source/Effect/effects/time/TimedEffect.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		91D8251ED9B80805A02BD255 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1656,6 +1678,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ObjectManager.h;
 			path = ../../Source/Object/ObjectManager.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		9460B399398BB99406E5214A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = AutomationEffect.h;
+			path = ../../Source/Effect/effects/time/automation/AutomationEffect.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		94B63851F1117EC65CEBC816 = {
@@ -1768,6 +1797,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_gui_basics.mm";
 			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		A25E1D39A81F561B595294F9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = NoiseEffect.cpp;
+			path = ../../Source/Effect/effects/time/noise/NoiseEffect.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		A2B68E58667D6601CB27468C = {
@@ -1950,6 +1986,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_core.mm";
 			path = "../../JuceLibraryCode/include_juce_core.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		BF8F59908B4BF0CAD9A3AA95 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PerlinNoise.hpp;
+			path = ../../Source/Effect/effects/time/noise/PerlinNoise.hpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BFC7E8F4D35ED6ABA6488DF8 = {
@@ -2211,6 +2254,13 @@
 			path = ../../Source/Object/Component/components/laser/LaserPattern/LaserPattern.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		E47B291834B09131011E992F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = StageLayoutUI.h;
+			path = ../../Source/Layout/ui/StageLayoutUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		E4893B00C1A1CD87EDB98313 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2365,13 +2415,6 @@
 			path = ../../Source/Interface/interfaces/dmx/ui/DMXChannelView.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		F8F2037148B3B29178FFD7E6 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = NoiseEffect.h;
-			path = ../../Source/Effect/effects/noise/NoiseEffect.h;
-			sourceTree = "SOURCE_ROOT";
-		};
 		F95B517CAC6D27484B8E15BE = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -2391,13 +2434,6 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = EffectLayer.cpp;
 			path = ../../Source/Sequence/layers/effect/EffectLayer.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		FB8CF24788F5B9CE880BF22C = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = AutomationEffect.cpp;
-			path = ../../Source/Effect/effects/automation/AutomationEffect.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		FBE06E8F89C6CC05C673F444 = {
@@ -2894,23 +2930,44 @@
 			name = actions;
 			sourceTree = "<group>";
 		};
-		D2A93F3E976579A97103E681 = {
+		7912516AE763DDFE266D21A6 = {
 			isa = PBXGroup;
 			children = (
-				8D39F270C9B475ED5D1AB1B0,
-				7ECF9A1AFB0C53C08B32CF15,
+				70C923B029144FD11E90F606,
+				08877713E1BB4663B2C9D17E,
 			);
 			name = ui;
 			sourceTree = "<group>";
 		};
-		8F05E05929BB2438F7C29133 = {
+		BD42FC6A73589E3AAD48E64C = {
 			isa = PBXGroup;
 			children = (
-				D2A93F3E976579A97103E681,
-				FB8CF24788F5B9CE880BF22C,
-				4180EF591194BFB50542328D,
+				7912516AE763DDFE266D21A6,
+				4A623C347590F796F0AD98FD,
+				9460B399398BB99406E5214A,
 			);
 			name = automation;
+			sourceTree = "<group>";
+		};
+		2689AA7DBB4F2AC1DC6B4839 = {
+			isa = PBXGroup;
+			children = (
+				A25E1D39A81F561B595294F9,
+				05B22342D27FF2CFBB9C939A,
+				BF8F59908B4BF0CAD9A3AA95,
+			);
+			name = noise;
+			sourceTree = "<group>";
+		};
+		94BB932210667CF7266699DC = {
+			isa = PBXGroup;
+			children = (
+				BD42FC6A73589E3AAD48E64C,
+				2689AA7DBB4F2AC1DC6B4839,
+				41C52A37E943B014EDAD6F1E,
+				91B51EF38C21754319B7330F,
+			);
+			name = time;
 			sourceTree = "<group>";
 		};
 		FFB81D5BAC442666EDA9DC53 = {
@@ -2922,22 +2979,11 @@
 			name = override;
 			sourceTree = "<group>";
 		};
-		9093F82834BA423553C56B0A = {
-			isa = PBXGroup;
-			children = (
-				807E30A108BD9B3FAE2985B6,
-				F8F2037148B3B29178FFD7E6,
-				56387731B439539BB38040A4,
-			);
-			name = noise;
-			sourceTree = "<group>";
-		};
 		D9FE837C1612F50C76902DC6 = {
 			isa = PBXGroup;
 			children = (
-				8F05E05929BB2438F7C29133,
+				94BB932210667CF7266699DC,
 				FFB81D5BAC442666EDA9DC53,
-				9093F82834BA423553C56B0A,
 			);
 			name = effects;
 			sourceTree = "<group>";
@@ -3054,6 +3100,8 @@
 				3BDA3C9C5E2741BB520F1AFD,
 				0A75AA0C07E164442DD44F90,
 				138BCA16473B1F6E2FA9F3ED,
+				314F53135C79007EA96E1A5D,
+				E47B291834B09131011E992F,
 			);
 			name = ui;
 			sourceTree = "<group>";
@@ -3436,7 +3484,7 @@
 					"_DEBUG=1",
 					"DEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b7",
+					"JUCE_APP_VERSION=1.0.0b8",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3523,7 +3571,7 @@
 					"_NDEBUG=1",
 					"NDEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b7",
+					"JUCE_APP_VERSION=1.0.0b8",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3778,10 +3826,11 @@
 				028C7FB9B750364EDEF55B66,
 				DE91824E6E690D0BBD458EB7,
 				FFFA51D7051AAEB0E0A94B7A,
-				E7FB8FFE14DA35A31F18ACCD,
-				74143291006B7C1CD6FF5871,
+				91805FF9DC64EDBDC812C4C2,
+				FC11C543EB8FA12D4313812A,
+				CCD6A742008A8D9E87BF612F,
+				5A232801EDCE42122BAC543F,
 				32A02EB03C820779CBD2343D,
-				492DF541C3B98C2D75F23200,
 				F60506DC7FE744C0B94E9604,
 				C55AC469E948ACCA3FE1312D,
 				7C6422123DB25294E256CCDB,
@@ -3800,6 +3849,7 @@
 				DCB5E699342790DF99354989,
 				8EA6A8AF5CAE907EA21F518E,
 				87F0EC17F7FFDC3F54CAD6F4,
+				1C44521B88A04F78F42A2D9A,
 				A524F0AE0AC9ED71C7330285,
 				862161D40E7B760089B30BA9,
 				6396B06B115BE2BA1B016554,

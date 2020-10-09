@@ -128,17 +128,20 @@
     <Filter Include="Blux\Source\Effect\actions">
       <UniqueIdentifier>{34DAE7F0-D89C-AA58-E8B8-91F231D8F5C0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Effect\effects\automation\ui">
-      <UniqueIdentifier>{4157DF3D-FD9F-21E3-149C-1BDF51E81048}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Effect\effects\time\automation\ui">
+      <UniqueIdentifier>{A4BFF20E-42BD-E6B9-6DEA-87A8489E1E86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Effect\effects\automation">
-      <UniqueIdentifier>{BF3B7C33-AD98-EE08-8347-1D88DCD7EB64}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Effect\effects\time\automation">
+      <UniqueIdentifier>{74388B0F-7295-EE94-51EF-0A2A8109EAD3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Effect\effects\time\noise">
+      <UniqueIdentifier>{D1BBCAC0-CF53-F923-1A80-EB91FAACFA4E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Effect\effects\time">
+      <UniqueIdentifier>{6EF03FFB-0563-1731-4419-E1B97FF53025}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Effect\effects\override">
       <UniqueIdentifier>{6902045C-C039-4218-24F5-B71DA2ABFEB0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Effect\effects\noise">
-      <UniqueIdentifier>{5EA2201C-660E-9241-F860-CF76CF4C0C31}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Effect\effects">
       <UniqueIdentifier>{B782456C-AFC3-0956-5827-2E9CE20849DB}</UniqueIdentifier>
@@ -1165,17 +1168,20 @@
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
       <Filter>Blux\Source\Effect\actions</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Effect\effects\automation\ui\AutomationEffectEditor.cpp">
-      <Filter>Blux\Source\Effect\effects\automation\ui</Filter>
+    <ClCompile Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.cpp">
+      <Filter>Blux\Source\Effect\effects\time\automation\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Effect\effects\automation\AutomationEffect.cpp">
-      <Filter>Blux\Source\Effect\effects\automation</Filter>
+    <ClCompile Include="..\..\Source\Effect\effects\time\automation\AutomationEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\time\automation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\time\noise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\time\TimedEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\time</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\override\OverrideEffect.cpp">
       <Filter>Blux\Source\Effect\effects\override</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Effect\effects\noise\NoiseEffect.cpp">
-      <Filter>Blux\Source\Effect\effects\noise</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.cpp">
       <Filter>Blux\Source\Effect\Filter\filters\group</Filter>
@@ -1229,6 +1235,9 @@
       <Filter>Blux\Source\Layout\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Layout\ui\StageLayoutManagerUI.cpp">
+      <Filter>Blux\Source\Layout\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Layout\ui\StageLayoutUI.cpp">
       <Filter>Blux\Source\Layout\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Layout\StageLayout.cpp">
@@ -4287,20 +4296,23 @@
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h">
       <Filter>Blux\Source\Effect\actions</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Effect\effects\automation\ui\AutomationEffectEditor.h">
-      <Filter>Blux\Source\Effect\effects\automation\ui</Filter>
+    <ClInclude Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.h">
+      <Filter>Blux\Source\Effect\effects\time\automation\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Effect\effects\automation\AutomationEffect.h">
-      <Filter>Blux\Source\Effect\effects\automation</Filter>
+    <ClInclude Include="..\..\Source\Effect\effects\time\automation\AutomationEffect.h">
+      <Filter>Blux\Source\Effect\effects\time\automation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.h">
+      <Filter>Blux\Source\Effect\effects\time\noise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\time\noise\PerlinNoise.hpp">
+      <Filter>Blux\Source\Effect\effects\time\noise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\time\TimedEffect.h">
+      <Filter>Blux\Source\Effect\effects\time</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\override\OverrideEffect.h">
       <Filter>Blux\Source\Effect\effects\override</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Effect\effects\noise\NoiseEffect.h">
-      <Filter>Blux\Source\Effect\effects\noise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Effect\effects\noise\PerlinNoise.hpp">
-      <Filter>Blux\Source\Effect\effects\noise</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.h">
       <Filter>Blux\Source\Effect\Filter\filters\group</Filter>
@@ -4354,6 +4366,9 @@
       <Filter>Blux\Source\Layout\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Layout\ui\StageLayoutManagerUI.h">
+      <Filter>Blux\Source\Layout\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Layout\ui\StageLayoutUI.h">
       <Filter>Blux\Source\Layout\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Layout\StageLayout.h">

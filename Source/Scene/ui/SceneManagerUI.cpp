@@ -29,6 +29,8 @@ SceneManagerUI::SceneManagerUI(const String& name) :
     prevSceneUI->addMouseListener(this, false);
 
     manager->addAsyncSceneManagerListener(this);
+    
+    setShowSearchBar(true);
 
     addExistingItems();
 }

@@ -11,9 +11,10 @@
 #pragma once
 
 #include "../StageLayoutManager.h"
+#include "StageLayoutUI.h"
 
 class StageLayoutManagerUI :
-    public BaseManagerShapeShifterUI<StageLayoutManager, StageLayout, BaseItemUI<StageLayout>>
+    public BaseManagerShapeShifterUI<StageLayoutManager, StageLayout, StageLayoutUI>
 {
 public:
     StageLayoutManagerUI(const String& name);
