@@ -21,6 +21,7 @@ public:
     virtual ~TimedEffect();
 
     FloatParameter* speed;
+    FloatParameter* timeOffset;
 
     FloatParameter* offsetByID;
     FloatParameter* offsetByValue;
@@ -29,10 +30,10 @@ public:
     double timeAtLastUpdate;
     double curTime;
 
-    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values) override;
-    virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, int id, var value, float time) { return value;  }
+    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c,var values, int id, float time = -1) override;
+    virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c,var value, int id, float time) { return value;  }
 
-
+    virtual float getCurrentTime(float timeOverride = -1);
 
     virtual void timerCallback() override;  
     virtual void addTime();

@@ -15,6 +15,14 @@
 class Object;
 class ObjectComponent;
 
+class EffectFactory :
+    public Factory<Effect>
+{
+public:
+    juce_DeclareSingleton(EffectFactory, true)
+    EffectFactory();
+};
+
 class EffectManager :
     public BaseManager<Effect>
 {
@@ -22,7 +30,6 @@ public:
     EffectManager();
     ~EffectManager();
 
-    Factory<Effect> factory;
 
     virtual void processComponentValues(Object * o, ObjectComponent * c, var &values, float weightMultiplier = 1.0f);
 

@@ -9,6 +9,7 @@
 */
 
 #include "BluxSequenceManager.h"
+#include "Object/Object.h"
 
 BluxSequenceManager::BluxSequenceManager()
 {
@@ -18,6 +19,11 @@ BluxSequenceManager::BluxSequenceManager()
 
 BluxSequenceManager::~BluxSequenceManager()
 {
+}
+
+void BluxSequenceManager::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
+{
+    for (auto& i : items) ((BluxSequence *)i)->processComponentValues(o, c, values, weightMultiplier);
 }
 
 Sequence* BluxSequenceManager::createItem()

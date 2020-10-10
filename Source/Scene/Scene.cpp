@@ -44,6 +44,8 @@ Scene::Scene(const String& name) :
 	addChildControllableContainer(&interpolationCurve);
 
 	sequenceManager.selectItemWhenCreated = false;
+	sequenceManager.addBaseManagerListener(this);
+
 	addChildControllableContainer(&sequenceManager);
 	addChildControllableContainer(&effectManager);
 
@@ -111,6 +113,12 @@ void Scene::onContainerTriggerTriggered(Trigger* t)
 
 	if (t == saveTrigger) saveScene();
 	else if (t == loadTrigger) loadScene();
+}
+
+void Scene::itemAdded(Sequence* s)
+{
+	s->startAtLoad->setValue(true);
+	((BluxSequence*)s)->manualStartAtLoad = true;
 }
 
 void Scene::resetEffectTimes()

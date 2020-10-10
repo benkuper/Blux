@@ -19,5 +19,7 @@ public:
     BluxSequenceManager();
     ~BluxSequenceManager();
 
+    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
+
     Sequence* createItem();
 };

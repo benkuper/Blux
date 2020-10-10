@@ -73,46 +73,6 @@
 			isa = PBXBuildFile;
 			fileRef = FD6A316F377597E01619E229;
 		};
-		0001ADD6495602FA180B8D5D = {
-			isa = PBXBuildFile;
-			fileRef = 77F0FEFC9A40045A63B906D8;
-		};
-		AB70EC5A69B2112924C1DBE0 = {
-			isa = PBXBuildFile;
-			fileRef = 55FB18C048FBA6CDCD84A379;
-		};
-		EDE3FCCC78A99BE4D69FEA17 = {
-			isa = PBXBuildFile;
-			fileRef = 91F008B594FA3AE37FE84393;
-		};
-		014B7C51078872B919E8B793 = {
-			isa = PBXBuildFile;
-			fileRef = C94DB70EC77AF1DB8BB1D1EB;
-		};
-		EF6F070EFEA44F966D13ED09 = {
-			isa = PBXBuildFile;
-			fileRef = CA30FB173419373714625DEA;
-		};
-		707B0B6E7D8460DF464DAB74 = {
-			isa = PBXBuildFile;
-			fileRef = FA823DDA27E7148CA2F9B6C6;
-		};
-		4472F61BAE41B5BBC453C223 = {
-			isa = PBXBuildFile;
-			fileRef = 8259AF17357ACD9BE11625CD;
-		};
-		9FE5AFD0CD59F23D40FE2A20 = {
-			isa = PBXBuildFile;
-			fileRef = DF2CF4978FF247F032BE184E;
-		};
-		08F67F2F49D322912DA00B62 = {
-			isa = PBXBuildFile;
-			fileRef = 9082628144EC0F7813469119;
-		};
-		32FCB401D881E02500928C91 = {
-			isa = PBXBuildFile;
-			fileRef = EFAB2AE1F748D932C390B83B;
-		};
 		4F7AA482E8AA7B0C0BE4D643 = {
 			isa = PBXBuildFile;
 			fileRef = 45C1A9290775CC8F8A82F626;
@@ -488,6 +448,70 @@
 		232FC27EFC7297037260A3D9 = {
 			isa = PBXBuildFile;
 			fileRef = F7C86E76FF3C01B3313764D0;
+		};
+		0001ADD6495602FA180B8D5D = {
+			isa = PBXBuildFile;
+			fileRef = 77F0FEFC9A40045A63B906D8;
+		};
+		AB70EC5A69B2112924C1DBE0 = {
+			isa = PBXBuildFile;
+			fileRef = 55FB18C048FBA6CDCD84A379;
+		};
+		EDE3FCCC78A99BE4D69FEA17 = {
+			isa = PBXBuildFile;
+			fileRef = 91F008B594FA3AE37FE84393;
+		};
+		014B7C51078872B919E8B793 = {
+			isa = PBXBuildFile;
+			fileRef = C94DB70EC77AF1DB8BB1D1EB;
+		};
+		EF6F070EFEA44F966D13ED09 = {
+			isa = PBXBuildFile;
+			fileRef = CA30FB173419373714625DEA;
+		};
+		ED46516CCD9D4219CB96A89B = {
+			isa = PBXBuildFile;
+			fileRef = C0BB506D0A1EF22E98AF38BD;
+		};
+		67FF2B18B228A1825C135E2C = {
+			isa = PBXBuildFile;
+			fileRef = E04EA3EB2F4A3171D299FF6F;
+		};
+		0D64A7333139A7AA997D831A = {
+			isa = PBXBuildFile;
+			fileRef = E3026DFB231C4B0D4CDA99F8;
+		};
+		D008670A3836929D2A952E94 = {
+			isa = PBXBuildFile;
+			fileRef = 3B4C0EB6AD3356EB563C1B64;
+		};
+		73CC9F83951DC32F365C9FD8 = {
+			isa = PBXBuildFile;
+			fileRef = 61CE3447666AC70AD92CE5DD;
+		};
+		707B0B6E7D8460DF464DAB74 = {
+			isa = PBXBuildFile;
+			fileRef = FA823DDA27E7148CA2F9B6C6;
+		};
+		0E85908EFB55EFDE79AF4787 = {
+			isa = PBXBuildFile;
+			fileRef = 276B376118EFB45E2DED3F1D;
+		};
+		4472F61BAE41B5BBC453C223 = {
+			isa = PBXBuildFile;
+			fileRef = 8259AF17357ACD9BE11625CD;
+		};
+		9FE5AFD0CD59F23D40FE2A20 = {
+			isa = PBXBuildFile;
+			fileRef = DF2CF4978FF247F032BE184E;
+		};
+		08F67F2F49D322912DA00B62 = {
+			isa = PBXBuildFile;
+			fileRef = 9082628144EC0F7813469119;
+		};
+		32FCB401D881E02500928C91 = {
+			isa = PBXBuildFile;
+			fileRef = EFAB2AE1F748D932C390B83B;
 		};
 		D74CE54FF281688FFAFD97A9 = {
 			isa = PBXBuildFile;
@@ -868,6 +892,13 @@
 			path = ../../Source/Group/GroupManager.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		276B376118EFB45E2DED3F1D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = BluxSequenceEditor.cpp;
+			path = ../../Source/Sequence/ui/BluxSequenceEditor.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		28014FFCC85AEC1F840CC893 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -964,6 +995,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = OverrideEffect.cpp;
 			path = ../../Source/Effect/effects/override/OverrideEffect.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		3B4C0EB6AD3356EB563C1B64 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = EffectBlock.cpp;
+			path = ../../Source/Sequence/layers/effect/EffectBlock.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		3BDA3C9C5E2741BB520F1AFD = {
@@ -1183,6 +1221,13 @@
 			path = ../../Source/MainComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		506184C0E5968A80C7901AB6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = EffectBlockUI.h;
+			path = ../../Source/Sequence/layers/effect/ui/EffectBlockUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		50F0261A738FE9FDF4334879 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1314,6 +1359,20 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ObjectManagerUI.h;
 			path = ../../Source/Object/ui/ObjectManagerUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		61CE3447666AC70AD92CE5DD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = EffectBlockManager.cpp;
+			path = ../../Source/Sequence/layers/effect/EffectBlockManager.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		627742083830E3A02D2379F1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = EffectBlockManager.h;
+			path = ../../Source/Sequence/layers/effect/EffectBlockManager.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		6704AE36D64BF8B3F63DC935 = {
@@ -1680,6 +1739,13 @@
 			path = ../../Source/Object/ObjectManager.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		93DEEE121F2A4DF4084177B1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = EffectLayerTimeline.h;
+			path = ../../Source/Sequence/layers/effect/ui/EffectLayerTimeline.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9460B399398BB99406E5214A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1890,6 +1956,13 @@
 			path = ../../Source/Object/Component/components/strobe/StrobeComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		B2EEF03913D318269C1E2882 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = BluxSequenceEditor.h;
+			path = ../../Source/Sequence/ui/BluxSequenceEditor.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		B2F3DAB4C7FA24A45A3D4638 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1930,6 +2003,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = SerialManager.h;
 			path = ../../Source/Common/Serial/SerialManager.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B7703377F8C6870F1B69579F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = EffectBlockManagerUI.h;
+			path = ../../Source/Sequence/layers/effect/ui/EffectBlockManagerUI.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		B88B59DAD05D7C5606F4B3E7 = {
@@ -2014,6 +2094,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = InterfaceUI.h;
 			path = ../../Source/Interface/ui/InterfaceUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		C0BB506D0A1EF22E98AF38BD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = EffectBlockManagerUI.cpp;
+			path = ../../Source/Sequence/layers/effect/ui/EffectBlockManagerUI.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		C1886074645E3D7CFA3CDEBD = {
@@ -2240,6 +2327,13 @@
 			path = ../../Source/Object/actions/ObjectAction.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		E04EA3EB2F4A3171D299FF6F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = EffectBlockUI.cpp;
+			path = ../../Source/Sequence/layers/effect/ui/EffectBlockUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		E08451FFA5FE99FC08D813B9 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -2252,6 +2346,20 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = LaserPattern.h;
 			path = ../../Source/Object/Component/components/laser/LaserPattern/LaserPattern.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		E230CAA202B3F42D52ED14CE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = EffectBlock.h;
+			path = ../../Source/Sequence/layers/effect/EffectBlock.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		E3026DFB231C4B0D4CDA99F8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = EffectLayerTimeline.cpp;
+			path = ../../Source/Sequence/layers/effect/ui/EffectLayerTimeline.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		E47B291834B09131011E992F = {
@@ -2522,89 +2630,6 @@
 				CD7671377F08B1CD79944FA6,
 			);
 			name = Audio;
-			sourceTree = "<group>";
-		};
-		97F865B3869D3AB53DCB1BC9 = {
-			isa = PBXGroup;
-			children = (
-				77F0FEFC9A40045A63B906D8,
-				793F5E09AB5A75BD49B5F0A4,
-			);
-			name = actions;
-			sourceTree = "<group>";
-		};
-		5C0E67D66FB6830D45824785 = {
-			isa = PBXGroup;
-			children = (
-				55FB18C048FBA6CDCD84A379,
-				14E5CACF9663393005FCCBFC,
-				91F008B594FA3AE37FE84393,
-				E85DB12637C1AB44DD09441D,
-			);
-			name = action;
-			sourceTree = "<group>";
-		};
-		C468617678BC908939F82328 = {
-			isa = PBXGroup;
-			children = (
-				C94DB70EC77AF1DB8BB1D1EB,
-				E6959A623BFE3DD00E0CB043,
-			);
-			name = automation;
-			sourceTree = "<group>";
-		};
-		B9A99678F14A28B02A9B7F22 = {
-			isa = PBXGroup;
-			children = (
-				CA30FB173419373714625DEA,
-				7D155F77991F6EB5B4821121,
-			);
-			name = colorsource;
-			sourceTree = "<group>";
-		};
-		BB68B59941A35F33BF4291A6 = {
-			isa = PBXGroup;
-			children = (
-				FA823DDA27E7148CA2F9B6C6,
-				8EB7EF056F1EF54C4E4FE7C3,
-			);
-			name = effect;
-			sourceTree = "<group>";
-		};
-		12D9DB7CC05120E948DB9E63 = {
-			isa = PBXGroup;
-			children = (
-				5C0E67D66FB6830D45824785,
-				C468617678BC908939F82328,
-				B9A99678F14A28B02A9B7F22,
-				BB68B59941A35F33BF4291A6,
-			);
-			name = layers;
-			sourceTree = "<group>";
-		};
-		0D48C02A2E0FC049F61316A5 = {
-			isa = PBXGroup;
-			children = (
-				8259AF17357ACD9BE11625CD,
-				90F4927CA1089BB3BF684424,
-			);
-			name = ui;
-			sourceTree = "<group>";
-		};
-		13B19C7EE68B27595138DEBD = {
-			isa = PBXGroup;
-			children = (
-				97F865B3869D3AB53DCB1BC9,
-				12D9DB7CC05120E948DB9E63,
-				0D48C02A2E0FC049F61316A5,
-				DF2CF4978FF247F032BE184E,
-				0EB1A756B7F1F7C2473C4272,
-				9082628144EC0F7813469119,
-				0AEFE197A55CC4FA3B4EE1FE,
-				EFAB2AE1F748D932C390B83B,
-				CC96DC4DF3AC7BC93E637EC5,
-			);
-			name = Sequence;
 			sourceTree = "<group>";
 		};
 		7A2BED397D0DC0DB142BCC7F = {
@@ -3326,6 +3351,109 @@
 			name = Engine;
 			sourceTree = "<group>";
 		};
+		97F865B3869D3AB53DCB1BC9 = {
+			isa = PBXGroup;
+			children = (
+				77F0FEFC9A40045A63B906D8,
+				793F5E09AB5A75BD49B5F0A4,
+			);
+			name = actions;
+			sourceTree = "<group>";
+		};
+		5C0E67D66FB6830D45824785 = {
+			isa = PBXGroup;
+			children = (
+				55FB18C048FBA6CDCD84A379,
+				14E5CACF9663393005FCCBFC,
+				91F008B594FA3AE37FE84393,
+				E85DB12637C1AB44DD09441D,
+			);
+			name = action;
+			sourceTree = "<group>";
+		};
+		C468617678BC908939F82328 = {
+			isa = PBXGroup;
+			children = (
+				C94DB70EC77AF1DB8BB1D1EB,
+				E6959A623BFE3DD00E0CB043,
+			);
+			name = automation;
+			sourceTree = "<group>";
+		};
+		B9A99678F14A28B02A9B7F22 = {
+			isa = PBXGroup;
+			children = (
+				CA30FB173419373714625DEA,
+				7D155F77991F6EB5B4821121,
+			);
+			name = colorsource;
+			sourceTree = "<group>";
+		};
+		BF2C699D6061AE43B0C75093 = {
+			isa = PBXGroup;
+			children = (
+				C0BB506D0A1EF22E98AF38BD,
+				B7703377F8C6870F1B69579F,
+				E04EA3EB2F4A3171D299FF6F,
+				506184C0E5968A80C7901AB6,
+				E3026DFB231C4B0D4CDA99F8,
+				93DEEE121F2A4DF4084177B1,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		BB68B59941A35F33BF4291A6 = {
+			isa = PBXGroup;
+			children = (
+				BF2C699D6061AE43B0C75093,
+				3B4C0EB6AD3356EB563C1B64,
+				E230CAA202B3F42D52ED14CE,
+				61CE3447666AC70AD92CE5DD,
+				627742083830E3A02D2379F1,
+				FA823DDA27E7148CA2F9B6C6,
+				8EB7EF056F1EF54C4E4FE7C3,
+			);
+			name = effect;
+			sourceTree = "<group>";
+		};
+		12D9DB7CC05120E948DB9E63 = {
+			isa = PBXGroup;
+			children = (
+				5C0E67D66FB6830D45824785,
+				C468617678BC908939F82328,
+				B9A99678F14A28B02A9B7F22,
+				BB68B59941A35F33BF4291A6,
+			);
+			name = layers;
+			sourceTree = "<group>";
+		};
+		0D48C02A2E0FC049F61316A5 = {
+			isa = PBXGroup;
+			children = (
+				276B376118EFB45E2DED3F1D,
+				B2EEF03913D318269C1E2882,
+				8259AF17357ACD9BE11625CD,
+				90F4927CA1089BB3BF684424,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		13B19C7EE68B27595138DEBD = {
+			isa = PBXGroup;
+			children = (
+				97F865B3869D3AB53DCB1BC9,
+				12D9DB7CC05120E948DB9E63,
+				0D48C02A2E0FC049F61316A5,
+				DF2CF4978FF247F032BE184E,
+				0EB1A756B7F1F7C2473C4272,
+				9082628144EC0F7813469119,
+				0AEFE197A55CC4FA3B4EE1FE,
+				EFAB2AE1F748D932C390B83B,
+				CC96DC4DF3AC7BC93E637EC5,
+			);
+			name = Sequence;
+			sourceTree = "<group>";
+		};
 		299C79F65B8C1BB3D9AF708C = {
 			isa = PBXGroup;
 			children = (
@@ -3339,7 +3467,6 @@
 			isa = PBXGroup;
 			children = (
 				5F6E18662CD3937931CE16D2,
-				13B19C7EE68B27595138DEBD,
 				F5FF7045CFA377C4224EAA09,
 				42778E7BB0B09E9DFB9889EC,
 				D9C6519E53FAEC01B17D4EF6,
@@ -3348,6 +3475,7 @@
 				C8AF2E293C96663203A263EC,
 				A725ECCE821C0A1077A753E2,
 				1299EB8513DF541D03759C52,
+				13B19C7EE68B27595138DEBD,
 				299C79F65B8C1BB3D9AF708C,
 				F1C4C751A891682F275FAFF0,
 				9375257951C29092E736C5EB,
@@ -3484,7 +3612,7 @@
 					"_DEBUG=1",
 					"DEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b9",
+					"JUCE_APP_VERSION=1.0.0b10",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3571,7 +3699,7 @@
 					"_NDEBUG=1",
 					"NDEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b9",
+					"JUCE_APP_VERSION=1.0.0b10",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3773,16 +3901,6 @@
 			files = (
 				C3CEF9692B6820C2D7236465,
 				097B92ED12A1F67E8AFA8763,
-				0001ADD6495602FA180B8D5D,
-				AB70EC5A69B2112924C1DBE0,
-				EDE3FCCC78A99BE4D69FEA17,
-				014B7C51078872B919E8B793,
-				EF6F070EFEA44F966D13ED09,
-				707B0B6E7D8460DF464DAB74,
-				4472F61BAE41B5BBC453C223,
-				9FE5AFD0CD59F23D40FE2A20,
-				08F67F2F49D322912DA00B62,
-				32FCB401D881E02500928C91,
 				4F7AA482E8AA7B0C0BE4D643,
 				42CB090ADEA91C1D2931C3B8,
 				61C160A2475E313BB23A3884,
@@ -3877,6 +3995,22 @@
 				1AAA109937623BD08E4A5DC2,
 				05B0735F9ED93EB0FF94F531,
 				232FC27EFC7297037260A3D9,
+				0001ADD6495602FA180B8D5D,
+				AB70EC5A69B2112924C1DBE0,
+				EDE3FCCC78A99BE4D69FEA17,
+				014B7C51078872B919E8B793,
+				EF6F070EFEA44F966D13ED09,
+				ED46516CCD9D4219CB96A89B,
+				67FF2B18B228A1825C135E2C,
+				0D64A7333139A7AA997D831A,
+				D008670A3836929D2A952E94,
+				73CC9F83951DC32F365C9FD8,
+				707B0B6E7D8460DF464DAB74,
+				0E85908EFB55EFDE79AF4787,
+				4472F61BAE41B5BBC453C223,
+				9FE5AFD0CD59F23D40FE2A20,
+				08F67F2F49D322912DA00B62,
+				32FCB401D881E02500928C91,
 				D74CE54FF281688FFAFD97A9,
 				C0AC9E4124D18271CBCBB423,
 				32EE6D530A4E85FA174859D6,

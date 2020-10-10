@@ -11,11 +11,19 @@
 #include "Effect.h"
 #include "ui/EffectEditor.h"
 #include "Common/Helpers/SceneHelpers.h"
+#include "Object/Object.h"
 
 Effect::Effect(const String& name, var params) :
 	BaseItem(name)
 {
 	saveAndLoadRecursiveData = true;
+
+	sceneSaveMode = addEnumParameter("Save Mode", "Choose what to save in scenes");
+	sceneSaveMode->addOption("Save all", FULL, false)->addOption("Save weight only", WEIGHT_ONLY)->addOption("Exclude", NONE);
+	sceneSaveMode->setValueWithData(WEIGHT_ONLY);
+	
+	mode = addEnumParameter("Blend Mode", "Defines how the values are blended with the source ones.");
+	mode->addOption("Override", OVERRIDE)->addOption("Max", MAX)->addOption("Min", MIN)->addOption("Add", ADD);
 
 	enabled->setValue(false); //This is to avoid dangerous object manipulation on effect creation
 
@@ -23,10 +31,7 @@ Effect::Effect(const String& name, var params) :
 	weight->defaultValue = 0; //this allows for scene lerp default to 0
 	weight->hideInEditor = true;
 
-	sceneSaveMode = addEnumParameter("Save Mode", "Choose what to save in scenes");
-	sceneSaveMode->addOption("Save all", FULL, false)->addOption("Save weight only", WEIGHT_ONLY)->addOption("Exclude", NONE);
-	sceneSaveMode->setValueWithData(WEIGHT_ONLY);
-
+	
 	//excludeFromScenes->hideInEditor = true;
 
 	addChildControllableContainer(&filterManager);
@@ -39,17 +44,19 @@ Effect::~Effect()
 {
 }
 
-void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
+void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier, int id, float time)
 {
 	FilterResult r = filterManager.getFilteredResultForComponent(o, c);
 	if (r.id == -1) return;
+	int targetID = (r.id == o->globalID->intValue()) ? id : r.id;
 
 	float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
 	if (targetWeight == 0) return;
 
-	var pValues = getProcessedComponentValuesInternal(o, c, r.id, values.clone());
+	var pValues = getProcessedComponentValuesInternal(o, c,  values.clone(), targetID, time);
 	jassert(pValues.size() == values.size());
+
 	for (int i = 0; i < values.size(); i++)
 	{
 		if (values[i].isArray())
@@ -57,19 +64,36 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 			jassert(pValues[i].isArray());
 			for (int j = 0; j < values[i].size(); j++)
 			{
-				values[i][j] = jmap<float>(targetWeight, values[i][j], pValues[i][j]);
+				var value = pValues[i][j];
+				
+				values[i][j] = blendFloatValue(values[i][j], pValues[i][j], targetWeight);
 			}
 		}
 		else
 		{
-			values[i] = jmap<float>(targetWeight, values[i], pValues[i]);
+			values[i] = blendFloatValue(values[i], pValues[i], targetWeight);
 		}
 	}
 }
 
-var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values)
+var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c,var values, int id, float time)
 {
 	return values;
+}
+
+float Effect::blendFloatValue(float start, float end, float weight)
+{
+	BlendMode blendMode = mode->getValueDataAsEnum<BlendMode>();
+	float val = jmap<float>(weight, start, end);
+	switch (blendMode)
+	{
+	case OVERRIDE: return val;
+	case ADD: return start + val;
+	case MAX: return jmax(start, val);
+	case MIN: return jmin(start, val);
+	}
+
+	return  val;
 }
 
 var Effect::getSceneData()

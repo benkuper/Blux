@@ -15,6 +15,7 @@
 #include "Group/GroupManager.h"
 #include "Scene/SceneManager.h"
 #include "Object/ObjectManager.h"
+#include "Sequence/GlobalSequenceManager.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
@@ -158,6 +159,9 @@ void Object::computeComponentValues(ObjectComponent* c)
 			GroupManager::getInstance()->processComponentValues(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
 
 			//global effects
+			GlobalSequenceManager::getInstance()->processComponentValues(this, c, values);
+
+
 			GlobalEffectManager::getInstance()->processComponentValues(this, c, values);
 
 			int index = 0;

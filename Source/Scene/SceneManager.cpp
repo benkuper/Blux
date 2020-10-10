@@ -94,19 +94,26 @@ Scene* SceneManager::getPreviousScene()
 
 void SceneManager::run()
 {
-    float timeAtLoad = Time::getMillisecondCounter() / 1000.0f;
-    currentScene->loadProgress->setValue(0);
-    currentScene->resetEffectTimes();
-
-    var dataAtLoad = currentScene->getSceneData();
-     
     String oName = ObjectManager::getInstance()->shortName;
     String gName = GroupManager::getInstance()->shortName;
     String eName = GlobalEffectManager::getInstance()->shortName;
 
-
+    currentScene->loadProgress->setValue(0);
+    currentScene->resetEffectTimes();
+    for (auto& s : currentScene->sequenceManager.items)
+    {
+        if (s->startAtLoad->boolValue())
+        {
+            s->stopTrigger->trigger();
+            s->playTrigger->trigger();
+        }
+    }
+     
     sceneManagerNotifier.addMessage(new SceneManagerEvent(SceneManagerEvent::SCENE_LOAD_START));
+
     
+    var dataAtLoad = currentScene->getSceneData();
+    float timeAtLoad = Time::getMillisecondCounter() / 1000.0f;
     if (loadTime > 0)
     {
         while (!threadShouldExit() && currentScene->loadProgress->floatValue() < 1)
@@ -140,6 +147,14 @@ void SceneManager::run()
 
     currentScene->loadProgress->setValue(0);
 
+    if (previousScene != nullptr)
+    {
+        for (auto& s : previousScene->sequenceManager.items)
+        {
+            s->stopTrigger->trigger();
+        }
+    }
+   
     sceneManagerNotifier.addMessage(new SceneManagerEvent(SceneManagerEvent::SCENE_LOAD_END));
 }
 
@@ -153,7 +168,13 @@ void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& va
     if (currentScene == nullptr) return;
 
     float progressWeight = currentScene->isCurrent->boolValue() ? 1 : currentScene->loadProgress->floatValue();
-    if (previousScene != nullptr &&  progressWeight < 1)  previousScene->effectManager.processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
+    if (previousScene != nullptr && progressWeight < 1)
+    {
+        previousScene->sequenceManager.processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
+        previousScene->effectManager.processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
+    }
+
+    currentScene->sequenceManager.processComponentValues(o, c, values, progressWeight);
     currentScene->effectManager.processComponentValues(o, c, values,  progressWeight);
 }
 

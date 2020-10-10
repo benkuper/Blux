@@ -11,30 +11,6 @@
     <Filter Include="Blux\Source\Audio">
       <UniqueIdentifier>{71B30977-1984-2838-7462-8D5A66201FFA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Sequence\actions">
-      <UniqueIdentifier>{4AFD7A54-5DD4-AFDF-7377-248AE8959118}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Sequence\layers\action">
-      <UniqueIdentifier>{F16A5B3E-6BA7-C928-096D-E5BE3EAE28D0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Sequence\layers\automation">
-      <UniqueIdentifier>{344C9440-EB88-D54D-E38F-CF640E6F1288}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Sequence\layers\colorsource">
-      <UniqueIdentifier>{E431DE70-525D-124A-406A-C8DA6636AFEF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Sequence\layers\effect">
-      <UniqueIdentifier>{AA9B35EF-4396-199D-8CEE-A104C506A783}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Sequence\layers">
-      <UniqueIdentifier>{5A666696-3611-C167-153D-8889D2916290}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Sequence\ui">
-      <UniqueIdentifier>{1309769E-1A82-DD25-E135-C59BFEB34E10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Sequence">
-      <UniqueIdentifier>{96B68C2C-BBC0-E73F-1BF3-844F78CFBAFE}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blux\Source\Group\groups\virtual">
       <UniqueIdentifier>{922F89D4-9FBE-4BA5-5556-84AE6371675E}</UniqueIdentifier>
     </Filter>
@@ -238,6 +214,33 @@
     </Filter>
     <Filter Include="Blux\Source\Engine">
       <UniqueIdentifier>{3129FDDE-C83B-BB13-C031-6D4A35FC9980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\actions">
+      <UniqueIdentifier>{4AFD7A54-5DD4-AFDF-7377-248AE8959118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\layers\action">
+      <UniqueIdentifier>{F16A5B3E-6BA7-C928-096D-E5BE3EAE28D0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\layers\automation">
+      <UniqueIdentifier>{344C9440-EB88-D54D-E38F-CF640E6F1288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\layers\colorsource">
+      <UniqueIdentifier>{E431DE70-525D-124A-406A-C8DA6636AFEF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\layers\effect\ui">
+      <UniqueIdentifier>{5B9715CA-857A-4A2B-62C8-E974A998CC81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\layers\effect">
+      <UniqueIdentifier>{AA9B35EF-4396-199D-8CEE-A104C506A783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\layers">
+      <UniqueIdentifier>{5A666696-3611-C167-153D-8889D2916290}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\ui">
+      <UniqueIdentifier>{1309769E-1A82-DD25-E135-C59BFEB34E10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence">
+      <UniqueIdentifier>{96B68C2C-BBC0-E73F-1BF3-844F78CFBAFE}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\UI">
       <UniqueIdentifier>{84DD20F7-906A-8F41-5A59-CA823A732816}</UniqueIdentifier>
@@ -1009,36 +1012,6 @@
     <ClCompile Include="..\..\Source\Audio\AudioManager.cpp">
       <Filter>Blux\Source\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
-      <Filter>Blux\Source\Sequence\actions</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\layers\action\Action.cpp">
-      <Filter>Blux\Source\Sequence\layers\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp">
-      <Filter>Blux\Source\Sequence\layers\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\layers\automation\AutomationLayer.cpp">
-      <Filter>Blux\Source\Sequence\layers\automation</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.cpp">
-      <Filter>Blux\Source\Sequence\layers\colorsource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp">
-      <Filter>Blux\Source\Sequence\layers\effect</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.cpp">
-      <Filter>Blux\Source\Sequence\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp">
-      <Filter>Blux\Source\Sequence</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp">
-      <Filter>Blux\Source\Sequence</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp">
-      <Filter>Blux\Source\Sequence</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Group\groups\virtual\VirtualGroup.cpp">
       <Filter>Blux\Source\Group\groups\virtual</Filter>
     </ClCompile>
@@ -1320,6 +1293,54 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp">
       <Filter>Blux\Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
+      <Filter>Blux\Source\Sequence\actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\action\Action.cpp">
+      <Filter>Blux\Source\Sequence\layers\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp">
+      <Filter>Blux\Source\Sequence\layers\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\automation\AutomationLayer.cpp">
+      <Filter>Blux\Source\Sequence\layers\automation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.cpp">
+      <Filter>Blux\Source\Sequence\layers\colorsource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockManagerUI.cpp">
+      <Filter>Blux\Source\Sequence\layers\effect\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockUI.cpp">
+      <Filter>Blux\Source\Sequence\layers\effect\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectLayerTimeline.cpp">
+      <Filter>Blux\Source\Sequence\layers\effect\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlock.cpp">
+      <Filter>Blux\Source\Sequence\layers\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlockManager.cpp">
+      <Filter>Blux\Source\Sequence\layers\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp">
+      <Filter>Blux\Source\Sequence\layers\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceEditor.cpp">
+      <Filter>Blux\Source\Sequence\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.cpp">
+      <Filter>Blux\Source\Sequence\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp">
+      <Filter>Blux\Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp">
+      <Filter>Blux\Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp">
+      <Filter>Blux\Source\Sequence</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\AssetManager.cpp">
       <Filter>Blux\Source\UI</Filter>
@@ -4155,36 +4176,6 @@
     <ClInclude Include="..\..\Source\Audio\AudioManager.h">
       <Filter>Blux\Source\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h">
-      <Filter>Blux\Source\Sequence\actions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\layers\action\Action.h">
-      <Filter>Blux\Source\Sequence\layers\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h">
-      <Filter>Blux\Source\Sequence\layers\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\layers\automation\AutomationLayer.h">
-      <Filter>Blux\Source\Sequence\layers\automation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.h">
-      <Filter>Blux\Source\Sequence\layers\colorsource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectLayer.h">
-      <Filter>Blux\Source\Sequence\layers\effect</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.h">
-      <Filter>Blux\Source\Sequence\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\BluxSequence.h">
-      <Filter>Blux\Source\Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\BluxSequenceManager.h">
-      <Filter>Blux\Source\Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h">
-      <Filter>Blux\Source\Sequence</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Group\groups\virtual\VirtualGroup.h">
       <Filter>Blux\Source\Group\groups\virtual</Filter>
     </ClInclude>
@@ -4451,6 +4442,54 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Engine\BluxEngine.h">
       <Filter>Blux\Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h">
+      <Filter>Blux\Source\Sequence\actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\action\Action.h">
+      <Filter>Blux\Source\Sequence\layers\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h">
+      <Filter>Blux\Source\Sequence\layers\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\automation\AutomationLayer.h">
+      <Filter>Blux\Source\Sequence\layers\automation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.h">
+      <Filter>Blux\Source\Sequence\layers\colorsource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockManagerUI.h">
+      <Filter>Blux\Source\Sequence\layers\effect\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockUI.h">
+      <Filter>Blux\Source\Sequence\layers\effect\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\ui\EffectLayerTimeline.h">
+      <Filter>Blux\Source\Sequence\layers\effect\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectBlock.h">
+      <Filter>Blux\Source\Sequence\layers\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectBlockManager.h">
+      <Filter>Blux\Source\Sequence\layers\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectLayer.h">
+      <Filter>Blux\Source\Sequence\layers\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\ui\BluxSequenceEditor.h">
+      <Filter>Blux\Source\Sequence\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.h">
+      <Filter>Blux\Source\Sequence\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\BluxSequence.h">
+      <Filter>Blux\Source\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\BluxSequenceManager.h">
+      <Filter>Blux\Source\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h">
+      <Filter>Blux\Source\Sequence</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\AssetManager.h">
       <Filter>Blux\Source\UI</Filter>

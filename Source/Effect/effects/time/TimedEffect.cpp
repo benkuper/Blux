@@ -16,6 +16,9 @@ TimedEffect::TimedEffect(const String &name, var params) :
     curTime(0)
 {
     speed = addFloatParameter("Speed", "The speed at which play this", 1);
+	timeOffset = addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
+	timeOffset->defaultUI = FloatParameter::TIME;
+
 	offsetByID = addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
 	offsetByValue = addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
 }
@@ -24,17 +27,21 @@ TimedEffect::~TimedEffect()
 {
 }
 
-var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values)
+var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
 {
-
 	for (int i = 0; i < values.size(); i++)
 	{
 		if (values[i].isArray()) continue;
-		float time = curTime - offsetByID->floatValue() * id - offsetByValue->floatValue() * i;
-		values[i] = getProcessedComponentValueTimeInternal(o, c, id, values[i], time);
+		float targetTime =  getCurrentTime(time) - offsetByID->floatValue() * id - offsetByValue->floatValue() * i + timeOffset->floatValue();
+		values[i] = getProcessedComponentValueTimeInternal(o, c, values[i], id, targetTime);
 	}
 
 	return values;
+}
+
+float TimedEffect::getCurrentTime(float timeOverride)
+{
+	return timeOverride >= 0 ? timeOverride : curTime;
 }
 
 void TimedEffect::timerCallback()

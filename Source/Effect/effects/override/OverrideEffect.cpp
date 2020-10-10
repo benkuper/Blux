@@ -14,9 +14,6 @@
 OverrideEffect::OverrideEffect(const String &name, var params) :
     Effect(name, params)
 {
-    mode = addEnumParameter("Mode", "Override mode, defines how the values are handled.");
-    mode->addOption("Max", MAX)->addOption("Min", MIN)->addOption("Add", ADD);
-
     filterManager.componentSelector.selectedComponents.set(ObjectComponent::INTENSITY, true);
     filterManager.componentSelector.selectedComponents.set(ObjectComponent::PANTILT, true);
     filterManager.componentSelector.selectedComponents.set(ObjectComponent::SERVO, true);
@@ -39,30 +36,22 @@ OverrideFloatEffect::~OverrideFloatEffect()
 {
 }
 
-var OverrideFloatEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values)
+var OverrideFloatEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
 {
-    OverrideMode m = mode->getValueDataAsEnum<OverrideMode>();
-
     for (int i = 0; i < values.size(); i++)
     {
-        if (values[i].isArray()) continue;
-
-        switch (m)
+        if (values[i].isArray())
         {
-        case ADD:
-            values[i] = (float)values[i] + value->floatValue();
-            break;
-
-        case MIN:
-            values[i] = jmin<float>(values[i], value->floatValue());
-            break;
-
-        case MAX:
-            values[i] = jmax<float>(values[i], value->floatValue());
-            break;
+            for (int j = 0; j < values.size(); j++)
+            {
+                values[i][j] = value->floatValue();
+            }
+        }
+        else
+        {
+            values[i] = value->floatValue();
         }
     }
-  
 
     return values;
 }
@@ -79,7 +68,7 @@ OverrideColorEffect::~OverrideColorEffect()
 {
 }
 
-var OverrideColorEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values)
+var OverrideColorEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
 {
     for (int i = 0; i < values.size(); i++)
     {

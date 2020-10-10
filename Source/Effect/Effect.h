@@ -21,6 +21,9 @@ public:
     Effect(const String& name = "Effect", var params = var());
     ~Effect();
 
+    enum BlendMode { OVERRIDE, ADD, MAX, MIN };
+    EnumParameter* mode;
+
     FloatParameter* weight;
 
     enum SceneSaveMode { FULL, WEIGHT_ONLY, NONE };
@@ -28,8 +31,9 @@ public:
 
     FilterManager filterManager;
 
-    void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
-    virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values);
+    void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
+    virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1);
+    virtual float blendFloatValue(float start, float end, float weight);
 
     var getSceneData();
     void updateSceneData(var& sceneData);

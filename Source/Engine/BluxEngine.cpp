@@ -20,7 +20,7 @@
 #include "Audio/AudioManager.h"
 #include "Layout//StageLayoutManager.h"
 #include "Sequence/layers/action/ActionLayer.h"
-
+#include "Sequence/layers/effect/EffectBlockManager.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
@@ -57,6 +57,8 @@ BluxEngine::~BluxEngine()
 
 	ComponentFactory::deleteInstance();
 	ActionFactory::deleteInstance();
+	EffectFactory::deleteInstance();
+	EffectBlockFactory::deleteInstance();
 
 	AudioManager::deleteInstance();
 	BluxSettings::deleteInstance();

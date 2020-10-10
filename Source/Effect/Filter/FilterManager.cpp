@@ -49,8 +49,9 @@ void FilterManager::lerpFromSceneData(var startData, var endData, float weight)
 
 FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectComponent* c)
 {
+
     if (!componentSelector.selectedComponents[c->componentType]) return FilterResult();
-   
+
     bool hasFilteredAtLeastOnce = false;
     for (auto& e : items)
     {

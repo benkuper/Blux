@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b9"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b10"
               headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -24,55 +24,6 @@
         <FILE id="Jp4A8n" name="AudioManager.cpp" compile="1" resource="0"
               file="Source/Audio/AudioManager.cpp"/>
         <FILE id="mUVkYL" name="AudioManager.h" compile="0" resource="0" file="Source/Audio/AudioManager.h"/>
-      </GROUP>
-      <GROUP id="{460B3213-E16F-2CB9-9A88-70D86283C04B}" name="Sequence">
-        <GROUP id="{388537B4-AA3C-9089-27EF-F615B0E5827C}" name="actions">
-          <FILE id="jaBtu0" name="SequenceAction.cpp" compile="1" resource="0"
-                file="Source/Sequence/actions/SequenceAction.cpp"/>
-          <FILE id="Wm7XRj" name="SequenceAction.h" compile="0" resource="0"
-                file="Source/Sequence/actions/SequenceAction.h"/>
-        </GROUP>
-        <GROUP id="{47A4E042-1EFE-5733-D500-651382570D61}" name="layers">
-          <GROUP id="{AB827E54-9C49-D8A3-319B-C9ACAD9DDE01}" name="action">
-            <FILE id="K3amnz" name="Action.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/Action.cpp"/>
-            <FILE id="WZefds" name="Action.h" compile="0" resource="0" file="Source/Sequence/layers/action/Action.h"/>
-            <FILE id="Bpf2hH" name="ActionLayer.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/ActionLayer.cpp"/>
-            <FILE id="NS2oZm" name="ActionLayer.h" compile="0" resource="0" file="Source/Sequence/layers/action/ActionLayer.h"/>
-          </GROUP>
-          <GROUP id="{1E78F76D-6C26-5DA6-F248-E187A041660A}" name="automation">
-            <FILE id="Cs1tIN" name="AutomationLayer.cpp" compile="1" resource="0"
-                  file="Source/Sequence/layers/automation/AutomationLayer.cpp"/>
-            <FILE id="tiQyHr" name="AutomationLayer.h" compile="0" resource="0"
-                  file="Source/Sequence/layers/automation/AutomationLayer.h"/>
-          </GROUP>
-          <GROUP id="{EA89BD15-9538-2C68-FB3A-00C34175E063}" name="colorsource">
-            <FILE id="yRP0Uj" name="ColorSourceLayer.cpp" compile="1" resource="0"
-                  file="Source/Sequence/layers/colorsource/ColorSourceLayer.cpp"/>
-            <FILE id="N5TpDK" name="ColorSourceLayer.h" compile="0" resource="0"
-                  file="Source/Sequence/layers/colorsource/ColorSourceLayer.h"/>
-          </GROUP>
-          <GROUP id="{0E87EE68-1F11-8706-650F-45FAB01E0AA7}" name="effect">
-            <FILE id="R5w4Cg" name="EffectLayer.cpp" compile="1" resource="0" file="Source/Sequence/layers/effect/EffectLayer.cpp"/>
-            <FILE id="BvxoZk" name="EffectLayer.h" compile="0" resource="0" file="Source/Sequence/layers/effect/EffectLayer.h"/>
-          </GROUP>
-        </GROUP>
-        <GROUP id="{AE5943CE-1256-27AF-6FA1-07A5B0B5A099}" name="ui">
-          <FILE id="SXFrz4" name="GlobalSequenceManagerUI.cpp" compile="1" resource="0"
-                file="Source/Sequence/ui/GlobalSequenceManagerUI.cpp"/>
-          <FILE id="QGlHRy" name="GlobalSequenceManagerUI.h" compile="0" resource="0"
-                file="Source/Sequence/ui/GlobalSequenceManagerUI.h"/>
-        </GROUP>
-        <FILE id="i7qrmB" name="BluxSequence.cpp" compile="1" resource="0"
-              file="Source/Sequence/BluxSequence.cpp"/>
-        <FILE id="qVw89s" name="BluxSequence.h" compile="0" resource="0" file="Source/Sequence/BluxSequence.h"/>
-        <FILE id="J6ZdE0" name="BluxSequenceManager.cpp" compile="1" resource="0"
-              file="Source/Sequence/BluxSequenceManager.cpp"/>
-        <FILE id="lkXFzT" name="BluxSequenceManager.h" compile="0" resource="0"
-              file="Source/Sequence/BluxSequenceManager.h"/>
-        <FILE id="gFUUsK" name="GlobalSequenceManager.cpp" compile="1" resource="0"
-              file="Source/Sequence/GlobalSequenceManager.cpp"/>
-        <FILE id="KoLJCC" name="GlobalSequenceManager.h" compile="0" resource="0"
-              file="Source/Sequence/GlobalSequenceManager.h"/>
       </GROUP>
       <GROUP id="{B57CF847-3047-16DF-4845-D8732946DCE6}" name="Group">
         <GROUP id="{C262AD5B-824E-A612-0CF9-ACCAA4C68811}" name="groups">
@@ -505,6 +456,78 @@
         </GROUP>
         <FILE id="Mv31r2" name="BluxEngine.cpp" compile="1" resource="0" file="Source/Engine/BluxEngine.cpp"/>
         <FILE id="DZeUuZ" name="BluxEngine.h" compile="0" resource="0" file="Source/Engine/BluxEngine.h"/>
+      </GROUP>
+      <GROUP id="{460B3213-E16F-2CB9-9A88-70D86283C04B}" name="Sequence">
+        <GROUP id="{388537B4-AA3C-9089-27EF-F615B0E5827C}" name="actions">
+          <FILE id="jaBtu0" name="SequenceAction.cpp" compile="1" resource="0"
+                file="Source/Sequence/actions/SequenceAction.cpp"/>
+          <FILE id="Wm7XRj" name="SequenceAction.h" compile="0" resource="0"
+                file="Source/Sequence/actions/SequenceAction.h"/>
+        </GROUP>
+        <GROUP id="{47A4E042-1EFE-5733-D500-651382570D61}" name="layers">
+          <GROUP id="{AB827E54-9C49-D8A3-319B-C9ACAD9DDE01}" name="action">
+            <FILE id="K3amnz" name="Action.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/Action.cpp"/>
+            <FILE id="WZefds" name="Action.h" compile="0" resource="0" file="Source/Sequence/layers/action/Action.h"/>
+            <FILE id="Bpf2hH" name="ActionLayer.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/ActionLayer.cpp"/>
+            <FILE id="NS2oZm" name="ActionLayer.h" compile="0" resource="0" file="Source/Sequence/layers/action/ActionLayer.h"/>
+          </GROUP>
+          <GROUP id="{1E78F76D-6C26-5DA6-F248-E187A041660A}" name="automation">
+            <FILE id="Cs1tIN" name="AutomationLayer.cpp" compile="1" resource="0"
+                  file="Source/Sequence/layers/automation/AutomationLayer.cpp"/>
+            <FILE id="tiQyHr" name="AutomationLayer.h" compile="0" resource="0"
+                  file="Source/Sequence/layers/automation/AutomationLayer.h"/>
+          </GROUP>
+          <GROUP id="{EA89BD15-9538-2C68-FB3A-00C34175E063}" name="colorsource">
+            <FILE id="yRP0Uj" name="ColorSourceLayer.cpp" compile="1" resource="0"
+                  file="Source/Sequence/layers/colorsource/ColorSourceLayer.cpp"/>
+            <FILE id="N5TpDK" name="ColorSourceLayer.h" compile="0" resource="0"
+                  file="Source/Sequence/layers/colorsource/ColorSourceLayer.h"/>
+          </GROUP>
+          <GROUP id="{0E87EE68-1F11-8706-650F-45FAB01E0AA7}" name="effect">
+            <GROUP id="{0BED57FB-2335-857D-2538-A9E5A13E12F5}" name="ui">
+              <FILE id="V4FDZ0" name="EffectBlockManagerUI.cpp" compile="1" resource="0"
+                    file="Source/Sequence/layers/effect/ui/EffectBlockManagerUI.cpp"/>
+              <FILE id="FNSuEo" name="EffectBlockManagerUI.h" compile="0" resource="0"
+                    file="Source/Sequence/layers/effect/ui/EffectBlockManagerUI.h"/>
+              <FILE id="UDW8sb" name="EffectBlockUI.cpp" compile="1" resource="0"
+                    file="Source/Sequence/layers/effect/ui/EffectBlockUI.cpp"/>
+              <FILE id="v123Iu" name="EffectBlockUI.h" compile="0" resource="0" file="Source/Sequence/layers/effect/ui/EffectBlockUI.h"/>
+              <FILE id="TZqdxf" name="EffectLayerTimeline.cpp" compile="1" resource="0"
+                    file="Source/Sequence/layers/effect/ui/EffectLayerTimeline.cpp"/>
+              <FILE id="m2GnMZ" name="EffectLayerTimeline.h" compile="0" resource="0"
+                    file="Source/Sequence/layers/effect/ui/EffectLayerTimeline.h"/>
+            </GROUP>
+            <FILE id="LiMLo8" name="EffectBlock.cpp" compile="1" resource="0" file="Source/Sequence/layers/effect/EffectBlock.cpp"/>
+            <FILE id="Z5PYiq" name="EffectBlock.h" compile="0" resource="0" file="Source/Sequence/layers/effect/EffectBlock.h"/>
+            <FILE id="itciIl" name="EffectBlockManager.cpp" compile="1" resource="0"
+                  file="Source/Sequence/layers/effect/EffectBlockManager.cpp"/>
+            <FILE id="oOHepb" name="EffectBlockManager.h" compile="0" resource="0"
+                  file="Source/Sequence/layers/effect/EffectBlockManager.h"/>
+            <FILE id="R5w4Cg" name="EffectLayer.cpp" compile="1" resource="0" file="Source/Sequence/layers/effect/EffectLayer.cpp"/>
+            <FILE id="BvxoZk" name="EffectLayer.h" compile="0" resource="0" file="Source/Sequence/layers/effect/EffectLayer.h"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{AE5943CE-1256-27AF-6FA1-07A5B0B5A099}" name="ui">
+          <FILE id="cKIOM2" name="BluxSequenceEditor.cpp" compile="1" resource="0"
+                file="Source/Sequence/ui/BluxSequenceEditor.cpp"/>
+          <FILE id="WU0oI4" name="BluxSequenceEditor.h" compile="0" resource="0"
+                file="Source/Sequence/ui/BluxSequenceEditor.h"/>
+          <FILE id="SXFrz4" name="GlobalSequenceManagerUI.cpp" compile="1" resource="0"
+                file="Source/Sequence/ui/GlobalSequenceManagerUI.cpp"/>
+          <FILE id="QGlHRy" name="GlobalSequenceManagerUI.h" compile="0" resource="0"
+                file="Source/Sequence/ui/GlobalSequenceManagerUI.h"/>
+        </GROUP>
+        <FILE id="i7qrmB" name="BluxSequence.cpp" compile="1" resource="0"
+              file="Source/Sequence/BluxSequence.cpp"/>
+        <FILE id="qVw89s" name="BluxSequence.h" compile="0" resource="0" file="Source/Sequence/BluxSequence.h"/>
+        <FILE id="J6ZdE0" name="BluxSequenceManager.cpp" compile="1" resource="0"
+              file="Source/Sequence/BluxSequenceManager.cpp"/>
+        <FILE id="lkXFzT" name="BluxSequenceManager.h" compile="0" resource="0"
+              file="Source/Sequence/BluxSequenceManager.h"/>
+        <FILE id="gFUUsK" name="GlobalSequenceManager.cpp" compile="1" resource="0"
+              file="Source/Sequence/GlobalSequenceManager.cpp"/>
+        <FILE id="KoLJCC" name="GlobalSequenceManager.h" compile="0" resource="0"
+              file="Source/Sequence/GlobalSequenceManager.h"/>
       </GROUP>
       <GROUP id="{16558FC8-A881-5FFD-F2BA-1E725B22DC38}" name="UI">
         <FILE id="Sd26AT" name="AssetManager.cpp" compile="1" resource="0"

@@ -19,8 +19,6 @@ public:
     OverrideEffect(const String &name = "Override", var params = var());
     virtual ~OverrideEffect();
 
-    enum OverrideMode { ADD, MAX, MIN };
-    EnumParameter* mode;
 
 };
 
@@ -33,9 +31,10 @@ public:
 
     FloatParameter* value;
     
-    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values) override;
+    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1.f) override;
 
-    String getTypeString() const override { return "Override (Number)"; }
+    String getTypeString() const override { return getTypeStringStatic(); }
+    const static String getTypeStringStatic() { return "Override (Number)"; }
     static OverrideFloatEffect* create(var params) { return new OverrideFloatEffect(params); }
 };
 
@@ -48,8 +47,10 @@ public:
 
     ColorParameter* value;
 
-    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values) override;
+    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1.f) override;
 
-    String getTypeString() const override { return "Override (Color)"; }
+    String getTypeString() const override {return getTypeStringStatic(); }
+    const static String getTypeStringStatic() { return "Override (Color)"; }
+
     static OverrideColorEffect* create(var params) { return new OverrideColorEffect(params); }
 };

@@ -16,7 +16,8 @@
 
 class Scene :
     public BaseItem,
-    public EffectManager::ManagerListener
+    public EffectManager::ManagerListener,
+    public SequenceManager::ManagerListener
 {
 public:
     Scene(const String & name = "Scene");
@@ -44,6 +45,8 @@ public:
     bool isObjectActiveInScene(Object*);
 
     void onContainerTriggerTriggered(Trigger* t) override;
+
+    void itemAdded(Sequence* s) override;
 
     void resetEffectTimes();
 

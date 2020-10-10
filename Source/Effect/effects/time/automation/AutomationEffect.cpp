@@ -51,7 +51,7 @@ AutomationEffect::~AutomationEffect()
 {
 }
 
-var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, int id, var value, float time)
+var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time)
 {
 	float relTime = fmodf(time, length->floatValue());
 

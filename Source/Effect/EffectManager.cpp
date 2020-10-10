@@ -14,17 +14,16 @@
 #include "effects/override/OverrideEffect.h"
 #include "effects/time/automation/AutomationEffect.h"
 
+juce_ImplementSingleton(EffectFactory);
+
 EffectManager::EffectManager() :
     BaseManager("Effects")
 {
     itemDataType = "Effect";
 
-    managerFactory = &factory;
+    managerFactory = EffectFactory::getInstance();
    
-    factory.defs.add(Factory<Effect>::Definition::createDef("", "Override (Number)", &OverrideFloatEffect::create));
-    factory.defs.add(Factory<Effect>::Definition::createDef("", "Override (Color)", &OverrideColorEffect::create));
-    factory.defs.add(Factory<Effect>::Definition::createDef("", "Noise", &NoiseEffect::create));
-    factory.defs.add(Factory<Effect>::Definition::createDef("", "Automation", &AutomationEffect::create));
+    
 
     canBeCopiedAndPasted = true;
 }
@@ -64,4 +63,14 @@ void EffectManager::updateSceneData(var& sceneData)
 void EffectManager::lerpFromSceneData(var startData, var endData, float weight)
 {
     for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
+}
+
+
+
+EffectFactory::EffectFactory()
+{
+    defs.add(Factory<Effect>::Definition::createDef("", OverrideFloatEffect::getTypeStringStatic(), &OverrideFloatEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("", OverrideColorEffect::getTypeStringStatic(), &OverrideColorEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("", NoiseEffect::getTypeStringStatic(), &NoiseEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("", AutomationEffect::getTypeStringStatic(), &AutomationEffect::create));
 }

@@ -66,7 +66,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE\modules;..\..\Modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_SUPPORT_CARBON=0;JUCER_VS2019_78A6631F=1;JUCE_APP_VERSION=1.0.0b9;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x60003;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_STANDALONE_APPLICATION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_SUPPORT_CARBON=0;JUCER_VS2019_78A6631F=1;JUCE_APP_VERSION=1.0.0b10;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x60003;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_STANDALONE_APPLICATION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -113,7 +113,7 @@
       <Optimization>Full</Optimization>
       <DebugInformationFormat>None</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE\modules;..\..\Modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_SUPPORT_CARBON=0;JUCER_VS2019_78A6631F=1;JUCE_APP_VERSION=1.0.0b9;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x60003;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_STANDALONE_APPLICATION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_SUPPORT_CARBON=0;JUCER_VS2019_78A6631F=1;JUCE_APP_VERSION=1.0.0b10;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x60003;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_STANDALONE_APPLICATION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -154,16 +154,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp"/>
     <ClCompile Include="..\..\Source\Audio\AudioManager.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\action\Action.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\automation\AutomationLayer.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp"/>
     <ClCompile Include="..\..\Source\Group\groups\virtual\VirtualGroup.cpp"/>
     <ClCompile Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.cpp"/>
     <ClCompile Include="..\..\Source\Group\groups\object\ObjectGroup.cpp"/>
@@ -258,6 +248,22 @@
     <ClCompile Include="..\..\Source\Object\ObjectManager.cpp"/>
     <ClCompile Include="..\..\Source\Engine\GenericAction.cpp"/>
     <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\action\Action.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\automation\AutomationLayer.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockManagerUI.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockUI.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectLayerTimeline.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlock.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlockManager.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceEditor.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp"/>
     <ClCompile Include="..\..\Source\UI\AssetManager.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
@@ -2889,16 +2895,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h"/>
     <ClInclude Include="..\..\Source\Audio\AudioManager.h"/>
-    <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h"/>
-    <ClInclude Include="..\..\Source\Sequence\layers\action\Action.h"/>
-    <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h"/>
-    <ClInclude Include="..\..\Source\Sequence\layers\automation\AutomationLayer.h"/>
-    <ClInclude Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.h"/>
-    <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectLayer.h"/>
-    <ClInclude Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.h"/>
-    <ClInclude Include="..\..\Source\Sequence\BluxSequence.h"/>
-    <ClInclude Include="..\..\Source\Sequence\BluxSequenceManager.h"/>
-    <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h"/>
     <ClInclude Include="..\..\Source\Group\groups\virtual\VirtualGroup.h"/>
     <ClInclude Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.h"/>
     <ClInclude Include="..\..\Source\Group\groups\object\ObjectGroup.h"/>
@@ -2988,6 +2984,22 @@
     <ClInclude Include="..\..\Source\Object\ObjectManager.h"/>
     <ClInclude Include="..\..\Source\Engine\GenericAction.h"/>
     <ClInclude Include="..\..\Source\Engine\BluxEngine.h"/>
+    <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\action\Action.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\automation\AutomationLayer.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockManagerUI.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockUI.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\ui\EffectLayerTimeline.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectBlock.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectBlockManager.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectLayer.h"/>
+    <ClInclude Include="..\..\Source\Sequence\ui\BluxSequenceEditor.h"/>
+    <ClInclude Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.h"/>
+    <ClInclude Include="..\..\Source\Sequence\BluxSequence.h"/>
+    <ClInclude Include="..\..\Source\Sequence\BluxSequenceManager.h"/>
+    <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h"/>
     <ClInclude Include="..\..\Source\UI\AssetManager.h"/>
     <ClInclude Include="..\..\Source\Main.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
