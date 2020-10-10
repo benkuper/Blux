@@ -55,9 +55,11 @@ FilterResult GroupFilter::getFilteredResultForComponentInternal(Object* o, Objec
             if (Group* g = dynamic_cast<Group*>(tp->targetContainer.get()))
             {
                 int id = g->getLocalIDForObject(o);
-                if (invertOrder->boolValue()) id = g->getNumObjects() - 1 - id;
-
-                if (id != -1) return FilterResult({ id, 1 });
+                if (id != -1)
+                {
+                    if (invertOrder->boolValue()) id = g->getNumObjects() - 1 - id;
+                    return FilterResult({ id, 1 });
+                }
             }
         }
     }
