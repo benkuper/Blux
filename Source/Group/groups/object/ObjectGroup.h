@@ -73,6 +73,7 @@ public:
 
     bool containsObject(Object* o) override;
     int getLocalIDForObject(Object* o) override;
+    int getNumObjects() override;
 
     virtual Array<Object*> getObjects() override;
 

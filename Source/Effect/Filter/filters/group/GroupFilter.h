@@ -20,7 +20,8 @@ public:
     ~GroupFilter();
 
     ControllableContainer groups;
-    
+    BoolParameter* invertOrder;
+
     void controllableAdded(Controllable*) override;
 
     virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c) override;

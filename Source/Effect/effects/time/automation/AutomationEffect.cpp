@@ -62,7 +62,11 @@ var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectCo
 	else
 	{
 		if (relTime < 0 && speed->floatValue() > 0) relTime = 0;
-		else if (relTime > 0 && speed->floatValue() < 0) relTime = length->floatValue();
+		else if (speed->floatValue() < 0)
+		{
+			if (relTime > 0) relTime = length->floatValue();
+			else relTime += length->floatValue();
+		}
 	}
 
 	return automation.getValueAtPosition(relTime / length->floatValue());

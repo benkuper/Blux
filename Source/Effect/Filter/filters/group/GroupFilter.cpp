@@ -19,6 +19,8 @@ GroupFilter::GroupFilter() :
     groups.userCanAddControllables = true;
     groups.userAddControllablesFilters.add(TargetParameter::getTypeStringStatic());
     addChildControllableContainer(&groups);
+
+    invertOrder = addBoolParameter("Reverse Order", "If checked alongside useLocalID this will give the reverse order of the list", false);
 }
 
 GroupFilter::~GroupFilter()
@@ -53,6 +55,8 @@ FilterResult GroupFilter::getFilteredResultForComponentInternal(Object* o, Objec
             if (Group* g = dynamic_cast<Group*>(tp->targetContainer.get()))
             {
                 int id = g->getLocalIDForObject(o);
+                if (invertOrder->boolValue()) id = g->getNumObjects() - 1 - id;
+
                 if (id != -1) return FilterResult({ id, 1 });
             }
         }

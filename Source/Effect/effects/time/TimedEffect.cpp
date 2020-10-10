@@ -26,6 +26,7 @@ TimedEffect::~TimedEffect()
 
 var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, int id, var values)
 {
+
 	for (int i = 0; i < values.size(); i++)
 	{
 		if (values[i].isArray()) continue;

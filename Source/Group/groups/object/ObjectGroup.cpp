@@ -114,6 +114,11 @@ int ObjectGroup::getLocalIDForObject(Object* o)
     return -1;
 }
 
+int ObjectGroup::getNumObjects()
+{
+    return objectsCC.items.size();
+}
+
 Array<Object*> ObjectGroup::getObjects()
 {
     Array<Object*> result;
