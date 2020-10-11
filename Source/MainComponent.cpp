@@ -9,7 +9,7 @@
 #include "Sequence/ui/GlobalSequenceManagerUI.h"
 #include "Layout/ui/StageLayoutManagerUI.h"
 #include "Layout/ui/StageLayout2DView.h"
-#include "Interface/interfaces/DMX/ui/DMXChannelView.h"
+#include "Interface/interfaces/dmx/ui/DMXChannelView.h"
 
 String getAppVersion();
 ApplicationProperties& getAppProperties();
