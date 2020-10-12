@@ -29,10 +29,28 @@ Object::Object(var params) :
 
 	itemDataType = "Object";
 
-	File objPath = File(params.getProperty("path", "");
+	File objPath = File(params.getProperty("path", ""));
 
 	icon = addEnumParameter("Icon", "Bring some fancy in you life ! Put icons in the objects folders and find them here to customize you view");
-	icon->addOption("Default", objPath.getChildFile("icon.png").getFullPathName());
+	
+
+	File defaultON = objPath.getChildFile("icon_on.png");
+	File defaultOFF = objPath.getChildFile("icon_off.png");
+	File default = objPath.getChildFile("icon.png");
+	
+	var defaultOpt;
+
+	if (defaultON.existsAsFile() && defaultOFF.existsAsFile())
+	{
+		defaultOpt.append(defaultOFF.getFullPathName());
+		defaultOpt.append(defaultON.getFullPathName());
+	}
+	else
+	{
+		defaultOpt = default.getFullPathName();
+	}
+
+	icon->addOption("Default", defaultOpt);
 
 	File staticFolder = objPath.getChildFile("icons/static");
 	if (staticFolder.isDirectory())

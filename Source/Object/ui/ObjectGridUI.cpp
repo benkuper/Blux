@@ -59,6 +59,7 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 
 	setSize(128, 128);
 
+	startTimerHz(10);
 }
 
 ObjectGridUI::~ObjectGridUI()
@@ -95,7 +96,7 @@ void ObjectGridUI::paint(Graphics& g)
 	{
 		offMult = 1 - iconIntensityRef->floatValue();
 	}
-	g.setColour(Colours::white.withAlpha(offMult * overMultiplier));
+	g.setColour(Colours::white.withAlpha(overMultiplier));
 	g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
 	if (iconIntensityRef != nullptr && objectONImage.isValid())
 	{
