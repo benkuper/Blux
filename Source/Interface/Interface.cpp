@@ -15,6 +15,8 @@
 Interface::Interface(String name) :
     BaseItem(name)
 {
+    saveAndLoadRecursiveData = true;
+
     logIncomingData = addBoolParameter("Log Incoming", "Log incoming data", false);
     logOutgoingData = addBoolParameter("Log Outgoing", "Log outgoing data", false);
 }

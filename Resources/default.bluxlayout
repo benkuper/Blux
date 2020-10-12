@@ -12,36 +12,110 @@
         "direction": 1,
         "shifters": [
           {
-            "type": 0,
-            "width": 210,
-            "height": 997,
-            "currentContent": "Objects",
-            "tabs": [
-              {
-                "name": "Objects"
-              }
-            ]
-          },
-          {
-            "type": 0,
-            "width": 1197,
-            "height": 997,
-            "currentContent": "Objects Grid View",
-            "tabs": [
-              {
-                "name": "Objects Grid View"
-              }
-            ]
-          },
-          {
             "type": 1,
-            "width": 501,
+            "width": 261,
             "height": 997,
             "direction": 2,
             "shifters": [
               {
                 "type": 0,
-                "width": 501,
+                "width": 261,
+                "height": 195,
+                "currentContent": "Interfaces",
+                "tabs": [
+                  {
+                    "name": "Interfaces"
+                  }
+                ]
+              },
+              {
+                "type": 0,
+                "width": 261,
+                "height": 589,
+                "currentContent": "Objects",
+                "tabs": [
+                  {
+                    "name": "Objects"
+                  }
+                ]
+              },
+              {
+                "type": 0,
+                "width": 261,
+                "height": 201,
+                "currentContent": "Groups",
+                "tabs": [
+                  {
+                    "name": "Groups"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": 1,
+            "width": 1077,
+            "height": 997,
+            "direction": 2,
+            "shifters": [
+              {
+                "type": 0,
+                "width": 1077,
+                "height": 790,
+                "currentContent": "Objects Grid View",
+                "tabs": [
+                  {
+                    "name": "Objects Grid View"
+                  },
+                  {
+                    "name": "Stage 2D View"
+                  },
+                  {
+                    "name": "DMX Channel Tester"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "width": 1077,
+                "height": 201,
+                "direction": 1,
+                "shifters": [
+                  {
+                    "type": 0,
+                    "width": 237,
+                    "height": 201,
+                    "currentContent": "Global Sequences",
+                    "tabs": [
+                      {
+                        "name": "Global Sequences"
+                      }
+                    ]
+                  },
+                  {
+                    "type": 0,
+                    "width": 834,
+                    "height": 201,
+                    "currentContent": "Sequence Editor",
+                    "tabs": [
+                      {
+                        "name": "Sequence Editor"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": 1,
+            "width": 570,
+            "height": 997,
+            "direction": 2,
+            "shifters": [
+              {
+                "type": 0,
+                "width": 570,
                 "height": 567,
                 "currentContent": "Inspector",
                 "tabs": [
@@ -52,7 +126,7 @@
               },
               {
                 "type": 0,
-                "width": 501,
+                "width": 570,
                 "height": 423,
                 "currentContent": "Logger",
                 "tabs": [

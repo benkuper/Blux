@@ -21,7 +21,7 @@ public:
     Effect(const String& name = "Effect", var params = var());
     ~Effect();
 
-    enum BlendMode { OVERRIDE, ADD, MAX, MIN };
+    enum BlendMode { OVERRIDE, ADD, MAX, MIN, MULTIPLY };
     EnumParameter* mode;
 
     FloatParameter* weight;

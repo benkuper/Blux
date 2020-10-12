@@ -23,7 +23,7 @@ Effect::Effect(const String& name, var params) :
 	sceneSaveMode->setValueWithData(WEIGHT_ONLY);
 	
 	mode = addEnumParameter("Blend Mode", "Defines how the values are blended with the source ones.");
-	mode->addOption("Override", OVERRIDE)->addOption("Max", MAX)->addOption("Min", MIN)->addOption("Add", ADD);
+	mode->addOption("Override", OVERRIDE)->addOption("Max", MAX)->addOption("Min", MIN)->addOption("Add", ADD)->addOption("Multiply", MULTIPLY);
 
 	enabled->setValue(false); //This is to avoid dangerous object manipulation on effect creation
 
@@ -91,6 +91,7 @@ float Effect::blendFloatValue(float start, float end, float weight)
 	case ADD: return start + val;
 	case MAX: return jmax(start, val);
 	case MIN: return jmin(start, val);
+	case MULTIPLY: return start * val;
 	}
 
 	return  val;

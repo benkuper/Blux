@@ -29,6 +29,15 @@
     <Filter Include="Blux\Source\Group">
       <UniqueIdentifier>{2924489F-ED84-2699-56D2-3A7A0661A327}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Common\MIDI\ui">
+      <UniqueIdentifier>{28A5FD31-2475-AADB-18AB-D62CA1185EAA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Common\MIDI">
+      <UniqueIdentifier>{8590E3AA-62F4-2E1F-8828-7C0736C7EC24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Common\Action">
+      <UniqueIdentifier>{E4384191-0A4E-CF99-811C-B719F5F7E8C4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Common\Helpers">
       <UniqueIdentifier>{E4AB837E-197D-92E7-5BED-79D1349DAD55}</UniqueIdentifier>
     </Filter>
@@ -70,6 +79,12 @@
     </Filter>
     <Filter Include="Blux\Source\Interface\ui">
       <UniqueIdentifier>{048508DD-9AD3-93F7-75EE-9B3CA30C4EC5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Interface\interfaces\midi\ui">
+      <UniqueIdentifier>{E5EBBEF5-A99E-BB85-D01A-D2657F8A5C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Interface\interfaces\midi">
+      <UniqueIdentifier>{4BE32982-64FD-1F57-338B-AC29BA723FBF}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Interface\interfaces\bento">
       <UniqueIdentifier>{8FDF301B-FA1F-CA0D-88CE-41FBD7F76D3E}</UniqueIdentifier>
@@ -1033,6 +1048,33 @@
     <ClCompile Include="..\..\Source\Group\GroupManager.cpp">
       <Filter>Blux\Source\Group</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.cpp">
+      <Filter>Blux\Source\Common\MIDI\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceParameterUI.cpp">
+      <Filter>Blux\Source\Common\MIDI\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MIDIDevice.cpp">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MIDIDeviceParameter.cpp">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MIDIManager.cpp">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MTCReceiver.cpp">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MTCSender.cpp">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Action\Action.cpp">
+      <Filter>Blux\Source\Common\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Action\ActionManager.cpp">
+      <Filter>Blux\Source\Common\Action</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Helpers\SceneHelpers.cpp">
       <Filter>Blux\Source\Common\Helpers</Filter>
     </ClCompile>
@@ -1098,6 +1140,18 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Interface\ui\InterfaceUI.cpp">
       <Filter>Blux\Source\Interface\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\midi\ui\MIDIMappingEditor.cpp">
+      <Filter>Blux\Source\Interface\interfaces\midi\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIInterface.cpp">
+      <Filter>Blux\Source\Interface\interfaces\midi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIMapping.cpp">
+      <Filter>Blux\Source\Interface\interfaces\midi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIMappingManager.cpp">
+      <Filter>Blux\Source\Interface\interfaces\midi</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Interface\interfaces\bento\BentoInterface.cpp">
       <Filter>Blux\Source\Interface\interfaces\bento</Filter>
@@ -1297,10 +1351,10 @@
     <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
       <Filter>Blux\Source\Sequence\actions</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\layers\action\Action.cpp">
+    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp">
       <Filter>Blux\Source\Sequence\layers\action</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp">
+    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionTrigger.cpp">
       <Filter>Blux\Source\Sequence\layers\action</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\layers\automation\AutomationLayer.cpp">
@@ -4197,6 +4251,33 @@
     <ClInclude Include="..\..\Source\Group\GroupManager.h">
       <Filter>Blux\Source\Group</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.h">
+      <Filter>Blux\Source\Common\MIDI\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceParameterUI.h">
+      <Filter>Blux\Source\Common\MIDI\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\MIDI\MIDIDevice.h">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\MIDI\MIDIDeviceParameter.h">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\MIDI\MIDIManager.h">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\MIDI\MTCReceiver.h">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\MIDI\MTCSender.h">
+      <Filter>Blux\Source\Common\MIDI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Action\Action.h">
+      <Filter>Blux\Source\Common\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Action\ActionManager.h">
+      <Filter>Blux\Source\Common\Action</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h">
       <Filter>Blux\Source\Common\Helpers</Filter>
     </ClInclude>
@@ -4244,6 +4325,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Interface\ui\InterfaceUI.h">
       <Filter>Blux\Source\Interface\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Interface\interfaces\midi\ui\MIDIMappingEditor.h">
+      <Filter>Blux\Source\Interface\interfaces\midi\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Interface\interfaces\midi\MIDIInterface.h">
+      <Filter>Blux\Source\Interface\interfaces\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Interface\interfaces\midi\MIDIMapping.h">
+      <Filter>Blux\Source\Interface\interfaces\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Interface\interfaces\midi\MIDIMappingManager.h">
+      <Filter>Blux\Source\Interface\interfaces\midi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Interface\interfaces\bento\BentoInterface.h">
       <Filter>Blux\Source\Interface\interfaces\bento</Filter>
@@ -4446,10 +4539,10 @@
     <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h">
       <Filter>Blux\Source\Sequence\actions</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\layers\action\Action.h">
+    <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h">
       <Filter>Blux\Source\Sequence\layers\action</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h">
+    <ClInclude Include="..\..\Source\Sequence\layers\action\ActionTrigger.h">
       <Filter>Blux\Source\Sequence\layers\action</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Sequence\layers\automation\AutomationLayer.h">

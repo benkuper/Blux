@@ -31,8 +31,10 @@ LayerBlockUI* EffectBlockManagerUI::createUIForItem(LayerBlock* b)
 
 void EffectBlockManagerUI::showMenuAndAddItem(bool fromAddButton, Point<int> mouseDownPos)
 {
-    LayerBlock* b = effectTimeline->effectLayer->blockManager.managerFactory->showCreateMenu();
-    manager->addBlockAt(b, timeline->getTimeForX(mouseDownPos.x));
+    if (LayerBlock* b = effectTimeline->effectLayer->blockManager.managerFactory->showCreateMenu())
+    {
+        manager->addBlockAt(b, timeline->getTimeForX(mouseDownPos.x));
+    }
 }
 
 

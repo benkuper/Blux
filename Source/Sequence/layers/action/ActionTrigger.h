@@ -1,26 +1,24 @@
 /*
   ==============================================================================
 
-    Action.h
-    Created: 8 Oct 2020 3:33:09pm
+    ActionTrigger.h
+    Created: 12 Oct 2020 10:55:48am
     Author:  bkupe
 
   ==============================================================================
 */
 
 #pragma once
+#include "Common/Action/ActionManager.h"
 
-#include "JuceHeader.h"
-
-class Action :
+class ActionTrigger :
     public TimeTrigger
 {
 public:
-    Action(var params);
-    virtual ~Action();
+    ActionTrigger();
+    ~ActionTrigger();
 
-    String typeString;
+    ActionManager actionManager;
 
-
-    String getTypeString() const override { return typeString; }
+    void triggerInternal();
 };

@@ -101,6 +101,42 @@
 			isa = PBXBuildFile;
 			fileRef = 260A9F31AEA7D218DC2F9CDF;
 		};
+		68089EEC2CBA4C926D0D9E69 = {
+			isa = PBXBuildFile;
+			fileRef = AEE81F21C9E125B5B1C7B832;
+		};
+		1B0DA9F2B4ECFF4E44FE0971 = {
+			isa = PBXBuildFile;
+			fileRef = 50A2C06BCA7CD04C3539F460;
+		};
+		71D4915069B66ABB981DACA9 = {
+			isa = PBXBuildFile;
+			fileRef = 818C12A501E8DE502AF298D6;
+		};
+		820C7EC56DBCEB613787AB72 = {
+			isa = PBXBuildFile;
+			fileRef = 0022342FFA09ECDEE2D3AFE4;
+		};
+		AFAE43E12CAAAFBE5E146404 = {
+			isa = PBXBuildFile;
+			fileRef = 7A8340AE16716A0E53F07892;
+		};
+		D4D505AD7E67A78FB2405DCC = {
+			isa = PBXBuildFile;
+			fileRef = 75EC68C828AE429879D490A8;
+		};
+		64F79816844F749AB7715A12 = {
+			isa = PBXBuildFile;
+			fileRef = 7EA1CE4E22F23FA95942DFA0;
+		};
+		53D3DA9E9B8066CA914179C3 = {
+			isa = PBXBuildFile;
+			fileRef = 90E5B89183FEE4D8EE4E2BEB;
+		};
+		2AAB0A873205217EEB764221 = {
+			isa = PBXBuildFile;
+			fileRef = 141E21D6469A27AEEBB163AF;
+		};
 		AFA48691C403245E26810B2A = {
 			isa = PBXBuildFile;
 			fileRef = 6A7063FAB3E5711505908343;
@@ -188,6 +224,22 @@
 		FF3C2C2F89DB7F597243B088 = {
 			isa = PBXBuildFile;
 			fileRef = 3BE1410FBD78D856AA8B47B9;
+		};
+		5B1C45303F0B54FA2B3152C5 = {
+			isa = PBXBuildFile;
+			fileRef = 989C6DD46D8BD794E5A487E7;
+		};
+		9BB17E6DBCD315686721B9C1 = {
+			isa = PBXBuildFile;
+			fileRef = 0003993F0869AFB8AA926E17;
+		};
+		70B152A4F27FCFD5EC0E4E0B = {
+			isa = PBXBuildFile;
+			fileRef = E30426F737B8F411F518B7E6;
+		};
+		7BF2D9C018AD5B34CEC8D4DC = {
+			isa = PBXBuildFile;
+			fileRef = A7D029232D277EDE80B30337;
 		};
 		586D951179942E87F84F161C = {
 			isa = PBXBuildFile;
@@ -453,13 +505,13 @@
 			isa = PBXBuildFile;
 			fileRef = 77F0FEFC9A40045A63B906D8;
 		};
-		AB70EC5A69B2112924C1DBE0 = {
-			isa = PBXBuildFile;
-			fileRef = 55FB18C048FBA6CDCD84A379;
-		};
 		EDE3FCCC78A99BE4D69FEA17 = {
 			isa = PBXBuildFile;
 			fileRef = 91F008B594FA3AE37FE84393;
+		};
+		263C74EB39147729761E0BB4 = {
+			isa = PBXBuildFile;
+			fileRef = 2978EC72B7EEDA927449DAB6;
 		};
 		014B7C51078872B919E8B793 = {
 			isa = PBXBuildFile;
@@ -604,6 +656,20 @@
 		C1CEE9B5BB944A3E81E7797B = {
 			isa = PBXBuildFile;
 			fileRef = B502773EB5D6F1AB021FC165;
+		};
+		0003993F0869AFB8AA926E17 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIInterface.cpp;
+			path = ../../Source/Interface/interfaces/midi/MIDIInterface.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		0022342FFA09ECDEE2D3AFE4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIDeviceParameter.cpp;
+			path = ../../Source/Common/MIDI/MIDIDeviceParameter.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		006DA9E2FF4CD9E76DE57C8A = {
 			isa = PBXFileReference;
@@ -766,6 +832,13 @@
 			path = ../../Resources/icon3.png;
 			sourceTree = "SOURCE_ROOT";
 		};
+		141E21D6469A27AEEBB163AF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ActionManager.cpp;
+			path = ../../Source/Common/Action/ActionManager.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		144BC3957EC4CD836C7621BB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -778,13 +851,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ObjectComponentEditor.h;
 			path = ../../Source/Object/Component/ui/ObjectComponentEditor.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		14E5CACF9663393005FCCBFC = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = Action.h;
-			path = ../../Source/Sequence/layers/action/Action.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		169E31B759069A038FB7AF3F = {
@@ -836,6 +902,13 @@
 			path = ../../Source/Object/Component/components/gobo/GoboComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		1E48948F6256CF5A102269D0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIDeviceChooser.h;
+			path = ../../Source/Common/MIDI/ui/MIDIDeviceChooser.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		1EE7CE04C606AEC227DE0652 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -869,6 +942,13 @@
 			lastKnownFileType = file.bluxlayout;
 			name = default.bluxlayout;
 			path = ../../Resources/default.bluxlayout;
+			sourceTree = "SOURCE_ROOT";
+		};
+		2322E7B6F35CFF0F30DC8B7D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIDevice.h;
+			path = ../../Source/Common/MIDI/MIDIDevice.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		2493A3EA3D6F1C341D677397 = {
@@ -913,6 +993,13 @@
 			path = System/Library/Frameworks/OpenGL.framework;
 			sourceTree = SDKROOT;
 		};
+		2978EC72B7EEDA927449DAB6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ActionTrigger.cpp;
+			path = ../../Source/Sequence/layers/action/ActionTrigger.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		2BFD494DCB704631A76F9F1D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -946,6 +1033,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = ObjectManagerGridUI.cpp;
 			path = ../../Source/Object/ui/ObjectManagerGridUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		328BF012B5BFF96E5704A4E8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIMappingEditor.h;
+			path = ../../Source/Interface/interfaces/midi/ui/MIDIMappingEditor.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		329093D8C5659AF883118518 = {
@@ -1144,6 +1238,13 @@
 			path = ../../Source/Object/Component/ObjectComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		487C9416F2C5580E09AEDEE4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIDeviceParameter.h;
+			path = ../../Source/Common/MIDI/MIDIDeviceParameter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		48FA02D91DAA915DA1E3998C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1228,6 +1329,13 @@
 			path = ../../Source/Sequence/layers/effect/ui/EffectBlockUI.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		50A2C06BCA7CD04C3539F460 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIDeviceParameterUI.cpp;
+			path = ../../Source/Common/MIDI/ui/MIDIDeviceParameterUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		50F0261A738FE9FDF4334879 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1261,13 +1369,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ZeroconfManager.h;
 			path = ../../Source/Common/Zeroconf/ZeroconfManager.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		55FB18C048FBA6CDCD84A379 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = Action.cpp;
-			path = ../../Source/Sequence/layers/action/Action.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		560B8CE1FE4FD22367DC01FA = {
@@ -1375,6 +1476,13 @@
 			path = ../../Source/Sequence/layers/effect/EffectBlockManager.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		659B5041CB53A71CDCB0157A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIDeviceParameterUI.h;
+			path = ../../Source/Common/MIDI/ui/MIDIDeviceParameterUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		6704AE36D64BF8B3F63DC935 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1466,6 +1574,13 @@
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		75EC68C828AE429879D490A8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MTCReceiver.cpp;
+			path = ../../Source/Common/MIDI/MTCReceiver.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		763FAF8F812BD782062D936E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1515,6 +1630,13 @@
 			path = ../../Source/Object/Component/components/color/ColorSource/ColorSource.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		7A8340AE16716A0E53F07892 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIManager.cpp;
+			path = ../../Source/Common/MIDI/MIDIManager.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		7C6CC1DFB66A2352CDC55666 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1550,12 +1672,26 @@
 			path = ../../Source/Sequence/layers/colorsource/ColorSourceLayer.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		7EA1CE4E22F23FA95942DFA0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MTCSender.cpp;
+			path = ../../Source/Common/MIDI/MTCSender.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		7EF479132F2D470A4B3D1221 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
 			name = "juce_gui_basics";
 			path = "~/JUCE/modules/juce_gui_basics";
 			sourceTree = "<absolute>";
+		};
+		7F002D3AC6EB4946BA3A5C3C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Action.h;
+			path = ../../Source/Common/Action/Action.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		7F319E3E8CE69C191444D0B6 = {
 			isa = PBXFileReference;
@@ -1569,6 +1705,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = FilterEditor.h;
 			path = ../../Source/Effect/Filter/ui/FilterEditor.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		818C12A501E8DE502AF298D6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIDevice.cpp;
+			path = ../../Source/Common/MIDI/MIDIDevice.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		8259AF17357ACD9BE11625CD = {
@@ -1641,6 +1784,13 @@
 			path = ../../Source/Effect/Filter/filters/layout/LayoutFilter.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		8DB64620A5EAACEE19C016BA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MTCSender.h;
+			path = ../../Source/Common/MIDI/MTCSender.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		8EB7EF056F1EF54C4E4FE7C3 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1674,6 +1824,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = BluxSequenceManager.cpp;
 			path = ../../Source/Sequence/BluxSequenceManager.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		90E5B89183FEE4D8EE4E2BEB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Action.cpp;
+			path = ../../Source/Common/Action/Action.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		90F4927CA1089BB3BF684424 = {
@@ -1816,6 +1973,20 @@
 			path = ../../Source/Scene/actions/SceneAction.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		985E2492EE19545410E459F8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIMappingManager.h;
+			path = ../../Source/Interface/interfaces/midi/MIDIMappingManager.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		989C6DD46D8BD794E5A487E7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIMappingEditor.cpp;
+			path = ../../Source/Interface/interfaces/midi/ui/MIDIMappingEditor.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9AAA320C678AB43C78555850 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1900,6 +2071,13 @@
 			path = ../../Source/Group/groups/object/ObjectGroup.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		A7D029232D277EDE80B30337 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIMappingManager.cpp;
+			path = ../../Source/Interface/interfaces/midi/MIDIMappingManager.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		AC703A846AB3D42F740D5C58 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1919,6 +2097,13 @@
 			lastKnownFileType = image.png;
 			name = icon2.png;
 			path = ../../Resources/icon2.png;
+			sourceTree = "SOURCE_ROOT";
+		};
+		AEE81F21C9E125B5B1C7B832 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIDeviceChooser.cpp;
+			path = ../../Source/Common/MIDI/ui/MIDIDeviceChooser.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		AF50F8CC1E4CFCE11D7B7525 = {
@@ -1991,6 +2176,13 @@
 			path = "../../JuceLibraryCode/include_juce_timeline.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
+		B5BEBCA5A05AFBE50819C396 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MTCReceiver.h;
+			path = ../../Source/Common/MIDI/MTCReceiver.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		B672EB3C7B54B188EEE8F66E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2061,6 +2253,13 @@
 			path = "~/JUCE/modules/juce_audio_processors";
 			sourceTree = "<absolute>";
 		};
+		BEFF2DBDA237A06B72E8A7F1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIInterface.h;
+			path = ../../Source/Interface/interfaces/midi/MIDIInterface.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		BF42209B4082FD4F3891D060 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -2080,6 +2279,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = GlobalEffectManagerUI.h;
 			path = ../../Source/Effect/ui/GlobalEffectManagerUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		BFF7CF4EBDDB2A263E33936B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIManager.h;
+			path = ../../Source/Common/MIDI/MIDIManager.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		C05CDE59380C751C11D25894 = {
@@ -2250,6 +2456,13 @@
 			path = "../../Source/Common/Serial/lib/serial/impl/list_ports/list_ports_linux.cc";
 			sourceTree = "SOURCE_ROOT";
 		};
+		D750951F1B7EC6BF79598F23 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ActionManager.h;
+			path = ../../Source/Common/Action/ActionManager.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D75482647BC1F89F2B39BE5A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2306,6 +2519,13 @@
 			path = ../../Source/Layout/StageLayoutManager.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		DEE231A6167A8473311A06AB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ActionTrigger.h;
+			path = ../../Source/Sequence/layers/action/ActionTrigger.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		DF2CF4978FF247F032BE184E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -2360,6 +2580,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = EffectLayerTimeline.cpp;
 			path = ../../Source/Sequence/layers/effect/ui/EffectLayerTimeline.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		E30426F737B8F411F518B7E6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MIDIMapping.cpp;
+			path = ../../Source/Interface/interfaces/midi/MIDIMapping.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		E47B291834B09131011E992F = {
@@ -2479,6 +2706,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = GlobalSequenceManager.cpp;
 			path = ../../Source/Sequence/GlobalSequenceManager.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		F064DFE34C200D4E1E782FA7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MIDIMapping.h;
+			path = ../../Source/Interface/interfaces/midi/MIDIMapping.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		F0CE15CE753BA1C4EB558A15 = {
@@ -2693,6 +2927,46 @@
 			name = Group;
 			sourceTree = "<group>";
 		};
+		32A14223534345D57211D651 = {
+			isa = PBXGroup;
+			children = (
+				AEE81F21C9E125B5B1C7B832,
+				1E48948F6256CF5A102269D0,
+				50A2C06BCA7CD04C3539F460,
+				659B5041CB53A71CDCB0157A,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		AD14C2D334B4F0ACE7219D64 = {
+			isa = PBXGroup;
+			children = (
+				32A14223534345D57211D651,
+				818C12A501E8DE502AF298D6,
+				2322E7B6F35CFF0F30DC8B7D,
+				0022342FFA09ECDEE2D3AFE4,
+				487C9416F2C5580E09AEDEE4,
+				7A8340AE16716A0E53F07892,
+				BFF7CF4EBDDB2A263E33936B,
+				75EC68C828AE429879D490A8,
+				B5BEBCA5A05AFBE50819C396,
+				7EA1CE4E22F23FA95942DFA0,
+				8DB64620A5EAACEE19C016BA,
+			);
+			name = MIDI;
+			sourceTree = "<group>";
+		};
+		93CB41627DAFCE5AF3B02E4C = {
+			isa = PBXGroup;
+			children = (
+				90E5B89183FEE4D8EE4E2BEB,
+				7F002D3AC6EB4946BA3A5C3C,
+				141E21D6469A27AEEBB163AF,
+				D750951F1B7EC6BF79598F23,
+			);
+			name = Action;
+			sourceTree = "<group>";
+		};
 		8F59BF4543E9DA2420603EBF = {
 			isa = PBXGroup;
 			children = (
@@ -2821,6 +3095,8 @@
 		42778E7BB0B09E9DFB9889EC = {
 			isa = PBXGroup;
 			children = (
+				AD14C2D334B4F0ACE7219D64,
+				93CB41627DAFCE5AF3B02E4C,
 				8F59BF4543E9DA2420603EBF,
 				F7401FCBBD6520A9C2F368F2,
 				218872AAAC71B5B791BB88AC,
@@ -2839,6 +3115,29 @@
 				C06AB6DF82908D9925D55188,
 			);
 			name = ui;
+			sourceTree = "<group>";
+		};
+		789E6B467B6F709AEFCCC5F4 = {
+			isa = PBXGroup;
+			children = (
+				989C6DD46D8BD794E5A487E7,
+				328BF012B5BFF96E5704A4E8,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		3119644575DA93549705B127 = {
+			isa = PBXGroup;
+			children = (
+				789E6B467B6F709AEFCCC5F4,
+				0003993F0869AFB8AA926E17,
+				BEFF2DBDA237A06B72E8A7F1,
+				E30426F737B8F411F518B7E6,
+				F064DFE34C200D4E1E782FA7,
+				A7D029232D277EDE80B30337,
+				985E2492EE19545410E459F8,
+			);
+			name = midi;
 			sourceTree = "<group>";
 		};
 		9EF964B3C6EDB46BDE02ACFF = {
@@ -2892,6 +3191,7 @@
 		DE099C40075E0A70083082CB = {
 			isa = PBXGroup;
 			children = (
+				3119644575DA93549705B127,
 				9EF964B3C6EDB46BDE02ACFF,
 				88202FEC5739B2BDEBD5E2B0,
 				AE4DBE693570DBE4510F8B48,
@@ -3363,10 +3663,10 @@
 		5C0E67D66FB6830D45824785 = {
 			isa = PBXGroup;
 			children = (
-				55FB18C048FBA6CDCD84A379,
-				14E5CACF9663393005FCCBFC,
 				91F008B594FA3AE37FE84393,
 				E85DB12637C1AB44DD09441D,
+				2978EC72B7EEDA927449DAB6,
+				DEE231A6167A8473311A06AB,
 			);
 			name = action;
 			sourceTree = "<group>";
@@ -3612,7 +3912,7 @@
 					"_DEBUG=1",
 					"DEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b10",
+					"JUCE_APP_VERSION=1.0.0b11",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3699,7 +3999,7 @@
 					"_NDEBUG=1",
 					"NDEBUG=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b10",
+					"JUCE_APP_VERSION=1.0.0b11",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -3908,6 +4208,15 @@
 				484D4ABD0C9B6DE14F0E6F9C,
 				24439ABD62AB3AACFCEF5B6E,
 				498B996582863A6C2C02C6F5,
+				68089EEC2CBA4C926D0D9E69,
+				1B0DA9F2B4ECFF4E44FE0971,
+				71D4915069B66ABB981DACA9,
+				820C7EC56DBCEB613787AB72,
+				AFAE43E12CAAAFBE5E146404,
+				D4D505AD7E67A78FB2405DCC,
+				64F79816844F749AB7715A12,
+				53D3DA9E9B8066CA914179C3,
+				2AAB0A873205217EEB764221,
 				AFA48691C403245E26810B2A,
 				0CF0A6553A4821D73860D4B2,
 				FE393881960C394D504C9914,
@@ -3930,6 +4239,10 @@
 				5FDC803137433123C5609ED5,
 				4868ECD5E325919EF3B3269B,
 				FF3C2C2F89DB7F597243B088,
+				5B1C45303F0B54FA2B3152C5,
+				9BB17E6DBCD315686721B9C1,
+				70B152A4F27FCFD5EC0E4E0B,
+				7BF2D9C018AD5B34CEC8D4DC,
 				586D951179942E87F84F161C,
 				A126495FBA570004C58B4095,
 				6EE6422964B9D26C43C72EE2,
@@ -3996,8 +4309,8 @@
 				05B0735F9ED93EB0FF94F531,
 				232FC27EFC7297037260A3D9,
 				0001ADD6495602FA180B8D5D,
-				AB70EC5A69B2112924C1DBE0,
 				EDE3FCCC78A99BE4D69FEA17,
+				263C74EB39147729761E0BB4,
 				014B7C51078872B919E8B793,
 				EF6F070EFEA44F966D13ED09,
 				ED46516CCD9D4219CB96A89B,

@@ -149,18 +149,6 @@ void DMXInterface::dmxDataInChanged(int numChannels, uint8* values)
 	if (logIncomingData->boolValue()) NLOG(niceName, "DMX In : " + String(numChannels) + " channels received.");
 }
 
-var DMXInterface::getJSONData()
-{
-	var data = Interface::getJSONData();
-	if (dmxDevice != nullptr) data.getDynamicObject()->setProperty("device", dmxDevice->getJSONData());
-	return data;
-}
-
-void DMXInterface::loadJSONDataInternal(var data)
-{
-	Interface::loadJSONDataInternal(data);
-	if (dmxDevice != nullptr && data.getDynamicObject()->hasProperty("device")) dmxDevice->loadJSONData(data.getProperty("device", ""));
-}
 
 void DMXInterface::updateValuesFromComponent(Object* o, ObjectComponent* c)
 {

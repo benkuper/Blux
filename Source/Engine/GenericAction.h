@@ -11,7 +11,7 @@
 #pragma once
 
 
-#include "Sequence/layers/action/Action.h"
+#include "Common/Action/Action.h"
 
 class GenericAction :
 	public Action,
@@ -31,6 +31,7 @@ public:
 	void setValueParameter(Parameter* p);
 
 	virtual void triggerInternal() override;
+	virtual void setValueInternal(var value) override;
 
 	void onContainerParameterChanged(Parameter*) override;
 

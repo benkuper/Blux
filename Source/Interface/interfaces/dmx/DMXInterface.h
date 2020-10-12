@@ -45,9 +45,6 @@ public:
 
     void dmxDataInChanged(int numChannels, uint8* values) override;
 
-    var getJSONData() override;
-    void loadJSONDataInternal(var data) override;
-
     class DMXParams : public ControllableContainer
     {
     public:

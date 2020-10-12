@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b10"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b11"
               headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -57,6 +57,37 @@
         <FILE id="NcAxFS" name="GroupManager.h" compile="0" resource="0" file="Source/Group/GroupManager.h"/>
       </GROUP>
       <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
+        <GROUP id="{727B0ED1-B897-9E05-995D-3239D3C5CEDD}" name="MIDI">
+          <GROUP id="{DED7E921-A58B-30A8-1752-929892AE0AF8}" name="ui">
+            <FILE id="h5e7QL" name="MIDIDeviceChooser.cpp" compile="1" resource="0"
+                  file="Source/Common/MIDI/ui/MIDIDeviceChooser.cpp"/>
+            <FILE id="O32fDC" name="MIDIDeviceChooser.h" compile="0" resource="0"
+                  file="Source/Common/MIDI/ui/MIDIDeviceChooser.h"/>
+            <FILE id="Jmo0Gz" name="MIDIDeviceParameterUI.cpp" compile="1" resource="0"
+                  file="Source/Common/MIDI/ui/MIDIDeviceParameterUI.cpp"/>
+            <FILE id="EH9aA4" name="MIDIDeviceParameterUI.h" compile="0" resource="0"
+                  file="Source/Common/MIDI/ui/MIDIDeviceParameterUI.h"/>
+          </GROUP>
+          <FILE id="CLOKaX" name="MIDIDevice.cpp" compile="1" resource="0" file="Source/Common/MIDI/MIDIDevice.cpp"/>
+          <FILE id="GKQkGQ" name="MIDIDevice.h" compile="0" resource="0" file="Source/Common/MIDI/MIDIDevice.h"/>
+          <FILE id="MqsHh1" name="MIDIDeviceParameter.cpp" compile="1" resource="0"
+                file="Source/Common/MIDI/MIDIDeviceParameter.cpp"/>
+          <FILE id="YIElMz" name="MIDIDeviceParameter.h" compile="0" resource="0"
+                file="Source/Common/MIDI/MIDIDeviceParameter.h"/>
+          <FILE id="gTxKaF" name="MIDIManager.cpp" compile="1" resource="0" file="Source/Common/MIDI/MIDIManager.cpp"/>
+          <FILE id="R1FFP8" name="MIDIManager.h" compile="0" resource="0" file="Source/Common/MIDI/MIDIManager.h"/>
+          <FILE id="LduhhC" name="MTCReceiver.cpp" compile="1" resource="0" file="Source/Common/MIDI/MTCReceiver.cpp"/>
+          <FILE id="fbIXLj" name="MTCReceiver.h" compile="0" resource="0" file="Source/Common/MIDI/MTCReceiver.h"/>
+          <FILE id="uhYgGy" name="MTCSender.cpp" compile="1" resource="0" file="Source/Common/MIDI/MTCSender.cpp"/>
+          <FILE id="kQWrbe" name="MTCSender.h" compile="0" resource="0" file="Source/Common/MIDI/MTCSender.h"/>
+        </GROUP>
+        <GROUP id="{E2211BA7-0CB7-C57B-A667-8D0A5EB023CE}" name="Action">
+          <FILE id="cV9Roi" name="Action.cpp" compile="1" resource="0" file="Source/Common/Action/Action.cpp"/>
+          <FILE id="mIgYMe" name="Action.h" compile="0" resource="0" file="Source/Common/Action/Action.h"/>
+          <FILE id="tUFEKM" name="ActionManager.cpp" compile="1" resource="0"
+                file="Source/Common/Action/ActionManager.cpp"/>
+          <FILE id="XGtF3V" name="ActionManager.h" compile="0" resource="0" file="Source/Common/Action/ActionManager.h"/>
+        </GROUP>
         <GROUP id="{4C1C3D21-33AC-FE15-251E-9B0AE685FCBD}" name="Helpers">
           <FILE id="BHqMlI" name="SceneHelpers.cpp" compile="1" resource="0"
                 file="Source/Common/Helpers/SceneHelpers.cpp"/>
@@ -148,6 +179,23 @@
           <FILE id="ikECD1" name="InterfaceUI.h" compile="0" resource="0" file="Source/Interface/ui/InterfaceUI.h"/>
         </GROUP>
         <GROUP id="{DF6E12F7-E69D-2F0E-3EA6-A2EF5A333D40}" name="interfaces">
+          <GROUP id="{C9323A98-00A4-0F45-A3E1-FFC1BA013A97}" name="midi">
+            <GROUP id="{548FB53F-D007-EE13-BAD3-3438902CB598}" name="ui">
+              <FILE id="n3ixwu" name="MIDIMappingEditor.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/midi/ui/MIDIMappingEditor.cpp"/>
+              <FILE id="vMXLza" name="MIDIMappingEditor.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/midi/ui/MIDIMappingEditor.h"/>
+            </GROUP>
+            <FILE id="UtmsCd" name="MIDIInterface.cpp" compile="1" resource="0"
+                  file="Source/Interface/interfaces/midi/MIDIInterface.cpp"/>
+            <FILE id="HDmf1E" name="MIDIInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/midi/MIDIInterface.h"/>
+            <FILE id="TEc2RX" name="MIDIMapping.cpp" compile="1" resource="0" file="Source/Interface/interfaces/midi/MIDIMapping.cpp"/>
+            <FILE id="L4K7fO" name="MIDIMapping.h" compile="0" resource="0" file="Source/Interface/interfaces/midi/MIDIMapping.h"/>
+            <FILE id="e5BdVf" name="MIDIMappingManager.cpp" compile="1" resource="0"
+                  file="Source/Interface/interfaces/midi/MIDIMappingManager.cpp"/>
+            <FILE id="FyxZYS" name="MIDIMappingManager.h" compile="0" resource="0"
+                  file="Source/Interface/interfaces/midi/MIDIMappingManager.h"/>
+          </GROUP>
           <GROUP id="{14022091-655A-3652-8B43-E5DBAF4F1B23}" name="bento">
             <FILE id="waaFg0" name="BentoInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/bento/BentoInterface.cpp"/>
@@ -466,10 +514,11 @@
         </GROUP>
         <GROUP id="{47A4E042-1EFE-5733-D500-651382570D61}" name="layers">
           <GROUP id="{AB827E54-9C49-D8A3-319B-C9ACAD9DDE01}" name="action">
-            <FILE id="K3amnz" name="Action.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/Action.cpp"/>
-            <FILE id="WZefds" name="Action.h" compile="0" resource="0" file="Source/Sequence/layers/action/Action.h"/>
             <FILE id="Bpf2hH" name="ActionLayer.cpp" compile="1" resource="0" file="Source/Sequence/layers/action/ActionLayer.cpp"/>
             <FILE id="NS2oZm" name="ActionLayer.h" compile="0" resource="0" file="Source/Sequence/layers/action/ActionLayer.h"/>
+            <FILE id="WxOygt" name="ActionTrigger.cpp" compile="1" resource="0"
+                  file="Source/Sequence/layers/action/ActionTrigger.cpp"/>
+            <FILE id="hjlPl5" name="ActionTrigger.h" compile="0" resource="0" file="Source/Sequence/layers/action/ActionTrigger.h"/>
           </GROUP>
           <GROUP id="{1E78F76D-6C26-5DA6-F248-E187A041660A}" name="automation">
             <FILE id="Cs1tIN" name="AutomationLayer.cpp" compile="1" resource="0"

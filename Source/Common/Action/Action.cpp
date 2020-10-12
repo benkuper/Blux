@@ -11,15 +11,25 @@
 #include "Action.h"
 
 Action::Action(var params) :
-    TimeTrigger(params.getProperty("type","Action").toString())
+    BaseItem(params.getProperty("type","Action").toString())
 {
-    flagY->hideInEditor = true;
-    color->hideInEditor = true;
-
     typeString = params.getProperty("type", "Action").toString();
+    showInspectorOnSelect = false;
 }
 
 Action::~Action()
 {
 
+}
+
+void Action::trigger()
+{
+    if (!enabled->boolValue()) return;
+    triggerInternal();
+}
+
+void Action::setValue(var value)
+{
+    if (!enabled->boolValue()) return;
+    setValueInternal(value);
 }

@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    GenericAction.cpp
-    Created: 8 Oct 2020 3:33:47pm
-    Author:  bkupe
+	GenericAction.cpp
+	Created: 8 Oct 2020 3:33:47pm
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -70,6 +70,29 @@ void GenericAction::triggerInternal()
 	}
 	break;
 	}
+}
+
+void GenericAction::setValueInternal(var _value)
+{
+	switch (actionType)
+	{
+	case SET_VALUE:
+	{
+		Parameter* p = static_cast<Parameter*>(target->target.get());
+
+		if (!value->isComplex() || value->value.size() == _value.size())
+		{
+			value->setValue(_value);
+			p->setValue(value->getValue());
+		}
+	}
+	break;
+
+	case TRIGGER:
+		triggerInternal();
+		break;
+	}
+	
 }
 
 void GenericAction::onContainerParameterChanged(Parameter* p)

@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "Sequence/layers/action/Action.h"
+#include "Common/Action/Action.h"
 
 class SceneAction :
     public Action

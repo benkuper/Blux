@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "Action.h"
+#include "ActionTrigger.h"
 
 class ActionLayer :
     public TriggerLayer
@@ -23,20 +23,12 @@ public:
     static ActionLayer* create(Sequence* s, var params) { return new ActionLayer(s, params); }
 };
 
-class ActionManager :
+class ActionTriggerManager :
     public TimeTriggerManager
 {
 public:
-    ActionManager(ActionLayer* layer, Sequence* sequence);
-    ~ActionManager();
+    ActionTriggerManager(ActionLayer* layer, Sequence* sequence);
+    ~ActionTriggerManager() {}
 
-};
-
-
-class ActionFactory :
-    public Factory<TimeTrigger>
-{
-public:
-    juce_DeclareSingleton(ActionFactory, true);
-    ActionFactory();
+    TimeTrigger* createItem() override;
 };

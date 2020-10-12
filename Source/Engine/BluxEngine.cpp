@@ -21,6 +21,7 @@
 #include "Layout//StageLayoutManager.h"
 #include "Sequence/layers/action/ActionLayer.h"
 #include "Sequence/layers/effect/EffectBlockManager.h"
+#include "Common/MIDI/MIDIManager.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
@@ -62,6 +63,8 @@ BluxEngine::~BluxEngine()
 
 	AudioManager::deleteInstance();
 	BluxSettings::deleteInstance();
+
+	MIDIManager::deleteInstance();
 }
 
 void BluxEngine::clearInternal()

@@ -109,7 +109,7 @@ void DMXChannelView::rebuildChannelItems()
     
     for (int i = 0; i < 512; i++)
     {
-        DMXChannelItem * it = new DMXChannelItem(i, this);
+        DMXChannelItem * it = new DMXChannelItem(i+1, this);
         channelContainer.addAndMakeVisible(it);
         channelItems.add(it);
     }
@@ -267,5 +267,5 @@ void DMXChannelItem::paint(Graphics& g)
     
     g.setColour(Colours::white.withAlpha(.8f));
     g.setFont(jlimit<float>(12,20,getHeight() - 30));
-    g.drawText(String(channel+1), getLocalBounds().toFloat(), Justification::centred, false);
+    g.drawText(String(channel), getLocalBounds().toFloat(), Justification::centred, false);
 }

@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "Sequence/layers/action/Action.h"
+#include "Common/Action/Action.h"
 
 class EffectAction :
     public Action
@@ -26,6 +26,7 @@ public:
     FloatParameter* weight;
 
     void triggerInternal() override;
+    void setValueInternal(var value) override;
 
     static ControllableContainer * showMenuAndGetEffect();
 
