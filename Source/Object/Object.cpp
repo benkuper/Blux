@@ -40,7 +40,7 @@ Object::Object(var params) :
 	targetInterface->targetType = TargetParameter::CONTAINER;
 	targetInterface->maxDefaultSearchLevel = 0;
 
-	if (InterfaceManager::getInstance()->items.size() == 1) targetInterface->setValueFromTarget(InterfaceManager::getInstance()->items[0]);
+	if (!Engine::mainEngine->isLoadingFile && InterfaceManager::getInstance()->items.size() == 1) targetInterface->setValueFromTarget(InterfaceManager::getInstance()->items[0]);
 
 	var cData = params.getProperty("components", var());
 	if (cData.isObject())

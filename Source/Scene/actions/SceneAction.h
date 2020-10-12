@@ -19,7 +19,7 @@ public:
     SceneAction(var params);
     ~SceneAction();
 
-    enum ActionType { LOAD_SCENE, LOAD_NEXT_SCENE };
+    enum ActionType { LOAD_SCENE, LOAD_NEXT_SCENE, LOAD_PREVIOUS_SCENE };
     ActionType actionType;
 
     TargetParameter* scene;

@@ -26,7 +26,7 @@ SceneAction::SceneAction(var params) :
         scene->targetType = TargetParameter::CONTAINER;
     }
 
-    if (actionType == LOAD_SCENE || actionType == LOAD_NEXT_SCENE)
+    if (actionType == LOAD_SCENE || actionType == LOAD_NEXT_SCENE || actionType == LOAD_PREVIOUS_SCENE)
     {
         time = addFloatParameter("Load Time", "If enabled, this will override the default load time of this scene", 1, 0, INT32_MAX, false);
         time->canBeDisabledByUser = true;
@@ -54,10 +54,18 @@ void SceneAction::triggerInternal()
 
     case LOAD_NEXT_SCENE:
     {
-        int index = SceneManager::getInstance()->items.indexOf(SceneManager::getInstance()->currentScene) + 1;
-        if (index < SceneManager::getInstance()->items.size())
+        if (Scene* s = SceneManager::getInstance()->getNextScene())
         {
-            Scene* s = SceneManager::getInstance()->items[index];
+            float loadTime = time->enabled ? time->floatValue() : -1;
+            SceneManager::getInstance()->loadScene(s, loadTime);
+        }
+    }
+    break;
+
+    case LOAD_PREVIOUS_SCENE:
+    {
+        if (Scene* s = SceneManager::getInstance()->getPreviousScene())
+        {
             float loadTime = time->enabled ? time->floatValue() : -1;
             SceneManager::getInstance()->loadScene(s, loadTime);
         }

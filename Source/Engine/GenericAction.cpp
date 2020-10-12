@@ -29,6 +29,8 @@ GenericAction::~GenericAction()
 
 void GenericAction::setValueParameter(Parameter* p)
 {
+	if (Engine::mainEngine->isLoadingFile || Engine::mainEngine->isClearing) return;
+
 	if (!value.wasObjectDeleted() && value != nullptr)
 	{
 		ghostValueData = value->getJSONData();
