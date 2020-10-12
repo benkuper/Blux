@@ -27,6 +27,7 @@ public:
     BoolParameter* excludeFromScenes;
 
     //dmx
+    Array<Parameter*> sourceParameters;
     Array<Parameter*> computedParameters;
     HashMap<Parameter*, Parameter*> computedParamMap;
     Array<int> paramChannels;

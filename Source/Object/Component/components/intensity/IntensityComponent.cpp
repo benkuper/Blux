@@ -34,6 +34,7 @@ void IntensityComponent::setupFromJSONDefinition(var data)
     {
         String s = ch.name.toString();
         FloatParameter* f = addFloatParameter(s, "Value of the intensity. This will automatically be converted to 0-255 or whatever the output protocol is.", 0, 0, 1);
+        sourceParameters.add(f);
         addComputedParameter(new FloatParameter("Out "+s, "Computed intensity " + s + " after all effects applied", 0, 0, 1), ch.value, f);
         values.add(f);
     }

@@ -29,7 +29,7 @@ GenericAction::~GenericAction()
 
 void GenericAction::setValueParameter(Parameter* p)
 {
-	if (Engine::mainEngine->isLoadingFile || Engine::mainEngine->isClearing) return;
+	if (Engine::mainEngine->isLoadingFile) return;
 
 	if (!value.wasObjectDeleted() && value != nullptr)
 	{
@@ -103,29 +103,33 @@ void GenericAction::onContainerParameterChanged(Parameter* p)
 	{
 		if (actionType == SET_VALUE)
 		{
-			if (target->target == nullptr) setValueParameter(nullptr);
-			else
+			if (!Engine::mainEngine->isLoadingFile)
 			{
-				if (target->target->type == Controllable::TRIGGER) setValueParameter(nullptr);
+				if (target->target == nullptr) setValueParameter(nullptr);
 				else
 				{
-					Controllable* c = ControllableFactory::createParameterFrom(target->target);
-					if (c == nullptr)
+					if (target->target->type == Controllable::TRIGGER) setValueParameter(nullptr);
+					else
 					{
-						DBG("Should not be null here");
-						jassertfalse;
+						Controllable* c = ControllableFactory::createParameterFrom(target->target);
+						if (c == nullptr)
+						{
+							DBG("Should not be null here");
+							jassertfalse;
+						}
+
+						c->setNiceName("Value");
+						Parameter* tp = dynamic_cast<Parameter*>(c);
+						setValueParameter(tp);
 					}
-
-					c->setNiceName("Value");
-					Parameter* tp = dynamic_cast<Parameter*>(c);
-					setValueParameter(tp);
 				}
-
 			}
+			
 		}
 
 	}
 }
+
 
 void GenericAction::loadJSONDataInternal(var data)
 {
