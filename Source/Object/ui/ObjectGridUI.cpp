@@ -19,20 +19,24 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	shouldRepaint(false),
 	flashMode(false),
 	transparentBG(false),
-	previewIntensity(0)
+	previewIntensity(0),
+	iconIntensityRef(0)
 {
+
 	updateThumbnail();
 	bringToFrontOnSelect = false;
 	autoHideWhenDragging = false;
 
 	if (IntensityComponent* ic = item->getComponent<IntensityComponent>())
 	{
-		computedIntensityUI.reset(((FloatParameter*)ic->computedParameters[0])->createSlider());
+		iconIntensityRef = (FloatParameter*)ic->computedParameters[0];
+		computedIntensityUI.reset(iconIntensityRef->createSlider());
 		computedIntensityUI->useCustomBGColor = true;
 		computedIntensityUI->customBGColor = BG_COLOR.darker(.6f);
 		computedIntensityUI->showLabel = false;
 		computedIntensityUI->showValue = false;
 		addAndMakeVisible(computedIntensityUI.get());
+
 
 		intensityUI.reset(((FloatParameter*)ic->values[0])->createSlider());
 		intensityUI->useCustomBGColor = true;
@@ -83,10 +87,23 @@ void ObjectGridUI::paint(Graphics& g)
 		g.drawRoundedRectangle(pr, 4, .5f);
 	}
 
-	g.setColour(Colours::white.withAlpha(isMouseOver() ? .2f : 1.f));
-	if (objectImage.getWidth() > 0) g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
+	
+	float overMultiplier = isMouseOver() ? .4f : 1.f;
 
-	if (objectImage.getWidth() == 0 || isMouseOver())
+	float offMult = 1;
+	if (iconIntensityRef != nullptr && objectONImage.isValid())
+	{
+		offMult = 1 - iconIntensityRef->floatValue();
+	}
+	g.setColour(Colours::white.withAlpha(offMult * overMultiplier));
+	g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
+	if (iconIntensityRef != nullptr && objectONImage.isValid())
+	{
+		g.setColour(Colours::white.withAlpha((1-offMult) * overMultiplier));
+		g.drawImage(objectONImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
+	}
+
+	if (!objectImage.isValid() || isMouseOver())
 	{
 		g.setColour(Colours::white);
 		g.drawFittedText(item->niceName, getLocalBounds().reduced(4), Justification::centred, 3);
@@ -116,8 +133,24 @@ void ObjectGridUI::resized()
 
 void ObjectGridUI::updateThumbnail()
 {
-	if (item->customThumbnailPath.existsAsFile()) objectImage = ImageCache::getFromFile(item->customThumbnailPath);
-	if (objectImage.getWidth() == 0) objectImage = BluxAssetManager::getImage("icon128");
+	var iconData = item->icon->getValueData();
+
+	File img1;
+	File img2;
+	
+	if (iconData.isArray())
+	{
+		img1 = File(iconData[0].toString());
+		img2 = File(iconData[1].toString());
+	}else
+	{
+		img1 = File(iconData.toString());
+	}
+	
+	if (img1.existsAsFile()) objectImage = ImageCache::getFromFile(img1);
+	if (img2.existsAsFile()) objectONImage = ImageCache::getFromFile(img2);
+
+	if (!objectImage.isValid()) objectImage = BluxAssetManager::getImage("icon128");
 
 	shouldRepaint = true;
 }
@@ -234,7 +267,11 @@ void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 	if (IntensityComponent* ic = c->getParentAs<IntensityComponent>())
 	{
 		shouldRepaint = true;
-
+	}
+	else if (c == item->icon)
+	{
+		updateThumbnail();
+		shouldRepaint = true;
 	}
 }
 

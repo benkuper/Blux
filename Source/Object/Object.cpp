@@ -29,8 +29,39 @@ Object::Object(var params) :
 
 	itemDataType = "Object";
 
-	File iconFile = File(params.getProperty("path", "")).getChildFile("icon.png");
-	if (iconFile.existsAsFile()) customThumbnailPath = iconFile;
+	File objPath = File(params.getProperty("path", "");
+
+	icon = addEnumParameter("Icon", "Bring some fancy in you life ! Put icons in the objects folders and find them here to customize you view");
+	icon->addOption("Default", objPath.getChildFile("icon.png").getFullPathName());
+
+	File staticFolder = objPath.getChildFile("icons/static");
+	if (staticFolder.isDirectory())
+	{
+		Array<File> files = staticFolder.findChildFiles(File::findFiles, false, "*.png");
+		for (auto& f : files)
+		{
+			icon->addOption(f.getFileNameWithoutExtension(), f.getFullPathName());
+		}
+	}
+
+	File variableFolder = objPath.getChildFile("icons/variable");
+	if (variableFolder.isDirectory())
+	{
+		Array<File> files = variableFolder.findChildFiles(File::findFiles, false, "*_on.png");
+		for (auto& f : files)
+		{
+			File offFile = variableFolder.getChildFile(f.getFileName().replace("_on", "_off"));
+			if (offFile.existsAsFile())
+			{
+				String base = f.getFileNameWithoutExtension();
+				String fName = base.substring(0, base.length() - 3);
+				var opt;
+				opt.append(offFile.getFullPathName());
+				opt.append(f.getFullPathName());
+				icon->addOption(fName, opt);
+			}
+		}
+	}
 
 	globalID = addIntParameter("Global ID", "Virtual ID that is used in many places of Blux to filter, alter effects, etc.", 0, 0);
 	stagePosition = addPoint3DParameter("Stage Position", "Position on stage, can be animated with stage layouts");

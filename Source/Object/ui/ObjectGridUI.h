@@ -27,7 +27,9 @@ public:
 	var previewData;
 	float previewIntensity;
 
+	FloatParameter* iconIntensityRef;
 	Image objectImage;
+	Image objectONImage;
 
 	std::unique_ptr<IntParameterLabelUI> globalIDUI;
 	std::unique_ptr<FloatSliderUI> intensityUI;

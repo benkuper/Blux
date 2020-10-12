@@ -38,10 +38,9 @@ public:
     Point3DParameter* stagePosition;
 
     //ui
-    File customThumbnailPath;
+    EnumParameter* icon;
     Parameter* slideManipParameter;
     float slideManipValueRef;
-
 
     void rebuildInterfaceParams();
 
