@@ -145,8 +145,8 @@ DMXChannelItem::DMXChannelItem(int channel, DMXChannelView* v) :
     channel(channel),
     valueAtMouseDown(0),
     value(0),
-    channelView(v),
-    tmpFlash(false)
+    tmpFlash(false),
+    channelView(v)
 {
     setRepaintsOnMouseActivity(true);
 }

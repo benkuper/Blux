@@ -20,7 +20,7 @@ public:
 
     void clearInternal() override;
 
-    virtual String getMinimumRequiredFileVersion();
+    virtual String getMinimumRequiredFileVersion() override;
 
     var getJSONData() override;
     void loadJSONDataInternalEngine(var data, ProgressTask * task) override;

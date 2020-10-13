@@ -97,6 +97,8 @@ void LayoutFilterStageViewUI::newMessage(const ContainerAsyncEvent& e)
 			handle.color = filter->colorInView->getColor();
 			handle.repaint();
 		}
+    default:
+        break;
 	}
 	break;
 	}

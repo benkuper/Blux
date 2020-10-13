@@ -438,9 +438,9 @@ void OSCInterface::run()
 
 OSCOutput::OSCOutput() :
 	BaseItem("OSC Output"),
+    Thread("OSC output"),
 	forceDisabled(false),
-	senderIsConnected(false),
-	Thread("OSC output")
+	senderIsConnected(false)
 {
 	isSelectable = false;
 

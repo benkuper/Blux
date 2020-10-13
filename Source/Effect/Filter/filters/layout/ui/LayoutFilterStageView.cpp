@@ -71,13 +71,16 @@ void LayoutFilterStageView::paint(Graphics& g)
     //g.fillAll(Colours::purple.withAlpha(.1f));
     for (auto& ui : filterUIs)
     {
-        Colour c = ui->filter->colorInView->getColor();
+        //Colour c = ui->filter->colorInView->getColor();
         LayoutFilter::LayoutMode m = ui->filter->mode->getValueDataAsEnum<LayoutFilter::LayoutMode>();
         switch (m)
         {
             case LayoutFilter::RADIUS:
-                Rectangle<int> r = getBounds();
+                //Rectangle<int> r = getBounds();
             break;
+                
+            default:
+                break;
         }
     }
 }
@@ -171,6 +174,8 @@ void LayoutFilterStageView::newMessage(const ContainerAsyncEvent& e)
         {
             if (e.targetControllable == f->position || e.targetControllable == f->size || e.targetControllable == f->mode) placeItem(getUIForFilter(f));
         }
+        default:
+            break;
     }
 }
 

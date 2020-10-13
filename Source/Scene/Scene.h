@@ -72,6 +72,6 @@ public:
     var getJSONData() override;
     void loadJSONDataItemInternal(var data) override;
 
-    String getTypeString() const { return "Scene"; }
+    String getTypeString() const override { return "Scene"; }
     static Scene* create(var params) { return new Scene(); }
 };

@@ -36,7 +36,7 @@ Object::Object(var params) :
 
 	File defaultON = objPath.getChildFile("icon_on.png");
 	File defaultOFF = objPath.getChildFile("icon_off.png");
-	File default = objPath.getChildFile("icon.png");
+	File defaultImg = objPath.getChildFile("icon.png");
 	
 	var defaultOpt;
 
@@ -47,7 +47,7 @@ Object::Object(var params) :
 	}
 	else
 	{
-		defaultOpt = default.getFullPathName();
+		defaultOpt = defaultImg.getFullPathName();
 	}
 
 	icon->addOption("Default", defaultOpt);
