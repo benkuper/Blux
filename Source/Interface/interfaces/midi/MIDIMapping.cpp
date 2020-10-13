@@ -15,8 +15,7 @@
 MIDIMapping::MIDIMapping() :
     BaseItem("MIDI Mapping"),
     isValid(false),
-    wasInRange(false),
-    learnMode(false)
+    wasInRange(false)
 {
     saveAndLoadRecursiveData = true;
 

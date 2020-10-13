@@ -92,6 +92,9 @@
     <Filter Include="Blux\Source\Interface\interfaces\serial">
       <UniqueIdentifier>{FDA64C85-1D2F-E2B5-246B-B6DBD4682D38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Interface\interfaces\osc\ui">
+      <UniqueIdentifier>{9AC08C89-232C-491F-EA75-4DB56D17BB91}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Interface\interfaces\osc">
       <UniqueIdentifier>{42047A65-42E9-B9F4-963C-592C15B5CD2C}</UniqueIdentifier>
     </Filter>
@@ -1158,6 +1161,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Interface\interfaces\serial\SerialInterface.cpp">
       <Filter>Blux\Source\Interface\interfaces\serial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\osc\ui\OSCInputEditor.cpp">
+      <Filter>Blux\Source\Interface\interfaces\osc\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\osc\ui\OSCOutputEditor.cpp">
+      <Filter>Blux\Source\Interface\interfaces\osc\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Interface\interfaces\osc\OSCInterface.cpp">
       <Filter>Blux\Source\Interface\interfaces\osc</Filter>
@@ -4343,6 +4352,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Interface\interfaces\serial\SerialInterface.h">
       <Filter>Blux\Source\Interface\interfaces\serial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Interface\interfaces\osc\ui\OSCInputEditor.h">
+      <Filter>Blux\Source\Interface\interfaces\osc\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Interface\interfaces\osc\ui\OSCOutputEditor.h">
+      <Filter>Blux\Source\Interface\interfaces\osc\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Interface\interfaces\osc\OSCInterface.h">
       <Filter>Blux\Source\Interface\interfaces\osc</Filter>

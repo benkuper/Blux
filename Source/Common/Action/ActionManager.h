@@ -24,7 +24,7 @@ class ActionManager :
     public BaseManager<Action>
 {
 public:
-    ActionManager();
+    ActionManager(const String &name = "Actions");
     ~ActionManager();
 
     void triggerAll();

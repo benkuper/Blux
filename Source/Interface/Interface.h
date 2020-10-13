@@ -27,7 +27,6 @@ public:
 
 
     virtual void updateValuesFromComponent(Object* o, ObjectComponent* c) {}
-    virtual void updateValuesFromParameter(Object* o, ObjectComponent* c, Parameter * p, var value) {}
 
 
     virtual ControllableContainer* getInterfaceParams() { return new ControllableContainer("Interface parameters"); }

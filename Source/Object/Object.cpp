@@ -249,12 +249,3 @@ void Object::lerpFromSceneData(var startData, var endData, float weight)
 	effectManager.lerpFromSceneData(startData.getProperty(effectManager.shortName, var()), endData.getProperty(effectManager.shortName,var()), weight);
 }
 
-
-//void Object::sendComponentParameter(ObjectComponent* c, Parameter* p)
-//{
-//    if (!enabled->boolValue() || !c->enabled) return;
-//    if (Interface* i = dynamic_cast<Interface*>(targetInterface->targetContainer.get()))
-//    {
-//        i->updateValuesFromParameter(this, c, p, p->floatValue());
-//    }
-//}

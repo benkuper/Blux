@@ -18,7 +18,9 @@
 
 Scene::Scene(const String& name) :
 	BaseItem(name, false),
-	interpolationCurve("Loading Curve")
+	interpolationCurve("Loading Curve"),
+	loadActions("Actions on Load"),
+	unloadActions("Actions on Exit")
 {
 	saveAndLoadRecursiveData = true;
 
@@ -46,8 +48,10 @@ Scene::Scene(const String& name) :
 	sequenceManager.selectItemWhenCreated = false;
 	sequenceManager.addBaseManagerListener(this);
 
-	addChildControllableContainer(&sequenceManager);
 	addChildControllableContainer(&effectManager);
+	addChildControllableContainer(&sequenceManager);
+	addChildControllableContainer(&loadActions);
+	addChildControllableContainer(&unloadActions);
 
 	effectManager.addBaseManagerListener(this);
 }
@@ -113,6 +117,15 @@ void Scene::onContainerTriggerTriggered(Trigger* t)
 
 	if (t == saveTrigger) saveScene();
 	else if (t == loadTrigger) loadScene();
+}
+
+void Scene::onContainerParameterChangedInternal(Parameter* p)
+{
+	if (p == isCurrent)
+	{
+		if (isCurrent->boolValue()) loadActions.triggerAll();
+		else unloadActions.triggerAll();
+	}
 }
 
 void Scene::itemAdded(Sequence* s)

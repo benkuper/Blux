@@ -13,6 +13,7 @@
 #include "JuceHeader.h"
 #include "Sequence/BluxSequenceManager.h"
 #include "Effect/EffectManager.h"
+#include "Common/Action/ActionManager.h"
 
 class Scene :
     public BaseItem,
@@ -37,6 +38,9 @@ public:
 
     EffectManager effectManager;
 
+    ActionManager loadActions;
+    ActionManager unloadActions;
+
     void saveScene();
     var getSceneData();
     void updateSceneData(); //used to resync with current objects and data that might not have been saved
@@ -45,6 +49,7 @@ public:
     bool isObjectActiveInScene(Object*);
 
     void onContainerTriggerTriggered(Trigger* t) override;
+    void onContainerParameterChangedInternal(Parameter* p) override;
 
     void itemAdded(Sequence* s) override;
 

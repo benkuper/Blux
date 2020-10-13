@@ -40,8 +40,8 @@ ActionFactory::ActionFactory()
 
 }
 
-ActionManager::ActionManager() :
-    BaseManager("Actions")
+ActionManager::ActionManager(const String &name) :
+    BaseManager(name)
 {
     managerFactory = ActionFactory::getInstance();
 }

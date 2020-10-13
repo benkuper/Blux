@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b13"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b14"
               headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -209,6 +209,16 @@
                   file="Source/Interface/interfaces/serial/SerialInterface.h"/>
           </GROUP>
           <GROUP id="{7E98C9EB-5E94-A855-7F6B-1651BB613019}" name="osc">
+            <GROUP id="{65E176ED-1CED-189A-136E-C8E96FE76FF9}" name="ui">
+              <FILE id="KtpBeF" name="OSCInputEditor.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/osc/ui/OSCInputEditor.cpp"/>
+              <FILE id="q4GoAG" name="OSCInputEditor.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/osc/ui/OSCInputEditor.h"/>
+              <FILE id="P9QYJb" name="OSCOutputEditor.cpp" compile="1" resource="0"
+                    file="Source/Interface/interfaces/osc/ui/OSCOutputEditor.cpp"/>
+              <FILE id="qJNTMH" name="OSCOutputEditor.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/osc/ui/OSCOutputEditor.h"/>
+            </GROUP>
             <FILE id="WUiXGB" name="OSCInterface.cpp" compile="1" resource="0"
                   file="Source/Interface/interfaces/osc/OSCInterface.cpp"/>
             <FILE id="F22DGO" name="OSCInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/osc/OSCInterface.h"/>
