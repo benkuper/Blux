@@ -95,5 +95,7 @@ void StageLayout2DView::newMessage(const ContainerAsyncEvent& e)
             }
         }
         break;
+        default:
+            break;
     }
 }

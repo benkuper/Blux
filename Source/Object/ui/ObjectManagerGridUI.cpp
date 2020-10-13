@@ -145,6 +145,8 @@ void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
 		if (e.targetControllable == manager->gridThumbSize || e.targetControllable == manager->filterActiveInScene) resized();
 
 		break;
+        default:
+            break;
 	}
 }
 void ObjectManagerGridUI::newMessage(const SceneManager::SceneManagerEvent& e)

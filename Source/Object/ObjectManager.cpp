@@ -130,6 +130,6 @@ void ObjectManager::run()
         long millisAfter = Time::getMillisecondCounter();
 
         long millisToSleep = jmax<long>(1, 30-(millisAfter-millisBefore));
-        sleep(millisToSleep);
+        sleep((int)millisToSleep);
     }
 }

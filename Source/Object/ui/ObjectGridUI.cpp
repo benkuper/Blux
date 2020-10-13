@@ -17,10 +17,10 @@
 ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),
 	shouldRepaint(false),
-	flashMode(false),
 	transparentBG(false),
-	previewIntensity(0),
-	iconIntensityRef(0)
+    previewIntensity(0),
+	iconIntensityRef(nullptr),
+    flashMode(false)
 {
 
 	updateThumbnail();

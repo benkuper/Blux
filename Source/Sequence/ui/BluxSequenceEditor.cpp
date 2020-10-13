@@ -12,8 +12,8 @@
 
 BluxSequenceEditor::BluxSequenceEditor(BluxSequence* s, bool isRoot) :
     BaseItemEditor(s, isRoot),
-    editBT("Edit"),
-    bluxSequence(s)
+    bluxSequence(s),
+    editBT("Edit")
 {
     addAndMakeVisible(&editBT);
     editBT.addListener(this);
