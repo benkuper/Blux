@@ -75,13 +75,9 @@ public:
 
 	//RECEIVE
 	virtual void setupReceiver();
-	float getFloatArg(OSCArgument a);
-	int getIntArg(OSCArgument a);
-	String getStringArg(OSCArgument a);
-	Colour getColorArg(OSCArgument a);
 
 	void processMessage(const OSCMessage& msg);
-	virtual void processMessageInternal(const OSCMessage&) {}
+	virtual void processMessageInternal(const OSCMessage&);
 
 	void itemAdded(OSCOutput* output) override;
 

@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    OSCInterface.cpp
-    Created: 26 Sep 2020 1:52:46pm
-    Author:  bkupe
+	OSCInterface.cpp
+	Created: 26 Sep 2020 1:52:46pm
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -12,6 +12,9 @@
 #include "ui/OSCInputEditor.h"
 #include "ui/OSCOutputEditor.h"
 #include "Object/ObjectManager.h"
+#include "Effect/GlobalEffectManager.h"
+#include "Scene/SceneManager.h"
+#include "Sequence/GlobalSequenceManager.h"
 
 OSCInterface::OSCInterface() :
 	Interface(getTypeString()),
@@ -46,17 +49,17 @@ OSCInterface::OSCInterface() :
 		o->remotePort->setValue(13001);
 		if (!Engine::mainEngine->isLoadingFile) setupSenders();
 	}
-	
 
-	//Script
-	scriptObject.setMethod("send", OSCInterface::sendOSCFromScript);
-	scriptObject.setMethod("sendTo", OSCInterface::sendOSCToFromScript);
-	scriptObject.setMethod("match", OSCInterface::matchOSCAddrFromScript);
-	scriptObject.setMethod("register", OSCInterface::registerOSCCallbackFromScript);
 
-	//scriptManager->scriptTemplate += ChataigneAssetManager::getInstance()->getScriptTemplate("osc");
+//Script
+scriptObject.setMethod("send", OSCInterface::sendOSCFromScript);
+scriptObject.setMethod("sendTo", OSCInterface::sendOSCToFromScript);
+scriptObject.setMethod("match", OSCInterface::matchOSCAddrFromScript);
+scriptObject.setMethod("register", OSCInterface::registerOSCCallbackFromScript);
 
-	genericSender.connect("0.0.0.0", 1);
+//scriptManager->scriptTemplate += ChataigneAssetManager::getInstance()->getScriptTemplate("osc");
+
+genericSender.connect("0.0.0.0", 1);
 }
 
 OSCInterface::~OSCInterface()
@@ -108,51 +111,13 @@ void OSCInterface::setupReceiver()
 
 }
 
-float OSCInterface::getFloatArg(OSCArgument a)
-{
-	if (a.isFloat32()) return a.getFloat32();
-	if (a.isInt32()) return (float)a.getInt32();
-	if (a.isString()) return a.getString().getFloatValue();
-	if (a.isColour()) return getIntArg(a);
-	return 0;
-}
-
-int OSCInterface::getIntArg(OSCArgument a)
-{
-	if (a.isInt32()) return a.getInt32();
-	if (a.isFloat32()) return roundf(a.getFloat32());
-	if (a.isString()) return a.getString().getIntValue();
-	if (a.isColour()) return a.getColour().toInt32();
-	//return c.red << 24 | c.green << 16 | c.blue << 8 | c.alpha;
-//}
-
-	return 0;
-}
-
-String OSCInterface::getStringArg(OSCArgument a)
-{
-	if (a.isString()) return a.getString();
-	if (a.isInt32()) return String(a.getInt32());
-	if (a.isFloat32()) return String(a.getFloat32());
-	if (a.isColour()) return OSCHelpers::getColourFromOSC(a.getColour()).toString();
-	return "";
-}
-
-Colour OSCInterface::getColorArg(OSCArgument a)
-{
-	if (a.isColour()) return OSCHelpers::getColourFromOSC(a.getColour());
-	if (a.isString()) return Colour::fromString(a.getString());
-	if (a.isInt32()) return Colour(a.getInt32());
-	if (a.isFloat32()) return Colour(a.getFloat32());
-	return Colours::black;
-}
 
 void OSCInterface::processMessage(const OSCMessage& msg)
 {
 	if (logIncomingData->boolValue())
 	{
 		String s = "";
-		for (auto& a : msg) s += String(" ") + getStringArg(a);
+		for (auto& a : msg) s += String(" ") + OSCHelpers::getStringArg(a);
 		NLOG(niceName, msg.getAddressPattern().toString() << " :" << s);
 	}
 
@@ -170,6 +135,132 @@ void OSCInterface::processMessage(const OSCMessage& msg)
 		for (auto& entry : scriptCallbacks)
 			if (std::get<0>(entry).matches(msg.getAddressPattern().toString()))
 				scriptManager->callFunctionOnAllItems(std::get<1>(entry), params);
+	}
+}
+
+void OSCInterface::processMessageInternal(const OSCMessage& m)
+{
+	StringArray addSplit;
+	addSplit.addTokens(m.getAddressPattern().toString(), "/", "\"");
+	addSplit.remove(0);
+
+	if (addSplit.size() < 2) return;
+
+	if (addSplit[0] == "object")
+	{
+		if (Object* o = OSCHelpers::getItemForArgument<Object>(ObjectManager::getInstance(), m, 0))
+		{
+			if (addSplit[1] == "enable")
+			{
+				if (m.size() < 2) o->enabled->setValue(true);
+				else o->enabled->setValue(OSCHelpers::getIntArg(m[1]) > 0);
+			}
+			else if (addSplit[1] == "position")
+			{
+				if (m.size() >= 4)
+				{
+					o->stagePosition->setVector(OSCHelpers::getP3DArg(m, 1));
+				}
+			}
+			if (addSplit.size() > 2)
+			{
+				if (addSplit[1] == "component")
+				{
+					if (ObjectComponent* oc = OSCHelpers::getItemForArgument<ObjectComponent>(&o->componentManager, m, 1))
+					{
+						if (addSplit[2] == "enabled")
+						{
+							if (m.size() < 3) oc->enabled->setValue(true);
+							else oc->enabled->setValue(OSCHelpers::getIntArg(m[2]) > 0);
+						}
+					}
+				}
+				else if (addSplit[1] == "effect")
+				{
+					if (addSplit.size() < 3) return;
+
+					Effect* e = OSCHelpers::getItemForArgument<Effect>(&o->effectManager, m, 1);
+					if (addSplit[2] == "enabled")
+					{
+						if (m.size() < 3) e->enabled->setValue(true);
+						else e->enabled->setValue(OSCHelpers::getIntArg(m[2]) > 0);
+					}
+					else if (addSplit[2] == "weight")
+					{
+						if (m.size() >= 3) e->weight->setValue(OSCHelpers::getFloatArg(m[2]));
+					}
+				}
+			}
+		}
+	}
+	else if (addSplit[0] == "effectGroup")
+	{
+		if (EffectGroup* eg = OSCHelpers::getItemForArgument<EffectGroup>(GlobalEffectManager::getInstance(), m, 0))
+		{
+			if (addSplit[1] == "enabled")
+			{
+				if (m.size() < 3) eg->enabled->setValue(true);
+				else eg->enabled->setValue(OSCHelpers::getIntArg(m[2]) > 0);
+			}
+		}
+	}
+	else if (addSplit[0] == "globalEffect")
+	{
+		if (EffectGroup* eg = OSCHelpers::getItemForArgument<EffectGroup>(GlobalEffectManager::getInstance(), m, 0))
+		{
+			if (Effect* e = OSCHelpers::getItemForArgument<Effect>(&eg->effectManager, m, 1))
+			{
+				if (addSplit[2] == "enabled")
+				{
+					if (m.size() < 3) e->enabled->setValue(true);
+					else e->enabled->setValue(OSCHelpers::getIntArg(m[2]) > 0);
+				}
+				else if (addSplit[2] == "weight")
+				{
+					if (m.size() >= 3) e->weight->setValue(OSCHelpers::getFloatArg(m[2]));
+				}
+			}
+		}
+	}
+	else if (addSplit[0] == "scene")
+	{
+		if (addSplit[1] == "loadNext") SceneManager::getInstance()->loadNextSceneTrigger->trigger();
+		else if (addSplit[1] == "loadPrevious") SceneManager::getInstance()->loadPreviousSceneTrigger->trigger();
+		else if (Scene* s = OSCHelpers::getItemForArgument<Scene>(SceneManager::getInstance(), m, 0))
+		{
+			if (addSplit[1] == "load")
+			{
+				float time = m.size() > 1 ? OSCHelpers::getFloatArg(m[1]) : -1;
+				s->loadScene(time);
+			}
+		}
+	}
+	else if (addSplit[0] == "sequence")
+	{
+		if (Sequence* s = OSCHelpers::getItemForArgument<Sequence>(GlobalSequenceManager::getInstance(), m, 0))
+		{
+			if (addSplit[1] == "play")
+			{
+				if (m.size() > 1) s->currentTime->setValue(OSCHelpers::getFloatArg(m[1]));
+				s->playTrigger->trigger();
+			}
+			else if (addSplit[1] == "pause")
+			{
+				s->pauseTrigger->trigger();
+			}
+			else if (addSplit[1] == "stop")
+			{
+				s->stopTrigger->trigger();
+			}
+			else if (addSplit[1] == "time")
+			{
+				if (m.size() > 1) s->currentTime->setValue(OSCHelpers::getFloatArg(m[1]));
+			}
+		}
+	}
+	else if (addSplit[0] == "blackout")
+	{
+		ObjectManager::getInstance()->blackOut->setValue(m.size() >= 1 ? (OSCHelpers::getIntArg(m[0]) > 0) : !ObjectManager::getInstance()->blackOut->boolValue());
 	}
 }
 
@@ -195,7 +286,7 @@ void OSCInterface::sendOSC(const OSCMessage& msg, String ip, int port)
 		NLOG(niceName, "Send OSC : " << msg.getAddressPattern().toString());
 		for (auto& a : msg)
 		{
-			LOG(getStringArg(a));
+			LOG(OSCHelpers::getStringArg(a));
 		}
 	}
 
@@ -438,7 +529,7 @@ void OSCInterface::run()
 
 OSCOutput::OSCOutput() :
 	BaseItem("OSC Output"),
-    Thread("OSC output"),
+	Thread("OSC output"),
 	forceDisabled(false),
 	senderIsConnected(false)
 {
