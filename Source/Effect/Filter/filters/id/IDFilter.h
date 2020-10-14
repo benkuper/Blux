@@ -23,6 +23,11 @@ public:
     
     virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent * c) override;
 
+    void controllableAdded(Controllable* c) override;
+
+    var getJSONData() override;
+    void loadJSONDataInternal(var data) override;
+
     String getTypeString() const override { return "Filter by ID"; }
     static IDFilter* create(var params) { return new IDFilter(); }
 };
