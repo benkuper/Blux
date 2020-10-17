@@ -48,7 +48,7 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 {
 	FilterResult r = filterManager.getFilteredResultForComponent(o, c);
 	if (r.id == -1) return;
-	int targetID = (r.id == o->globalID->intValue()) ? id : r.id;
+	int targetID = (id != -1 && r.id == o->globalID->intValue()) ? id : r.id;
 
 	float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
