@@ -144,7 +144,7 @@ void ObjectAction::onContainerParameterChanged(Parameter* p)
 	}
 }
 
-Controllable* ObjectAction::showAndGetComponentParameter(bool showParameters, bool showTriggers)
+Controllable* ObjectAction::showAndGetComponentParameter(const StringArray& typesFilter, const StringArray& excludeTypesFilter)
 {
 	Array<Parameter*> params;
 	PopupMenu m;

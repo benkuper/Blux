@@ -34,7 +34,7 @@ public:
 
 	void onContainerParameterChanged(Parameter*) override;
 
-	static Controllable* showAndGetComponentParameter(bool showParameters, bool showTriggers);
+	static Controllable* showAndGetComponentParameter(const StringArray & typesFilter, const StringArray & excludeTypesFilter);
 
 	virtual void loadJSONDataInternal(var data) override;
 	virtual void endLoadFile() override;
