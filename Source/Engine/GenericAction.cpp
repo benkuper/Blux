@@ -18,8 +18,9 @@ GenericAction::GenericAction(var params) :
 
 	target->targetType = TargetParameter::CONTROLLABLE;
 	actionType = (ActionType)(int)params.getProperty("actionType", SET_VALUE);
-	target->showTriggers = actionType == TRIGGER;
-	target->showParameters = actionType == SET_VALUE;
+	if (actionType == TRIGGER) target->typesFilter.add(Trigger::getTypeStringStatic());
+	else target->excludeTypesFilter.add(Trigger::getTypeStringStatic());
+	
 }
 
 
