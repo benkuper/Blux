@@ -26,6 +26,7 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
+    bool isAffectingObject(Object* o);
     FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c);
 
     InspectableEditor* getEditor(bool isRoot) override;

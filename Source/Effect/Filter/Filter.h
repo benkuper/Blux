@@ -32,6 +32,7 @@ public:
     BoolParameter* useLocalID;
     BoolParameter* excludeFromScenes;
 
+    virtual bool isAffectingObject(Object* o);
     FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c);
     virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c);
     

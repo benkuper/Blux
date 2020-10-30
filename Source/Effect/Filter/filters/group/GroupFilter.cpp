@@ -42,7 +42,24 @@ void GroupFilter::controllableAdded(Controllable * c)
             tp->maxDefaultSearchLevel = 0;
         }
     }
-    
+}
+
+bool GroupFilter::isAffectingObject(Object* o)
+{
+    for (int i = 0; i < groups.controllables.size(); i++)
+    {
+        if (TargetParameter* tp = dynamic_cast<TargetParameter*>(groups.controllables[i]))
+        {
+            if (tp->targetContainer == nullptr) continue;
+            if (Group* g = dynamic_cast<Group*>(tp->targetContainer.get()))
+            {
+                int id = g->getLocalIDForObject(o);
+                if (id != -1)  return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 FilterResult GroupFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)

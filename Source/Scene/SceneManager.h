@@ -51,6 +51,8 @@ public:
 
     void askForLoadScene(Scene* s, float time) override;
 
+
+    Array<Effect*> getEffectsForObject(Object * o);
     void processComponentValues(Object* o, ObjectComponent* c, var& values);
 
     void onContainerTriggerTriggered(Trigger* t) override;

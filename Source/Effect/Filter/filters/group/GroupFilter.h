@@ -24,6 +24,7 @@ public:
 
     void controllableAdded(Controllable*) override;
 
+    bool isAffectingObject(Object* o) override;
     virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c) override;
 
     var getJSONData() override;

@@ -24,6 +24,17 @@ GroupManager::~GroupManager()
 {
 }
 
+Array<Effect*> GroupManager::getEffectsForObject(Object* o)
+{
+    Array<Effect*> result;
+    for (auto& g : items)
+    {
+        if (!g->containsObject(o)) continue;
+        result.addArray(g->effectManager.getEffectsForObject(o));
+    }
+    return result;
+}
+
 void GroupManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
     for (auto& g : items)

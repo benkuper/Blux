@@ -53,6 +53,11 @@ void LayoutFilter::clearItem()
     broadcaster.sendChangeMessage();
 }
 
+bool LayoutFilter::isAffectingObject(Object* o)
+{
+    return true;
+}
+
 FilterResult LayoutFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)
 {
     if (size->floatValue() == 0) return FilterResult();

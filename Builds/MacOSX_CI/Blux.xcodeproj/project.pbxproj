@@ -65,6 +65,10 @@
 			isa = PBXBuildFile;
 			fileRef = D857FDEAA815333B82EF3EE7;
 		};
+		10EA515C3226184043546018 = {
+			isa = PBXBuildFile;
+			fileRef = 72254717BC83E321C9FCDE58;
+		};
 		C3CEF9692B6820C2D7236465 = {
 			isa = PBXBuildFile;
 			fileRef = 96074348F6CF1CDCD2488ADC;
@@ -361,6 +365,10 @@
 			isa = PBXBuildFile;
 			fileRef = 8AF67D32A470858B731F7260;
 		};
+		EC0FFE82D865FFCE16EBECFC = {
+			isa = PBXBuildFile;
+			fileRef = D0A855103E29B74202FF0631;
+		};
 		3EF87C2E3A17DB3F5381A4A2 = {
 			isa = PBXBuildFile;
 			fileRef = 88163F113A5170EDD72FC1DE;
@@ -476,6 +484,10 @@
 		39C3BD26909ED1D2B22B5407 = {
 			isa = PBXBuildFile;
 			fileRef = 4793CA6D8028D876C2303D34;
+		};
+		49F4330B55BEDAB29E41E9AF = {
+			isa = PBXBuildFile;
+			fileRef = B5818AF33CD789D7E67297E3;
 		};
 		B2445E8D92A7D17AB78A3B94 = {
 			isa = PBXBuildFile;
@@ -1050,6 +1062,13 @@
 			path = ../../Source/Layout/ui/StageLayoutUI.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		31995FA54E5C1A136885E42E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChainViz.h;
+			path = ../../Source/ChainViz/ChainViz.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		31C24D863378BC9F5222BAFB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1477,6 +1496,20 @@
 			path = ../../Source/Group/ui/GroupUI.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		5BBC171C1D753E27DBD3E119 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ObjectChainVizUI.h;
+			path = ../../Source/Object/ui/ObjectChainVizUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		5D16C722BF568BE6D9DCCB97 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = EffectChainVizUI.h;
+			path = ../../Source/Effect/ui/EffectChainVizUI.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		5E00C517266F6467ED6DB131 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1580,6 +1613,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = AutomationEffectEditor.cpp;
 			path = ../../Source/Effect/effects/time/automation/ui/AutomationEffectEditor.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		72254717BC83E321C9FCDE58 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ChainViz.cpp;
+			path = ../../Source/ChainViz/ChainViz.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		729BA0D6D6500BCC30E86121 = {
@@ -2212,6 +2252,13 @@
 			path = "../../JuceLibraryCode/include_juce_timeline.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
+		B5818AF33CD789D7E67297E3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ObjectChainVizUI.cpp;
+			path = ../../Source/Object/ui/ObjectChainVizUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		B5BEBCA5A05AFBE50819C396 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2448,6 +2495,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = DMXEnttecProDevice.cpp;
 			path = ../../Source/Common/DMX/device/DMXEnttecProDevice.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		D0A855103E29B74202FF0631 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = EffectChainVizUI.cpp;
+			path = ../../Source/Effect/ui/EffectChainVizUI.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		D403CB9E2FFA5D7460426A93 = {
@@ -2881,6 +2935,15 @@
 				C4ADEA9C1F1FA20ABE2B43FC,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		4789238EA8BC1FE09AFC5991 = {
+			isa = PBXGroup;
+			children = (
+				72254717BC83E321C9FCDE58,
+				31995FA54E5C1A136885E42E,
+			);
+			name = ChainViz;
 			sourceTree = "<group>";
 		};
 		338AECEF0685540DEDFC0A2B = {
@@ -3437,6 +3500,8 @@
 		E5E1F6A1A1E772BAF8A0C6B7 = {
 			isa = PBXGroup;
 			children = (
+				D0A855103E29B74202FF0631,
+				5D16C722BF568BE6D9DCCB97,
 				88163F113A5170EDD72FC1DE,
 				5AFAEE015993C09FBDF1EC8E,
 				426F08CFDAFCF3448CACD29B,
@@ -3654,6 +3719,8 @@
 		AB3B647C11E4637A5BED8FA7 = {
 			isa = PBXGroup;
 			children = (
+				B5818AF33CD789D7E67297E3,
+				5BBC171C1D753E27DBD3E119,
 				C57457769AB82620F0822E07,
 				48FA02D91DAA915DA1E3998C,
 				31C24D863378BC9F5222BAFB,
@@ -3814,6 +3881,7 @@
 		6E9F1AD50FC257BAEE7B1A6A = {
 			isa = PBXGroup;
 			children = (
+				4789238EA8BC1FE09AFC5991,
 				5F6E18662CD3937931CE16D2,
 				F5FF7045CFA377C4224EAA09,
 				42778E7BB0B09E9DFB9889EC,
@@ -4247,6 +4315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10EA515C3226184043546018,
 				C3CEF9692B6820C2D7236465,
 				097B92ED12A1F67E8AFA8763,
 				4F7AA482E8AA7B0C0BE4D643,
@@ -4321,6 +4390,7 @@
 				60953B7B9D1C5F16C84408B7,
 				8526C02D7DB8BA1B8BB37A15,
 				E6FE84839080CC7B6F57653B,
+				EC0FFE82D865FFCE16EBECFC,
 				3EF87C2E3A17DB3F5381A4A2,
 				1C9F0EEAE6F67FD033EE0F84,
 				E9B0DFB222D8D5509BF0F75E,
@@ -4350,6 +4420,7 @@
 				466D7958B393CA5B228150F5,
 				CBAE28E973C26F15096F1143,
 				39C3BD26909ED1D2B22B5407,
+				49F4330B55BEDAB29E41E9AF,
 				B2445E8D92A7D17AB78A3B94,
 				EFF94C9289653A2346FAC06A,
 				0DAA7131B6D88540F7820CA1,

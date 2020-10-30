@@ -12,6 +12,15 @@
 
 #include "Object.h"
 
+class SubObjectManager :
+    public BaseManager<Object>
+{
+public:
+    SubObjectManager();
+    ~SubObjectManager();
+
+};
+
 class ObjectManager :
     public BaseManager<Object>,
     public Object::ObjectListener,
@@ -23,29 +32,27 @@ public:
     ObjectManager();
     ~ObjectManager();
 
+    Factory<Object> factory;
+
     BoolParameter* blackOut;
 
     //ui
     IntParameter* gridThumbSize;
-    FloatParameter * defaultFlashValue;
+    FloatParameter* defaultFlashValue;
     BoolParameter* filterActiveInScene;
 
-    Factory<Object> factory;
-
     void updateFactoryDefinitions();
-
     void addItemInternal(Object* o, var data) override;
     void removeItemInternal(Object* o) override;
 
-    int getFirstAvailableObjectID(Object * excludeObject = nullptr);
-    Object* getObjectWithID(int id, Object * excludeObject = nullptr);
+    int getFirstAvailableObjectID(Object* excludeObject = nullptr);
+    Object* getObjectWithID(int id, Object* excludeObject = nullptr);
 
-    void objectIDChanged(Object * o, int previousID) override;
+    void objectIDChanged(Object* o, int previousID) override;
 
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
     void run() override;
-
 };

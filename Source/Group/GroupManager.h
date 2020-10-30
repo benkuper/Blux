@@ -25,6 +25,7 @@ public:
 
     Factory<Group> factory;
 
+    Array<Effect*> getEffectsForObject(Object* o);
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values);
 
     var getSceneData();

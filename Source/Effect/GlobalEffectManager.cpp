@@ -23,6 +23,13 @@ GlobalEffectManager::~GlobalEffectManager()
 
 }
 
+Array<Effect*> GlobalEffectManager::getEffectsForObject(Object* o)
+{
+    Array<Effect*> result;
+    for (auto& g : items) result.addArray(g->effectManager.getEffectsForObject(o));
+    return result;
+}
+
 void GlobalEffectManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
     for (auto& i : items)

@@ -68,6 +68,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/ChainViz_ce9d49f0.o \
   $(JUCE_OBJDIR)/AudioManagerHardwareEditor_ce81cbaf.o \
   $(JUCE_OBJDIR)/AudioManager_d6082e39.o \
   $(JUCE_OBJDIR)/VirtualGroup_a546084.o \
@@ -142,6 +143,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/FilterManagerEditor_be3a7ba9.o \
   $(JUCE_OBJDIR)/Filter_f63b8dfa.o \
   $(JUCE_OBJDIR)/FilterManager_f4be18dd.o \
+  $(JUCE_OBJDIR)/EffectChainVizUI_56679171.o \
   $(JUCE_OBJDIR)/EffectEditor_cb1d43a4.o \
   $(JUCE_OBJDIR)/EffectManagerEditor_497168ed.o \
   $(JUCE_OBJDIR)/GlobalEffectManagerUI_cbfe2411.o \
@@ -171,6 +173,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/StrobeComponent_2e66226e.o \
   $(JUCE_OBJDIR)/ComponentManager_46725c33.o \
   $(JUCE_OBJDIR)/ObjectComponent_b60fdce5.o \
+  $(JUCE_OBJDIR)/ObjectChainVizUI_631b324d.o \
   $(JUCE_OBJDIR)/ObjectGridUI_33e92eed.o \
   $(JUCE_OBJDIR)/ObjectManagerGridUI_ec4b46fe.o \
   $(JUCE_OBJDIR)/ObjectManagerUI_c91fab98.o \
@@ -231,6 +234,11 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(JUCE_LDFLAGS_APP) $(RESOURCES) $(TARGET_ARCH)
+
+$(JUCE_OBJDIR)/ChainViz_ce9d49f0.o: ../../Source/ChainViz/ChainViz.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ChainViz.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/AudioManagerHardwareEditor_ce81cbaf.o: ../../Source/Audio/ui/AudioManagerHardwareEditor.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
@@ -602,6 +610,11 @@ $(JUCE_OBJDIR)/FilterManager_f4be18dd.o: ../../Source/Effect/Filter/FilterManage
 	@echo "Compiling FilterManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/EffectChainVizUI_56679171.o: ../../Source/Effect/ui/EffectChainVizUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling EffectChainVizUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/EffectEditor_cb1d43a4.o: ../../Source/Effect/ui/EffectEditor.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling EffectEditor.cpp"
@@ -745,6 +758,11 @@ $(JUCE_OBJDIR)/ComponentManager_46725c33.o: ../../Source/Object/Component/Compon
 $(JUCE_OBJDIR)/ObjectComponent_b60fdce5.o: ../../Source/Object/Component/ObjectComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ObjectComponent.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ObjectChainVizUI_631b324d.o: ../../Source/Object/ui/ObjectChainVizUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectChainVizUI.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ObjectGridUI_33e92eed.o: ../../Source/Object/ui/ObjectGridUI.cpp

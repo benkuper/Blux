@@ -12,13 +12,19 @@
 
 #include "Component/ComponentManager.h"
 #include "Effect/EffectManager.h"
+#include "ChainViz/ChainViz.h"
+
+class SubObjectManager;
 
 class Object :
-    public BaseItem
+    public BaseItem,
+    public ChainVizTarget
 {
 public:
     Object(var params = var());
     virtual ~Object();
+
+    bool isRoot;
 
     String objectType;
     var objectData;
@@ -29,6 +35,7 @@ public:
 
     ComponentManager componentManager;
     EffectManager effectManager;
+    std::unique_ptr<SubObjectManager> objectManager;
 
     IntParameter* globalID;
     int previousID;
@@ -56,6 +63,9 @@ public:
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
+
+
+    Array<Effect*> getEffectChain();
 
     //Listener
     class  ObjectListener

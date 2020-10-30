@@ -33,10 +33,15 @@ Filter::~Filter()
 {
 }
 
+bool Filter::isAffectingObject(Object* o)
+{
+    return true;
+}
+
 FilterResult Filter::getFilteredResultForComponent(Object* o, ObjectComponent* c)
 {
     if (!enabled->boolValue()) return FilterResult();
-    
+
     FilterResult r = getFilteredResultForComponentInternal(o, c);
     if (r.id == -1) return r;
 

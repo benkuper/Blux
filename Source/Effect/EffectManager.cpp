@@ -22,9 +22,8 @@ EffectManager::EffectManager() :
     itemDataType = "Effect";
 
     managerFactory = EffectFactory::getInstance();
-   
-    
 
+    selectItemWhenCreated = false;
     canBeCopiedAndPasted = true;
 }
 
@@ -39,6 +38,13 @@ void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& 
         if (!e->enabled->boolValue()) continue;
         e->processComponentValues(o, c, values, weightMultiplier);
     }
+}
+
+Array<Effect*> EffectManager::getEffectsForObject(Object* o)
+{
+    Array<Effect*> result;
+    for(auto & e: items) if(e->isAffectingObject(o)) result.add(e);
+    return result;
 }
 
 void EffectManager::resetEffectsTimes()

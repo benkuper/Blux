@@ -16,6 +16,7 @@
 #include "Scene/SceneManager.h"
 #include "Object/ObjectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
+#include "ObjectManager.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
@@ -33,50 +34,53 @@ Object::Object(var params) :
 
 	icon = addEnumParameter("Icon", "Bring some fancy in you life ! Put icons in the objects folders and find them here to customize you view");
 	
-
-	File defaultON = objPath.getChildFile("icon_on.png");
-	File defaultOFF = objPath.getChildFile("icon_off.png");
-	File defaultImg = objPath.getChildFile("icon.png");
-	
-	var defaultOpt;
-
-	if (defaultON.existsAsFile() && defaultOFF.existsAsFile())
+	if (objPath.exists())
 	{
-		defaultOpt.append(defaultOFF.getFullPathName());
-		defaultOpt.append(defaultON.getFullPathName());
-	}
-	else
-	{
-		defaultOpt = defaultImg.getFullPathName();
-	}
 
-	icon->addOption("Default", defaultOpt);
+		File defaultON = objPath.getChildFile("icon_on.png");
+		File defaultOFF = objPath.getChildFile("icon_off.png");
+		File defaultImg = objPath.getChildFile("icon.png");
 
-	File staticFolder = objPath.getChildFile("icons/static");
-	if (staticFolder.isDirectory())
-	{
-		Array<File> files = staticFolder.findChildFiles(File::findFiles, false, "*.png");
-		for (auto& f : files)
+		var defaultOpt;
+
+		if (defaultON.existsAsFile() && defaultOFF.existsAsFile())
 		{
-			icon->addOption(f.getFileNameWithoutExtension(), f.getFullPathName());
+			defaultOpt.append(defaultOFF.getFullPathName());
+			defaultOpt.append(defaultON.getFullPathName());
 		}
-	}
-
-	File variableFolder = objPath.getChildFile("icons/variable");
-	if (variableFolder.isDirectory())
-	{
-		Array<File> files = variableFolder.findChildFiles(File::findFiles, false, "*_on.png");
-		for (auto& f : files)
+		else
 		{
-			File offFile = variableFolder.getChildFile(f.getFileName().replace("_on", "_off"));
-			if (offFile.existsAsFile())
+			defaultOpt = defaultImg.getFullPathName();
+		}
+
+		icon->addOption("Default", defaultOpt);
+
+		File staticFolder = objPath.getChildFile("icons/static");
+		if (staticFolder.isDirectory())
+		{
+			Array<File> files = staticFolder.findChildFiles(File::findFiles, false, "*.png");
+			for (auto& f : files)
 			{
-				String base = f.getFileNameWithoutExtension();
-				String fName = base.substring(0, base.length() - 3);
-				var opt;
-				opt.append(offFile.getFullPathName());
-				opt.append(f.getFullPathName());
-				icon->addOption(fName, opt);
+				icon->addOption(f.getFileNameWithoutExtension(), f.getFullPathName());
+			}
+		}
+
+		File variableFolder = objPath.getChildFile("icons/variable");
+		if (variableFolder.isDirectory())
+		{
+			Array<File> files = variableFolder.findChildFiles(File::findFiles, false, "*_on.png");
+			for (auto& f : files)
+			{
+				File offFile = variableFolder.getChildFile(f.getFileName().replace("_on", "_off"));
+				if (offFile.existsAsFile())
+				{
+					String base = f.getFileNameWithoutExtension();
+					String fName = base.substring(0, base.length() - 3);
+					var opt;
+					opt.append(offFile.getFullPathName());
+					opt.append(f.getFullPathName());
+					icon->addOption(fName, opt);
+				}
 			}
 		}
 	}
@@ -104,6 +108,16 @@ Object::Object(var params) :
 	addChildControllableContainer(&componentManager);
 
 	addChildControllableContainer(&effectManager);
+
+	bool canCustomize = params.getProperty("canCustomize", false);
+	var objectsData = params.getProperty("objects", var());
+
+	if (objectsData.isObject() || canCustomize)
+	{
+		objectManager.reset(new SubObjectManager());
+		objectManager->userCanAddItemsManually = canCustomize;
+		addChildControllableContainer(objectManager.get());
+	}
 }
 
 Object::~Object()
@@ -247,5 +261,16 @@ void Object::lerpFromSceneData(var startData, var endData, float weight)
 	if (excludeFromScenes->boolValue()) return;
 	componentManager.lerpFromSceneData(startData.getProperty(componentManager.shortName, var()), endData.getProperty(componentManager.shortName, var()), weight);
 	effectManager.lerpFromSceneData(startData.getProperty(effectManager.shortName, var()), endData.getProperty(effectManager.shortName,var()), weight);
+}
+
+Array<Effect*> Object::getEffectChain()
+{
+	Array<Effect*> result;
+	result.addArray(effectManager.getEffectsForObject(this));
+	result.addArray(SceneManager::getInstance()->getEffectsForObject(this));
+	result.addArray(GroupManager::getInstance()->getEffectsForObject(this));
+	//result.addArray(GlobalSequenceManager::getInstance()->.getEffectsForObject(this));
+	result.addArray(GlobalEffectManager::getInstance()->getEffectsForObject(this));
+	return result;
 }
 

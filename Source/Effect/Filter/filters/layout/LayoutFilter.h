@@ -31,6 +31,7 @@ public:
 
     void clearItem() override;
 
+    bool isAffectingObject(Object * o) override;
     virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c) override;
 
     String getTypeString() const override { return "Layout Filter"; }

@@ -27,6 +27,7 @@ ComponentManager::ComponentManager() :
     BaseManager("Components")
 {
     managerFactory = ComponentFactory::getInstance();
+    selectItemWhenCreated = false;
 }
 
 ComponentManager::~ComponentManager()

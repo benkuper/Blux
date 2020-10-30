@@ -163,6 +163,13 @@ void SceneManager::askForLoadScene(Scene* s, float loadTime)
     loadScene(s, loadTime);
 }
 
+Array<Effect*> SceneManager::getEffectsForObject(Object* o)
+{
+    Array<Effect*> result;
+    if (currentScene == nullptr) return result;
+    return currentScene->effectManager.getEffectsForObject(o);
+}
+
 void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
     if (currentScene == nullptr) return;

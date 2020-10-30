@@ -17,22 +17,22 @@ ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 	contentIsFlexible = true;
 	animateItemOnAdd = false;
 
-	thumbSizeUI.reset(manager->gridThumbSize->createSlider());
+	thumbSizeUI.reset(ObjectManager::getInstance()->gridThumbSize->createSlider());
 	addAndMakeVisible(thumbSizeUI.get());
 	thumbSizeUI->useCustomBGColor = true;
 	thumbSizeUI->customBGColor = BG_COLOR.darker(.2f);
 
-	flashValueUI.reset(manager->defaultFlashValue->createSlider());
+	flashValueUI.reset(ObjectManager::getInstance()->defaultFlashValue->createSlider());
 	addAndMakeVisible(flashValueUI.get());
 	flashValueUI->useCustomBGColor = true;
 	flashValueUI->customBGColor = BG_COLOR.darker(.2f);
 
-	blackOutUI.reset(manager->blackOut->createButtonToggle());
+	blackOutUI.reset(ObjectManager::getInstance()->blackOut->createButtonToggle());
 	addAndMakeVisible(blackOutUI.get());
-	activeInSceneUI.reset(manager->filterActiveInScene->createButtonToggle());
+	activeInSceneUI.reset(ObjectManager::getInstance()->filterActiveInScene->createButtonToggle());
 	addAndMakeVisible(activeInSceneUI.get());
 
-	manager->addAsyncCoalescedContainerListener(this);
+	ObjectManager::getInstance()->addAsyncCoalescedContainerListener(this);
 
 	setShowSearchBar(true);
 
@@ -43,7 +43,7 @@ ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 
 ObjectManagerGridUI::~ObjectManagerGridUI()
 {
-	if(!inspectable.wasObjectDeleted()) manager->removeAsyncContainerListener(this);
+	if(!inspectable.wasObjectDeleted()) ObjectManager::getInstance()->removeAsyncContainerListener(this);
 	if(SceneManager::getInstanceWithoutCreating()) SceneManager::getInstance()->removeAsyncSceneManagerListener(this);
 }
 
@@ -64,7 +64,7 @@ void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
 {
 	viewport.setBounds(r); 
 	
-	const int thumbSize = manager->gridThumbSize->floatValue();
+	const int thumbSize = ObjectManager::getInstance()->gridThumbSize->floatValue();
 
 	int numThumbs = getFilteredItems().size();
 	int numThumbPerLine = jmin(r.getWidth() / (thumbSize + gap), numThumbs);
@@ -119,7 +119,7 @@ void ObjectManagerGridUI::setPreviewData(var data)
 bool ObjectManagerGridUI::hasFiltering()
 {
 	if (BaseManagerUI::hasFiltering()) return true;
-	return manager->filterActiveInScene->boolValue();
+	return ObjectManager::getInstance()->filterActiveInScene->boolValue();
 }
 
 bool ObjectManagerGridUI::checkFilterForItem(ObjectGridUI* ui)
@@ -127,7 +127,7 @@ bool ObjectManagerGridUI::checkFilterForItem(ObjectGridUI* ui)
 	if (!BaseManagerShapeShifterUI::checkFilterForItem(ui)) return false;
 
 
-	if (manager->filterActiveInScene->boolValue() && SceneManager::getInstance()->currentScene != nullptr)
+	if (ObjectManager::getInstance()->filterActiveInScene->boolValue() && SceneManager::getInstance()->currentScene != nullptr)
 	{
 		if (!SceneManager::getInstance()->currentScene->isObjectActiveInScene(ui->item)) return false;
 	}
@@ -142,7 +142,7 @@ void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
 	switch (e.type)
 	{
 	case ContainerAsyncEvent::ControllableFeedbackUpdate:
-		if (e.targetControllable == manager->gridThumbSize || e.targetControllable == manager->filterActiveInScene) resized();
+		if (e.targetControllable == ObjectManager::getInstance()->gridThumbSize || e.targetControllable == ObjectManager::getInstance()->filterActiveInScene) resized();
 
 		break;
         default:

@@ -19,7 +19,6 @@ ObjectComponent::ObjectComponent(String name, ComponentType componentType, var p
 	componentType(componentType),
 	isDirty(true)
 {
-
 	excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked ,this will not be included in scene data", false);
 	canBeCopiedAndPasted = false;
 	canBeReorderedInEditor = false;

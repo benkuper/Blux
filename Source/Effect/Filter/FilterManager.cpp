@@ -47,18 +47,41 @@ void FilterManager::lerpFromSceneData(var startData, var endData, float weight)
     for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
 }
 
+bool FilterManager::isAffectingObject(Object* o)
+{
+    bool hasSelectedComponents = false;
+    for (auto& c : o->componentManager.items)
+    {
+        if (componentSelector.selectedComponents[c->componentType])
+        {
+            hasSelectedComponents = true;
+            break;
+        }
+    }
+    
+    if (!hasSelectedComponents) return false;
+
+    if (items.size() == 0) return true;
+
+    for (auto& f : items)
+    {
+        if (f->isAffectingObject(o)) return true;
+    }
+
+    return false;
+}
+
 FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectComponent* c)
 {
-
     if (!componentSelector.selectedComponents[c->componentType]) return FilterResult();
 
     bool hasFilteredAtLeastOnce = false;
-    for (auto& e : items)
+    for (auto& f : items)
     {
-        if (!e->enabled->boolValue()) continue;
+        if (!f->enabled->boolValue()) continue;
         hasFilteredAtLeastOnce = true;
 
-        FilterResult r = e->getFilteredResultForComponent(o, c);
+        FilterResult r = f->getFilteredResultForComponent(o, c);
         if (r.id >= 0) return r;
     }
 

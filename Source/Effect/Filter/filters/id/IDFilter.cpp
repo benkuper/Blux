@@ -27,6 +27,13 @@ IDFilter::~IDFilter()
 {
 }
 
+bool IDFilter::isAffectingObject(Object* o)
+{
+    int oid = o->globalID->intValue();
+    for (int i = 0; i < ids.controllables.size(); i++) if (oid == ((IntParameter*)ids.controllables[i])->intValue()) return true;
+    return false;
+}
+
 FilterResult IDFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)
 {
     int oid = o->globalID->intValue();

@@ -5,6 +5,9 @@
     <Filter Include="Blux\Resources">
       <UniqueIdentifier>{BF26CDE0-ADF7-D8C6-0A26-38627B2C18D8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\ChainViz">
+      <UniqueIdentifier>{870605B4-9023-C5FA-86D2-0E0816E374E3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Audio\ui">
       <UniqueIdentifier>{EC12ADA8-E413-FE47-8B62-C84D165BF4DB}</UniqueIdentifier>
     </Filter>
@@ -1024,6 +1027,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp">
+      <Filter>Blux\Source\ChainViz</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp">
       <Filter>Blux\Source\Audio\ui</Filter>
     </ClCompile>
@@ -1246,6 +1252,9 @@
     <ClCompile Include="..\..\Source\Effect\Filter\FilterManager.cpp">
       <Filter>Blux\Source\Effect\Filter</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\ui\EffectChainVizUI.cpp">
+      <Filter>Blux\Source\Effect\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Effect\ui\EffectEditor.cpp">
       <Filter>Blux\Source\Effect\ui</Filter>
     </ClCompile>
@@ -1332,6 +1341,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\ObjectComponent.cpp">
       <Filter>Blux\Source\Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp">
+      <Filter>Blux\Source\Object\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp">
       <Filter>Blux\Source\Object\ui</Filter>
@@ -4233,6 +4245,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ChainViz\ChainViz.h">
+      <Filter>Blux\Source\ChainViz</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h">
       <Filter>Blux\Source\Audio\ui</Filter>
     </ClInclude>
@@ -4440,6 +4455,9 @@
     <ClInclude Include="..\..\Source\Effect\Filter\FilterManager.h">
       <Filter>Blux\Source\Effect\Filter</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\ui\EffectChainVizUI.h">
+      <Filter>Blux\Source\Effect\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Effect\ui\EffectEditor.h">
       <Filter>Blux\Source\Effect\ui</Filter>
     </ClInclude>
@@ -4526,6 +4544,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\ObjectComponent.h">
       <Filter>Blux\Source\Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectChainVizUI.h">
+      <Filter>Blux\Source\Object\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h">
       <Filter>Blux\Source\Object\ui</Filter>

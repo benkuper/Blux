@@ -48,6 +48,7 @@ public:
 	virtual void mouseDown(const MouseEvent& e) override;
 	virtual void mouseDrag(const MouseEvent& e) override;
 	virtual void mouseUp(const MouseEvent& e) override;
+	virtual void mouseDoubleClick(const MouseEvent& e) override;
 
 	virtual bool keyStateChanged(bool isDown) override;
 

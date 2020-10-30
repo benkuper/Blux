@@ -11,11 +11,14 @@
 #pragma once
 
 #include "Filter/FilterManager.h"
+#include "ChainViz/ChainViz.h"
+
 class ObjectComponent;
 class Object;
 
 class Effect :
-    public BaseItem
+    public BaseItem,
+    public ChainVizTarget
 {
 public:
     Effect(const String& name = "Effect", var params = var());
@@ -30,7 +33,8 @@ public:
     EnumParameter * sceneSaveMode;
 
     FilterManager filterManager;
-
+    
+    bool isAffectingObject(Object * o);
     void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
     virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1);
     virtual float blendFloatValue(float start, float end, float weight);

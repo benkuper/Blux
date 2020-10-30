@@ -12,19 +12,30 @@
 
 juce_ImplementSingleton(ObjectManager);
 
+SubObjectManager::SubObjectManager() :
+    BaseManager("Sub-Objects")
+{
+    managerFactory = &ObjectManager::getInstance()->factory;
+    selectItemWhenCreated = false;
+}
+
+SubObjectManager::~SubObjectManager()
+{
+}
+
+
 ObjectManager::ObjectManager() :
     BaseManager("Objects"),
-    Thread("Object compute")
+    Thread("ObjectManager")
 {
-    managerFactory = &factory;
     itemDataType = "Object";
+    selectItemWhenCreated = true;
+
+    managerFactory = &factory;
 
     gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 128, 32, 256);
-    
     defaultFlashValue = addFloatParameter("Flash Value", "Flash Value", .5f, 0, 1);
-
     blackOut = addBoolParameter("Black Out", "Force 0 on all computed values", false);
-
     filterActiveInScene = addBoolParameter("Show Only active", "Show only active objects in scene", false);
     startThread();
 
@@ -39,7 +50,13 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::updateFactoryDefinitions()
 {
+
     factory.defs.clear();
+    Image img = ImageCache::getFromMemory(BinaryData::icon128_png, BinaryData::icon128_pngSize);
+
+    var customParams(new DynamicObject());
+    customParams.getDynamicObject()->setProperty("canCustomize", true);
+    factory.defs.add(Factory<Object>::Definition::createDef("", "Custom", &Object::create, customParams)->addIcon(img));
 
     File objectsFolder = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName)+"/objects");
     Array<File> objectsList = objectsFolder.findChildFiles(File::findDirectories, false);
@@ -133,3 +150,4 @@ void ObjectManager::run()
         sleep((int)millisToSleep);
     }
 }
+

@@ -13,6 +13,7 @@
 #include "../ObjectManager.h"
 #include "../Component/components/intensity/IntensityComponent.h"
 #include "../Component/components/color/ColorComponent.h"
+#include "ChainViz/ChainViz.h"
 
 ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),
@@ -229,35 +230,58 @@ void ObjectGridUI::mouseUp(const MouseEvent& e)
 	}
 }
 
+void ObjectGridUI::mouseDoubleClick(const MouseEvent& e)
+{
+	ShapeShifterManager::getInstance()->showContent(ChainViz::panelName);
+	if (ChainViz* viz = ShapeShifterManager::getInstance()->getContentForType<ChainViz>())
+	{
+		viz->setCurrentObject(item);
+	}
+}
+
 bool ObjectGridUI::keyStateChanged(bool isDown)
 {
-	if (KeyPress::isKeyCurrentlyDown(KeyPress::createFromDescription("f").getKeyCode()))
+	if (isDown)
 	{
-		flashMode = true;
-
-		Array<Object*> objects;
-		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
-		objects.addIfNotAlreadyThere(item);
-		for (auto& o : objects)
+		if (KeyPress::isKeyCurrentlyDown(KeyPress::createFromDescription("f").getKeyCode()))
 		{
-			if (o->slideManipParameter != nullptr) o->slideManipValueRef = o->slideManipParameter->floatValue();
-			if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(ObjectManager::getInstance()->defaultFlashValue->floatValue());
-		}
+			flashMode = true;
 
-		return true;
+			Array<Object*> objects;
+			if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
+			objects.addIfNotAlreadyThere(item);
+			for (auto& o : objects)
+			{
+				if (o->slideManipParameter != nullptr) o->slideManipValueRef = o->slideManipParameter->floatValue();
+				if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(ObjectManager::getInstance()->defaultFlashValue->floatValue());
+			}
+
+			return true;
+		}else if (KeyPress::isKeyCurrentlyDown(KeyPress::createFromDescription("v").getKeyCode()))
+		{
+			ShapeShifterManager::getInstance()->showContent(ChainViz::panelName);
+			if (ChainViz* viz = ShapeShifterManager::getInstance()->getContentForType<ChainViz>())
+			{
+				viz->setCurrentObject(item);
+			}
+			return true;
+		}
 	}
-	else if (flashMode)
+	else
 	{
-		Array<Object*> objects;
-		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
-		objects.addIfNotAlreadyThere(item);
-		for (auto& o : objects)
+		if (flashMode)
 		{
-			if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(o->slideManipValueRef);
+			Array<Object*> objects;
+			if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
+			objects.addIfNotAlreadyThere(item);
+			for (auto& o : objects)
+			{
+				if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(o->slideManipValueRef);
+			}
+
+			flashMode = false;
+			return true;
 		}
-		
-		flashMode = false;
-		return true;
 	}
 
 	return false;

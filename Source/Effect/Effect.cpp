@@ -44,6 +44,11 @@ Effect::~Effect()
 {
 }
 
+bool Effect::isAffectingObject(Object* o)
+{
+	return filterManager.isAffectingObject(o);
+}
+
 void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier, int id, float time)
 {
 	FilterResult r = filterManager.getFilteredResultForComponent(o, c);
