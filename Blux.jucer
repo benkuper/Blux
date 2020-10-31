@@ -17,6 +17,10 @@
       <GROUP id="{613F3B0D-6C43-D1AC-9293-204C47A122F3}" name="ChainViz">
         <FILE id="CHh3hb" name="ChainViz.cpp" compile="1" resource="0" file="Source/ChainViz/ChainViz.cpp"/>
         <FILE id="XgaklO" name="ChainViz.h" compile="0" resource="0" file="Source/ChainViz/ChainViz.h"/>
+        <FILE id="Hf7ddZ" name="ChainVizTarget.cpp" compile="1" resource="0"
+              file="Source/ChainViz/ChainVizTarget.cpp"/>
+        <FILE id="bT31TO" name="ChainVizTarget.h" compile="0" resource="0"
+              file="Source/ChainViz/ChainVizTarget.h"/>
       </GROUP>
       <GROUP id="{19F4E516-10FC-FA0A-C9A6-135346379876}" name="Audio">
         <GROUP id="{AD18FB93-C831-88F5-3171-4DE9C92E692A}" name="ui">

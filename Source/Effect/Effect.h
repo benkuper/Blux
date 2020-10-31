@@ -11,7 +11,7 @@
 #pragma once
 
 #include "Filter/FilterManager.h"
-#include "ChainViz/ChainViz.h"
+#include "ChainViz/ChainVizTarget.h"
 
 class ObjectComponent;
 class Object;
@@ -42,6 +42,8 @@ public:
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
+
+    ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type);
 
     virtual InspectableEditor* getEditor(bool isRoot) override;
     String getTypeString() const override { return "Effect"; }

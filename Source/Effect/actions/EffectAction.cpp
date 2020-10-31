@@ -69,7 +69,7 @@ void EffectAction::setValueInternal(var value)
 
 ControllableContainer* EffectAction::showMenuAndGetEffect()
 {
-	Array<Effect*> effects;
+	Array<Effect *> effects;
 	PopupMenu m;
 
 	PopupMenu globalMenu;

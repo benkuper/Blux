@@ -13,6 +13,7 @@
 #include "effects/time/noise/NoiseEffect.h"
 #include "effects/override/OverrideEffect.h"
 #include "effects/time/automation/AutomationEffect.h"
+#include "Object/Object.h"
 
 juce_ImplementSingleton(EffectFactory);
 
@@ -37,12 +38,13 @@ void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& 
     {
         if (!e->enabled->boolValue()) continue;
         e->processComponentValues(o, c, values, weightMultiplier);
+        if (c->componentType == c->INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(e, values[0].clone());
     }
 }
 
-Array<Effect*> EffectManager::getEffectsForObject(Object* o)
+Array<ChainVizTarget *> EffectManager::getChainVizTargetsForObject(Object* o)
 {
-    Array<Effect*> result;
+    Array<ChainVizTarget *> result;
     for(auto & e: items) if(e->isAffectingObject(o)) result.add(e);
     return result;
 }

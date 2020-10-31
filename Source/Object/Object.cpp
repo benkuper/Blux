@@ -17,12 +17,14 @@
 #include "Object/ObjectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
 #include "ObjectManager.h"
+#include "ui/ObjectChainVizUI.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
 	objectType(params.getProperty("type", "Object").toString()),
 	objectData(params),
-	previousID(-1)
+	previousID(-1),
+	slideManipParameter(nullptr)
 {
 	saveAndLoadRecursiveData = true;
 
@@ -202,10 +204,17 @@ void Object::computeComponentValues(ObjectComponent* c)
 {
 	if (!enabled->boolValue() || !c->enabled->boolValue() || Engine::mainEngine->isClearing) return;
 
+	effectIntensityOutMap.clear();
 
 	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
-		for (auto& p : c->computedParameters) p->setValue(0);
+		for (auto& p : c->computedParameters)
+		{
+			var zeroVal;
+			if (p->isComplex()) for (int i = 0; i < p->value.size(); i++) zeroVal.append(0);
+			else zeroVal = 0;
+			p->setValue(zeroVal);
+		}
 	}
 	else
 	{
@@ -263,14 +272,19 @@ void Object::lerpFromSceneData(var startData, var endData, float weight)
 	effectManager.lerpFromSceneData(startData.getProperty(effectManager.shortName, var()), endData.getProperty(effectManager.shortName,var()), weight);
 }
 
-Array<Effect*> Object::getEffectChain()
+Array<ChainVizTarget *> Object::getEffectChain()
 {
-	Array<Effect*> result;
-	result.addArray(effectManager.getEffectsForObject(this));
-	result.addArray(SceneManager::getInstance()->getEffectsForObject(this));
-	result.addArray(GroupManager::getInstance()->getEffectsForObject(this));
-	//result.addArray(GlobalSequenceManager::getInstance()->.getEffectsForObject(this));
-	result.addArray(GlobalEffectManager::getInstance()->getEffectsForObject(this));
+	Array<ChainVizTarget *> result;
+	result.addArray(effectManager.getChainVizTargetsForObject(this));
+	result.addArray(SceneManager::getInstance()->getChainVizTargetsForObject(this));
+	result.addArray(GroupManager::getInstance()->getChainVizTargetsForObject(this));
+	//result.addArray(GlobalSequenceManager::getInstance()->.getChainVizTargetsForObject(this));
+	result.addArray(GlobalEffectManager::getInstance()->getChainVizTargetsForObject(this));
 	return result;
 }
 
+ChainVizComponent* Object::createVizComponent(Object * o, ChainVizTarget::ChainVizType type)
+{
+	jassert(o == this);
+	return new ObjectChainVizUI(this,  type);
+}

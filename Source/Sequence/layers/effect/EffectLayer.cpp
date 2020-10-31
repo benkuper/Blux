@@ -34,6 +34,21 @@ EffectLayer::~EffectLayer()
 {
 }
 
+Array<ChainVizTarget *> EffectLayer::getChainVizTargetsForObject(Object* o)
+{
+    Array<ChainVizTarget *> result;
+    if (!filterManager.isAffectingObject(o)) return result;
+
+    Array<LayerBlock*> blocks = blockManager.getBlocksAtTime(sequence->currentTime->floatValue());
+    for (auto& i : blocks)
+    {
+        EffectBlock* eb = (EffectBlock*)i;
+        if (eb->effect->filterManager.isAffectingObject(o)) result.add(eb->effect.get());
+    }
+
+    return result;
+}
+
 void EffectLayer::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
 {
     FilterResult fr = filterManager.getFilteredResultForComponent(o, c);

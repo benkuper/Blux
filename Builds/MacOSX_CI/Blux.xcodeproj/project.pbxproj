@@ -69,6 +69,10 @@
 			isa = PBXBuildFile;
 			fileRef = 72254717BC83E321C9FCDE58;
 		};
+		E8C3CFA596F6686B0BD7BA41 = {
+			isa = PBXBuildFile;
+			fileRef = DFED7D799EA865A875026975;
+		};
 		C3CEF9692B6820C2D7236465 = {
 			isa = PBXBuildFile;
 			fileRef = 96074348F6CF1CDCD2488ADC;
@@ -1284,6 +1288,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = ObjectComponent.cpp;
 			path = ../../Source/Object/Component/ObjectComponent.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		48112774ACA13BC0DBC8040E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChainVizTarget.h;
+			path = ../../Source/ChainViz/ChainVizTarget.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		487C9416F2C5580E09AEDEE4 = {
@@ -2630,6 +2641,13 @@
 			path = "../../Modules/juce_timeline";
 			sourceTree = "SOURCE_ROOT";
 		};
+		DFED7D799EA865A875026975 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ChainVizTarget.cpp;
+			path = ../../Source/ChainViz/ChainVizTarget.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		E039F5165D8A404D323C934C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -2942,6 +2960,8 @@
 			children = (
 				72254717BC83E321C9FCDE58,
 				31995FA54E5C1A136885E42E,
+				DFED7D799EA865A875026975,
+				48112774ACA13BC0DBC8040E,
 			);
 			name = ChainViz;
 			sourceTree = "<group>";
@@ -4316,6 +4336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10EA515C3226184043546018,
+				E8C3CFA596F6686B0BD7BA41,
 				C3CEF9692B6820C2D7236465,
 				097B92ED12A1F67E8AFA8763,
 				4F7AA482E8AA7B0C0BE4D643,

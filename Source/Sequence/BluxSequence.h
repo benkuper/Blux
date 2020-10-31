@@ -13,6 +13,8 @@
 #include "JuceHeader.h"
 class Object;
 class ObjectComponent;
+class Effect;
+class ChainVizTarget;
 
 class BluxSequence :
     public Sequence
@@ -22,6 +24,8 @@ public:
     ~BluxSequence();
 
     bool manualStartAtLoad;
+
+    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
 
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
 

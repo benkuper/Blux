@@ -11,6 +11,7 @@
 #pragma once
 
 #include "BluxSequenceManager.h"
+class Effect;
 
 class GlobalSequenceManager :
     public BluxSequenceManager
@@ -20,4 +21,5 @@ public:
 
     GlobalSequenceManager();
     ~GlobalSequenceManager();
+
 };

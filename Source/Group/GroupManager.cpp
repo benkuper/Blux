@@ -24,13 +24,13 @@ GroupManager::~GroupManager()
 {
 }
 
-Array<Effect*> GroupManager::getEffectsForObject(Object* o)
+Array<ChainVizTarget *> GroupManager::getChainVizTargetsForObject(Object* o)
 {
-    Array<Effect*> result;
+    Array<ChainVizTarget *> result;
     for (auto& g : items)
     {
         if (!g->containsObject(o)) continue;
-        result.addArray(g->effectManager.getEffectsForObject(o));
+        result.addArray(g->effectManager.getChainVizTargetsForObject(o));
     }
     return result;
 }

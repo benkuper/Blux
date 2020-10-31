@@ -163,11 +163,11 @@ void SceneManager::askForLoadScene(Scene* s, float loadTime)
     loadScene(s, loadTime);
 }
 
-Array<Effect*> SceneManager::getEffectsForObject(Object* o)
+Array<ChainVizTarget *> SceneManager::getChainVizTargetsForObject(Object* o)
 {
-    Array<Effect*> result;
+    Array<ChainVizTarget *> result;
     if (currentScene == nullptr) return result;
-    return currentScene->effectManager.getEffectsForObject(o);
+    return currentScene->effectManager.getChainVizTargetsForObject(o);
 }
 
 void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& values)

@@ -16,6 +16,7 @@
 #include "layers/colorsource/ColorSourceLayer.h"
 #include "ui/BluxSequenceEditor.h"
 #include "Object/Object.h"
+#include "ChainViz/ChainVizTarget.h"
 
 BluxSequence::BluxSequence() :
 	manualStartAtLoad(false)
@@ -30,6 +31,19 @@ BluxSequence::BluxSequence() :
 
 BluxSequence::~BluxSequence()
 {
+}
+
+Array<ChainVizTarget *> BluxSequence::getChainVizTargetsForObject(Object* o)
+{
+	Array<ChainVizTarget *> result;
+	for (int i = layerManager->items.size() - 1; i >= 0; --i)
+	{
+		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
+		{
+			result.addArray(e->getChainVizTargetsForObject(o));
+		}
+	}
+	return result;
 }
 
 void BluxSequence::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)

@@ -12,8 +12,9 @@
 
 #include "Component/ComponentManager.h"
 #include "Effect/EffectManager.h"
-#include "ChainViz/ChainViz.h"
+#include "ChainViz/ChainVizTarget.h"
 
+class ChainVizComponent;
 class SubObjectManager;
 
 class Object :
@@ -23,8 +24,6 @@ class Object :
 public:
     Object(var params = var());
     virtual ~Object();
-
-    bool isRoot;
 
     String objectType;
     var objectData;
@@ -49,6 +48,9 @@ public:
     Parameter* slideManipParameter;
     float slideManipValueRef;
 
+    //chainviz
+    HashMap<Effect*, float, DefaultHashFunctions, CriticalSection> effectIntensityOutMap;
+
     void rebuildInterfaceParams();
 
     template<class T>
@@ -65,7 +67,9 @@ public:
     void lerpFromSceneData(var startData, var endData, float weight);
 
 
-    Array<Effect*> getEffectChain();
+    Array<ChainVizTarget *> getEffectChain();
+
+    ChainVizComponent* createVizComponent(Object * o, ChainVizTarget::ChainVizType type) override;
 
     //Listener
     class  ObjectListener

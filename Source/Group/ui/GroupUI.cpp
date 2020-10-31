@@ -137,4 +137,6 @@ void GroupUI::itemDropped(const DragAndDropTarget::SourceDetails& details)
 	{
 		NLOGWARNING(item->niceName, "Drop not supported for type : " << dataType);
 	}
+
+	BaseItemUI::itemDropped(details);
 }

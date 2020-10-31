@@ -1030,6 +1030,9 @@
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp">
+      <Filter>Blux\Source\ChainViz</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp">
       <Filter>Blux\Source\Audio\ui</Filter>
     </ClCompile>
@@ -4246,6 +4249,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h">
+      <Filter>Blux\Source\ChainViz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h">

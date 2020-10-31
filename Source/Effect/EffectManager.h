@@ -32,7 +32,7 @@ public:
 
 
     virtual void processComponentValues(Object * o, ObjectComponent * c, var &values, float weightMultiplier = 1.0f);
-    Array<Effect*> getEffectsForObject(Object* o);
+    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
 
     void resetEffectsTimes();
 

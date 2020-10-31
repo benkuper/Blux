@@ -40,7 +40,7 @@ public:
     GlobalEffectManager();
     ~GlobalEffectManager();
 
-    Array<Effect*> getEffectsForObject(Object* o);
+    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values);
 
     var getSceneData();

@@ -26,6 +26,7 @@ public:
 
     FloatParameter* timeOffsetByID;
     
+    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
 
     SequenceLayerTimeline * getTimelineUI() override;

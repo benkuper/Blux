@@ -12,6 +12,7 @@
 #include "ui/EffectEditor.h"
 #include "Common/Helpers/SceneHelpers.h"
 #include "Object/Object.h"
+#include "ui/EffectChainVizUI.h"
 
 Effect::Effect(const String& name, var params) :
 	BaseItem(name)
@@ -35,7 +36,7 @@ Effect::Effect(const String& name, var params) :
 	//excludeFromScenes->hideInEditor = true;
 
 	addChildControllableContainer(&filterManager);
-	showInspectorOnSelect = false;
+	//showInspectorOnSelect = false;
 
 	canBeCopiedAndPasted = true;
 }
@@ -52,12 +53,20 @@ bool Effect::isAffectingObject(Object* o)
 void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier, int id, float time)
 {
 	FilterResult r = filterManager.getFilteredResultForComponent(o, c);
-	if (r.id == -1) return;
-	int targetID = (id != -1 && r.id == o->globalID->intValue()) ? id : r.id;
+	if (r.id == -1)
+	{
+		if (c->componentType == c->INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
+		return;
+	}
 
+	int targetID = (id != -1 && r.id == o->globalID->intValue()) ? id : r.id;
 	float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
-	if (targetWeight == 0) return;
+	if (targetWeight == 0)
+	{
+		if (c->componentType == c->INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
+		return;
+	}
 
 	var pValues = getProcessedComponentValuesInternal(o, c,  values.clone(), targetID, time);
 	jassert(pValues.size() == values.size());
@@ -129,6 +138,11 @@ void Effect::lerpFromSceneData(var startData, var endData, float lerpWeight)
 	if (m == NONE) return;
 	else if (m == FULL) SceneHelpers::lerpSceneParams(this, startData, endData, lerpWeight);
 	else if (m == WEIGHT_ONLY) SceneHelpers::lerpSceneParam(weight, startData, endData, lerpWeight);
+}
+
+ChainVizComponent* Effect::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
+{
+	return new EffectChainVizUI(this, o, type);
 }
 
 InspectableEditor* Effect::getEditor(bool isRoot)

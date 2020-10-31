@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp"/>
+    <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp"/>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp"/>
     <ClCompile Include="..\..\Source\Audio\AudioManager.cpp"/>
     <ClCompile Include="..\..\Source\Group\groups\virtual\VirtualGroup.cpp"/>
@@ -2912,6 +2913,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h"/>
+    <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h"/>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h"/>
     <ClInclude Include="..\..\Source\Audio\AudioManager.h"/>
     <ClInclude Include="..\..\Source\Group\groups\virtual\VirtualGroup.h"/>

@@ -23,10 +23,10 @@ GlobalEffectManager::~GlobalEffectManager()
 
 }
 
-Array<Effect*> GlobalEffectManager::getEffectsForObject(Object* o)
+Array<ChainVizTarget *> GlobalEffectManager::getChainVizTargetsForObject(Object* o)
 {
-    Array<Effect*> result;
-    for (auto& g : items) result.addArray(g->effectManager.getEffectsForObject(o));
+    Array<ChainVizTarget *> result;
+    for (auto& g : items) result.addArray(g->effectManager.getChainVizTargetsForObject(o));
     return result;
 }
 
