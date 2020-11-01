@@ -24,7 +24,11 @@ BluxSequenceManager::~BluxSequenceManager()
 Array<ChainVizTarget *> BluxSequenceManager::getChainVizTargetsForObject(Object* o)
 {
     Array<ChainVizTarget *> result;
-    for (auto& i : items) result.addArray(((BluxSequence*)i)->getChainVizTargetsForObject(o));
+    for (auto& i : items)
+    {
+        BluxSequence* bs = (BluxSequence*)i;
+        if (bs->isAffectingObject(o)) result.add(bs);
+    }
     return result;
 }
 

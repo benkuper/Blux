@@ -20,7 +20,8 @@ const Colour ChainVizComponent::typeColors[ChainVizTarget::CHAINVIZ_TYPE_MAX]{ P
 
 ChainViz::ChainViz(const String& name) :
 	ShapeShifterContentComponent(name),
-	currentObject(nullptr)
+	currentObject(nullptr),
+	resizing(false)
 {
 	viewport.setViewedComponent(&container, false);
 	viewport.setScrollBarsShown(false, true, false, false);
@@ -40,13 +41,13 @@ ChainViz::~ChainViz()
 
 void ChainViz::clear()
 {
-	if (objectStartVizComponent != nullptr) removeChildComponent(objectStartVizComponent.get());
-	if (objectEndVizComponent != nullptr) removeChildComponent(objectEndVizComponent.get());
-	for (auto& c : objectEffectsVizComponents) removeChildComponent(c);
-	for (auto& c : sceneVizComponents) removeChildComponent(c);
-	for (auto& c : sequenceVizComponents) removeChildComponent(c);
-	for (auto& c : groupVizComponents) removeChildComponent(c);
-	for (auto& c : globalEffectsVizComponents) removeChildComponent(c);
+	if (objectStartVizComponent != nullptr) removeVizComponent(objectStartVizComponent.get());
+	if (objectEndVizComponent != nullptr) removeVizComponent(objectEndVizComponent.get());
+	for (auto& c : objectEffectsVizComponents) removeVizComponent(c);
+	for (auto& c : sceneVizComponents) removeVizComponent(c);
+	for (auto& c : sequenceVizComponents) removeVizComponent(c);
+	for (auto& c : groupVizComponents) removeVizComponent(c);
+	for (auto& c : globalEffectsVizComponents) removeVizComponent(c);
 
 	objectStartVizComponent.reset();
 	objectEndVizComponent.reset();
@@ -108,14 +109,22 @@ void ChainViz::buildChain()
 
 void ChainViz::rebuildTargetVizComponents(Array<ChainVizTarget*> effectsToAdd, OwnedArray<ChainVizComponent>* arrayToAdd, ChainVizTarget::ChainVizType type)
 {
-	for (auto& a : *arrayToAdd) removeChildComponent(a);
+	for (auto& c : *arrayToAdd) removeVizComponent(c);
+
 	arrayToAdd->clear();
 	for (auto& e : effectsToAdd)
 	{
 		ChainVizComponent* ec = e->createVizComponent(currentObject, type);
 		container.addAndMakeVisible(ec);
+		ec->addComponentListener(this);
 		arrayToAdd->add(ec);
 	}
+}
+
+void ChainViz::removeVizComponent(ChainVizComponent* c)
+{
+	c->removeComponentListener(this);
+	removeChildComponent(c);
 }
 
 void ChainViz::paint(Graphics& g)
@@ -165,6 +174,8 @@ void ChainViz::resized()
 {
 	if (objectStartVizComponent == nullptr || objectEndVizComponent == nullptr) return;
 
+	resizing = true;
+
 	Rectangle<int> r = getLocalBounds().reduced(20);
 
 	r.setWidth(objectStartVizComponent->getWidth());
@@ -192,6 +203,8 @@ void ChainViz::resized()
 
 	container.setSize(r.getX(), getHeight() - viewport.getScrollBarThickness());
 	viewport.setBounds(getLocalBounds());
+
+	resizing = false;
 }
 
 Rectangle<int> ChainViz::placeVizComponents(OwnedArray<ChainVizComponent>* components, Rectangle<int>& r)
@@ -232,10 +245,20 @@ void ChainViz::inspectableDestroyed(Inspectable* i)
 	if (i == objectRef || objectRef.wasObjectDeleted()) setCurrentObject(nullptr);
 }
 
+void ChainViz::componentMovedOrResized(Component& c, bool wasMoved, bool wasResized)
+{
+	if (!resizing)
+	{
+		resized();
+		repaint();
+	}
+}
+
 ChainVizComponent::ChainVizComponent(ChainVizTarget* item, Object* o, ChainVizTarget::ChainVizType type) :
 	item(item),
 	object(o),
-	type(type)
+	type(type),
+	transparentBG(false)
 {
 	object->addInspectableListener(this);
 	setSize(130, 100);
@@ -251,10 +274,13 @@ void ChainVizComponent::paint(Graphics& g)
 {
 	if (item == nullptr) return;
 
-	g.setColour(PANEL_COLOR.darker());
-	g.fillRoundedRectangle(getLocalBounds().toFloat(), 4);
-	g.setColour(typeColors[(int)type]);
-	g.drawRoundedRectangle(getLocalBounds().toFloat(), 4, 1);
+	if (!transparentBG)
+	{
+		g.setColour(PANEL_COLOR.darker());
+		g.fillRoundedRectangle(getLocalBounds().toFloat(), 4);
+		g.setColour(typeColors[(int)type]);
+		g.drawRoundedRectangle(getLocalBounds().toFloat(), 4, 1);
+	}
 }
 
 void ChainVizComponent::inspectableDestroyed(Inspectable* i)
@@ -264,7 +290,8 @@ void ChainVizComponent::inspectableDestroyed(Inspectable* i)
 
 BaseItemChainVizComponent::BaseItemChainVizComponent(BaseItem* i, Object* o, ChainVizTarget::ChainVizType type) :
 	ChainVizComponent((ChainVizTarget*)i, o, type),
-	baseItem(i)
+	baseItem(i),
+	showItemName(true)
 {
 	if (baseItem->canBeDisabled)
 	{
@@ -292,13 +319,19 @@ void BaseItemChainVizComponent::paint(Graphics& g)
 {
 	if (baseItem == nullptr) return;
 
-	g.setColour(PANEL_COLOR);
-	g.fillRoundedRectangle(getLocalBounds().toFloat(), 4);
-
-	g.setColour(TEXT_COLOR);
-	g.setFont(16);
-	g.drawText(baseItem->niceName, getLocalBounds().toFloat(), Justification::centred);
-
+	if (!transparentBG)
+	{
+		g.setColour(PANEL_COLOR);
+		g.fillRoundedRectangle(getLocalBounds().toFloat(), 4);
+	}
+	
+	if (showItemName)
+	{
+		g.setColour(TEXT_COLOR);
+		g.setFont(16);
+		g.drawText(baseItem->niceName, getLocalBounds().toFloat(), Justification::centred);
+	}
+	
 	if (baseItem->isSelected)
 	{
 		g.setColour(HIGHLIGHT_COLOR);

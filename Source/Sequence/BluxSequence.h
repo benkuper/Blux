@@ -11,13 +11,15 @@
 #pragma once
 
 #include "JuceHeader.h"
+#include "ChainViz/ChainVizTarget.h"
+
 class Object;
 class ObjectComponent;
 class Effect;
-class ChainVizTarget;
 
 class BluxSequence :
-    public Sequence
+    public Sequence,
+    public ChainVizTarget
 {
 public:
     BluxSequence();
@@ -25,11 +27,14 @@ public:
 
     bool manualStartAtLoad;
 
+    bool isAffectingObject(Object* o);
     Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
 
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
 
     void endLoadFile() override;
+
+    ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
 
     InspectableEditor* getEditor(bool isRoot) override;
     String getTypeString() const override { return "Blux Sequence"; }

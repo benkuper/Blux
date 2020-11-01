@@ -26,6 +26,8 @@ public:
 
 	static const Colour typeColors[ChainVizTarget::CHAINVIZ_TYPE_MAX];
 
+	bool transparentBG;
+
 	ChainVizTarget * item;
 	Object* object;
 	ChainVizTarget::ChainVizType type;
@@ -43,6 +45,7 @@ public:
 	virtual ~BaseItemChainVizComponent();
 
 	BaseItem* baseItem;
+	bool showItemName;
 	std::unique_ptr<BoolImageToggleUI> enableUI;
 
 	void mouseDown(const MouseEvent& e) override;
@@ -57,7 +60,8 @@ class ChainViz :
 	public ShapeShifterContentComponent,
 	public Inspectable::InspectableListener,
 	public ContainerAsyncListener,
-	public SceneManager::AsyncSceneListener
+	public SceneManager::AsyncSceneListener,
+	public ComponentListener
 {
 public:
 	ChainViz(const String& name);
@@ -83,11 +87,14 @@ public:
 	Rectangle<int> groupRect;
 	Rectangle<int> globalEffectsRect;
 
+	bool resizing;
+
 	void clear();
 	void setCurrentObject(Object* o);
 	void buildChain();
 	void rebuildTargetVizComponents(Array<ChainVizTarget *> effectsToAdd, OwnedArray<ChainVizComponent>* arrayToAdd, ChainVizTarget::ChainVizType type);
-	
+	void removeVizComponent(ChainVizComponent* c);
+
 	void paint(Graphics& g) override;
 	void resized() override;
 	Rectangle<int> placeVizComponents(OwnedArray<ChainVizComponent>* components, Rectangle<int>& r);
@@ -96,6 +103,8 @@ public:
 	void newMessage(const SceneManager::SceneManagerEvent& e) override;
 	void newMessage(const ContainerAsyncEvent& e) override;
 	void inspectableDestroyed(Inspectable*) override;
+
+	void componentMovedOrResized(Component & c, bool wasMoved, bool wasResized) override;
 
 	static ChainViz* create(const String& name) { return new ChainViz(name); }
 	static const String panelName;

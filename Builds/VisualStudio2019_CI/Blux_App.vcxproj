@@ -278,6 +278,7 @@
     <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlock.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlockManager.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceChainVizUI.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceEditor.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp"/>
@@ -3033,6 +3034,7 @@
     <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectBlock.h"/>
     <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectBlockManager.h"/>
     <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectLayer.h"/>
+    <ClInclude Include="..\..\Source\Sequence\ui\BluxSequenceChainVizUI.h"/>
     <ClInclude Include="..\..\Source\Sequence\ui\BluxSequenceEditor.h"/>
     <ClInclude Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.h"/>
     <ClInclude Include="..\..\Source\Sequence\BluxSequence.h"/>

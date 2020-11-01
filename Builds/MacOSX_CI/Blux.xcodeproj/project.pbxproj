@@ -569,6 +569,10 @@
 			isa = PBXBuildFile;
 			fileRef = FA823DDA27E7148CA2F9B6C6;
 		};
+		AD16326200F087430517C9B0 = {
+			isa = PBXBuildFile;
+			fileRef = 8B95C31309C6D1084AB8FFD1;
+		};
 		0E85908EFB55EFDE79AF4787 = {
 			isa = PBXBuildFile;
 			fileRef = 276B376118EFB45E2DED3F1D;
@@ -1864,6 +1868,13 @@
 			path = "../../JuceLibraryCode/include_juce_simpleweb.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
+		8B95C31309C6D1084AB8FFD1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = BluxSequenceChainVizUI.cpp;
+			path = ../../Source/Sequence/ui/BluxSequenceChainVizUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		8D2EEF701D2DE7F2A162AE62 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2268,6 +2279,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = ObjectChainVizUI.cpp;
 			path = ../../Source/Object/ui/ObjectChainVizUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B5B4353404CD592474F0E9EF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = BluxSequenceChainVizUI.h;
+			path = ../../Source/Sequence/ui/BluxSequenceChainVizUI.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		B5BEBCA5A05AFBE50819C396 = {
@@ -3865,6 +3883,8 @@
 		0D48C02A2E0FC049F61316A5 = {
 			isa = PBXGroup;
 			children = (
+				8B95C31309C6D1084AB8FFD1,
+				B5B4353404CD592474F0E9EF,
 				276B376118EFB45E2DED3F1D,
 				B2EEF03913D318269C1E2882,
 				8259AF17357ACD9BE11625CD,
@@ -4461,6 +4481,7 @@
 				D008670A3836929D2A952E94,
 				73CC9F83951DC32F365C9FD8,
 				707B0B6E7D8460DF464DAB74,
+				AD16326200F087430517C9B0,
 				0E85908EFB55EFDE79AF4787,
 				4472F61BAE41B5BBC453C223,
 				9FE5AFD0CD59F23D40FE2A20,

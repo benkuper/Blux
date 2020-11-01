@@ -194,6 +194,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/EffectBlock_2abbca06.o \
   $(JUCE_OBJDIR)/EffectBlockManager_55507751.o \
   $(JUCE_OBJDIR)/EffectLayer_9385d8ca.o \
+  $(JUCE_OBJDIR)/BluxSequenceChainVizUI_832c2cde.o \
   $(JUCE_OBJDIR)/BluxSequenceEditor_d32a9d91.o \
   $(JUCE_OBJDIR)/GlobalSequenceManagerUI_3690e9b1.o \
   $(JUCE_OBJDIR)/BluxSequence_2a48d45d.o \
@@ -864,6 +865,11 @@ $(JUCE_OBJDIR)/EffectBlockManager_55507751.o: ../../Source/Sequence/layers/effec
 $(JUCE_OBJDIR)/EffectLayer_9385d8ca.o: ../../Source/Sequence/layers/effect/EffectLayer.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling EffectLayer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/BluxSequenceChainVizUI_832c2cde.o: ../../Source/Sequence/ui/BluxSequenceChainVizUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling BluxSequenceChainVizUI.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BluxSequenceEditor_d32a9d91.o: ../../Source/Sequence/ui/BluxSequenceEditor.cpp

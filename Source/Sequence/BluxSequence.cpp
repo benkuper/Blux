@@ -17,6 +17,7 @@
 #include "ui/BluxSequenceEditor.h"
 #include "Object/Object.h"
 #include "ChainViz/ChainVizTarget.h"
+#include "ui/BluxSequenceChainVizUI.h"
 
 BluxSequence::BluxSequence() :
 	manualStartAtLoad(false)
@@ -31,6 +32,19 @@ BluxSequence::BluxSequence() :
 
 BluxSequence::~BluxSequence()
 {
+}
+
+bool BluxSequence::isAffectingObject(Object* o)
+{
+	for (int i = layerManager->items.size() - 1; i >= 0; --i)
+	{
+		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
+		{
+			if (e->filterManager.isAffectingObject(o)) return true;
+		}
+	}
+
+	return false;
 }
 
 Array<ChainVizTarget *> BluxSequence::getChainVizTargetsForObject(Object* o)
@@ -61,6 +75,11 @@ void BluxSequence::endLoadFile()
 {
 	if (manualStartAtLoad) return;
 	Sequence::endLoadFile();
+}
+
+ChainVizComponent* BluxSequence::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
+{
+	return new BluxSequenceChainVizUI(this, o, type);
 }
 
 InspectableEditor* BluxSequence::getEditor(bool isRoot)

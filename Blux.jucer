@@ -583,6 +583,10 @@
           </GROUP>
         </GROUP>
         <GROUP id="{AE5943CE-1256-27AF-6FA1-07A5B0B5A099}" name="ui">
+          <FILE id="gL8G91" name="BluxSequenceChainVizUI.cpp" compile="1" resource="0"
+                file="Source/Sequence/ui/BluxSequenceChainVizUI.cpp"/>
+          <FILE id="aCJJvf" name="BluxSequenceChainVizUI.h" compile="0" resource="0"
+                file="Source/Sequence/ui/BluxSequenceChainVizUI.h"/>
           <FILE id="cKIOM2" name="BluxSequenceEditor.cpp" compile="1" resource="0"
                 file="Source/Sequence/ui/BluxSequenceEditor.cpp"/>
           <FILE id="WU0oI4" name="BluxSequenceEditor.h" compile="0" resource="0"

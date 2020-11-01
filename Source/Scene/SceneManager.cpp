@@ -147,7 +147,7 @@ void SceneManager::run()
 
     currentScene->loadProgress->setValue(0);
 
-    if (previousScene != nullptr)
+    if (previousScene != nullptr && previousScene != currentScene)
     {
         for (auto& s : previousScene->sequenceManager.items)
         {
@@ -167,7 +167,10 @@ Array<ChainVizTarget *> SceneManager::getChainVizTargetsForObject(Object* o)
 {
     Array<ChainVizTarget *> result;
     if (currentScene == nullptr) return result;
-    return currentScene->effectManager.getChainVizTargetsForObject(o);
+
+    result.addArray(currentScene->sequenceManager.getChainVizTargetsForObject(o));
+    result.addArray(currentScene->effectManager.getChainVizTargetsForObject(o));
+    return result;
 }
 
 void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& values)

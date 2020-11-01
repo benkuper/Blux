@@ -11,12 +11,15 @@
 #include "EffectBlock.h"
 #include "Effect/EffectManager.h"
 #include "Effect/effects/time/TimedEffect.h"
+#include "Object/Object.h"
 
 EffectBlock::EffectBlock(var params) :
     LayerBlock(params.getProperty("effectType",var()).toString()),
     effectType(params.getProperty("effectType", var()).toString()),
     effectBlockNotifier(5)
 {
+    saveAndLoadRecursiveData = true;
+
     fadeIn = addFloatParameter("Fade In", "Fade in time", 0, 0, getTotalLength(), false);
     fadeIn->defaultUI = FloatParameter::TIME;
     fadeIn->canBeDisabledByUser = true;
@@ -59,6 +62,7 @@ void EffectBlock::processComponentValues(Object* o, ObjectComponent* c, var& val
 
 	double relTimeLooped = getRelativeTime(absoluteTime, true);
     effect->processComponentValues(o, c, values, targetWeight, id, relTimeLooped);
+    if (c->componentType == c->INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(effect.get(), values[0].clone());
 }
 
 void EffectBlock::onContainerParameterChangedInternal(Parameter* p)

@@ -48,8 +48,8 @@ Scene::Scene(const String& name) :
 	sequenceManager.selectItemWhenCreated = false;
 	sequenceManager.addBaseManagerListener(this);
 
-	addChildControllableContainer(&effectManager);
 	addChildControllableContainer(&sequenceManager);
+	addChildControllableContainer(&effectManager);
 	addChildControllableContainer(&loadActions);
 	addChildControllableContainer(&unloadActions);
 

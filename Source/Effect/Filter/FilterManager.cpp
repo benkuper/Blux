@@ -73,7 +73,7 @@ bool FilterManager::isAffectingObject(Object* o)
 
 FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectComponent* c)
 {
-    if (!componentSelector.selectedComponents[c->componentType]) return FilterResult();
+    if (c != nullptr && !componentSelector.selectedComponents[c->componentType]) return FilterResult();
 
     bool hasFilteredAtLeastOnce = false;
     for (auto& f : items)

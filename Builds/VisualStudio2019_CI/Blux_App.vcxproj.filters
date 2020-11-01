@@ -1405,6 +1405,9 @@
     <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp">
       <Filter>Blux\Source\Sequence\layers\effect</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceChainVizUI.cpp">
+      <Filter>Blux\Source\Sequence\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceEditor.cpp">
       <Filter>Blux\Source\Sequence\ui</Filter>
     </ClCompile>
@@ -4610,6 +4613,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectLayer.h">
       <Filter>Blux\Source\Sequence\layers\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\ui\BluxSequenceChainVizUI.h">
+      <Filter>Blux\Source\Sequence\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Sequence\ui\BluxSequenceEditor.h">
       <Filter>Blux\Source\Sequence\ui</Filter>

@@ -26,6 +26,8 @@ public:
 
     FloatParameter* timeOffsetByID;
     
+    Array<EffectBlock*, CriticalSection> activeBlocks;
+
     Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
 

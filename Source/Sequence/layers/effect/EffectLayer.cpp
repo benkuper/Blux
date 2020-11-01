@@ -37,9 +37,15 @@ EffectLayer::~EffectLayer()
 Array<ChainVizTarget *> EffectLayer::getChainVizTargetsForObject(Object* o)
 {
     Array<ChainVizTarget *> result;
+    
     if (!filterManager.isAffectingObject(o)) return result;
 
-    Array<LayerBlock*> blocks = blockManager.getBlocksAtTime(sequence->currentTime->floatValue());
+    FilterResult fr = filterManager.getFilteredResultForComponent(o, nullptr);
+    int id = fr.id == -1 ? o->globalID->intValue() : fr.id;
+
+    float time = sequence->currentTime->floatValue() - timeOffsetByID->floatValue() * id;
+    Array<LayerBlock*> blocks = blockManager.getBlocksAtTime(time);
+
     for (auto& i : blocks)
     {
         EffectBlock* eb = (EffectBlock*)i;
@@ -55,10 +61,10 @@ void EffectLayer::processComponentValues(Object* o, ObjectComponent* c, var& val
     if (fr.id == -1) return;
 
     float time = sequence->currentTime->floatValue() - timeOffsetByID->floatValue() * fr.id;
-
     Array<LayerBlock *> blocks = blockManager.getBlocksAtTime(time, false);
     for(auto & b : blocks) ((EffectBlock *)b)->processComponentValues(o, c, values, fr.weight * weightMultiplier, fr.id, time);
 }
+
 
 SequenceLayerTimeline* EffectLayer::getTimelineUI()
 {
