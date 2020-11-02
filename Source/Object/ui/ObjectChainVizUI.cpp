@@ -11,7 +11,6 @@
 #include "ObjectChainVizUI.h"
 #include "../Object.h"
 #include "Object/Component/components/intensity/IntensityComponent.h"
-#include "..\..\Sequence\ui\BluxSequenceChainVizUI.h"
 
 ObjectChainVizUI::ObjectChainVizUI(Object* o, ChainVizTarget::ChainVizType type) :
     BaseItemChainVizComponent(o, o, type)
