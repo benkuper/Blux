@@ -14,6 +14,48 @@
       <FILE id="AkkWvI" name="icon128.png" compile="0" resource="1" file="Resources/icon128.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{2047F9AE-EF39-8CBB-3CD3-9353343FEF38}" name="Color">
+        <GROUP id="{3AE6DD1B-440C-B30D-719A-8B9BD861BD72}" name="ColorSource">
+          <GROUP id="{B6F4F5AC-D226-7CBC-022B-70525AD97083}" name="sources">
+            <GROUP id="{DBD75931-C481-1FB8-5A28-CC0DC8529E47}" name="node">
+              <FILE id="B7waeN" name="NodeColorSource.cpp" compile="1" resource="0"
+                    file="Source/Color/ColorSource/sources/node/NodeColorSource.cpp"/>
+              <FILE id="cAxSCz" name="NodeColorSource.h" compile="0" resource="0"
+                    file="Source/Color/ColorSource/sources/node/NodeColorSource.h"/>
+            </GROUP>
+            <GROUP id="{A047CEA0-ADC1-4915-8B6D-DC00D8576702}" name="pattern">
+              <FILE id="g7DZFh" name="PatternColorSource.cpp" compile="1" resource="0"
+                    file="Source/Color/ColorSource/sources/pattern/PatternColorSource.cpp"/>
+              <FILE id="WNVXEq" name="PatternColorSource.h" compile="0" resource="0"
+                    file="Source/Color/ColorSource/sources/pattern/PatternColorSource.h"/>
+            </GROUP>
+            <GROUP id="{78A5B5DB-E815-ECCC-6C61-9C51D2C3DF70}" name="picture">
+              <FILE id="rJIXvg" name="PictureColorSource.cpp" compile="1" resource="0"
+                    file="Source/Color/ColorSource/sources/picture/PictureColorSource.cpp"/>
+              <FILE id="GKTLpl" name="PictureColorSource.h" compile="0" resource="0"
+                    file="Source/Color/ColorSource/sources/picture/PictureColorSource.h"/>
+            </GROUP>
+            <GROUP id="{33839053-8325-E49E-9EA9-3B6C81374B2D}" name="script">
+              <FILE id="fof8ya" name="ScriptColorSource.cpp" compile="1" resource="0"
+                    file="Source/Color/ColorSource/sources/script/ScriptColorSource.cpp"/>
+              <FILE id="hpIVEE" name="ScriptColorSource.h" compile="0" resource="0"
+                    file="Source/Color/ColorSource/sources/script/ScriptColorSource.h"/>
+            </GROUP>
+            <GROUP id="{7A95B278-3258-6C50-4C5D-1C0DEB4F9817}" name="video">
+              <FILE id="sidaNY" name="VideoColorSource.cpp" compile="1" resource="0"
+                    file="Source/Color/ColorSource/sources/video/VideoColorSource.cpp"/>
+              <FILE id="yi9OwB" name="VideoColorSource.h" compile="0" resource="0"
+                    file="Source/Color/ColorSource/sources/video/VideoColorSource.h"/>
+            </GROUP>
+          </GROUP>
+          <FILE id="JPCMQp" name="ColorSource.cpp" compile="1" resource="0" file="Source/Color/ColorSource/ColorSource.cpp"/>
+          <FILE id="CbzOvp" name="ColorSource.h" compile="0" resource="0" file="Source/Color/ColorSource/ColorSource.h"/>
+        </GROUP>
+        <GROUP id="{663E2B39-9238-BFFE-8D89-48258F820214}" name="PixelShape">
+          <FILE id="Y1ar2i" name="PixelShape.cpp" compile="1" resource="0" file="Source/Color/PixelShape/PixelShape.cpp"/>
+          <FILE id="BFdv2R" name="PixelShape.h" compile="0" resource="0" file="Source/Color/PixelShape/PixelShape.h"/>
+        </GROUP>
+      </GROUP>
       <GROUP id="{613F3B0D-6C43-D1AC-9293-204C47A122F3}" name="ChainViz">
         <FILE id="CHh3hb" name="ChainViz.cpp" compile="1" resource="0" file="Source/ChainViz/ChainViz.cpp"/>
         <FILE id="XgaklO" name="ChainViz.h" compile="0" resource="0" file="Source/ChainViz/ChainViz.h"/>
@@ -280,6 +322,26 @@
           <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
         </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{E332C34C-4F0C-6975-C7F9-116E4CFDB6D9}" name="color">
+            <GROUP id="{1822EA65-DEB6-FB2F-28F2-A7367789DC0F}" name="gradientmap">
+              <FILE id="r86LRS" name="ColorGradientMapEffect.cpp" compile="1" resource="0"
+                    file="Source/Effect/effects/color/gradientmap/ColorGradientMapEffect.cpp"/>
+              <FILE id="H2tqoT" name="ColorGradientMapEffect.h" compile="0" resource="0"
+                    file="Source/Effect/effects/color/gradientmap/ColorGradientMapEffect.h"/>
+            </GROUP>
+            <GROUP id="{F8B5D80A-0E32-A30D-69DC-F7DE97F61270}" name="remap">
+              <FILE id="YnRIis" name="ColorPositionRemapEffect.cpp" compile="1" resource="0"
+                    file="Source/Effect/effects/color/remap/ColorPositionRemapEffect.cpp"/>
+              <FILE id="BZclvg" name="ColorPositionRemapEffect.h" compile="0" resource="0"
+                    file="Source/Effect/effects/color/remap/ColorPositionRemapEffect.h"/>
+            </GROUP>
+            <GROUP id="{5590EE11-4CF0-971E-3BA2-F48248686792}" name="hsv">
+              <FILE id="u7Lsea" name="HSVAdjustEffect.cpp" compile="1" resource="0"
+                    file="Source/Effect/effects/color/hsv/HSVAdjustEffect.cpp"/>
+              <FILE id="VyZhJQ" name="HSVAdjustEffect.h" compile="0" resource="0"
+                    file="Source/Effect/effects/color/hsv/HSVAdjustEffect.h"/>
+            </GROUP>
+          </GROUP>
           <GROUP id="{5FA832AE-2253-5F82-C146-58F837B90E47}" name="time">
             <GROUP id="{4C2878D5-F4CF-42E2-9D5B-1E1E5BA6B2AD}" name="automation">
               <GROUP id="{0500F0A9-6298-E6A7-0E8D-2A27D6C73A9D}" name="ui">

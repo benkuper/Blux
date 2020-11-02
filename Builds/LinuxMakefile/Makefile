@@ -68,6 +68,13 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/NodeColorSource_49a4ec2c.o \
+  $(JUCE_OBJDIR)/PatternColorSource_19adc80a.o \
+  $(JUCE_OBJDIR)/PictureColorSource_5d85fae.o \
+  $(JUCE_OBJDIR)/ScriptColorSource_2485178c.o \
+  $(JUCE_OBJDIR)/VideoColorSource_a07c9b74.o \
+  $(JUCE_OBJDIR)/ColorSource_e8804a22.o \
+  $(JUCE_OBJDIR)/PixelShape_d318d9c4.o \
   $(JUCE_OBJDIR)/ChainViz_ce9d49f0.o \
   $(JUCE_OBJDIR)/ChainVizTarget_a474cee1.o \
   $(JUCE_OBJDIR)/AudioManagerHardwareEditor_ce81cbaf.o \
@@ -130,6 +137,9 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Scene_b1ec4b0a.o \
   $(JUCE_OBJDIR)/SceneManager_6f4189cd.o \
   $(JUCE_OBJDIR)/EffectAction_98619fb8.o \
+  $(JUCE_OBJDIR)/ColorGradientMapEffect_8fa960b5.o \
+  $(JUCE_OBJDIR)/ColorPositionRemapEffect_ac62d2cc.o \
+  $(JUCE_OBJDIR)/HSVAdjustEffect_58ba719.o \
   $(JUCE_OBJDIR)/AutomationEffectEditor_396e2358.o \
   $(JUCE_OBJDIR)/AutomationEffect_1b69356a.o \
   $(JUCE_OBJDIR)/NoiseEffect_6b6ed6c0.o \
@@ -236,6 +246,41 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_LIBDIR)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(JUCE_LDFLAGS_APP) $(RESOURCES) $(TARGET_ARCH)
+
+$(JUCE_OBJDIR)/NodeColorSource_49a4ec2c.o: ../../Source/Color/ColorSource/sources/node/NodeColorSource.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling NodeColorSource.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PatternColorSource_19adc80a.o: ../../Source/Color/ColorSource/sources/pattern/PatternColorSource.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PatternColorSource.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PictureColorSource_5d85fae.o: ../../Source/Color/ColorSource/sources/picture/PictureColorSource.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PictureColorSource.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ScriptColorSource_2485178c.o: ../../Source/Color/ColorSource/sources/script/ScriptColorSource.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ScriptColorSource.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/VideoColorSource_a07c9b74.o: ../../Source/Color/ColorSource/sources/video/VideoColorSource.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling VideoColorSource.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ColorSource_e8804a22.o: ../../Source/Color/ColorSource/ColorSource.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorSource.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PixelShape_d318d9c4.o: ../../Source/Color/PixelShape/PixelShape.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PixelShape.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ChainViz_ce9d49f0.o: ../../Source/ChainViz/ChainViz.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
@@ -545,6 +590,21 @@ $(JUCE_OBJDIR)/SceneManager_6f4189cd.o: ../../Source/Scene/SceneManager.cpp
 $(JUCE_OBJDIR)/EffectAction_98619fb8.o: ../../Source/Effect/actions/EffectAction.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling EffectAction.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ColorGradientMapEffect_8fa960b5.o: ../../Source/Effect/effects/color/gradientmap/ColorGradientMapEffect.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorGradientMapEffect.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ColorPositionRemapEffect_ac62d2cc.o: ../../Source/Effect/effects/color/remap/ColorPositionRemapEffect.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorPositionRemapEffect.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/HSVAdjustEffect_58ba719.o: ../../Source/Effect/effects/color/hsv/HSVAdjustEffect.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling HSVAdjustEffect.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/AutomationEffectEditor_396e2358.o: ../../Source/Effect/effects/time/automation/ui/AutomationEffectEditor.cpp

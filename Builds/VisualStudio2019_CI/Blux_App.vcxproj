@@ -152,6 +152,13 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp"/>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp"/>
@@ -214,6 +221,9 @@
     <ClCompile Include="..\..\Source\Scene\Scene.cpp"/>
     <ClCompile Include="..\..\Source\Scene\SceneManager.cpp"/>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\effects\color\remap\ColorPositionRemapEffect.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\effects\color\hsv\HSVAdjustEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\time\automation\AutomationEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.cpp"/>
@@ -2913,6 +2923,13 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h"/>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h"/>
@@ -2969,6 +2986,9 @@
     <ClInclude Include="..\..\Source\Scene\Scene.h"/>
     <ClInclude Include="..\..\Source\Scene\SceneManager.h"/>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h"/>
+    <ClInclude Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.h"/>
+    <ClInclude Include="..\..\Source\Effect\effects\color\remap\ColorPositionRemapEffect.h"/>
+    <ClInclude Include="..\..\Source\Effect\effects\color\hsv\HSVAdjustEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\time\automation\AutomationEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.h"/>

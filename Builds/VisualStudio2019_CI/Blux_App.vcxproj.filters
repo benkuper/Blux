@@ -5,6 +5,33 @@
     <Filter Include="Blux\Resources">
       <UniqueIdentifier>{BF26CDE0-ADF7-D8C6-0A26-38627B2C18D8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource\sources\node">
+      <UniqueIdentifier>{48D0C4F6-86CC-F017-5CFF-8649FA317B98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource\sources\pattern">
+      <UniqueIdentifier>{8D5DF73E-7E37-3EAA-B086-109B18714340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource\sources\picture">
+      <UniqueIdentifier>{AD4577D0-36EA-74CA-4ADD-D78E695EC345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource\sources\script">
+      <UniqueIdentifier>{F6086E50-8288-01F6-4886-ED1223CBDB1B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource\sources\video">
+      <UniqueIdentifier>{D827438E-9727-81B5-DA9C-4980A7DC384F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource\sources">
+      <UniqueIdentifier>{6FC030F6-88EC-335A-B565-781DDF17178A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource">
+      <UniqueIdentifier>{09491806-E463-789B-1EE1-50D03C29FD05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\PixelShape">
+      <UniqueIdentifier>{672C70A5-E8AD-560C-6BFF-597EF158D70B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color">
+      <UniqueIdentifier>{2169139F-C422-3F50-23BD-F0868A8AB89A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\ChainViz">
       <UniqueIdentifier>{870605B4-9023-C5FA-86D2-0E0816E374E3}</UniqueIdentifier>
     </Filter>
@@ -124,6 +151,18 @@
     </Filter>
     <Filter Include="Blux\Source\Effect\actions">
       <UniqueIdentifier>{34DAE7F0-D89C-AA58-E8B8-91F231D8F5C0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Effect\effects\color\gradientmap">
+      <UniqueIdentifier>{4EB8E541-7D82-A0E9-B15F-5079F73BB011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Effect\effects\color\remap">
+      <UniqueIdentifier>{D341B77D-A432-6D76-7F8E-49181AADA02A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Effect\effects\color\hsv">
+      <UniqueIdentifier>{FF00632D-99C8-C65F-C71C-0BA051E93139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Effect\effects\color">
+      <UniqueIdentifier>{EF4716C3-851D-51AB-D4CC-1F3DCB849D5F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Effect\effects\time\automation\ui">
       <UniqueIdentifier>{A4BFF20E-42BD-E6B9-6DEA-87A8489E1E86}</UniqueIdentifier>
@@ -1027,6 +1066,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp">
+      <Filter>Blux\Source\Color\ColorSource\sources\node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.cpp">
+      <Filter>Blux\Source\Color\ColorSource\sources\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.cpp">
+      <Filter>Blux\Source\Color\ColorSource\sources\picture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.cpp">
+      <Filter>Blux\Source\Color\ColorSource\sources\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.cpp">
+      <Filter>Blux\Source\Color\ColorSource\sources\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSource.cpp">
+      <Filter>Blux\Source\Color\ColorSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp">
+      <Filter>Blux\Source\Color\PixelShape</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClCompile>
@@ -1212,6 +1272,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
       <Filter>Blux\Source\Effect\actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\color\gradientmap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\remap\ColorPositionRemapEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\color\remap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\hsv\HSVAdjustEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\color\hsv</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.cpp">
       <Filter>Blux\Source\Effect\effects\time\automation\ui</Filter>
@@ -4251,6 +4320,27 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h">
+      <Filter>Blux\Source\Color\ColorSource\sources\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.h">
+      <Filter>Blux\Source\Color\ColorSource\sources\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.h">
+      <Filter>Blux\Source\Color\ColorSource\sources\picture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.h">
+      <Filter>Blux\Source\Color\ColorSource\sources\script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.h">
+      <Filter>Blux\Source\Color\ColorSource\sources\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSource.h">
+      <Filter>Blux\Source\Color\ColorSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h">
+      <Filter>Blux\Source\Color\PixelShape</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClInclude>
@@ -4418,6 +4508,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h">
       <Filter>Blux\Source\Effect\actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.h">
+      <Filter>Blux\Source\Effect\effects\color\gradientmap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\color\remap\ColorPositionRemapEffect.h">
+      <Filter>Blux\Source\Effect\effects\color\remap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\color\hsv\HSVAdjustEffect.h">
+      <Filter>Blux\Source\Effect\effects\color\hsv</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.h">
       <Filter>Blux\Source\Effect\effects\time\automation\ui</Filter>

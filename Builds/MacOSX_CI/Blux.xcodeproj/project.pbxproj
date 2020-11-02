@@ -65,6 +65,34 @@
 			isa = PBXBuildFile;
 			fileRef = D857FDEAA815333B82EF3EE7;
 		};
+		D83D02AA33B06C5265D325B7 = {
+			isa = PBXBuildFile;
+			fileRef = 83D0DB3736C1322E11FE37F1;
+		};
+		998DBEA2975F979323E208EB = {
+			isa = PBXBuildFile;
+			fileRef = 7527867101EC9A29D398DB21;
+		};
+		B06D03BEC869A44AD066E239 = {
+			isa = PBXBuildFile;
+			fileRef = A6519DD8271E813FECBC9F3D;
+		};
+		541EC2A05D59EDF166D97ED0 = {
+			isa = PBXBuildFile;
+			fileRef = 4AAE14F32C390B1C06548D4C;
+		};
+		EAB9B6E0BB3E604436E9F8B4 = {
+			isa = PBXBuildFile;
+			fileRef = 46F6DD52EED6A1570429BED6;
+		};
+		39BC9A6CB026B1105FE2EDD6 = {
+			isa = PBXBuildFile;
+			fileRef = 2A0F118BD09CA08D5A350664;
+		};
+		20712284CC7A1C43FB85A7ED = {
+			isa = PBXBuildFile;
+			fileRef = 2716888DB461F3609C4DA1A6;
+		};
 		10EA515C3226184043546018 = {
 			isa = PBXBuildFile;
 			fileRef = 72254717BC83E321C9FCDE58;
@@ -312,6 +340,18 @@
 		FFFA51D7051AAEB0E0A94B7A = {
 			isa = PBXBuildFile;
 			fileRef = 1F7EA67E3C732584DCB7E74C;
+		};
+		5D35DC10305E4461763FC7B2 = {
+			isa = PBXBuildFile;
+			fileRef = 39BB10949A1D7F7A1321DEB0;
+		};
+		044DB7D1363DC2490A536731 = {
+			isa = PBXBuildFile;
+			fileRef = 11184F6DEEBDC6021E7482A9;
+		};
+		99B761779B548FABF244B463 = {
+			isa = PBXBuildFile;
+			fileRef = 765C337FF167632AD7592A4C;
 		};
 		91805FF9DC64EDBDC812C4C2 = {
 			isa = PBXBuildFile;
@@ -832,6 +872,13 @@
 			path = ../../Source/Object/Component/components/script/ui/ScriptComponentEditor.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		11184F6DEEBDC6021E7482A9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ColorPositionRemapEffect.cpp;
+			path = ../../Source/Effect/effects/color/remap/ColorPositionRemapEffect.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		11BD809E128E9461D258500D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -972,6 +1019,13 @@
 			path = ../../Source/Layout/ui/Object2DView.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		2029170D504DA4554C3070D0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PictureColorSource.h;
+			path = ../../Source/Color/ColorSource/sources/picture/PictureColorSource.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		218ED473E6294E236ACBFADB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1014,6 +1068,13 @@
 			path = ../../Source/Group/GroupManager.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		2716888DB461F3609C4DA1A6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = PixelShape.cpp;
+			path = ../../Source/Color/PixelShape/PixelShape.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		276B376118EFB45E2DED3F1D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1040,6 +1101,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = ActionTrigger.cpp;
 			path = ../../Source/Sequence/layers/action/ActionTrigger.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		2A0F118BD09CA08D5A350664 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ColorSource.cpp;
+			path = ../../Source/Color/ColorSource/ColorSource.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		2BFD494DCB704631A76F9F1D = {
@@ -1131,6 +1199,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = SceneAction.cpp;
 			path = ../../Source/Scene/actions/SceneAction.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		39BB10949A1D7F7A1321DEB0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ColorGradientMapEffect.cpp;
+			path = ../../Source/Effect/effects/color/gradientmap/ColorGradientMapEffect.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		3B4157E878CF22C9643E3956 = {
@@ -1273,6 +1348,13 @@
 			path = ../../Source/Object/Component/components/intensity/IntensityComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		46F6DD52EED6A1570429BED6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = VideoColorSource.cpp;
+			path = ../../Source/Color/ColorSource/sources/video/VideoColorSource.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		471E240554E3A9946C1D64F2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -1329,6 +1411,13 @@
 			path = ../../Source/Effect/effects/time/automation/AutomationEffect.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		4AAE14F32C390B1C06548D4C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ScriptColorSource.cpp;
+			path = ../../Source/Color/ColorSource/sources/script/ScriptColorSource.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		4AB581C1C870E10A93ADB0EC = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1355,6 +1444,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = GroupManager.h;
 			path = ../../Source/Group/GroupManager.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		4CF564F626B712CA89C6A954 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = NodeColorSource.h;
+			path = ../../Source/Color/ColorSource/sources/node/NodeColorSource.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		4D91525A24B342FD71CED6E9 = {
@@ -1651,6 +1747,13 @@
 			path = ../../Source/Effect/Filter/filters/group/GroupFilter.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		7527867101EC9A29D398DB21 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = PatternColorSource.cpp;
+			path = ../../Source/Color/ColorSource/sources/pattern/PatternColorSource.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		752995F1BE479C7802AAB58B = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1677,6 +1780,20 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = LayoutFilterStageViewUI.cpp;
 			path = ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageViewUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		765C337FF167632AD7592A4C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = HSVAdjustEffect.cpp;
+			path = ../../Source/Effect/effects/color/hsv/HSVAdjustEffect.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		76C3846C0CF4C0A1ED6AF2A1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ColorGradientMapEffect.h;
+			path = ../../Source/Effect/effects/color/gradientmap/ColorGradientMapEffect.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		7774C6502DCCE4F2EECD39AE = {
@@ -1719,6 +1836,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = ColorSource.cpp;
 			path = ../../Source/Object/Component/components/color/ColorSource/ColorSource.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		7A81C3EB1FF192080F1D70C4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ColorSource.h;
+			path = ../../Source/Color/ColorSource/ColorSource.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		7A8340AE16716A0E53F07892 = {
@@ -1831,6 +1955,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = MainComponentCommands.cpp;
 			path = ../../Source/MainComponentCommands.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		83D0DB3736C1322E11FE37F1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = NodeColorSource.cpp;
+			path = ../../Source/Color/ColorSource/sources/node/NodeColorSource.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		842951C0A1F1BB86353084AE = {
@@ -2155,6 +2286,13 @@
 			path = ../../Source/Effect/effects/override/OverrideEffect.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		A6519DD8271E813FECBC9F3D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = PictureColorSource.cpp;
+			path = ../../Source/Color/ColorSource/sources/picture/PictureColorSource.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		A71099E4A1F2F239959CBEC9 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2174,6 +2312,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = MIDIMappingManager.cpp;
 			path = ../../Source/Interface/interfaces/midi/MIDIMappingManager.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		AB3380151D4E0B9C983C8AEC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PixelShape.h;
+			path = ../../Source/Color/PixelShape/PixelShape.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		AC703A846AB3D42F740D5C58 = {
@@ -2251,6 +2396,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = GroupManagerUI.cpp;
 			path = ../../Source/Group/ui/GroupManagerUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B33B3CE0903ED327778655A9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PatternColorSource.h;
+			path = ../../Source/Color/ColorSource/sources/pattern/PatternColorSource.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		B35B4DB2E7E73F60BAA6CD35 = {
@@ -2442,6 +2594,13 @@
 			path = ../../Source/Interface/interfaces/dmx/ui/DMXInterfaceUI.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		C40A54A2DA49F9D0FA914A0F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = VideoColorSource.h;
+			path = ../../Source/Color/ColorSource/sources/video/VideoColorSource.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		C4ADEA9C1F1FA20ABE2B43FC = {
 			isa = PBXFileReference;
 			lastKnownFileType = image.png;
@@ -2629,6 +2788,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = GroupUI.cpp;
 			path = ../../Source/Group/ui/GroupUI.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		DC097481E8640917C75A34EF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ColorPositionRemapEffect.h;
+			path = ../../Source/Effect/effects/color/remap/ColorPositionRemapEffect.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		DE954E57892A3D89DE883678 = {
@@ -2855,6 +3021,13 @@
 			path = ../../Source/Main.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		F2BE404EBCF81E57AB1FFFEE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = HSVAdjustEffect.h;
+			path = ../../Source/Effect/effects/color/hsv/HSVAdjustEffect.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		F316158EDE80B2C03C6C6590 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -2953,6 +3126,13 @@
 			path = ../../Source/Object/Component/components/laser/LaserComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		FFCB87334C7B5DCFBD60F700 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ScriptColorSource.h;
+			path = ../../Source/Color/ColorSource/sources/script/ScriptColorSource.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		FFE7D73EACF6101617EC8AA1 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -2971,6 +3151,91 @@
 				C4ADEA9C1F1FA20ABE2B43FC,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		24DFA3F5BD12FAF0EADDD490 = {
+			isa = PBXGroup;
+			children = (
+				83D0DB3736C1322E11FE37F1,
+				4CF564F626B712CA89C6A954,
+			);
+			name = node;
+			sourceTree = "<group>";
+		};
+		09B4D04245E9EE8302A60921 = {
+			isa = PBXGroup;
+			children = (
+				7527867101EC9A29D398DB21,
+				B33B3CE0903ED327778655A9,
+			);
+			name = pattern;
+			sourceTree = "<group>";
+		};
+		946A1D7033ECD9C8F2B2EDB4 = {
+			isa = PBXGroup;
+			children = (
+				A6519DD8271E813FECBC9F3D,
+				2029170D504DA4554C3070D0,
+			);
+			name = picture;
+			sourceTree = "<group>";
+		};
+		4FE338C09EA6605257EF3340 = {
+			isa = PBXGroup;
+			children = (
+				4AAE14F32C390B1C06548D4C,
+				FFCB87334C7B5DCFBD60F700,
+			);
+			name = script;
+			sourceTree = "<group>";
+		};
+		45D00EA8071611E1F80F5A7A = {
+			isa = PBXGroup;
+			children = (
+				46F6DD52EED6A1570429BED6,
+				C40A54A2DA49F9D0FA914A0F,
+			);
+			name = video;
+			sourceTree = "<group>";
+		};
+		0D130A0506E9F15A0735E309 = {
+			isa = PBXGroup;
+			children = (
+				24DFA3F5BD12FAF0EADDD490,
+				09B4D04245E9EE8302A60921,
+				946A1D7033ECD9C8F2B2EDB4,
+				4FE338C09EA6605257EF3340,
+				45D00EA8071611E1F80F5A7A,
+			);
+			name = sources;
+			sourceTree = "<group>";
+		};
+		7E600334D967A7595BF4F3DB = {
+			isa = PBXGroup;
+			children = (
+				0D130A0506E9F15A0735E309,
+				2A0F118BD09CA08D5A350664,
+				7A81C3EB1FF192080F1D70C4,
+			);
+			name = ColorSource;
+			sourceTree = "<group>";
+		};
+		4EC6CA3C630EAB6BB2897A8A = {
+			isa = PBXGroup;
+			children = (
+				2716888DB461F3609C4DA1A6,
+				AB3380151D4E0B9C983C8AEC,
+			);
+			name = PixelShape;
+			sourceTree = "<group>";
+		};
+		2E4097C67D2D41EB37640537 = {
+			isa = PBXGroup;
+			children = (
+				7E600334D967A7595BF4F3DB,
+				4EC6CA3C630EAB6BB2897A8A,
+			);
+			name = Color;
 			sourceTree = "<group>";
 		};
 		4789238EA8BC1FE09AFC5991 = {
@@ -3404,6 +3669,43 @@
 			name = actions;
 			sourceTree = "<group>";
 		};
+		25439334BD0EFDF30B0EFF5A = {
+			isa = PBXGroup;
+			children = (
+				39BB10949A1D7F7A1321DEB0,
+				76C3846C0CF4C0A1ED6AF2A1,
+			);
+			name = gradientmap;
+			sourceTree = "<group>";
+		};
+		7DE41F23A5D68EB698223C45 = {
+			isa = PBXGroup;
+			children = (
+				11184F6DEEBDC6021E7482A9,
+				DC097481E8640917C75A34EF,
+			);
+			name = remap;
+			sourceTree = "<group>";
+		};
+		5D18A3690CC40DF50EECB565 = {
+			isa = PBXGroup;
+			children = (
+				765C337FF167632AD7592A4C,
+				F2BE404EBCF81E57AB1FFFEE,
+			);
+			name = hsv;
+			sourceTree = "<group>";
+		};
+		24AC335A15A4F15494235437 = {
+			isa = PBXGroup;
+			children = (
+				25439334BD0EFDF30B0EFF5A,
+				7DE41F23A5D68EB698223C45,
+				5D18A3690CC40DF50EECB565,
+			);
+			name = color;
+			sourceTree = "<group>";
+		};
 		7912516AE763DDFE266D21A6 = {
 			isa = PBXGroup;
 			children = (
@@ -3456,6 +3758,7 @@
 		D9FE837C1612F50C76902DC6 = {
 			isa = PBXGroup;
 			children = (
+				24AC335A15A4F15494235437,
 				94BB932210667CF7266699DC,
 				FFB81D5BAC442666EDA9DC53,
 			);
@@ -3921,6 +4224,7 @@
 		6E9F1AD50FC257BAEE7B1A6A = {
 			isa = PBXGroup;
 			children = (
+				2E4097C67D2D41EB37640537,
 				4789238EA8BC1FE09AFC5991,
 				5F6E18662CD3937931CE16D2,
 				F5FF7045CFA377C4224EAA09,
@@ -4355,6 +4659,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D83D02AA33B06C5265D325B7,
+				998DBEA2975F979323E208EB,
+				B06D03BEC869A44AD066E239,
+				541EC2A05D59EDF166D97ED0,
+				EAB9B6E0BB3E604436E9F8B4,
+				39BC9A6CB026B1105FE2EDD6,
+				20712284CC7A1C43FB85A7ED,
 				10EA515C3226184043546018,
 				E8C3CFA596F6686B0BD7BA41,
 				C3CEF9692B6820C2D7236465,
@@ -4417,6 +4728,9 @@
 				028C7FB9B750364EDEF55B66,
 				DE91824E6E690D0BBD458EB7,
 				FFFA51D7051AAEB0E0A94B7A,
+				5D35DC10305E4461763FC7B2,
+				044DB7D1363DC2490A536731,
+				99B761779B548FABF244B463,
 				91805FF9DC64EDBDC812C4C2,
 				FC11C543EB8FA12D4313812A,
 				CCD6A742008A8D9E87BF612F,
