@@ -152,13 +152,19 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\ColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.cpp"/>
     <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp"/>
+    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShapeEditor.cpp"/>
+    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShapeManager.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp"/>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp"/>
@@ -256,7 +262,7 @@
     <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\components\script\ScriptComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\color\ColorSource\ColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\components\color\ColorComponent.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\components\gobo\GoboComponent.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\components\intensity\IntensityComponent.cpp"/>
@@ -2923,13 +2929,20 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceFactory.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PerlinNoise.hpp"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\ColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.h"/>
     <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h"/>
+    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShapeEditor.h"/>
+    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShapeManager.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h"/>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h"/>
@@ -3022,7 +3035,7 @@
     <ClInclude Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\script\ScriptComponent.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\color\ColorSource\ColorSource.h"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ColorComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\gobo\GoboComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\intensity\IntensityComponent.h"/>
@@ -4478,6 +4491,17 @@
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Resources\colorsource\multipoint.png"/>
+    <None Include="..\..\Resources\colorsource\patterns\noise.png"/>
+    <None Include="..\..\Resources\colorsource\patterns\point.png"/>
+    <None Include="..\..\Resources\colorsource\patterns\rainbow.png"/>
+    <None Include="..\..\Resources\colorsource\patterns\solidcolor.png"/>
+    <None Include="..\..\Resources\colorsource\patterns\strobe.png"/>
+    <None Include="..\..\Resources\colorsource\node.png"/>
+    <None Include="..\..\Resources\colorsource\picture.png"/>
+    <None Include="..\..\Resources\colorsource\script.png"/>
+    <None Include="..\..\Resources\colorsource\timeline.png"/>
+    <None Include="..\..\Resources\colorsource\video.png"/>
     <None Include="..\..\Resources\crash.png"/>
     <None Include="..\..\Resources\default.bluxlayout"/>
     <None Include="..\..\Resources\icon.png"/>

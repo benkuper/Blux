@@ -20,7 +20,7 @@
               {
                 "type": 0,
                 "width": 261,
-                "height": 195,
+                "height": 131,
                 "currentContent": "Interfaces",
                 "tabs": [
                   {
@@ -31,7 +31,7 @@
               {
                 "type": 0,
                 "width": 261,
-                "height": 589,
+                "height": 423,
                 "currentContent": "Objects",
                 "tabs": [
                   {
@@ -49,42 +49,91 @@
                     "name": "Groups"
                   }
                 ]
+              },
+              {
+                "type": 0,
+                "width": 261,
+                "height": 224,
+                "currentContent": "Global Effects",
+                "tabs": [
+                  {
+                    "name": "Global Effects"
+                  }
+                ]
               }
             ]
           },
           {
             "type": 1,
-            "width": 1077,
+            "width": 1194,
             "height": 997,
             "direction": 2,
             "shifters": [
               {
-                "type": 0,
-                "width": 1077,
-                "height": 790,
-                "currentContent": "Objects Grid View",
-                "tabs": [
+                "type": 1,
+                "width": 1194,
+                "height": 758,
+                "direction": 1,
+                "shifters": [
                   {
-                    "name": "Objects Grid View"
+                    "type": 1,
+                    "width": 874,
+                    "height": 758,
+                    "direction": 2,
+                    "shifters": [
+                      {
+                        "type": 0,
+                        "width": 874,
+                        "height": 573,
+                        "currentContent": "Objects Grid View",
+                        "tabs": [
+                          {
+                            "name": "Objects Grid View"
+                          },
+                          {
+                            "name": "Stage 2D View"
+                          },
+                          {
+                            "name": "DMX Channel Tester"
+                          }
+                        ]
+                      },
+                      {
+                        "type": 0,
+                        "width": 874,
+                        "height": 179,
+                        "currentContent": "Effect Chain Viz",
+                        "tabs": [
+                          {
+                            "name": "Effect Chain Viz"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
-                    "name": "Stage 2D View"
-                  },
-                  {
-                    "name": "DMX Channel Tester"
+                    "type": 0,
+                    "width": 314,
+                    "height": 758,
+                    "currentContent": "Scenes",
+                    "tabs": [
+                      {
+                        "name": "Scenes"
+                      }
+                    ]
                   }
                 ]
               },
               {
                 "type": 1,
-                "width": 1077,
-                "height": 201,
+                "width": 1194,
+                "height": 233,
                 "direction": 1,
                 "shifters": [
                   {
                     "type": 0,
                     "width": 237,
-                    "height": 201,
+                    "height": 233,
                     "currentContent": "Global Sequences",
                     "tabs": [
                       {
@@ -94,8 +143,8 @@
                   },
                   {
                     "type": 0,
-                    "width": 834,
-                    "height": 201,
+                    "width": 951,
+                    "height": 233,
                     "currentContent": "Sequence Editor",
                     "tabs": [
                       {
@@ -109,13 +158,13 @@
           },
           {
             "type": 1,
-            "width": 570,
+            "width": 453,
             "height": 997,
             "direction": 2,
             "shifters": [
               {
                 "type": 0,
-                "width": 570,
+                "width": 453,
                 "height": 567,
                 "currentContent": "Inspector",
                 "tabs": [
@@ -126,7 +175,7 @@
               },
               {
                 "type": 0,
-                "width": 570,
+                "width": 453,
                 "height": 423,
                 "currentContent": "Logger",
                 "tabs": [

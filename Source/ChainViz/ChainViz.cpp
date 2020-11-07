@@ -15,7 +15,7 @@
 #include "Effect/GlobalEffectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
 
-const String ChainViz::panelName = "Channel Viz";
+const String ChainViz::panelName = "Effect Chain Viz";
 const Colour ChainVizComponent::typeColors[ChainVizTarget::CHAINVIZ_TYPE_MAX]{ PANEL_COLOR, PANEL_COLOR, Colours::purple.brighter(), BLUE_COLOR, GREEN_COLOR, YELLOW_COLOR, RED_COLOR };
 
 ChainViz::ChainViz(const String& name) :

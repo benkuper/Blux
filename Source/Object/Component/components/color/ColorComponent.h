@@ -12,6 +12,9 @@
 
 #include "../../ObjectComponent.h"
 
+class ColorSource;
+class PixelShape;
+
 class ColorComponent :
     public ObjectComponent
 {
@@ -19,7 +22,9 @@ public:
     ColorComponent(var params);
     ~ColorComponent();
 
-    ColorParameter* color;
+    IntParameter* resolution;
+    std::unique_ptr<ColorSource> colorSource;
+    std::unique_ptr<PixelShape> pixelShape;
 
     String getTypeString() const override { return "Color"; }
     static ColorComponent* create(var params) { return new ColorComponent(params); }

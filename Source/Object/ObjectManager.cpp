@@ -33,7 +33,7 @@ ObjectManager::ObjectManager() :
 
     managerFactory = &factory;
 
-    gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 128, 32, 256);
+    gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 96, 32, 256);
     defaultFlashValue = addFloatParameter("Flash Value", "Flash Value", .5f, 0, 1);
     blackOut = addBoolParameter("Black Out", "Force 0 on all computed values", false);
     filterActiveInScene = addBoolParameter("Show Only active", "Show only active objects in scene", false);

@@ -9,13 +9,13 @@
 */
 
 #include "ColorComponent.h"
+#include "Color/ColorSource/ColorSource.h"
+#include "Color/PixelShape/PixelShape.h"
 
 ColorComponent::ColorComponent(var params) :
     ObjectComponent(getTypeString(), COLOR, params)
 {
-    color = addColorParameter("Color", "The color that will be converted to RGB channels or whatever the output format is.", Colours::black);
-    sourceParameters.add(color);
-    addComputedParameter(new ColorParameter("Color", "Color", Colours::black), 1, color);
+    resolution = addIntParameter("Resolution", "Number of different colors/pixels for this object", 1, 1);
 }
 
 ColorComponent::~ColorComponent()

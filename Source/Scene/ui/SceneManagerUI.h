@@ -25,7 +25,6 @@ public:
     std::unique_ptr<TriggerButtonUI> nextSceneUI;
     std::unique_ptr<BoolButtonToggleUI> autoPreviewUI;
 
-
     void mouseEnter(const MouseEvent& e) override;
     void mouseExit(const MouseEvent& e) override;
 

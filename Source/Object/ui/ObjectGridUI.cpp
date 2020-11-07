@@ -70,11 +70,13 @@ ObjectGridUI::~ObjectGridUI()
 
 void ObjectGridUI::paint(Graphics& g)
 {
-	g.setColour(bgColor);
-	if(!transparentBG) g.fillRoundedRectangle(getLocalBounds().toFloat(), 2);
+	if (!transparentBG)
+	{
+		g.setColour(bgColor);
+		g.fillRoundedRectangle(getLocalBounds().toFloat(), 2);
+	}
 
 	Rectangle<int> r = getLocalBounds();
-
 	
 	r.removeFromBottom(20);
 
@@ -99,6 +101,7 @@ void ObjectGridUI::paint(Graphics& g)
 	}
 	g.setColour(Colours::white.withAlpha(overMultiplier));
 	g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
+
 	if (iconIntensityRef != nullptr && objectONImage.isValid())
 	{
 		g.setColour(Colours::white.withAlpha((1-offMult) * overMultiplier));

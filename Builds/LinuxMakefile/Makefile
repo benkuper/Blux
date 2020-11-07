@@ -68,13 +68,19 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS_APP := \
+  $(JUCE_OBJDIR)/ColorSourceFactory_48650a92.o \
+  $(JUCE_OBJDIR)/ColorSourceGridUI_bd4ebc63.o \
+  $(JUCE_OBJDIR)/ColorSourceLibraryGridUI_43526456.o \
   $(JUCE_OBJDIR)/NodeColorSource_49a4ec2c.o \
   $(JUCE_OBJDIR)/PatternColorSource_19adc80a.o \
   $(JUCE_OBJDIR)/PictureColorSource_5d85fae.o \
   $(JUCE_OBJDIR)/ScriptColorSource_2485178c.o \
   $(JUCE_OBJDIR)/VideoColorSource_a07c9b74.o \
   $(JUCE_OBJDIR)/ColorSource_e8804a22.o \
+  $(JUCE_OBJDIR)/ColorSourceLibrary_1f6ebdc3.o \
   $(JUCE_OBJDIR)/PixelShape_d318d9c4.o \
+  $(JUCE_OBJDIR)/PixelShapeEditor_10ac9191.o \
+  $(JUCE_OBJDIR)/PixelShapeManager_4513d5d3.o \
   $(JUCE_OBJDIR)/ChainViz_ce9d49f0.o \
   $(JUCE_OBJDIR)/ChainVizTarget_a474cee1.o \
   $(JUCE_OBJDIR)/AudioManagerHardwareEditor_ce81cbaf.o \
@@ -172,7 +178,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/ObjectComponentEditor_f7541853.o \
   $(JUCE_OBJDIR)/ScriptComponentEditor_62940c12.o \
   $(JUCE_OBJDIR)/ScriptComponent_91316dae.o \
-  $(JUCE_OBJDIR)/ColorSource_22bc542b.o \
+  $(JUCE_OBJDIR)/ColorComponentEditor_59046360.o \
   $(JUCE_OBJDIR)/ColorComponent_50e7aa86.o \
   $(JUCE_OBJDIR)/GoboComponent_ebce47ee.o \
   $(JUCE_OBJDIR)/IntensityComponent_5fb4dfe6.o \
@@ -247,6 +253,21 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : $(OBJECTS_APP) $(RESOURCES)
 	-$(V_AT)mkdir -p $(JUCE_OUTDIR)
 	$(V_AT)$(CXX) -o $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) $(OBJECTS_APP) $(JUCE_LDFLAGS) $(JUCE_LDFLAGS_APP) $(RESOURCES) $(TARGET_ARCH)
 
+$(JUCE_OBJDIR)/ColorSourceFactory_48650a92.o: ../../Source/Color/ColorSource/ColorSourceFactory.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorSourceFactory.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ColorSourceGridUI_bd4ebc63.o: ../../Source/Color/ColorSource/ui/ColorSourceGridUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorSourceGridUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ColorSourceLibraryGridUI_43526456.o: ../../Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorSourceLibraryGridUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/NodeColorSource_49a4ec2c.o: ../../Source/Color/ColorSource/sources/node/NodeColorSource.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling NodeColorSource.cpp"
@@ -277,9 +298,24 @@ $(JUCE_OBJDIR)/ColorSource_e8804a22.o: ../../Source/Color/ColorSource/ColorSourc
 	@echo "Compiling ColorSource.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/ColorSourceLibrary_1f6ebdc3.o: ../../Source/Color/ColorSource/ColorSourceLibrary.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorSourceLibrary.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/PixelShape_d318d9c4.o: ../../Source/Color/PixelShape/PixelShape.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling PixelShape.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PixelShapeEditor_10ac9191.o: ../../Source/Color/PixelShape/PixelShapeEditor.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PixelShapeEditor.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PixelShapeManager_4513d5d3.o: ../../Source/Color/PixelShape/PixelShapeManager.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PixelShapeManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ChainViz_ce9d49f0.o: ../../Source/ChainViz/ChainViz.cpp
@@ -767,9 +803,9 @@ $(JUCE_OBJDIR)/ScriptComponent_91316dae.o: ../../Source/Object/Component/compone
 	@echo "Compiling ScriptComponent.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/ColorSource_22bc542b.o: ../../Source/Object/Component/components/color/ColorSource/ColorSource.cpp
+$(JUCE_OBJDIR)/ColorComponentEditor_59046360.o: ../../Source/Object/Component/components/color/ui/ColorComponentEditor.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ColorSource.cpp"
+	@echo "Compiling ColorComponentEditor.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ColorComponent_50e7aa86.o: ../../Source/Object/Component/components/color/ColorComponent.cpp

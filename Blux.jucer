@@ -5,6 +5,21 @@
               headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
+      <GROUP id="{D480A22D-FF94-A2C7-497D-7DF800FA9A18}" name="colorsource">
+        <GROUP id="{D1A2DFCA-54E4-BCA6-E798-6F4CA74BF207}" name="patterns">
+          <FILE id="Wnb0A0" name="multipoint.png" compile="0" resource="1" file="Resources/colorsource/multipoint.png"/>
+          <FILE id="ELO26n" name="noise.png" compile="0" resource="1" file="Resources/colorsource/patterns/noise.png"/>
+          <FILE id="e4wBEk" name="point.png" compile="0" resource="1" file="Resources/colorsource/patterns/point.png"/>
+          <FILE id="X7WgUj" name="rainbow.png" compile="0" resource="1" file="Resources/colorsource/patterns/rainbow.png"/>
+          <FILE id="IAvFOq" name="solidcolor.png" compile="0" resource="1" file="Resources/colorsource/patterns/solidcolor.png"/>
+          <FILE id="OmC12i" name="strobe.png" compile="0" resource="1" file="Resources/colorsource/patterns/strobe.png"/>
+        </GROUP>
+        <FILE id="JVmwm4" name="node.png" compile="0" resource="1" file="Resources/colorsource/node.png"/>
+        <FILE id="FQKb9R" name="picture.png" compile="0" resource="1" file="Resources/colorsource/picture.png"/>
+        <FILE id="qnBLCP" name="script.png" compile="0" resource="1" file="Resources/colorsource/script.png"/>
+        <FILE id="y12GSQ" name="timeline.png" compile="0" resource="1" file="Resources/colorsource/timeline.png"/>
+        <FILE id="BfmWfU" name="video.png" compile="0" resource="1" file="Resources/colorsource/video.png"/>
+      </GROUP>
       <FILE id="s4JRaV" name="crash.png" compile="0" resource="1" file="Resources/crash.png"/>
       <FILE id="hRyytp" name="default.bluxlayout" compile="0" resource="1"
             file="Resources/default.bluxlayout"/>
@@ -16,6 +31,20 @@
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
       <GROUP id="{2047F9AE-EF39-8CBB-3CD3-9353343FEF38}" name="Color">
         <GROUP id="{3AE6DD1B-440C-B30D-719A-8B9BD861BD72}" name="ColorSource">
+          <FILE id="F4cZRE" name="ColorSourceFactory.cpp" compile="1" resource="0"
+                file="Source/Color/ColorSource/ColorSourceFactory.cpp"/>
+          <FILE id="TKAWN7" name="ColorSourceFactory.h" compile="0" resource="0"
+                file="Source/Color/ColorSource/ColorSourceFactory.h"/>
+          <GROUP id="{29F8108D-13E2-E7A5-9286-B43B50866FB7}" name="ui">
+            <FILE id="I3NZnq" name="ColorSourceGridUI.cpp" compile="1" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceGridUI.cpp"/>
+            <FILE id="IuiNLo" name="ColorSourceGridUI.h" compile="0" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceGridUI.h"/>
+            <FILE id="GEHHeO" name="ColorSourceLibraryGridUI.cpp" compile="1" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.cpp"/>
+            <FILE id="CJd2m4" name="ColorSourceLibraryGridUI.h" compile="0" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.h"/>
+          </GROUP>
           <GROUP id="{B6F4F5AC-D226-7CBC-022B-70525AD97083}" name="sources">
             <GROUP id="{DBD75931-C481-1FB8-5A28-CC0DC8529E47}" name="node">
               <FILE id="B7waeN" name="NodeColorSource.cpp" compile="1" resource="0"
@@ -28,6 +57,7 @@
                     file="Source/Color/ColorSource/sources/pattern/PatternColorSource.cpp"/>
               <FILE id="WNVXEq" name="PatternColorSource.h" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/pattern/PatternColorSource.h"/>
+              <FILE id="nCG8Et" name="PerlinNoise.hpp" compile="0" resource="0" file="Source/Color/ColorSource/sources/pattern/PerlinNoise.hpp"/>
             </GROUP>
             <GROUP id="{78A5B5DB-E815-ECCC-6C61-9C51D2C3DF70}" name="picture">
               <FILE id="rJIXvg" name="PictureColorSource.cpp" compile="1" resource="0"
@@ -50,10 +80,22 @@
           </GROUP>
           <FILE id="JPCMQp" name="ColorSource.cpp" compile="1" resource="0" file="Source/Color/ColorSource/ColorSource.cpp"/>
           <FILE id="CbzOvp" name="ColorSource.h" compile="0" resource="0" file="Source/Color/ColorSource/ColorSource.h"/>
+          <FILE id="f16rqK" name="ColorSourceLibrary.cpp" compile="1" resource="0"
+                file="Source/Color/ColorSource/ColorSourceLibrary.cpp"/>
+          <FILE id="HKtElb" name="ColorSourceLibrary.h" compile="0" resource="0"
+                file="Source/Color/ColorSource/ColorSourceLibrary.h"/>
         </GROUP>
         <GROUP id="{663E2B39-9238-BFFE-8D89-48258F820214}" name="PixelShape">
           <FILE id="Y1ar2i" name="PixelShape.cpp" compile="1" resource="0" file="Source/Color/PixelShape/PixelShape.cpp"/>
           <FILE id="BFdv2R" name="PixelShape.h" compile="0" resource="0" file="Source/Color/PixelShape/PixelShape.h"/>
+          <FILE id="d9qsV6" name="PixelShapeEditor.cpp" compile="1" resource="0"
+                file="Source/Color/PixelShape/PixelShapeEditor.cpp"/>
+          <FILE id="ys7Vns" name="PixelShapeEditor.h" compile="0" resource="0"
+                file="Source/Color/PixelShape/PixelShapeEditor.h"/>
+          <FILE id="vR3Qus" name="PixelShapeManager.cpp" compile="1" resource="0"
+                file="Source/Color/PixelShape/PixelShapeManager.cpp"/>
+          <FILE id="qIeNJ1" name="PixelShapeManager.h" compile="0" resource="0"
+                file="Source/Color/PixelShape/PixelShapeManager.h"/>
         </GROUP>
       </GROUP>
       <GROUP id="{613F3B0D-6C43-D1AC-9293-204C47A122F3}" name="ChainViz">
@@ -493,10 +535,11 @@
                     file="Source/Object/Component/components/script/ScriptComponent.h"/>
             </GROUP>
             <GROUP id="{CF76E215-E97D-AE67-ACE1-5AD7F346A4C2}" name="color">
-              <GROUP id="{87AB848E-C914-468E-D082-FCE320ED076C}" name="ColorSource">
-                <GROUP id="{28B33676-EA96-00A3-3DA9-131593960068}" name="sources"/>
-                <FILE id="xcVDyf" name="ColorSource.cpp" compile="1" resource="0" file="Source/Object/Component/components/color/ColorSource/ColorSource.cpp"/>
-                <FILE id="CtfGAw" name="ColorSource.h" compile="0" resource="0" file="Source/Object/Component/components/color/ColorSource/ColorSource.h"/>
+              <GROUP id="{3F11A279-2E6F-B762-779C-F4BE655ABD1C}" name="ui">
+                <FILE id="kqNqrv" name="ColorComponentEditor.cpp" compile="1" resource="0"
+                      file="Source/Object/Component/components/color/ui/ColorComponentEditor.cpp"/>
+                <FILE id="ZbaG4q" name="ColorComponentEditor.h" compile="0" resource="0"
+                      file="Source/Object/Component/components/color/ui/ColorComponentEditor.h"/>
               </GROUP>
               <FILE id="mksmBH" name="ColorComponent.cpp" compile="1" resource="0"
                     file="Source/Object/Component/components/color/ColorComponent.cpp"/>

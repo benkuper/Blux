@@ -9,3 +9,16 @@
 */
 
 #include "ScriptColorSource.h"
+
+ScriptColorSource::ScriptColorSource(var params) :
+    TimedColorSource(getTypeString(), params)
+{
+}
+
+ScriptColorSource::~ScriptColorSource()
+{
+}
+
+void ScriptColorSource::fillColorsForObject(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+{
+}

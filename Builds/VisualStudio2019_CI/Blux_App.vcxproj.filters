@@ -2,8 +2,17 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Blux\Resources\colorsource\patterns">
+      <UniqueIdentifier>{1A78F370-7EDF-C35C-2240-A51DC71D8D23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Resources\colorsource">
+      <UniqueIdentifier>{9C95C9D4-C752-2B1B-F7B6-0BBDF7E06FBA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Resources">
       <UniqueIdentifier>{BF26CDE0-ADF7-D8C6-0A26-38627B2C18D8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource\ui">
+      <UniqueIdentifier>{2DFC32B5-7439-4363-92F1-79146822656E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Color\ColorSource\sources\node">
       <UniqueIdentifier>{48D0C4F6-86CC-F017-5CFF-8649FA317B98}</UniqueIdentifier>
@@ -227,8 +236,8 @@
     <Filter Include="Blux\Source\Object\Component\components\script">
       <UniqueIdentifier>{B99750EB-55E0-4E80-592C-ADD38E8EFB8B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\color\ColorSource">
-      <UniqueIdentifier>{A97CC26D-6CB9-1E87-6901-E43597AACC82}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Object\Component\components\color\ui">
+      <UniqueIdentifier>{0BFABBCF-D1B0-E711-0F9D-D6AB2AB83095}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Object\Component\components\color">
       <UniqueIdentifier>{4B754B5A-FFCD-B508-12DE-F64FBD8813D2}</UniqueIdentifier>
@@ -1066,6 +1075,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp">
+      <Filter>Blux\Source\Color\ColorSource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp">
       <Filter>Blux\Source\Color\ColorSource\sources\node</Filter>
     </ClCompile>
@@ -1084,7 +1102,16 @@
     <ClCompile Include="..\..\Source\Color\ColorSource\ColorSource.cpp">
       <Filter>Blux\Source\Color\ColorSource</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.cpp">
+      <Filter>Blux\Source\Color\ColorSource</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp">
+      <Filter>Blux\Source\Color\PixelShape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShapeEditor.cpp">
+      <Filter>Blux\Source\Color\PixelShape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShapeManager.cpp">
       <Filter>Blux\Source\Color\PixelShape</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp">
@@ -1378,8 +1405,8 @@
     <ClCompile Include="..\..\Source\Object\Component\components\script\ScriptComponent.cpp">
       <Filter>Blux\Source\Object\Component\components\script</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\color\ColorSource\ColorSource.cpp">
-      <Filter>Blux\Source\Object\Component\components\color\ColorSource</Filter>
+    <ClCompile Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.cpp">
+      <Filter>Blux\Source\Object\Component\components\color\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\components\color\ColorComponent.cpp">
       <Filter>Blux\Source\Object\Component\components\color</Filter>
@@ -4320,10 +4347,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceFactory.h">
+      <Filter>Blux\Source\Color\ColorSource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.h">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.h">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h">
       <Filter>Blux\Source\Color\ColorSource\sources\node</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.h">
+      <Filter>Blux\Source\Color\ColorSource\sources\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PerlinNoise.hpp">
       <Filter>Blux\Source\Color\ColorSource\sources\pattern</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.h">
@@ -4338,7 +4377,16 @@
     <ClInclude Include="..\..\Source\Color\ColorSource\ColorSource.h">
       <Filter>Blux\Source\Color\ColorSource</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.h">
+      <Filter>Blux\Source\Color\ColorSource</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h">
+      <Filter>Blux\Source\Color\PixelShape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShapeEditor.h">
+      <Filter>Blux\Source\Color\PixelShape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShapeManager.h">
       <Filter>Blux\Source\Color\PixelShape</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h">
@@ -4617,8 +4665,8 @@
     <ClInclude Include="..\..\Source\Object\Component\components\script\ScriptComponent.h">
       <Filter>Blux\Source\Object\Component\components\script</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\color\ColorSource\ColorSource.h">
-      <Filter>Blux\Source\Object\Component\components\color\ColorSource</Filter>
+    <ClInclude Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.h">
+      <Filter>Blux\Source\Object\Component\components\color\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ColorComponent.h">
       <Filter>Blux\Source\Object\Component\components\color</Filter>
@@ -8981,6 +9029,39 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Resources\colorsource\multipoint.png">
+      <Filter>Blux\Resources\colorsource\patterns</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\patterns\noise.png">
+      <Filter>Blux\Resources\colorsource\patterns</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\patterns\point.png">
+      <Filter>Blux\Resources\colorsource\patterns</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\patterns\rainbow.png">
+      <Filter>Blux\Resources\colorsource\patterns</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\patterns\solidcolor.png">
+      <Filter>Blux\Resources\colorsource\patterns</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\patterns\strobe.png">
+      <Filter>Blux\Resources\colorsource\patterns</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\node.png">
+      <Filter>Blux\Resources\colorsource</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\picture.png">
+      <Filter>Blux\Resources\colorsource</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\script.png">
+      <Filter>Blux\Resources\colorsource</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\timeline.png">
+      <Filter>Blux\Resources\colorsource</Filter>
+    </None>
+    <None Include="..\..\Resources\colorsource\video.png">
+      <Filter>Blux\Resources\colorsource</Filter>
+    </None>
     <None Include="..\..\Resources\crash.png">
       <Filter>Blux\Resources</Filter>
     </None>

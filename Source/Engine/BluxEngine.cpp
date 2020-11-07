@@ -22,6 +22,9 @@
 #include "Sequence/layers/action/ActionLayer.h"
 #include "Sequence/layers/effect/EffectBlockManager.h"
 #include "Common/MIDI/MIDIManager.h"
+#include "Color/ColorSource/ColorSourceLibrary.h"
+#include "Color/ColorSource/ColorSourceFactory.h"
+#include "Color/PixelShape/PixelShapeManager.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
@@ -51,6 +54,7 @@ BluxEngine::~BluxEngine()
 	GlobalEffectManager::deleteInstance();
 	GlobalSequenceManager::deleteInstance();
 	StageLayoutManager::deleteInstance();
+	ColorSourceLibrary::deleteInstance();
 
 	InterfaceManager::deleteInstance();
 	DMXManager::deleteInstance();
@@ -64,6 +68,8 @@ BluxEngine::~BluxEngine()
 	AudioManager::deleteInstance();
 	BluxSettings::deleteInstance();
 
+	ColorSourceFactory::deleteInstance();
+
 	MIDIManager::deleteInstance();
 }
 
@@ -75,6 +81,7 @@ void BluxEngine::clearInternal()
 	GlobalEffectManager::getInstance()->clear();
 	GlobalSequenceManager::getInstance()->clear();
 	StageLayoutManager::getInstance()->clear();
+	ColorSourceLibrary::getInstance()->clear();
 
 	InterfaceManager::getInstance()->clear();
 }

@@ -17,13 +17,14 @@ SceneManagerUI::SceneManagerUI(const String& name) :
     
     nextSceneUI.reset(manager->loadNextSceneTrigger->createButtonUI());
     addAndMakeVisible(nextSceneUI.get());
-   
+    nextSceneUI->customLabel = "Next";
+
     prevSceneUI.reset(manager->loadPreviousSceneTrigger->createButtonUI());
     addAndMakeVisible(prevSceneUI.get());
+    prevSceneUI->customLabel = "Previous";
 
     autoPreviewUI.reset(manager->autoPreview->createButtonToggle());
     addAndMakeVisible(autoPreviewUI.get());
-
 
     nextSceneUI->addMouseListener(this, false);
     prevSceneUI->addMouseListener(this, false);
@@ -68,11 +69,11 @@ void SceneManagerUI::resizedInternalHeader(Rectangle<int>& r)
 {
     BaseManagerShapeShifterUI::resizedInternalHeader(r);
 
-    prevSceneUI->setBounds(r.removeFromLeft(100).reduced(1));
-    r.removeFromLeft(8);
-    nextSceneUI->setBounds(r.removeFromLeft(100).reduced(1));
-    r.removeFromLeft(8);
-    autoPreviewUI->setBounds(r.removeFromLeft(60).reduced(1));
+    Rectangle<int> pr = r.removeFromLeft(80);
+    prevSceneUI->setBounds(pr.removeFromTop(pr.getHeight()/2).reduced(1));
+    nextSceneUI->setBounds(pr.reduced(1));
+    r.removeFromLeft(2);
+    autoPreviewUI->setBounds(r.removeFromLeft(50).reduced(1));
 }
 
 void SceneManagerUI::newMessage(const SceneManager::SceneManagerEvent& e)
