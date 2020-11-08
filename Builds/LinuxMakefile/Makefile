@@ -69,8 +69,10 @@ endif
 
 OBJECTS_APP := \
   $(JUCE_OBJDIR)/ColorSourceFactory_48650a92.o \
+  $(JUCE_OBJDIR)/ColorSourceChooser_64c7ba9c.o \
   $(JUCE_OBJDIR)/ColorSourceGridUI_bd4ebc63.o \
   $(JUCE_OBJDIR)/ColorSourceLibraryGridUI_43526456.o \
+  $(JUCE_OBJDIR)/ColorSourceViz_5973d588.o \
   $(JUCE_OBJDIR)/NodeColorSource_49a4ec2c.o \
   $(JUCE_OBJDIR)/PatternColorSource_19adc80a.o \
   $(JUCE_OBJDIR)/PictureColorSource_5d85fae.o \
@@ -78,8 +80,9 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/VideoColorSource_a07c9b74.o \
   $(JUCE_OBJDIR)/ColorSource_e8804a22.o \
   $(JUCE_OBJDIR)/ColorSourceLibrary_1f6ebdc3.o \
+  $(JUCE_OBJDIR)/PixelShapeChooser_6e7d80e.o \
+  $(JUCE_OBJDIR)/PixelShapeEditor_858eac44.o \
   $(JUCE_OBJDIR)/PixelShape_d318d9c4.o \
-  $(JUCE_OBJDIR)/PixelShapeEditor_10ac9191.o \
   $(JUCE_OBJDIR)/PixelShapeManager_4513d5d3.o \
   $(JUCE_OBJDIR)/ChainViz_ce9d49f0.o \
   $(JUCE_OBJDIR)/ChainVizTarget_a474cee1.o \
@@ -191,6 +194,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/ComponentManager_46725c33.o \
   $(JUCE_OBJDIR)/ObjectComponent_b60fdce5.o \
   $(JUCE_OBJDIR)/ObjectChainVizUI_631b324d.o \
+  $(JUCE_OBJDIR)/ObjectEditor_ac9bb280.o \
   $(JUCE_OBJDIR)/ObjectGridUI_33e92eed.o \
   $(JUCE_OBJDIR)/ObjectManagerGridUI_ec4b46fe.o \
   $(JUCE_OBJDIR)/ObjectManagerUI_c91fab98.o \
@@ -258,6 +262,11 @@ $(JUCE_OBJDIR)/ColorSourceFactory_48650a92.o: ../../Source/Color/ColorSource/Col
 	@echo "Compiling ColorSourceFactory.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/ColorSourceChooser_64c7ba9c.o: ../../Source/Color/ColorSource/ui/ColorSourceChooser.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorSourceChooser.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/ColorSourceGridUI_bd4ebc63.o: ../../Source/Color/ColorSource/ui/ColorSourceGridUI.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ColorSourceGridUI.cpp"
@@ -266,6 +275,11 @@ $(JUCE_OBJDIR)/ColorSourceGridUI_bd4ebc63.o: ../../Source/Color/ColorSource/ui/C
 $(JUCE_OBJDIR)/ColorSourceLibraryGridUI_43526456.o: ../../Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ColorSourceLibraryGridUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ColorSourceViz_5973d588.o: ../../Source/Color/ColorSource/ui/ColorSourceViz.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorSourceViz.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/NodeColorSource_49a4ec2c.o: ../../Source/Color/ColorSource/sources/node/NodeColorSource.cpp
@@ -303,14 +317,19 @@ $(JUCE_OBJDIR)/ColorSourceLibrary_1f6ebdc3.o: ../../Source/Color/ColorSource/Col
 	@echo "Compiling ColorSourceLibrary.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/PixelShapeChooser_6e7d80e.o: ../../Source/Color/PixelShape/ui/PixelShapeChooser.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PixelShapeChooser.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/PixelShapeEditor_858eac44.o: ../../Source/Color/PixelShape/ui/PixelShapeEditor.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling PixelShapeEditor.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/PixelShape_d318d9c4.o: ../../Source/Color/PixelShape/PixelShape.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling PixelShape.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/PixelShapeEditor_10ac9191.o: ../../Source/Color/PixelShape/PixelShapeEditor.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling PixelShapeEditor.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/PixelShapeManager_4513d5d3.o: ../../Source/Color/PixelShape/PixelShapeManager.cpp
@@ -866,6 +885,11 @@ $(JUCE_OBJDIR)/ObjectComponent_b60fdce5.o: ../../Source/Object/Component/ObjectC
 $(JUCE_OBJDIR)/ObjectChainVizUI_631b324d.o: ../../Source/Object/ui/ObjectChainVizUI.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ObjectChainVizUI.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ObjectEditor_ac9bb280.o: ../../Source/Object/ui/ObjectEditor.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ObjectEditor.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ObjectGridUI_33e92eed.o: ../../Source/Object/ui/ObjectGridUI.cpp

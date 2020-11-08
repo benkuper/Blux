@@ -16,7 +16,7 @@ class IntensityComponent :
     public ObjectComponent
 {
 public:
-    IntensityComponent(var params);
+    IntensityComponent(Object* o, var params);
     ~IntensityComponent();
 
     Array<FloatParameter*> values;
@@ -24,5 +24,5 @@ public:
     void setupFromJSONDefinition(var data) override;
 
     String getTypeString() const override { return "Intensity"; }
-    static IntensityComponent* create(var params) { return new IntensityComponent(params); }
+    static IntensityComponent* create(Object * o, var params) { return new IntensityComponent(o, params); }
 };

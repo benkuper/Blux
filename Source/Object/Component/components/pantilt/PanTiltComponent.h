@@ -16,12 +16,12 @@ class PanTiltComponent :
     public ObjectComponent
 {
 public:
-    PanTiltComponent(var params);
+    PanTiltComponent(Object* o, var params);
     ~PanTiltComponent();
 
     FloatParameter* pan;
     FloatParameter* tilt;
 
     String getTypeString() const override { return "PanTilt"; }
-    static PanTiltComponent* create(var params) { return new PanTiltComponent(params); }
+    static PanTiltComponent* create(Object * o, var params) { return new PanTiltComponent(o, params); }
 };

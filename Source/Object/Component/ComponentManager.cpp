@@ -21,12 +21,11 @@
 #include "components/laser/LaserComponent.h"
 #include "components/script/ScriptComponent.h"
 
-juce_ImplementSingleton(ComponentFactory)
-
-ComponentManager::ComponentManager() :
-    BaseManager("Components")
+ComponentManager::ComponentManager(Object * o) :
+    BaseManager("Components"),
+    factory(o)
 {
-    managerFactory = ComponentFactory::getInstance();
+    managerFactory = &factory;
     selectItemWhenCreated = false;
 }
 
@@ -81,15 +80,15 @@ void ComponentManager::loadJSONDataInternal(var data)
 
 
 
-ComponentFactory::ComponentFactory()
+ComponentFactory::ComponentFactory(Object * o)
 {
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "Intensity", &IntensityComponent::create));
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "Color", &ColorComponent::create));
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "Strobe", &StrobeComponent::create));
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "PanTilt", &PanTiltComponent::create));
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "Gobo", &GoboComponent::create));
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "Servo", &ServoComponent::create));
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "Stepper", &StepperComponent::create));
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "Laser", &LaserComponent::create));
-   defs.add(Factory<ObjectComponent>::Definition::createDef("", "Script", &ScriptComponent::create));
+    defs.add(ComponentDefinition::createDef("", "Intensity", &IntensityComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Color", &ColorComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Strobe", &StrobeComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "PanTilt", &PanTiltComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Gobo", &GoboComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Servo", &ServoComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Stepper", &StepperComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Laser", &LaserComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Script", &ScriptComponent::create, o));
 }

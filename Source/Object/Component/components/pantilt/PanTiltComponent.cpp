@@ -10,8 +10,8 @@
 
 #include "PanTiltComponent.h"
 
-PanTiltComponent::PanTiltComponent(var params) :
-    ObjectComponent(getTypeString(), PANTILT, params)
+PanTiltComponent::PanTiltComponent(Object* o, var params) :
+    ObjectComponent(o, getTypeString(), PANTILT, params)
 {
     pan = addFloatParameter("Pan", "Pan", 0, 0, 1);
     tilt = addFloatParameter("Tilt", "Titlt", 0, 0, 1);

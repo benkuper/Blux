@@ -20,7 +20,7 @@ public:
 
     //NodeManager nodeManager;
 
-    virtual void fillColorsForObject(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
 
     String getTypeString() const override { return "Node"; }
     static NodeColorSource* create(var params) { return new NodeColorSource(params); }

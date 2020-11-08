@@ -16,9 +16,9 @@ class StrobeComponent :
     public ObjectComponent
 {
 public:
-    StrobeComponent(var params);
+    StrobeComponent(Object* o, var params);
     ~StrobeComponent();
 
     String getTypeString() const override { return "Strobe"; }
-    static StrobeComponent* create(var params) { return new StrobeComponent(params); }
+    static StrobeComponent* create(Object * o, var params) { return new StrobeComponent(o, params); }
 };

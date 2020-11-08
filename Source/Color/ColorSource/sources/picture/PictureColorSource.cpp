@@ -36,7 +36,7 @@ void PictureColorSource::onContainerParameterChangedInternal(Parameter *p)
 	}
 }
 
-void PictureColorSource::fillColorsForObjectTimeInternal(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+void PictureColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
 	if (picture.getWidth() == 0) return;
 

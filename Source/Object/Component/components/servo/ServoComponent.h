@@ -16,9 +16,9 @@ class ServoComponent :
     public ObjectComponent
 {
 public:
-    ServoComponent(var params);
+    ServoComponent(Object* o, var params);
     ~ServoComponent();
 
     String getTypeString() const override { return "Servo"; }
-    static ServoComponent* create(var params) { return new ServoComponent(params); }
+    static ServoComponent* create(Object * o, var params) { return new ServoComponent(o, params); }
 };

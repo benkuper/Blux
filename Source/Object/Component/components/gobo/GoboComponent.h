@@ -16,9 +16,9 @@ class GoboComponent :
     public ObjectComponent
 {
 public:
-    GoboComponent(var params);
+    GoboComponent(Object * o, var params);
     ~GoboComponent();
 
     String getTypeString() const override { return "Gobo"; }
-    static GoboComponent* create(var params) { return new GoboComponent(params); }
+    static GoboComponent* create(Object * o, var params) { return new GoboComponent(o, params); }
 };

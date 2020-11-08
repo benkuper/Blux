@@ -10,8 +10,8 @@
 
 #include "ScriptComponent.h"
 
-ScriptComponent::ScriptComponent(var params) :
-    ObjectComponent(getTypeString(), SCRIPT, params)
+ScriptComponent::ScriptComponent(Object* o, var params) :
+    ObjectComponent(o, getTypeString(), SCRIPT, params)
 {
 }
 

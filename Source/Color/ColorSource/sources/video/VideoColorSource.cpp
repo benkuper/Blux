@@ -25,7 +25,7 @@ PixelMapColorSource::~PixelMapColorSource()
 {
 }
 
-void PixelMapColorSource::fillColorsForObjectTimeInternal(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+void PixelMapColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     if (!sourceImage.isValid()) return;
 

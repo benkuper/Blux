@@ -150,33 +150,42 @@ void DMXInterface::dmxDataInChanged(int numChannels, uint8* values)
 }
 
 
-void DMXInterface::updateValuesFromComponent(Object* o, ObjectComponent* c)
+void DMXInterface::sendValuesForObject(Object* o)
 {
 	if (channelTestingMode->boolValue()) return;
 
-	Interface::updateValuesFromComponent(o, c);
+	Interface::sendValuesForObject(o);
+
 	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
 	
 	jassert(dmxParams != nullptr);
 
 	int startChannel = dmxParams->startChannel->intValue();
-	for(int i=0;i<c->computedParameters.size();i++)
-	{
-		Parameter* p = (Parameter*)c->computedParameters[i];
-		if (p->isComplex())
-		{
-			for (int j = 0; j < p->value.size(); j++)
-			{
-				sendDMXValue(startChannel + c->paramChannels[i]+ j, (float)p->value[j] * 255); //remap to 0-255 automatically
-			}
-		}
-		else
-		{
-			sendDMXValue(startChannel + c->paramChannels[i], p->floatValue() * 255); //remap to 0-255 automatically
 
+	for (auto& c : o->componentManager.items)
+	{
+		if (!c->enabled->boolValue()) continue;
+
+		for (int i = 0; i < c->computedParameters.size(); i++)
+		{
+			Parameter* p = (Parameter*)c->computedParameters[i];
+			if (p->isComplex())
+			{
+				for (int j = 0; j < p->value.size(); j++)
+				{
+					sendDMXValue(startChannel + c->paramChannels[i] + j, (float)p->value[j] * 255); //remap to 0-255 automatically
+				}
+			}
+			else
+			{
+				sendDMXValue(startChannel + c->paramChannels[i], p->floatValue() * 255); //remap to 0-255 automatically
+
+			}
 		}
 	}
 }
+
+
 
 InterfaceUI* DMXInterface::createUI()
 {

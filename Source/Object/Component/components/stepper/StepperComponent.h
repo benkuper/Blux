@@ -16,9 +16,9 @@ class StepperComponent :
     public ObjectComponent
 {
 public:
-    StepperComponent(var params);
+    StepperComponent(Object* o, var params);
     ~StepperComponent();
 
     String getTypeString() const override { return "Stepper"; }
-    static StepperComponent* create(var params) { return new StepperComponent(params); }
+    static StepperComponent* create(Object * o, var params) { return new StepperComponent(o, params); }
 };

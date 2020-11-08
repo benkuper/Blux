@@ -9,45 +9,119 @@
 */
 #include "ColorSource.h"
 #include "Object/Component/components/color/ColorComponent.h"
+#include "Object/Object.h"
 
 ColorSource::ColorSource(const String& name, var params) :
-    BaseItem(name, false)
+	BaseItem(name, false),
+	sourceTemplate(nullptr)
 {
 	itemDataType = "ColorSource";
 }
 
 ColorSource::~ColorSource()
 {
+	linkToTemplate(nullptr);
 }
 
-Array<Colour> ColorSource::getColorsForObject(Object* o, ColorComponent* c, int id, float time)
+void ColorSource::linkToTemplate(ColorSource* st)
 {
-    Array<Colour> result;
-    result.resize(c->resolution->intValue());
-    fillColorsForObject(result, o, c, id, time);
-    return result;
+	if (sourceTemplate != nullptr)
+	{
+		sourceTemplate->removeInspectableListener(this);
+		sourceTemplate->removeControllableContainerListener(this);
+	}
+
+	sourceTemplate = st;
+	sourceTemplateRef = st;
+
+	if (sourceTemplate != nullptr)
+	{
+		jassert(sourceTemplate->getTypeString() == getTypeString());
+
+		sourceTemplate->addInspectableListener(this);
+		sourceTemplate->addControllableContainerListener(this);
+
+		for (auto& c : sourceTemplate->controllables)
+		{
+			if (Parameter* p = dynamic_cast<Parameter*>(c))
+			{
+				if (Parameter* sp = getParameterByName(p->shortName))
+				{
+					if (!sp->isOverriden)
+					{
+						sp->defaultValue = p->value;
+						sp->resetValue();
+					}
+				}
+			}
+		}
+	}
 }
 
-void ColorSource::fillColorsForObject(Array<Colour>& colors, Object* o, ColorComponent* c, int id, float time)
+void ColorSource::inspectableDestroyed(Inspectable* i)
 {
-    colors.fill(Colours::black);
+	if (i == sourceTemplateRef) linkToTemplate(nullptr);
 }
 
-TimedColorSource::TimedColorSource(const String& name, var params)
+void ColorSource::fillColorsForObject(Array<Colour, CriticalSection> & colors, Object* o, ColorComponent* c, int id, float time)
 {
-	speed = addFloatParameter("Speed", "The speed at which play this", 1);
+	colors.fill(Colours::black);
+}
+
+void ColorSource::controllableFeedbackUpdate(ControllableContainer* cc, Controllable* c)
+{
+	if (cc == sourceTemplate)
+	{
+		if (Parameter* sp = dynamic_cast<Parameter*>(getControllableForAddress(c->getControlAddress(cc))))
+		{
+			if (!sp->isOverriden)
+			{
+				sp->defaultValue = ((Parameter*)c)->value;
+				sp->resetValue();
+			}
+		}
+	}
+	else
+	{
+		BaseItem::controllableFeedbackUpdate(cc, c);
+	}
+}
+
+
+
+
+TimedColorSource::TimedColorSource(const String& name, var params) :
+	ColorSource(name, params),
+	curTime(0)
+{
+	speed = addFloatParameter("Speed", "The speed at which play this", 0);
 	timeOffset = addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
 	timeOffset->defaultUI = FloatParameter::TIME;
 
 	offsetByID = addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
+
+	timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
+	curTime = 0;
+	startTimer(50);
 }
 
 TimedColorSource::~TimedColorSource()
 {
 }
 
-void TimedColorSource::fillColorsForObject(Array<Colour>& colors, Object* o, ColorComponent* c, int id, float time)
+void TimedColorSource::linkToTemplate(ColorSource* st)
 {
+	ColorSource::linkToTemplate(st);
+
+	if (sourceTemplate == nullptr) startTimer(50);
+	else stopTimer();
+
+}
+
+void TimedColorSource::fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
+{
+	if (id == -1) id = o->globalID->intValue();
+
 	float targetTime = getCurrentTime(time) - offsetByID->floatValue() * id + timeOffset->floatValue();
 	fillColorsForObjectTimeInternal(colors, o, c, id, targetTime);
 }
@@ -55,12 +129,13 @@ void TimedColorSource::fillColorsForObject(Array<Colour>& colors, Object* o, Col
 
 float TimedColorSource::getCurrentTime(float timeOverride)
 {
+	if (sourceTemplate != nullptr && !sourceTemplateRef.wasObjectDeleted()) return ((TimedColorSource*)sourceTemplate)->getCurrentTime();
+
 	return timeOverride >= 0 ? timeOverride : curTime;
 }
 
 void TimedColorSource::timerCallback()
 {
-	if (!enabled->boolValue()) return;
 	addTime();
 }
 
@@ -69,22 +144,4 @@ void TimedColorSource::addTime()
 	double newTime = Time::getMillisecondCounter() / 1000.0;
 	curTime += (newTime - timeAtLastUpdate) * speed->floatValue();
 	timeAtLastUpdate = newTime;
-}
-
-void TimedColorSource::onContainerParameterChangedInternal(Parameter* p)
-{
-	ColorSource::onContainerParameterChangedInternal(p);
-	if (p == enabled)
-	{
-		if (enabled->boolValue())
-		{
-			timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
-			curTime = 0;
-			startTimer(20);
-		}
-		else
-		{
-			stopTimer();
-		}
-	}
 }

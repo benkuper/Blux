@@ -10,14 +10,18 @@
 
 #include "ObjectComponentEditor.h"
 
-ObjectComponentEditor::ObjectComponentEditor(ObjectComponent* component, bool isRoot) :
+ObjectComponentEditor::ObjectComponentEditor(ObjectComponent* component, bool isRoot, bool showComputedParams) :
     BaseItemEditor(component, isRoot),
-    component(component)
+    component(component),
+    showComputedParams(showComputedParams)
 {
-    for (int i = 0; i < component->computedParameters.size(); i++)
+    if (showComputedParams)
     {
-        computedUI.add(component->computedParameters[i]->createDefaultUI());
-        addAndMakeVisible(computedUI[i]);
+        for (int i = 0; i < component->computedParameters.size(); i++)
+        {
+            computedUI.add(component->computedParameters[i]->createDefaultUI());
+            addAndMakeVisible(computedUI[i]);
+        }
     }
 }
 
@@ -27,9 +31,11 @@ ObjectComponentEditor::~ObjectComponentEditor()
 
 void ObjectComponentEditor::resizedInternalHeaderItemInternal(Rectangle<int>& r)
 {
-    for (int i = computedUI.size() - 1; i >= 0; i--)
+    if (showComputedParams)
     {
-        computedUI[i]->setBounds(r.removeFromRight(100).reduced(2));
+        for (int i = computedUI.size() - 1; i >= 0; i--)
+        {
+            computedUI[i]->setBounds(r.removeFromRight(100).reduced(2));
+        }
     }
-
 }

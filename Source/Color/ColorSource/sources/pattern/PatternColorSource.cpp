@@ -20,7 +20,7 @@ SolidColorSource::~SolidColorSource()
 {
 }
 
-void SolidColorSource::fillColorsForObjectTimeInternal(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+void SolidColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     Colour c = sourceColor->getColor().withRotatedHue(time);
     colors.fill(c);
@@ -42,7 +42,7 @@ RainbowColorSource::~RainbowColorSource()
 {
 }
 
-void RainbowColorSource::fillColorsForObjectTimeInternal(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+void RainbowColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     int resolution = colors.size();
     for (int i = 0; i < resolution; i++)
@@ -66,7 +66,7 @@ StrobeColorSource::~StrobeColorSource()
 {
 }
 
-void StrobeColorSource::fillColorsForObjectTimeInternal(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+void StrobeColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     Colour c = fmodf(curTime, 1) < onOffBalance->floatValue() ? colorON->getColor() : colorOFF->getColor();
     colors.fill(c);
@@ -89,7 +89,7 @@ NoiseColorSource::~NoiseColorSource()
 {
 }
 
-void NoiseColorSource::fillColorsForObjectTimeInternal(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+void NoiseColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     Colour bColor = bgColor->getColor();
     Colour fColor = frontColor->getColor();
@@ -123,7 +123,7 @@ PointColorSource::~PointColorSource()
 {
 }
 
-void PointColorSource::fillColorsForObject(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+void PointColorSource::fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     Colour pColor = pointColor->getColor();
     Colour bColor = bgColor->getColor();
@@ -166,7 +166,7 @@ MultiPointColorSource::~MultiPointColorSource()
 {
 }
 
-void MultiPointColorSource::fillColorsForObject(Array<Colour>& colors, Object* o, ColorComponent* comp, int id, float time)
+void MultiPointColorSource::fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     const int resolution = colors.size();
 

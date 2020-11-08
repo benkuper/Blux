@@ -12,6 +12,8 @@
 
 #include "JuceHeader.h"
 
+class Object;
+
 class ObjectComponent :
     public BaseItem
 {
@@ -19,9 +21,11 @@ public:
     enum ComponentType { INTENSITY, COLOR, GOBO, LASER, PANTILT, SERVO, STEPPER, STROBE, SCRIPT, CUSTOM, TYPES_MAX };
     static const String typeNames[TYPES_MAX]; 
 
-    ObjectComponent(String name = "Component", ComponentType componentType = CUSTOM, var params = var());
+    ObjectComponent(Object* o = nullptr, String name = "Component", ComponentType componentType = CUSTOM, var params = var());
     virtual ~ObjectComponent();
     
+    Object* object;
+
     ComponentType componentType;
     
     BoolParameter* excludeFromScenes;
@@ -39,9 +43,10 @@ public:
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 
+    virtual void update() {}
     virtual var getOriginalComputedValues();
 
-    virtual void setupFromJSONDefinition(var data);
+    virtual void setupFromJSONDefinition(var data) {}
 
     var getSceneData();
     void updateSceneData(var& sceneData);

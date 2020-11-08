@@ -60,7 +60,6 @@ BluxEngine::~BluxEngine()
 	DMXManager::deleteInstance();
 	SerialManager::deleteInstance();
 
-	ComponentFactory::deleteInstance();
 	ActionFactory::deleteInstance();
 	EffectFactory::deleteInstance();
 	EffectBlockFactory::deleteInstance();
@@ -96,6 +95,7 @@ var BluxEngine::getJSONData()
 	var data = Engine::getJSONData();
 
 	//save here
+	data.getDynamicObject()->setProperty(ColorSourceLibrary::getInstance()->shortName, ColorSourceLibrary::getInstance()->getJSONData());
 	data.getDynamicObject()->setProperty(ObjectManager::getInstance()->shortName, ObjectManager::getInstance()->getJSONData());
 	data.getDynamicObject()->setProperty(InterfaceManager::getInstance()->shortName, InterfaceManager::getInstance()->getJSONData());
 	data.getDynamicObject()->setProperty(GroupManager::getInstance()->shortName, GroupManager::getInstance()->getJSONData());
@@ -115,6 +115,9 @@ void BluxEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 
 	InterfaceManager::getInstance()->loadJSONData(data.getProperty(InterfaceManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.1f);
+	
+	ColorSourceLibrary::getInstance()->loadJSONData(data.getProperty(ColorSourceLibrary::getInstance()->shortName, var()));
+	bluxTask->setProgress(.15f);
 
 	ObjectManager::getInstance()->loadJSONData(data.getProperty(ObjectManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.2f);

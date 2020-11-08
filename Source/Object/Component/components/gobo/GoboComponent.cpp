@@ -10,8 +10,8 @@
 
 #include "GoboComponent.h"
 
-GoboComponent::GoboComponent(var params) :
-    ObjectComponent(getTypeString(), GOBO, params)
+GoboComponent::GoboComponent(Object* o, var params) :
+    ObjectComponent(o, getTypeString(), GOBO, params)
 {
 }
 

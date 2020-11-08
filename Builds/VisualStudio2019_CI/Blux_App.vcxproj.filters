@@ -35,6 +35,9 @@
     <Filter Include="Blux\Source\Color\ColorSource">
       <UniqueIdentifier>{09491806-E463-789B-1EE1-50D03C29FD05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Color\PixelShape\ui">
+      <UniqueIdentifier>{5CFA8A88-140E-EA6C-FF91-A99D5BFB286E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Color\PixelShape">
       <UniqueIdentifier>{672C70A5-E8AD-560C-6BFF-597EF158D70B}</UniqueIdentifier>
     </Filter>
@@ -1078,10 +1081,16 @@
     <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp">
       <Filter>Blux\Source\Color\ColorSource</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.cpp">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp">
       <Filter>Blux\Source\Color\ColorSource\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceViz.cpp">
       <Filter>Blux\Source\Color\ColorSource\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp">
@@ -1105,10 +1114,13 @@
     <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.cpp">
       <Filter>Blux\Source\Color\ColorSource</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp">
-      <Filter>Blux\Source\Color\PixelShape</Filter>
+    <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeChooser.cpp">
+      <Filter>Blux\Source\Color\PixelShape\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShapeEditor.cpp">
+    <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeEditor.cpp">
+      <Filter>Blux\Source\Color\PixelShape\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp">
       <Filter>Blux\Source\Color\PixelShape</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Color\PixelShape\PixelShapeManager.cpp">
@@ -1442,6 +1454,9 @@
       <Filter>Blux\Source\Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectEditor.cpp">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp">
@@ -4350,10 +4365,16 @@
     <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceFactory.h">
       <Filter>Blux\Source\Color\ColorSource</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.h">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.h">
       <Filter>Blux\Source\Color\ColorSource\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.h">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceViz.h">
       <Filter>Blux\Source\Color\ColorSource\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h">
@@ -4380,10 +4401,13 @@
     <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.h">
       <Filter>Blux\Source\Color\ColorSource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h">
-      <Filter>Blux\Source\Color\PixelShape</Filter>
+    <ClInclude Include="..\..\Source\Color\PixelShape\ui\PixelShapeChooser.h">
+      <Filter>Blux\Source\Color\PixelShape\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShapeEditor.h">
+    <ClInclude Include="..\..\Source\Color\PixelShape\ui\PixelShapeEditor.h">
+      <Filter>Blux\Source\Color\PixelShape\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h">
       <Filter>Blux\Source\Color\PixelShape</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Color\PixelShape\PixelShapeManager.h">
@@ -4702,6 +4726,9 @@
       <Filter>Blux\Source\Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\ui\ObjectChainVizUI.h">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectEditor.h">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h">

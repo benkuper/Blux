@@ -16,12 +16,13 @@ class ObjectComponentEditor :
     public BaseItemEditor
 {
 public:
-    ObjectComponentEditor(ObjectComponent * component, bool isRoot);
-    ~ObjectComponentEditor();
+    ObjectComponentEditor(ObjectComponent * component, bool isRoot, bool showComputedParams = true);
+    virtual ~ObjectComponentEditor();
 
     ObjectComponent* component;
 
+    bool showComputedParams;
     OwnedArray<ControllableUI> computedUI;
 
-    void resizedInternalHeaderItemInternal(Rectangle<int>& r) override;
+    virtual void resizedInternalHeaderItemInternal(Rectangle<int>& r) override;
 };

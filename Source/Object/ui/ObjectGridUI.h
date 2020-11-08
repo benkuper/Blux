@@ -11,6 +11,7 @@
 #pragma once
  
 #include "../Object.h"
+#include "Color/ColorSource/ui/ColorSourceViz.h"
 
 class ObjectGridUI :
 	public BaseItemMinimalUI<Object>,
@@ -34,11 +35,12 @@ public:
 	std::unique_ptr<IntParameterLabelUI> globalIDUI;
 	std::unique_ptr<FloatSliderUI> intensityUI;
 	std::unique_ptr<FloatSliderUI> computedIntensityUI;
-	std::unique_ptr<ColorParameterUI> computedColorUI;
+	std::unique_ptr<ColorSourceViz> colorViz;
 
 	bool flashMode;
 
 	void paint(Graphics& g) override;
+	void paintOverChildren(Graphics& g) override;
 	void resized() override;
 
 	virtual void updateThumbnail();

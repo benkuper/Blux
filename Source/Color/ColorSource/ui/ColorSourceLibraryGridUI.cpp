@@ -18,6 +18,8 @@ ColorSourceLibraryGridUI::ColorSourceLibraryGridUI(const String& name) :
 	thumbSizeUI->useCustomBGColor = true;
 	thumbSizeUI->customBGColor = BG_COLOR.darker(.2f);
 	manager->addAsyncCoalescedContainerListener(this);
+
+	addExistingItems();
 }
 
 ColorSourceLibraryGridUI::~ColorSourceLibraryGridUI()

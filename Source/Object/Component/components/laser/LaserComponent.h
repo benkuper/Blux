@@ -16,9 +16,9 @@ class LaserComponent :
     public ObjectComponent
 {
 public:
-    LaserComponent(var params);
+    LaserComponent(Object* o, var params);
     ~LaserComponent();
 
     String getTypeString() const override { return "Laser"; }
-    static LaserComponent* create(var params) { return new LaserComponent(params); }
+    static LaserComponent* create(Object * o, var params) { return new LaserComponent(o, params); }
 };

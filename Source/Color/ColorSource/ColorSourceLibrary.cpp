@@ -15,7 +15,7 @@ juce_ImplementSingleton(ColorSourceLibrary)
 
 
 ColorSourceLibrary::ColorSourceLibrary() :
-    BaseManager("Color Presets")
+    BaseManager("Color Templates")
 {
     gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 64, 32, 256);
     managerFactory = ColorSourceFactory::getInstance();

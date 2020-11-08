@@ -16,9 +16,9 @@ class ScriptComponent :
     public ObjectComponent
 {
 public:
-    ScriptComponent(var params);
+    ScriptComponent(Object* o, var params);
     ~ScriptComponent();
 
     String getTypeString() const override { return "Script"; }
-    static ScriptComponent* create(var params) { return new ScriptComponent(params); }
+    static ScriptComponent* create(Object * o, var params) { return new ScriptComponent(o, params); }
 };

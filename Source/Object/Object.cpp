@@ -18,11 +18,13 @@
 #include "Sequence/GlobalSequenceManager.h"
 #include "ObjectManager.h"
 #include "ui/ObjectChainVizUI.h"
+#include "ui/ObjectEditor.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
 	objectType(params.getProperty("type", "Object").toString()),
 	objectData(params),
+	componentManager(this),
 	previousID(-1),
 	slideManipParameter(nullptr)
 {
@@ -104,7 +106,7 @@ Object::Object(var params) :
 		for (auto& cp : cProps) componentManager.addComponentFromDefinition(cp.name, cp.value, false);
 	}
 
-	if (IntensityComponent* ic = getComponent<IntensityComponent>())	slideManipParameter = ic->values[0];
+	if (IntensityComponent* ic = getComponent<IntensityComponent>()) slideManipParameter = ic->values[0];
 
 	componentManager.userCanAddItemsManually = params.getProperty("isCustom", false);
 	addChildControllableContainer(&componentManager);
@@ -189,7 +191,7 @@ void Object::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Con
 
 void Object::checkAndComputeComponentValuesIfNeeded()
 {
-	if (!enabled->boolValue()) return;
+	if (!enabled->boolValue() || Engine::mainEngine->isLoadingFile || Engine::mainEngine->isClearing) return;
 
 	for (auto& c : componentManager.items)
 	{
@@ -198,11 +200,18 @@ void Object::checkAndComputeComponentValuesIfNeeded()
 		 //to do here, implement a cleaner way to know if an object should recompute (effects may not need constant recompute, and are not targetting all components.)
 		computeComponentValues(c); //right now, always compute
 	}
+
+	if (Interface* i = dynamic_cast<Interface*>(targetInterface->targetContainer.get()))
+	{
+		i->sendValuesForObject(this);
+	}
 }
 
 void Object::computeComponentValues(ObjectComponent* c)
 {
-	if (!enabled->boolValue() || !c->enabled->boolValue() || Engine::mainEngine->isClearing) return;
+	if (!c->enabled->boolValue()) return;
+
+	c->update();
 
 	effectIntensityOutMap.clear();
 
@@ -245,11 +254,6 @@ void Object::computeComponentValues(ObjectComponent* c)
 	}
 
 	c->isDirty = false;
-
-	if (Interface* i = dynamic_cast<Interface*>(targetInterface->targetContainer.get()))
-	{
-		i->updateValuesFromComponent(this, c);
-	}
 }
 
 var Object::getSceneData()
@@ -287,4 +291,9 @@ ChainVizComponent* Object::createVizComponent(Object * o, ChainVizTarget::ChainV
 {
 	jassert(o == this);
 	return new ObjectChainVizUI(this,  type);
+}
+
+InspectableEditor* Object::getEditor(bool isRoot)
+{
+	return new ObjectEditor(this, isRoot);
 }

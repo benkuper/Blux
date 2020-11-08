@@ -84,6 +84,7 @@ public:
     void addObjectListener(ObjectListener* newListener) { objectListeners.add(newListener); }
     void removeObjectListener(ObjectListener* listener) { objectListeners.remove(listener); }
 
+    InspectableEditor* getEditor(bool isRoot) override;
 
     String getTypeString() const override { return objectType; }
     static Object* create(var params) { return new Object(params); }

@@ -26,7 +26,7 @@ public:
     BoolParameter* logOutgoingData;
 
 
-    virtual void updateValuesFromComponent(Object* o, ObjectComponent* c) {}
+    virtual void sendValuesForObject(Object* o) {}
 
 
     virtual ControllableContainer* getInterfaceParams() { return new ControllableContainer("Interface parameters"); }

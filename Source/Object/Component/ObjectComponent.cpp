@@ -11,11 +11,13 @@
 #include "ObjectComponent.h"
 #include "ui/ObjectComponentEditor.h"
 #include "Common/Helpers/SceneHelpers.h" 
+#include "../Object.h"
 
 const String ObjectComponent::typeNames[TYPES_MAX]{ "Intensity", "Color", "Gobo", "Laser", "PanTilt", "Servo", "Stepper", "Strobe", "Script", "Custom" };
 
-ObjectComponent::ObjectComponent(String name, ComponentType componentType, var params) :
+ObjectComponent::ObjectComponent(Object* o, String name, ComponentType componentType, var params) :
 	BaseItem(name),
+	object(o),
 	componentType(componentType),
 	isDirty(true)
 {
@@ -57,11 +59,6 @@ var ObjectComponent::getOriginalComputedValues()
 		else values.append(var());
 	}
 	return values;
-}
-
-void ObjectComponent::setupFromJSONDefinition(var data)
-{
-
 }
 
 var ObjectComponent::getSceneData()

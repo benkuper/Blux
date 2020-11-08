@@ -10,8 +10,8 @@
 
 #include "IntensityComponent.h"
 
-IntensityComponent::IntensityComponent(var params) :
-    ObjectComponent(getTypeString(), INTENSITY, params)
+IntensityComponent::IntensityComponent(Object* o, var params) :
+    ObjectComponent(o, getTypeString(), INTENSITY, params)
 {
 
 }

@@ -300,12 +300,19 @@ void OSCInterface::sendOSC(const OSCMessage& msg, String ip, int port)
 	}
 }
 
-void OSCInterface::updateValuesFromComponent(Object* o, ObjectComponent* c)
+void OSCInterface::sendValuesForObject(Object* o)
 {
-	for (auto& p : c->computedParameters)
+	if (!enabled->boolValue()) return;
+
+	for (auto& c : o->componentManager.items)
 	{
-		OSCMessage m = OSCHelpers::getOSCMessageForParameter(p);
-		sendOSC(m);
+		if (!c->enabled->boolValue()) continue;
+
+		for (auto& p : c->computedParameters)
+		{
+			OSCMessage m = OSCHelpers::getOSCMessageForParameter(p);
+			sendOSC(m);
+		}
 	}
 }
 

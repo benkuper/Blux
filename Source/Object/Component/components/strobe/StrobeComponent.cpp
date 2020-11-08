@@ -10,8 +10,8 @@
 
 #include "StrobeComponent.h"
 
-StrobeComponent::StrobeComponent(var params) :
-    ObjectComponent(getTypeString(), STROBE, params)
+StrobeComponent::StrobeComponent(Object* o, var params) :
+    ObjectComponent(o, getTypeString(), STROBE, params)
 {
 }
 

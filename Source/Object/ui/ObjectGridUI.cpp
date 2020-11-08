@@ -28,6 +28,14 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	bringToFrontOnSelect = false;
 	autoHideWhenDragging = false;
 
+
+	if (ColorComponent* colorComp = item->getComponent<ColorComponent>())
+	{
+		colorViz.reset(new ColorSourceViz(colorComp));
+		addAndMakeVisible(colorViz.get());
+	}
+
+
 	if (IntensityComponent* ic = item->getComponent<IntensityComponent>())
 	{
 		iconIntensityRef = (FloatParameter*)ic->computedParameters[0];
@@ -45,12 +53,6 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 		intensityUI->showLabel = false;
 		intensityUI->showValue = false;
 		addAndMakeVisible(intensityUI.get());
-	}
-
-	if (ColorComponent* cc = item->getComponent<ColorComponent>())
-	{
-		computedColorUI.reset((ColorParameterUI *)((ColorParameter*)cc->computedParameters[0]->createDefaultUI()));
-		addAndMakeVisible(computedColorUI.get());
 	}
 
 	globalIDUI.reset(item->globalID->createLabelUI());
@@ -92,24 +94,32 @@ void ObjectGridUI::paint(Graphics& g)
 	}
 
 	
-	float overMultiplier = isMouseOver() ? .4f : 1.f;
-
-	float offMult = 1;
-	if (iconIntensityRef != nullptr && objectONImage.isValid())
+	if (colorViz == nullptr)
 	{
-		offMult = 1 - iconIntensityRef->floatValue();
-	}
-	g.setColour(Colours::white.withAlpha(overMultiplier));
-	g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
 
-	if (iconIntensityRef != nullptr && objectONImage.isValid())
-	{
-		g.setColour(Colours::white.withAlpha((1-offMult) * overMultiplier));
-		g.drawImage(objectONImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
-	}
+		float offMult = 1;
+		if (iconIntensityRef != nullptr && objectONImage.isValid())
+		{
+			offMult = 1 - iconIntensityRef->floatValue();
+		}
 
+		g.setColour(Colours::white);
+		g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
+
+		if (iconIntensityRef != nullptr && objectONImage.isValid())
+		{
+			g.setColour(Colours::white.withAlpha((1 - offMult)));
+			g.drawImage(objectONImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
+		}
+	}
+}
+
+void ObjectGridUI::paintOverChildren(Graphics& g)
+{
 	if (!objectImage.isValid() || isMouseOver())
 	{
+		g.setColour(bgColor.darker().withAlpha(.3f));
+		g.fillRoundedRectangle(getLocalBounds().toFloat(), 2);
 		g.setColour(Colours::white);
 		g.drawFittedText(item->niceName, getLocalBounds().reduced(4), Justification::centred, 3);
 	}
@@ -122,12 +132,13 @@ void ObjectGridUI::resized()
 	globalIDUI->setVisible(r.getWidth() >= 90);
 	if(globalIDUI->isVisible()) globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
 
-	if (computedColorUI != nullptr)
-	{
-		Rectangle<int> cr = getLocalBounds().removeFromRight(30).removeFromTop(30).reduced(4);
-		computedColorUI->setBounds(cr);
-	}
 	
+	if (colorViz != nullptr)
+	{
+		colorViz->setBounds(r.reduced(6));
+	}
+
+
 	if (computedIntensityUI != nullptr)
 	{
 		computedIntensityUI->setBounds(r.removeFromBottom(10).reduced(2));

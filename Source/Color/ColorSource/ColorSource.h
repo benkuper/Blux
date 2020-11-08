@@ -16,7 +16,8 @@ class Object;
 class ColorComponent;
 
 class ColorSource :
-    public BaseItem
+    public BaseItem,
+    public Inspectable::InspectableListener
 {
 public:
     ColorSource(const String &name = "ColorSource", var params = var());
@@ -25,8 +26,17 @@ public:
     String sourceType;
     File imgPath;
 
-    Array<Colour> getColorsForObject(Object* o, ColorComponent * c, int id = -1, float time = -1);
-    virtual void fillColorsForObject(Array<Colour>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1);
+    ColorSource* sourceTemplate;
+    WeakReference<Inspectable> sourceTemplateRef;
+
+    virtual void linkToTemplate(ColorSource* st);
+
+
+    virtual void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1);
+
+    virtual void controllableFeedbackUpdate(ControllableContainer * cc, Controllable *c) override;
+
+    virtual void inspectableDestroyed(Inspectable * i) override;
 };
 
 class TimedColorSource :
@@ -45,13 +55,14 @@ public:
     double timeAtLastUpdate;
     double curTime;
 
-    virtual void fillColorsForObject(Array<Colour>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1) override;
-    virtual void fillColorsForObjectTimeInternal(Array<Colour>& colors, Object* o, ColorComponent* c, int id, float time) { }
+    void linkToTemplate(ColorSource* st) override;
+
+    virtual void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time) { }
 
     virtual float getCurrentTime(float timeOverride = -1);
 
     virtual void timerCallback() override;
     virtual void addTime();
 
-    virtual void onContainerParameterChangedInternal(Parameter* p) override;
 };

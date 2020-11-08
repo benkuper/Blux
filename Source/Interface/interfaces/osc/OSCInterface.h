@@ -87,7 +87,7 @@ public:
 
 
 	//Interface
-	virtual void updateValuesFromComponent(Object* o, ObjectComponent* c) override;
+	virtual void sendValuesForObject(Object* o) override;
 
 
 	//ZEROCONF

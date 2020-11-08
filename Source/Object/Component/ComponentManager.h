@@ -11,22 +11,53 @@
 #pragma once
 
 #include "ObjectComponent.h"
+class Object;
 
 class ComponentFactory :
     public Factory<ObjectComponent>
 {
 public:
-    juce_DeclareSingleton(ComponentFactory, true);
-    ComponentFactory();
+    ComponentFactory(Object * o);
     ~ComponentFactory() {}
+
+
+    typedef std::function<ObjectComponent* (Object*, var)> CreateCompFunc;
+
+    class ComponentDefinition :
+        public FactoryParametricDefinition<ObjectComponent, CreateCompFunc>
+    {
+    public:
+        ComponentDefinition(String menuPath, String type, Object* o, CreateCompFunc func, var params = new DynamicObject()) :
+            FactoryParametricDefinition(menuPath, type, func, params),
+            object(o) 
+        {
+        }
+
+        virtual ~ComponentDefinition() {}
+
+        Object* object;
+
+        virtual ObjectComponent * create() override {
+            return this->createFunc(object, this->params);
+        }
+
+        static ComponentDefinition* createDef(StringRef menu, StringRef type, CreateCompFunc createFunc, Object * o)
+        {
+            ComponentDefinition* d = new ComponentDefinition(menu, type, o, createFunc);
+            return d;
+        }
+    };
 };
 
 class ComponentManager :
     public BaseManager<ObjectComponent>
 {
 public:
-    ComponentManager();
+    ComponentManager(Object * o);
     ~ComponentManager();
+
+
+    ComponentFactory factory;
 
     void addComponentFromDefinition(StringRef type, var definition, bool canBeRemoved = false);
 
