@@ -19,6 +19,7 @@ public:
     ~ComponentSelector();
 
     HashMap<ObjectComponent::ComponentType, bool> selectedComponents;
+    Array<ObjectComponent::ComponentType> allowedComponents;
 
     var getJSONData();
     void loadJSONData(var data);

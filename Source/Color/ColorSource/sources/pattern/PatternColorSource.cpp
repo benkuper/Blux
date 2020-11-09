@@ -161,7 +161,6 @@ MultiPointColorSource::MultiPointColorSource(var params) :
     pointColor = addColorParameter("Color", "The color of the point", Colours::white);
     bgColor = addColorParameter("Background Color", "The color of the background", Colours::black);
     gap = addFloatParameter("Gap", "The gap between lines per prop", .25f, 0, 1);
-    size = addFloatParameter("Size", "Size of the point, relative to the gap", .5f, 0, 1);
     fade = addFloatParameter("Fade", "The fading of the point", 1, 0, 1);
 }
 
@@ -194,5 +193,64 @@ void MultiPointColorSource::fillColorsForObjectTimeInternal(Array<Colour, Critic
 
         Colour c = bColor.interpolatedWith(pColor, relFadedVal);
         colors.set(i, c.withMultipliedBrightness(brightness->floatValue()));
+    }
+}
+
+GradientColorSource::GradientColorSource(var params) :
+    TimedColorSource(getTypeString(), params)
+{
+    brightness = addFloatParameter("Brightness", "", 1, 0, 1);
+    density = addFloatParameter("Density", "The cycle density of the rainbow", 1);
+
+    gradient.reset(new GradientColorManager(1, true));
+    gradient->allowKeysOutside = false;
+    addChildControllableContainer(gradient.get());
+    gradientTarget = gradient.get();
+}
+
+GradientColorSource::~GradientColorSource()
+{
+
+}
+
+void GradientColorSource::linkToTemplate(ColorSource* sourceTemplate)
+{
+    TimedColorSource::linkToTemplate(sourceTemplate);
+    if (sourceTemplate != nullptr)
+    {
+        gradient->setCanBeDisabled(true);
+        gradient->hideEditorHeader = false;
+        gradient->editorCanBeCollapsed = true;
+        gradient->editorIsCollapsed = true;
+        gradient->enabled->setValue(false);
+        gradientTarget = ((GradientColorSource*)sourceTemplate)->gradient.get();
+        gradient->loadJSONData(gradientTarget->getJSONData());
+    }
+    else
+    {
+        gradient->setCanBeDisabled(false);
+        gradientTarget = gradient.get();
+    }
+}
+
+void GradientColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
+{
+    const int resolution = colors.size();
+
+    for (int i = 0; i < resolution; i++)
+    {
+        float p = fmodf(time + i * density->floatValue() / resolution, 1);
+        if (p < 0) p++;
+        colors.set(i, gradientTarget->getColorForPosition(p).withMultipliedBrightness(brightness->floatValue()));
+    }
+}
+
+void GradientColorSource::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
+{
+    TimedColorSource::onControllableFeedbackUpdateInternal(cc, c);
+
+    if (gradient != nullptr && c == gradient->enabled)
+    {
+        gradientTarget = gradient->enabled->boolValue()?gradient.get():((GradientColorSource*)sourceTemplate)->gradient.get();
     }
 }

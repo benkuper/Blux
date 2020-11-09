@@ -24,10 +24,12 @@ public:
 
     IntParameter* resolution;
 
-    Array<Colour, CriticalSection> colors;
-    std::unique_ptr<ColorSource> prevColorSource; //for transitionning
+    Array<Colour, CriticalSection> sourceColors;
+    Array<Colour, CriticalSection> outColors;
 
+    std::unique_ptr<ColorSource> prevColorSource; //for transitionning
     std::unique_ptr<ColorSource> colorSource;
+
     std::unique_ptr<PixelShape> pixelShape;
 
     void setupSource(const String &type, ColorSource * templateRef = nullptr);
@@ -38,6 +40,9 @@ public:
     virtual var getOriginalComputedValues() override;
 
     void onContainerParameterChangedInternal(Parameter* p) override;
+
+    var getJSONData() override;
+    void loadJSONDataItemInternal(var data) override;
 
     class ColorComponentEvent
     {

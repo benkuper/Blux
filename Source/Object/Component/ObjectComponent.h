@@ -44,6 +44,7 @@ public:
     void onContainerParameterChangedInternal(Parameter* p) override;
 
     virtual void update() {}
+
     virtual var getOriginalComputedValues();
 
     virtual void setupFromJSONDefinition(var data) {}

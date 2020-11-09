@@ -11,6 +11,7 @@
 #include "Object.h"
 #include "Interface/InterfaceManager.h"
 #include "Object/Component/components/intensity/IntensityComponent.h"
+#include "Object/Component/components/color/ColorComponent.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Group/GroupManager.h"
 #include "Scene/SceneManager.h"
@@ -18,6 +19,7 @@
 #include "Sequence/GlobalSequenceManager.h"
 #include "ObjectManager.h"
 #include "ui/ObjectChainVizUI.h"
+
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
@@ -210,44 +212,58 @@ void Object::computeComponentValues(ObjectComponent* c)
 {
 	if (!c->enabled->boolValue()) return;
 
-	c->update();
-
 	effectIntensityOutMap.clear();
 
 	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
-		for (auto& p : c->computedParameters)
+		if (c->componentType == ObjectComponent::ComponentType::COLOR)
 		{
-			var zeroVal;
-			if (p->isComplex()) for (int i = 0; i < p->value.size(); i++) zeroVal.append(0);
-			else zeroVal = 0;
-			p->setValue(zeroVal);
+			((ColorComponent*)c)->outColors.fill(Colours::black);
+		}
+		else
+		{
+			for (auto& p : c->computedParameters)
+			{
+				var zeroVal;
+				if (p->isComplex()) for (int i = 0; i < p->value.size(); i++) zeroVal.append(0);
+				else zeroVal = 0;
+				p->setValue(zeroVal);
+			}
 		}
 	}
 	else
 	{
+		c->update();
 		var values = c->getOriginalComputedValues();
+
 		if (!values.isVoid())
 		{
 			//local effects
 			effectManager.processComponentValues(this, c, values);
-
 			//scene effects
 			SceneManager::getInstance()->processComponentValues(this, c, values);
-
 			//group effects
 			GroupManager::getInstance()->processComponentValues(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
-
 			//global effects
 			GlobalSequenceManager::getInstance()->processComponentValues(this, c, values);
-
-
 			GlobalEffectManager::getInstance()->processComponentValues(this, c, values);
 
-			int index = 0;
-			for (auto& p : c->computedParameters)
+
+			if (c->componentType == ObjectComponent::ComponentType::COLOR)
 			{
-				p->setValue(values[index++]);
+				ColorComponent* colorComp = (ColorComponent*)c;
+				for (int i = 0; i < values.size(); i++)
+				{
+					colorComp->outColors.set(i, Colour::fromFloatRGBA(values[i][0], values[i][1], values[i][2], values[i][3]));
+				}
+			}
+			else
+			{
+				int index = 0;
+				for (auto& p : c->computedParameters)
+				{
+					p->setValue(values[index++]);
+				}
 			}
 		}
 	}

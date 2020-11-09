@@ -74,7 +74,6 @@ public:
 
     FloatParameter* brightness;
     FloatParameter* scale;
-    FloatParameter* speed;
     FloatParameter* contrast;
     FloatParameter* balance;
     ColorParameter* frontColor;
@@ -117,8 +116,6 @@ public:
     ~MultiPointColorSource();
 
     FloatParameter* brightness;
-    FloatParameter* offset;
-    FloatParameter* speed;
     FloatParameter* gap;
     FloatParameter* size;
     FloatParameter* fade;
@@ -129,4 +126,27 @@ public:
     
     String getTypeString() const override { return "Multipoint"; }
     static MultiPointColorSource* create(var params) { return new MultiPointColorSource(params); }
+};
+
+class GradientColorSource :
+    public TimedColorSource
+{
+public:
+    GradientColorSource(var params = var());
+    ~GradientColorSource();
+
+    FloatParameter* brightness;
+    FloatParameter* density;
+
+    std::unique_ptr<GradientColorManager> gradient;
+    GradientColorManager* gradientTarget;
+
+    void linkToTemplate(ColorSource* sourceTemplate) override;
+
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+
+    void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
+
+    String getTypeString() const override { return "Gradient"; }
+    static GradientColorSource* create(var params) { return new GradientColorSource(params); }
 };

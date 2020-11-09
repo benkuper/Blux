@@ -11,7 +11,7 @@
 #include "ObjectComponent.h"
 #include "ui/ObjectComponentEditor.h"
 #include "Common/Helpers/SceneHelpers.h" 
-#include "../Object.h"
+#include "../ObjectManager.h"
 
 const String ObjectComponent::typeNames[TYPES_MAX]{ "Intensity", "Color", "Gobo", "Laser", "PanTilt", "Servo", "Stepper", "Strobe", "Script", "Custom" };
 

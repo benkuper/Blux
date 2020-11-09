@@ -20,7 +20,7 @@ public:
     FilterManagerEditor(FilterManager * manager , bool isRoot);
     ~FilterManagerEditor();
 
-    ComponentSelectorUI componentSelectorUI;
+    std::unique_ptr<ComponentSelectorUI> componentSelectorUI;
 
     void resizedInternalHeader(Rectangle<int>& r) override;
 };

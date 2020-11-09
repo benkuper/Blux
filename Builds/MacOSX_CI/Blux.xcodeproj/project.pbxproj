@@ -373,6 +373,14 @@
 			isa = PBXBuildFile;
 			fileRef = 1F7EA67E3C732584DCB7E74C;
 		};
+		E17E92BCAE84300B5A191A5A = {
+			isa = PBXBuildFile;
+			fileRef = 23A86D8AC1CA340F87FE2973;
+		};
+		444B11459EFEC986DF11B537 = {
+			isa = PBXBuildFile;
+			fileRef = AC417E1B41066D610D89F833;
+		};
 		5D35DC10305E4461763FC7B2 = {
 			isa = PBXBuildFile;
 			fileRef = 39BB10949A1D7F7A1321DEB0;
@@ -1109,6 +1117,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = MIDIDevice.h;
 			path = ../../Source/Common/MIDI/MIDIDevice.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		23A86D8AC1CA340F87FE2973 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ColorSourceOverrideEffect.cpp;
+			path = ../../Source/Effect/effects/color/override/ColorSourceOverrideEffect.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		2493A3EA3D6F1C341D677397 = {
@@ -2070,6 +2085,13 @@
 			path = ../../Source/MainComponentCommands.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		832597E0DAD034CE85E552E5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ColorEffect.h;
+			path = ../../Source/Effect/effects/color/ColorEffect.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		83D0DB3736C1322E11FE37F1 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -2469,6 +2491,13 @@
 			path = ../../Source/Color/PixelShape/PixelShape.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		AC417E1B41066D610D89F833 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ColorEffect.cpp;
+			path = ../../Source/Effect/effects/color/ColorEffect.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		AC703A846AB3D42F740D5C58 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2572,6 +2601,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = StrobeComponent.cpp;
 			path = ../../Source/Object/Component/components/strobe/StrobeComponent.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B4564B45044412EEE029D573 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ColorSourceOverrideEffect.h;
+			path = ../../Source/Effect/effects/color/override/ColorSourceOverrideEffect.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		B502773EB5D6F1AB021FC165 = {
@@ -3975,6 +4011,15 @@
 			name = actions;
 			sourceTree = "<group>";
 		};
+		70393E156C137479F606F2BA = {
+			isa = PBXGroup;
+			children = (
+				23A86D8AC1CA340F87FE2973,
+				B4564B45044412EEE029D573,
+			);
+			name = override;
+			sourceTree = "<group>";
+		};
 		25439334BD0EFDF30B0EFF5A = {
 			isa = PBXGroup;
 			children = (
@@ -4005,6 +4050,9 @@
 		24AC335A15A4F15494235437 = {
 			isa = PBXGroup;
 			children = (
+				70393E156C137479F606F2BA,
+				AC417E1B41066D610D89F833,
+				832597E0DAD034CE85E552E5,
 				25439334BD0EFDF30B0EFF5A,
 				7DE41F23A5D68EB698223C45,
 				5D18A3690CC40DF50EECB565,
@@ -5044,6 +5092,8 @@
 				028C7FB9B750364EDEF55B66,
 				DE91824E6E690D0BBD458EB7,
 				FFFA51D7051AAEB0E0A94B7A,
+				E17E92BCAE84300B5A191A5A,
+				444B11459EFEC986DF11B537,
 				5D35DC10305E4461763FC7B2,
 				044DB7D1363DC2490A536731,
 				99B761779B548FABF244B463,

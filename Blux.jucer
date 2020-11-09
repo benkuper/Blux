@@ -373,6 +373,14 @@
         </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
           <GROUP id="{E332C34C-4F0C-6975-C7F9-116E4CFDB6D9}" name="color">
+            <GROUP id="{AAE59A9F-9C00-105F-6EC1-EF62E12E8F13}" name="override">
+              <FILE id="RSiKMX" name="ColorSourceOverrideEffect.cpp" compile="1"
+                    resource="0" file="Source/Effect/effects/color/override/ColorSourceOverrideEffect.cpp"/>
+              <FILE id="pFqbFb" name="ColorSourceOverrideEffect.h" compile="0" resource="0"
+                    file="Source/Effect/effects/color/override/ColorSourceOverrideEffect.h"/>
+            </GROUP>
+            <FILE id="Ktrish" name="ColorEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/color/ColorEffect.cpp"/>
+            <FILE id="XZyhiL" name="ColorEffect.h" compile="0" resource="0" file="Source/Effect/effects/color/ColorEffect.h"/>
             <GROUP id="{1822EA65-DEB6-FB2F-28F2-A7367789DC0F}" name="gradientmap">
               <FILE id="r86LRS" name="ColorGradientMapEffect.cpp" compile="1" resource="0"
                     file="Source/Effect/effects/color/gradientmap/ColorGradientMapEffect.cpp"/>

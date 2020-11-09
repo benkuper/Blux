@@ -41,6 +41,7 @@ AutomationEffect::AutomationEffect(var params) :
 
 	addChildControllableContainer(&automation);
 
+	filterManager.componentSelector.allowedComponents.removeAllInstancesOf(ObjectComponent::COLOR);
 	filterManager.componentSelector.selectedComponents.set(ObjectComponent::INTENSITY, true);
 	filterManager.componentSelector.selectedComponents.set(ObjectComponent::PANTILT, true);
 	filterManager.componentSelector.selectedComponents.set(ObjectComponent::SERVO, true);

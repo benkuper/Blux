@@ -14,6 +14,9 @@
 #include "effects/override/OverrideEffect.h"
 #include "effects/time/automation/AutomationEffect.h"
 #include "Object/Object.h"
+#include "effects/color/override/ColorSourceOverrideEffect.h"
+#include "effects/color/hsv/HSVAdjustEffect.h"
+#include "effects/color/gradientmap/ColorGradientMapEffect.h"
 
 juce_ImplementSingleton(EffectFactory);
 
@@ -77,8 +80,11 @@ void EffectManager::lerpFromSceneData(var startData, var endData, float weight)
 
 EffectFactory::EffectFactory()
 {
-    defs.add(Factory<Effect>::Definition::createDef("", OverrideFloatEffect::getTypeStringStatic(), &OverrideFloatEffect::create));
-    defs.add(Factory<Effect>::Definition::createDef("", OverrideColorEffect::getTypeStringStatic(), &OverrideColorEffect::create));
-    defs.add(Factory<Effect>::Definition::createDef("", NoiseEffect::getTypeStringStatic(), &NoiseEffect::create));
-    defs.add(Factory<Effect>::Definition::createDef("", AutomationEffect::getTypeStringStatic(), &AutomationEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("Number", OverrideFloatEffect::getTypeStringStatic(), &OverrideFloatEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("Number", NoiseEffect::getTypeStringStatic(), &NoiseEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("Number", AutomationEffect::getTypeStringStatic(), &AutomationEffect::create));
+
+    defs.add(Factory<Effect>::Definition::createDef("Color", ColorSourceOverrideEffect::getTypeStringStatic(), &ColorSourceOverrideEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("Color", HSVAdjustEffect::getTypeStringStatic(), &HSVAdjustEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("Color", GradientRemapEffect::getTypeStringStatic(), &GradientRemapEffect::create));
 }

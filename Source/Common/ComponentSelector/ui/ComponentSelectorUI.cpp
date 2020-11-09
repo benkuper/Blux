@@ -29,7 +29,7 @@ void ComponentSelectorUI::clicked()
     std::unique_ptr<ListBox> box(new ListBox());
     listBox = box.get();
    
-    int numTypes = (int)ObjectComponent::ComponentType::TYPES_MAX;
+    int numTypes = selector->allowedComponents.size();
     box->setModel(&model);
     box->setRowHeight(16);
     box->setBounds(0, 0, 200, 16 * numTypes);
@@ -38,7 +38,7 @@ void ComponentSelectorUI::clicked()
 
     SparseSet<int> rows;
     for (int i = 0; i < numTypes; i++) {
-        if (selector->selectedComponents[(ObjectComponent::ComponentType)i]) rows.addRange(Range<int>(i, i+1));
+        if (selector->selectedComponents[selector->allowedComponents[i]]) rows.addRange(Range<int>(i, i+1));
     }
     box->setSelectedRows(rows);
     
@@ -50,9 +50,9 @@ void ComponentSelectorUI::clicked()
 
 void ComponentSelectorUI::selectionChanged()
 {
-    for (int i = 0; i < ObjectComponent::ComponentType::TYPES_MAX; i++)
+    for (int i = 0; i <selector->allowedComponents.size(); i++)
     {
-        selector->selectedComponents.set((ObjectComponent::ComponentType)i, listBox->isRowSelected(i));
+        selector->selectedComponents.set(selector->allowedComponents[i], listBox->isRowSelected(i));
     }
 }
 
@@ -75,7 +75,7 @@ void ComponentListModel::selectedRowsChanged(int lastRowSelected)
 
 int ComponentListModel::getNumRows()
 {
-    return ObjectComponent::ComponentType::TYPES_MAX;
+    return selector->allowedComponents.size();
 }
 
 void ComponentListModel::paintListBoxItem(int rowNumber, Graphics& g, int width, int height, bool rowIsSelected)
@@ -84,5 +84,5 @@ void ComponentListModel::paintListBoxItem(int rowNumber, Graphics& g, int width,
     g.fillRect(0, 0,width, height);
 
     g.setColour(rowIsSelected?GREEN_COLOR:TEXT_COLOR.darker(.3f));
-    g.drawText(ObjectComponent::typeNames[rowNumber], Rectangle<float>(0,0,width, height).reduced(2), Justification::centred);
+    g.drawText(ObjectComponent::typeNames[selector->allowedComponents[rowNumber]], Rectangle<float>(0,0,width, height).reduced(2), Justification::centred);
 }

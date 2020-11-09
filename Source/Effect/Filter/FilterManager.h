@@ -21,7 +21,7 @@ public:
 
     Factory<Filter> factory;
     ComponentSelector componentSelector;
-
+    
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);

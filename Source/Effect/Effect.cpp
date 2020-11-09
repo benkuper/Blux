@@ -73,7 +73,7 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 
 	for (int i = 0; i < values.size(); i++)
 	{
-		if (values[i].isArray())
+		/*if (values[i].isArray())
 		{
 			jassert(pValues[i].isArray());
 			for (int j = 0; j < values[i].size(); j++)
@@ -85,14 +85,31 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 		}
 		else
 		{
-			values[i] = blendFloatValue(values[i], pValues[i], targetWeight);
-		}
+		*/
+			values[i] = blendValue(values[i], pValues[i], targetWeight);
+		//}
 	}
 }
 
 var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c,var values, int id, float time)
 {
 	return values;
+}
+
+var Effect::blendValue(var start, var end, float weight)
+{
+	jassert(start.size() == end.size());
+	var result;
+	if (start.isArray())
+	{
+		for (int i = 0; i < start.size(); i++) result.append(blendFloatValue(start[i], end[i], weight));
+	}
+	else
+	{
+		result = blendFloatValue(start, end, weight);
+	}
+
+	return result;
 }
 
 float Effect::blendFloatValue(float start, float end, float weight)
@@ -110,6 +127,7 @@ float Effect::blendFloatValue(float start, float end, float weight)
 
 	return  val;
 }
+
 
 var Effect::getSceneData()
 {

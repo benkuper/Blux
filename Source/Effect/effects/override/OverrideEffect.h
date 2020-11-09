@@ -37,20 +37,3 @@ public:
     const static String getTypeStringStatic() { return "Override (Number)"; }
     static OverrideFloatEffect* create(var params) { return new OverrideFloatEffect(params); }
 };
-
-class OverrideColorEffect :
-    public OverrideEffect
-{
-public:
-    OverrideColorEffect(var params = var());
-    virtual ~OverrideColorEffect();
-
-    ColorParameter* value;
-
-    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1.f) override;
-
-    String getTypeString() const override {return getTypeStringStatic(); }
-    const static String getTypeStringStatic() { return "Override (Color)"; }
-
-    static OverrideColorEffect* create(var params) { return new OverrideColorEffect(params); }
-};

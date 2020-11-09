@@ -229,6 +229,8 @@
     <ClCompile Include="..\..\Source\Scene\Scene.cpp"/>
     <ClCompile Include="..\..\Source\Scene\SceneManager.cpp"/>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\effects\color\ColorEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\color\remap\ColorPositionRemapEffect.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\color\hsv\HSVAdjustEffect.cpp"/>
@@ -3004,6 +3006,8 @@
     <ClInclude Include="..\..\Source\Scene\Scene.h"/>
     <ClInclude Include="..\..\Source\Scene\SceneManager.h"/>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h"/>
+    <ClInclude Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.h"/>
+    <ClInclude Include="..\..\Source\Effect\effects\color\ColorEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\color\remap\ColorPositionRemapEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\color\hsv\HSVAdjustEffect.h"/>

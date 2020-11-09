@@ -34,7 +34,7 @@ void ColorViz::paint(Graphics& g)
     if(comp->pixelShape->needsSquareRatio) r = r.withSizeKeepingCentre(minSize, minSize);
 
     int resolution = comp->resolution->intValue();
-    jassert(resolution == comp->colors.size());
+    jassert(resolution == comp->outColors.size());
 
     float pixelSize = jmax(jmin(r.getWidth(), r.getHeight()) * 1.0f / resolution, 2.f);
     
@@ -45,7 +45,7 @@ void ColorViz::paint(Graphics& g)
         Vector3D<float> relPos = comp->pixelShape->getNormalizedPositionForPixel(i);
         Point<int> pos = vizR.getRelativePoint(relPos.x, 1-relPos.y); //invert Y to have 0 on bottom
 
-        Colour c = comp->colors[i];
+        Colour c = comp->outColors[i];
         Rectangle<float> pr(pos.x - pixelSize / 2, pos.y - pixelSize / 2, pixelSize, pixelSize);
 
         g.setColour(c);
@@ -66,4 +66,4 @@ void ColorViz::visibilityChanged()
     InspectableEditor::visibilityChanged();
     if (!isVisible()) stopTimer();
     else startTimerHz(30);
-}
+} 

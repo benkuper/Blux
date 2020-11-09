@@ -14,6 +14,7 @@
 OverrideEffect::OverrideEffect(const String &name, var params) :
     Effect(name, params)
 {
+    filterManager.componentSelector.allowedComponents.removeAllInstancesOf(ObjectComponent::COLOR);
     filterManager.componentSelector.selectedComponents.set(ObjectComponent::INTENSITY, true);
     filterManager.componentSelector.selectedComponents.set(ObjectComponent::PANTILT, true);
     filterManager.componentSelector.selectedComponents.set(ObjectComponent::SERVO, true);
@@ -51,30 +52,6 @@ var OverrideFloatEffect::getProcessedComponentValuesInternal(Object* o, ObjectCo
         {
             values[i] = value->floatValue();
         }
-    }
-
-    return values;
-}
-
-OverrideColorEffect::OverrideColorEffect(var params) :
-    OverrideEffect(getTypeString(), params)
-{
-    filterManager.componentSelector.selectedComponents.set(ObjectComponent::COLOR, true);
-
-    value = addColorParameter("Value", "Value to override", Colours::red);
-}
-
-OverrideColorEffect::~OverrideColorEffect()
-{
-}
-
-var OverrideColorEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
-{
-    for (int i = 0; i < values.size(); i++)
-    {
-        if (values[i].size() != value->value.size()) continue;
-        values[i] = value->value.clone();
-       
     }
 
     return values;

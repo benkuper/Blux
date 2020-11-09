@@ -11,6 +11,7 @@
 #include "ColorComponent.h"
 #include "Color/ColorSource/ColorSource.h"
 #include "Color/ColorSource/ColorSourceFactory.h"
+#include "Color/ColorSource/ColorSourceLibrary.h"
 #include "Color/PixelShape/PixelShape.h"
 #include "ui/ColorComponentEditor.h"
 #include "Color/ColorSource/sources/pattern/PatternColorSource.h"
@@ -81,14 +82,19 @@ void ColorComponent::setupFromJSONDefinition(var definition)
 
 void ColorComponent::update()
 {
-	if (colors.size() != resolution->intValue()) colors.resize(resolution->intValue());
-	if (colorSource != nullptr) colorSource->fillColorsForObject(colors, object, this);
+	if (sourceColors.size() != resolution->intValue())
+	{
+		sourceColors.resize(resolution->intValue());
+		outColors.resize(resolution->intValue());
+	}
+
+	if (colorSource != nullptr) colorSource->fillColorsForObject(sourceColors, object, this);
 }
 
 var ColorComponent::getOriginalComputedValues()
 {
 	var result;
-	for (auto& i : colors)
+	for (auto& i : sourceColors)
 	{
 		var c;
 		c.append(i.getFloatRed());
@@ -110,6 +116,38 @@ void ColorComponent::onContainerParameterChangedInternal(Parameter* p)
 		if (pixelShape != nullptr) pixelShape->resolution = resolution->intValue();
 		update();
 	}
+}
+
+var ColorComponent::getJSONData()
+{
+	var data = ObjectComponent::getJSONData();
+	if (colorSource != nullptr)
+	{
+		data.getDynamicObject()->setProperty("colorSource", colorSource->getJSONData());
+		if (colorSource->sourceTemplate) data.getDynamicObject()->setProperty("sourceTemplate", colorSource->sourceTemplate->shortName);
+	}
+	if (pixelShape != nullptr) data.getDynamicObject()->setProperty("pixelShape", pixelShape->getJSONData());
+	return data;
+}
+
+void ColorComponent::loadJSONDataItemInternal(var data)
+{
+	ObjectComponent::loadJSONDataItemInternal(data);
+
+	var csData = data.getProperty("colorSource", var());
+	if (csData.isObject())
+	{
+		ColorSource* tc = ColorSourceLibrary::getInstance()->getItemWithName(csData.getProperty("sourceTemplate", ""));
+		setupSource(csData.getProperty("type", ""), tc);
+		colorSource->loadJSONData(csData);
+	}
+
+	if (data.hasProperty("pixelShape"))
+	{
+		setupShape(data.getProperty("pixelShape", var()).getProperty("type", ""));
+	}
+
+	if (pixelShape != nullptr) data.getDynamicObject()->setProperty("pixelShape", pixelShape->getJSONData());
 }
 
 InspectableEditor* ColorComponent::getEditor(bool isRoot)

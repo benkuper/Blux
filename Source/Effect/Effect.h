@@ -37,6 +37,8 @@ public:
     bool isAffectingObject(Object * o);
     void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
     virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1);
+
+    virtual var blendValue(var start, var end, float weight);
     virtual float blendFloatValue(float start, float end, float weight);
 
     var getSceneData();

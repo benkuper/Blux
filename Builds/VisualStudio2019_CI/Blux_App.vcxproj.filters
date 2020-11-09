@@ -164,6 +164,9 @@
     <Filter Include="Blux\Source\Effect\actions">
       <UniqueIdentifier>{34DAE7F0-D89C-AA58-E8B8-91F231D8F5C0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Effect\effects\color\override">
+      <UniqueIdentifier>{CA71476F-3ADF-6B65-5AC3-B5D3B73E2F15}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Effect\effects\color\gradientmap">
       <UniqueIdentifier>{4EB8E541-7D82-A0E9-B15F-5079F73BB011}</UniqueIdentifier>
     </Filter>
@@ -1308,6 +1311,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
       <Filter>Blux\Source\Effect\actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\color\override</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\ColorEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\color</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.cpp">
       <Filter>Blux\Source\Effect\effects\color\gradientmap</Filter>
@@ -4574,6 +4583,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h">
       <Filter>Blux\Source\Effect\actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.h">
+      <Filter>Blux\Source\Effect\effects\color\override</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\color\ColorEffect.h">
+      <Filter>Blux\Source\Effect\effects\color</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.h">
       <Filter>Blux\Source\Effect\effects\color\gradientmap</Filter>

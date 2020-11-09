@@ -15,6 +15,7 @@ ColorSource::ColorSource(const String& name, var params) :
 	BaseItem(name, false),
 	sourceTemplate(nullptr)
 {
+	saveAndLoadRecursiveData = true;
 	itemDataType = "ColorSource";
 }
 
@@ -124,9 +125,19 @@ void TimedColorSource::linkToTemplate(ColorSource* st)
 {
 	ColorSource::linkToTemplate(st);
 
-	if (sourceTemplate == nullptr) startTimer(50);
-	else stopTimer();
-
+	if (sourceTemplate == nullptr)
+	{
+		speed->hideInEditor = false;
+		speed->setControllableFeedbackOnly(false);
+		startTimer(50);
+	}
+	else
+	{
+		speed->hideInEditor = true;
+		speed->setControllableFeedbackOnly(true);
+		speed->resetValue();
+		stopTimer();
+	}
 }
 
 void TimedColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
@@ -140,7 +151,7 @@ float TimedColorSource::getCurrentTime(float timeOverride)
 {
 	if (sourceTemplate != nullptr && !sourceTemplateRef.wasObjectDeleted()) return ((TimedColorSource*)sourceTemplate)->getCurrentTime();
 
-	return timeOverride >= 0 ? timeOverride : curTime;
+	return timeOverride >= 0 ? timeOverride*speed->floatValue() : curTime;
 }
 
 void TimedColorSource::hiResTimerCallback()

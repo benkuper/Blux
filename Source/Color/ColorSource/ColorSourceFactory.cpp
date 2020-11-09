@@ -38,6 +38,7 @@ void ColorSourceFactory::updateDefinitions()
     defs.add(Factory<ColorSource>::Definition::createDef("Generic", "Noise", &NoiseColorSource::create));
     defs.add(Factory<ColorSource>::Definition::createDef("Generic", "Point", &PointColorSource::create));
     defs.add(Factory<ColorSource>::Definition::createDef("Generic", "Multipoint", &MultiPointColorSource::create));
+    defs.add(Factory<ColorSource>::Definition::createDef("Generic", "Gradient", &GradientColorSource::create));
 
     defs.add(Factory<ColorSource>::Definition::createDef("Feed", "Picture", &PictureColorSource::create));
     defs.add(Factory<ColorSource>::Definition::createDef("Feed", "Video File", &VideoColorSource::create));
