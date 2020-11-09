@@ -31,17 +31,20 @@ public:
 
     virtual void linkToTemplate(ColorSource* st);
 
-
-    virtual void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1);
+    void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1);
+    virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1);
 
     virtual void controllableFeedbackUpdate(ControllableContainer * cc, Controllable *c) override;
 
     virtual void inspectableDestroyed(Inspectable * i) override;
+    
+    //ui
+    virtual String getSourceLabel() const;
 };
 
 class TimedColorSource :
     public ColorSource,
-    public Timer
+    public HighResolutionTimer
 {
 public:
     TimedColorSource(const String& name, var params = var());
@@ -57,12 +60,12 @@ public:
 
     void linkToTemplate(ColorSource* st) override;
 
-    virtual void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1) override;
+    virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1) override;
     virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time) { }
 
     virtual float getCurrentTime(float timeOverride = -1);
 
-    virtual void timerCallback() override;
+    virtual void hiResTimerCallback() override;
     virtual void addTime();
 
 };

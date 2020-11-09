@@ -65,26 +65,6 @@
 			isa = PBXBuildFile;
 			fileRef = D857FDEAA815333B82EF3EE7;
 		};
-		731F06874836506B9966AE19 = {
-			isa = PBXBuildFile;
-			fileRef = BB1ACA8463C5ABCBD8477B97;
-		};
-		5CE08BA65E9827D1C5CA3B4B = {
-			isa = PBXBuildFile;
-			fileRef = B2701FDC72DFB6D46002D760;
-		};
-		F2AC15BFCF1EDE5FB593A9CE = {
-			isa = PBXBuildFile;
-			fileRef = 87DC67D11B53F9B7EE15D434;
-		};
-		458141B82DABC8822F28DF16 = {
-			isa = PBXBuildFile;
-			fileRef = 8F332F75329B6F1DB1A33940;
-		};
-		6304094E66EE6F770D97DD28 = {
-			isa = PBXBuildFile;
-			fileRef = EA530B9BDB72FA7641CDF3E0;
-		};
 		D83D02AA33B06C5265D325B7 = {
 			isa = PBXBuildFile;
 			fileRef = 83D0DB3736C1322E11FE37F1;
@@ -105,6 +85,26 @@
 			isa = PBXBuildFile;
 			fileRef = 46F6DD52EED6A1570429BED6;
 		};
+		5CE08BA65E9827D1C5CA3B4B = {
+			isa = PBXBuildFile;
+			fileRef = B2701FDC72DFB6D46002D760;
+		};
+		F2AC15BFCF1EDE5FB593A9CE = {
+			isa = PBXBuildFile;
+			fileRef = 87DC67D11B53F9B7EE15D434;
+		};
+		458141B82DABC8822F28DF16 = {
+			isa = PBXBuildFile;
+			fileRef = 8F332F75329B6F1DB1A33940;
+		};
+		1019F5A49FD6D693652E9455 = {
+			isa = PBXBuildFile;
+			fileRef = C0578231C4439B08EB82F31A;
+		};
+		731F06874836506B9966AE19 = {
+			isa = PBXBuildFile;
+			fileRef = BB1ACA8463C5ABCBD8477B97;
+		};
 		39BC9A6CB026B1105FE2EDD6 = {
 			isa = PBXBuildFile;
 			fileRef = 2A0F118BD09CA08D5A350664;
@@ -124,10 +124,6 @@
 		20712284CC7A1C43FB85A7ED = {
 			isa = PBXBuildFile;
 			fileRef = 2716888DB461F3609C4DA1A6;
-		};
-		7550C7956EF6F6A98E850A48 = {
-			isa = PBXBuildFile;
-			fileRef = 24EFDC0F7435B6E3A2895D45;
 		};
 		10EA515C3226184043546018 = {
 			isa = PBXBuildFile;
@@ -569,10 +565,6 @@
 			isa = PBXBuildFile;
 			fileRef = B5818AF33CD789D7E67297E3;
 		};
-		C0191B7E2A3945EC563AE2E9 = {
-			isa = PBXBuildFile;
-			fileRef = 0A164892671D6241BE177E52;
-		};
 		B2445E8D92A7D17AB78A3B94 = {
 			isa = PBXBuildFile;
 			fileRef = C57457769AB82620F0822E07;
@@ -676,6 +668,10 @@
 		D74CE54FF281688FFAFD97A9 = {
 			isa = PBXBuildFile;
 			fileRef = 729BA0D6D6500BCC30E86121;
+		};
+		4F2CC9208FB12DD001EEC53D = {
+			isa = PBXBuildFile;
+			fileRef = 7D639066A2D7374098107802;
 		};
 		C0AC9E4124D18271CBCBB423 = {
 			isa = PBXBuildFile;
@@ -875,13 +871,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = ComponentSelectorUI.h;
 			path = ../../Source/Common/ComponentSelector/ui/ComponentSelectorUI.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		0A164892671D6241BE177E52 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = ObjectEditor.cpp;
-			path = ../../Source/Object/ui/ObjectEditor.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		0A75AA0C07E164442DD44F90 = {
@@ -1127,13 +1116,6 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = ScriptComponentEditor.cpp;
 			path = ../../Source/Object/Component/components/script/ui/ScriptComponentEditor.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		24EFDC0F7435B6E3A2895D45 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = PixelShapeManager.cpp;
-			path = ../../Source/Color/PixelShape/PixelShapeManager.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		25BFDCA2EACD6A924F1A6283 = {
@@ -1801,13 +1783,6 @@
 			path = ../../Source/Engine/GenericAction.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		6D2AB66AE123225B5A0E8759 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = PixelShapeManager.h;
-			path = ../../Source/Color/PixelShape/PixelShapeManager.h;
-			sourceTree = "SOURCE_ROOT";
-		};
 		6EEFD1B561DFEB30D90DF2DA = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2011,6 +1986,13 @@
 			path = ../../Source/Sequence/layers/colorsource/ColorSourceLayer.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		7D639066A2D7374098107802 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = BluxInspector.cpp;
+			path = ../../Source/UI/BluxInspector.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		7EA1CE4E22F23FA95942DFA0 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -2107,13 +2089,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Group.h;
 			path = ../../Source/Group/Group.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		86C4D5E2E19F9068FC254598 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = ColorSourceViz.h;
-			path = ../../Source/Color/ColorSource/ui/ColorSourceViz.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		87DC67D11B53F9B7EE15D434 = {
@@ -2373,6 +2348,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = MIDIMappingEditor.cpp;
 			path = ../../Source/Interface/interfaces/midi/ui/MIDIMappingEditor.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		99713FF88A5A12A1D258D461 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ColorViz.h;
+			path = ../../Source/Color/ColorSource/ui/ColorViz.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		999FC659AD43F62B1DEE5442 = {
@@ -2739,6 +2721,13 @@
 			path = ../../Source/Common/MIDI/MIDIManager.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		C0578231C4439B08EB82F31A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ColorViz.cpp;
+			path = ../../Source/Color/ColorSource/ui/ColorViz.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		C05CDE59380C751C11D25894 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2807,13 +2796,6 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = ObjectGridUI.cpp;
 			path = ../../Source/Object/ui/ObjectGridUI.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		C75C8D65442C6C2C3B2960B9 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = ObjectEditor.h;
-			path = ../../Source/Object/ui/ObjectEditor.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		C94DB70EC77AF1DB8BB1D1EB = {
@@ -2926,6 +2908,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = StageLayout.cpp;
 			path = ../../Source/Layout/StageLayout.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		D5B5BB484404CFD94A123B0C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = BluxInspector.h;
+			path = ../../Source/UI/BluxInspector.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		D5DA6CB99E1AD60815612B8D = {
@@ -3187,13 +3176,6 @@
 			path = "../../Modules/juce_simpleweb";
 			sourceTree = "SOURCE_ROOT";
 		};
-		EA530B9BDB72FA7641CDF3E0 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = ColorSourceViz.cpp;
-			path = ../../Source/Color/ColorSource/ui/ColorSourceViz.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
 		EAA7E7B755E326D7BE7683FB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -3444,21 +3426,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		5F06EA9CE321C9792309C5BB = {
-			isa = PBXGroup;
-			children = (
-				B2701FDC72DFB6D46002D760,
-				E1449F9B984574A35B827907,
-				87DC67D11B53F9B7EE15D434,
-				D9315648B48B57B97908EC81,
-				8F332F75329B6F1DB1A33940,
-				B95911886BDAFE05FF9B4A6D,
-				EA530B9BDB72FA7641CDF3E0,
-				86C4D5E2E19F9068FC254598,
-			);
-			name = ui;
-			sourceTree = "<group>";
-		};
 		24DFA3F5BD12FAF0EADDD490 = {
 			isa = PBXGroup;
 			children = (
@@ -3517,13 +3484,28 @@
 			name = sources;
 			sourceTree = "<group>";
 		};
+		5F06EA9CE321C9792309C5BB = {
+			isa = PBXGroup;
+			children = (
+				B2701FDC72DFB6D46002D760,
+				E1449F9B984574A35B827907,
+				87DC67D11B53F9B7EE15D434,
+				D9315648B48B57B97908EC81,
+				8F332F75329B6F1DB1A33940,
+				B95911886BDAFE05FF9B4A6D,
+				C0578231C4439B08EB82F31A,
+				99713FF88A5A12A1D258D461,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
 		7E600334D967A7595BF4F3DB = {
 			isa = PBXGroup;
 			children = (
+				0D130A0506E9F15A0735E309,
+				5F06EA9CE321C9792309C5BB,
 				BB1ACA8463C5ABCBD8477B97,
 				013AE2807C8B6D820CC29FAE,
-				5F06EA9CE321C9792309C5BB,
-				0D130A0506E9F15A0735E309,
 				2A0F118BD09CA08D5A350664,
 				7A81C3EB1FF192080F1D70C4,
 				DDC99FD0CFC088E7CBC32F55,
@@ -3549,8 +3531,6 @@
 				984CA5DDE32A3C6CA1836A41,
 				2716888DB461F3609C4DA1A6,
 				AB3380151D4E0B9C983C8AEC,
-				24EFDC0F7435B6E3A2895D45,
-				6D2AB66AE123225B5A0E8759,
 			);
 			name = PixelShape;
 			sourceTree = "<group>";
@@ -4388,8 +4368,6 @@
 			children = (
 				B5818AF33CD789D7E67297E3,
 				5BBC171C1D753E27DBD3E119,
-				0A164892671D6241BE177E52,
-				C75C8D65442C6C2C3B2960B9,
 				C57457769AB82620F0822E07,
 				48FA02D91DAA915DA1E3998C,
 				31C24D863378BC9F5222BAFB,
@@ -4545,6 +4523,8 @@
 			children = (
 				729BA0D6D6500BCC30E86121,
 				EE5E47F498F5B721919180E9,
+				7D639066A2D7374098107802,
+				D5B5BB484404CFD94A123B0C,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -4987,22 +4967,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				731F06874836506B9966AE19,
-				5CE08BA65E9827D1C5CA3B4B,
-				F2AC15BFCF1EDE5FB593A9CE,
-				458141B82DABC8822F28DF16,
-				6304094E66EE6F770D97DD28,
 				D83D02AA33B06C5265D325B7,
 				998DBEA2975F979323E208EB,
 				B06D03BEC869A44AD066E239,
 				541EC2A05D59EDF166D97ED0,
 				EAB9B6E0BB3E604436E9F8B4,
+				5CE08BA65E9827D1C5CA3B4B,
+				F2AC15BFCF1EDE5FB593A9CE,
+				458141B82DABC8822F28DF16,
+				1019F5A49FD6D693652E9455,
+				731F06874836506B9966AE19,
 				39BC9A6CB026B1105FE2EDD6,
 				7B919549751795FF22B557A3,
 				F89CD09288AD763AD0589180,
 				3936FC808BE714254DE870CB,
 				20712284CC7A1C43FB85A7ED,
-				7550C7956EF6F6A98E850A48,
 				10EA515C3226184043546018,
 				E8C3CFA596F6686B0BD7BA41,
 				C3CEF9692B6820C2D7236465,
@@ -5113,7 +5092,6 @@
 				CBAE28E973C26F15096F1143,
 				39C3BD26909ED1D2B22B5407,
 				49F4330B55BEDAB29E41E9AF,
-				C0191B7E2A3945EC563AE2E9,
 				B2445E8D92A7D17AB78A3B94,
 				EFF94C9289653A2346FAC06A,
 				0DAA7131B6D88540F7820CA1,
@@ -5140,6 +5118,7 @@
 				08F67F2F49D322912DA00B62,
 				32FCB401D881E02500928C91,
 				D74CE54FF281688FFAFD97A9,
+				4F2CC9208FB12DD001EEC53D,
 				C0AC9E4124D18271CBCBB423,
 				32EE6D530A4E85FA174859D6,
 				E5692A323CF6DDC17D10290A,

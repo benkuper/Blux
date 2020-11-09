@@ -11,9 +11,6 @@
     <Filter Include="Blux\Resources">
       <UniqueIdentifier>{BF26CDE0-ADF7-D8C6-0A26-38627B2C18D8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Color\ColorSource\ui">
-      <UniqueIdentifier>{2DFC32B5-7439-4363-92F1-79146822656E}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blux\Source\Color\ColorSource\sources\node">
       <UniqueIdentifier>{48D0C4F6-86CC-F017-5CFF-8649FA317B98}</UniqueIdentifier>
     </Filter>
@@ -31,6 +28,9 @@
     </Filter>
     <Filter Include="Blux\Source\Color\ColorSource\sources">
       <UniqueIdentifier>{6FC030F6-88EC-335A-B565-781DDF17178A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Color\ColorSource\ui">
+      <UniqueIdentifier>{2DFC32B5-7439-4363-92F1-79146822656E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Color\ColorSource">
       <UniqueIdentifier>{09491806-E463-789B-1EE1-50D03C29FD05}</UniqueIdentifier>
@@ -1078,21 +1078,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp">
-      <Filter>Blux\Source\Color\ColorSource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.cpp">
-      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp">
-      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp">
-      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceViz.cpp">
-      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp">
       <Filter>Blux\Source\Color\ColorSource\sources\node</Filter>
     </ClCompile>
@@ -1108,6 +1093,21 @@
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.cpp">
       <Filter>Blux\Source\Color\ColorSource\sources\video</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.cpp">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorViz.cpp">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp">
+      <Filter>Blux\Source\Color\ColorSource</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Color\ColorSource\ColorSource.cpp">
       <Filter>Blux\Source\Color\ColorSource</Filter>
     </ClCompile>
@@ -1121,9 +1121,6 @@
       <Filter>Blux\Source\Color\PixelShape\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp">
-      <Filter>Blux\Source\Color\PixelShape</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShapeManager.cpp">
       <Filter>Blux\Source\Color\PixelShape</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp">
@@ -1456,9 +1453,6 @@
     <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectEditor.cpp">
-      <Filter>Blux\Source\Object\ui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClCompile>
@@ -1535,6 +1529,9 @@
       <Filter>Blux\Source\Sequence</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\AssetManager.cpp">
+      <Filter>Blux\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\BluxInspector.cpp">
       <Filter>Blux\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Main.cpp">
@@ -4362,21 +4359,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceFactory.h">
-      <Filter>Blux\Source\Color\ColorSource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.h">
-      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.h">
-      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.h">
-      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceViz.h">
-      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h">
       <Filter>Blux\Source\Color\ColorSource\sources\node</Filter>
     </ClInclude>
@@ -4395,6 +4377,21 @@
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.h">
       <Filter>Blux\Source\Color\ColorSource\sources\video</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.h">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.h">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.h">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorViz.h">
+      <Filter>Blux\Source\Color\ColorSource\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceFactory.h">
+      <Filter>Blux\Source\Color\ColorSource</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\ColorSource.h">
       <Filter>Blux\Source\Color\ColorSource</Filter>
     </ClInclude>
@@ -4408,9 +4405,6 @@
       <Filter>Blux\Source\Color\PixelShape\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h">
-      <Filter>Blux\Source\Color\PixelShape</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShapeManager.h">
       <Filter>Blux\Source\Color\PixelShape</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h">
@@ -4728,9 +4722,6 @@
     <ClInclude Include="..\..\Source\Object\ui\ObjectChainVizUI.h">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectEditor.h">
-      <Filter>Blux\Source\Object\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClInclude>
@@ -4807,6 +4798,9 @@
       <Filter>Blux\Source\Sequence</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\AssetManager.h">
+      <Filter>Blux\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\BluxInspector.h">
       <Filter>Blux\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Main.h">

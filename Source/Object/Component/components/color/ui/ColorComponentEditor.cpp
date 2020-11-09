@@ -14,41 +14,60 @@ ColorComponentEditor::ColorComponentEditor(ColorComponent* comp, bool isRoot) :
     ObjectComponentEditor(comp, isRoot, false),
     comp(comp)
 {
-   
-    chooser.addChooserListener(this);
-    addAndMakeVisible(&chooser);
-    
-    resetAndBuild();
-    resized();
+    colorChooser.addChooserListener(this);
+    shapeChooser.addChooserListener(this);
+
+    colorChooser.setButtonText(comp->colorSource != nullptr ? comp->colorSource->getSourceLabel() : "No Color Source");
+    shapeChooser.setButtonText(comp->pixelShape != nullptr ? comp->pixelShape->getTypeString() : "No Shape");
+
+    addAndMakeVisible(&colorChooser);
+    addAndMakeVisible(&shapeChooser);
+
+    comp->addAsyncColorComponentListener(this);
 }
 
 ColorComponentEditor::~ColorComponentEditor()
 {
-    chooser.removeChooserListener(this);
+    colorChooser.removeChooserListener(this);
+    shapeChooser.removeChooserListener(this);
+    if(!inspectable.wasObjectDeleted()) comp->removeAsyncColorComponentListener(this);
 }
 
-void ColorComponentEditor::resetAndBuild()
-{
-    ObjectComponentEditor::resetAndBuild();
-    if (!container->editorIsCollapsed)
-    {
-        viz = new ColorSourceViz(comp);
-        childEditors.add(viz);
-        addAndMakeVisible(viz);
-    }
-    else
-    {
-        viz = nullptr;
-    }
-}
 
 void ColorComponentEditor::resizedInternalHeaderItemInternal(Rectangle<int>& r)
 {
-    chooser.setBounds(r.removeFromRight(100).reduced(2));
+    colorChooser.setBounds(r.removeFromRight(100).reduced(2));
+    r.removeFromRight(2);
+    shapeChooser.setBounds(r.removeFromRight(100).reduced(2));
     r.removeFromRight(2);
 }
 
 void ColorComponentEditor::sourceChosen(const String& type, ColorSource* templateRef)
 {
     comp->setupSource(type, templateRef);
+}
+
+void ColorComponentEditor::shapeChosen(const String& type)
+{
+    comp->setupShape(type);
+}
+
+void ColorComponentEditor::newMessage(const ColorComponent::ColorComponentEvent& e)
+{
+    if (inspectable.wasObjectDeleted() || comp->isClearing) return;
+
+    switch (e.type)
+    {
+    case e.SOURCE_CHANGED:
+    {
+        colorChooser.setButtonText(comp->colorSource != nullptr ? comp->colorSource->getSourceLabel() : "No Color Source");
+    }
+    break;
+
+    case e.SHAPE_CHANGED: 
+    {
+        shapeChooser.setButtonText(comp->pixelShape != nullptr ? comp->pixelShape->getTypeString() : "No Shape");
+    }
+    break;
+    }
 }

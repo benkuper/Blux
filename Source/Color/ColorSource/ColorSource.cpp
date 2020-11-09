@@ -63,7 +63,18 @@ void ColorSource::inspectableDestroyed(Inspectable* i)
 	if (i == sourceTemplateRef) linkToTemplate(nullptr);
 }
 
+String ColorSource::getSourceLabel() const
+{
+	return sourceTemplate != nullptr? ("[T] "+sourceTemplate->niceName):getTypeString();
+}
+
 void ColorSource::fillColorsForObject(Array<Colour, CriticalSection> & colors, Object* o, ColorComponent* c, int id, float time)
+{
+	if (id == -1) id = o->globalID->intValue();
+	fillColorsForObjectInternal(colors, o, c, id, time);
+}
+
+void ColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
 {
 	colors.fill(Colours::black);
 }
@@ -94,7 +105,7 @@ TimedColorSource::TimedColorSource(const String& name, var params) :
 	ColorSource(name, params),
 	curTime(0)
 {
-	speed = addFloatParameter("Speed", "The speed at which play this", 0);
+	speed = addFloatParameter("Speed", "The speed at which play this", .5f);
 	timeOffset = addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
 	timeOffset->defaultUI = FloatParameter::TIME;
 
@@ -118,10 +129,8 @@ void TimedColorSource::linkToTemplate(ColorSource* st)
 
 }
 
-void TimedColorSource::fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
+void TimedColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
 {
-	if (id == -1) id = o->globalID->intValue();
-
 	float targetTime = getCurrentTime(time) - offsetByID->floatValue() * id + timeOffset->floatValue();
 	fillColorsForObjectTimeInternal(colors, o, c, id, targetTime);
 }
@@ -134,7 +143,7 @@ float TimedColorSource::getCurrentTime(float timeOverride)
 	return timeOverride >= 0 ? timeOverride : curTime;
 }
 
-void TimedColorSource::timerCallback()
+void TimedColorSource::hiResTimerCallback()
 {
 	addTime();
 }

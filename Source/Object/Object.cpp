@@ -18,7 +18,6 @@
 #include "Sequence/GlobalSequenceManager.h"
 #include "ObjectManager.h"
 #include "ui/ObjectChainVizUI.h"
-#include "ui/ObjectEditor.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
@@ -291,9 +290,4 @@ ChainVizComponent* Object::createVizComponent(Object * o, ChainVizTarget::ChainV
 {
 	jassert(o == this);
 	return new ObjectChainVizUI(this,  type);
-}
-
-InspectableEditor* Object::getEditor(bool isRoot)
-{
-	return new ObjectEditor(this, isRoot);
 }

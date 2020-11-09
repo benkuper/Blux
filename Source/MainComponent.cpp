@@ -12,6 +12,7 @@
 #include "Interface/interfaces/dmx/ui/DMXChannelView.h"
 #include "ChainViz/ChainViz.h"
 #include "Color/ColorSource/ui/ColorSourceLibraryGridUI.h"
+#include "UI/BluxInspector.h"
 
 String getAppVersion();
 ApplicationProperties& getAppProperties();
@@ -45,8 +46,9 @@ void MainComponent::init()
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("DMX Channel Tester", &DMXChannelView::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(ChainViz::panelName, &ChainViz::create));
 
-	//ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 3D View", &Stage3DView::create));
-	
+	InspectorUI::customCreateInspectorFunc = &MainComponent::createBluxInspector;
+
+
 	OrganicMainContentComponent::init();
 
 	String lastVersion = getAppProperties().getUserSettings()->getValue("lastVersion", "");
@@ -56,4 +58,9 @@ void MainComponent::init()
 		//WelcomeScreen w;
 		//DialogWindow::showModalDialog("Welcome", &w, getTopLevelComponent(), Colours::black, true);
 	}
+}
+
+Inspector* MainComponent::createBluxInspector(InspectableSelectionManager* s)
+{
+	return new BluxInspector(s);
 }

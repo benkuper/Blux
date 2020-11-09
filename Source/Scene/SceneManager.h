@@ -72,7 +72,6 @@ public:
     QueuedNotifier<SceneManagerEvent> sceneManagerNotifier;
     typedef QueuedNotifier<SceneManagerEvent>::Listener AsyncSceneListener;
 
-
     void addAsyncSceneManagerListener(AsyncSceneListener* newListener) { sceneManagerNotifier.addListener(newListener); }
     void addAsyncCoalescedSceneManagerListener(AsyncSceneListener* newListener) { sceneManagerNotifier.addAsyncCoalescedListener(newListener); }
     void removeAsyncSceneManagerListener(AsyncSceneListener* listener) { sceneManagerNotifier.removeListener(listener); }

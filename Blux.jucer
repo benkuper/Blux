@@ -31,28 +31,6 @@
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
       <GROUP id="{2047F9AE-EF39-8CBB-3CD3-9353343FEF38}" name="Color">
         <GROUP id="{3AE6DD1B-440C-B30D-719A-8B9BD861BD72}" name="ColorSource">
-          <FILE id="F4cZRE" name="ColorSourceFactory.cpp" compile="1" resource="0"
-                file="Source/Color/ColorSource/ColorSourceFactory.cpp"/>
-          <FILE id="TKAWN7" name="ColorSourceFactory.h" compile="0" resource="0"
-                file="Source/Color/ColorSource/ColorSourceFactory.h"/>
-          <GROUP id="{29F8108D-13E2-E7A5-9286-B43B50866FB7}" name="ui">
-            <FILE id="SrglqI" name="ColorSourceChooser.cpp" compile="1" resource="0"
-                  file="Source/Color/ColorSource/ui/ColorSourceChooser.cpp"/>
-            <FILE id="rm9EY5" name="ColorSourceChooser.h" compile="0" resource="0"
-                  file="Source/Color/ColorSource/ui/ColorSourceChooser.h"/>
-            <FILE id="I3NZnq" name="ColorSourceGridUI.cpp" compile="1" resource="0"
-                  file="Source/Color/ColorSource/ui/ColorSourceGridUI.cpp"/>
-            <FILE id="IuiNLo" name="ColorSourceGridUI.h" compile="0" resource="0"
-                  file="Source/Color/ColorSource/ui/ColorSourceGridUI.h"/>
-            <FILE id="GEHHeO" name="ColorSourceLibraryGridUI.cpp" compile="1" resource="0"
-                  file="Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.cpp"/>
-            <FILE id="CJd2m4" name="ColorSourceLibraryGridUI.h" compile="0" resource="0"
-                  file="Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.h"/>
-            <FILE id="jPlkbQ" name="ColorSourceViz.cpp" compile="1" resource="0"
-                  file="Source/Color/ColorSource/ui/ColorSourceViz.cpp"/>
-            <FILE id="RrWjp8" name="ColorSourceViz.h" compile="0" resource="0"
-                  file="Source/Color/ColorSource/ui/ColorSourceViz.h"/>
-          </GROUP>
           <GROUP id="{B6F4F5AC-D226-7CBC-022B-70525AD97083}" name="sources">
             <GROUP id="{DBD75931-C481-1FB8-5A28-CC0DC8529E47}" name="node">
               <FILE id="B7waeN" name="NodeColorSource.cpp" compile="1" resource="0"
@@ -86,6 +64,26 @@
                     file="Source/Color/ColorSource/sources/video/VideoColorSource.h"/>
             </GROUP>
           </GROUP>
+          <GROUP id="{29F8108D-13E2-E7A5-9286-B43B50866FB7}" name="ui">
+            <FILE id="SrglqI" name="ColorSourceChooser.cpp" compile="1" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceChooser.cpp"/>
+            <FILE id="rm9EY5" name="ColorSourceChooser.h" compile="0" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceChooser.h"/>
+            <FILE id="I3NZnq" name="ColorSourceGridUI.cpp" compile="1" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceGridUI.cpp"/>
+            <FILE id="IuiNLo" name="ColorSourceGridUI.h" compile="0" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceGridUI.h"/>
+            <FILE id="GEHHeO" name="ColorSourceLibraryGridUI.cpp" compile="1" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.cpp"/>
+            <FILE id="CJd2m4" name="ColorSourceLibraryGridUI.h" compile="0" resource="0"
+                  file="Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.h"/>
+            <FILE id="jPlkbQ" name="ColorViz.cpp" compile="1" resource="0" file="Source/Color/ColorSource/ui/ColorViz.cpp"/>
+            <FILE id="RrWjp8" name="ColorViz.h" compile="0" resource="0" file="Source/Color/ColorSource/ui/ColorViz.h"/>
+          </GROUP>
+          <FILE id="F4cZRE" name="ColorSourceFactory.cpp" compile="1" resource="0"
+                file="Source/Color/ColorSource/ColorSourceFactory.cpp"/>
+          <FILE id="TKAWN7" name="ColorSourceFactory.h" compile="0" resource="0"
+                file="Source/Color/ColorSource/ColorSourceFactory.h"/>
           <FILE id="JPCMQp" name="ColorSource.cpp" compile="1" resource="0" file="Source/Color/ColorSource/ColorSource.cpp"/>
           <FILE id="CbzOvp" name="ColorSource.h" compile="0" resource="0" file="Source/Color/ColorSource/ColorSource.h"/>
           <FILE id="f16rqK" name="ColorSourceLibrary.cpp" compile="1" resource="0"
@@ -106,10 +104,6 @@
           </GROUP>
           <FILE id="Y1ar2i" name="PixelShape.cpp" compile="1" resource="0" file="Source/Color/PixelShape/PixelShape.cpp"/>
           <FILE id="BFdv2R" name="PixelShape.h" compile="0" resource="0" file="Source/Color/PixelShape/PixelShape.h"/>
-          <FILE id="vR3Qus" name="PixelShapeManager.cpp" compile="1" resource="0"
-                file="Source/Color/PixelShape/PixelShapeManager.cpp"/>
-          <FILE id="qIeNJ1" name="PixelShapeManager.h" compile="0" resource="0"
-                file="Source/Color/PixelShape/PixelShapeManager.h"/>
         </GROUP>
       </GROUP>
       <GROUP id="{613F3B0D-6C43-D1AC-9293-204C47A122F3}" name="ChainViz">
@@ -621,9 +615,6 @@
                 file="Source/Object/ui/ObjectChainVizUI.cpp"/>
           <FILE id="Mn6IpL" name="ObjectChainVizUI.h" compile="0" resource="0"
                 file="Source/Object/ui/ObjectChainVizUI.h"/>
-          <FILE id="KhjhES" name="ObjectEditor.cpp" compile="1" resource="0"
-                file="Source/Object/ui/ObjectEditor.cpp"/>
-          <FILE id="iGttCd" name="ObjectEditor.h" compile="0" resource="0" file="Source/Object/ui/ObjectEditor.h"/>
           <FILE id="j68vpv" name="ObjectGridUI.cpp" compile="1" resource="0"
                 file="Source/Object/ui/ObjectGridUI.cpp"/>
           <FILE id="wSoAW0" name="ObjectGridUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectGridUI.h"/>
@@ -734,6 +725,9 @@
         <FILE id="Sd26AT" name="AssetManager.cpp" compile="1" resource="0"
               file="Source/UI/AssetManager.cpp"/>
         <FILE id="aduvbj" name="AssetManager.h" compile="0" resource="0" file="Source/UI/AssetManager.h"/>
+        <FILE id="ioO0u7" name="BluxInspector.cpp" compile="1" resource="0"
+              file="Source/UI/BluxInspector.cpp"/>
+        <FILE id="oCiQ5X" name="BluxInspector.h" compile="0" resource="0" file="Source/UI/BluxInspector.h"/>
       </GROUP>
       <FILE id="JEY5pW" name="Main.h" compile="0" resource="0" file="Source/Main.h"/>
       <FILE id="PI7LmD" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>

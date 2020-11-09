@@ -9,6 +9,8 @@
 */
 
 #include "ColorSourceGridUI.h"
+#include "Object//ObjectManager.h"
+#include "Object/Component/components/color/ColorComponent.h"
 
 ColorSourceGridUI::ColorSourceGridUI(ColorSource* item) :
     BaseItemMinimalUI(item)
@@ -45,5 +47,35 @@ void ColorSourceGridUI::paint(Graphics& g)
     {
         g.setColour(Colours::white);
         g.drawFittedText(item->niceName, getLocalBounds().reduced(4), Justification::centred, 3);
+    }
+}
+
+void ColorSourceGridUI::mouseDown(const MouseEvent& e)
+{
+    BaseItemMinimalUI::mouseDown(e);
+
+    if (e.mods.isRightButtonDown())
+    {
+        PopupMenu m;
+        m.addItem(1, "Assign to all");
+        m.addItem(2, "Assign to selection");
+
+        if (int result = m.show())
+        {
+            if (result == 1 || result == 2)
+            {
+                Array<Object*> objects;
+                if (result == 1) objects.addArray(ObjectManager::getInstance()->items.getRawDataPointer(), ObjectManager::getInstance()->items.size());
+                else objects = InspectableSelectionManager::mainSelectionManager->getInspectablesAs<Object>();
+
+                for (auto& o : objects)
+                {
+                    if (ColorComponent* c = o->getComponent<ColorComponent>())
+                    {
+                        c->setupSource(item->getTypeString(), item);
+                    } 
+                }
+            }
+        }
     }
 }

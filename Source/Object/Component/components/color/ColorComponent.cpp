@@ -16,7 +16,8 @@
 #include "Color/ColorSource/sources/pattern/PatternColorSource.h"
 
 ColorComponent::ColorComponent(Object* o, var params) :
-	ObjectComponent(o, getTypeString(), COLOR, params)
+	ObjectComponent(o, getTypeString(), COLOR, params),
+	colorComponentNotifier(5)
 {
 	resolution = addIntParameter("Resolution", "Number of different colors/pixels for this object", 1, 1);
 }
@@ -40,11 +41,17 @@ void ColorComponent::setupSource(const String& type, ColorSource* templateRef)
 		if (templateRef != nullptr) cs->linkToTemplate(templateRef);
 		addChildControllableContainer(colorSource.get());
 	}
+
+	colorComponentNotifier.addMessage(new ColorComponentEvent(ColorComponentEvent::SOURCE_CHANGED, this));
 }
 
-void ColorComponent::setupShape()
+void ColorComponent::setupShape(const String& type)
 {
-	pixelShape.reset(new CirclePixelShape(resolution->intValue()));
+	if (type == "Line") pixelShape.reset(new LinePixelShape(resolution->intValue()));
+	else if (type == "Circle") pixelShape.reset(new CirclePixelShape(resolution->intValue()));
+	else pixelShape.reset(new PointPixelShape(resolution->intValue()));
+
+	colorComponentNotifier.addMessage(new ColorComponentEvent(ColorComponentEvent::SHAPE_CHANGED, this));
 }
 
 void ColorComponent::setupFromJSONDefinition(var definition)
@@ -57,7 +64,14 @@ void ColorComponent::setupFromJSONDefinition(var definition)
 	resolution->defaultValue = res;
 	resolution->resetValue(true);
 
-	setupShape();
+	String defaultShape = "";
+
+	var shapeData = definition.getProperty("shape", var());
+	if (shapeData.isObject()) defaultShape = shapeData.getProperty("type", "");
+	
+	setupShape(defaultShape);
+
+	pixelShape->loadJSONData(shapeData);
 
 	String defaultSource = definition.getProperty("defaultSource", "Solid Color");
 	setupSource(defaultSource);

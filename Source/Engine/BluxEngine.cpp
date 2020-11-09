@@ -24,7 +24,6 @@
 #include "Common/MIDI/MIDIManager.h"
 #include "Color/ColorSource/ColorSourceLibrary.h"
 #include "Color/ColorSource/ColorSourceFactory.h"
-#include "Color/PixelShape/PixelShapeManager.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")

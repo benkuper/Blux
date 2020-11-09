@@ -19,6 +19,6 @@ NodeColorSource::~NodeColorSource()
 {
 }
 
-void NodeColorSource::fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
+void NodeColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
 }

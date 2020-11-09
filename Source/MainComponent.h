@@ -20,6 +20,8 @@ public:
 
     void init() override;
 
+    static Inspector* createBluxInspector(InspectableSelectionManager* s);
+
 private:
     //==============================================================================
     // Your private member variables go here...

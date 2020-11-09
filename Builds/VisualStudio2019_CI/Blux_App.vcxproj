@@ -152,22 +152,21 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceViz.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorViz.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\ColorSource.cpp"/>
     <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.cpp"/>
     <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeChooser.cpp"/>
     <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeEditor.cpp"/>
     <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp"/>
-    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShapeManager.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp"/>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp"/>
@@ -278,7 +277,6 @@
     <ClCompile Include="..\..\Source\Object\Component\ComponentManager.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ObjectComponent.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectEditor.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectManagerGridUI.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectManagerUI.cpp"/>
@@ -305,6 +303,7 @@
     <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp"/>
     <ClCompile Include="..\..\Source\UI\AssetManager.cpp"/>
+    <ClCompile Include="..\..\Source\UI\BluxInspector.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\MainComponentCommands.cpp"/>
@@ -2933,23 +2932,22 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceFactory.h"/>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.h"/>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.h"/>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.h"/>
-    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceViz.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PerlinNoise.hpp"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ui\ColorViz.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceFactory.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\ColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.h"/>
     <ClInclude Include="..\..\Source\Color\PixelShape\ui\PixelShapeChooser.h"/>
     <ClInclude Include="..\..\Source\Color\PixelShape\ui\PixelShapeEditor.h"/>
     <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h"/>
-    <ClInclude Include="..\..\Source\Color\PixelShape\PixelShapeManager.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h"/>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h"/>
@@ -3055,7 +3053,6 @@
     <ClInclude Include="..\..\Source\Object\Component\ComponentManager.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ObjectComponent.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectChainVizUI.h"/>
-    <ClInclude Include="..\..\Source\Object\ui\ObjectEditor.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectManagerGridUI.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectManagerUI.h"/>
@@ -3082,6 +3079,7 @@
     <ClInclude Include="..\..\Source\Sequence\BluxSequenceManager.h"/>
     <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h"/>
     <ClInclude Include="..\..\Source\UI\AssetManager.h"/>
+    <ClInclude Include="..\..\Source\UI\BluxInspector.h"/>
     <ClInclude Include="..\..\Source\Main.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>

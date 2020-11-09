@@ -11,7 +11,7 @@
 #pragma once
  
 #include "../Object.h"
-#include "Color/ColorSource/ui/ColorSourceViz.h"
+#include "Color/ColorSource/ui/ColorViz.h"
 
 class ObjectGridUI :
 	public BaseItemMinimalUI<Object>,
@@ -35,7 +35,7 @@ public:
 	std::unique_ptr<IntParameterLabelUI> globalIDUI;
 	std::unique_ptr<FloatSliderUI> intensityUI;
 	std::unique_ptr<FloatSliderUI> computedIntensityUI;
-	std::unique_ptr<ColorSourceViz> colorViz;
+	std::unique_ptr<ColorViz> colorViz;
 
 	bool flashMode;
 
@@ -55,6 +55,8 @@ public:
 	virtual bool keyStateChanged(bool isDown) override;
 
 	void controllableFeedbackUpdateInternal(Controllable* c) override;
+
+	void visibilityChanged() override;
 
 	void timerCallback() override;
 };

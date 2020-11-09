@@ -20,8 +20,8 @@ public:
     ~ColorSourceChooser();
 
     void clicked() override;
-
-    class  ChooserListener
+    
+    class ChooserListener
     {
     public:
         /** Destructor. */
@@ -33,4 +33,13 @@ public:
     void addChooserListener(ChooserListener* newListener) { chooserListeners.add(newListener); }
     void removeChooserListener(ChooserListener* listener) { chooserListeners.remove(listener); }
 
+};
+
+
+class ColorSourceMenu :
+    public PopupMenu
+{
+public:
+    ColorSourceMenu();
+    ~ColorSourceMenu() {}
 };

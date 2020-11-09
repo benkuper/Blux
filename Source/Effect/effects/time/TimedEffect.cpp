@@ -44,7 +44,7 @@ float TimedEffect::getCurrentTime(float timeOverride)
 	return timeOverride >= 0 ? timeOverride : curTime;
 }
 
-void TimedEffect::timerCallback()
+void TimedEffect::hiResTimerCallback()
 {
     if (!enabled->boolValue()) return;
     addTime();

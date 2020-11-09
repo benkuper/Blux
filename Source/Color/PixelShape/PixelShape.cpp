@@ -12,7 +12,8 @@
 
 PixelShape::PixelShape(const String& name, int resolution) :
     BaseItem(name, false, false),
-    resolution(resolution)
+    resolution(resolution),
+    needsSquareRatio(false)
 {
 }
 
@@ -77,11 +78,12 @@ void LinePixelShape::updateBounds()
 CirclePixelShape::CirclePixelShape(int resolution) :
     PixelShape("Circle", resolution)
 {
+    needsSquareRatio = true;
+
     center = addPoint3DParameter("Center", "Center of the circle");
     axis = addPoint3DParameter("Axis", "Axis of the circle");
     radius = addFloatParameter("Radius", "Radius of the circle", .5f, 0);
     startAngle = addFloatParameter("Start Angle", "The angle offset at which to position the first pixel", 0, 0, 360);
-
 
     center->setVector(0, 0, 0);
     axis->setVector(0, 0, 1);

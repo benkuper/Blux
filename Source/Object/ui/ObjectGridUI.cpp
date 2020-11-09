@@ -14,6 +14,9 @@
 #include "../Component/components/intensity/IntensityComponent.h"
 #include "../Component/components/color/ColorComponent.h"
 #include "ChainViz/ChainViz.h"
+#include "Color/ColorSource/ui/ColorSourceChooser.h"
+#include "Color/ColorSource/ColorSourceLibrary.h"
+#include "Color/ColorSource/ColorSourceFactory.h"
 
 ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),
@@ -31,7 +34,7 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 
 	if (ColorComponent* colorComp = item->getComponent<ColorComponent>())
 	{
-		colorViz.reset(new ColorSourceViz(colorComp));
+		colorViz.reset(new ColorViz(colorComp));
 		addAndMakeVisible(colorViz.get());
 	}
 
@@ -72,6 +75,8 @@ ObjectGridUI::~ObjectGridUI()
 
 void ObjectGridUI::paint(Graphics& g)
 {
+	if (!isVisible()) return;
+
 	if (!transparentBG)
 	{
 		g.setColour(bgColor);
@@ -116,6 +121,8 @@ void ObjectGridUI::paint(Graphics& g)
 
 void ObjectGridUI::paintOverChildren(Graphics& g)
 {
+	if (!isVisible()) return;
+
 	if (!objectImage.isValid() || isMouseOver())
 	{
 		g.setColour(bgColor.darker().withAlpha(.3f));
@@ -123,6 +130,8 @@ void ObjectGridUI::paintOverChildren(Graphics& g)
 		g.setColour(Colours::white);
 		g.drawFittedText(item->niceName, getLocalBounds().reduced(4), Justification::centred, 3);
 	}
+
+	BaseItemMinimalUI::paintOverChildren(g);
 }
 
 void ObjectGridUI::resized()
@@ -187,15 +196,42 @@ void ObjectGridUI::mouseDown(const MouseEvent& e)
 {
 	BaseItemMinimalUI::mouseDown(e);
 
-	if (e.mods.isAltDown())
+	if (e.mods.isLeftButtonDown())
 	{
-		Array<Object*> objects;
-		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
-		objects.addIfNotAlreadyThere(item);
-		for (auto& o : objects)
+		if (e.mods.isAltDown())
 		{
-			if (o->slideManipParameter != nullptr) o->slideManipValueRef = o->slideManipParameter->floatValue();
-			if (e.mods.isRightButtonDown()) if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(ObjectManager::getInstance()->defaultFlashValue->floatValue());
+			Array<Object*> objects;
+			if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
+			objects.addIfNotAlreadyThere(item);
+			for (auto& o : objects)
+			{
+				if (o->slideManipParameter != nullptr) o->slideManipValueRef = o->slideManipParameter->floatValue();
+				if (e.mods.isRightButtonDown()) if (o->slideManipParameter != nullptr) o->slideManipParameter->setValue(ObjectManager::getInstance()->defaultFlashValue->floatValue());
+			}
+		}
+	}
+	else if(e.mods.isRightButtonDown())
+	{
+		PopupMenu m;
+		ColorSourceMenu cm;
+		m.addSubMenu("Set Color Source", cm);
+
+		if (int result = m.show())
+		{
+			ColorSource* refColorSource = result < 0 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
+			String type = refColorSource != nullptr ? refColorSource->getTypeString() : ColorSourceFactory::getInstance()->defs[result - 1]->type;
+
+			Array<Object*> objects;
+			if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
+			objects.addIfNotAlreadyThere(item);
+
+			for (auto& o : objects)
+			{
+				if (ColorComponent* c = o->getComponent<ColorComponent>())
+				{
+					c->setupSource(type, refColorSource);
+				}
+			}
 		}
 	}
 }
@@ -312,6 +348,12 @@ void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 		updateThumbnail();
 		shouldRepaint = true;
 	}
+}
+
+void ObjectGridUI::visibilityChanged()
+{
+	BaseItemMinimalUI::visibilityChanged();
+	if (colorViz != nullptr) colorViz->setVisible(isVisible());
 }
 
 void ObjectGridUI::timerCallback()

@@ -14,7 +14,7 @@
 
 class TimedEffect :
     public Effect,
-    public Timer
+    public HighResolutionTimer
 {
 public:
     TimedEffect(const String &name, var params = var());
@@ -35,7 +35,7 @@ public:
 
     virtual float getCurrentTime(float timeOverride = -1);
 
-    virtual void timerCallback() override;  
+    virtual void hiResTimerCallback() override;  
     virtual void addTime();
 
     virtual void onContainerParameterChangedInternal(Parameter* p) override;

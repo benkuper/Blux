@@ -103,7 +103,7 @@ public:
     BoolParameter* invertOdds;
     BoolParameter* invertEvens;
 
-    virtual void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time = -1) override;
    
     String getTypeString() const override { return "Point"; }
     static PointColorSource* create(var params) { return new PointColorSource(params); }
@@ -125,7 +125,7 @@ public:
     ColorParameter* pointColor;
     ColorParameter* bgColor;
 
-    virtual void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
     
     String getTypeString() const override { return "Multipoint"; }
     static MultiPointColorSource* create(var params) { return new MultiPointColorSource(params); }

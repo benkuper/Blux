@@ -12,24 +12,27 @@
 
 #include "../ColorComponent.h"
 #include "../../../ui/ObjectComponentEditor.h"
-#include "Color/ColorSource/ui/ColorSourceViz.h"
 #include "Color/ColorSource/ui/ColorSourceChooser.h"
+#include "Color/PixelShape/ui/PixelShapeChooser.h"
 
 class ColorComponentEditor :
     public ObjectComponentEditor,
-    public ColorSourceChooser::ChooserListener
+    public ColorSourceChooser::ChooserListener,
+    public PixelShapeChooser::ChooserListener,
+    public ColorComponent::AsyncColorComponentListener
 {
 public:
     ColorComponentEditor(ColorComponent* comp, bool isRoot);
     ~ColorComponentEditor();
 
     ColorComponent* comp;
-    ColorSourceChooser chooser;
+    ColorSourceChooser colorChooser;
+    PixelShapeChooser shapeChooser;
 
-    ColorSourceViz* viz;
-
-    void resetAndBuild() override;
     void resizedInternalHeaderItemInternal(Rectangle<int>& r) override;
 
     void sourceChosen(const String& type, ColorSource* templateRef) override;
+    void shapeChosen(const String& type) override;
+
+    void newMessage(const ColorComponent::ColorComponentEvent& e) override;
 };

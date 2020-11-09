@@ -20,7 +20,8 @@ public:
     virtual ~PixelShape();
 
     int resolution;
-    
+    bool needsSquareRatio;//for ui
+
     struct Bounds3D
     {
         Vector3D<float> minPos;
@@ -37,6 +38,15 @@ public:
     virtual void onContainerParameterChangedInternal(Parameter* p) override;
 };
 
+class PointPixelShape :
+    public PixelShape
+{
+public:
+    PointPixelShape(int resolution) : PixelShape(getTypeString(), resolution) {}
+    ~PointPixelShape() {}
+
+    String getTypeString() const override { return "Point"; }
+};
 
 class LinePixelShape :
     public PixelShape
@@ -50,6 +60,8 @@ public:
 
     virtual Vector3D<float>  getPositionForPixel(int index) override;
     virtual void updateBounds() override;
+
+    String getTypeString() const override { return "Line"; }
 };
 
 class CirclePixelShape :
@@ -66,4 +78,6 @@ public:
 
     virtual Vector3D<float>  getPositionForPixel(int index) override;
     virtual void updateBounds() override;
+
+    String getTypeString() const override { return "Circle"; }
 };

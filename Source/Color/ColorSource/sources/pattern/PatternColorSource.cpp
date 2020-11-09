@@ -13,6 +13,9 @@
 SolidColorSource::SolidColorSource(var params) :
     TimedColorSource(getTypeString(), params)
 {
+    speed->defaultValue = 0;
+    speed->resetValue();
+
     sourceColor = addColorParameter("Color", "The color to apply. The hue of this color may be modified by the speed and offset parameters.", Colours::red);
 }
 
@@ -123,7 +126,7 @@ PointColorSource::~PointColorSource()
 {
 }
 
-void PointColorSource::fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
+void PointColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     Colour pColor = pointColor->getColor();
     Colour bColor = bgColor->getColor();
@@ -141,9 +144,9 @@ void PointColorSource::fillColorsForObject(Array<Colour, CriticalSection>& color
 
     for (int i = relStart; i <= relEnd && i < resolution; i++)
     {
-        float diff = 1 - (fabsf(i - relPos) * 1.f / (relSize / (fade->floatValue() * 2)));
+        float diff = 1 - (fabsf(i - relPos) * 1.f / (relSize / (fade->floatValue() * 2 * extendNum->intValue())));
         bool invert = id % 2 == 0 ? invertEvens->boolValue() : invertOdds->boolValue();
-        Colour c = bColor.interpolatedWith(bColor, diff);
+        Colour c = bColor.interpolatedWith(pColor, diff);
         colors.set(invert ? resolution - i : i, c.withMultipliedBrightness(brightness->floatValue()));
     }
 }
@@ -166,7 +169,7 @@ MultiPointColorSource::~MultiPointColorSource()
 {
 }
 
-void MultiPointColorSource::fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
+void MultiPointColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
 {
     const int resolution = colors.size();
 

@@ -22,4 +22,6 @@ public:
     Image img;
 
     void paint(Graphics &g) override;
+
+    void mouseDown(const MouseEvent& e) override;
 };
