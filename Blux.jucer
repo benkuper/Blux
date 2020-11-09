@@ -374,6 +374,12 @@
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
           <GROUP id="{E332C34C-4F0C-6975-C7F9-116E4CFDB6D9}" name="color">
             <GROUP id="{AAE59A9F-9C00-105F-6EC1-EF62E12E8F13}" name="override">
+              <GROUP id="{6C006B20-200B-04F5-AA94-7EFB9B407EB6}" name="ui">
+                <FILE id="J0klx8" name="ColorSourceOverrideEffectEditor.cpp" compile="1"
+                      resource="0" file="Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.cpp"/>
+                <FILE id="Wxll0H" name="ColorSourceOverrideEffectEditor.h" compile="0"
+                      resource="0" file="Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.h"/>
+              </GROUP>
               <FILE id="RSiKMX" name="ColorSourceOverrideEffect.cpp" compile="1"
                     resource="0" file="Source/Effect/effects/color/override/ColorSourceOverrideEffect.cpp"/>
               <FILE id="pFqbFb" name="ColorSourceOverrideEffect.h" compile="0" resource="0"

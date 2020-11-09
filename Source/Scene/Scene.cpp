@@ -34,6 +34,7 @@ Scene::Scene(const String& name) :
 
 	isCurrent = addBoolParameter("Is Current", "Is this scene the current one ?", false);
 	isCurrent->setControllableFeedbackOnly(true);
+	isCurrent->isSavable = false;
 
 	saveScene(); //is this good ?
 

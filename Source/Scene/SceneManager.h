@@ -59,7 +59,6 @@ public:
 
     void inspectableDestroyed(Inspectable* i) override;
 
-
     class SceneManagerEvent
     {
     public:

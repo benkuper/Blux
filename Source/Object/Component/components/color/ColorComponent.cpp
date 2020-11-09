@@ -89,6 +89,7 @@ void ColorComponent::update()
 	}
 
 	if (colorSource != nullptr) colorSource->fillColorsForObject(sourceColors, object, this);
+	else sourceColors.fill(Colours::transparentBlack);
 }
 
 var ColorComponent::getOriginalComputedValues()
@@ -137,7 +138,7 @@ void ColorComponent::loadJSONDataItemInternal(var data)
 	var csData = data.getProperty("colorSource", var());
 	if (csData.isObject())
 	{
-		ColorSource* tc = ColorSourceLibrary::getInstance()->getItemWithName(csData.getProperty("sourceTemplate", ""));
+		ColorSource* tc = ColorSourceLibrary::getInstance()->getItemWithName(data.getProperty("sourceTemplate", ""));
 		setupSource(csData.getProperty("type", ""), tc);
 		colorSource->loadJSONData(csData);
 	}

@@ -44,8 +44,8 @@ void ColorSourceFactory::updateDefinitions()
     defs.add(Factory<ColorSource>::Definition::createDef("Feed", "Video File", &VideoColorSource::create));
     defs.add(Factory<ColorSource>::Definition::createDef("Feed", "Spout/Syphon", &SpoutSyphonColorSource::create));
 
-    defs.add(Factory<ColorSource>::Definition::createDef("Advanced", "Node", &SpoutSyphonColorSource::create));
-    defs.add(Factory<ColorSource>::Definition::createDef("Advanced", "Script", &SpoutSyphonColorSource::create));
+    defs.add(Factory<ColorSource>::Definition::createDef("Advanced", "Node", &NodeColorSource::create));
+    defs.add(Factory<ColorSource>::Definition::createDef("Advanced", "Script", &ScriptColorSource::create));
 
 
     for (auto& d : defs)

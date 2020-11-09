@@ -65,7 +65,7 @@ LinePixelShape::~LinePixelShape()
 
 Vector3D<float> LinePixelShape::getPositionForPixel(int index)
 {
-    float p = index * 1.0f / resolution;
+    float p = index * 1.0f / jmax(resolution-1, 1);
     return start->getVector() + (end->getVector() - start->getVector()) * p;
 }
 

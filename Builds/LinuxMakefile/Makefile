@@ -145,6 +145,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/Scene_b1ec4b0a.o \
   $(JUCE_OBJDIR)/SceneManager_6f4189cd.o \
   $(JUCE_OBJDIR)/EffectAction_98619fb8.o \
+  $(JUCE_OBJDIR)/ColorSourceOverrideEffectEditor_15dcee2.o \
   $(JUCE_OBJDIR)/ColorSourceOverrideEffect_9d229310.o \
   $(JUCE_OBJDIR)/ColorEffect_c758746.o \
   $(JUCE_OBJDIR)/ColorGradientMapEffect_8fa960b5.o \
@@ -641,6 +642,11 @@ $(JUCE_OBJDIR)/SceneManager_6f4189cd.o: ../../Source/Scene/SceneManager.cpp
 $(JUCE_OBJDIR)/EffectAction_98619fb8.o: ../../Source/Effect/actions/EffectAction.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling EffectAction.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ColorSourceOverrideEffectEditor_15dcee2.o: ../../Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ColorSourceOverrideEffectEditor.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ColorSourceOverrideEffect_9d229310.o: ../../Source/Effect/effects/color/override/ColorSourceOverrideEffect.cpp

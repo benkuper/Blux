@@ -27,8 +27,8 @@ void ColorSourceChooser::clicked()
 	if (int result = m.show())
 	{
 
-		ColorSource* refColorSource = result < 0 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
-		String type = refColorSource != nullptr ? refColorSource->getTypeString() : ColorSourceFactory::getInstance()->defs[result - 1]->type;
+		ColorSource* refColorSource = result < -1 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
+		String type = refColorSource != nullptr ? refColorSource->getTypeString() : (result > 0 ? ColorSourceFactory::getInstance()->defs[result - 1]->type : "");
 
 		chooserListeners.call(&ChooserListener::sourceChosen, type, refColorSource);
 	}
@@ -37,7 +37,7 @@ void ColorSourceChooser::clicked()
 ColorSourceMenu::ColorSourceMenu() :
 	PopupMenu(ColorSourceFactory::getInstance()->getMenu())
 {
-	
+
 	PopupMenu tm;
 	int index = -10000;
 	for (auto& i : ColorSourceLibrary::getInstance()->items)
@@ -47,4 +47,6 @@ ColorSourceMenu::ColorSourceMenu() :
 
 	addSeparator();
 	addSubMenu("Templates", tm);
+	addSeparator();
+	addItem(-1,"Remove");
 }

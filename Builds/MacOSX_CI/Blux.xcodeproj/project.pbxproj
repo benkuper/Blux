@@ -373,6 +373,10 @@
 			isa = PBXBuildFile;
 			fileRef = 1F7EA67E3C732584DCB7E74C;
 		};
+		69D5222514BC889D486DFD9F = {
+			isa = PBXBuildFile;
+			fileRef = 2382777B8A59F43C9433A97D;
+		};
 		E17E92BCAE84300B5A191A5A = {
 			isa = PBXBuildFile;
 			fileRef = 23A86D8AC1CA340F87FE2973;
@@ -1028,6 +1032,13 @@
 			path = ../../Source/Common/Serial/SerialManager.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		191A42B4289F42E9DEC514CD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ColorSourceOverrideEffectEditor.h;
+			path = ../../Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		197A540EC2442114D5CE7E21 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1117,6 +1128,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = MIDIDevice.h;
 			path = ../../Source/Common/MIDI/MIDIDevice.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		2382777B8A59F43C9433A97D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ColorSourceOverrideEffectEditor.cpp;
+			path = ../../Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		23A86D8AC1CA340F87FE2973 = {
@@ -4011,9 +4029,19 @@
 			name = actions;
 			sourceTree = "<group>";
 		};
+		ECF47ADF22685F7C32A486CC = {
+			isa = PBXGroup;
+			children = (
+				2382777B8A59F43C9433A97D,
+				191A42B4289F42E9DEC514CD,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
 		70393E156C137479F606F2BA = {
 			isa = PBXGroup;
 			children = (
+				ECF47ADF22685F7C32A486CC,
 				23A86D8AC1CA340F87FE2973,
 				B4564B45044412EEE029D573,
 			);
@@ -5092,6 +5120,7 @@
 				028C7FB9B750364EDEF55B66,
 				DE91824E6E690D0BBD458EB7,
 				FFFA51D7051AAEB0E0A94B7A,
+				69D5222514BC889D486DFD9F,
 				E17E92BCAE84300B5A191A5A,
 				444B11459EFEC986DF11B537,
 				5D35DC10305E4461763FC7B2,

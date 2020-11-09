@@ -164,6 +164,9 @@
     <Filter Include="Blux\Source\Effect\actions">
       <UniqueIdentifier>{34DAE7F0-D89C-AA58-E8B8-91F231D8F5C0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Effect\effects\color\override\ui">
+      <UniqueIdentifier>{DCDC2A87-B788-2598-DB0C-68125961D5A9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Effect\effects\color\override">
       <UniqueIdentifier>{CA71476F-3ADF-6B65-5AC3-B5D3B73E2F15}</UniqueIdentifier>
     </Filter>
@@ -1311,6 +1314,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
       <Filter>Blux\Source\Effect\actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\override\ui\ColorSourceOverrideEffectEditor.cpp">
+      <Filter>Blux\Source\Effect\effects\color\override\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.cpp">
       <Filter>Blux\Source\Effect\effects\color\override</Filter>
@@ -4583,6 +4589,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h">
       <Filter>Blux\Source\Effect\actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\color\override\ui\ColorSourceOverrideEffectEditor.h">
+      <Filter>Blux\Source\Effect\effects\color\override\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.h">
       <Filter>Blux\Source\Effect\effects\color\override</Filter>

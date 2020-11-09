@@ -12,9 +12,11 @@
 #include "Color/ColorSource/ColorSource.h"
 #include "Color/ColorSource/ColorSourceFactory.h"
 #include "Color/ColorSource//ColorSourceLibrary.h"
+#include "ui/ColorSourceOverrideEffectEditor.h"
 
 ColorSourceOverrideEffect::ColorSourceOverrideEffect(var params) :
-	ColorEffect("Override (Color)")
+	ColorEffect("Override (Color)"),
+	overrideEffectNotifier(5)
 {
 	filterManager.componentSelector.allowedComponents.clear();
 	filterManager.componentSelector.allowedComponents.add(ObjectComponent::COLOR);
@@ -42,6 +44,8 @@ void ColorSourceOverrideEffect::setupSource(const String& type, ColorSource* tem
 		if (templateRef != nullptr) cs->linkToTemplate(templateRef);
 		addChildControllableContainer(colorSource.get(), false, 0);
 	}
+
+	overrideEffectNotifier.addMessage(new OverrideEffectEvent(OverrideEffectEvent::SOURCE_CHANGED, this));
 }
 
 void ColorSourceOverrideEffect::processedEffectColorsInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
@@ -68,8 +72,13 @@ void ColorSourceOverrideEffect::loadJSONDataItemInternal(var data)
 	var csData = data.getProperty("colorSource", var());
 	if (csData.isObject())
 	{
-		ColorSource* tc = ColorSourceLibrary::getInstance()->getItemWithName(csData.getProperty("sourceTemplate", ""));
+		ColorSource* tc = ColorSourceLibrary::getInstance()->getItemWithName(data.getProperty("sourceTemplate", ""));
 		setupSource(csData.getProperty("type", ""), tc);
 		colorSource->loadJSONData(csData);
 	}
+}
+
+InspectableEditor* ColorSourceOverrideEffect::getEditor(bool isRoot)
+{
+	return new ColorSourceOverrideEffectEditor(this, isRoot);
 }
