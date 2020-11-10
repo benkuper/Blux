@@ -14,6 +14,8 @@
 ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 	BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
 {
+	highlightOnDragOver = false;
+
 	contentIsFlexible = true;
 	animateItemOnAdd = false;
 
@@ -45,6 +47,23 @@ ObjectManagerGridUI::~ObjectManagerGridUI()
 {
 	if(!inspectable.wasObjectDeleted()) manager->removeAsyncContainerListener(this);
 	if(SceneManager::getInstanceWithoutCreating()) SceneManager::getInstance()->removeAsyncSceneManagerListener(this);
+}
+
+void ObjectManagerGridUI::paint(Graphics& g)
+{
+	BaseManagerUI::paint(g);
+
+	if (isDraggingOver)
+	{
+		g.setColour(BLUE_COLOR);
+
+		if (ObjectGridUI* bui = itemsUI[currentDropIndex >= 0 ? currentDropIndex : itemsUI.size() - 1])
+		{
+			juce::Rectangle<int> buiBounds = getLocalArea(bui, bui->getLocalBounds());
+			int tx = currentDropIndex >= 0 ? buiBounds.getX() - 1 : buiBounds.getRight() + 1;
+			g.drawLine(tx, buiBounds.getY(), tx, buiBounds.getBottom(), 2);
+		}
+	}
 }
 
 void ObjectManagerGridUI::resizedInternalHeader(Rectangle<int>& r)
@@ -152,4 +171,31 @@ void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
 void ObjectManagerGridUI::newMessage(const SceneManager::SceneManagerEvent& e)
 {
 	if (e.type == e.SCENE_LOAD_START || e.type == e.SCENE_LOAD_END) resized();
+}
+
+int ObjectManagerGridUI::getDropIndexForPosition(Point<int> localPosition)
+{
+	ObjectGridUI* closestUI = nullptr;;
+	float minDist = INT32_MAX;;
+	bool rightSide = false;
+
+	for (int i = 0; i < itemsUI.size(); ++i)
+	{
+		ObjectGridUI * iui = itemsUI[i];
+		Point<int> p = getLocalArea(iui, iui->getLocalBounds()).getCentre();
+		
+		float dist = p.getDistanceFrom(localPosition);
+		if (dist < minDist)
+		{
+			closestUI = iui;
+			minDist = dist;
+			rightSide = localPosition.x > p.x;
+		}
+	}
+
+
+	int index = itemsUI.indexOf(closestUI);
+	if (rightSide) index++;
+
+	return index;
 }

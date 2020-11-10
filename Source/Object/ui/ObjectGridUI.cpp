@@ -142,17 +142,19 @@ void ObjectGridUI::resized()
 	if(globalIDUI->isVisible()) globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
 
 	
-	if (colorViz != nullptr)
-	{
-		colorViz->setBounds(r.reduced(6));
-	}
-
-
+	
 	if (computedIntensityUI != nullptr)
 	{
 		computedIntensityUI->setBounds(r.removeFromBottom(10).reduced(2));
 		intensityUI->setBounds(r.removeFromBottom(10).reduced(2));
 	}
+
+	if (colorViz != nullptr)
+	{
+		colorViz->setBounds(r.reduced(2));
+	}
+
+
 }
 
 
@@ -218,8 +220,8 @@ void ObjectGridUI::mouseDown(const MouseEvent& e)
 
 		if (int result = m.show())
 		{
-			ColorSource* refColorSource = result < 0 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
-			String type = refColorSource != nullptr ? refColorSource->getTypeString() : ColorSourceFactory::getInstance()->defs[result - 1]->type;
+			ColorSource* refColorSource = result < -1 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
+			String type = refColorSource != nullptr ? refColorSource->getTypeString() : (result > 0 ? ColorSourceFactory::getInstance()->defs[result - 1]->type : "");
 
 			Array<Object*> objects;
 			if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());

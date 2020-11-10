@@ -28,6 +28,8 @@ public:
 	std::unique_ptr<BoolButtonToggleUI> blackOutUI;
 	std::unique_ptr<BoolButtonToggleUI> activeInSceneUI;
 
+	void paint(Graphics& g) override;
+
 	void resizedInternalHeader(Rectangle<int>& r) override;
 	void resizedInternalContent(Rectangle<int> &r) override;
 
@@ -38,6 +40,8 @@ public:
 
 	void newMessage(const ContainerAsyncEvent& e) override;
 	void newMessage(const SceneManager::SceneManagerEvent& e) override;
+
+	int getDropIndexForPosition(Point<int> localPosition) override;
 
 	static ObjectManagerGridUI* create(const String& name) { return new ObjectManagerGridUI(name); }
 };
