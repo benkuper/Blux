@@ -17,6 +17,7 @@ SubObjectManager::SubObjectManager() :
 {
     managerFactory = &ObjectManager::getInstance()->factory;
     selectItemWhenCreated = false;
+
 }
 
 SubObjectManager::~SubObjectManager()
@@ -39,7 +40,17 @@ ObjectManager::ObjectManager() :
     filterActiveInScene = addBoolParameter("Show Only active", "Show only active objects in scene", false);
     startThread();
 
-    updateFactoryDefinitions();
+
+    File f = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName) + "/objects");
+    if (!f.isDirectory())
+    {
+        downloadObjects();
+    }
+    else
+    {
+        updateFactoryDefinitions();
+    }
+
 }
 
 ObjectManager::~ObjectManager()
@@ -47,6 +58,18 @@ ObjectManager::~ObjectManager()
     stopThread(1000);
 }
 
+
+void ObjectManager::downloadObjects()
+{
+    LOG("Downloading objects...");
+    downloadURL = URL("http://benjamin.kuperberg.fr/blux/download/objects.zip");
+    File f = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName) + "/objects.zip");
+    downloadTask = downloadURL.downloadToFile(f, "", this);
+    if (downloadTask == nullptr)
+    {
+        LOGERROR("Error while downloading objects,\ntry downloading it directly from the website.");
+    }
+}
 
 void ObjectManager::updateFactoryDefinitions()
 {
@@ -151,3 +174,31 @@ void ObjectManager::run()
     }
 }
 
+void ObjectManager::progress(URL::DownloadTask* task, int64 downloaded, int64 total)
+{
+    int percent = downloaded * 100 / total;
+    LOG("Downloading objects..." << percent << "%");
+}
+
+void ObjectManager::finished(URL::DownloadTask* task, bool success)
+{
+    if (!success)
+    {
+        LOGERROR("Error downloading objects");
+        return;
+    }
+
+    File f = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName) + "/objects.zip");
+    ZipFile z(f);
+    if (!z.uncompressTo(f.getParentDirectory()))
+    {
+        LOGERROR("Error unzipping objects archive");
+        return;
+    }
+
+
+    LOG(z.getNumEntries() << "objects downloaded.");
+    f.deleteFile();
+
+    updateFactoryDefinitions();
+}

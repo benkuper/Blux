@@ -27,6 +27,7 @@ namespace BluxCommandIDs
 	static const int guideStart = 0x300; //up to 0x300 +100
 	static const int exitGuide = 0x399; 
 	static const int reloadObjectDefinitions = 0x501;
+	static const int downloadObjectsDefinitions = 0x502;
 
 	static const int flashSelected = 0x700;
 	static const int loadNextScene = 0x800;
@@ -82,6 +83,10 @@ void MainComponent::getCommandInfo(CommandID commandID, ApplicationCommandInfo& 
 		result.setInfo("Reload Object Definitions", "", "General", result.readOnlyInKeyEditor);
 		break;
 
+	case BluxCommandIDs::downloadObjectsDefinitions:
+		result.setInfo("Download Object Definitions", "", "General", result.readOnlyInKeyEditor);
+		break;
+
 	case BluxCommandIDs::flashSelected:
 		result.setInfo("Flash selected Objects", "", "Blux", 0);
 		result.addDefaultKeypress(KeyPress::createFromDescription("f").getKeyCode(), ModifierKeys::noModifiers);
@@ -134,6 +139,7 @@ void MainComponent::getAllCommands(Array<CommandID>& commands) {
 		BluxCommandIDs::postGithubIssue,
 		//BluxCommandIDs::goToCommunityModules,
 		BluxCommandIDs::reloadObjectDefinitions,
+		BluxCommandIDs::downloadObjectsDefinitions,
 		BluxCommandIDs::exitGuide,
 		BluxCommandIDs::flashSelected,
 		BluxCommandIDs::loadNextScene,
@@ -192,6 +198,7 @@ void MainComponent::fillFileMenuInternal(PopupMenu & menu)
 {
 	//menu.addCommandItem(&getCommandManager(), BluxCommandIDs::goToCommunityModules);
 	menu.addCommandItem(&getCommandManager(), BluxCommandIDs::reloadObjectDefinitions);
+	menu.addCommandItem(&getCommandManager(), BluxCommandIDs::downloadObjectsDefinitions);
 }
 
 bool MainComponent::perform(const InvocationInfo& info)
@@ -251,6 +258,10 @@ bool MainComponent::perform(const InvocationInfo& info)
 
 	case BluxCommandIDs::reloadObjectDefinitions:
 		ObjectManager::getInstance()->updateFactoryDefinitions();
+		break;
+
+	case BluxCommandIDs::downloadObjectsDefinitions:
+		ObjectManager::getInstance()->downloadObjects();
 		break;
 
 	case BluxCommandIDs::loadNextScene:
