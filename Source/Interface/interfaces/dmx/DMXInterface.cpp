@@ -161,28 +161,17 @@ void DMXInterface::sendValuesForObject(Object* o)
 	jassert(dmxParams != nullptr);
 
 	int startChannel = dmxParams->startChannel->intValue();
-
+	HashMap<int, float> compValues;
+	
 	for (auto& c : o->componentManager.items)
 	{
 		if (!c->enabled->boolValue()) continue;
-
-		for (int i = 0; i < c->computedParameters.size(); i++)
-		{
-			Parameter* p = (Parameter*)c->computedParameters[i];
-			if (p->isComplex())
-			{
-				for (int j = 0; j < p->value.size(); j++)
-				{
-					sendDMXValue(startChannel + c->paramChannels[i] + j, (float)p->value[j] * 255); //remap to 0-255 automatically
-				}
-			}
-			else
-			{
-				sendDMXValue(startChannel + c->paramChannels[i], p->floatValue() * 255); //remap to 0-255 automatically
-
-			}
-		}
+		c->fillOutValueMap(compValues, startChannel);
 	}
+
+	HashMap<int, float>::Iterator it(compValues);
+	while (it.next()) sendDMXValue(it.getKey(), it.getValue() * 255);
+
 }
 
 

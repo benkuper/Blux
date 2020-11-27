@@ -108,6 +108,18 @@ var ColorComponent::getOriginalComputedValues()
 	return result;
 }
 
+void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel)
+{
+	int index = startChannel + channelOffset;
+	for (auto& c : outColors)
+	{
+		channelValueMap.set(index++, c.getFloatRed());
+		channelValueMap.set(index++, c.getFloatGreen());
+		channelValueMap.set(index++, c.getFloatBlue());
+		//if(useAlpha) channelValueMap.set(index++, c.getFloatAlpha());
+	}
+}
+
 void ColorComponent::onContainerParameterChangedInternal(Parameter* p)
 {
 	ObjectComponent::onContainerParameterChangedInternal(p);

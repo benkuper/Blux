@@ -19,7 +19,8 @@ class Effect;
 
 class BluxSequence :
     public Sequence,
-    public ChainVizTarget
+    public ChainVizTarget,
+    public SequenceLayerManager::ManagerListener
 {
 public:
     BluxSequence();
@@ -31,6 +32,8 @@ public:
     Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
 
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
+
+    virtual void itemAdded(SequenceLayer* layer) override;
 
     void endLoadFile() override;
 

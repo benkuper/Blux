@@ -18,6 +18,7 @@
 #include "Object/Object.h"
 #include "ChainViz/ChainVizTarget.h"
 #include "ui/BluxSequenceChainVizUI.h"
+#include "Audio/AudioManager.h"
 
 BluxSequence::BluxSequence() :
 	manualStartAtLoad(false)
@@ -26,12 +27,16 @@ BluxSequence::BluxSequence() :
 	//layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Automation", &AutomationLayer::create, this));
 	//layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Color Source", &ColorSourceLayer::create, this));
 	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Actions", &ActionLayer::create, this));
-	//layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Audio", &AudioLayer::create, this, true));
+	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Audio", &AudioLayer::create, this, true));
 
+	layerManager->addBaseManagerListener(this);
+
+	setAudioDeviceManager(&AudioManager::getInstance()->am);
 }
 
 BluxSequence::~BluxSequence()
 {
+	layerManager->removeBaseManagerListener(this);
 }
 
 bool BluxSequence::isAffectingObject(Object* o)
@@ -68,6 +73,15 @@ void BluxSequence::processComponentValues(Object* o, ObjectComponent* c, var& va
 		{
 			e->processComponentValues(o, c, values, weightMultiplier);
 		}
+	}
+}
+
+void BluxSequence::itemAdded(SequenceLayer* layer)
+{
+	AudioLayer* al = dynamic_cast<AudioLayer*>(layer);
+	if (al != nullptr)
+	{
+		al->setAudioProcessorGraph(&AudioManager::getInstance()->graph, AUDIO_OUTPUT_GRAPH_ID);
 	}
 }
 

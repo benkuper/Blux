@@ -22,6 +22,8 @@ IntensityComponent::~IntensityComponent()
 
 void IntensityComponent::setupFromJSONDefinition(var data)
 {
+    ObjectComponent::setupFromJSONDefinition(data);
+
     if (!data.hasProperty("channels"))
     {
         var chData(new DynamicObject());

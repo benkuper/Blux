@@ -25,9 +25,9 @@ public:
     virtual ~ObjectComponent();
     
     Object* object;
+    int channelOffset;
 
     ComponentType componentType;
-    
     BoolParameter* excludeFromScenes;
 
     //dmx
@@ -47,11 +47,13 @@ public:
 
     virtual var getOriginalComputedValues();
 
-    virtual void setupFromJSONDefinition(var data) {}
+    virtual void setupFromJSONDefinition(var data);
 
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
+
+    virtual void fillOutValueMap(HashMap<int, float> &channelValueMap, int startChannel);
 
     InspectableEditor* getEditor(bool isRoot) override;
 };
