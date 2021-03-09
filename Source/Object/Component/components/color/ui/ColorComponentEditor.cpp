@@ -58,13 +58,13 @@ void ColorComponentEditor::newMessage(const ColorComponent::ColorComponentEvent&
 
     switch (e.type)
     {
-    case e.SOURCE_CHANGED:
+    case ColorComponent::ColorComponentEvent::SOURCE_CHANGED:
     {
         colorChooser.setButtonText(comp->colorSource != nullptr ? comp->colorSource->getSourceLabel() : "No Color Source");
     }
     break;
 
-    case e.SHAPE_CHANGED: 
+    case ColorComponent::ColorComponentEvent::SHAPE_CHANGED:
     {
         shapeChooser.setButtonText(comp->pixelShape != nullptr ? comp->pixelShape->getTypeString() : "No Shape");
     }

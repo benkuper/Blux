@@ -25,7 +25,7 @@ public:
 	EnumParameter* sourceChannel;
 	GradientColorManager gradient;
 
-	void processedEffectColorsInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1);
+	void processedEffectColorsInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1) override;
 
 	String getTypeString() const override { return getTypeStringStatic(); }
 	const static String getTypeStringStatic() { return "Gradient Remap"; }
