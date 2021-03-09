@@ -176,7 +176,7 @@ void ObjectManager::run()
 
 void ObjectManager::progress(URL::DownloadTask* task, int64 downloaded, int64 total)
 {
-    int percent = downloaded * 100 / total;
+    int percent = (int)(downloaded * 100 / total);
     LOG("Downloading objects..." << percent << "%");
 }
 

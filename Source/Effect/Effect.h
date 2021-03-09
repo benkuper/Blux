@@ -45,7 +45,7 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
-    ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type);
+    ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
 
     virtual InspectableEditor* getEditor(bool isRoot) override;
     String getTypeString() const override { return "Effect"; }
