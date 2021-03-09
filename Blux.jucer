@@ -815,7 +815,7 @@
       </MODULEPATHS>
     </VS2019>
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
-               bigIcon="kxAIe6">
+               bigIcon="kxAIe6" xcodeValidArchs="x86_64">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/serial/include"
                        libraryPath="../../External/servus/lib/osx/debug"/>
@@ -873,9 +873,9 @@
                 smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0&#10;"
-                       libraryPath="../../External/servus/lib/linux&#10;/usr/lib/x86_64-linux-gnu/"/>
+                       libraryPath="../../External/servus/lib/linux&#10;/usr/lib/arm-linux-gnueabihf"/>
         <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0"
-                       libraryPath="../../External/servus/lib/linux&#10;/usr/lib/x86_64-linux-gnu/"/>
+                       libraryPath="../../External/servus/lib/linux&#10;/usr/lib/arm-linux-gnueabihf"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_timeline" path="Modules"/>
