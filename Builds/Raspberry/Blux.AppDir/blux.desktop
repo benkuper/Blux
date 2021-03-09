@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Blux
+Exec=Blux
+Icon=blux
+Type=Application
+Categories=AudioVideo;Art;Light;
+Comment=Modern Stage Light and Machinery Control 
+MimeType=text/blux;
+Name[en]=Blux
+Terminal=false
+StartupNotify=true
+NoDisplay=false
+Name[en_US]=blux.desktop
