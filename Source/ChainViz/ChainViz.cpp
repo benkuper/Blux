@@ -295,7 +295,7 @@ BaseItemChainVizComponent::BaseItemChainVizComponent(BaseItem* i, Object* o, Cha
 {
 	if (baseItem->canBeDisabled)
 	{
-		enableUI.reset(baseItem->enabled->createImageToggle(AssetManager::getInstance()->getPowerBT()));
+		enableUI.reset(baseItem->enabled->createToggle(AssetManager::getInstance()->powerOn, AssetManager::getInstance()->powerOff));
 		addAndMakeVisible(enableUI.get());
 	}
 

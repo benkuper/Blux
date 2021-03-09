@@ -46,7 +46,7 @@ public:
 
 	BaseItem* baseItem;
 	bool showItemName;
-	std::unique_ptr<BoolImageToggleUI> enableUI;
+	std::unique_ptr<BoolToggleUI> enableUI;
 
 	void mouseDown(const MouseEvent& e) override;
 	virtual void paint(Graphics& g) override;

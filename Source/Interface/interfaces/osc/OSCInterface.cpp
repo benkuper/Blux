@@ -28,7 +28,6 @@ OSCInterface::OSCInterface() :
 	addChildControllableContainer(receiveCC.get());
 
 	localPort = receiveCC->addIntParameter("Local Port", "Local Port to bind to receive OSC Messages", 13000, 1024, 65535);
-	localPort->hideInOutliner = true;
 	localPort->warningResolveInspectable = this;
 
 	receiver.registerFormatErrorHandler(&OSCHelpers::logOSCFormatError);
@@ -310,7 +309,7 @@ void OSCInterface::sendValuesForObject(Object* o)
 
 		for (auto& p : c->computedParameters)
 		{
-			OSCMessage m = OSCHelpers::getOSCMessageForParameter(p);
+			OSCMessage m = OSCHelpers::getOSCMessageForControllable(p);
 			sendOSC(m);
 		}
 	}

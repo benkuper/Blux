@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b18"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b19"
               headerPath="../../Source" projectLineFeed="&#10;">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -752,7 +752,9 @@
             file="Source/MainComponentCommands.cpp"/>
     </GROUP>
   </MAINGROUP>
-  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" ORGANICUI_USE_SERVUS="1" ORGANICUI_USE_WEBSERVER="1"/>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" ORGANICUI_USE_SERVUS="1" ORGANICUI_USE_WEBSERVER="1"
+               JUCE_IP_AND_PORT_DETECTION="1" JUCE_EXCLUSIVE_BINDING_BY_DEFAULT="1"
+               JUCE_ENABLE_BROADCAST_BY_DEFAULT="1" JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS="1"/>
   <EXPORTFORMATS>
     <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="kxAIe6" bigIcon="kxAIe6"
             externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib">
