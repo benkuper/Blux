@@ -38,6 +38,7 @@
 		232FC27EFC7297037260A3D9 /* ../../Source/Engine/BluxEngine.cpp */ = {isa = PBXBuildFile; fileRef = F7C86E76FF3C01B3313764D0; };
 		24439ABD62AB3AACFCEF5B6E /* ../../Source/Group/Group.cpp */ = {isa = PBXBuildFile; fileRef = 6704AE36D64BF8B3F63DC935; };
 		263C74EB39147729761E0BB4 /* ../../Source/Sequence/layers/action/ActionTrigger.cpp */ = {isa = PBXBuildFile; fileRef = 2978EC72B7EEDA927449DAB6; };
+		28D3F38EE71FEC83E38B0661 /* ../../JuceLibraryCode/include_juce_simpleweb2.cpp */ = {isa = PBXBuildFile; fileRef = BC2B5905A623E67B6D8CA12E; };
 		2AAB0A873205217EEB764221 /* ../../Source/Common/Action/ActionManager.cpp */ = {isa = PBXBuildFile; fileRef = 141E21D6469A27AEEBB163AF; };
 		2BA6BA94377E2306159F820E /* ../../Source/Scene/ui/SceneUI.cpp */ = {isa = PBXBuildFile; fileRef = 7C6CC1DFB66A2352CDC55666; };
 		3040094A24A5F912A26CF614 /* ../../JuceLibraryCode/include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = 7093A269A5A9525BDD04127A; };
@@ -487,6 +488,7 @@
 		B95911886BDAFE05FF9B4A6D /* ../../Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.h */ /* ColorSourceLibraryGridUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceLibraryGridUI.h; path = ../../Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.h; sourceTree = SOURCE_ROOT; };
 		BA0883F4E7A5A129114CB5FD /* ../../Source/Group/groups/object/ui/ObjectGroupUI.cpp */ /* ObjectGroupUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectGroupUI.cpp; path = ../../Source/Group/groups/object/ui/ObjectGroupUI.cpp; sourceTree = SOURCE_ROOT; };
 		BB1ACA8463C5ABCBD8477B97 /* ../../Source/Color/ColorSource/ColorSourceFactory.cpp */ /* ColorSourceFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorSourceFactory.cpp; path = ../../Source/Color/ColorSource/ColorSourceFactory.cpp; sourceTree = SOURCE_ROOT; };
+		BC2B5905A623E67B6D8CA12E /* ../../JuceLibraryCode/include_juce_simpleweb2.cpp */ /* include_juce_simpleweb2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_simpleweb2.cpp; path = ../../JuceLibraryCode/include_juce_simpleweb2.cpp; sourceTree = SOURCE_ROOT; };
 		BDB4A84898D8670FF05CBC63 /* ../../Source/Common/Serial/lib/serial/serial.cc */ /* serial.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = serial.cc; path = ../../Source/Common/Serial/lib/serial/serial.cc; sourceTree = SOURCE_ROOT; };
 		BE1FBB28C015AC5EEF3302C9 /* ../../Source/Interface/interfaces/osc/OSCInterface.cpp */ /* OSCInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = OSCInterface.cpp; path = ../../Source/Interface/interfaces/osc/OSCInterface.cpp; sourceTree = SOURCE_ROOT; };
 		BEFF2DBDA237A06B72E8A7F1 /* ../../Source/Interface/interfaces/midi/MIDIInterface.h */ /* MIDIInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MIDIInterface.h; path = ../../Source/Interface/interfaces/midi/MIDIInterface.h; sourceTree = SOURCE_ROOT; };
@@ -1815,6 +1817,7 @@
 				1000107A6F3FB09C8E603038,
 				7C740152C96EEC2E537A6799,
 				8B357F6B05C7CF3B2D388284,
+				BC2B5905A623E67B6D8CA12E,
 				B502773EB5D6F1AB021FC165,
 				006DA9E2FF4CD9E76DE57C8A,
 			);
@@ -2182,6 +2185,7 @@
 				B04AAFCA56E73E886FE371E0,
 				F361D91C98EDECFC803037A1,
 				18949DB23AA80E82FABAC4E9,
+				28D3F38EE71FEC83E38B0661,
 				C1CEE9B5BB944A3E81E7797B,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2309,10 +2313,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"../../External/servus/lib/osx/debug\"",
+					"\"../../Modules/juce_simpleweb/libs/MacOSX/${CURRENT_ARCH}\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../External/serial/include $(SRCROOT)/../../Source";
-				OTHER_LDFLAGS = "-lServus";
+				OTHER_LDFLAGS = "-lServus -lssl -lcrypto";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
 				PRODUCT_NAME = "Blux";
 				USE_HEADERMAP = NO;
@@ -2393,11 +2398,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"../../External/servus/lib/osx/release\"",
+					"\"../../Modules/juce_simpleweb/libs/MacOSX/${CURRENT_ARCH}\"",
 				);
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../External/serial/include $(SRCROOT)/../../Source";
-				OTHER_LDFLAGS = "-lServus";
+				OTHER_LDFLAGS = "-lServus -lssl -lcrypto";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
 				PRODUCT_NAME = "Blux";
 				USE_HEADERMAP = NO;

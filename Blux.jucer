@@ -780,14 +780,15 @@
         <MODULEPATH id="juce_opengl" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_osc" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_organicui" path="Modules"/>
-        <MODULEPATH id="juce_timeline" path="Modules"/>
-        <MODULEPATH id="juce_simpleweb" path="Modules"/>
+        <MODULEPATH id="juce_timeline" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_simpleweb" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_audio_formats" path="D:\Softwares\JUCE\modules"/>
       </MODULEPATHS>
     </VS2019>
     <VS2019 targetFolder="Builds/VisualStudio2019_CI" extraDefs="JUCE_SUPPORT_CARBON=0"
             externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib"
-            smallIcon="kxAIe6" bigIcon="kxAIe6">
+            smallIcon="kxAIe6" bigIcon="kxAIe6" extraCompilerFlags="/Zm1000"
+            extraLinkerFlags="/HEAP:0x400000,0x10000">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" binaryPath="Binaries/CI" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"/>
@@ -798,20 +799,20 @@
       <MODULEPATHS>
         <MODULEPATH id="juce_timeline" path="Modules"/>
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
-        <MODULEPATH id="juce_osc" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="JUCE/modules"/>
         <MODULEPATH id="juce_organicui" path="Modules"/>
-        <MODULEPATH id="juce_opengl" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
       </MODULEPATHS>
     </VS2019>
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
