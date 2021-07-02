@@ -120,6 +120,7 @@
 		99B761779B548FABF244B463 /* ../../Source/Effect/effects/color/hsv/HSVAdjustEffect.cpp */ = {isa = PBXBuildFile; fileRef = 765C337FF167632AD7592A4C; };
 		9B60FD60E4BD80C359CC710B /* ../../Source/Common/Serial/lib/serial/impl/win.cc */ = {isa = PBXBuildFile; fileRef = B896750C455A3583AD418095; };
 		9BB17E6DBCD315686721B9C1 /* ../../Source/Interface/interfaces/midi/MIDIInterface.cpp */ = {isa = PBXBuildFile; fileRef = 0003993F0869AFB8AA926E17; };
+		9FCFC2E054109CCF27F850B2 /* ../../JuceLibraryCode/include_juce_organicui2b.cpp */ = {isa = PBXBuildFile; fileRef = 747961454A8366C2A4D0391E; };
 		9FE5AFD0CD59F23D40FE2A20 /* ../../Source/Sequence/BluxSequence.cpp */ = {isa = PBXBuildFile; fileRef = DF2CF4978FF247F032BE184E; };
 		A126495FBA570004C58B4095 /* ../../Source/Interface/interfaces/serial/SerialInterface.cpp */ = {isa = PBXBuildFile; fileRef = 11BD809E128E9461D258500D; };
 		A211AF018CFB358805E70D1B /* ../../Source/Effect/Filter/filters/layout/LayoutFilter.cpp */ = {isa = PBXBuildFile; fileRef = 9796E952835249636FA40C92; };
@@ -365,6 +366,7 @@
 		729BA0D6D6500BCC30E86121 /* ../../Source/UI/AssetManager.cpp */ /* AssetManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AssetManager.cpp; path = ../../Source/UI/AssetManager.cpp; sourceTree = SOURCE_ROOT; };
 		72E2263412DEAB85D3C71483 /* ../../Source/Effect/Filter/filters/group/GroupFilter.cpp */ /* GroupFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GroupFilter.cpp; path = ../../Source/Effect/Filter/filters/group/GroupFilter.cpp; sourceTree = SOURCE_ROOT; };
 		742CD1CBC4FC3E7A4BB67B4D /* ../../Resources/colorsource/multipoint.png */ /* multipoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = multipoint.png; path = ../../Resources/colorsource/multipoint.png; sourceTree = SOURCE_ROOT; };
+		747961454A8366C2A4D0391E /* ../../JuceLibraryCode/include_juce_organicui2b.cpp */ /* include_juce_organicui2b.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_organicui2b.cpp; path = ../../JuceLibraryCode/include_juce_organicui2b.cpp; sourceTree = SOURCE_ROOT; };
 		7527867101EC9A29D398DB21 /* ../../Source/Color/ColorSource/sources/pattern/PatternColorSource.cpp */ /* PatternColorSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PatternColorSource.cpp; path = ../../Source/Color/ColorSource/sources/pattern/PatternColorSource.cpp; sourceTree = SOURCE_ROOT; };
 		752995F1BE479C7802AAB58B /* ../../Source/Common/Serial/lib/cobs/cobs.h */ /* cobs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cobs.h; path = ../../Source/Common/Serial/lib/cobs/cobs.h; sourceTree = SOURCE_ROOT; };
 		7539F3BFFB1F9451C222C130 /* ../../JuceLibraryCode/include_juce_gui_extra.mm */ /* include_juce_gui_extra.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_extra.mm; path = ../../JuceLibraryCode/include_juce_gui_extra.mm; sourceTree = SOURCE_ROOT; };
@@ -1808,6 +1810,7 @@
 				471E240554E3A9946C1D64F2,
 				EEB3B19E57DBCFFD69BA86F8,
 				CFDA35C76602682CC9A4C8CD,
+				747961454A8366C2A4D0391E,
 				B35B4DB2E7E73F60BAA6CD35,
 				1000107A6F3FB09C8E603038,
 				7C740152C96EEC2E537A6799,
@@ -2174,6 +2177,7 @@
 				AD972DA58333EFC71D240A95,
 				187B7184398FD03345F45EC6,
 				D8E8FC19FE0873A1B4A636C4,
+				9FCFC2E054109CCF27F850B2,
 				A579E79278898124223A90CA,
 				B04AAFCA56E73E886FE371E0,
 				F361D91C98EDECFC803037A1,
@@ -2250,7 +2254,7 @@
 					"DEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60007",
+					"JUCE_PROJUCER_VERSION=0x60008",
 					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
@@ -2277,7 +2281,7 @@
 					"JUCE_IP_AND_PORT_DETECTION=1",
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b19",
+					"JUCE_APP_VERSION=1.0.0b20",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2334,7 +2338,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60007",
+					"JUCE_PROJUCER_VERSION=0x60008",
 					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
@@ -2361,7 +2365,7 @@
 					"JUCE_IP_AND_PORT_DETECTION=1",
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b19",
+					"JUCE_APP_VERSION=1.0.0b20",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
