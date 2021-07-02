@@ -874,9 +874,11 @@
                 smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0&#10;"
-                       libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"/>
+                       libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"
+                       linuxArchitecture="-march=armv7"/>
         <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0"
-                       libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"/>
+                       libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"
+                       linuxArchitecture="-march=armv7"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_timeline" path="Modules"/>
