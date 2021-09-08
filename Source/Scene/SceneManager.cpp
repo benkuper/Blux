@@ -113,15 +113,15 @@ void SceneManager::run()
 
     
     var dataAtLoad = currentScene->getSceneData();
-    float timeAtLoad = Time::getMillisecondCounter() / 1000.0f;
+    double timeAtLoad = Time::getMillisecondCounter() / 1000.0;
     if (loadTime > 0)
     {
         while (!threadShouldExit() && currentScene->loadProgress->floatValue() < 1)
         {
             if (Engine::mainEngine->isClearing) return;
 
-            float curTime = Time::getMillisecondCounter() / 1000.0f;;
-            float progress = (curTime - timeAtLoad) / loadTime;
+            double curTime = Time::getMillisecondCounter() / 1000.0;
+            double progress = (curTime - timeAtLoad) / loadTime;
             currentScene->loadProgress->setValue(progress);
 
             float weight = currentScene->interpolationCurve.getValueAtPosition(progress);
