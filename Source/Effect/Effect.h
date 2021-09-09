@@ -33,7 +33,16 @@ public:
     EnumParameter * sceneSaveMode;
 
     FilterManager filterManager;
+
+    bool forceDisabled;
+
+    void setForceDisabled(bool value);
+    virtual void updateEnabled() {}
+
+    bool isFullyEnabled();
     
+    virtual void onContainerParameterChangedInternal(Parameter* p) override;
+
     bool isAffectingObject(Object * o);
     void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
     virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1);

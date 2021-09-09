@@ -30,6 +30,11 @@ public:
     EffectManager();
     ~EffectManager();
 
+    bool forceDisabled;
+
+    void setForceDisabled(bool value);
+
+    void addItemInternal(Effect* e, var data) override;
 
     virtual void processComponentValues(Object * o, ObjectComponent * c, var &values, float weightMultiplier = 1.0f);
     Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);

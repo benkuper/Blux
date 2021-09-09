@@ -15,7 +15,8 @@
 #include "ui/EffectChainVizUI.h"
 
 Effect::Effect(const String& name, var params) :
-	BaseItem(name)
+	BaseItem(name),
+	forceDisabled(false)
 {
 	saveAndLoadRecursiveData = true;
 
@@ -48,6 +49,13 @@ Effect::~Effect()
 bool Effect::isAffectingObject(Object* o)
 {
 	return filterManager.isAffectingObject(o);
+}
+
+void Effect::setForceDisabled(bool value)
+{
+	if (forceDisabled == value) return;
+	forceDisabled = value;
+	updateEnabled();
 }
 
 void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier, int id, float time)
@@ -91,9 +99,21 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 	}
 }
 
+
+void Effect::onContainerParameterChangedInternal(Parameter* p)
+{
+	BaseItem::onContainerParameterChangedInternal(p);
+	if (p == enabled) updateEnabled();
+}
+
 var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c,var values, int id, float time)
 {
 	return values;
+}
+
+bool Effect::isFullyEnabled()
+{
+	return enabled->boolValue() && !forceDisabled;
 }
 
 var Effect::blendValue(var start, var end, float weight)
@@ -127,7 +147,6 @@ float Effect::blendFloatValue(float start, float end, float weight)
 
 	return  val;
 }
-
 
 var Effect::getSceneData()
 {

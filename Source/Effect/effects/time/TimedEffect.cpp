@@ -27,6 +27,20 @@ TimedEffect::~TimedEffect()
 {
 }
 
+void TimedEffect::updateEnabled()
+{
+	if (isFullyEnabled())
+	{
+		timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
+		curTime = 0;
+		startTimer(20);
+	}
+	else
+	{
+		stopTimer();
+	}
+}
+
 var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
 {
 	for (int i = 0; i < values.size(); i++)
@@ -56,22 +70,4 @@ void TimedEffect::addTime()
     curTime += (newTime - timeAtLastUpdate) * speed->floatValue();
     timeAtLastUpdate = newTime;
 
-}
-
-void TimedEffect::onContainerParameterChangedInternal(Parameter* p)
-{
-	Effect::onContainerParameterChangedInternal(p);
-	if (p == enabled)
-	{
-		if (enabled->boolValue())
-		{
-			timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
-			curTime = 0;
-			startTimer(20);
-		}
-		else
-		{
-			stopTimer();
-		}
-	}
 }

@@ -41,6 +41,7 @@ SceneManager::~SceneManager()
 void SceneManager::addItemInternal(Scene* s, var data)
 {
     s->addSceneListener(this);
+    s->effectManager.setForceDisabled(true);
 }
 
 void SceneManager::removeItemInternal(Scene* s)
@@ -99,6 +100,7 @@ void SceneManager::run()
     String eName = GlobalEffectManager::getInstance()->shortName;
 
     currentScene->loadProgress->setValue(0);
+    currentScene->effectManager.setForceDisabled(false);
     currentScene->resetEffectTimes();
     for (auto& s : currentScene->sequenceManager.items)
     {
@@ -153,6 +155,8 @@ void SceneManager::run()
         {
             s->stopTrigger->trigger();
         }
+
+        previousScene->effectManager.setForceDisabled(true);
     }
    
     sceneManagerNotifier.addMessage(new SceneManagerEvent(SceneManagerEvent::SCENE_LOAD_END));

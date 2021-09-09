@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    TimedEffect.h
-    Created: 9 Oct 2020 9:16:14pm
-    Author:  bkupe
+	TimedEffect.h
+	Created: 9 Oct 2020 9:16:14pm
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -13,30 +13,30 @@
 #include  "../../Effect.h"
 
 class TimedEffect :
-    public Effect,
-    public HighResolutionTimer
+	public Effect,
+	public HighResolutionTimer
 {
 public:
-    TimedEffect(const String &name, var params = var());
-    virtual ~TimedEffect();
+	TimedEffect(const String& name, var params = var());
+	virtual ~TimedEffect();
 
-    FloatParameter* speed;
-    FloatParameter* timeOffset;
+	FloatParameter* speed;
+	FloatParameter* timeOffset;
 
-    FloatParameter* offsetByID;
-    FloatParameter* offsetByValue;
+	FloatParameter* offsetByID;
+	FloatParameter* offsetByValue;
 
 
-    double timeAtLastUpdate;
-    double curTime;
+	double timeAtLastUpdate;
+	double curTime;
 
-    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c,var values, int id, float time = -1) override;
-    virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c,var value, int id, float time) { return value;  }
+	virtual void updateEnabled() override;
 
-    virtual float getCurrentTime(float timeOverride = -1);
+	var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1) override;
+	virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time) { return value; }
 
-    virtual void hiResTimerCallback() override;  
-    virtual void addTime();
+	virtual float getCurrentTime(float timeOverride = -1);
 
-    virtual void onContainerParameterChangedInternal(Parameter* p) override;
+	virtual void hiResTimerCallback() override;
+	virtual void addTime();
 };

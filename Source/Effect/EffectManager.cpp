@@ -21,7 +21,8 @@
 juce_ImplementSingleton(EffectFactory);
 
 EffectManager::EffectManager() :
-    BaseManager("Effects")
+    BaseManager("Effects"),
+    forceDisabled(false)
 {
     itemDataType = "Effect";
 
@@ -33,6 +34,19 @@ EffectManager::EffectManager() :
 
 EffectManager::~EffectManager()
 {
+}
+
+void EffectManager::setForceDisabled(bool value)
+{
+    if (forceDisabled == value) return;
+    forceDisabled = value;
+    for (auto& i : items) i->setForceDisabled(forceDisabled);
+}
+
+void EffectManager::addItemInternal(Effect* e, var data)
+{
+    BaseManager::addItemInternal(e, data);
+    e->setForceDisabled(forceDisabled);
 }
 
 void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& values, float weightMultiplier)
