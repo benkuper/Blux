@@ -24,6 +24,8 @@ public:
 
     std::unique_ptr<FloatSliderUI> iconSizeUI;
     std::unique_ptr<BoolToggleUI> showFiltersUI;
+    std::unique_ptr<BoolToggleUI> lockObjectUIs;
+    std::unique_ptr<BoolToggleUI> lockFilterUIs;
 
     LayoutFilterStageView filterStageView;
 

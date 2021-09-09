@@ -25,8 +25,10 @@ DMXInterface::DMXInterface() :
 	dmxConnected->isSavable = false;
 
 	channelTestingMode = addBoolParameter("Channel Testing Mode", "Is testing with the Channel view ?", false);
-	channelTestingMode->setControllableFeedbackOnly(true);
 	channelTestingMode->hideInEditor = true;
+
+	channelTestingFlashValue = addFloatParameter("Channel Testing Flash Value", "Flash value of channel testing", 1, 0, 1);
+	channelTestingFlashValue->hideInEditor = true;
 
 	setCurrentDMXDevice(DMXDevice::create((DMXDevice::Type)(int)dmxType->getValueData()));
 

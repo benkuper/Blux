@@ -9,6 +9,7 @@
 */
 
 #include "LayoutFilterStageView.h"
+#include "Layout/StageLayoutManager.h"
 
 LayoutFilterStageView::LayoutFilterStageView() :
     shouldRepaint(false)
@@ -41,6 +42,9 @@ void LayoutFilterStageView::addUIForFilter(LayoutFilter* f)
     f->addAsyncContainerListener(this);
     addChildComponent(ui);
     filterUIs.add(ui);
+
+    bool locked = StageLayoutManager::getInstance()->lockFilterUIs->boolValue();
+    ui->setInterceptsMouseClicks(!locked, !locked);
 
     if (ui->isVisible()) placeItem(ui);
 }

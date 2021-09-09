@@ -32,7 +32,14 @@ StageLayout2DView::StageLayout2DView(const String& name) :
     showFiltersUI.reset(StageLayoutManager::getInstance()->showFilters->createToggle());
     addAndMakeVisible(showFiltersUI.get());
 
+    lockObjectUIs.reset(StageLayoutManager::getInstance()->lockObjectUIs->createToggle());
+    addAndMakeVisible(lockObjectUIs.get());
+
+    lockFilterUIs.reset(StageLayoutManager::getInstance()->lockFilterUIs->createToggle());
+    addAndMakeVisible(lockFilterUIs.get());
+
     addChildComponent(&filterStageView);
+
     filterStageView.setVisible(StageLayoutManager::getInstance()->showFilters->boolValue());
 
     StageLayoutManager::getInstance()->addAsyncContainerListener(this);
@@ -50,6 +57,7 @@ StageLayout2DView::~StageLayout2DView()
 void StageLayout2DView::addItemUIInternal(Object2DView* ui)
 {
     if(filterStageView.isVisible()) filterStageView.toFront(false);
+    ui->item->isUILocked->setValue(StageLayoutManager::getInstance()->lockObjectUIs->boolValue());
 }
 
 void StageLayout2DView::setPreviewData(var data)
@@ -66,6 +74,10 @@ void StageLayout2DView::resized()
     iconSizeUI->setBounds(r.removeFromLeft(200).reduced(3));
     r.removeFromLeft(8);
     showFiltersUI->setBounds(r.removeFromLeft(100).reduced(3));
+    r.removeFromLeft(8);
+    lockObjectUIs->setBounds(r.removeFromLeft(100).reduced(3));
+    r.removeFromLeft(8);
+    lockFilterUIs->setBounds(r.removeFromLeft(100).reduced(3));
 
     if (filterStageView.isVisible())
     {
@@ -92,6 +104,22 @@ void StageLayout2DView::newMessage(const ContainerAsyncEvent& e)
                 float s = StageLayoutManager::getInstance()->iconSize->floatValue();
                 ui->setSize(s, s);
                 updateViewUIPosition(ui);
+            }
+        }
+        else if (e.targetControllable == StageLayoutManager::getInstance()->lockObjectUIs)
+        {
+            bool locked = StageLayoutManager::getInstance()->lockObjectUIs->boolValue();
+            for (auto& ui : itemsUI)
+            {
+                ui->item->isUILocked->setValue(locked);
+            }
+        }
+        else if (e.targetControllable == StageLayoutManager::getInstance()->lockFilterUIs)
+        {
+            bool locked = StageLayoutManager::getInstance()->lockFilterUIs->boolValue();
+            for (auto& ui : filterStageView.filterUIs)
+            {
+                ui->setInterceptsMouseClicks(!locked, !locked);
             }
         }
         break;

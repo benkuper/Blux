@@ -57,6 +57,7 @@ public:
     Component channelContainer;
 
     std::unique_ptr<BoolButtonToggleUI> testingUI;
+    std::unique_ptr<FloatSliderUI> flashValue;
 
     ComboBox dmxList;
     OwnedArray<DMXChannelItem> channelItems;
@@ -70,12 +71,15 @@ public:
     void rebuildDMXList();
     void rebuildChannelItems();
 
+
     void sendDMXValue(int channel, float value);
 
     void newMessage(const InterfaceManager::ManagerEvent& e) override;
 
     // Inherited via Listener
     virtual void comboBoxChanged(ComboBox* comboBoxThatHasChanged) override;
+
+    float getFlashValue();
 
     void inspectableDestroyed(Inspectable* i) override;
 

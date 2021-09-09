@@ -28,6 +28,7 @@ public:
     BoolParameter* dmxConnected;
 
     BoolParameter * channelTestingMode;
+    FloatParameter* channelTestingFlashValue;
 
     void clearItem() override;
 

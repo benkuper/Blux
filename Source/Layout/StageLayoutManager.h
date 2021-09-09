@@ -21,6 +21,8 @@ public:
     //ui
     FloatParameter* iconSize;
     BoolParameter * showFilters;
+    BoolParameter* lockObjectUIs;
+    BoolParameter* lockFilterUIs;
 
     StageLayoutManager();
     ~StageLayoutManager();
