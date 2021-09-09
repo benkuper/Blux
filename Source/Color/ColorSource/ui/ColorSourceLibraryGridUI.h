@@ -10,9 +10,6 @@
 
 #pragma once
 
-#include "../ColorSourceLibrary.h"
-#include "ColorSourceGridUI.h"
-
 class ColorSourceLibraryGridUI :
     public BaseManagerShapeShifterUI<ColorSourceLibrary, ColorSource, ColorSourceGridUI>,
     public ContainerAsyncListener

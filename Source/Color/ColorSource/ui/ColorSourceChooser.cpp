@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorSourceChooser.h"
-#include "Color/ColorSource/ColorSourceFactory.h"
-#include "Color/ColorSource/ColorSourceLibrary.h"
-
 ColorSourceChooser::ColorSourceChooser() :
 	TextButton("No Color Source")
 {

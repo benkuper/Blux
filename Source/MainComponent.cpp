@@ -11,7 +11,7 @@
 #include "Object/Layout/ui/StageLayout2DView.h"
 #include "Interface/interfaces/dmx/ui/DMXChannelView.h"
 #include "ChainViz/ChainViz.h"
-#include "Color/ColorSource/ui/ColorSourceLibraryGridUI.h"
+#include "Color/ColorIncludes.h"
 #include "UI/BluxInspector.h"
 
 String getAppVersion();

@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "Object/Component/components/color/ColorComponent.h"
-
 class ColorViz :
     public InspectableEditor,
     public Timer

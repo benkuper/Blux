@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "PatternColorSource.h"
-
 SolidColorSource::SolidColorSource(var params) :
     TimedColorSource(getTypeString(), params)
 {

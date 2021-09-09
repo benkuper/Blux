@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorViz.h"
-#include "Color/PixelShape/PixelShape.h"
-
 ColorViz::ColorViz(ColorComponent* comp) :
     InspectableEditor(comp, false),
     comp(comp)

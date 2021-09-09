@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ScriptColorSource.h"
-
 ScriptColorSource::ScriptColorSource(var params) :
     TimedColorSource(getTypeString(), params)
 {

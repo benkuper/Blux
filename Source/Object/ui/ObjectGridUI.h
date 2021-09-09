@@ -11,7 +11,7 @@
 #pragma once
  
 #include "../Object.h"
-#include "Color/ColorSource/ui/ColorViz.h"
+class ColorViz;
 
 class ObjectGridUI :
 	public BaseItemMinimalUI<Object>,

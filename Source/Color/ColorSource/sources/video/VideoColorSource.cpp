@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "VideoColorSource.h"
-#include "Object/Component/components/color/ColorComponent.h"
-#include "Color/PixelShape/PixelShape.h"
-
 PixelMapColorSource::PixelMapColorSource(const String &name, var params) :
     TimedColorSource(name, params)
 {

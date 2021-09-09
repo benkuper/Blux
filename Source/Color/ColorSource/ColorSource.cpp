@@ -7,9 +7,7 @@
 
   ==============================================================================
 */
-#include "ColorSource.h"
-#include "Object/Component/components/color/ColorComponent.h"
-#include "Object/Object.h"
+
 
 ColorSource::ColorSource(const String& name, var params) :
 	BaseItem(name, false),

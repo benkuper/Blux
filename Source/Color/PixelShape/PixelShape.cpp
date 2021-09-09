@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "PixelShape.h"
-
 PixelShape::PixelShape(const String& name, int resolution) :
     BaseItem(name, false, false),
     resolution(resolution),

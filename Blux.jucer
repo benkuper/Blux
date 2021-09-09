@@ -34,76 +34,76 @@
         <GROUP id="{3AE6DD1B-440C-B30D-719A-8B9BD861BD72}" name="ColorSource">
           <GROUP id="{B6F4F5AC-D226-7CBC-022B-70525AD97083}" name="sources">
             <GROUP id="{DBD75931-C481-1FB8-5A28-CC0DC8529E47}" name="node">
-              <FILE id="B7waeN" name="NodeColorSource.cpp" compile="1" resource="0"
+              <FILE id="B7waeN" name="NodeColorSource.cpp" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/node/NodeColorSource.cpp"/>
               <FILE id="cAxSCz" name="NodeColorSource.h" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/node/NodeColorSource.h"/>
             </GROUP>
             <GROUP id="{A047CEA0-ADC1-4915-8B6D-DC00D8576702}" name="pattern">
-              <FILE id="g7DZFh" name="PatternColorSource.cpp" compile="1" resource="0"
+              <FILE id="g7DZFh" name="PatternColorSource.cpp" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/pattern/PatternColorSource.cpp"/>
               <FILE id="WNVXEq" name="PatternColorSource.h" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/pattern/PatternColorSource.h"/>
               <FILE id="nCG8Et" name="PerlinNoise.hpp" compile="0" resource="0" file="Source/Color/ColorSource/sources/pattern/PerlinNoise.hpp"/>
             </GROUP>
             <GROUP id="{78A5B5DB-E815-ECCC-6C61-9C51D2C3DF70}" name="picture">
-              <FILE id="rJIXvg" name="PictureColorSource.cpp" compile="1" resource="0"
+              <FILE id="rJIXvg" name="PictureColorSource.cpp" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/picture/PictureColorSource.cpp"/>
               <FILE id="GKTLpl" name="PictureColorSource.h" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/picture/PictureColorSource.h"/>
             </GROUP>
             <GROUP id="{33839053-8325-E49E-9EA9-3B6C81374B2D}" name="script">
-              <FILE id="fof8ya" name="ScriptColorSource.cpp" compile="1" resource="0"
+              <FILE id="fof8ya" name="ScriptColorSource.cpp" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/script/ScriptColorSource.cpp"/>
               <FILE id="hpIVEE" name="ScriptColorSource.h" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/script/ScriptColorSource.h"/>
             </GROUP>
             <GROUP id="{7A95B278-3258-6C50-4C5D-1C0DEB4F9817}" name="video">
-              <FILE id="sidaNY" name="VideoColorSource.cpp" compile="1" resource="0"
+              <FILE id="sidaNY" name="VideoColorSource.cpp" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/video/VideoColorSource.cpp"/>
               <FILE id="yi9OwB" name="VideoColorSource.h" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/video/VideoColorSource.h"/>
             </GROUP>
           </GROUP>
           <GROUP id="{29F8108D-13E2-E7A5-9286-B43B50866FB7}" name="ui">
-            <FILE id="SrglqI" name="ColorSourceChooser.cpp" compile="1" resource="0"
+            <FILE id="SrglqI" name="ColorSourceChooser.cpp" compile="0" resource="0"
                   file="Source/Color/ColorSource/ui/ColorSourceChooser.cpp"/>
             <FILE id="rm9EY5" name="ColorSourceChooser.h" compile="0" resource="0"
                   file="Source/Color/ColorSource/ui/ColorSourceChooser.h"/>
-            <FILE id="I3NZnq" name="ColorSourceGridUI.cpp" compile="1" resource="0"
+            <FILE id="I3NZnq" name="ColorSourceGridUI.cpp" compile="0" resource="0"
                   file="Source/Color/ColorSource/ui/ColorSourceGridUI.cpp"/>
             <FILE id="IuiNLo" name="ColorSourceGridUI.h" compile="0" resource="0"
                   file="Source/Color/ColorSource/ui/ColorSourceGridUI.h"/>
-            <FILE id="GEHHeO" name="ColorSourceLibraryGridUI.cpp" compile="1" resource="0"
+            <FILE id="GEHHeO" name="ColorSourceLibraryGridUI.cpp" compile="0" resource="0"
                   file="Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.cpp"/>
             <FILE id="CJd2m4" name="ColorSourceLibraryGridUI.h" compile="0" resource="0"
                   file="Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.h"/>
-            <FILE id="jPlkbQ" name="ColorViz.cpp" compile="1" resource="0" file="Source/Color/ColorSource/ui/ColorViz.cpp"/>
+            <FILE id="jPlkbQ" name="ColorViz.cpp" compile="0" resource="0" file="Source/Color/ColorSource/ui/ColorViz.cpp"/>
             <FILE id="RrWjp8" name="ColorViz.h" compile="0" resource="0" file="Source/Color/ColorSource/ui/ColorViz.h"/>
           </GROUP>
-          <FILE id="F4cZRE" name="ColorSourceFactory.cpp" compile="1" resource="0"
+          <FILE id="F4cZRE" name="ColorSourceFactory.cpp" compile="0" resource="0"
                 file="Source/Color/ColorSource/ColorSourceFactory.cpp"/>
           <FILE id="TKAWN7" name="ColorSourceFactory.h" compile="0" resource="0"
                 file="Source/Color/ColorSource/ColorSourceFactory.h"/>
-          <FILE id="JPCMQp" name="ColorSource.cpp" compile="1" resource="0" file="Source/Color/ColorSource/ColorSource.cpp"/>
+          <FILE id="JPCMQp" name="ColorSource.cpp" compile="0" resource="0" file="Source/Color/ColorSource/ColorSource.cpp"/>
           <FILE id="CbzOvp" name="ColorSource.h" compile="0" resource="0" file="Source/Color/ColorSource/ColorSource.h"/>
-          <FILE id="f16rqK" name="ColorSourceLibrary.cpp" compile="1" resource="0"
+          <FILE id="f16rqK" name="ColorSourceLibrary.cpp" compile="0" resource="0"
                 file="Source/Color/ColorSource/ColorSourceLibrary.cpp"/>
           <FILE id="HKtElb" name="ColorSourceLibrary.h" compile="0" resource="0"
                 file="Source/Color/ColorSource/ColorSourceLibrary.h"/>
         </GROUP>
         <GROUP id="{663E2B39-9238-BFFE-8D89-48258F820214}" name="PixelShape">
           <GROUP id="{BF83D44E-1131-4C9C-58D9-1149ADD830ED}" name="ui">
-            <FILE id="BHruAG" name="PixelShapeChooser.cpp" compile="1" resource="0"
+            <FILE id="BHruAG" name="PixelShapeChooser.cpp" compile="0" resource="0"
                   file="Source/Color/PixelShape/ui/PixelShapeChooser.cpp"/>
             <FILE id="yGTL1D" name="PixelShapeChooser.h" compile="0" resource="0"
                   file="Source/Color/PixelShape/ui/PixelShapeChooser.h"/>
-            <FILE id="nVMS6R" name="PixelShapeEditor.cpp" compile="1" resource="0"
+            <FILE id="nVMS6R" name="PixelShapeEditor.cpp" compile="0" resource="0"
                   file="Source/Color/PixelShape/ui/PixelShapeEditor.cpp"/>
             <FILE id="SuGqFm" name="PixelShapeEditor.h" compile="0" resource="0"
                   file="Source/Color/PixelShape/ui/PixelShapeEditor.h"/>
           </GROUP>
-          <FILE id="Y1ar2i" name="PixelShape.cpp" compile="1" resource="0" file="Source/Color/PixelShape/PixelShape.cpp"/>
+          <FILE id="Y1ar2i" name="PixelShape.cpp" compile="0" resource="0" file="Source/Color/PixelShape/PixelShape.cpp"/>
           <FILE id="BFdv2R" name="PixelShape.h" compile="0" resource="0" file="Source/Color/PixelShape/PixelShape.h"/>
         </GROUP>
         <FILE id="wANpdH" name="ColorIncludes.cpp" compile="1" resource="0"

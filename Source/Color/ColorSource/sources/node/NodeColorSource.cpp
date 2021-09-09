@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "NodeColorSource.h"
-
 NodeColorSource::NodeColorSource(var params) :
     ColorSource(getTypeString(), params)
 {

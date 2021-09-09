@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "PictureColorSource.h"
-
 PictureColorSource::PictureColorSource(var params) :
     TimedColorSource(getTypeString(), params)
 {

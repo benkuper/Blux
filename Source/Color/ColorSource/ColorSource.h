@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "JuceHeader.h"
-
 class Object;
 class ColorComponent;
 

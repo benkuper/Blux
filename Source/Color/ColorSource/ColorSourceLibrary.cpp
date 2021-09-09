@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorSourceLibrary.h"
-#include "ColorSourceFactory.h"
-
 juce_ImplementSingleton(ColorSourceLibrary)
 
 

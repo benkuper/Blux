@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorSourceLibraryGridUI.h"
-
 ColorSourceLibraryGridUI::ColorSourceLibraryGridUI(const String& name) :
     BaseManagerShapeShifterUI(name, ColorSourceLibrary::getInstance())
 {

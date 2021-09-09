@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../../ColorSource.h"
-
 class PixelMapColorSource :
     public TimedColorSource
 {

@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../PixelShape.h"
-
 class PixelShapeChooser :
     public TextButton
 {

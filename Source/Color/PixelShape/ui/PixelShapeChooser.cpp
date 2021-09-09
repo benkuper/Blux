@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "PixelShapeChooser.h"
-
 PixelShapeChooser::PixelShapeChooser() :
     TextButton("No Shape")
 {

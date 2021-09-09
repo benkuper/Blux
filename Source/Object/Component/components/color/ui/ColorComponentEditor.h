@@ -12,8 +12,8 @@
 
 #include "../ColorComponent.h"
 #include "../../../ui/ObjectComponentEditor.h"
-#include "Color/ColorSource/ui/ColorSourceChooser.h"
-#include "Color/PixelShape/ui/PixelShapeChooser.h"
+#include "Color/ColorIncludes.h"
+
 
 class ColorComponentEditor :
     public ObjectComponentEditor,

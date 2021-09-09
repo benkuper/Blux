@@ -14,9 +14,8 @@
 #include "../Component/components/intensity/IntensityComponent.h"
 #include "../Component/components/color/ColorComponent.h"
 #include "ChainViz/ChainViz.h"
-#include "Color/ColorSource/ui/ColorSourceChooser.h"
-#include "Color/ColorSource/ColorSourceLibrary.h"
-#include "Color/ColorSource/ColorSourceFactory.h"
+#include "Color/ColorIncludes.h"
+
 
 ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),

@@ -9,7 +9,6 @@
 */
 
 #pragma once
-#include "ColorSource.h"
 
 class ColorSourceLibrary :
     public BaseManager<ColorSource>

@@ -12,7 +12,7 @@
 
 #include "../ColorSourceOverrideEffect.h"
 #include "Effect/ui/EffectEditor.h"
-#include "Color//ColorSource/ui/ColorSourceChooser.h"
+#include "Color/ColorIncludes.h"
 
 class ColorSourceOverrideEffectEditor :
     public EffectEditor,

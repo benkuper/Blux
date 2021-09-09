@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorSourceGridUI.h"
-#include "Object//ObjectManager.h"
-#include "Object/Component/components/color/ColorComponent.h"
 
 ColorSourceGridUI::ColorSourceGridUI(ColorSource* item) :
     BaseItemMinimalUI(item)

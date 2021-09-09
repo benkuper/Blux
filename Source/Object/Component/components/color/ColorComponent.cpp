@@ -9,12 +9,9 @@
 */
 
 #include "ColorComponent.h"
-#include "Color/ColorSource/ColorSource.h"
-#include "Color/ColorSource/ColorSourceFactory.h"
-#include "Color/ColorSource/ColorSourceLibrary.h"
-#include "Color/PixelShape/PixelShape.h"
+#include "Color/ColorIncludes.h"
+
 #include "ui/ColorComponentEditor.h"
-#include "Color/ColorSource/sources/pattern/PatternColorSource.h"
 
 ColorComponent::ColorComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), COLOR, params),

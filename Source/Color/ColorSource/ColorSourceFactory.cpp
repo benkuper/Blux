@@ -8,13 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorSourceFactory.h"
-#include "sources/pattern/PatternColorSource.h"
-#include "sources/picture/PictureColorSource.h"
-#include "sources/video/VideoColorSource.h"
-#include "sources/node/NodeColorSource.h"
-#include "sources/script/ScriptColorSource.h"
-
 juce_ImplementSingleton(ColorSourceFactory)
 
 ColorSourceFactory::ColorSourceFactory()

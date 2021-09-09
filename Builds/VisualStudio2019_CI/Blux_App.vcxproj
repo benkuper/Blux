@@ -159,21 +159,51 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorViz.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSource.cpp"/>
-    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.cpp"/>
-    <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeChooser.cpp"/>
-    <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceChooser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceGridUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorSourceLibraryGridUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ui\ColorViz.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceFactory.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSource.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorSource\ColorSourceLibrary.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeChooser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Color\ColorIncludes.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizIncludes.cpp"/>

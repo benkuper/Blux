@@ -11,7 +11,8 @@
 #pragma once
 
 #include "JuceHeader.h"
-#include "Color/ColorSource/ui/ColorViz.h"
+
+class ColorViz;
 
 class BluxInspector :
     public Inspector

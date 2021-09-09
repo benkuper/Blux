@@ -10,9 +10,6 @@
 
 #pragma once
 
-#include "../../ColorSource.h"
-#include "PerlinNoise.hpp"
-
 class SolidColorSource :
     public TimedColorSource
 {

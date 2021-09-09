@@ -10,6 +10,8 @@
 
 #include "BluxInspector.h"
 #include "Object/Object.h"
+#include "Color/ColorIncludes.h"
+#include "Object/Component/components/color/ColorComponent.h"
 
 BluxInspector::BluxInspector(InspectableSelectionManager* s) :
     Inspector(s)

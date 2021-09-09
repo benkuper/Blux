@@ -22,8 +22,7 @@
 #include "Object/Layout//StageLayoutManager.h"
 #include "Sequence/layers/action/ActionLayer.h"
 #include "Sequence/layers/effect/EffectBlockManager.h"
-#include "Color/ColorSource/ColorSourceLibrary.h"
-#include "Color/ColorSource/ColorSourceFactory.h"
+#include "Color/ColorIncludes.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
