@@ -20,6 +20,7 @@ public:
     virtual ~SceneUI();
 
     std::unique_ptr<TriggerButtonUI> loadUI;
+    std::unique_ptr<TriggerButtonUI> directLoadUI;
     std::unique_ptr<FloatSliderUI> loadProgressUI;
 
     void resizedInternalHeader(Rectangle<int>& r) override;

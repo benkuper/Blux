@@ -10,9 +10,10 @@
 
 #include "Filter.h"
 #include "Object/Object.h"
+#include "Object/Component/ObjectComponent.h"
 
 #include "ui/FilterEditor.h"
-#include "Common/Helpers/SceneHelpers.h"
+#include "Common/CommonIncludes.h"
 
 
 Filter::Filter(const String& name) :

@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "Action.h"
-
 Action::Action(var params) :
     BaseItem(params.getProperty("type","Action").toString())
 {

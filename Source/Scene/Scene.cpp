@@ -10,7 +10,7 @@
 
 #include "Scene.h"
 #include "Object/ObjectManager.h"
-#include "Group/GroupManager.h"
+#include "Object/Group/GroupManager.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Engine/BluxEngine.h"
 #include "Object//Component/components/intensity/IntensityComponent.h"
@@ -26,6 +26,7 @@ Scene::Scene(const String& name) :
 
 	saveTrigger = addTrigger("Save", "Save the current state of things into this scene");
 	loadTrigger = addTrigger("Load", "Load this scene. This will change all parameters to what has been saved in this scene");
+	directLoadTrigger = addTrigger("Direct Load", "Directly load this scene. This will load without any timing");
 	defaultLoadTime = addFloatParameter("Load Time", "Default load time, used when using the \"Load\" trigger.", BluxSettings::getInstance()->defaultSceneLoadTime->floatValue(), 0);
 	defaultLoadTime->defaultUI = FloatParameter::TIME;
 
@@ -118,6 +119,7 @@ void Scene::onContainerTriggerTriggered(Trigger* t)
 
 	if (t == saveTrigger) saveScene();
 	else if (t == loadTrigger) loadScene();
+	else if (t == directLoadTrigger) loadScene(0);
 }
 
 void Scene::onContainerParameterChangedInternal(Parameter* p)

@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "ComponentSelectorUI.h"
-
-
 ComponentSelectorUI::ComponentSelectorUI(ComponentSelector* s) :
     TextButton("Components", "Select components to be affected by this element"),
     selector(s),
@@ -84,5 +81,5 @@ void ComponentListModel::paintListBoxItem(int rowNumber, Graphics& g, int width,
     g.fillRect(0, 0,width, height);
 
     g.setColour(rowIsSelected?GREEN_COLOR:TEXT_COLOR.darker(.3f));
-    g.drawText(ObjectComponent::typeNames[selector->allowedComponents[rowNumber]], Rectangle<float>(0,0,width, height).reduced(2), Justification::centred);
+    g.drawText(componentTypeNames[selector->allowedComponents[rowNumber]], Rectangle<float>(0,0,width, height).reduced(2), Justification::centred);
 }

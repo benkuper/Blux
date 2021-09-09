@@ -10,16 +10,14 @@
 
 #pragma once
 
-#include "Object/Component/ObjectComponent.h"
-
 class ComponentSelector
 {
 public:
     ComponentSelector();
     ~ComponentSelector();
 
-    HashMap<ObjectComponent::ComponentType, bool> selectedComponents;
-    Array<ObjectComponent::ComponentType> allowedComponents;
+    HashMap<ComponentType, bool> selectedComponents;
+    Array<ComponentType> allowedComponents;
 
     var getJSONData();
     void loadJSONData(var data);

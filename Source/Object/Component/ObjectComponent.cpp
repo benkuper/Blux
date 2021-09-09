@@ -10,10 +10,8 @@
 
 #include "ObjectComponent.h"
 #include "ui/ObjectComponentEditor.h"
-#include "Common/Helpers/SceneHelpers.h" 
 #include "../ObjectManager.h"
 
-const String ObjectComponent::typeNames[TYPES_MAX]{ "Intensity", "Color", "Gobo", "Laser", "PanTilt", "Servo", "Stepper", "Strobe", "Script", "Custom" };
 
 ObjectComponent::ObjectComponent(Object* o, String name, ComponentType componentType, var params) :
 	BaseItem(name),

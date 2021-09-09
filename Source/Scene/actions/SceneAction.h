@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "Common/Action/Action.h"
+#include "Common/CommonIncludes.h"
 
 class SceneAction :
     public Action

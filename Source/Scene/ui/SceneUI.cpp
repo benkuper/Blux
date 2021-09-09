@@ -11,13 +11,19 @@
 #include "SceneUI.h"
 #include "../SceneManager.h"
 #include "Object/ui/ObjectManagerGridUI.h"
-#include "Layout/ui/StageLayout2DView.h"
+#include "Object/Layout/ui/StageLayout2DView.h"
 
 SceneUI::SceneUI(Scene* scene) :
     BaseItemUI(scene)
 {
     loadUI.reset(item->loadTrigger->createButtonUI());
     addAndMakeVisible(loadUI.get());
+    
+    directLoadUI.reset(item->directLoadTrigger->createButtonUI());
+    addAndMakeVisible(directLoadUI.get()); 
+    directLoadUI->customLabel = "Direct";
+    directLoadUI->updateUIParams();
+
     loadProgressUI.reset(item->loadProgress->createSlider());
     addAndMakeVisible(loadProgressUI.get());
     loadProgressUI->setVisible(item->defaultLoadTime->floatValue() > 0);
@@ -33,6 +39,8 @@ SceneUI::~SceneUI()
 
 void SceneUI::resizedInternalHeader(Rectangle<int>& r)
 {
+    directLoadUI->setBounds(r.removeFromRight(50).reduced(2));
+    r.removeFromRight(2);
     loadUI->setBounds(r.removeFromRight(60).reduced(2));
     r.removeFromRight(2);
     loadProgressUI->setBounds(r.removeFromRight(100).reduced(2,4));

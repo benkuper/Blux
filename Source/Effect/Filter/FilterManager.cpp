@@ -25,6 +25,9 @@ FilterManager::FilterManager() :
     factory.defs.add(Factory<Filter>::Definition::createDef("", "Filter by ID", &IDFilter::create));
     factory.defs.add(Factory<Filter>::Definition::createDef("", "Filter by Group", &GroupFilter::create));
     factory.defs.add(Factory<Filter>::Definition::createDef("", "Layout Filter", &LayoutFilter::create));
+
+    weightOperator = addEnumParameter("Operator", "Decides how filters are working together.");
+    weightOperator->addOption("Max", MAX)->addOption("Min", MIN)->addOption("Multiply", MULTIPLY);
 }
 
 FilterManager::~FilterManager()
@@ -63,9 +66,18 @@ bool FilterManager::isAffectingObject(Object* o)
 
     if (items.size() == 0) return true;
 
+    WeightOperator wo = weightOperator->getValueDataAsEnum<WeightOperator>();
+
     for (auto& f : items)
     {
-        if (f->isAffectingObject(o)) return true;
+        if (f->isAffectingObject(o))
+        {
+            if (wo == MAX || wo == MULTIPLY) return true;
+        }
+        else
+        {
+            if (wo == MIN) return false;
+        }
     }
 
     return false;
@@ -76,16 +88,36 @@ FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectCompo
     if (c != nullptr && !componentSelector.selectedComponents[c->componentType]) return FilterResult();
 
     bool hasFilteredAtLeastOnce = false;
+
+    WeightOperator wo = weightOperator->getValueDataAsEnum<WeightOperator>();
+    FilterResult result({ o->globalID->intValue(), 1.f });
+
     for (auto& f : items)
     {
         if (!f->enabled->boolValue()) continue;
-        hasFilteredAtLeastOnce = true;
+        if (!hasFilteredAtLeastOnce)
+        {
+            hasFilteredAtLeastOnce = true;
+            result = FilterResult(); //force no ID if filtered but not affected
+            if (wo == MAX) result.weight = 0; //initialize weight
+        }
 
         FilterResult r = f->getFilteredResultForComponent(o, c);
-        if (r.id >= 0) return r;
+        //if (r.id >= 0) return r;
+        if (r.id >= 0)
+        {
+            result.id = r.id;
+            if (wo == MIN) result.weight = jmin(result.weight, r.weight);
+            else if (wo == MAX) result.weight = jmax(result.weight, r.weight);
+            else if (wo == MULTIPLY) result.weight *= r.weight;
+        }
+        else
+        {
+            if (wo == MIN || wo == MULTIPLY) return FilterResult();
+        }
     }
 
-    return hasFilteredAtLeastOnce ? FilterResult() : FilterResult({ o->globalID->intValue(), 1 });
+    return result;
 }
 
 InspectableEditor* FilterManager::getEditor(bool isRoot)

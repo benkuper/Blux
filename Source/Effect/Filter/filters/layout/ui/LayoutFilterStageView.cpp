@@ -9,7 +9,7 @@
 */
 
 #include "LayoutFilterStageView.h"
-#include "Layout/StageLayoutManager.h"
+#include "Object/Layout/StageLayoutManager.h"
 
 LayoutFilterStageView::LayoutFilterStageView() :
     shouldRepaint(false)

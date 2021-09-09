@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "MIDIManager.h"
-
 juce_ImplementSingleton(MIDIManager)
 
 MIDIManager::MIDIManager()

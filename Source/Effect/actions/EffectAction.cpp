@@ -12,7 +12,7 @@
 #include "Effect/GlobalEffectManager.h"
 #include "Scene/SceneManager.h"
 #include "Object/ObjectManager.h"
-#include "Group/GroupManager.h"
+#include "Object/Group/GroupManager.h"
 
 EffectAction::EffectAction(var params) :
 	Action(params),

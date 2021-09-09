@@ -9,7 +9,7 @@
 */
 
 #include "MIDIMapping.h"
-#include "Common/Action/Action.h"
+#include "Common/CommonIncludes.h"
 #include "ui/MIDIMappingEditor.h"
 
 MIDIMapping::MIDIMapping() :

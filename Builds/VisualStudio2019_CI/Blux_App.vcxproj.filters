@@ -53,23 +53,8 @@
     <Filter Include="Blux\Source\Audio">
       <UniqueIdentifier>{71B30977-1984-2838-7462-8D5A66201FFA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Group\groups\virtual">
-      <UniqueIdentifier>{922F89D4-9FBE-4BA5-5556-84AE6371675E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Group\groups\object\ui">
-      <UniqueIdentifier>{4C763952-DC99-D5D1-D9F8-65E629A6A5E9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Group\groups\object">
-      <UniqueIdentifier>{54E1EAE5-C551-1AF0-03A2-C0B9A0DCDB41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Group\groups">
-      <UniqueIdentifier>{846AC070-3D34-6C3C-F987-9D0B5F9D8710}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Group\ui">
-      <UniqueIdentifier>{301E5E99-94F0-9D06-9E9E-01CE3F64B381}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Group">
-      <UniqueIdentifier>{2924489F-ED84-2699-56D2-3A7A0661A327}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Common\Component">
+      <UniqueIdentifier>{5CA81908-EB5E-691F-34E6-0E06F332D5E5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Common\MIDI\ui">
       <UniqueIdentifier>{28A5FD31-2475-AADB-18AB-D62CA1185EAA}</UniqueIdentifier>
@@ -227,12 +212,6 @@
     <Filter Include="Blux\Source\Effect">
       <UniqueIdentifier>{71FF0C22-9F65-97F8-521A-EE88FE7F29F3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Layout\ui">
-      <UniqueIdentifier>{549EFF42-8E47-8E68-E5A2-B0696436614F}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Layout">
-      <UniqueIdentifier>{79DADA6C-3EF8-A71B-707F-68A0F9A003A1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blux\Source\Object\actions">
       <UniqueIdentifier>{96E0EF7E-DEFC-6519-B936-2A312EE02D72}</UniqueIdentifier>
     </Filter>
@@ -280,6 +259,30 @@
     </Filter>
     <Filter Include="Blux\Source\Object\Component">
       <UniqueIdentifier>{296C1962-8B01-436F-3839-403F07426829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\Group\groups\object\ui">
+      <UniqueIdentifier>{FEBFEE0F-51D1-C409-8B47-F860A75259D0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\Group\groups\object">
+      <UniqueIdentifier>{77C8510F-9E96-5A8D-72BF-BD1AEF6F3475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\Group\groups\virtual">
+      <UniqueIdentifier>{01DDDC79-0DA7-8CB3-4E1B-A2EA9380D8E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\Group\groups">
+      <UniqueIdentifier>{55AF4531-E5FD-0BB9-176A-49AD67A945B7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\Group\ui">
+      <UniqueIdentifier>{82DC176F-6EC2-8C6C-5C80-7F8AF33AD866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\Group">
+      <UniqueIdentifier>{7324A58E-E636-FD68-D70E-88240E3E83F5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\Layout\ui">
+      <UniqueIdentifier>{0E8FF846-2041-3974-7F9B-4F182F1C4286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Object\Layout">
+      <UniqueIdentifier>{9E719755-5EAC-80A9-12F8-FF96DF9DC006}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Object\ui">
       <UniqueIdentifier>{6D3142D5-3D8E-0B45-6738-90DF48440332}</UniqueIdentifier>
@@ -1204,7 +1207,13 @@
     <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp">
       <Filter>Blux\Source\Color\PixelShape</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Color\ColorIncludes.cpp">
+      <Filter>Blux\Source\Color</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp">
+      <Filter>Blux\Source\ChainViz</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ChainViz\ChainVizIncludes.cpp">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp">
@@ -1216,26 +1225,8 @@
     <ClCompile Include="..\..\Source\Audio\AudioManager.cpp">
       <Filter>Blux\Source\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Group\groups\virtual\VirtualGroup.cpp">
-      <Filter>Blux\Source\Group\groups\virtual</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.cpp">
-      <Filter>Blux\Source\Group\groups\object\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Group\groups\object\ObjectGroup.cpp">
-      <Filter>Blux\Source\Group\groups\object</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Group\ui\GroupManagerUI.cpp">
-      <Filter>Blux\Source\Group\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Group\ui\GroupUI.cpp">
-      <Filter>Blux\Source\Group\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Group\Group.cpp">
-      <Filter>Blux\Source\Group</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Group\GroupManager.cpp">
-      <Filter>Blux\Source\Group</Filter>
+    <ClCompile Include="..\..\Source\Common\CommonIncludes.cpp">
+      <Filter>Blux\Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.cpp">
       <Filter>Blux\Source\Common\MIDI\ui</Filter>
@@ -1324,6 +1315,9 @@
     <ClCompile Include="..\..\Source\Common\Zeroconf\ZeroconfManager.cpp">
       <Filter>Blux\Source\Common\Zeroconf</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\InterfaceIncludes.cpp">
+      <Filter>Blux\Source\Interface</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Interface\ui\InterfaceManagerUI.cpp">
       <Filter>Blux\Source\Interface\ui</Filter>
     </ClCompile>
@@ -1384,8 +1378,14 @@
     <ClCompile Include="..\..\Source\Scene\Scene.cpp">
       <Filter>Blux\Source\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Scene\SceneIncludes.cpp">
+      <Filter>Blux\Source\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Scene\SceneManager.cpp">
       <Filter>Blux\Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\EffectIncludes.cpp">
+      <Filter>Blux\Source\Effect</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
       <Filter>Blux\Source\Effect\actions</Filter>
@@ -1471,24 +1471,6 @@
     <ClCompile Include="..\..\Source\Effect\Effect.cpp">
       <Filter>Blux\Source\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Layout\ui\Object2DView.cpp">
-      <Filter>Blux\Source\Layout\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Layout\ui\StageLayout2DView.cpp">
-      <Filter>Blux\Source\Layout\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Layout\ui\StageLayoutManagerUI.cpp">
-      <Filter>Blux\Source\Layout\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Layout\ui\StageLayoutUI.cpp">
-      <Filter>Blux\Source\Layout\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Layout\StageLayout.cpp">
-      <Filter>Blux\Source\Layout</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Layout\StageLayoutManager.cpp">
-      <Filter>Blux\Source\Layout</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Object\actions\ObjectAction.cpp">
       <Filter>Blux\Source\Object\actions</Filter>
     </ClCompile>
@@ -1540,6 +1522,45 @@
     <ClCompile Include="..\..\Source\Object\Component\ObjectComponent.cpp">
       <Filter>Blux\Source\Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\groups\object\ui\ObjectGroupUI.cpp">
+      <Filter>Blux\Source\Object\Group\groups\object\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\groups\object\ObjectGroup.cpp">
+      <Filter>Blux\Source\Object\Group\groups\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\groups\virtual\VirtualGroup.cpp">
+      <Filter>Blux\Source\Object\Group\groups\virtual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\ui\GroupManagerUI.cpp">
+      <Filter>Blux\Source\Object\Group\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\ui\GroupUI.cpp">
+      <Filter>Blux\Source\Object\Group\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\Group.cpp">
+      <Filter>Blux\Source\Object\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\GroupManager.cpp">
+      <Filter>Blux\Source\Object\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\Object2DView.cpp">
+      <Filter>Blux\Source\Object\Layout\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayout2DView.cpp">
+      <Filter>Blux\Source\Object\Layout\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayoutManagerUI.cpp">
+      <Filter>Blux\Source\Object\Layout\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayoutUI.cpp">
+      <Filter>Blux\Source\Object\Layout\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\StageLayout.cpp">
+      <Filter>Blux\Source\Object\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\StageLayoutManager.cpp">
+      <Filter>Blux\Source\Object\Layout</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClCompile>
@@ -1556,6 +1577,9 @@
       <Filter>Blux\Source\Object\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Object.cpp">
+      <Filter>Blux\Source\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ObjectIncludes.cpp">
       <Filter>Blux\Source\Object</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\ObjectManager.cpp">
@@ -1618,11 +1642,17 @@
     <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp">
       <Filter>Blux\Source\Sequence</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\SequenceIncludes.cpp">
+      <Filter>Blux\Source\Sequence</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\UI\AssetManager.cpp">
       <Filter>Blux\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\BluxInspector.cpp">
       <Filter>Blux\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MainIncludes.cpp">
+      <Filter>Blux\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>Blux\Source</Filter>
@@ -4629,7 +4659,13 @@
     <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h">
       <Filter>Blux\Source\Color\PixelShape</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Color\ColorIncludes.h">
+      <Filter>Blux\Source\Color</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h">
+      <Filter>Blux\Source\ChainViz</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ChainViz\ChainVizIncludes.h">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h">
@@ -4641,26 +4677,11 @@
     <ClInclude Include="..\..\Source\Audio\AudioManager.h">
       <Filter>Blux\Source\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Group\groups\virtual\VirtualGroup.h">
-      <Filter>Blux\Source\Group\groups\virtual</Filter>
+    <ClInclude Include="..\..\Source\Common\Component\ComponentType.h">
+      <Filter>Blux\Source\Common\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.h">
-      <Filter>Blux\Source\Group\groups\object\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Group\groups\object\ObjectGroup.h">
-      <Filter>Blux\Source\Group\groups\object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Group\ui\GroupManagerUI.h">
-      <Filter>Blux\Source\Group\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Group\ui\GroupUI.h">
-      <Filter>Blux\Source\Group\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Group\Group.h">
-      <Filter>Blux\Source\Group</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Group\GroupManager.h">
-      <Filter>Blux\Source\Group</Filter>
+    <ClInclude Include="..\..\Source\Common\CommonIncludes.h">
+      <Filter>Blux\Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.h">
       <Filter>Blux\Source\Common\MIDI\ui</Filter>
@@ -4731,6 +4752,9 @@
     <ClInclude Include="..\..\Source\Common\Zeroconf\ZeroconfManager.h">
       <Filter>Blux\Source\Common\Zeroconf</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Interface\InterfaceIncludes.h">
+      <Filter>Blux\Source\Interface</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Interface\ui\InterfaceManagerUI.h">
       <Filter>Blux\Source\Interface\ui</Filter>
     </ClInclude>
@@ -4791,8 +4815,14 @@
     <ClInclude Include="..\..\Source\Scene\Scene.h">
       <Filter>Blux\Source\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Scene\SceneIncludes.h">
+      <Filter>Blux\Source\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Scene\SceneManager.h">
       <Filter>Blux\Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\EffectIncludes.h">
+      <Filter>Blux\Source\Effect</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h">
       <Filter>Blux\Source\Effect\actions</Filter>
@@ -4881,24 +4911,6 @@
     <ClInclude Include="..\..\Source\Effect\Effect.h">
       <Filter>Blux\Source\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Layout\ui\Object2DView.h">
-      <Filter>Blux\Source\Layout\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Layout\ui\StageLayout2DView.h">
-      <Filter>Blux\Source\Layout\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Layout\ui\StageLayoutManagerUI.h">
-      <Filter>Blux\Source\Layout\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Layout\ui\StageLayoutUI.h">
-      <Filter>Blux\Source\Layout\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Layout\StageLayout.h">
-      <Filter>Blux\Source\Layout</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Layout\StageLayoutManager.h">
-      <Filter>Blux\Source\Layout</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Object\actions\ObjectAction.h">
       <Filter>Blux\Source\Object\actions</Filter>
     </ClInclude>
@@ -4950,6 +4962,45 @@
     <ClInclude Include="..\..\Source\Object\Component\ObjectComponent.h">
       <Filter>Blux\Source\Object\Component</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Group\groups\object\ui\ObjectGroupUI.h">
+      <Filter>Blux\Source\Object\Group\groups\object\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Group\groups\object\ObjectGroup.h">
+      <Filter>Blux\Source\Object\Group\groups\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Group\groups\virtual\VirtualGroup.h">
+      <Filter>Blux\Source\Object\Group\groups\virtual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Group\ui\GroupManagerUI.h">
+      <Filter>Blux\Source\Object\Group\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Group\ui\GroupUI.h">
+      <Filter>Blux\Source\Object\Group\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Group\Group.h">
+      <Filter>Blux\Source\Object\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Group\GroupManager.h">
+      <Filter>Blux\Source\Object\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Layout\ui\Object2DView.h">
+      <Filter>Blux\Source\Object\Layout\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Layout\ui\StageLayout2DView.h">
+      <Filter>Blux\Source\Object\Layout\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Layout\ui\StageLayoutManagerUI.h">
+      <Filter>Blux\Source\Object\Layout\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Layout\ui\StageLayoutUI.h">
+      <Filter>Blux\Source\Object\Layout\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Layout\StageLayout.h">
+      <Filter>Blux\Source\Object\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Layout\StageLayoutManager.h">
+      <Filter>Blux\Source\Object\Layout</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Object\ui\ObjectChainVizUI.h">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClInclude>
@@ -4966,6 +5017,9 @@
       <Filter>Blux\Source\Object\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Object.h">
+      <Filter>Blux\Source\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\ObjectIncludes.h">
       <Filter>Blux\Source\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\ObjectManager.h">
@@ -5028,11 +5082,17 @@
     <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h">
       <Filter>Blux\Source\Sequence</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\SequenceIncludes.h">
+      <Filter>Blux\Source\Sequence</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\UI\AssetManager.h">
       <Filter>Blux\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\BluxInspector.h">
       <Filter>Blux\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MainIncludes.h">
+      <Filter>Blux\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Main.h">
       <Filter>Blux\Source</Filter>

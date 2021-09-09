@@ -11,7 +11,7 @@
 #pragma once
 
 #include "../../Interface.h"
-#include "Common/DMX/device/DMXDevice.h"
+#include "Common/CommonIncludes.h"
 
 class DMXInterface :
     public Interface,

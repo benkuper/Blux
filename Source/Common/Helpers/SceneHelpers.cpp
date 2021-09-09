@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "SceneHelpers.h"
-
 var SceneHelpers::getParamsSceneData(BaseItem* i, Array<Parameter*> excludeParams)
 {
 	var data(new DynamicObject());

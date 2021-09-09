@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "JuceHeader.h"
+#include "Common/CommonIncludes.h"
 
 class Object;
 
@@ -18,8 +18,7 @@ class ObjectComponent :
     public BaseItem
 {
 public:
-    enum ComponentType { INTENSITY, COLOR, GOBO, LASER, PANTILT, SERVO, STEPPER, STROBE, SCRIPT, CUSTOM, TYPES_MAX };
-    static const String typeNames[TYPES_MAX]; 
+
 
     ObjectComponent(Object* o = nullptr, String name = "Component", ComponentType componentType = CUSTOM, var params = var());
     virtual ~ObjectComponent();

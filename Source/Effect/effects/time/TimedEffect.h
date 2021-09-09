@@ -28,7 +28,7 @@ public:
 
 
 	double timeAtLastUpdate;
-	double curTime;
+	float curTime;
 
 	virtual void updateEnabled() override;
 

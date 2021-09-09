@@ -9,6 +9,7 @@
 */
 
 #include "FilterManagerEditor.h"
+#include "Common/CommonIncludes.h"
 
 FilterManagerEditor::FilterManagerEditor(FilterManager* manager, bool isRoot) :
     GenericManagerEditor(manager, isRoot)

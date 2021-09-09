@@ -9,11 +9,14 @@
 */
 
 #include "Object.h"
+
+#include "Common/CommonIncludes.h"
+
 #include "Interface/InterfaceManager.h"
 #include "Object/Component/components/intensity/IntensityComponent.h"
 #include "Object/Component/components/color/ColorComponent.h"
 #include "Effect/GlobalEffectManager.h"
-#include "Group/GroupManager.h"
+#include "Object/Group/GroupManager.h"
 #include "Scene/SceneManager.h"
 #include "Object/ObjectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
@@ -216,7 +219,7 @@ void Object::computeComponentValues(ObjectComponent* c)
 
 	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
-		if (c->componentType == ObjectComponent::ComponentType::COLOR)
+		if (c->componentType == ComponentType::COLOR)
 		{
 			((ColorComponent*)c)->outColors.fill(Colours::black);
 		}
@@ -249,7 +252,7 @@ void Object::computeComponentValues(ObjectComponent* c)
 			GlobalEffectManager::getInstance()->processComponentValues(this, c, values);
 
 
-			if (c->componentType == ObjectComponent::ComponentType::COLOR)
+			if (c->componentType == ComponentType::COLOR)
 			{
 				ColorComponent* colorComp = (ColorComponent*)c;
 				for (int i = 0; i < values.size(); i++)

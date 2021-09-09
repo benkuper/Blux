@@ -62,7 +62,7 @@ void EffectBlock::processComponentValues(Object* o, ObjectComponent* c, var& val
 
 	double relTimeLooped = getRelativeTime(absoluteTime, true);
     effect->processComponentValues(o, c, values, targetWeight, id, relTimeLooped);
-    if (c->componentType == c->INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(effect.get(), values[0].clone());
+    if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(effect.get(), values[0].clone());
 }
 
 void EffectBlock::onContainerParameterChangedInternal(Parameter* p)

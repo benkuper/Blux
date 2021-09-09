@@ -10,8 +10,6 @@
 
 
 
-#include "DMXEnttecProDevice.h"
-
 DMXEnttecProDevice::DMXEnttecProDevice() :
 	DMXSerialDevice("DMX Pro", ENTTEC_DMXPRO, true)
 {

@@ -9,12 +9,14 @@
 */
 
 #include "ActionTrigger.h"
+#include "Common/CommonIncludes.h"
 
 ActionTrigger::ActionTrigger() :
     TimeTrigger("Action")
 {
+    actionManager.reset(new ActionManager());
     saveAndLoadRecursiveData = true;
-    addChildControllableContainer(&actionManager);
+    addChildControllableContainer(actionManager.get());
 }
 
 ActionTrigger::~ActionTrigger()
@@ -23,5 +25,5 @@ ActionTrigger::~ActionTrigger()
 
 void ActionTrigger::triggerInternal()
 {
-    actionManager.triggerAll();
+    actionManager->triggerAll();
 }

@@ -10,10 +10,9 @@
 
 #pragma once
 
-#include "JuceHeader.h"
-#include "Object/Component/ObjectComponent.h"
-#include "Common/ComponentSelector/ComponentSelector.h"
+#include "Common/CommonIncludes.h"
 
+class ObjectComponent;
 class Object;
 
 struct FilterResult

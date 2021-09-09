@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    FilterManager.h
-    Created: 26 Sep 2020 2:13:19pm
-    Author:  bkupe
+	FilterManager.h
+	Created: 26 Sep 2020 2:13:19pm
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -13,24 +13,27 @@
 #include "Filter.h"
 
 class FilterManager :
-    public BaseManager<Filter>
+	public BaseManager<Filter>
 {
 public:
-    FilterManager();
-    ~FilterManager();
+	FilterManager();
+	~FilterManager();
 
-    Factory<Filter> factory;
-    ComponentSelector componentSelector;
-    
-    var getSceneData();
-    void updateSceneData(var& sceneData);
-    void lerpFromSceneData(var startData, var endData, float weight);
+	Factory<Filter> factory;
+	ComponentSelector componentSelector;
 
-    bool isAffectingObject(Object* o);
-    FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c);
+	enum WeightOperator { MIN, MAX, MULTIPLY};
+	EnumParameter* weightOperator;
 
-    InspectableEditor* getEditor(bool isRoot) override;
+	var getSceneData();
+	void updateSceneData(var& sceneData);
+	void lerpFromSceneData(var startData, var endData, float weight);
 
-    var getJSONData() override;
-    void loadJSONDataManagerInternal(var data) override;
+	bool isAffectingObject(Object* o);
+	FilterResult getFilteredResultForComponent(Object* o, ObjectComponent* c);
+
+	InspectableEditor* getEditor(bool isRoot) override;
+
+	var getJSONData() override;
+	void loadJSONDataManagerInternal(var data) override;
 };

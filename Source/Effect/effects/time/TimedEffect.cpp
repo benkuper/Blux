@@ -12,7 +12,7 @@
 
 TimedEffect::TimedEffect(const String &name, var params) :
     Effect(name, params),
-    timeAtLastUpdate(Time::getMillisecondCounter() / 1000.0),
+    timeAtLastUpdate(Time::getMillisecondCounterHiRes() / 1000.0),
     curTime(0)
 {
     speed = addFloatParameter("Speed", "The speed at which play this", 1);
@@ -60,13 +60,13 @@ float TimedEffect::getCurrentTime(float timeOverride)
 
 void TimedEffect::hiResTimerCallback()
 {
-    if (!enabled->boolValue()) return;
+    if (!isFullyEnabled()) return;
     addTime();
 }
 
 void TimedEffect::addTime()
 {
-    double newTime = Time::getMillisecondCounter() / 1000.0;
+    double newTime = Time::getMillisecondCounterHiRes() / 1000.0;
     curTime += (newTime - timeAtLastUpdate) * speed->floatValue();
     timeAtLastUpdate = newTime;
 

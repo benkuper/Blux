@@ -55,7 +55,7 @@ void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& 
     {
         if (!e->enabled->boolValue()) continue;
         e->processComponentValues(o, c, values, weightMultiplier);
-        if (c->componentType == c->INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(e, values[0].clone());
+        if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(e, values[0].clone());
     }
 }
 

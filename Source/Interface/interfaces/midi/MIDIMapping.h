@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "Common/MIDI/MIDIManager.h"
-#include "Common/Action/ActionManager.h"
+#include "Common/CommonIncludes.h"
+
 
 class MIDIMapping :
     public BaseItem

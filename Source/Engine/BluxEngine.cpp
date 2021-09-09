@@ -11,17 +11,17 @@
 #include "BluxEngine.h"
 #include "Object/ObjectManager.h"
 #include "Interface/InterfaceManager.h"
-#include "Common/DMX/DMXManager.h"
-#include "Common/Serial/SerialManager.h"
-#include "Group/GroupManager.h"
+
+#include "Common/CommonIncludes.h"
+
+#include "Object/Group/GroupManager.h"
 #include "Scene/SceneManager.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
 #include "Audio/AudioManager.h"
-#include "Layout//StageLayoutManager.h"
+#include "Object/Layout//StageLayoutManager.h"
 #include "Sequence/layers/action/ActionLayer.h"
 #include "Sequence/layers/effect/EffectBlockManager.h"
-#include "Common/MIDI/MIDIManager.h"
 #include "Color/ColorSource/ColorSourceLibrary.h"
 #include "Color/ColorSource/ColorSourceFactory.h"
 

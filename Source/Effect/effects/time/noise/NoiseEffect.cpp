@@ -24,11 +24,11 @@ NoiseEffect::NoiseEffect(var params) :
 	offsetByID->defaultUI = FloatParameter::TIME;
 	offsetByValue->defaultUI = FloatParameter::TIME;
 
-	filterManager.componentSelector.allowedComponents.removeAllInstancesOf(ObjectComponent::COLOR);
-	filterManager.componentSelector.selectedComponents.set(ObjectComponent::INTENSITY, true);
-	filterManager.componentSelector.selectedComponents.set(ObjectComponent::PANTILT, true);
-	filterManager.componentSelector.selectedComponents.set(ObjectComponent::SERVO, true);
-	filterManager.componentSelector.selectedComponents.set(ObjectComponent::STEPPER, true);
+	filterManager.componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
+	filterManager.componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
+	filterManager.componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
+	filterManager.componentSelector.selectedComponents.set(ComponentType::SERVO, true);
+	filterManager.componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 }
 
 NoiseEffect::~NoiseEffect()

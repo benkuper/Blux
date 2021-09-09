@@ -11,7 +11,7 @@
 #pragma once
 
 #include "../FilterManager.h"
-#include "Common/ComponentSelector/ui/ComponentSelectorUI.h"
+class ComponentSelectorUI;
 
 class FilterManagerEditor :
     public GenericManagerEditor<Filter>

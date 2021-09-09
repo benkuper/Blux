@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ActionManager.h"
-
 #include "Scene/actions/SceneAction.h"
 #include "Object/actions/ObjectAction.h"
 #include "Effect/actions/EffectAction.h"

@@ -9,7 +9,7 @@
 */
 
 #include "OSCOutputEditor.h"
-#include "Common/Zeroconf/ZeroconfManager.h"
+#include "Common/CommonIncludes.h"
 
 OSCOutputEditor::OSCOutputEditor(OSCOutput * output, bool isRoot) :
 	BaseItemEditor(output, isRoot),

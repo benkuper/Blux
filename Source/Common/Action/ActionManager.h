@@ -9,7 +9,6 @@
 */
 
 #pragma once
-#include "Action.h"
 
 class ActionFactory :
     public Factory<Action>

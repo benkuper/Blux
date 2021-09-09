@@ -69,7 +69,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x60100;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCE_MODAL_LOOPS_PERMITTED=1;JUCE_SUPPORT_CARBON=0;JUCER_VS2019_78A6631F=1;JUCE_APP_VERSION=1.0.0b22;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x60101;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCE_MODAL_LOOPS_PERMITTED=1;JUCE_SUPPORT_CARBON=0;JUCER_VS2019_78A6631F=1;JUCE_APP_VERSION=1.0.0b23;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -118,7 +118,7 @@
       <Optimization>Full</Optimization>
       <DebugInformationFormat>None</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x60100;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCE_MODAL_LOOPS_PERMITTED=1;JUCE_SUPPORT_CARBON=0;JUCER_VS2019_78A6631F=1;JUCE_APP_VERSION=1.0.0b22;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x60101;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCE_MODAL_LOOPS_PERMITTED=1;JUCE_SUPPORT_CARBON=0;JUCER_VS2019_78A6631F=1;JUCE_APP_VERSION=1.0.0b23;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -174,46 +174,89 @@
     <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeChooser.cpp"/>
     <ClCompile Include="..\..\Source\Color\PixelShape\ui\PixelShapeEditor.cpp"/>
     <ClCompile Include="..\..\Source\Color\PixelShape\PixelShape.cpp"/>
+    <ClCompile Include="..\..\Source\Color\ColorIncludes.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp"/>
+    <ClCompile Include="..\..\Source\ChainViz\ChainVizIncludes.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp"/>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp"/>
     <ClCompile Include="..\..\Source\Audio\AudioManager.cpp"/>
-    <ClCompile Include="..\..\Source\Group\groups\virtual\VirtualGroup.cpp"/>
-    <ClCompile Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.cpp"/>
-    <ClCompile Include="..\..\Source\Group\groups\object\ObjectGroup.cpp"/>
-    <ClCompile Include="..\..\Source\Group\ui\GroupManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Group\ui\GroupUI.cpp"/>
-    <ClCompile Include="..\..\Source\Group\Group.cpp"/>
-    <ClCompile Include="..\..\Source\Group\GroupManager.cpp"/>
-    <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.cpp"/>
-    <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceParameterUI.cpp"/>
-    <ClCompile Include="..\..\Source\Common\MIDI\MIDIDevice.cpp"/>
-    <ClCompile Include="..\..\Source\Common\MIDI\MIDIDeviceParameter.cpp"/>
-    <ClCompile Include="..\..\Source\Common\MIDI\MIDIManager.cpp"/>
-    <ClCompile Include="..\..\Source\Common\MIDI\MTCReceiver.cpp"/>
-    <ClCompile Include="..\..\Source\Common\MIDI\MTCSender.cpp"/>
-    <ClCompile Include="..\..\Source\Common\Action\Action.cpp"/>
-    <ClCompile Include="..\..\Source\Common\Action\ActionManager.cpp"/>
-    <ClCompile Include="..\..\Source\Common\Helpers\SceneHelpers.cpp"/>
-    <ClCompile Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.cpp"/>
-    <ClCompile Include="..\..\Source\Common\ComponentSelector\ComponentSelector.cpp"/>
-    <ClCompile Include="..\..\Source\Common\DMX\device\DMXArtNetDevice.cpp"/>
-    <ClCompile Include="..\..\Source\Common\DMX\device\DMXDevice.cpp"/>
-    <ClCompile Include="..\..\Source\Common\DMX\device\DMXEnttecProDevice.cpp"/>
-    <ClCompile Include="..\..\Source\Common\DMX\device\DMXOpenUSBDevice.cpp"/>
-    <ClCompile Include="..\..\Source\Common\DMX\device\DMXSerialDevice.cpp"/>
-    <ClCompile Include="..\..\Source\Common\DMX\DMXManager.cpp"/>
-    <ClCompile Include="..\..\Source\Common\Serial\lib\cobs\cobs.cpp"/>
+    <ClCompile Include="..\..\Source\Common\CommonIncludes.cpp"/>
+    <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceParameterUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MIDIDevice.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MIDIDeviceParameter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MIDIManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MTCReceiver.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\MIDI\MTCSender.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Action\Action.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Action\ActionManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Helpers\SceneHelpers.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\ComponentSelector\ComponentSelector.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\DMX\device\DMXArtNetDevice.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\DMX\device\DMXDevice.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\DMX\device\DMXEnttecProDevice.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\DMX\device\DMXOpenUSBDevice.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\DMX\device\DMXSerialDevice.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\DMX\DMXManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Serial\lib\cobs\cobs.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Serial\lib\serial\impl\list_ports\list_ports_linux.cc"/>
     <ClCompile Include="..\..\Source\Common\Serial\lib\serial\impl\list_ports\list_ports_osx.cc"/>
     <ClCompile Include="..\..\Source\Common\Serial\lib\serial\impl\list_ports\list_ports_win.cc"/>
     <ClCompile Include="..\..\Source\Common\Serial\lib\serial\impl\unix.cc"/>
     <ClCompile Include="..\..\Source\Common\Serial\lib\serial\impl\win.cc"/>
     <ClCompile Include="..\..\Source\Common\Serial\lib\serial\serial.cc"/>
-    <ClCompile Include="..\..\Source\Common\Serial\SerialDevice.cpp"/>
-    <ClCompile Include="..\..\Source\Common\Serial\SerialDeviceParameter.cpp"/>
-    <ClCompile Include="..\..\Source\Common\Serial\SerialManager.cpp"/>
-    <ClCompile Include="..\..\Source\Common\Zeroconf\ZeroconfManager.cpp"/>
+    <ClCompile Include="..\..\Source\Common\Serial\SerialDevice.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Serial\SerialDeviceParameter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Serial\SerialManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Zeroconf\ZeroconfManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\InterfaceIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Interface\ui\InterfaceManagerUI.cpp"/>
     <ClCompile Include="..\..\Source\Interface\ui\InterfaceUI.cpp"/>
     <ClCompile Include="..\..\Source\Interface\interfaces\midi\ui\MIDIMappingEditor.cpp"/>
@@ -234,7 +277,9 @@
     <ClCompile Include="..\..\Source\Scene\ui\SceneManagerUI.cpp"/>
     <ClCompile Include="..\..\Source\Scene\ui\SceneUI.cpp"/>
     <ClCompile Include="..\..\Source\Scene\Scene.cpp"/>
+    <ClCompile Include="..\..\Source\Scene\SceneIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Scene\SceneManager.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\EffectIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\color\override\ui\ColorSourceOverrideEffectEditor.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.cpp"/>
@@ -263,12 +308,6 @@
     <ClCompile Include="..\..\Source\Effect\GlobalEffectManager.cpp"/>
     <ClCompile Include="..\..\Source\Effect\EffectManager.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Effect.cpp"/>
-    <ClCompile Include="..\..\Source\Layout\ui\Object2DView.cpp"/>
-    <ClCompile Include="..\..\Source\Layout\ui\StageLayout2DView.cpp"/>
-    <ClCompile Include="..\..\Source\Layout\ui\StageLayoutManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Layout\ui\StageLayoutUI.cpp"/>
-    <ClCompile Include="..\..\Source\Layout\StageLayout.cpp"/>
-    <ClCompile Include="..\..\Source\Layout\StageLayoutManager.cpp"/>
     <ClCompile Include="..\..\Source\Object\actions\ObjectAction.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp"/>
@@ -286,12 +325,26 @@
     <ClCompile Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ComponentManager.cpp"/>
     <ClCompile Include="..\..\Source\Object\Component\ObjectComponent.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Group\groups\object\ui\ObjectGroupUI.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Group\groups\object\ObjectGroup.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Group\groups\virtual\VirtualGroup.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Group\ui\GroupManagerUI.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Group\ui\GroupUI.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Group\Group.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Group\GroupManager.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\Object2DView.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayout2DView.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayoutManagerUI.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayoutUI.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Layout\StageLayout.cpp"/>
+    <ClCompile Include="..\..\Source\Object\Layout\StageLayoutManager.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectManagerGridUI.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectManagerUI.cpp"/>
     <ClCompile Include="..\..\Source\Object\ui\ObjectUI.cpp"/>
     <ClCompile Include="..\..\Source\Object\Object.cpp"/>
+    <ClCompile Include="..\..\Source\Object\ObjectIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Object\ObjectManager.cpp"/>
     <ClCompile Include="..\..\Source\Engine\GenericAction.cpp"/>
     <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp"/>
@@ -312,8 +365,10 @@
     <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\SequenceIncludes.cpp"/>
     <ClCompile Include="..\..\Source\UI\AssetManager.cpp"/>
     <ClCompile Include="..\..\Source\UI\BluxInspector.cpp"/>
+    <ClCompile Include="..\..\Source\MainIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\MainComponentCommands.cpp"/>
@@ -3074,17 +3129,14 @@
     <ClInclude Include="..\..\Source\Color\PixelShape\ui\PixelShapeChooser.h"/>
     <ClInclude Include="..\..\Source\Color\PixelShape\ui\PixelShapeEditor.h"/>
     <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h"/>
+    <ClInclude Include="..\..\Source\Color\ColorIncludes.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h"/>
+    <ClInclude Include="..\..\Source\ChainViz\ChainVizIncludes.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h"/>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h"/>
     <ClInclude Include="..\..\Source\Audio\AudioManager.h"/>
-    <ClInclude Include="..\..\Source\Group\groups\virtual\VirtualGroup.h"/>
-    <ClInclude Include="..\..\Source\Group\groups\object\ui\ObjectGroupUI.h"/>
-    <ClInclude Include="..\..\Source\Group\groups\object\ObjectGroup.h"/>
-    <ClInclude Include="..\..\Source\Group\ui\GroupManagerUI.h"/>
-    <ClInclude Include="..\..\Source\Group\ui\GroupUI.h"/>
-    <ClInclude Include="..\..\Source\Group\Group.h"/>
-    <ClInclude Include="..\..\Source\Group\GroupManager.h"/>
+    <ClInclude Include="..\..\Source\Common\Component\ComponentType.h"/>
+    <ClInclude Include="..\..\Source\Common\CommonIncludes.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceParameterUI.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\MIDIDevice.h"/>
@@ -3108,6 +3160,7 @@
     <ClInclude Include="..\..\Source\Common\Serial\SerialDeviceParameter.h"/>
     <ClInclude Include="..\..\Source\Common\Serial\SerialManager.h"/>
     <ClInclude Include="..\..\Source\Common\Zeroconf\ZeroconfManager.h"/>
+    <ClInclude Include="..\..\Source\Interface\InterfaceIncludes.h"/>
     <ClInclude Include="..\..\Source\Interface\ui\InterfaceManagerUI.h"/>
     <ClInclude Include="..\..\Source\Interface\ui\InterfaceUI.h"/>
     <ClInclude Include="..\..\Source\Interface\interfaces\midi\ui\MIDIMappingEditor.h"/>
@@ -3128,7 +3181,9 @@
     <ClInclude Include="..\..\Source\Scene\ui\SceneManagerUI.h"/>
     <ClInclude Include="..\..\Source\Scene\ui\SceneUI.h"/>
     <ClInclude Include="..\..\Source\Scene\Scene.h"/>
+    <ClInclude Include="..\..\Source\Scene\SceneIncludes.h"/>
     <ClInclude Include="..\..\Source\Scene\SceneManager.h"/>
+    <ClInclude Include="..\..\Source\Effect\EffectIncludes.h"/>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\color\override\ui\ColorSourceOverrideEffectEditor.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.h"/>
@@ -3158,12 +3213,6 @@
     <ClInclude Include="..\..\Source\Effect\GlobalEffectManager.h"/>
     <ClInclude Include="..\..\Source\Effect\EffectManager.h"/>
     <ClInclude Include="..\..\Source\Effect\Effect.h"/>
-    <ClInclude Include="..\..\Source\Layout\ui\Object2DView.h"/>
-    <ClInclude Include="..\..\Source\Layout\ui\StageLayout2DView.h"/>
-    <ClInclude Include="..\..\Source\Layout\ui\StageLayoutManagerUI.h"/>
-    <ClInclude Include="..\..\Source\Layout\ui\StageLayoutUI.h"/>
-    <ClInclude Include="..\..\Source\Layout\StageLayout.h"/>
-    <ClInclude Include="..\..\Source\Layout\StageLayoutManager.h"/>
     <ClInclude Include="..\..\Source\Object\actions\ObjectAction.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.h"/>
@@ -3181,12 +3230,26 @@
     <ClInclude Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ComponentManager.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ObjectComponent.h"/>
+    <ClInclude Include="..\..\Source\Object\Group\groups\object\ui\ObjectGroupUI.h"/>
+    <ClInclude Include="..\..\Source\Object\Group\groups\object\ObjectGroup.h"/>
+    <ClInclude Include="..\..\Source\Object\Group\groups\virtual\VirtualGroup.h"/>
+    <ClInclude Include="..\..\Source\Object\Group\ui\GroupManagerUI.h"/>
+    <ClInclude Include="..\..\Source\Object\Group\ui\GroupUI.h"/>
+    <ClInclude Include="..\..\Source\Object\Group\Group.h"/>
+    <ClInclude Include="..\..\Source\Object\Group\GroupManager.h"/>
+    <ClInclude Include="..\..\Source\Object\Layout\ui\Object2DView.h"/>
+    <ClInclude Include="..\..\Source\Object\Layout\ui\StageLayout2DView.h"/>
+    <ClInclude Include="..\..\Source\Object\Layout\ui\StageLayoutManagerUI.h"/>
+    <ClInclude Include="..\..\Source\Object\Layout\ui\StageLayoutUI.h"/>
+    <ClInclude Include="..\..\Source\Object\Layout\StageLayout.h"/>
+    <ClInclude Include="..\..\Source\Object\Layout\StageLayoutManager.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectChainVizUI.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectManagerGridUI.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectManagerUI.h"/>
     <ClInclude Include="..\..\Source\Object\ui\ObjectUI.h"/>
     <ClInclude Include="..\..\Source\Object\Object.h"/>
+    <ClInclude Include="..\..\Source\Object\ObjectIncludes.h"/>
     <ClInclude Include="..\..\Source\Object\ObjectManager.h"/>
     <ClInclude Include="..\..\Source\Engine\GenericAction.h"/>
     <ClInclude Include="..\..\Source\Engine\BluxEngine.h"/>
@@ -3207,8 +3270,10 @@
     <ClInclude Include="..\..\Source\Sequence\BluxSequence.h"/>
     <ClInclude Include="..\..\Source\Sequence\BluxSequenceManager.h"/>
     <ClInclude Include="..\..\Source\Sequence\GlobalSequenceManager.h"/>
+    <ClInclude Include="..\..\Source\Sequence\SequenceIncludes.h"/>
     <ClInclude Include="..\..\Source\UI\AssetManager.h"/>
     <ClInclude Include="..\..\Source\UI\BluxInspector.h"/>
+    <ClInclude Include="..\..\Source\MainIncludes.h"/>
     <ClInclude Include="..\..\Source\Main.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>

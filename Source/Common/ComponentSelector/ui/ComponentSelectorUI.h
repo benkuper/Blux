@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../ComponentSelector.h"
-
 class ComponentListModel :
 	public ListBoxModel
 {

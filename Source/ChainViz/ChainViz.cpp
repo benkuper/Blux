@@ -11,7 +11,7 @@
 #include "ChainViz.h"
 #include "Effect/Effect.h"
 #include "Object/Object.h"
-#include "Group/GroupManager.h"
+#include "Object/Group/GroupManager.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
 

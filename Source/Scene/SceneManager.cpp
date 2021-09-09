@@ -11,7 +11,7 @@
 #include "SceneManager.h"
 
 #include "Object/ObjectManager.h"
-#include "Group/GroupManager.h"
+#include "Object/Group/GroupManager.h"
 #include "Effect/GlobalEffectManager.h"
 
 juce_ImplementSingleton(SceneManager)

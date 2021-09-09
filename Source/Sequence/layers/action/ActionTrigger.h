@@ -9,7 +9,10 @@
 */
 
 #pragma once
-#include "Common/Action/ActionManager.h"
+
+#include "JuceHeader.h"
+
+class ActionManager;
 
 class ActionTrigger :
     public TimeTrigger
@@ -18,7 +21,7 @@ public:
     ActionTrigger();
     ~ActionTrigger();
 
-    ActionManager actionManager;
+    std::unique_ptr<ActionManager> actionManager;
 
     void triggerInternal();
 };

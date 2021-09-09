@@ -11,7 +11,7 @@
 #pragma once
 
 #include "../../Interface.h"
-#include "Common/MIDI/MIDIDeviceParameter.h"
+#include "Common/CommonIncludes.h"
 #include "MIDIMappingManager.h"
 
 class MIDIInterface :

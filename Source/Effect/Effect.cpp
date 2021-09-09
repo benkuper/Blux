@@ -10,7 +10,7 @@
 
 #include "Effect.h"
 #include "ui/EffectEditor.h"
-#include "Common/Helpers/SceneHelpers.h"
+#include "Common/CommonIncludes.h"
 #include "Object/Object.h"
 #include "ui/EffectChainVizUI.h"
 
@@ -63,7 +63,7 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 	FilterResult r = filterManager.getFilteredResultForComponent(o, c);
 	if (r.id == -1)
 	{
-		if (c->componentType == c->INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
+		if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
 		return;
 	}
 
@@ -72,7 +72,7 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 
 	if (targetWeight == 0)
 	{
-		if (c->componentType == c->INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
+		if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
 		return;
 	}
 

@@ -11,7 +11,7 @@
 #pragma once
 
 
-#include "Common/Action/Action.h"
+#include "Common/CommonIncludes.h"
 
 class GenericAction :
 	public Action,

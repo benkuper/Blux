@@ -10,7 +10,7 @@
 
 #include "LayoutFilter.h"
 #include "Object/Object.h"
-#include "Layout/StageLayoutManager.h"
+#include "Object/Layout/StageLayoutManager.h"
 
 Array<LayoutFilter*> LayoutFilter::instances;
 ChangeBroadcaster LayoutFilter::broadcaster;

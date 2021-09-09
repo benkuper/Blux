@@ -10,10 +10,9 @@
 
 #pragma once
 
-#include "JuceHeader.h"
 #include "Sequence/BluxSequenceManager.h"
 #include "Effect/EffectManager.h"
-#include "Common/Action/ActionManager.h"
+#include "Common/CommonIncludes.h"
 
 class Scene :
     public BaseItem,
@@ -28,6 +27,7 @@ public:
     
     Trigger* saveTrigger;
     Trigger* loadTrigger;
+    Trigger* directLoadTrigger;
     FloatParameter* defaultLoadTime;
 
     FloatParameter* loadProgress;
