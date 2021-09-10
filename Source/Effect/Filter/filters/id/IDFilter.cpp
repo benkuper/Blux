@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "IDFilter.h"
-#include "Object/ObjectIncludes.h"
-
 IDFilter::IDFilter() :
     Filter(getTypeString()),
     ids("IDs")

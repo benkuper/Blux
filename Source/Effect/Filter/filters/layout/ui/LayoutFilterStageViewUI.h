@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../LayoutFilter.h"
-
 class LayoutFilterStageViewUI :
     public Component,
     public ContainerAsyncListener,

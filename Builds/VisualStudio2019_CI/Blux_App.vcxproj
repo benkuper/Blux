@@ -351,34 +351,90 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\EffectIncludes.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\color\override\ui\ColorSourceOverrideEffectEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\color\ColorEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\color\remap\ColorPositionRemapEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\color\hsv\HSVAdjustEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\time\automation\AutomationEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\time\TimedEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\effects\override\OverrideEffect.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageView.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageViewUI.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\filters\id\IDFilter.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\ui\FilterEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\ui\FilterManagerEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\Filter.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Filter\FilterManager.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\ui\EffectChainVizUI.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\ui\EffectEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\ui\EffectManagerEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\ui\GlobalEffectManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\GlobalEffectManager.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\EffectManager.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\Effect.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\override\ui\ColorSourceOverrideEffectEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\override\ColorSourceOverrideEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\ColorEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\gradientmap\ColorGradientMapEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\remap\ColorPositionRemapEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\color\hsv\HSVAdjustEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\time\automation\AutomationEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\time\TimedEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\override\OverrideEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageView.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageViewUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\layout\LayoutFilter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\filters\id\IDFilter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\ui\FilterEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\ui\FilterManagerEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\Filter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Filter\FilterManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\ui\EffectChainVizUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\ui\EffectEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\ui\EffectManagerEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\ui\GlobalEffectManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\GlobalEffectManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\EffectManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\Effect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Object\actions\ObjectAction.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>

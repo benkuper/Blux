@@ -8,14 +8,6 @@
   ==============================================================================
 */
 
-#include "FilterManager.h"
-#include "filters/id/IDFilter.h"
-#include "filters/layout/LayoutFilter.h"
-#include "filters/group/GroupFilter.h"
-
-#include "Object/ObjectIncludes.h"
-#include "ui/FilterManagerEditor.h"
-
 FilterManager::FilterManager() :
     BaseManager("Filters")
 {

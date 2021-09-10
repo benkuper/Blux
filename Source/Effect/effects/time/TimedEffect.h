@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include  "../../Effect.h"
-
 class TimedEffect :
 	public Effect,
 	public HighResolutionTimer

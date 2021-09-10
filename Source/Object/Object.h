@@ -10,10 +10,11 @@
 
 #pragma once
 
-#include "Effect/EffectManager.h"
 
 class ChainVizComponent;
 class SubObjectManager;
+class EffectManager;
+class Effect;
 
 class Object :
     public BaseItem,

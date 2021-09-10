@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../../Effect.h"
-
 class OverrideEffect :
     public Effect
 {

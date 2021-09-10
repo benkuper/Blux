@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "GlobalEffectManager.h"
-
 juce_ImplementSingleton(GlobalEffectManager)
 
 GlobalEffectManager::GlobalEffectManager() :

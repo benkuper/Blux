@@ -5,9 +5,9 @@
 #include "Interface/InterfaceIncludes.h"
 #include "Scene/SceneIncludes.h"
 #include "Sequence/SequenceIncludes.h"
+#include "Effect/EffectIncludes.h"
 #include "ChainViz/ChainViz.h"
 
-#include "Effect/ui/GlobalEffectManagerUI.h"
 #include "UI/BluxInspector.h"
 
 String getAppVersion();

@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "GroupFilter.h"
-#include "Object/ObjectIncludes.h"
-
 GroupFilter::GroupFilter() :
     Filter(getTypeString()),
     groups("Groups")

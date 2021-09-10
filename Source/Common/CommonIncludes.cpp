@@ -12,6 +12,7 @@
 #include "Scene/SceneIncludes.h"
 #include "Object/ObjectIncludes.h"
 #include "Sequence/SequenceIncludes.h"
+#include "Effect/EffectIncludes.h"
 
 #include "Action/Action.cpp"
 #include "Action/ActionManager.cpp"

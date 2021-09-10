@@ -8,11 +8,6 @@
   ==============================================================================
 */
 
-#include "EffectAction.h"
-#include "Effect/GlobalEffectManager.h"
-#include "Scene/SceneIncludes.h"
-#include "Object/ObjectIncludes.h"
-
 EffectAction::EffectAction(var params) :
 	Action(params),
 	weight(nullptr)

@@ -9,9 +9,8 @@
 */
 
 #include "ChainViz.h"
-#include "Effect/Effect.h"
+#include "Effect/EffectIncludes.h"
 #include "Object/ObjectIncludes.h"
-#include "Effect/GlobalEffectManager.h"
 #include "Sequence/SequenceIncludes.h"
 #include "Scene/SceneIncludes.h"
 

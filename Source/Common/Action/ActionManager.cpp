@@ -9,7 +9,6 @@
 */
 
 
-#include "Effect/actions/EffectAction.h"
 #include "Engine/GenericAction.h"
 
 juce_ImplementSingleton(ActionFactory);

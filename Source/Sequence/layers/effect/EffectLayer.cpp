@@ -48,7 +48,7 @@ Array<ChainVizTarget *> EffectLayer::getChainVizTargetsForObject(Object* o)
     for (auto& i : blocks)
     {
         EffectBlock* eb = (EffectBlock*)i;
-        if (eb->effect->filterManager.isAffectingObject(o)) result.add(eb->effect.get());
+        if (eb->effect->filterManager->isAffectingObject(o)) result.add(eb->effect.get());
     }
 
     return result;

@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../GlobalEffectManager.h"
-
 class GlobalEffectManagerUI :
     public BaseManagerShapeShifterUI<GlobalEffectManager, EffectGroup, BaseItemUI<EffectGroup>>
 {

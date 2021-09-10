@@ -10,9 +10,6 @@
 
 #pragma once
 
-#include "LayoutFilterStageViewUI.h"
-#include "Effect/Filter/filters/layout/LayoutFilter.h"
-
 class LayoutFilterStageView :
     public Component,
     public ContainerAsyncListener,

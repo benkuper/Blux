@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "NoiseEffect.h"
-#include "Object/ObjectIncludes.h"
-#include "Common/CommonIncludes.h"
-
 NoiseEffect::NoiseEffect(var params) :
 	TimedEffect(getTypeString(), params)
 {
@@ -25,11 +21,11 @@ NoiseEffect::NoiseEffect(var params) :
 	offsetByID->defaultUI = FloatParameter::TIME;
 	offsetByValue->defaultUI = FloatParameter::TIME;
 
-	filterManager.componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
-	filterManager.componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-	filterManager.componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
-	filterManager.componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-	filterManager.componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
+	filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 
 	perlin.reset(new siv::PerlinNoise());
 }

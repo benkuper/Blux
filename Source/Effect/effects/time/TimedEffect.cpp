@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "TimedEffect.h"
-
 TimedEffect::TimedEffect(const String &name, var params) :
     Effect(name, params),
     timeAtLastUpdate(Time::getMillisecondCounterHiRes() / 1000.0),

@@ -8,12 +8,6 @@
   ==============================================================================
 */
 
-#include "Effect.h"
-#include "ui/EffectEditor.h"
-#include "Common/CommonIncludes.h"
-#include "Object/ObjectIncludes.h"
-#include "ui/EffectChainVizUI.h"
-
 Effect::Effect(const String& name, var params) :
 	BaseItem(name),
 	forceDisabled(false)
@@ -36,7 +30,8 @@ Effect::Effect(const String& name, var params) :
 	
 	//excludeFromScenes->hideInEditor = true;
 
-	addChildControllableContainer(&filterManager);
+	filterManager.reset(new FilterManager());
+	addChildControllableContainer(filterManager.get());
 	//showInspectorOnSelect = false;
 
 	canBeCopiedAndPasted = true;
@@ -48,7 +43,7 @@ Effect::~Effect()
 
 bool Effect::isAffectingObject(Object* o)
 {
-	return filterManager.isAffectingObject(o);
+	return filterManager->isAffectingObject(o);
 }
 
 void Effect::setForceDisabled(bool value)
@@ -60,7 +55,7 @@ void Effect::setForceDisabled(bool value)
 
 void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier, int id, float time)
 {
-	FilterResult r = filterManager.getFilteredResultForComponent(o, c);
+	FilterResult r = filterManager->getFilteredResultForComponent(o, c);
 	if (r.id == -1)
 	{
 		if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
@@ -155,7 +150,7 @@ var Effect::getSceneData()
 	else if (m == FULL)
 	{
 		var data = SceneHelpers::getParamsSceneData(this);
-		data.getDynamicObject()->setProperty("filters", filterManager.getSceneData());
+		data.getDynamicObject()->setProperty("filters", filterManager->getSceneData());
 		return data;
 	}
 

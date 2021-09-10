@@ -359,7 +359,7 @@
         <FILE id="ykV3hZ" name="EffectIncludes.h" compile="0" resource="0"
               file="Source/Effect/EffectIncludes.h"/>
         <GROUP id="{C58CE66D-CF63-C79A-6464-F3EC680FB583}" name="actions">
-          <FILE id="pW4BpS" name="EffectAction.cpp" compile="1" resource="0"
+          <FILE id="pW4BpS" name="EffectAction.cpp" compile="0" resource="0"
                 file="Source/Effect/actions/EffectAction.cpp"/>
           <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
         </GROUP>
@@ -367,32 +367,32 @@
           <GROUP id="{E332C34C-4F0C-6975-C7F9-116E4CFDB6D9}" name="color">
             <GROUP id="{AAE59A9F-9C00-105F-6EC1-EF62E12E8F13}" name="override">
               <GROUP id="{6C006B20-200B-04F5-AA94-7EFB9B407EB6}" name="ui">
-                <FILE id="J0klx8" name="ColorSourceOverrideEffectEditor.cpp" compile="1"
+                <FILE id="J0klx8" name="ColorSourceOverrideEffectEditor.cpp" compile="0"
                       resource="0" file="Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.cpp"/>
                 <FILE id="Wxll0H" name="ColorSourceOverrideEffectEditor.h" compile="0"
                       resource="0" file="Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.h"/>
               </GROUP>
-              <FILE id="RSiKMX" name="ColorSourceOverrideEffect.cpp" compile="1"
+              <FILE id="RSiKMX" name="ColorSourceOverrideEffect.cpp" compile="0"
                     resource="0" file="Source/Effect/effects/color/override/ColorSourceOverrideEffect.cpp"/>
               <FILE id="pFqbFb" name="ColorSourceOverrideEffect.h" compile="0" resource="0"
                     file="Source/Effect/effects/color/override/ColorSourceOverrideEffect.h"/>
             </GROUP>
-            <FILE id="Ktrish" name="ColorEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/color/ColorEffect.cpp"/>
+            <FILE id="Ktrish" name="ColorEffect.cpp" compile="0" resource="0" file="Source/Effect/effects/color/ColorEffect.cpp"/>
             <FILE id="XZyhiL" name="ColorEffect.h" compile="0" resource="0" file="Source/Effect/effects/color/ColorEffect.h"/>
             <GROUP id="{1822EA65-DEB6-FB2F-28F2-A7367789DC0F}" name="gradientmap">
-              <FILE id="r86LRS" name="ColorGradientMapEffect.cpp" compile="1" resource="0"
+              <FILE id="r86LRS" name="ColorGradientMapEffect.cpp" compile="0" resource="0"
                     file="Source/Effect/effects/color/gradientmap/ColorGradientMapEffect.cpp"/>
               <FILE id="H2tqoT" name="ColorGradientMapEffect.h" compile="0" resource="0"
                     file="Source/Effect/effects/color/gradientmap/ColorGradientMapEffect.h"/>
             </GROUP>
             <GROUP id="{F8B5D80A-0E32-A30D-69DC-F7DE97F61270}" name="remap">
-              <FILE id="YnRIis" name="ColorPositionRemapEffect.cpp" compile="1" resource="0"
+              <FILE id="YnRIis" name="ColorPositionRemapEffect.cpp" compile="0" resource="0"
                     file="Source/Effect/effects/color/remap/ColorPositionRemapEffect.cpp"/>
               <FILE id="BZclvg" name="ColorPositionRemapEffect.h" compile="0" resource="0"
                     file="Source/Effect/effects/color/remap/ColorPositionRemapEffect.h"/>
             </GROUP>
             <GROUP id="{5590EE11-4CF0-971E-3BA2-F48248686792}" name="hsv">
-              <FILE id="u7Lsea" name="HSVAdjustEffect.cpp" compile="1" resource="0"
+              <FILE id="u7Lsea" name="HSVAdjustEffect.cpp" compile="0" resource="0"
                     file="Source/Effect/effects/color/hsv/HSVAdjustEffect.cpp"/>
               <FILE id="VyZhJQ" name="HSVAdjustEffect.h" compile="0" resource="0"
                     file="Source/Effect/effects/color/hsv/HSVAdjustEffect.h"/>
@@ -401,25 +401,25 @@
           <GROUP id="{5FA832AE-2253-5F82-C146-58F837B90E47}" name="time">
             <GROUP id="{4C2878D5-F4CF-42E2-9D5B-1E1E5BA6B2AD}" name="automation">
               <GROUP id="{0500F0A9-6298-E6A7-0E8D-2A27D6C73A9D}" name="ui">
-                <FILE id="t2i3AB" name="AutomationEffectEditor.cpp" compile="1" resource="0"
+                <FILE id="t2i3AB" name="AutomationEffectEditor.cpp" compile="0" resource="0"
                       file="Source/Effect/effects/time/automation/ui/AutomationEffectEditor.cpp"/>
                 <FILE id="XZjeYH" name="AutomationEffectEditor.h" compile="0" resource="0"
                       file="Source/Effect/effects/time/automation/ui/AutomationEffectEditor.h"/>
               </GROUP>
-              <FILE id="wUVMNu" name="AutomationEffect.cpp" compile="1" resource="0"
+              <FILE id="wUVMNu" name="AutomationEffect.cpp" compile="0" resource="0"
                     file="Source/Effect/effects/time/automation/AutomationEffect.cpp"/>
               <FILE id="sGuvzJ" name="AutomationEffect.h" compile="0" resource="0"
                     file="Source/Effect/effects/time/automation/AutomationEffect.h"/>
             </GROUP>
             <GROUP id="{C425CD3C-D6F6-FCEB-155A-2024BDEFDEC7}" name="noise">
-              <FILE id="Pd2wns" name="NoiseEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/time/noise/NoiseEffect.cpp"/>
+              <FILE id="Pd2wns" name="NoiseEffect.cpp" compile="0" resource="0" file="Source/Effect/effects/time/noise/NoiseEffect.cpp"/>
               <FILE id="zS9Ud8" name="NoiseEffect.h" compile="0" resource="0" file="Source/Effect/effects/time/noise/NoiseEffect.h"/>
             </GROUP>
-            <FILE id="yoW9CW" name="TimedEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/time/TimedEffect.cpp"/>
+            <FILE id="yoW9CW" name="TimedEffect.cpp" compile="0" resource="0" file="Source/Effect/effects/time/TimedEffect.cpp"/>
             <FILE id="mTKbxk" name="TimedEffect.h" compile="0" resource="0" file="Source/Effect/effects/time/TimedEffect.h"/>
           </GROUP>
           <GROUP id="{448FBE9F-BB3E-D4C2-BE7E-C573A112D794}" name="override">
-            <FILE id="fgKWtR" name="OverrideEffect.cpp" compile="1" resource="0"
+            <FILE id="fgKWtR" name="OverrideEffect.cpp" compile="0" resource="0"
                   file="Source/Effect/effects/override/OverrideEffect.cpp"/>
             <FILE id="iMhDCG" name="OverrideEffect.h" compile="0" resource="0"
                   file="Source/Effect/effects/override/OverrideEffect.h"/>
@@ -428,69 +428,69 @@
         <GROUP id="{11ABDC7F-4CBF-C8CB-0BA7-C89E429B21F7}" name="Filter">
           <GROUP id="{F17755BA-DA05-000D-678F-57CA7F0A403A}" name="filters">
             <GROUP id="{A62E3CDA-402A-AD22-FDC5-1AD35CF4412D}" name="group">
-              <FILE id="zWKsK2" name="GroupFilter.cpp" compile="1" resource="0" file="Source/Effect/Filter/filters/group/GroupFilter.cpp"/>
+              <FILE id="zWKsK2" name="GroupFilter.cpp" compile="0" resource="0" file="Source/Effect/Filter/filters/group/GroupFilter.cpp"/>
               <FILE id="LmFyZQ" name="GroupFilter.h" compile="0" resource="0" file="Source/Effect/Filter/filters/group/GroupFilter.h"/>
             </GROUP>
             <GROUP id="{9966F1D1-58BD-AA61-BF9A-F9ACAD30723B}" name="layout">
               <GROUP id="{2747E1B2-93ED-E1A9-17C6-9C0BE64718BD}" name="ui">
-                <FILE id="GqySta" name="LayoutFilterStageView.cpp" compile="1" resource="0"
+                <FILE id="GqySta" name="LayoutFilterStageView.cpp" compile="0" resource="0"
                       file="Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.cpp"/>
                 <FILE id="McGZOz" name="LayoutFilterStageView.h" compile="0" resource="0"
                       file="Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.h"/>
-                <FILE id="UeWcce" name="LayoutFilterStageViewUI.cpp" compile="1" resource="0"
+                <FILE id="UeWcce" name="LayoutFilterStageViewUI.cpp" compile="0" resource="0"
                       file="Source/Effect/Filter/filters/layout/ui/LayoutFilterStageViewUI.cpp"/>
                 <FILE id="hdMjZX" name="LayoutFilterStageViewUI.h" compile="0" resource="0"
                       file="Source/Effect/Filter/filters/layout/ui/LayoutFilterStageViewUI.h"/>
               </GROUP>
-              <FILE id="I9GzH9" name="LayoutFilter.cpp" compile="1" resource="0"
+              <FILE id="I9GzH9" name="LayoutFilter.cpp" compile="0" resource="0"
                     file="Source/Effect/Filter/filters/layout/LayoutFilter.cpp"/>
               <FILE id="wuyDc4" name="LayoutFilter.h" compile="0" resource="0" file="Source/Effect/Filter/filters/layout/LayoutFilter.h"/>
             </GROUP>
             <GROUP id="{6282C0E5-25A5-46C6-5C6E-1A43C0016C72}" name="id">
-              <FILE id="JS9t1N" name="IDFilter.cpp" compile="1" resource="0" file="Source/Effect/Filter/filters/id/IDFilter.cpp"/>
+              <FILE id="JS9t1N" name="IDFilter.cpp" compile="0" resource="0" file="Source/Effect/Filter/filters/id/IDFilter.cpp"/>
               <FILE id="Weajtz" name="IDFilter.h" compile="0" resource="0" file="Source/Effect/Filter/filters/id/IDFilter.h"/>
             </GROUP>
           </GROUP>
           <GROUP id="{38E09493-E6CE-264A-31CE-E893F7AD62AB}" name="ui">
-            <FILE id="JD7CTs" name="FilterEditor.cpp" compile="1" resource="0"
+            <FILE id="JD7CTs" name="FilterEditor.cpp" compile="0" resource="0"
                   file="Source/Effect/Filter/ui/FilterEditor.cpp"/>
             <FILE id="bV1Pti" name="FilterEditor.h" compile="0" resource="0" file="Source/Effect/Filter/ui/FilterEditor.h"/>
-            <FILE id="HL6n9Z" name="FilterManagerEditor.cpp" compile="1" resource="0"
+            <FILE id="HL6n9Z" name="FilterManagerEditor.cpp" compile="0" resource="0"
                   file="Source/Effect/Filter/ui/FilterManagerEditor.cpp"/>
             <FILE id="aUHe0c" name="FilterManagerEditor.h" compile="0" resource="0"
                   file="Source/Effect/Filter/ui/FilterManagerEditor.h"/>
           </GROUP>
-          <FILE id="b0Xfjj" name="Filter.cpp" compile="1" resource="0" file="Source/Effect/Filter/Filter.cpp"/>
+          <FILE id="b0Xfjj" name="Filter.cpp" compile="0" resource="0" file="Source/Effect/Filter/Filter.cpp"/>
           <FILE id="yciycN" name="Filter.h" compile="0" resource="0" file="Source/Effect/Filter/Filter.h"/>
-          <FILE id="fTtGNO" name="FilterManager.cpp" compile="1" resource="0"
+          <FILE id="fTtGNO" name="FilterManager.cpp" compile="0" resource="0"
                 file="Source/Effect/Filter/FilterManager.cpp"/>
           <FILE id="vHyhiE" name="FilterManager.h" compile="0" resource="0" file="Source/Effect/Filter/FilterManager.h"/>
         </GROUP>
         <GROUP id="{EEB89B66-A685-FC8C-64AB-5A15E087594F}" name="ui">
-          <FILE id="AUe1Kx" name="EffectChainVizUI.cpp" compile="1" resource="0"
+          <FILE id="AUe1Kx" name="EffectChainVizUI.cpp" compile="0" resource="0"
                 file="Source/Effect/ui/EffectChainVizUI.cpp"/>
           <FILE id="LMR3TR" name="EffectChainVizUI.h" compile="0" resource="0"
                 file="Source/Effect/ui/EffectChainVizUI.h"/>
-          <FILE id="ilFOkO" name="EffectEditor.cpp" compile="1" resource="0"
+          <FILE id="ilFOkO" name="EffectEditor.cpp" compile="0" resource="0"
                 file="Source/Effect/ui/EffectEditor.cpp"/>
           <FILE id="bVhbzu" name="EffectEditor.h" compile="0" resource="0" file="Source/Effect/ui/EffectEditor.h"/>
-          <FILE id="z6Od7Y" name="EffectManagerEditor.cpp" compile="1" resource="0"
+          <FILE id="z6Od7Y" name="EffectManagerEditor.cpp" compile="0" resource="0"
                 file="Source/Effect/ui/EffectManagerEditor.cpp"/>
           <FILE id="dyn5uV" name="EffectManagerEditor.h" compile="0" resource="0"
                 file="Source/Effect/ui/EffectManagerEditor.h"/>
-          <FILE id="YWhey8" name="GlobalEffectManagerUI.cpp" compile="1" resource="0"
+          <FILE id="YWhey8" name="GlobalEffectManagerUI.cpp" compile="0" resource="0"
                 file="Source/Effect/ui/GlobalEffectManagerUI.cpp"/>
           <FILE id="I0mNv0" name="GlobalEffectManagerUI.h" compile="0" resource="0"
                 file="Source/Effect/ui/GlobalEffectManagerUI.h"/>
         </GROUP>
-        <FILE id="RsUAKV" name="GlobalEffectManager.cpp" compile="1" resource="0"
+        <FILE id="RsUAKV" name="GlobalEffectManager.cpp" compile="0" resource="0"
               file="Source/Effect/GlobalEffectManager.cpp"/>
         <FILE id="lhfaXD" name="GlobalEffectManager.h" compile="0" resource="0"
               file="Source/Effect/GlobalEffectManager.h"/>
-        <FILE id="mCAwuu" name="EffectManager.cpp" compile="1" resource="0"
+        <FILE id="mCAwuu" name="EffectManager.cpp" compile="0" resource="0"
               file="Source/Effect/EffectManager.cpp"/>
         <FILE id="YF8lHC" name="EffectManager.h" compile="0" resource="0" file="Source/Effect/EffectManager.h"/>
-        <FILE id="rHIezh" name="Effect.cpp" compile="1" resource="0" file="Source/Effect/Effect.cpp"/>
+        <FILE id="rHIezh" name="Effect.cpp" compile="0" resource="0" file="Source/Effect/Effect.cpp"/>
         <FILE id="J1DRSC" name="Effect.h" compile="0" resource="0" file="Source/Effect/Effect.h"/>
       </GROUP>
       <GROUP id="{BDEDD473-3A74-D6C8-68AB-E73419566401}" name="Object">

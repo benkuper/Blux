@@ -8,13 +8,6 @@
   ==============================================================================
 */
 
-#include "Filter.h"
-#include "Object/ObjectIncludes.h"
-
-#include "ui/FilterEditor.h"
-#include "Common/CommonIncludes.h"
-
-
 Filter::Filter(const String& name) :
     BaseItem(name)
 {

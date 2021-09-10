@@ -10,11 +10,10 @@
 
 #pragma once
 
-#include "Filter/FilterManager.h"
-#include "ChainViz/ChainVizTarget.h"
 
 class ObjectComponent;
 class Object;
+class FilterManager;
 
 class Effect :
     public BaseItem,
@@ -32,7 +31,7 @@ public:
     enum SceneSaveMode { FULL, WEIGHT_ONLY, NONE };
     EnumParameter * sceneSaveMode;
 
-    FilterManager filterManager;
+    std::unique_ptr<FilterManager> filterManager;
 
     bool forceDisabled;
 

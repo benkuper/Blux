@@ -13,7 +13,7 @@
 #include "UI/AssetManager.h"
 #include "Interface/InterfaceIncludes.h"
 
-#include "Effect/GlobalEffectManager.h"
+#include "Effect/EffectIncludes.h"
 #include "Scene/SceneIncludes.h"
 #include "Sequence/SequenceIncludes.h"
 

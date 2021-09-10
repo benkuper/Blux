@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "../FilterManager.h"
 class ComponentSelectorUI;
 
 class FilterManagerEditor :

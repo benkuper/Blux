@@ -8,13 +8,11 @@
   ==============================================================================
 */
 
-#include "ColorEffect.h"
-
 ColorEffect::ColorEffect(const String& name, var params) :
     Effect(name, params),
     fillWithOriginalColors(true)
 {
-    filterManager.componentSelector.selectedComponents.set(ComponentType::COLOR, true);
+    filterManager->componentSelector.selectedComponents.set(ComponentType::COLOR, true);
 }
 
 ColorEffect::~ColorEffect()

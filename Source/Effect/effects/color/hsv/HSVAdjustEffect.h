@@ -9,7 +9,6 @@
 */
 
 #pragma once
-#include "../ColorEffect.h"
 
 class ColorSource;
 

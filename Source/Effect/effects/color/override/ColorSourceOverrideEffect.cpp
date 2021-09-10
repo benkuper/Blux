@@ -8,18 +8,12 @@
   ==============================================================================
 */
 
-#include "ColorSourceOverrideEffect.h"
-#include "Color/ColorSource/ColorSource.h"
-#include "Color/ColorSource/ColorSourceFactory.h"
-#include "Color/ColorSource//ColorSourceLibrary.h"
-#include "ui/ColorSourceOverrideEffectEditor.h"
-
 ColorSourceOverrideEffect::ColorSourceOverrideEffect(var params) :
 	ColorEffect("Override (Color)"),
 	overrideEffectNotifier(5)
 {
-	filterManager.componentSelector.allowedComponents.clear();
-	filterManager.componentSelector.allowedComponents.add(ComponentType::COLOR);
+	filterManager->componentSelector.allowedComponents.clear();
+	filterManager->componentSelector.allowedComponents.add(ComponentType::COLOR);
 
 	fillWithOriginalColors = false;
 	setupSource("Solid Color");

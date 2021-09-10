@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "GlobalEffectManagerUI.h"
-
 GlobalEffectManagerUI::GlobalEffectManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, GlobalEffectManager::getInstance())
 {

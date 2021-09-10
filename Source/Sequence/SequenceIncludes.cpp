@@ -10,11 +10,9 @@
 
 #include "SequenceIncludes.h"
 #include "Object/ObjectIncludes.h"
+#include "Effect/EffectIncludes.h"
 #include "Audio/AudioManager.h"
 
-//to replace by include
-#include "Effect/EffectManager.h"
-#include "Effect/effects/time/TimedEffect.h"
 
 #include "actions/SequenceAction.cpp"
 

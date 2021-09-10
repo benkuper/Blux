@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "LayoutFilter.h"
-#include "Object/ObjectIncludes.h"
-
 Array<LayoutFilter*> LayoutFilter::instances;
 ChangeBroadcaster LayoutFilter::broadcaster;
 

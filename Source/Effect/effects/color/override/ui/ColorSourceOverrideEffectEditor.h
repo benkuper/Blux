@@ -10,10 +10,6 @@
 
 #pragma once
 
-#include "../ColorSourceOverrideEffect.h"
-#include "Effect/ui/EffectEditor.h"
-#include "Color/ColorIncludes.h"
-
 class ColorSourceOverrideEffectEditor :
     public EffectEditor,
     public ColorSourceChooser::ChooserListener,

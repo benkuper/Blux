@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../TimedEffect.h"
-
 class AutomationEffect :
     public TimedEffect
 {

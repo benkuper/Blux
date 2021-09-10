@@ -9,7 +9,6 @@
 */
 
 #pragma once
-#include "../TimedEffect.h"
 
 namespace siv
 {

@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorSourceOverrideEffectEditor.h"
-
 ColorSourceOverrideEffectEditor::ColorSourceOverrideEffectEditor(ColorSourceOverrideEffect* cef, bool isRoot) :
     EffectEditor(cef, isRoot),
     overrideEffect(cef)

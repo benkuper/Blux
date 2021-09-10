@@ -14,7 +14,7 @@
 #include "Common/CommonIncludes.h"
 
 #include "Sequence/SequenceIncludes.h"
-#include "Effect/EffectManager.h"
+#include "Effect/EffectIncludes.h"
 
 #include "Scene.h"
 #include "SceneManager.h"

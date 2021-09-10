@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../../Filter.h"
-
 class IDFilter :
     public Filter
 {

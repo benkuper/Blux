@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "LayoutFilterStageView.h"
-#include "Object/ObjectIncludes.h"
-
 LayoutFilterStageView::LayoutFilterStageView() :
     shouldRepaint(false)
 {

@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "EffectEditor.h"
-
 EffectEditor::EffectEditor(Effect* effect, bool isRoot) :
     BaseItemEditor(effect, isRoot),
     effect(effect)

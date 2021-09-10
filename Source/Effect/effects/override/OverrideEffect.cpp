@@ -8,17 +8,14 @@
   ==============================================================================
 */
 
-#include "OverrideEffect.h"
-
-
 OverrideEffect::OverrideEffect(const String &name, var params) :
     Effect(name, params)
 {
-    filterManager.componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
-    filterManager.componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-    filterManager.componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
-    filterManager.componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-    filterManager.componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
+    filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
+    filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
+    filterManager->componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
+    filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
+    filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 }
 
 OverrideEffect::~OverrideEffect()

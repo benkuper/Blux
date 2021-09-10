@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "LayoutFilterStageViewUI.h"
-
 LayoutFilterStageViewUI::LayoutFilterStageViewUI(LayoutFilter* f) :
 	filter(f),
 	filterRef(f),

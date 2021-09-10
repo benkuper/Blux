@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "EffectManager.h"
-
 class EffectGroup :
     public BaseItem
 {

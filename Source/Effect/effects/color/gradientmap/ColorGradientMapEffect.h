@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../ColorEffect.h"
-
 class GradientRemapEffect :
 	public ColorEffect
 {
