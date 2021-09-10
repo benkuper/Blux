@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "BluxSequenceChainVizUI.h"
-#include "Sequence/BluxSequence.h"
-
 BluxSequenceChainVizUI::BluxSequenceChainVizUI(BluxSequence* s, Object* o, ChainVizTarget::ChainVizType type) :
     BaseItemChainVizComponent(s, o, type),
     sequence(s),

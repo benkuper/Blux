@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "ActionTrigger.h"
-
 class ActionLayer :
     public TriggerLayer
 {

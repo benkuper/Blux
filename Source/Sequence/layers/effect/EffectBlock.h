@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "Effect/Effect.h"
+class Effect;
 
 class EffectBlock :
     public LayerBlock

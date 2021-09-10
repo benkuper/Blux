@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "EffectBlockUI.h"
-
 EffectBlockUI::EffectBlockUI(EffectBlock* b) :
 	LayerBlockUI(b),
 	effectBlock(b)

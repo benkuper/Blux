@@ -30,9 +30,8 @@ public:
     Automation interpolationCurve;
     BoolParameter* isCurrent;
 
-    BluxSequenceManager sequenceManager;
-
-    EffectManager effectManager;
+    std::unique_ptr<BluxSequenceManager> sequenceManager;
+    std::unique_ptr<EffectManager> effectManager;
 
     ActionManager loadActions;
     ActionManager unloadActions;

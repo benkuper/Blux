@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../EffectBlock.h"
-
 class EffectLayerTimeline;
 
 class EffectBlockManagerUI :

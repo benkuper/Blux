@@ -90,7 +90,7 @@ ControllableContainer* EffectAction::showMenuAndGetEffect()
 	for (auto& i : SceneManager::getInstance()->items)
 	{
 		PopupMenu sceneEffectsMenu;
-		for (auto& e : i->effectManager.items)
+		for (auto& e : i->effectManager->items)
 		{
 			effects.add(e);
 			sceneEffectsMenu.addItem(effects.size(), e->niceName);

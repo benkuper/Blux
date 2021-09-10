@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "SequenceAction.h"
-#include "Sequence/GlobalSequenceManager.h"
-
 SequenceAction::SequenceAction(var params) :
     Action(params),
     sequence(nullptr)

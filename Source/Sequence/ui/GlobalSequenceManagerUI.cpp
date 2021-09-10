@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "GlobalSequenceManagerUI.h"
-
 GlobalSequenceManagerUI::GlobalSequenceManagerUI(const String& name) :
     SequenceManagerUI(name, GlobalSequenceManager::getInstance())
 {

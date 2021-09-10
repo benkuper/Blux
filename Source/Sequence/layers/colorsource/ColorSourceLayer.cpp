@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorSourceLayer.h"
-
 ColorSourceLayer::ColorSourceLayer(Sequence* s, var params) :
     SequenceLayer(s, "Color Source"),
     blocks(this)

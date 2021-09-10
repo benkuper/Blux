@@ -8,17 +8,6 @@
   ==============================================================================
 */
 
-#include "BluxSequence.h"
-
-#include "layers/action/ActionLayer.h"
-#include "layers/effect/EffectLayer.h"
-#include "layers/automation/AutomationLayer.h"
-#include "layers/colorsource/ColorSourceLayer.h"
-#include "ui/BluxSequenceEditor.h"
-#include "Object/ObjectIncludes.h"
-#include "ChainViz/ChainVizTarget.h"
-#include "ui/BluxSequenceChainVizUI.h"
-#include "Audio/AudioManager.h"
 
 BluxSequence::BluxSequence() :
 	manualStartAtLoad(false)
@@ -45,7 +34,7 @@ bool BluxSequence::isAffectingObject(Object* o)
 	{
 		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
 		{
-			if (e->filterManager.isAffectingObject(o)) return true;
+			if (e->filterManager->isAffectingObject(o)) return true;
 		}
 	}
 

@@ -8,11 +8,6 @@
   ==============================================================================
 */
 
-#include "EffectBlock.h"
-#include "Effect/EffectManager.h"
-#include "Effect/effects/time/TimedEffect.h"
-#include "Object/ObjectIncludes.h"
-
 EffectBlock::EffectBlock(var params) :
     LayerBlock(params.getProperty("effectType",var()).toString()),
     effectType(params.getProperty("effectType", var()).toString()),

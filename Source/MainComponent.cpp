@@ -4,10 +4,10 @@
 #include "Object/ObjectIncludes.h"
 #include "Interface/InterfaceIncludes.h"
 #include "Scene/SceneIncludes.h"
+#include "Sequence/SequenceIncludes.h"
+#include "ChainViz/ChainViz.h"
 
 #include "Effect/ui/GlobalEffectManagerUI.h"
-#include "Sequence/ui/GlobalSequenceManagerUI.h"
-#include "ChainViz/ChainViz.h"
 #include "UI/BluxInspector.h"
 
 String getAppVersion();

@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "BluxSequenceEditor.h"
-
 BluxSequenceEditor::BluxSequenceEditor(BluxSequence* s, bool isRoot) :
     BaseItemEditor(s, isRoot),
     bluxSequence(s),

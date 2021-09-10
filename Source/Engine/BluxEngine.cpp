@@ -13,13 +13,11 @@
 #include "Interface/InterfaceIncludes.h"
 #include "Common/CommonIncludes.h"
 #include "Scene/SceneIncludes.h"
+#include "Sequence/SequenceIncludes.h"
+#include "Color/ColorIncludes.h"
 
 #include "Effect/GlobalEffectManager.h"
-#include "Sequence/GlobalSequenceManager.h"
 #include "Audio/AudioManager.h"
-#include "Sequence/layers/action/ActionLayer.h"
-#include "Sequence/layers/effect/EffectBlockManager.h"
-#include "Color/ColorIncludes.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")

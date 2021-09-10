@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "EffectBlockManager.h"
-#include "EffectBlock.h"
-#include "EffectLayer.h"
-#include "Effect/EffectManager.h"
 
 juce_ImplementSingleton(EffectBlockFactory)
 

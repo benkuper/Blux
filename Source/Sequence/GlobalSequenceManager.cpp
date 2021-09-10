@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "GlobalSequenceManager.h"
-#include "Effect/Effect.h"
-
 juce_ImplementSingleton(GlobalSequenceManager);
 
 GlobalSequenceManager::GlobalSequenceManager()

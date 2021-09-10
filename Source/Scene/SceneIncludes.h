@@ -13,8 +13,7 @@
 #include "JuceHeader.h"
 #include "Common/CommonIncludes.h"
 
-//to handle
-#include "Sequence/BluxSequenceManager.h"
+#include "Sequence/SequenceIncludes.h"
 #include "Effect/EffectManager.h"
 
 #include "Scene.h"

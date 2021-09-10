@@ -10,9 +10,6 @@
 
 #pragma once
 
-#include "JuceHeader.h"
-#include "ChainViz/ChainVizTarget.h"
-
 class Object;
 class ObjectComponent;
 class Effect;

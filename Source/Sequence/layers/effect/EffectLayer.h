@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "EffectBlockManager.h"
 class Object;
 class ObjectComponent;
+class FilterManager;
 
 class EffectLayer :
     public SequenceLayer
@@ -22,7 +22,7 @@ public:
     ~EffectLayer();
 
     EffectBlockManager blockManager;
-    FilterManager filterManager;
+    std::unique_ptr<FilterManager> filterManager;
 
     FloatParameter* timeOffsetByID;
     

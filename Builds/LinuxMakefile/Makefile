@@ -114,23 +114,6 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/ObjectIncludes_6d2ed47b.o \
   $(JUCE_OBJDIR)/GenericAction_a94c649.o \
   $(JUCE_OBJDIR)/BluxEngine_89bca27d.o \
-  $(JUCE_OBJDIR)/SequenceAction_91cde3b8.o \
-  $(JUCE_OBJDIR)/ActionLayer_e5ec586a.o \
-  $(JUCE_OBJDIR)/ActionTrigger_a064a451.o \
-  $(JUCE_OBJDIR)/AutomationLayer_3f73cc8a.o \
-  $(JUCE_OBJDIR)/ColorSourceLayer_b07f94cc.o \
-  $(JUCE_OBJDIR)/EffectBlockManagerUI_548888ca.o \
-  $(JUCE_OBJDIR)/EffectBlockUI_2bb09a15.o \
-  $(JUCE_OBJDIR)/EffectLayerTimeline_4a83db26.o \
-  $(JUCE_OBJDIR)/EffectBlock_2abbca06.o \
-  $(JUCE_OBJDIR)/EffectBlockManager_55507751.o \
-  $(JUCE_OBJDIR)/EffectLayer_9385d8ca.o \
-  $(JUCE_OBJDIR)/BluxSequenceChainVizUI_832c2cde.o \
-  $(JUCE_OBJDIR)/BluxSequenceEditor_d32a9d91.o \
-  $(JUCE_OBJDIR)/GlobalSequenceManagerUI_3690e9b1.o \
-  $(JUCE_OBJDIR)/BluxSequence_2a48d45d.o \
-  $(JUCE_OBJDIR)/BluxSequenceManager_466a6d1a.o \
-  $(JUCE_OBJDIR)/GlobalSequenceManager_cb8c30a4.o \
   $(JUCE_OBJDIR)/SequenceIncludes_1f9bb4bb.o \
   $(JUCE_OBJDIR)/AssetManager_74710ad9.o \
   $(JUCE_OBJDIR)/BluxInspector_cea78398.o \
@@ -402,91 +385,6 @@ $(JUCE_OBJDIR)/GenericAction_a94c649.o: ../../Source/Engine/GenericAction.cpp
 $(JUCE_OBJDIR)/BluxEngine_89bca27d.o: ../../Source/Engine/BluxEngine.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling BluxEngine.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/SequenceAction_91cde3b8.o: ../../Source/Sequence/actions/SequenceAction.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling SequenceAction.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/ActionLayer_e5ec586a.o: ../../Source/Sequence/layers/action/ActionLayer.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ActionLayer.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/ActionTrigger_a064a451.o: ../../Source/Sequence/layers/action/ActionTrigger.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ActionTrigger.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/AutomationLayer_3f73cc8a.o: ../../Source/Sequence/layers/automation/AutomationLayer.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling AutomationLayer.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/ColorSourceLayer_b07f94cc.o: ../../Source/Sequence/layers/colorsource/ColorSourceLayer.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ColorSourceLayer.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/EffectBlockManagerUI_548888ca.o: ../../Source/Sequence/layers/effect/ui/EffectBlockManagerUI.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling EffectBlockManagerUI.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/EffectBlockUI_2bb09a15.o: ../../Source/Sequence/layers/effect/ui/EffectBlockUI.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling EffectBlockUI.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/EffectLayerTimeline_4a83db26.o: ../../Source/Sequence/layers/effect/ui/EffectLayerTimeline.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling EffectLayerTimeline.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/EffectBlock_2abbca06.o: ../../Source/Sequence/layers/effect/EffectBlock.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling EffectBlock.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/EffectBlockManager_55507751.o: ../../Source/Sequence/layers/effect/EffectBlockManager.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling EffectBlockManager.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/EffectLayer_9385d8ca.o: ../../Source/Sequence/layers/effect/EffectLayer.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling EffectLayer.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/BluxSequenceChainVizUI_832c2cde.o: ../../Source/Sequence/ui/BluxSequenceChainVizUI.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling BluxSequenceChainVizUI.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/BluxSequenceEditor_d32a9d91.o: ../../Source/Sequence/ui/BluxSequenceEditor.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling BluxSequenceEditor.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/GlobalSequenceManagerUI_3690e9b1.o: ../../Source/Sequence/ui/GlobalSequenceManagerUI.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling GlobalSequenceManagerUI.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/BluxSequence_2a48d45d.o: ../../Source/Sequence/BluxSequence.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling BluxSequence.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/BluxSequenceManager_466a6d1a.o: ../../Source/Sequence/BluxSequenceManager.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling BluxSequenceManager.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/GlobalSequenceManager_cb8c30a4.o: ../../Source/Sequence/GlobalSequenceManager.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling GlobalSequenceManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/SequenceIncludes_1f9bb4bb.o: ../../Source/Sequence/SequenceIncludes.cpp

@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "BluxSequence.h"
 class ChainVizTarget;
 
 class BluxSequenceManager :

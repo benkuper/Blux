@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "EffectBlockManagerUI.h"
-#include "EffectLayerTimeline.h"
-#include "EffectBlockUI.h"
-
 EffectBlockManagerUI::EffectBlockManagerUI(EffectLayerTimeline * timeline) :
     LayerBlockManagerUI(timeline, &timeline->effectLayer->blockManager),
     effectTimeline(timeline)

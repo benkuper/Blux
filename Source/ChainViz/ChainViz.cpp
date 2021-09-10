@@ -12,7 +12,7 @@
 #include "Effect/Effect.h"
 #include "Object/ObjectIncludes.h"
 #include "Effect/GlobalEffectManager.h"
-#include "Sequence/GlobalSequenceManager.h"
+#include "Sequence/SequenceIncludes.h"
 #include "Scene/SceneIncludes.h"
 
 const String ChainViz::panelName = "Effect Chain Viz";

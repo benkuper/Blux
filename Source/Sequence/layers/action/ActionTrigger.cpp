@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "ActionTrigger.h"
-#include "Common/CommonIncludes.h"
-
 ActionTrigger::ActionTrigger() :
     TimeTrigger("Action")
 {

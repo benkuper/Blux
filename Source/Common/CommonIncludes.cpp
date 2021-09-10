@@ -10,6 +10,8 @@
 
 #include "CommonIncludes.h"
 #include "Scene/SceneIncludes.h"
+#include "Object/ObjectIncludes.h"
+#include "Sequence/SequenceIncludes.h"
 
 #include "Action/Action.cpp"
 #include "Action/ActionManager.cpp"

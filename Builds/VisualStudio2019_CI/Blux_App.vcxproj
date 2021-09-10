@@ -493,23 +493,57 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Engine\GenericAction.cpp"/>
     <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionTrigger.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\automation\AutomationLayer.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockUI.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectLayerTimeline.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlock.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlockManager.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceChainVizUI.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp"/>
-    <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp"/>
+    <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\action\ActionTrigger.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\automation\AutomationLayer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\colorsource\ColorSourceLayer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectBlockUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\ui\EffectLayerTimeline.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlock.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectBlockManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceChainVizUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\ui\GlobalSequenceManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\BluxSequence.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\BluxSequenceManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\GlobalSequenceManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\SequenceIncludes.cpp"/>
     <ClCompile Include="..\..\Source\UI\AssetManager.cpp"/>
     <ClCompile Include="..\..\Source\UI\BluxInspector.cpp"/>

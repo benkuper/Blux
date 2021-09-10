@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "BluxSequenceManager.h"
 class Effect;
 
 class GlobalSequenceManager :

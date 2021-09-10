@@ -95,12 +95,12 @@ void SceneUI::itemDropped(const DragAndDropTarget::SourceDetails& details)
         {
             if (Effect* e = dynamic_cast<Effect*>(bi->item))
             {
-                item->effectManager.addItemFromData(e->getJSONData());
+                item->effectManager->addItemFromData(e->getJSONData());
             }
         }
         else if (GenericManagerEditor<Effect>* gi = dynamic_cast<GenericManagerEditor<Effect>*>(details.sourceComponent.get()))
         {
-            item->effectManager.loadJSONData(gi->manager->getJSONData());
+            item->effectManager->loadJSONData(gi->manager->getJSONData());
         }
     }
     else

@@ -9,7 +9,6 @@
 */
 
 #pragma once
-#include "../BluxSequence.h"
 
 class BluxSequenceEditor :
     public BaseItemEditor

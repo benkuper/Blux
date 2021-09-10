@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "AutomationLayer.h"
-
 AutomationLayer::AutomationLayer(Sequence* s, var params) :
     SequenceLayer(s, "Automation"),
     blocks(this)

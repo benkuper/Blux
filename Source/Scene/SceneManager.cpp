@@ -34,7 +34,7 @@ SceneManager::~SceneManager()
 void SceneManager::addItemInternal(Scene* s, var data)
 {
     s->addSceneListener(this);
-    s->effectManager.setForceDisabled(true);
+    s->effectManager->setForceDisabled(true);
 }
 
 void SceneManager::removeItemInternal(Scene* s)
@@ -93,9 +93,9 @@ void SceneManager::run()
     String eName = GlobalEffectManager::getInstance()->shortName;
 
     currentScene->loadProgress->setValue(0);
-    currentScene->effectManager.setForceDisabled(false);
+    currentScene->effectManager->setForceDisabled(false);
     currentScene->resetEffectTimes();
-    for (auto& s : currentScene->sequenceManager.items)
+    for (auto& s : currentScene->sequenceManager->items)
     {
         if (s->startAtLoad->boolValue())
         {
@@ -144,12 +144,12 @@ void SceneManager::run()
 
     if (previousScene != nullptr && previousScene != currentScene)
     {
-        for (auto& s : previousScene->sequenceManager.items)
+        for (auto& s : previousScene->sequenceManager->items)
         {
             s->stopTrigger->trigger();
         }
 
-        previousScene->effectManager.setForceDisabled(true);
+        previousScene->effectManager->setForceDisabled(true);
     }
    
     sceneManagerNotifier.addMessage(new SceneManagerEvent(SceneManagerEvent::SCENE_LOAD_END));
@@ -165,8 +165,8 @@ Array<ChainVizTarget *> SceneManager::getChainVizTargetsForObject(Object* o)
     Array<ChainVizTarget *> result;
     if (currentScene == nullptr) return result;
 
-    result.addArray(currentScene->sequenceManager.getChainVizTargetsForObject(o));
-    result.addArray(currentScene->effectManager.getChainVizTargetsForObject(o));
+    result.addArray(currentScene->sequenceManager->getChainVizTargetsForObject(o));
+    result.addArray(currentScene->effectManager->getChainVizTargetsForObject(o));
     return result;
 }
 
@@ -177,12 +177,12 @@ void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& va
     float progressWeight = currentScene->isCurrent->boolValue() ? 1 : currentScene->loadProgress->floatValue();
     if (previousScene != nullptr && progressWeight < 1)
     {
-        previousScene->sequenceManager.processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
-        previousScene->effectManager.processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
+        previousScene->sequenceManager->processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
+        previousScene->effectManager->processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
     }
 
-    currentScene->sequenceManager.processComponentValues(o, c, values, progressWeight);
-    currentScene->effectManager.processComponentValues(o, c, values,  progressWeight);
+    currentScene->sequenceManager->processComponentValues(o, c, values, progressWeight);
+    currentScene->effectManager->processComponentValues(o, c, values,  progressWeight);
 }
 
 void SceneManager::onContainerTriggerTriggered(Trigger* t)

@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "EffectBlock.h"
 class EffectLayer;
 
 class EffectBlockFactory :

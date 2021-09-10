@@ -15,7 +15,7 @@
 
 #include "Effect/GlobalEffectManager.h"
 #include "Scene/SceneIncludes.h"
-#include "Sequence/GlobalSequenceManager.h"
+#include "Sequence/SequenceIncludes.h"
 
 #include "actions/ObjectAction.cpp"
 

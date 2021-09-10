@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "EffectLayerTimeline.h"
-
 EffectLayerTimeline::EffectLayerTimeline(EffectLayer* l) :
     SequenceLayerTimeline(l),
     effectLayer(l),

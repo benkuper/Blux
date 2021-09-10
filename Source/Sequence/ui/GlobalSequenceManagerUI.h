@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../GlobalSequenceManager.h"
-
 class GlobalSequenceManagerUI :
     public SequenceManagerUI
 {

@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../EffectBlock.h"
-
 class EffectBlockFadeHandle :
     public Component
 {

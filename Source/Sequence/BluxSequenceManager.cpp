@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "BluxSequenceManager.h"
-#include "Object/ObjectIncludes.h"
-
 BluxSequenceManager::BluxSequenceManager()
 {
     itemDataType = "Sequence";

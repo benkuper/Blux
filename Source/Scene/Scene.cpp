@@ -41,15 +41,18 @@ Scene::Scene(const String& name) :
 	interpolationCurve.selectItemWhenCreated = false;
 	addChildControllableContainer(&interpolationCurve);
 
-	sequenceManager.selectItemWhenCreated = false;
-	sequenceManager.addBaseManagerListener(this);
+	sequenceManager.reset(new BluxSequenceManager());
+	sequenceManager->selectItemWhenCreated = false;
+	sequenceManager->addBaseManagerListener(this);
 
-	addChildControllableContainer(&sequenceManager);
-	addChildControllableContainer(&effectManager);
+	effectManager.reset(new EffectManager());
+
+	addChildControllableContainer(sequenceManager.get());
+	addChildControllableContainer(effectManager.get());
 	addChildControllableContainer(&loadActions);
 	addChildControllableContainer(&unloadActions);
 
-	effectManager.addBaseManagerListener(this);
+	effectManager->addBaseManagerListener(this);
 }
 
 Scene::~Scene()
@@ -95,7 +98,7 @@ bool Scene::isObjectActiveInScene(Object* o)
 
 	bool result = intensity > 0;
 
-	for (auto& e : effectManager.items)
+	for (auto& e : effectManager->items)
 	{
 		if (e->filterManager.getFilteredResultForComponent(o, o->getComponent<IntensityComponent>()).id != -1)
 		{
@@ -133,7 +136,7 @@ void Scene::itemAdded(Sequence* s)
 
 void Scene::resetEffectTimes()
 {
-	effectManager.resetEffectsTimes();
+	effectManager->resetEffectsTimes();
 }
 
 void Scene::itemAdded(Effect* e)

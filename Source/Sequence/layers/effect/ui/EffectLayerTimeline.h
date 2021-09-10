@@ -9,8 +9,6 @@
 */
 
 #pragma once
-#include "../EffectLayer.h"
-#include "EffectBlockManagerUI.h"
 
 class EffectLayerTimeline :
     public SequenceLayerTimeline
