@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "ChainViz/ChainViz.h"
 class Object;
 
 class ObjectChainVizUI :

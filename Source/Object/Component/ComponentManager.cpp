@@ -8,19 +8,6 @@
   ==============================================================================
 */
 
-#include "ComponentManager.h"
-
-#include "components/intensity/IntensityComponent.h"
-#include "components/strobe/StrobeComponent.h"
-#include "components/color/ColorComponent.h"
-#include "components/pantilt/PanTiltComponent.h"
-#include "components/strobe/StrobeComponent.h"
-#include "components/gobo/GoboComponent.h"
-#include "components/servo/ServoComponent.h"
-#include "components/stepper/StepperComponent.h"
-#include "components/laser/LaserComponent.h"
-#include "components/script/ScriptComponent.h"
-
 ComponentManager::ComponentManager(Object * o) :
     BaseManager("Components"),
     factory(o)

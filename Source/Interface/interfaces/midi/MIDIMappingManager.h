@@ -9,7 +9,6 @@
 */
 
 #pragma once
-#include "MIDIMapping.h"
 
 class MIDIMappingManager :
     public BaseManager<MIDIMapping>

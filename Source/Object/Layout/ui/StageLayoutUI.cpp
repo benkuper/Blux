@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "StageLayoutUI.h"
-
 StageLayoutUI::StageLayoutUI(StageLayout* item) :
     BaseItemUI(item)
 {

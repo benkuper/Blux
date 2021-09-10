@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectUI.h"
-
 ObjectUI::ObjectUI(Object* item) :
     BaseItemUI(item)
 {

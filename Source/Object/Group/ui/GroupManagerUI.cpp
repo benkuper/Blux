@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "GroupManagerUI.h"
-
 GroupManagerUI::GroupManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, GroupManager::getInstance())
 {

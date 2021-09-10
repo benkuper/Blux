@@ -8,14 +8,8 @@
   ==============================================================================
 */
 
-#include "ObjectGridUI.h"
-#include "UI/AssetManager.h"
-#include "../ObjectManager.h"
-#include "../Component/components/intensity/IntensityComponent.h"
-#include "../Component/components/color/ColorComponent.h"
 #include "ChainViz/ChainViz.h"
 #include "Color/ColorIncludes.h"
-
 
 ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),

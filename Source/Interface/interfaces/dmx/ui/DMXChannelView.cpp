@@ -8,9 +8,7 @@
   ==============================================================================
 */
 
-#include "DMXChannelView.h"
-#include "Interface/interfaces/dmx/DMXInterface.h"
-#include "Object/ObjectManager.h"
+#include "Object/ObjectIncludes.h"
 
 DMXChannelView::DMXChannelView(const String& name) :
     ShapeShifterContentComponent(name),

@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectManagerGridUI.h"
-#include "Scene/SceneManager.h"
-
 ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 	BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
 {
@@ -168,7 +165,7 @@ void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
             break;
 	}
 }
-void ObjectManagerGridUI::newMessage(const SceneManager::SceneManagerEvent& e)
+void ObjectManagerGridUI::newMessage(const SceneManagerEvent& e)
 {
 	if (e.type == e.SCENE_LOAD_START || e.type == e.SCENE_LOAD_END) resized();
 }

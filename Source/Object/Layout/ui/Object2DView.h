@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "Object/ui/ObjectGridUI.h"
-
 class Object2DView :
     public ObjectGridUI
 {

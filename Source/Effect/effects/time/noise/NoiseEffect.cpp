@@ -9,7 +9,8 @@
 */
 
 #include "NoiseEffect.h"
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
+#include "Common/CommonIncludes.h"
 
 NoiseEffect::NoiseEffect(var params) :
 	TimedEffect(getTypeString(), params)
@@ -29,6 +30,8 @@ NoiseEffect::NoiseEffect(var params) :
 	filterManager.componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
 	filterManager.componentSelector.selectedComponents.set(ComponentType::SERVO, true);
 	filterManager.componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
+
+	perlin.reset(new siv::PerlinNoise());
 }
 
 NoiseEffect::~NoiseEffect()
@@ -42,7 +45,7 @@ var NoiseEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectCompone
 	switch (t)
 	{
 	case PERLIN:
-		noiseVal = perlin.noise(time) * 2;
+		noiseVal = perlin->noise(time) * 2;
 		break;
 
 	case SINE:

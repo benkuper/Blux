@@ -10,10 +10,6 @@
 
 #pragma once
 
-#include "Sequence/BluxSequenceManager.h"
-#include "Effect/EffectManager.h"
-#include "Common/CommonIncludes.h"
-
 class Scene :
     public BaseItem,
     public EffectManager::ManagerListener,
@@ -57,21 +53,13 @@ public:
 
     void itemAdded(Effect* e) override;
 
-    class  SceneListener
-    {
-    public:
-        /** Destructor. */
-        virtual ~SceneListener() {}
-        virtual void askForLoadScene(Scene* i, float loadTime) {}
-    };
-
-    ListenerList<SceneListener> sceneListeners;
-    void addSceneListener(SceneListener* newListener) { sceneListeners.add(newListener); }
-    void removeSceneListener(SceneListener* listener) { sceneListeners.remove(listener); }
-
     var getJSONData() override;
     void loadJSONDataItemInternal(var data) override;
 
     String getTypeString() const override { return "Scene"; }
     static Scene* create(var params) { return new Scene(); }
+
+    ListenerList<SceneListener> sceneListeners;
+    void addSceneListener(SceneListener* newListener) { sceneListeners.add(newListener); }
+    void removeSceneListener(SceneListener* listener) { sceneListeners.remove(listener); }
 };

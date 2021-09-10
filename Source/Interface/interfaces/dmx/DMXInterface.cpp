@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "DMXInterface.h"
-#include "Object/Object.h"
-#include "ui/DMXInterfaceUI.h"
-
 DMXInterface::DMXInterface() :
 	Interface(getTypeString())
 {
@@ -165,7 +161,7 @@ void DMXInterface::sendValuesForObject(Object* o)
 	int startChannel = dmxParams->startChannel->intValue();
 	HashMap<int, float> compValues;
 	
-	for (auto& c : o->componentManager.items)
+	for (auto& c : o->componentManager->items)
 	{
 		if (!c->enabled->boolValue()) continue;
 		c->fillOutValueMap(compValues, startChannel);

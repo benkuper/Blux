@@ -10,14 +10,13 @@
 
 #pragma once
 
-#include "Scene.h"
 class Object;
 class ObjectComponent;
 
 class SceneManager :
     public BaseManager<Scene>,
     public Inspectable::InspectableListener,
-    public Scene::SceneListener,
+    public SceneListener,
     public Thread
 {
 public:
@@ -59,17 +58,7 @@ public:
 
     void inspectableDestroyed(Inspectable* i) override;
 
-    class SceneManagerEvent
-    {
-    public:
-        enum Type { SCENE_LOAD_START, SCENE_LOAD_END };
-
-        SceneManagerEvent(Type t) : type(t) {}
-        Type type;
-    };
-
     QueuedNotifier<SceneManagerEvent> sceneManagerNotifier;
-    typedef QueuedNotifier<SceneManagerEvent>::Listener AsyncSceneListener;
 
     void addAsyncSceneManagerListener(AsyncSceneListener* newListener) { sceneManagerNotifier.addListener(newListener); }
     void addAsyncCoalescedSceneManagerListener(AsyncSceneListener* newListener) { sceneManagerNotifier.addAsyncCoalescedListener(newListener); }

@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectComponentEditor.h"
-
 ObjectComponentEditor::ObjectComponentEditor(ObjectComponent* component, bool isRoot, bool showComputedParams) :
     BaseItemEditor(component, isRoot),
     component(component),

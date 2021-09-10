@@ -9,14 +9,11 @@
 */
 
 #pragma once
-#include "ObjectGridUI.h"
-#include "../ObjectManager.h"
-#include "Scene/SceneManager.h"
 
 class ObjectManagerGridUI :
 	public BaseManagerShapeShifterUI<ObjectManager, Object, ObjectGridUI>,
 	public ContainerAsyncListener,
-	public SceneManager::AsyncSceneListener
+	public AsyncSceneListener
 {
 public:
 	ObjectManagerGridUI(const String& name);
@@ -39,7 +36,7 @@ public:
 	bool checkFilterForItem(ObjectGridUI* ui) override;
 
 	void newMessage(const ContainerAsyncEvent& e) override;
-	void newMessage(const SceneManager::SceneManagerEvent& e) override;
+	void newMessage(const SceneManagerEvent& e) override;
 
 	int getDropIndexForPosition(Point<int> localPosition) override;
 

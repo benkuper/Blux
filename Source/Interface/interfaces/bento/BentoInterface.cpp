@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "BentoInterface.h"
-
 BentoInterface::BentoInterface() :
     Interface(getTypeString())
 {

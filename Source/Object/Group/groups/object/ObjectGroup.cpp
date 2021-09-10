@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectGroup.h"
-#include "ui/ObjectGroupUI.h"
-#include "Object/ObjectManager.h"
-
 ObjectGroup::ObjectGroup() :
     Group(getTypeString()),
     objectsCC("Objects")

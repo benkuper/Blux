@@ -9,8 +9,7 @@
 */
 
 #include "Filter.h"
-#include "Object/Object.h"
-#include "Object/Component/ObjectComponent.h"
+#include "Object/ObjectIncludes.h"
 
 #include "ui/FilterEditor.h"
 #include "Common/CommonIncludes.h"

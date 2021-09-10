@@ -8,14 +8,6 @@
   ==============================================================================
 */
 
-#include "OSCInterface.h"
-#include "ui/OSCInputEditor.h"
-#include "ui/OSCOutputEditor.h"
-#include "Object/ObjectManager.h"
-#include "Effect/GlobalEffectManager.h"
-#include "Scene/SceneManager.h"
-#include "Sequence/GlobalSequenceManager.h"
-
 OSCInterface::OSCInterface() :
 	Interface(getTypeString()),
 	Thread("OSCZeroconf"),
@@ -139,6 +131,9 @@ void OSCInterface::processMessage(const OSCMessage& msg)
 
 void OSCInterface::processMessageInternal(const OSCMessage& m)
 {
+	//Tmp comment out and remove special command support, maybe should be in OSC Global Remote Control anyway ?
+
+	/*
 	StringArray addSplit;
 	addSplit.addTokens(m.getAddressPattern().toString(), "/", "\"");
 	addSplit.remove(0);
@@ -261,6 +256,7 @@ void OSCInterface::processMessageInternal(const OSCMessage& m)
 	{
 		ObjectManager::getInstance()->blackOut->setValue(m.size() >= 1 ? (OSCHelpers::getIntArg(m[0]) > 0) : !ObjectManager::getInstance()->blackOut->boolValue());
 	}
+	*/
 }
 
 void OSCInterface::itemAdded(OSCOutput* output)
@@ -303,7 +299,7 @@ void OSCInterface::sendValuesForObject(Object* o)
 {
 	if (!enabled->boolValue()) return;
 
-	for (auto& c : o->componentManager.items)
+	for (auto& c : o->componentManager->items)
 	{
 		if (!c->enabled->boolValue()) continue;
 

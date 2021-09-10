@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorComponentEditor.h"
-
 ColorComponentEditor::ColorComponentEditor(ColorComponent* comp, bool isRoot) :
     ObjectComponentEditor(comp, isRoot, false),
     comp(comp)

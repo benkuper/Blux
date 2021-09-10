@@ -10,8 +10,8 @@
 
 
 #include "MainComponent.h"
-#include "Object/ObjectManager.h"
-#include "Scene/SceneManager.h"
+#include "Object/ObjectIncludes.h"
+#include "Scene/SceneIncludes.h"
 
 namespace BluxCommandIDs
 {

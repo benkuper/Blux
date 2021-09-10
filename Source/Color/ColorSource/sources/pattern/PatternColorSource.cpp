@@ -84,6 +84,8 @@ NoiseColorSource::NoiseColorSource(var params) :
     balance = addFloatParameter("Balance", "The balance between colors", 0, -1, 1);
     contrast = addFloatParameter("Contrast", "", 3);
     scale = addFloatParameter("Scale", "", 3);
+
+    perlin.reset(new siv::PerlinNoise());
 }
 
 NoiseColorSource::~NoiseColorSource()
@@ -98,7 +100,7 @@ void NoiseColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSec
     int resolution = colors.size();
     for (int i = 0; i < resolution; i++)
     {
-        float v = (perlin.noise0_1((i * scale->floatValue()) / resolution, time) - .5f) * contrast->floatValue() + .5f + balance->floatValue() * 2;
+        float v = (perlin->noise0_1((i * scale->floatValue()) / resolution, time) - .5f) * contrast->floatValue() + .5f + balance->floatValue() * 2;
         colors.set(i, bColor.interpolatedWith(fColor, v).withMultipliedBrightness(brightness->floatValue()));
     }
 }

@@ -9,8 +9,7 @@
 */
 
 #include "EffectChainVizUI.h"
-#include "Object/Object.h"
-
+#include "Object/ObjectIncludes.h"
 
 EffectChainVizUI::EffectChainVizUI(Effect* e, Object* o, ChainVizTarget::ChainVizType type) :
     BaseItemChainVizComponent(e, o, type),

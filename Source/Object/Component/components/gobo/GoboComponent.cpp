@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "GoboComponent.h"
-
 GoboComponent::GoboComponent(Object* o, var params) :
     ObjectComponent(o, getTypeString(), GOBO, params)
 {

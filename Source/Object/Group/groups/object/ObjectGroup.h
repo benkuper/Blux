@@ -10,11 +10,7 @@
 
 #pragma once
 
-#include "../../Group.h"
-
 class Object;
-
-
 
 class ObjectTarget :
     public BaseItem

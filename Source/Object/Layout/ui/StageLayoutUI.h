@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../StageLayout.h"
-
 class StageLayoutUI :
     public BaseItemUI<StageLayout>
 {

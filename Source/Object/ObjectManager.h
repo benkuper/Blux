@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "Object.h"
-
 class SubObjectManager :
     public BaseManager<Object>
 {

@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../../ObjectComponent.h"
-
 class ServoComponent :
     public ObjectComponent
 {

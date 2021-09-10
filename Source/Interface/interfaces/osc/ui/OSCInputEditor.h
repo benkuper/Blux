@@ -9,7 +9,6 @@
 */
 
 #pragma once
-#include "../OSCInterface.h"
 
 class OSCInputEditor :
     public EnablingControllableContainerEditor

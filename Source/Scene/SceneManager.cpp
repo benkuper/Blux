@@ -7,13 +7,6 @@
 
   ==============================================================================
 */
-
-#include "SceneManager.h"
-
-#include "Object/ObjectManager.h"
-#include "Object/Group/GroupManager.h"
-#include "Effect/GlobalEffectManager.h"
-
 juce_ImplementSingleton(SceneManager)
 
 SceneManager::SceneManager() :

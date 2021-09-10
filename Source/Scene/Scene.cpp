@@ -8,13 +8,7 @@
   ==============================================================================
 */
 
-#include "Scene.h"
-#include "Object/ObjectManager.h"
-#include "Object/Group/GroupManager.h"
-#include "Effect/GlobalEffectManager.h"
-#include "Engine/BluxEngine.h"
-#include "Object//Component/components/intensity/IntensityComponent.h"
-#include "Effect/effects/time/TimedEffect.h"
+
 
 Scene::Scene(const String& name) :
 	BaseItem(name, false),
@@ -95,7 +89,7 @@ bool Scene::isObjectActiveInScene(Object* o)
 	float intensity = sceneData
 		.getProperty(ObjectManager::getInstance()->shortName, var())
 		.getProperty(o->shortName, var())
-		.getProperty(o->componentManager.shortName, var())
+		.getProperty(o->componentManager->shortName, var())
 		.getProperty("intensity", var())
 		.getProperty("value", 0);
 

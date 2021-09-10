@@ -8,10 +8,7 @@
   ==============================================================================
 */
 
-#include "SceneUI.h"
-#include "../SceneManager.h"
-#include "Object/ui/ObjectManagerGridUI.h"
-#include "Object/Layout/ui/StageLayout2DView.h"
+
 
 SceneUI::SceneUI(Scene* scene) :
     BaseItemUI(scene)

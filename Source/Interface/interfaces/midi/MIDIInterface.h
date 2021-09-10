@@ -10,10 +10,6 @@
 
 #pragma once
 
-#include "../../Interface.h"
-#include "Common/CommonIncludes.h"
-#include "MIDIMappingManager.h"
-
 class MIDIInterface :
     public Interface,
     public MIDIInputDevice::MIDIInputListener

@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../Scene.h"
-
 class SceneUI :
     public BaseItemUI<Scene>
 {

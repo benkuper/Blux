@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "GroupManager.h"
-#include "groups/object/ObjectGroup.h"
 juce_ImplementSingleton(GroupManager)
 
 GroupManager::GroupManager() :
@@ -30,7 +28,7 @@ Array<ChainVizTarget *> GroupManager::getChainVizTargetsForObject(Object* o)
     for (auto& g : items)
     {
         if (!g->containsObject(o)) continue;
-        result.addArray(g->effectManager.getChainVizTargetsForObject(o));
+        result.addArray(g->effectManager->getChainVizTargetsForObject(o));
     }
     return result;
 }

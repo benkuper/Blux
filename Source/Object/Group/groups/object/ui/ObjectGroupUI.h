@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../ObjectGroup.h"
-
 class ObjectTargetEditor :
     public BaseItemEditor
 {

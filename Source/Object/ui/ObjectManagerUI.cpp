@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectManagerUI.h"
-
 ObjectManagerUI::ObjectManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
 {

@@ -10,12 +10,9 @@
 
 #pragma once
 
-#include "../SceneManager.h"
-#include "SceneUI.h"
-
 class SceneManagerUI :
     public BaseManagerShapeShifterUI<SceneManager, Scene, SceneUI>,
-    public SceneManager::AsyncSceneListener
+    public AsyncSceneListener
 {
 public:
     SceneManagerUI(const String &name);
@@ -30,7 +27,7 @@ public:
 
     void resizedInternalHeader(Rectangle<int>& r) override;
 
-    void newMessage(const SceneManager::SceneManagerEvent& e) override;
+    void newMessage(const SceneManagerEvent& e) override;
 
     static SceneManagerUI* create(const String& name) { return new SceneManagerUI(name); }
 

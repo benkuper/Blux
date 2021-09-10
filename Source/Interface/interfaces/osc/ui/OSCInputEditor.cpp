@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "OSCInputEditor.h"
-
 OSCInputEditor::OSCInputEditor(EnablingControllableContainer* cc, bool isRoot) :
     EnablingControllableContainerEditor(cc, isRoot)
 {

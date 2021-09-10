@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "MIDIMapping.h"
-#include "Common/CommonIncludes.h"
-#include "ui/MIDIMappingEditor.h"
-
 MIDIMapping::MIDIMapping() :
     BaseItem("MIDI Mapping"),
     isValid(false),

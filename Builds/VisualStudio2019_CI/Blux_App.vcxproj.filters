@@ -53,8 +53,8 @@
     <Filter Include="Blux\Source\Audio">
       <UniqueIdentifier>{71B30977-1984-2838-7462-8D5A66201FFA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Common\Component">
-      <UniqueIdentifier>{5CA81908-EB5E-691F-34E6-0E06F332D5E5}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Common\CommonClasses">
+      <UniqueIdentifier>{048C3228-77DE-614D-949C-9452B14F47DA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Common\MIDI\ui">
       <UniqueIdentifier>{28A5FD31-2475-AADB-18AB-D62CA1185EAA}</UniqueIdentifier>
@@ -1211,9 +1211,6 @@
       <Filter>Blux\Source\Color</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp">
-      <Filter>Blux\Source\ChainViz</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\ChainViz\ChainVizIncludes.cpp">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp">
@@ -4617,9 +4614,6 @@
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.h">
       <Filter>Blux\Source\Color\ColorSource\sources\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PerlinNoise.hpp">
-      <Filter>Blux\Source\Color\ColorSource\sources\pattern</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.h">
       <Filter>Blux\Source\Color\ColorSource\sources\picture</Filter>
     </ClInclude>
@@ -4665,9 +4659,6 @@
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ChainViz\ChainVizIncludes.h">
-      <Filter>Blux\Source\ChainViz</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h">
       <Filter>Blux\Source\ChainViz</Filter>
     </ClInclude>
@@ -4677,8 +4668,11 @@
     <ClInclude Include="..\..\Source\Audio\AudioManager.h">
       <Filter>Blux\Source\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Common\Component\ComponentType.h">
-      <Filter>Blux\Source\Common\Component</Filter>
+    <ClInclude Include="..\..\Source\Common\CommonClasses\ComponentType.h">
+      <Filter>Blux\Source\Common\CommonClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\CommonClasses\SceneListener.h">
+      <Filter>Blux\Source\Common\CommonClasses</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\CommonIncludes.h">
       <Filter>Blux\Source\Common</Filter>
@@ -4709,6 +4703,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\Action\ActionManager.h">
       <Filter>Blux\Source\Common\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Helpers\PerlinNoise.hpp">
+      <Filter>Blux\Source\Common\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h">
       <Filter>Blux\Source\Common\Helpers</Filter>
@@ -4852,9 +4849,6 @@
       <Filter>Blux\Source\Effect\effects\time\automation</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.h">
-      <Filter>Blux\Source\Effect\effects\time\noise</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Effect\effects\time\noise\PerlinNoise.hpp">
       <Filter>Blux\Source\Effect\effects\time\noise</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\time\TimedEffect.h">

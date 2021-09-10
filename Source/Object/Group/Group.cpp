@@ -8,15 +8,13 @@
   ==============================================================================
 */
 
-#include "Group.h"
-#include "Object/Object.h"
-
 Group::Group(String name) :
     BaseItem(name)
 {
     saveAndLoadRecursiveData = true;
  
-    addChildControllableContainer(&effectManager);
+    effectManager.reset(new EffectManager());
+    addChildControllableContainer(effectManager.get());
 }
 
 Group::~Group()
@@ -36,13 +34,13 @@ int Group::getLocalIDForObject(Object* o)
 
 void Group::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
-    effectManager.processComponentValues(o, c, values);
+    effectManager->processComponentValues(o, c, values);
 }
 
 var Group::getSceneData()
 {
     var data(new DynamicObject());
-    data.getDynamicObject()->setProperty(effectManager.shortName,effectManager.getSceneData());
+    data.getDynamicObject()->setProperty(effectManager->shortName,effectManager->getSceneData());
     return data;
 }
 
@@ -52,5 +50,5 @@ void Group::updateSceneData(var& sceneData)
 
 void Group::lerpFromSceneData(var startData, var endData, float weight)
 {
-    effectManager.lerpFromSceneData(startData.getProperty(effectManager.shortName, var()), endData.getProperty(effectManager.shortName, var()), weight);
+    effectManager->lerpFromSceneData(startData.getProperty(effectManager->shortName, var()), endData.getProperty(effectManager->shortName, var()), weight);
 }

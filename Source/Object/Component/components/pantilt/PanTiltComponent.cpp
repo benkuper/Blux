@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "PanTiltComponent.h"
-
 PanTiltComponent::PanTiltComponent(Object* o, var params) :
     ObjectComponent(o, getTypeString(), PANTILT, params)
 {

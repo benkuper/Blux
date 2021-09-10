@@ -9,17 +9,14 @@
 */
 
 #include "BluxEngine.h"
-#include "Object/ObjectManager.h"
-#include "Interface/InterfaceManager.h"
-
+#include "Object/ObjectIncludes.h"
+#include "Interface/InterfaceIncludes.h"
 #include "Common/CommonIncludes.h"
+#include "Scene/SceneIncludes.h"
 
-#include "Object/Group/GroupManager.h"
-#include "Scene/SceneManager.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
 #include "Audio/AudioManager.h"
-#include "Object/Layout//StageLayoutManager.h"
 #include "Sequence/layers/action/ActionLayer.h"
 #include "Sequence/layers/effect/EffectBlockManager.h"
 #include "Color/ColorIncludes.h"

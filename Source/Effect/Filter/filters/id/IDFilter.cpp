@@ -9,7 +9,7 @@
 */
 
 #include "IDFilter.h"
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
 
 IDFilter::IDFilter() :
     Filter(getTypeString()),

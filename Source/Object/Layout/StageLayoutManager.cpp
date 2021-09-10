@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "StageLayoutManager.h"
-
 juce_ImplementSingleton(StageLayoutManager)
 
 StageLayoutManager::StageLayoutManager() :

@@ -10,9 +10,6 @@
 
 #pragma once
 
-#include "../StageLayoutManager.h"
-#include "StageLayoutUI.h"
-
 class StageLayoutManagerUI :
     public BaseManagerShapeShifterUI<StageLayoutManager, StageLayout, StageLayoutUI>
 {

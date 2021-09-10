@@ -10,9 +10,8 @@
 
 #include "EffectAction.h"
 #include "Effect/GlobalEffectManager.h"
-#include "Scene/SceneManager.h"
-#include "Object/ObjectManager.h"
-#include "Object/Group/GroupManager.h"
+#include "Scene/SceneIncludes.h"
+#include "Object/ObjectIncludes.h"
 
 EffectAction::EffectAction(var params) :
 	Action(params),
@@ -106,7 +105,7 @@ ControllableContainer* EffectAction::showMenuAndGetEffect()
 	for (auto& i : GroupManager::getInstance()->items)
 	{
 		PopupMenu groupEffectsMenu;
-		for (auto& e : i->effectManager.items)
+		for (auto& e : i->effectManager->items)
 		{
 			effects.add(e);
 			groupEffectsMenu.addItem(effects.size(), e->niceName);
@@ -121,7 +120,7 @@ ControllableContainer* EffectAction::showMenuAndGetEffect()
 	for (auto& i : ObjectManager::getInstance()->items)
 	{
 		PopupMenu objectEffectsMenu;
-		for (auto& e : i->effectManager.items)
+		for (auto& e : i->effectManager->items)
 		{
 			effects.add(e);
 			objectEffectsMenu.addItem(effects.size(), e->niceName);

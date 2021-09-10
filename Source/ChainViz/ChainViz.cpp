@@ -10,10 +10,10 @@
 
 #include "ChainViz.h"
 #include "Effect/Effect.h"
-#include "Object/Object.h"
-#include "Object/Group/GroupManager.h"
+#include "Object/ObjectIncludes.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Sequence/GlobalSequenceManager.h"
+#include "Scene/SceneIncludes.h"
 
 const String ChainViz::panelName = "Effect Chain Viz";
 const Colour ChainVizComponent::typeColors[ChainVizTarget::CHAINVIZ_TYPE_MAX]{ PANEL_COLOR, PANEL_COLOR, Colours::purple.brighter(), BLUE_COLOR, GREEN_COLOR, YELLOW_COLOR, RED_COLOR };
@@ -87,7 +87,7 @@ void ChainViz::buildChain()
 	objectStartVizComponent.reset(currentObject->createVizComponent(currentObject, ChainVizTarget::OBJECT_START));
 	container.addAndMakeVisible(objectStartVizComponent.get());
 
-	Array<ChainVizTarget*> objectEffects = currentObject->effectManager.getChainVizTargetsForObject(currentObject);
+	Array<ChainVizTarget*> objectEffects = currentObject->effectManager->getChainVizTargetsForObject(currentObject);
 	Array<ChainVizTarget*> sceneEffects = SceneManager::getInstance()->getChainVizTargetsForObject(currentObject);
 	Array<ChainVizTarget*> sequenceEffects = GlobalSequenceManager::getInstance()->getChainVizTargetsForObject(currentObject);
 	Array<ChainVizTarget*> groupEffects = GroupManager::getInstance()->getChainVizTargetsForObject(currentObject);
@@ -222,7 +222,7 @@ Rectangle<int> ChainViz::placeVizComponents(OwnedArray<ChainVizComponent>* compo
 	return result;
 }
 
-void ChainViz::newMessage(const SceneManager::SceneManagerEvent& e)
+void ChainViz::newMessage(const SceneManagerEvent& e)
 {
 	if (currentObject == nullptr || objectRef.wasObjectDeleted()) return;
 

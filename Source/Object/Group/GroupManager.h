@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "Group.h"
 class Object;
 class ObjectComponent;
 

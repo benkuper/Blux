@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "MIDIMappingEditor.h"
-
 MIDIMappingEditor::MIDIMappingEditor(MIDIMapping* item, bool isRoot) :
     BaseItemEditor(item, isRoot),
     midiMapping(item)

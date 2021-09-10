@@ -9,6 +9,7 @@
 */
 
 #include "CommonIncludes.h"
+#include "Scene/SceneIncludes.h"
 
 #include "Action/Action.cpp"
 #include "Action/ActionManager.cpp"

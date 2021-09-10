@@ -9,8 +9,7 @@
 */
 
 #include "ColorIncludes.h"
-#include "Object/Component/components/color/ColorComponent.h"
-#include "Object/ObjectManager.h"
+#include "Object/ObjectIncludes.h"
 
 #include "ColorSource/ColorSource.cpp"
 #include "ColorSource/ColorSourceFactory.cpp"

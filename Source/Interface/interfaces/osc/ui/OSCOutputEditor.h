@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../OSCInterface.h"
-
 class OSCOutputEditor :
 	public BaseItemEditor
 {

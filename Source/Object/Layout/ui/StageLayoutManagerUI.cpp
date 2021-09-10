@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "StageLayoutManagerUI.h"
-
 StageLayoutManagerUI::StageLayoutManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, StageLayoutManager::getInstance(), true)
 {

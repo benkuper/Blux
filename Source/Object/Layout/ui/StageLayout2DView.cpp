@@ -8,8 +8,7 @@
   ==============================================================================
 */
 
-#include "StageLayout2DView.h"
-#include "../StageLayoutManager.h"
+#include "Effect/Filter/filters/layout/ui/LayoutFilterStageView.h"
 
 StageLayout2DView::StageLayout2DView(const String& name) :
     BaseManagerShapeShifterViewUI(name, ObjectManager::getInstance())
@@ -38,9 +37,10 @@ StageLayout2DView::StageLayout2DView(const String& name) :
     lockFilterUIs.reset(StageLayoutManager::getInstance()->lockFilterUIs->createToggle());
     addAndMakeVisible(lockFilterUIs.get());
 
-    addChildComponent(&filterStageView);
 
-    filterStageView.setVisible(StageLayoutManager::getInstance()->showFilters->boolValue());
+    filterStageView.reset(new LayoutFilterStageView());
+    addChildComponent(filterStageView.get());
+    filterStageView->setVisible(StageLayoutManager::getInstance()->showFilters->boolValue());
 
     StageLayoutManager::getInstance()->addAsyncContainerListener(this);
 
@@ -56,7 +56,7 @@ StageLayout2DView::~StageLayout2DView()
 
 void StageLayout2DView::addItemUIInternal(Object2DView* ui)
 {
-    if(filterStageView.isVisible()) filterStageView.toFront(false);
+    if(filterStageView->isVisible()) filterStageView->toFront(false);
     ui->item->isUILocked->setValue(StageLayoutManager::getInstance()->lockObjectUIs->boolValue());
 }
 
@@ -79,11 +79,11 @@ void StageLayout2DView::resized()
     r.removeFromLeft(8);
     lockFilterUIs->setBounds(r.removeFromLeft(100).reduced(3));
 
-    if (filterStageView.isVisible())
+    if (filterStageView->isVisible())
     {
-        filterStageView.setBounds(getLocalBounds());
-        filterStageView.setBoundsInView(getViewBounds(getLocalBounds()));
-        filterStageView.toFront(false);
+        filterStageView->setBounds(getLocalBounds());
+        filterStageView->setBoundsInView(getViewBounds(getLocalBounds()));
+        filterStageView->toFront(false);
     }
 }
 
@@ -95,7 +95,7 @@ void StageLayout2DView::newMessage(const ContainerAsyncEvent& e)
     case ContainerAsyncEvent::ControllableFeedbackUpdate:
         if (e.targetControllable == StageLayoutManager::getInstance()->showFilters)
         {
-            filterStageView.setVisible(StageLayoutManager::getInstance()->showFilters->boolValue());
+            filterStageView->setVisible(StageLayoutManager::getInstance()->showFilters->boolValue());
         }
         else if (e.targetControllable == StageLayoutManager::getInstance()->iconSize)
         {
@@ -117,7 +117,7 @@ void StageLayout2DView::newMessage(const ContainerAsyncEvent& e)
         else if (e.targetControllable == StageLayoutManager::getInstance()->lockFilterUIs)
         {
             bool locked = StageLayoutManager::getInstance()->lockFilterUIs->boolValue();
-            for (auto& ui : filterStageView.filterUIs)
+            for (auto& ui : filterStageView->filterUIs)
             {
                 ui->setInterceptsMouseClicks(!locked, !locked);
             }

@@ -18,7 +18,6 @@
 #include "PixelShape/ui/PixelShapeEditor.h"
 
 #include "ColorSource/sources/node/NodeColorSource.h"
-#include "ColorSource/sources/pattern/PerlinNoise.hpp"
 #include "ColorSource/sources/pattern/PatternColorSource.h"
 #include "ColorSource/sources/picture/PictureColorSource.h"
 

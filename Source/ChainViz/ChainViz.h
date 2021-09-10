@@ -10,9 +10,8 @@
 
 #pragma once
 
-#include "JuceHeader.h"
-#include "Scene/SceneManager.h"
 #include "ChainVizTarget.h"
+#include "Common/CommonIncludes.h"
 
 class Object;
 
@@ -60,7 +59,7 @@ class ChainViz :
 	public ShapeShifterContentComponent,
 	public Inspectable::InspectableListener,
 	public ContainerAsyncListener,
-	public SceneManager::AsyncSceneListener,
+	public AsyncSceneListener,
 	public ComponentListener
 {
 public:
@@ -100,7 +99,7 @@ public:
 	Rectangle<int> placeVizComponents(OwnedArray<ChainVizComponent>* components, Rectangle<int>& r);
 
 
-	void newMessage(const SceneManager::SceneManagerEvent& e) override;
+	void newMessage(const SceneManagerEvent& e) override;
 	void newMessage(const ContainerAsyncEvent& e) override;
 	void inspectableDestroyed(Inspectable*) override;
 

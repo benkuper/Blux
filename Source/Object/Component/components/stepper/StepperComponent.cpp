@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "StepperComponent.h"
-
 StepperComponent::StepperComponent(Object* o, var params) :
     ObjectComponent(o, getTypeString(), STEPPER, params)
 {

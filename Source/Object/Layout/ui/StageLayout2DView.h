@@ -10,9 +10,7 @@
 
 #pragma once
 
-#include "Object/ObjectManager.h"
-#include "Object2DView.h"
-#include "Effect/Filter/filters/layout/ui/LayoutFilterStageView.h"
+class LayoutFilterStageView;
 
 class StageLayout2DView :
     public BaseManagerShapeShifterViewUI<ObjectManager, Object, Object2DView>,
@@ -27,7 +25,7 @@ public:
     std::unique_ptr<BoolToggleUI> lockObjectUIs;
     std::unique_ptr<BoolToggleUI> lockFilterUIs;
 
-    LayoutFilterStageView filterStageView;
+    std::unique_ptr<LayoutFilterStageView> filterStageView;
 
     void addItemUIInternal(Object2DView* ui) override;
 

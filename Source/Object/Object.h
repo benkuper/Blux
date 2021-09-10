@@ -10,9 +10,7 @@
 
 #pragma once
 
-#include "Component/ComponentManager.h"
 #include "Effect/EffectManager.h"
-#include "ChainViz/ChainVizTarget.h"
 
 class ChainVizComponent;
 class SubObjectManager;
@@ -32,8 +30,8 @@ public:
     std::unique_ptr<ControllableContainer> interfaceParameters;
     var interfaceGhostData;
 
-    ComponentManager componentManager;
-    EffectManager effectManager;
+    std::unique_ptr<ComponentManager> componentManager;
+    std::unique_ptr<EffectManager> effectManager;
     std::unique_ptr<SubObjectManager> objectManager;
 
     IntParameter* globalID;
@@ -91,7 +89,7 @@ public:
 template<class T>
 T* Object::getComponent()
 {
-    for (auto& c : componentManager.items)
+    for (auto& c : componentManager->items)
     {
         if (T* result = dynamic_cast<T*>(c)) return result;
     }

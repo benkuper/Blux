@@ -12,7 +12,8 @@
 
 #include "JuceHeader.h"
 
-#include "Component/ComponentType.h"
+#include "CommonClasses/SceneListener.h"
+#include "CommonClasses/ComponentType.h"
 
 #include "Action/Action.h"
 #include "Action/ActionManager.h"
@@ -32,6 +33,7 @@
 #include "DMX/device/DMXEnttecProDevice.h"
 #include "DMX/device/DMXOpenUSBDevice.h"
 
+#include "Helpers/PerlinNoise.hpp"
 #include "Helpers/SceneHelpers.h"
 
 #include "MIDI/MIDIDevice.h"

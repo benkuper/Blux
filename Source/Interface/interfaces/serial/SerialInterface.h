@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../../Interface.h"
-
 class SerialInterface :
     public Interface
 {

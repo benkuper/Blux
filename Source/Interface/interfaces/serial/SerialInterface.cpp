@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "SerialInterface.h"
-
 SerialInterface::SerialInterface() :
     Interface(getTypeString())
 {

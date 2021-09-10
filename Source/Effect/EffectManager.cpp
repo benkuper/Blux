@@ -13,7 +13,7 @@
 #include "effects/time/noise/NoiseEffect.h"
 #include "effects/override/OverrideEffect.h"
 #include "effects/time/automation/AutomationEffect.h"
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
 #include "effects/color/override/ColorSourceOverrideEffect.h"
 #include "effects/color/hsv/HSVAdjustEffect.h"
 #include "effects/color/gradientmap/ColorGradientMapEffect.h"

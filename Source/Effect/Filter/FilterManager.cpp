@@ -13,7 +13,7 @@
 #include "filters/layout/LayoutFilter.h"
 #include "filters/group/GroupFilter.h"
 
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
 #include "ui/FilterManagerEditor.h"
 
 FilterManager::FilterManager() :
@@ -53,7 +53,7 @@ void FilterManager::lerpFromSceneData(var startData, var endData, float weight)
 bool FilterManager::isAffectingObject(Object* o)
 {
     bool hasSelectedComponents = false;
-    for (auto& c : o->componentManager.items)
+    for (auto& c : o->componentManager->items)
     {
         if (componentSelector.selectedComponents[c->componentType])
         {

@@ -9,7 +9,7 @@
 */
 
 #include "Interface.h"
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
 #include "ui/InterfaceUI.h"
 
 Interface::Interface(String name) :

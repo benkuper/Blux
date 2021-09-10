@@ -10,9 +10,6 @@
 
 #pragma once
 
-#include "../../../ui/InterfaceUI.h"
-#include "../DMXInterface.h"
-
 class DMXInterfaceUI :
     public InterfaceUI
 {

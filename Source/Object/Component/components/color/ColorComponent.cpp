@@ -8,11 +8,6 @@
   ==============================================================================
 */
 
-#include "ColorComponent.h"
-#include "Color/ColorIncludes.h"
-
-#include "ui/ColorComponentEditor.h"
-
 ColorComponent::ColorComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), COLOR, params),
 	colorComponentNotifier(5)

@@ -25,11 +25,11 @@
 //
 //----------------------------------------------------------------------------------------
 
-# pragma once
-# include <cstdint>
-# include <numeric>
-# include <algorithm>
-# include <random>
+#pragma once
+#include <cstdint>
+#include <numeric>
+#include <algorithm>
+#include <random>
 
 namespace siv
 {

@@ -10,7 +10,7 @@
 
 #include "EffectLayer.h"
 #include "ui/EffectLayerTimeline.h"
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
 
 EffectLayer::EffectLayer(Sequence* s, var params) :
     SequenceLayer(s, "Effect"),

@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "../../ObjectComponent.h"
 
 class ColorSource;
 class PixelShape;

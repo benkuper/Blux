@@ -10,9 +10,6 @@
 
 #pragma once
 
-#include "../GroupManager.h"
-#include "GroupUI.h"
-
 class GroupManagerUI :
     public BaseManagerShapeShifterUI<GroupManager, Group, GroupUI>
 {

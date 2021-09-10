@@ -60,6 +60,11 @@ public:
     static StrobeColorSource* create(var params) { return new StrobeColorSource(params); }
 };
 
+namespace siv
+{
+    class PerlinNoise;
+}
+
 class NoiseColorSource :
     public TimedColorSource
 {
@@ -67,7 +72,7 @@ public:
     NoiseColorSource(var params = var());
     ~NoiseColorSource();
 
-    siv::PerlinNoise perlin;
+    std::unique_ptr<siv::PerlinNoise> perlin;
 
     FloatParameter* brightness;
     FloatParameter* scale;

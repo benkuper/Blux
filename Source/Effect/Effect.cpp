@@ -11,7 +11,7 @@
 #include "Effect.h"
 #include "ui/EffectEditor.h"
 #include "Common/CommonIncludes.h"
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
 #include "ui/EffectChainVizUI.h"
 
 Effect::Effect(const String& name, var params) :

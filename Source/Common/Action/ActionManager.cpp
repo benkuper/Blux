@@ -8,8 +8,7 @@
   ==============================================================================
 */
 
-#include "Scene/actions/SceneAction.h"
-#include "Object/actions/ObjectAction.h"
+#include "Object/ObjectIncludes.h"
 #include "Effect/actions/EffectAction.h"
 #include "Sequence/actions/SequenceAction.h"
 #include "Engine/GenericAction.h"

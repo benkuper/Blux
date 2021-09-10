@@ -8,11 +8,6 @@
   ==============================================================================
 */
 
-#include "GroupUI.h"
-#include "Object/Object.h"
-#include "../groups/object/ObjectGroup.h"
-#include "Object/ObjectManager.h"
-
 GroupUI::GroupUI(Group* item) :
 	BaseItemUI(item),
 	flashMode(false)

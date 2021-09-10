@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "Interface/InterfaceManager.h"
-
 class DMXInterface;
 class DMXChannelView;
 

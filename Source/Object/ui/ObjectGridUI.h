@@ -10,7 +10,6 @@
 
 #pragma once
  
-#include "../Object.h"
 class ColorViz;
 
 class ObjectGridUI :

@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "SceneManagerUI.h"
-
 SceneManagerUI::SceneManagerUI(const String& name) :
     BaseManagerShapeShifterUI(name, SceneManager::getInstance())
 {
@@ -76,17 +74,17 @@ void SceneManagerUI::resizedInternalHeader(Rectangle<int>& r)
     autoPreviewUI->setBounds(r.removeFromLeft(50).reduced(1));
 }
 
-void SceneManagerUI::newMessage(const SceneManager::SceneManagerEvent& e)
+void SceneManagerUI::newMessage(const SceneManagerEvent& e)
 {
 
-    if (e.type == SceneManager::SceneManagerEvent::SCENE_LOAD_START)
+    if (e.type == SceneManagerEvent::SCENE_LOAD_START)
     {
         if (manager->autoPreview->boolValue() && (nextSceneUI->isMouseOver() || prevSceneUI->isMouseOver()))
         {
             if (SceneUI* ui = getUIForItem(manager->currentScene)) ui->showPreview(true);
         }
 
-    }else if (e.type == SceneManager::SceneManagerEvent::SCENE_LOAD_END)
+    }else if (e.type == SceneManagerEvent::SCENE_LOAD_END)
     {
         if (manager->autoPreview->boolValue() && (nextSceneUI->isMouseOver() || prevSceneUI->isMouseOver()))
         {

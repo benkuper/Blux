@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "StrobeComponent.h"
-
 StrobeComponent::StrobeComponent(Object* o, var params) :
     ObjectComponent(o, getTypeString(), STROBE, params)
 {

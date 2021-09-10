@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ScriptComponent.h"
-
 ScriptComponent::ScriptComponent(Object* o, var params) :
     ObjectComponent(o, getTypeString(), SCRIPT, params)
 {

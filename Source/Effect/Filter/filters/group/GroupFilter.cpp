@@ -9,7 +9,7 @@
 */
 
 #include "GroupFilter.h"
-#include "Object/Group/GroupManager.h"
+#include "Object/ObjectIncludes.h"
 
 GroupFilter::GroupFilter() :
     Filter(getTypeString()),

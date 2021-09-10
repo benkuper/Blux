@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectGroupUI.h"
-
 ObjectTargetEditor::ObjectTargetEditor(ObjectTarget* o, bool isRoot) :
     BaseItemEditor(o, isRoot),
     objectTarget(o)

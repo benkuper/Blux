@@ -10,9 +10,8 @@
 
 #pragma once
 
-#include "JuceHeader.h"
-#include "Effect/EffectManager.h"
 class Object;
+class EffectManager;
 
 class Group :
     public BaseItem
@@ -21,7 +20,7 @@ public:
     Group(String name = "Group");
     virtual ~Group();
 
-    EffectManager effectManager;
+    std::unique_ptr<EffectManager> effectManager;
 
     virtual bool containsObject(Object* o);
     virtual int getLocalIDForObject(Object* o);

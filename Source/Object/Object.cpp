@@ -8,27 +8,11 @@
   ==============================================================================
 */
 
-#include "Object.h"
-
-#include "Common/CommonIncludes.h"
-
-#include "Interface/InterfaceManager.h"
-#include "Object/Component/components/intensity/IntensityComponent.h"
-#include "Object/Component/components/color/ColorComponent.h"
-#include "Effect/GlobalEffectManager.h"
-#include "Object/Group/GroupManager.h"
-#include "Scene/SceneManager.h"
-#include "Object/ObjectManager.h"
-#include "Sequence/GlobalSequenceManager.h"
-#include "ObjectManager.h"
-#include "ui/ObjectChainVizUI.h"
-
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
 	objectType(params.getProperty("type", "Object").toString()),
 	objectData(params),
-	componentManager(this),
 	previousID(-1),
 	slideManipParameter(nullptr)
 {
@@ -103,19 +87,23 @@ Object::Object(var params) :
 
 	if (!Engine::mainEngine->isLoadingFile && InterfaceManager::getInstance()->items.size() == 1) targetInterface->setValueFromTarget(InterfaceManager::getInstance()->items[0]);
 
+
+	componentManager.reset(new ComponentManager(this));
+
 	var cData = params.getProperty("components", var());
 	if (cData.isObject())
 	{
 		NamedValueSet cProps = cData.getDynamicObject()->getProperties();
-		for (auto& cp : cProps) componentManager.addComponentFromDefinition(cp.name, cp.value, false);
+		for (auto& cp : cProps) componentManager->addComponentFromDefinition(cp.name, cp.value, false);
 	}
 
 	if (IntensityComponent* ic = getComponent<IntensityComponent>()) slideManipParameter = ic->values[0];
 
-	componentManager.userCanAddItemsManually = params.getProperty("isCustom", false);
-	addChildControllableContainer(&componentManager);
+	componentManager->userCanAddItemsManually = params.getProperty("isCustom", false);
+	addChildControllableContainer(componentManager.get());
 
-	addChildControllableContainer(&effectManager);
+	effectManager.reset(new EffectManager());
+	addChildControllableContainer(effectManager.get());
 
 	bool canCustomize = params.getProperty("canCustomize", false);
 	var objectsData = params.getProperty("objects", var());
@@ -197,7 +185,7 @@ void Object::checkAndComputeComponentValuesIfNeeded()
 {
 	if (!enabled->boolValue() || Engine::mainEngine->isLoadingFile || Engine::mainEngine->isClearing) return;
 
-	for (auto& c : componentManager.items)
+	for (auto& c : componentManager->items)
 	{
 		if (!c->enabled->boolValue()) continue;
 		//if (c->isDirty || effectManager.items.size() > 0 || GlobalEffectManager::getInstance()->items.size() > 0);
@@ -242,7 +230,7 @@ void Object::computeComponentValues(ObjectComponent* c)
 		if (!values.isVoid())
 		{
 			//local effects
-			effectManager.processComponentValues(this, c, values);
+			effectManager->processComponentValues(this, c, values);
 			//scene effects
 			SceneManager::getInstance()->processComponentValues(this, c, values);
 			//group effects
@@ -278,8 +266,8 @@ var Object::getSceneData()
 {
 	if (excludeFromScenes->boolValue()) return var(new DynamicObject());
 	var data(new DynamicObject());
-	data.getDynamicObject()->setProperty(componentManager.shortName, componentManager.getSceneData());
-	data.getDynamicObject()->setProperty(effectManager.shortName,effectManager.getSceneData());
+	data.getDynamicObject()->setProperty(componentManager->shortName, componentManager->getSceneData());
+	data.getDynamicObject()->setProperty(effectManager->shortName,effectManager->getSceneData());
 	return data;
 }
 
@@ -290,14 +278,14 @@ void Object::updateSceneData(var& sceneData)
 void Object::lerpFromSceneData(var startData, var endData, float weight)
 {
 	if (excludeFromScenes->boolValue()) return;
-	componentManager.lerpFromSceneData(startData.getProperty(componentManager.shortName, var()), endData.getProperty(componentManager.shortName, var()), weight);
-	effectManager.lerpFromSceneData(startData.getProperty(effectManager.shortName, var()), endData.getProperty(effectManager.shortName,var()), weight);
+	componentManager->lerpFromSceneData(startData.getProperty(componentManager->shortName, var()), endData.getProperty(componentManager->shortName, var()), weight);
+	effectManager->lerpFromSceneData(startData.getProperty(effectManager->shortName, var()), endData.getProperty(effectManager->shortName,var()), weight);
 }
 
 Array<ChainVizTarget *> Object::getEffectChain()
 {
 	Array<ChainVizTarget *> result;
-	result.addArray(effectManager.getChainVizTargetsForObject(this));
+	result.addArray(effectManager->getChainVizTargetsForObject(this));
 	result.addArray(SceneManager::getInstance()->getChainVizTargetsForObject(this));
 	result.addArray(GroupManager::getInstance()->getChainVizTargetsForObject(this));
 	//result.addArray(GlobalSequenceManager::getInstance()->.getChainVizTargetsForObject(this));

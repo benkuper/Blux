@@ -206,7 +206,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Color\ColorIncludes.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp"/>
-    <ClCompile Include="..\..\Source\ChainViz\ChainVizIncludes.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp"/>
     <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp"/>
     <ClCompile Include="..\..\Source\Audio\AudioManager.cpp"/>
@@ -287,28 +286,70 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Source\Interface\InterfaceIncludes.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\ui\InterfaceManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\ui\InterfaceUI.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\midi\ui\MIDIMappingEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIInterface.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIMapping.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIMappingManager.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\bento\BentoInterface.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\serial\SerialInterface.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\osc\ui\OSCInputEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\osc\ui\OSCOutputEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\osc\OSCInterface.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\ui\DMXChannelView.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\ui\DMXInterfaceUI.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\DMXInterface.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\Interface.cpp"/>
-    <ClCompile Include="..\..\Source\Interface\InterfaceManager.cpp"/>
-    <ClCompile Include="..\..\Source\Scene\actions\SceneAction.cpp"/>
-    <ClCompile Include="..\..\Source\Scene\ui\SceneManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Scene\ui\SceneUI.cpp"/>
-    <ClCompile Include="..\..\Source\Scene\Scene.cpp"/>
+    <ClCompile Include="..\..\Source\Interface\ui\InterfaceManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\ui\InterfaceUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\midi\ui\MIDIMappingEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIInterface.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIMapping.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\midi\MIDIMappingManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\bento\BentoInterface.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\serial\SerialInterface.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\osc\ui\OSCInputEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\osc\ui\OSCOutputEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\osc\OSCInterface.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\ui\DMXChannelView.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\ui\DMXInterfaceUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\interfaces\dmx\DMXInterface.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\Interface.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Interface\InterfaceManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Scene\actions\SceneAction.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Scene\ui\SceneManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Scene\ui\SceneUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Scene\Scene.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Scene\SceneIncludes.cpp"/>
-    <ClCompile Include="..\..\Source\Scene\SceneManager.cpp"/>
+    <ClCompile Include="..\..\Source\Scene\SceneManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Effect\EffectIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp"/>
     <ClCompile Include="..\..\Source\Effect\effects\color\override\ui\ColorSourceOverrideEffectEditor.cpp"/>
@@ -338,44 +379,118 @@
     <ClCompile Include="..\..\Source\Effect\GlobalEffectManager.cpp"/>
     <ClCompile Include="..\..\Source\Effect\EffectManager.cpp"/>
     <ClCompile Include="..\..\Source\Effect\Effect.cpp"/>
-    <ClCompile Include="..\..\Source\Object\actions\ObjectAction.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\script\ScriptComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\color\ColorComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\gobo\GoboComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\intensity\IntensityComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\laser\LaserPattern\LaserPattern.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\laser\LaserComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\pantilt\PanTiltComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\servo\ServoComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\stepper\StepperComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\ComponentManager.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Component\ObjectComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Group\groups\object\ui\ObjectGroupUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Group\groups\object\ObjectGroup.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Group\groups\virtual\VirtualGroup.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Group\ui\GroupManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Group\ui\GroupUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Group\Group.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Group\GroupManager.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Layout\ui\Object2DView.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayout2DView.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayoutManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayoutUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Layout\StageLayout.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Layout\StageLayoutManager.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerGridUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ui\ObjectUI.cpp"/>
-    <ClCompile Include="..\..\Source\Object\Object.cpp"/>
+    <ClCompile Include="..\..\Source\Object\actions\ObjectAction.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\script\ScriptComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\color\ColorComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\gobo\GoboComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\intensity\IntensityComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\laser\LaserPattern\LaserPattern.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\laser\LaserComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\pantilt\PanTiltComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\servo\ServoComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\stepper\StepperComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\ComponentManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\ObjectComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\groups\object\ui\ObjectGroupUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\groups\object\ObjectGroup.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\groups\virtual\VirtualGroup.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\ui\GroupManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\ui\GroupUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\Group.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Group\GroupManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\Object2DView.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayout2DView.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayoutManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\ui\StageLayoutUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\StageLayout.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Layout\StageLayoutManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerGridUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Object.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Object\ObjectIncludes.cpp"/>
-    <ClCompile Include="..\..\Source\Object\ObjectManager.cpp"/>
+    <ClCompile Include="..\..\Source\Object\ObjectManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Engine\GenericAction.cpp"/>
     <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp"/>
     <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp"/>
@@ -3145,7 +3260,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PatternColorSource.h"/>
-    <ClInclude Include="..\..\Source\Color\ColorSource\sources\pattern\PerlinNoise.hpp"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\picture\PictureColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\script\ScriptColorSource.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\video\VideoColorSource.h"/>
@@ -3161,11 +3275,11 @@
     <ClInclude Include="..\..\Source\Color\PixelShape\PixelShape.h"/>
     <ClInclude Include="..\..\Source\Color\ColorIncludes.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainViz.h"/>
-    <ClInclude Include="..\..\Source\ChainViz\ChainVizIncludes.h"/>
     <ClInclude Include="..\..\Source\ChainViz\ChainVizTarget.h"/>
     <ClInclude Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.h"/>
     <ClInclude Include="..\..\Source\Audio\AudioManager.h"/>
-    <ClInclude Include="..\..\Source\Common\Component\ComponentType.h"/>
+    <ClInclude Include="..\..\Source\Common\CommonClasses\ComponentType.h"/>
+    <ClInclude Include="..\..\Source\Common\CommonClasses\SceneListener.h"/>
     <ClInclude Include="..\..\Source\Common\CommonIncludes.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceParameterUI.h"/>
@@ -3176,6 +3290,7 @@
     <ClInclude Include="..\..\Source\Common\MIDI\MTCSender.h"/>
     <ClInclude Include="..\..\Source\Common\Action\Action.h"/>
     <ClInclude Include="..\..\Source\Common\Action\ActionManager.h"/>
+    <ClInclude Include="..\..\Source\Common\Helpers\PerlinNoise.hpp"/>
     <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h"/>
     <ClInclude Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.h"/>
     <ClInclude Include="..\..\Source\Common\ComponentSelector\ComponentSelector.h"/>
@@ -3224,7 +3339,6 @@
     <ClInclude Include="..\..\Source\Effect\effects\time\automation\ui\AutomationEffectEditor.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\time\automation\AutomationEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.h"/>
-    <ClInclude Include="..\..\Source\Effect\effects\time\noise\PerlinNoise.hpp"/>
     <ClInclude Include="..\..\Source\Effect\effects\time\TimedEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\override\OverrideEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.h"/>

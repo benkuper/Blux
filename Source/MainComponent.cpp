@@ -1,17 +1,13 @@
 #include "MainComponent.h"
 
-#include "Object/ui/ObjectManagerUI.h"
-#include "Object/ui/ObjectManagerGridUI.h"
-#include "Interface/ui/InterfaceManagerUI.h"
-#include "Object/Group/ui/GroupManagerUI.h"
-#include "Scene/ui/SceneManagerUI.h"
+#include "Color/ColorIncludes.h"
+#include "Object/ObjectIncludes.h"
+#include "Interface/InterfaceIncludes.h"
+#include "Scene/SceneIncludes.h"
+
 #include "Effect/ui/GlobalEffectManagerUI.h"
 #include "Sequence/ui/GlobalSequenceManagerUI.h"
-#include "Object/Layout/ui/StageLayoutManagerUI.h"
-#include "Object/Layout/ui/StageLayout2DView.h"
-#include "Interface/interfaces/dmx/ui/DMXChannelView.h"
 #include "ChainViz/ChainViz.h"
-#include "Color/ColorIncludes.h"
 #include "UI/BluxInspector.h"
 
 String getAppVersion();

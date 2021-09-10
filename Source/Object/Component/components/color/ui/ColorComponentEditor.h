@@ -10,10 +10,6 @@
 
 #pragma once
 
-#include "../ColorComponent.h"
-#include "../../../ui/ObjectComponentEditor.h"
-#include "Color/ColorIncludes.h"
-
 
 class ColorComponentEditor :
     public ObjectComponentEditor,

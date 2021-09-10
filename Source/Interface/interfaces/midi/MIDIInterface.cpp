@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "MIDIInterface.h"
-
 MIDIInterface::MIDIInterface() :
     Interface(getTypeString()),
     inputDevice(nullptr)

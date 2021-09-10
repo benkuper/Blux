@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "Object2DView.h"
-#include "../StageLayoutManager.h"
-
 Object2DView::Object2DView(Object* object) :
     ObjectGridUI(object)
 {

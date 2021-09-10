@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "OSCOutputEditor.h"
-#include "Common/CommonIncludes.h"
-
 OSCOutputEditor::OSCOutputEditor(OSCOutput * output, bool isRoot) :
 	BaseItemEditor(output, isRoot),
 	zeroconfMenu("Auto detect")

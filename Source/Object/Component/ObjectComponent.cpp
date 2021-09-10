@@ -8,10 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectComponent.h"
-#include "ui/ObjectComponentEditor.h"
-#include "../ObjectManager.h"
-
 
 ObjectComponent::ObjectComponent(Object* o, String name, ComponentType componentType, var params) :
 	BaseItem(name),

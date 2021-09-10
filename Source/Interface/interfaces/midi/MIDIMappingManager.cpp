@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "MIDIMappingManager.h"
-
 MIDIMappingManager::MIDIMappingManager() :
     BaseManager("Mappings")
 {

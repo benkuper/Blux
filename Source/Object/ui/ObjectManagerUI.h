@@ -10,9 +10,6 @@
 
 #pragma once
 
-#include "../ObjectManager.h"
-#include "ObjectUI.h"
-
 class ObjectManagerUI :
     public BaseManagerShapeShifterUI<ObjectManager, Object, ObjectUI>
 {

@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ServoComponent.h"
-
 ServoComponent::ServoComponent(Object* o, var params) :
     ObjectComponent(o, getTypeString(), SERVO,  params)
 {

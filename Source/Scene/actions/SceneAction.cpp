@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "SceneAction.h"
-#include "Scene/SceneManager.h"
-
 SceneAction::SceneAction(var params) :
     Action(params),
     scene(nullptr),

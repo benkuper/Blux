@@ -44,7 +44,6 @@
                     file="Source/Color/ColorSource/sources/pattern/PatternColorSource.cpp"/>
               <FILE id="WNVXEq" name="PatternColorSource.h" compile="0" resource="0"
                     file="Source/Color/ColorSource/sources/pattern/PatternColorSource.h"/>
-              <FILE id="nCG8Et" name="PerlinNoise.hpp" compile="0" resource="0" file="Source/Color/ColorSource/sources/pattern/PerlinNoise.hpp"/>
             </GROUP>
             <GROUP id="{78A5B5DB-E815-ECCC-6C61-9C51D2C3DF70}" name="picture">
               <FILE id="rJIXvg" name="PictureColorSource.cpp" compile="0" resource="0"
@@ -113,10 +112,6 @@
       <GROUP id="{613F3B0D-6C43-D1AC-9293-204C47A122F3}" name="ChainViz">
         <FILE id="CHh3hb" name="ChainViz.cpp" compile="1" resource="0" file="Source/ChainViz/ChainViz.cpp"/>
         <FILE id="XgaklO" name="ChainViz.h" compile="0" resource="0" file="Source/ChainViz/ChainViz.h"/>
-        <FILE id="gWOam3" name="ChainVizIncludes.cpp" compile="1" resource="0"
-              file="Source/ChainViz/ChainVizIncludes.cpp"/>
-        <FILE id="cwnCCT" name="ChainVizIncludes.h" compile="0" resource="0"
-              file="Source/ChainViz/ChainVizIncludes.h"/>
         <FILE id="Hf7ddZ" name="ChainVizTarget.cpp" compile="1" resource="0"
               file="Source/ChainViz/ChainVizTarget.cpp"/>
         <FILE id="bT31TO" name="ChainVizTarget.h" compile="0" resource="0"
@@ -134,8 +129,9 @@
         <FILE id="mUVkYL" name="AudioManager.h" compile="0" resource="0" file="Source/Audio/AudioManager.h"/>
       </GROUP>
       <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
-        <GROUP id="{68AA08EF-61BB-BC32-0B93-E41223C9F76A}" name="Component">
-          <FILE id="ADLXu2" name="ComponentType.h" compile="0" resource="0" file="Source/Common/Component/ComponentType.h"/>
+        <GROUP id="{8BB77C1B-0790-32BE-4C69-AD47EF6F4DDE}" name="CommonClasses">
+          <FILE id="wIf8wb" name="ComponentType.h" compile="0" resource="0" file="Source/Common/CommonClasses/ComponentType.h"/>
+          <FILE id="s0crs4" name="SceneListener.h" compile="0" resource="0" file="Source/Common/CommonClasses/SceneListener.h"/>
         </GROUP>
         <FILE id="N88r0o" name="CommonIncludes.cpp" compile="1" resource="0"
               file="Source/Common/CommonIncludes.cpp"/>
@@ -173,6 +169,7 @@
           <FILE id="XGtF3V" name="ActionManager.h" compile="0" resource="0" file="Source/Common/Action/ActionManager.h"/>
         </GROUP>
         <GROUP id="{4C1C3D21-33AC-FE15-251E-9B0AE685FCBD}" name="Helpers">
+          <FILE id="IxMpCv" name="PerlinNoise.hpp" compile="0" resource="0" file="Source/Common/Helpers/PerlinNoise.hpp"/>
           <FILE id="BHqMlI" name="SceneHelpers.cpp" compile="0" resource="0"
                 file="Source/Common/Helpers/SceneHelpers.cpp"/>
           <FILE id="Puwoxc" name="SceneHelpers.h" compile="0" resource="0" file="Source/Common/Helpers/SceneHelpers.h"/>
@@ -259,100 +256,100 @@
         <FILE id="iRVy3o" name="InterfaceIncludes.h" compile="0" resource="0"
               file="Source/Interface/InterfaceIncludes.h"/>
         <GROUP id="{1A79CB5C-332E-5D0C-A97F-DDBFF8832D03}" name="ui">
-          <FILE id="zxGxm8" name="InterfaceManagerUI.cpp" compile="1" resource="0"
+          <FILE id="zxGxm8" name="InterfaceManagerUI.cpp" compile="0" resource="0"
                 file="Source/Interface/ui/InterfaceManagerUI.cpp"/>
           <FILE id="O7moTs" name="InterfaceManagerUI.h" compile="0" resource="0"
                 file="Source/Interface/ui/InterfaceManagerUI.h"/>
-          <FILE id="PRPsLa" name="InterfaceUI.cpp" compile="1" resource="0" file="Source/Interface/ui/InterfaceUI.cpp"/>
+          <FILE id="PRPsLa" name="InterfaceUI.cpp" compile="0" resource="0" file="Source/Interface/ui/InterfaceUI.cpp"/>
           <FILE id="ikECD1" name="InterfaceUI.h" compile="0" resource="0" file="Source/Interface/ui/InterfaceUI.h"/>
         </GROUP>
         <GROUP id="{DF6E12F7-E69D-2F0E-3EA6-A2EF5A333D40}" name="interfaces">
           <GROUP id="{C9323A98-00A4-0F45-A3E1-FFC1BA013A97}" name="midi">
             <GROUP id="{548FB53F-D007-EE13-BAD3-3438902CB598}" name="ui">
-              <FILE id="n3ixwu" name="MIDIMappingEditor.cpp" compile="1" resource="0"
+              <FILE id="n3ixwu" name="MIDIMappingEditor.cpp" compile="0" resource="0"
                     file="Source/Interface/interfaces/midi/ui/MIDIMappingEditor.cpp"/>
               <FILE id="vMXLza" name="MIDIMappingEditor.h" compile="0" resource="0"
                     file="Source/Interface/interfaces/midi/ui/MIDIMappingEditor.h"/>
             </GROUP>
-            <FILE id="UtmsCd" name="MIDIInterface.cpp" compile="1" resource="0"
+            <FILE id="UtmsCd" name="MIDIInterface.cpp" compile="0" resource="0"
                   file="Source/Interface/interfaces/midi/MIDIInterface.cpp"/>
             <FILE id="HDmf1E" name="MIDIInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/midi/MIDIInterface.h"/>
-            <FILE id="TEc2RX" name="MIDIMapping.cpp" compile="1" resource="0" file="Source/Interface/interfaces/midi/MIDIMapping.cpp"/>
+            <FILE id="TEc2RX" name="MIDIMapping.cpp" compile="0" resource="0" file="Source/Interface/interfaces/midi/MIDIMapping.cpp"/>
             <FILE id="L4K7fO" name="MIDIMapping.h" compile="0" resource="0" file="Source/Interface/interfaces/midi/MIDIMapping.h"/>
-            <FILE id="e5BdVf" name="MIDIMappingManager.cpp" compile="1" resource="0"
+            <FILE id="e5BdVf" name="MIDIMappingManager.cpp" compile="0" resource="0"
                   file="Source/Interface/interfaces/midi/MIDIMappingManager.cpp"/>
             <FILE id="FyxZYS" name="MIDIMappingManager.h" compile="0" resource="0"
                   file="Source/Interface/interfaces/midi/MIDIMappingManager.h"/>
           </GROUP>
           <GROUP id="{14022091-655A-3652-8B43-E5DBAF4F1B23}" name="bento">
-            <FILE id="waaFg0" name="BentoInterface.cpp" compile="1" resource="0"
+            <FILE id="waaFg0" name="BentoInterface.cpp" compile="0" resource="0"
                   file="Source/Interface/interfaces/bento/BentoInterface.cpp"/>
             <FILE id="dP2ac2" name="BentoInterface.h" compile="0" resource="0"
                   file="Source/Interface/interfaces/bento/BentoInterface.h"/>
           </GROUP>
           <GROUP id="{9A7BE87B-C8D1-83B7-8FEF-96EB4AA1FFD8}" name="serial">
-            <FILE id="L6HN1q" name="SerialInterface.cpp" compile="1" resource="0"
+            <FILE id="L6HN1q" name="SerialInterface.cpp" compile="0" resource="0"
                   file="Source/Interface/interfaces/serial/SerialInterface.cpp"/>
             <FILE id="qeobtQ" name="SerialInterface.h" compile="0" resource="0"
                   file="Source/Interface/interfaces/serial/SerialInterface.h"/>
           </GROUP>
           <GROUP id="{7E98C9EB-5E94-A855-7F6B-1651BB613019}" name="osc">
             <GROUP id="{65E176ED-1CED-189A-136E-C8E96FE76FF9}" name="ui">
-              <FILE id="KtpBeF" name="OSCInputEditor.cpp" compile="1" resource="0"
+              <FILE id="KtpBeF" name="OSCInputEditor.cpp" compile="0" resource="0"
                     file="Source/Interface/interfaces/osc/ui/OSCInputEditor.cpp"/>
               <FILE id="q4GoAG" name="OSCInputEditor.h" compile="0" resource="0"
                     file="Source/Interface/interfaces/osc/ui/OSCInputEditor.h"/>
-              <FILE id="P9QYJb" name="OSCOutputEditor.cpp" compile="1" resource="0"
+              <FILE id="P9QYJb" name="OSCOutputEditor.cpp" compile="0" resource="0"
                     file="Source/Interface/interfaces/osc/ui/OSCOutputEditor.cpp"/>
               <FILE id="qJNTMH" name="OSCOutputEditor.h" compile="0" resource="0"
                     file="Source/Interface/interfaces/osc/ui/OSCOutputEditor.h"/>
             </GROUP>
-            <FILE id="WUiXGB" name="OSCInterface.cpp" compile="1" resource="0"
+            <FILE id="WUiXGB" name="OSCInterface.cpp" compile="0" resource="0"
                   file="Source/Interface/interfaces/osc/OSCInterface.cpp"/>
             <FILE id="F22DGO" name="OSCInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/osc/OSCInterface.h"/>
           </GROUP>
           <GROUP id="{8DC395E5-1176-555B-3A2E-A27F368DDD43}" name="dmx">
             <GROUP id="{F4E7C7B4-AE43-5E8E-0F03-BC19CDED6EC0}" name="ui">
-              <FILE id="lCJume" name="DMXChannelView.cpp" compile="1" resource="0"
+              <FILE id="lCJume" name="DMXChannelView.cpp" compile="0" resource="0"
                     file="Source/Interface/interfaces/dmx/ui/DMXChannelView.cpp"/>
               <FILE id="luoZn9" name="DMXChannelView.h" compile="0" resource="0"
                     file="Source/Interface/interfaces/dmx/ui/DMXChannelView.h"/>
-              <FILE id="uWIqsr" name="DMXInterfaceUI.cpp" compile="1" resource="0"
+              <FILE id="uWIqsr" name="DMXInterfaceUI.cpp" compile="0" resource="0"
                     file="Source/Interface/interfaces/dmx/ui/DMXInterfaceUI.cpp"/>
               <FILE id="rM4Tz4" name="DMXInterfaceUI.h" compile="0" resource="0"
                     file="Source/Interface/interfaces/dmx/ui/DMXInterfaceUI.h"/>
             </GROUP>
-            <FILE id="W9dn5Y" name="DMXInterface.cpp" compile="1" resource="0"
+            <FILE id="W9dn5Y" name="DMXInterface.cpp" compile="0" resource="0"
                   file="Source/Interface/interfaces/dmx/DMXInterface.cpp"/>
             <FILE id="Az6ANW" name="DMXInterface.h" compile="0" resource="0" file="Source/Interface/interfaces/dmx/DMXInterface.h"/>
           </GROUP>
         </GROUP>
-        <FILE id="dtEzCG" name="Interface.cpp" compile="1" resource="0" file="Source/Interface/Interface.cpp"/>
+        <FILE id="dtEzCG" name="Interface.cpp" compile="0" resource="0" file="Source/Interface/Interface.cpp"/>
         <FILE id="zmYbjR" name="Interface.h" compile="0" resource="0" file="Source/Interface/Interface.h"/>
-        <FILE id="RagX1a" name="InterfaceManager.cpp" compile="1" resource="0"
+        <FILE id="RagX1a" name="InterfaceManager.cpp" compile="0" resource="0"
               file="Source/Interface/InterfaceManager.cpp"/>
         <FILE id="xuu9WP" name="InterfaceManager.h" compile="0" resource="0"
               file="Source/Interface/InterfaceManager.h"/>
       </GROUP>
       <GROUP id="{BDE623DE-EA68-A95C-6206-7F26C54B47AD}" name="Scene">
         <GROUP id="{51EAA22C-6AA0-0C30-8782-660FF6DF4D59}" name="actions">
-          <FILE id="rKVJJK" name="SceneAction.cpp" compile="1" resource="0" file="Source/Scene/actions/SceneAction.cpp"/>
+          <FILE id="rKVJJK" name="SceneAction.cpp" compile="0" resource="0" file="Source/Scene/actions/SceneAction.cpp"/>
           <FILE id="otxcg2" name="SceneAction.h" compile="0" resource="0" file="Source/Scene/actions/SceneAction.h"/>
         </GROUP>
         <GROUP id="{0FFC71F4-F9C1-E6A2-CB12-E59C0B6610C6}" name="ui">
-          <FILE id="ySbqQr" name="SceneManagerUI.cpp" compile="1" resource="0"
+          <FILE id="ySbqQr" name="SceneManagerUI.cpp" compile="0" resource="0"
                 file="Source/Scene/ui/SceneManagerUI.cpp"/>
           <FILE id="Fa9b0K" name="SceneManagerUI.h" compile="0" resource="0"
                 file="Source/Scene/ui/SceneManagerUI.h"/>
-          <FILE id="JE4AoA" name="SceneUI.cpp" compile="1" resource="0" file="Source/Scene/ui/SceneUI.cpp"/>
+          <FILE id="JE4AoA" name="SceneUI.cpp" compile="0" resource="0" file="Source/Scene/ui/SceneUI.cpp"/>
           <FILE id="nMCDTg" name="SceneUI.h" compile="0" resource="0" file="Source/Scene/ui/SceneUI.h"/>
         </GROUP>
-        <FILE id="hLfxcg" name="Scene.cpp" compile="1" resource="0" file="Source/Scene/Scene.cpp"/>
+        <FILE id="hLfxcg" name="Scene.cpp" compile="0" resource="0" file="Source/Scene/Scene.cpp"/>
         <FILE id="PfFXUY" name="Scene.h" compile="0" resource="0" file="Source/Scene/Scene.h"/>
         <FILE id="WlMMz6" name="SceneIncludes.cpp" compile="1" resource="0"
               file="Source/Scene/SceneIncludes.cpp"/>
         <FILE id="W2ycUS" name="SceneIncludes.h" compile="0" resource="0" file="Source/Scene/SceneIncludes.h"/>
-        <FILE id="eZqsGC" name="SceneManager.cpp" compile="1" resource="0"
+        <FILE id="eZqsGC" name="SceneManager.cpp" compile="0" resource="0"
               file="Source/Scene/SceneManager.cpp"/>
         <FILE id="k1c4Hy" name="SceneManager.h" compile="0" resource="0" file="Source/Scene/SceneManager.h"/>
       </GROUP>
@@ -417,7 +414,6 @@
             <GROUP id="{C425CD3C-D6F6-FCEB-155A-2024BDEFDEC7}" name="noise">
               <FILE id="Pd2wns" name="NoiseEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/time/noise/NoiseEffect.cpp"/>
               <FILE id="zS9Ud8" name="NoiseEffect.h" compile="0" resource="0" file="Source/Effect/effects/time/noise/NoiseEffect.h"/>
-              <FILE id="mgrMwK" name="PerlinNoise.hpp" compile="0" resource="0" file="Source/Effect/effects/time/noise/PerlinNoise.hpp"/>
             </GROUP>
             <FILE id="yoW9CW" name="TimedEffect.cpp" compile="1" resource="0" file="Source/Effect/effects/time/TimedEffect.cpp"/>
             <FILE id="mTKbxk" name="TimedEffect.h" compile="0" resource="0" file="Source/Effect/effects/time/TimedEffect.h"/>
@@ -499,17 +495,17 @@
       </GROUP>
       <GROUP id="{BDEDD473-3A74-D6C8-68AB-E73419566401}" name="Object">
         <GROUP id="{3C4E2EC5-8FDF-A9E1-1AC2-141CAEF249C5}" name="actions">
-          <FILE id="VUvhQb" name="ObjectAction.cpp" compile="1" resource="0"
+          <FILE id="VUvhQb" name="ObjectAction.cpp" compile="0" resource="0"
                 file="Source/Object/actions/ObjectAction.cpp"/>
           <FILE id="z6ngnf" name="ObjectAction.h" compile="0" resource="0" file="Source/Object/actions/ObjectAction.h"/>
         </GROUP>
         <GROUP id="{2D556B5D-011C-AC0B-A39D-48669A5D10F4}" name="Component">
           <GROUP id="{3C60E087-9AC6-70D2-8137-28A3A4FB4E2D}" name="ui">
-            <FILE id="F0jPzI" name="ComponentManagerEditor.cpp" compile="1" resource="0"
+            <FILE id="F0jPzI" name="ComponentManagerEditor.cpp" compile="0" resource="0"
                   file="Source/Object/Component/ui/ComponentManagerEditor.cpp"/>
             <FILE id="qLZ274" name="ComponentManagerEditor.h" compile="0" resource="0"
                   file="Source/Object/Component/ui/ComponentManagerEditor.h"/>
-            <FILE id="QrJWvW" name="ObjectComponentEditor.cpp" compile="1" resource="0"
+            <FILE id="QrJWvW" name="ObjectComponentEditor.cpp" compile="0" resource="0"
                   file="Source/Object/Component/ui/ObjectComponentEditor.cpp"/>
             <FILE id="ichN37" name="ObjectComponentEditor.h" compile="0" resource="0"
                   file="Source/Object/Component/ui/ObjectComponentEditor.h"/>
@@ -517,80 +513,80 @@
           <GROUP id="{95663C75-73C8-432B-C499-B0F789F06966}" name="components">
             <GROUP id="{8EEE3204-0175-82FC-77AE-8C2E21AF19B4}" name="script">
               <GROUP id="{31D85460-7635-885C-9A8D-AA8F79DFB629}" name="ui">
-                <FILE id="rY1yDK" name="ScriptComponentEditor.cpp" compile="1" resource="0"
+                <FILE id="rY1yDK" name="ScriptComponentEditor.cpp" compile="0" resource="0"
                       file="Source/Object/Component/components/script/ui/ScriptComponentEditor.cpp"/>
                 <FILE id="jhuKu5" name="ScriptComponentEditor.h" compile="0" resource="0"
                       file="Source/Object/Component/components/script/ui/ScriptComponentEditor.h"/>
               </GROUP>
-              <FILE id="T42Rte" name="ScriptComponent.cpp" compile="1" resource="0"
+              <FILE id="T42Rte" name="ScriptComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/script/ScriptComponent.cpp"/>
               <FILE id="gBXRlP" name="ScriptComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/script/ScriptComponent.h"/>
             </GROUP>
             <GROUP id="{CF76E215-E97D-AE67-ACE1-5AD7F346A4C2}" name="color">
               <GROUP id="{3F11A279-2E6F-B762-779C-F4BE655ABD1C}" name="ui">
-                <FILE id="kqNqrv" name="ColorComponentEditor.cpp" compile="1" resource="0"
+                <FILE id="kqNqrv" name="ColorComponentEditor.cpp" compile="0" resource="0"
                       file="Source/Object/Component/components/color/ui/ColorComponentEditor.cpp"/>
                 <FILE id="ZbaG4q" name="ColorComponentEditor.h" compile="0" resource="0"
                       file="Source/Object/Component/components/color/ui/ColorComponentEditor.h"/>
               </GROUP>
-              <FILE id="mksmBH" name="ColorComponent.cpp" compile="1" resource="0"
+              <FILE id="mksmBH" name="ColorComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/color/ColorComponent.cpp"/>
               <FILE id="CsIHMw" name="ColorComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/color/ColorComponent.h"/>
             </GROUP>
             <GROUP id="{263A09DA-4344-1913-249B-4D36C0555590}" name="gobo">
-              <FILE id="t3Q31E" name="GoboComponent.cpp" compile="1" resource="0"
+              <FILE id="t3Q31E" name="GoboComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/gobo/GoboComponent.cpp"/>
               <FILE id="kcsXYk" name="GoboComponent.h" compile="0" resource="0" file="Source/Object/Component/components/gobo/GoboComponent.h"/>
             </GROUP>
             <GROUP id="{41CCF3AD-7E9C-36C2-C6B9-1B67A42D4804}" name="intensity">
-              <FILE id="VSA3Tn" name="IntensityComponent.cpp" compile="1" resource="0"
+              <FILE id="VSA3Tn" name="IntensityComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/intensity/IntensityComponent.cpp"/>
               <FILE id="ECNIUC" name="IntensityComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/intensity/IntensityComponent.h"/>
             </GROUP>
             <GROUP id="{239F4EC2-7966-39A9-2B2D-5781C77AE6EA}" name="laser">
               <GROUP id="{9EF086BC-6748-F711-D859-9DF946C70D99}" name="LaserPattern">
-                <FILE id="zdhddT" name="LaserPattern.cpp" compile="1" resource="0"
+                <FILE id="zdhddT" name="LaserPattern.cpp" compile="0" resource="0"
                       file="Source/Object/Component/components/laser/LaserPattern/LaserPattern.cpp"/>
                 <FILE id="Stuavs" name="LaserPattern.h" compile="0" resource="0" file="Source/Object/Component/components/laser/LaserPattern/LaserPattern.h"/>
               </GROUP>
-              <FILE id="oXQEeJ" name="LaserComponent.cpp" compile="1" resource="0"
+              <FILE id="oXQEeJ" name="LaserComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/laser/LaserComponent.cpp"/>
               <FILE id="yvE4IK" name="LaserComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/laser/LaserComponent.h"/>
             </GROUP>
             <GROUP id="{DBD3032D-A58D-D970-2A00-DE3A3C3F9B60}" name="pantilt">
-              <FILE id="xUonqJ" name="PanTiltComponent.cpp" compile="1" resource="0"
+              <FILE id="xUonqJ" name="PanTiltComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/pantilt/PanTiltComponent.cpp"/>
               <FILE id="rXw4rx" name="PanTiltComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/pantilt/PanTiltComponent.h"/>
             </GROUP>
             <GROUP id="{6B99AB6C-A26F-2CD2-E7EF-C565EBB5C1E5}" name="servo">
-              <FILE id="JKHmhX" name="ServoComponent.cpp" compile="1" resource="0"
+              <FILE id="JKHmhX" name="ServoComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/servo/ServoComponent.cpp"/>
               <FILE id="fWOV2W" name="ServoComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/servo/ServoComponent.h"/>
             </GROUP>
             <GROUP id="{55AC1F61-6490-0735-69B9-A7EC49956ED5}" name="stepper">
-              <FILE id="eTrqyy" name="StepperComponent.cpp" compile="1" resource="0"
+              <FILE id="eTrqyy" name="StepperComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/stepper/StepperComponent.cpp"/>
               <FILE id="thJWzC" name="StepperComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/stepper/StepperComponent.h"/>
             </GROUP>
             <GROUP id="{B3938BE1-FE2D-67BE-2B0D-1B5EC2E61811}" name="strobe">
-              <FILE id="Alno29" name="StrobeComponent.cpp" compile="1" resource="0"
+              <FILE id="Alno29" name="StrobeComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/strobe/StrobeComponent.cpp"/>
               <FILE id="WA66HQ" name="StrobeComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/strobe/StrobeComponent.h"/>
             </GROUP>
           </GROUP>
-          <FILE id="NGl0Is" name="ComponentManager.cpp" compile="1" resource="0"
+          <FILE id="NGl0Is" name="ComponentManager.cpp" compile="0" resource="0"
                 file="Source/Object/Component/ComponentManager.cpp"/>
           <FILE id="dK4Ol4" name="ComponentManager.h" compile="0" resource="0"
                 file="Source/Object/Component/ComponentManager.h"/>
-          <FILE id="IrmXPU" name="ObjectComponent.cpp" compile="1" resource="0"
+          <FILE id="IrmXPU" name="ObjectComponent.cpp" compile="0" resource="0"
                 file="Source/Object/Component/ObjectComponent.cpp"/>
           <FILE id="CI7DAq" name="ObjectComponent.h" compile="0" resource="0"
                 file="Source/Object/Component/ObjectComponent.h"/>
@@ -599,83 +595,83 @@
           <GROUP id="{757E4AAE-E14D-242C-664F-2414CECFE18E}" name="groups">
             <GROUP id="{8779F3F7-8627-8553-5735-9B6BE8ED5075}" name="object">
               <GROUP id="{551CD999-D1A6-789B-CB66-EA65CD7C9F25}" name="ui">
-                <FILE id="iyTPBx" name="ObjectGroupUI.cpp" compile="1" resource="0"
+                <FILE id="iyTPBx" name="ObjectGroupUI.cpp" compile="0" resource="0"
                       file="Source/Object/Group/groups/object/ui/ObjectGroupUI.cpp"/>
                 <FILE id="T4qGAg" name="ObjectGroupUI.h" compile="0" resource="0" file="Source/Object/Group/groups/object/ui/ObjectGroupUI.h"/>
               </GROUP>
-              <FILE id="bOOx4U" name="ObjectGroup.cpp" compile="1" resource="0" file="Source/Object/Group/groups/object/ObjectGroup.cpp"/>
+              <FILE id="bOOx4U" name="ObjectGroup.cpp" compile="0" resource="0" file="Source/Object/Group/groups/object/ObjectGroup.cpp"/>
               <FILE id="wXwWFN" name="ObjectGroup.h" compile="0" resource="0" file="Source/Object/Group/groups/object/ObjectGroup.h"/>
             </GROUP>
             <GROUP id="{A11C9974-A80B-406F-CCB2-296AAD30D416}" name="virtual">
-              <FILE id="VG5CMK" name="VirtualGroup.cpp" compile="1" resource="0"
+              <FILE id="VG5CMK" name="VirtualGroup.cpp" compile="0" resource="0"
                     file="Source/Object/Group/groups/virtual/VirtualGroup.cpp"/>
               <FILE id="kq0BIm" name="VirtualGroup.h" compile="0" resource="0" file="Source/Object/Group/groups/virtual/VirtualGroup.h"/>
             </GROUP>
           </GROUP>
           <GROUP id="{B01DD47E-1B2D-1528-F02D-35F7F25706CB}" name="ui">
-            <FILE id="TWaJzv" name="GroupManagerUI.cpp" compile="1" resource="0"
+            <FILE id="TWaJzv" name="GroupManagerUI.cpp" compile="0" resource="0"
                   file="Source/Object/Group/ui/GroupManagerUI.cpp"/>
             <FILE id="r3MvnF" name="GroupManagerUI.h" compile="0" resource="0"
                   file="Source/Object/Group/ui/GroupManagerUI.h"/>
-            <FILE id="aIQ6Zq" name="GroupUI.cpp" compile="1" resource="0" file="Source/Object/Group/ui/GroupUI.cpp"/>
+            <FILE id="aIQ6Zq" name="GroupUI.cpp" compile="0" resource="0" file="Source/Object/Group/ui/GroupUI.cpp"/>
             <FILE id="DGiArw" name="GroupUI.h" compile="0" resource="0" file="Source/Object/Group/ui/GroupUI.h"/>
           </GROUP>
-          <FILE id="Zwkxrx" name="Group.cpp" compile="1" resource="0" file="Source/Object/Group/Group.cpp"/>
+          <FILE id="Zwkxrx" name="Group.cpp" compile="0" resource="0" file="Source/Object/Group/Group.cpp"/>
           <FILE id="S1NcyQ" name="Group.h" compile="0" resource="0" file="Source/Object/Group/Group.h"/>
-          <FILE id="dMbIBi" name="GroupManager.cpp" compile="1" resource="0"
+          <FILE id="dMbIBi" name="GroupManager.cpp" compile="0" resource="0"
                 file="Source/Object/Group/GroupManager.cpp"/>
           <FILE id="qIgaxw" name="GroupManager.h" compile="0" resource="0" file="Source/Object/Group/GroupManager.h"/>
         </GROUP>
         <GROUP id="{E24B03CC-8E90-4F89-ACAC-AA8DBA628C3A}" name="Layout">
           <GROUP id="{68C2D869-E889-40D2-38F2-5F5ECC0427E8}" name="ui">
-            <FILE id="cpa7uL" name="Object2DView.cpp" compile="1" resource="0"
+            <FILE id="cpa7uL" name="Object2DView.cpp" compile="0" resource="0"
                   file="Source/Object/Layout/ui/Object2DView.cpp"/>
             <FILE id="HAnEhR" name="Object2DView.h" compile="0" resource="0" file="Source/Object/Layout/ui/Object2DView.h"/>
-            <FILE id="tXcIsh" name="StageLayout2DView.cpp" compile="1" resource="0"
+            <FILE id="tXcIsh" name="StageLayout2DView.cpp" compile="0" resource="0"
                   file="Source/Object/Layout/ui/StageLayout2DView.cpp"/>
             <FILE id="obJUky" name="StageLayout2DView.h" compile="0" resource="0"
                   file="Source/Object/Layout/ui/StageLayout2DView.h"/>
-            <FILE id="zNmIsa" name="StageLayoutManagerUI.cpp" compile="1" resource="0"
+            <FILE id="zNmIsa" name="StageLayoutManagerUI.cpp" compile="0" resource="0"
                   file="Source/Object/Layout/ui/StageLayoutManagerUI.cpp"/>
             <FILE id="KgXFxx" name="StageLayoutManagerUI.h" compile="0" resource="0"
                   file="Source/Object/Layout/ui/StageLayoutManagerUI.h"/>
-            <FILE id="hgOI2o" name="StageLayoutUI.cpp" compile="1" resource="0"
+            <FILE id="hgOI2o" name="StageLayoutUI.cpp" compile="0" resource="0"
                   file="Source/Object/Layout/ui/StageLayoutUI.cpp"/>
             <FILE id="sFDKZr" name="StageLayoutUI.h" compile="0" resource="0" file="Source/Object/Layout/ui/StageLayoutUI.h"/>
           </GROUP>
-          <FILE id="A7bq1v" name="StageLayout.cpp" compile="1" resource="0" file="Source/Object/Layout/StageLayout.cpp"/>
+          <FILE id="A7bq1v" name="StageLayout.cpp" compile="0" resource="0" file="Source/Object/Layout/StageLayout.cpp"/>
           <FILE id="kxYDqV" name="StageLayout.h" compile="0" resource="0" file="Source/Object/Layout/StageLayout.h"/>
-          <FILE id="wLVWK0" name="StageLayoutManager.cpp" compile="1" resource="0"
+          <FILE id="wLVWK0" name="StageLayoutManager.cpp" compile="0" resource="0"
                 file="Source/Object/Layout/StageLayoutManager.cpp"/>
           <FILE id="LV3kET" name="StageLayoutManager.h" compile="0" resource="0"
                 file="Source/Object/Layout/StageLayoutManager.h"/>
         </GROUP>
         <GROUP id="{0D505A17-A541-05DA-73C0-C2BE863C2F7B}" name="ui">
-          <FILE id="WlnCnV" name="ObjectChainVizUI.cpp" compile="1" resource="0"
+          <FILE id="WlnCnV" name="ObjectChainVizUI.cpp" compile="0" resource="0"
                 file="Source/Object/ui/ObjectChainVizUI.cpp"/>
           <FILE id="Mn6IpL" name="ObjectChainVizUI.h" compile="0" resource="0"
                 file="Source/Object/ui/ObjectChainVizUI.h"/>
-          <FILE id="j68vpv" name="ObjectGridUI.cpp" compile="1" resource="0"
+          <FILE id="j68vpv" name="ObjectGridUI.cpp" compile="0" resource="0"
                 file="Source/Object/ui/ObjectGridUI.cpp"/>
           <FILE id="wSoAW0" name="ObjectGridUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectGridUI.h"/>
-          <FILE id="u2WMrp" name="ObjectManagerGridUI.cpp" compile="1" resource="0"
+          <FILE id="u2WMrp" name="ObjectManagerGridUI.cpp" compile="0" resource="0"
                 file="Source/Object/ui/ObjectManagerGridUI.cpp"/>
           <FILE id="gbwgnK" name="ObjectManagerGridUI.h" compile="0" resource="0"
                 file="Source/Object/ui/ObjectManagerGridUI.h"/>
-          <FILE id="BFGHWg" name="ObjectManagerUI.cpp" compile="1" resource="0"
+          <FILE id="BFGHWg" name="ObjectManagerUI.cpp" compile="0" resource="0"
                 file="Source/Object/ui/ObjectManagerUI.cpp"/>
           <FILE id="WWP2PU" name="ObjectManagerUI.h" compile="0" resource="0"
                 file="Source/Object/ui/ObjectManagerUI.h"/>
-          <FILE id="LgV40T" name="ObjectUI.cpp" compile="1" resource="0" file="Source/Object/ui/ObjectUI.cpp"/>
+          <FILE id="LgV40T" name="ObjectUI.cpp" compile="0" resource="0" file="Source/Object/ui/ObjectUI.cpp"/>
           <FILE id="IKzu7l" name="ObjectUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectUI.h"/>
         </GROUP>
-        <FILE id="t0IkrV" name="Object.cpp" compile="1" resource="0" file="Source/Object/Object.cpp"/>
+        <FILE id="t0IkrV" name="Object.cpp" compile="0" resource="0" file="Source/Object/Object.cpp"/>
         <FILE id="kbSpDH" name="Object.h" compile="0" resource="0" file="Source/Object/Object.h"/>
         <FILE id="avXSwu" name="ObjectIncludes.cpp" compile="1" resource="0"
               file="Source/Object/ObjectIncludes.cpp"/>
         <FILE id="SwULAJ" name="ObjectIncludes.h" compile="0" resource="0"
               file="Source/Object/ObjectIncludes.h"/>
-        <FILE id="hpmPnR" name="ObjectManager.cpp" compile="1" resource="0"
+        <FILE id="hpmPnR" name="ObjectManager.cpp" compile="0" resource="0"
               file="Source/Object/ObjectManager.cpp"/>
         <FILE id="sUZJmR" name="ObjectManager.h" compile="0" resource="0" file="Source/Object/ObjectManager.h"/>
       </GROUP>

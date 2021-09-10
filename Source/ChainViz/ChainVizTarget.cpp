@@ -10,7 +10,7 @@
 
 #include "ChainVizTarget.h"
 #include "ChainViz.h"
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
 
 ChainVizTarget::~ChainVizTarget() 
 {

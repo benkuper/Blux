@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../Group.h"
-
 class GroupUI :
     public BaseItemUI<Group>
 {

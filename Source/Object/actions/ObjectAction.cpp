@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectAction.h"
-#include "Object/ObjectManager.h"
-
 ObjectAction::ObjectAction(var params) :
 	Action(params)
 {
@@ -152,7 +149,7 @@ Controllable* ObjectAction::showAndGetComponentParameter(const StringArray& type
 	for (auto& o : ObjectManager::getInstance()->items)
 	{
 		PopupMenu om;
-		for (auto& c : o->componentManager.items)
+		for (auto& c : o->componentManager->items)
 		{
 			PopupMenu cm;
 			for (auto& p : c->sourceParameters)

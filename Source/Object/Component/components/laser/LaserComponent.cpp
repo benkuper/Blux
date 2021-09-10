@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "LaserComponent.h"
-
 LaserComponent::LaserComponent(Object* o, var params) :
     ObjectComponent(o, getTypeString(), LASER, params)
 {

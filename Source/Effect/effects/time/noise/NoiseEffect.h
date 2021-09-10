@@ -10,7 +10,11 @@
 
 #pragma once
 #include "../TimedEffect.h"
-#include "PerlinNoise.hpp"
+
+namespace siv
+{
+    class PerlinNoise;
+}
 
 class NoiseEffect :
     public TimedEffect
@@ -24,7 +28,7 @@ public:
     FloatParameter* frequency;
     FloatParameter* amplitude;
     FloatParameter* valueOffset;
-    siv::PerlinNoise perlin;
+    std::unique_ptr<siv::PerlinNoise> perlin;
 
     var getProcessedComponentValueTimeInternal(Object * o, ObjectComponent* c, var value, int id, float time) override;
 

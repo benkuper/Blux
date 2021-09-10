@@ -15,7 +15,7 @@
 #include "layers/automation/AutomationLayer.h"
 #include "layers/colorsource/ColorSourceLayer.h"
 #include "ui/BluxSequenceEditor.h"
-#include "Object/Object.h"
+#include "Object/ObjectIncludes.h"
 #include "ChainViz/ChainVizTarget.h"
 #include "ui/BluxSequenceChainVizUI.h"
 #include "Audio/AudioManager.h"

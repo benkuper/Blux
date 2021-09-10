@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "ObjectManager.h"
-
 juce_ImplementSingleton(ObjectManager);
 
 SubObjectManager::SubObjectManager() :

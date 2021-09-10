@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "../Object.h"
-
 class ObjectUI :
     public BaseItemUI<Object>
 {

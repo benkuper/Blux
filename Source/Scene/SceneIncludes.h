@@ -9,3 +9,18 @@
 */
 
 #pragma once
+
+#include "JuceHeader.h"
+#include "Common/CommonIncludes.h"
+
+//to handle
+#include "Sequence/BluxSequenceManager.h"
+#include "Effect/EffectManager.h"
+
+#include "Scene.h"
+#include "SceneManager.h"
+
+#include "actions/SceneAction.h"
+
+#include "ui/SceneUI.h"
+#include "ui/SceneManagerUI.h"

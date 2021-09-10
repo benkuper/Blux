@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "StageLayout.h"
-#include "Object/ObjectManager.h"
-
 StageLayout::StageLayout() :
     BaseItem("Layout", false)
 {

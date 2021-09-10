@@ -8,8 +8,6 @@
   ==============================================================================
 */
 
-#include "IntensityComponent.h"
-
 IntensityComponent::IntensityComponent(Object* o, var params) :
     ObjectComponent(o, getTypeString(), INTENSITY, params)
 {
