@@ -34,7 +34,7 @@ int Group::getLocalIDForObject(Object* o)
 
 void Group::processComponentValues(Object* o, ObjectComponent* c, var& values)
 {
-    effectManager->processComponentValues(o, c, values);
+    effectManager->processComponentValues(o, c, values, 1, getLocalIDForObject(o));
 }
 
 var Group::getSceneData()
