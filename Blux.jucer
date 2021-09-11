@@ -119,12 +119,12 @@
       </GROUP>
       <GROUP id="{19F4E516-10FC-FA0A-C9A6-135346379876}" name="Audio">
         <GROUP id="{AD18FB93-C831-88F5-3171-4DE9C92E692A}" name="ui">
-          <FILE id="cxR8NV" name="AudioManagerHardwareEditor.cpp" compile="1"
+          <FILE id="cxR8NV" name="AudioManagerHardwareEditor.cpp" compile="0"
                 resource="0" file="Source/Audio/ui/AudioManagerHardwareEditor.cpp"/>
           <FILE id="U162XE" name="AudioManagerHardwareEditor.h" compile="0" resource="0"
                 file="Source/Audio/ui/AudioManagerHardwareEditor.h"/>
         </GROUP>
-        <FILE id="Jp4A8n" name="AudioManager.cpp" compile="1" resource="0"
+        <FILE id="Jp4A8n" name="AudioManager.cpp" compile="0" resource="0"
               file="Source/Audio/AudioManager.cpp"/>
         <FILE id="mUVkYL" name="AudioManager.h" compile="0" resource="0" file="Source/Audio/AudioManager.h"/>
       </GROUP>
@@ -676,13 +676,11 @@
         <FILE id="sUZJmR" name="ObjectManager.h" compile="0" resource="0" file="Source/Object/ObjectManager.h"/>
       </GROUP>
       <GROUP id="{CBABD9B6-7B70-7D3F-7A9F-AE1857C9E963}" name="Engine">
-        <GROUP id="{A2A31778-60D7-E0E8-962B-261B75266474}" name="actions">
-          <FILE id="Sy1oxW" name="GenericAction.cpp" compile="1" resource="0"
-                file="Source/Engine/GenericAction.cpp"/>
-          <FILE id="di4Ym0" name="GenericAction.h" compile="0" resource="0" file="Source/Engine/GenericAction.h"/>
-        </GROUP>
-        <FILE id="Mv31r2" name="BluxEngine.cpp" compile="1" resource="0" file="Source/Engine/BluxEngine.cpp"/>
+        <FILE id="Mv31r2" name="BluxEngine.cpp" compile="0" resource="0" file="Source/Engine/BluxEngine.cpp"/>
         <FILE id="DZeUuZ" name="BluxEngine.h" compile="0" resource="0" file="Source/Engine/BluxEngine.h"/>
+        <FILE id="Sy1oxW" name="GenericAction.cpp" compile="0" resource="0"
+              file="Source/Engine/GenericAction.cpp"/>
+        <FILE id="di4Ym0" name="GenericAction.h" compile="0" resource="0" file="Source/Engine/GenericAction.h"/>
       </GROUP>
       <GROUP id="{460B3213-E16F-2CB9-9A88-70D86283C04B}" name="Sequence">
         <GROUP id="{388537B4-AA3C-9089-27EF-F615B0E5827C}" name="actions">
@@ -766,10 +764,10 @@
               file="Source/Sequence/SequenceIncludes.h"/>
       </GROUP>
       <GROUP id="{16558FC8-A881-5FFD-F2BA-1E725B22DC38}" name="UI">
-        <FILE id="Sd26AT" name="AssetManager.cpp" compile="1" resource="0"
+        <FILE id="Sd26AT" name="AssetManager.cpp" compile="0" resource="0"
               file="Source/UI/AssetManager.cpp"/>
         <FILE id="aduvbj" name="AssetManager.h" compile="0" resource="0" file="Source/UI/AssetManager.h"/>
-        <FILE id="ioO0u7" name="BluxInspector.cpp" compile="1" resource="0"
+        <FILE id="ioO0u7" name="BluxInspector.cpp" compile="0" resource="0"
               file="Source/UI/BluxInspector.cpp"/>
         <FILE id="oCiQ5X" name="BluxInspector.h" compile="0" resource="0" file="Source/UI/BluxInspector.h"/>
       </GROUP>
@@ -779,9 +777,9 @@
       <FILE id="JEY5pW" name="Main.h" compile="0" resource="0" file="Source/Main.h"/>
       <FILE id="PI7LmD" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="OVCLjt" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
-      <FILE id="UViOEW" name="MainComponent.cpp" compile="1" resource="0"
+      <FILE id="UViOEW" name="MainComponent.cpp" compile="0" resource="0"
             file="Source/MainComponent.cpp"/>
-      <FILE id="oc6XmM" name="MainComponentCommands.cpp" compile="1" resource="0"
+      <FILE id="oc6XmM" name="MainComponentCommands.cpp" compile="0" resource="0"
             file="Source/MainComponentCommands.cpp"/>
     </GROUP>
   </MAINGROUP>

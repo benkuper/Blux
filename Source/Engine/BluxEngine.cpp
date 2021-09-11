@@ -8,17 +8,6 @@
   ==============================================================================
 */
 
-#include "BluxEngine.h"
-
-#include "Object/ObjectIncludes.h"
-#include "Interface/InterfaceIncludes.h"
-#include "Common/CommonIncludes.h"
-#include "Scene/SceneIncludes.h"
-#include "Sequence/SequenceIncludes.h"
-#include "Color/ColorIncludes.h"
-#include "Effect/EffectIncludes.h"
-
-#include "Audio/AudioManager.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")

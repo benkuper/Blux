@@ -15,6 +15,8 @@ IDFilter::IDFilter() :
     //mode = addEnumParameter("Mode", "Filtering mode");
     //mode->addOption("Include", true)->addOption("Exclude", false);
 
+    saveAndLoadRecursiveData = false;
+
     ids.userCanAddControllables = true;
     ids.userAddControllablesFilters.add(IntParameter::getTypeStringStatic());
     addChildControllableContainer(&ids);
@@ -42,6 +44,7 @@ void IDFilter::controllableAdded(Controllable* c)
 {
     if (c->parentContainer == &ids && !isCurrentlyLoadingData)
     {
+        c->isRemovableByUser = true;
         c->setNiceName("ID");
         ((IntParameter*)c)->setRange(0, INT32_MAX);
     }
@@ -66,6 +69,7 @@ void IDFilter::loadJSONDataInternal(var data)
     for (int i = 0; i < idData.size(); i++)
     {
         IntParameter* ip = ids.addIntParameter("ID", "", 0, 0);
+        ip->isRemovableByUser = true;
         ip->setValue((int)idData[i]);
     }
 }

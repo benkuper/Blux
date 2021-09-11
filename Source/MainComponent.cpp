@@ -1,14 +1,3 @@
-#include "MainComponent.h"
-
-#include "Color/ColorIncludes.h"
-#include "Object/ObjectIncludes.h"
-#include "Interface/InterfaceIncludes.h"
-#include "Scene/SceneIncludes.h"
-#include "Sequence/SequenceIncludes.h"
-#include "Effect/EffectIncludes.h"
-#include "ChainViz/ChainViz.h"
-
-#include "UI/BluxInspector.h"
 
 String getAppVersion();
 ApplicationProperties& getAppProperties();

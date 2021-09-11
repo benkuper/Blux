@@ -9,6 +9,7 @@
 */
 
 #include "CommonIncludes.h"
+#include "MainIncludes.h"
 #include "Scene/SceneIncludes.h"
 #include "Object/ObjectIncludes.h"
 #include "Sequence/SequenceIncludes.h"

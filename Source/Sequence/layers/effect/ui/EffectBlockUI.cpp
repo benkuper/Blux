@@ -12,6 +12,7 @@ EffectBlockUI::EffectBlockUI(EffectBlock* b) :
 	LayerBlockUI(b),
 	effectBlock(b)
 {
+
 	addChildComponent(&fadeInHandle, 0);
 	addChildComponent(&fadeOutHandle, 0);
 
@@ -44,6 +45,8 @@ void EffectBlockUI::paint(Graphics& g)
 
 void EffectBlockUI::paintOverChildren(Graphics& g)
 {
+	LayerBlockUI::paintOverChildren(g);
+
 	Colour fInColor = (effectBlock->fadeIn->enabled ? NORMAL_COLOR : BLUE_COLOR).withAlpha(.5f);
 	Colour fOutColor = (effectBlock->fadeOut->enabled ? NORMAL_COLOR : BLUE_COLOR).withAlpha(.5f);
 

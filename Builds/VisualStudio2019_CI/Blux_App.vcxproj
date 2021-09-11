@@ -207,8 +207,12 @@
     <ClCompile Include="..\..\Source\Color\ColorIncludes.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainViz.cpp"/>
     <ClCompile Include="..\..\Source\ChainViz\ChainVizTarget.cpp"/>
-    <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Audio\AudioManager.cpp"/>
+    <ClCompile Include="..\..\Source\Audio\ui\AudioManagerHardwareEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Audio\AudioManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\CommonIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
@@ -547,8 +551,12 @@
     <ClCompile Include="..\..\Source\Object\ObjectManager.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Engine\GenericAction.cpp"/>
-    <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp"/>
+    <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Engine\GenericAction.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -601,12 +609,20 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\SequenceIncludes.cpp"/>
-    <ClCompile Include="..\..\Source\UI\AssetManager.cpp"/>
-    <ClCompile Include="..\..\Source\UI\BluxInspector.cpp"/>
+    <ClCompile Include="..\..\Source\UI\AssetManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\BluxInspector.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
-    <ClCompile Include="..\..\Source\MainComponent.cpp"/>
-    <ClCompile Include="..\..\Source\MainComponentCommands.cpp"/>
+    <ClCompile Include="..\..\Source\MainComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MainComponentCommands.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -3485,8 +3501,8 @@
     <ClInclude Include="..\..\Source\Object\Object.h"/>
     <ClInclude Include="..\..\Source\Object\ObjectIncludes.h"/>
     <ClInclude Include="..\..\Source\Object\ObjectManager.h"/>
-    <ClInclude Include="..\..\Source\Engine\GenericAction.h"/>
     <ClInclude Include="..\..\Source\Engine\BluxEngine.h"/>
+    <ClInclude Include="..\..\Source\Engine\GenericAction.h"/>
     <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h"/>
     <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h"/>
     <ClInclude Include="..\..\Source\Sequence\layers\action\ActionTrigger.h"/>

@@ -8,9 +8,6 @@
   ==============================================================================
 */
 
-#include "AudioManager.h"
-#include "ui/AudioManagerHardwareEditor.h"
-
 juce_ImplementSingleton(AudioManager)
 
 AudioManager::AudioManager() :

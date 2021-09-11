@@ -71,8 +71,6 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/ColorIncludes_88de98e3.o \
   $(JUCE_OBJDIR)/ChainViz_ce9d49f0.o \
   $(JUCE_OBJDIR)/ChainVizTarget_a474cee1.o \
-  $(JUCE_OBJDIR)/AudioManagerHardwareEditor_ce81cbaf.o \
-  $(JUCE_OBJDIR)/AudioManager_d6082e39.o \
   $(JUCE_OBJDIR)/CommonIncludes_97d07afb.o \
   $(JUCE_OBJDIR)/list_ports_linux_203b2613.o \
   $(JUCE_OBJDIR)/list_ports_osx_d93ade33.o \
@@ -84,15 +82,9 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/SceneIncludes_307e5d75.o \
   $(JUCE_OBJDIR)/EffectIncludes_1938d43b.o \
   $(JUCE_OBJDIR)/ObjectIncludes_6d2ed47b.o \
-  $(JUCE_OBJDIR)/GenericAction_a94c649.o \
-  $(JUCE_OBJDIR)/BluxEngine_89bca27d.o \
   $(JUCE_OBJDIR)/SequenceIncludes_1f9bb4bb.o \
-  $(JUCE_OBJDIR)/AssetManager_74710ad9.o \
-  $(JUCE_OBJDIR)/BluxInspector_cea78398.o \
   $(JUCE_OBJDIR)/MainIncludes_ce93a02d.o \
   $(JUCE_OBJDIR)/Main_90ebc5c2.o \
-  $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o \
-  $(JUCE_OBJDIR)/MainComponentCommands_b1179f4d.o \
   $(JUCE_OBJDIR)/BinaryData_ce4232d4.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
@@ -142,16 +134,6 @@ $(JUCE_OBJDIR)/ChainViz_ce9d49f0.o: ../../Source/ChainViz/ChainViz.cpp
 $(JUCE_OBJDIR)/ChainVizTarget_a474cee1.o: ../../Source/ChainViz/ChainVizTarget.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ChainVizTarget.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/AudioManagerHardwareEditor_ce81cbaf.o: ../../Source/Audio/ui/AudioManagerHardwareEditor.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling AudioManagerHardwareEditor.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/AudioManager_d6082e39.o: ../../Source/Audio/AudioManager.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling AudioManager.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/CommonIncludes_97d07afb.o: ../../Source/Common/CommonIncludes.cpp
@@ -209,29 +191,9 @@ $(JUCE_OBJDIR)/ObjectIncludes_6d2ed47b.o: ../../Source/Object/ObjectIncludes.cpp
 	@echo "Compiling ObjectIncludes.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/GenericAction_a94c649.o: ../../Source/Engine/GenericAction.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling GenericAction.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/BluxEngine_89bca27d.o: ../../Source/Engine/BluxEngine.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling BluxEngine.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/SequenceIncludes_1f9bb4bb.o: ../../Source/Sequence/SequenceIncludes.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SequenceIncludes.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/AssetManager_74710ad9.o: ../../Source/UI/AssetManager.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling AssetManager.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/BluxInspector_cea78398.o: ../../Source/UI/BluxInspector.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling BluxInspector.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MainIncludes_ce93a02d.o: ../../Source/MainIncludes.cpp
@@ -242,16 +204,6 @@ $(JUCE_OBJDIR)/MainIncludes_ce93a02d.o: ../../Source/MainIncludes.cpp
 $(JUCE_OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling Main.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o: ../../Source/MainComponent.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MainComponent.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/MainComponentCommands_b1179f4d.o: ../../Source/MainComponentCommands.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MainComponentCommands.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_ce4232d4.o: ../../JuceLibraryCode/BinaryData.cpp

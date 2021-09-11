@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "JuceHeader.h"
-
 #define AUDIO_INPUT_GRAPH_ID 1
 #define AUDIO_OUTPUT_GRAPH_ID 2
 

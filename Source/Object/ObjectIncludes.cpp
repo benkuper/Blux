@@ -10,7 +10,7 @@
 
 #include "ObjectIncludes.h"
 
-#include "UI/AssetManager.h"
+#include "MainIncludes.h"
 #include "Interface/InterfaceIncludes.h"
 
 #include "Effect/EffectIncludes.h"

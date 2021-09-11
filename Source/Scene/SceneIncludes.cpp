@@ -11,7 +11,7 @@
 #include "SceneIncludes.h"
 #include "Object/ObjectIncludes.h"
 
-#include "Engine/BluxEngine.h"
+#include "MainIncludes.h"
 #include "Effect/GlobalEffectManager.h"
 #include "Effect/effects/time/TimedEffect.h"
 

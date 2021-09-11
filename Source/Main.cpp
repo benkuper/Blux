@@ -1,7 +1,5 @@
 #include "Main.h"
-#include "UI/AssetManager.h"
-#include "Engine/BluxEngine.h"
-#include "MainComponent.h"
+#include "MainIncludes.h"
 
 BluxApplication::BluxApplication() : 
     OrganicApplication(ProjectInfo::projectName, 

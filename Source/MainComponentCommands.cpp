@@ -9,10 +9,6 @@
  */
 
 
-#include "MainComponent.h"
-#include "Object/ObjectIncludes.h"
-#include "Scene/SceneIncludes.h"
-
 namespace BluxCommandIDs
 {
 	static const int showAbout = 0x60000;

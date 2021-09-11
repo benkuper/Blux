@@ -290,9 +290,6 @@
     <Filter Include="Blux\Source\Object">
       <UniqueIdentifier>{B6C83FE7-EC01-0E0A-8353-0E930C118B77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Engine\actions">
-      <UniqueIdentifier>{6298BAB9-159C-3B27-DE23-369A90AEF967}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blux\Source\Engine">
       <UniqueIdentifier>{3129FDDE-C83B-BB13-C031-6D4A35FC9980}</UniqueIdentifier>
     </Filter>
@@ -1582,10 +1579,10 @@
     <ClCompile Include="..\..\Source\Object\ObjectManager.cpp">
       <Filter>Blux\Source\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Engine\GenericAction.cpp">
-      <Filter>Blux\Source\Engine\actions</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Engine\BluxEngine.cpp">
+      <Filter>Blux\Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Engine\GenericAction.cpp">
       <Filter>Blux\Source\Engine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
@@ -5019,10 +5016,10 @@
     <ClInclude Include="..\..\Source\Object\ObjectManager.h">
       <Filter>Blux\Source\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Engine\GenericAction.h">
-      <Filter>Blux\Source\Engine\actions</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Engine\BluxEngine.h">
+      <Filter>Blux\Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Engine\GenericAction.h">
       <Filter>Blux\Source\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h">
