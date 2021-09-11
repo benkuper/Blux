@@ -1,3 +1,4 @@
+#include "EffectChainVizUI.h"
 /*
   ==============================================================================
 
@@ -27,6 +28,16 @@ EffectChainVizUI::EffectChainVizUI(Effect* e, Object* o, ChainVizTarget::ChainVi
 EffectChainVizUI::~EffectChainVizUI()
 {
     if (object != nullptr) object->removeInspectableListener(this);
+}
+
+bool EffectChainVizUI::isReallyAffecting()
+{
+    return effect->isAffectingObject(object) && effect->enabled->boolValue() && effect->weight->floatValue() > 0;
+}
+
+String EffectChainVizUI::getVizLabel() const
+{
+    return baseItem->niceName + "\n(" + baseItem->parentContainer->parentContainer->niceName + ")";
 }
 
 void EffectChainVizUI::resized()

@@ -31,6 +31,8 @@ public:
 	Object* object;
 	ChainVizTarget::ChainVizType type;
 
+	virtual bool isReallyAffecting() { return true; }
+
 	virtual void paint(Graphics& g) override;
 	virtual void inspectableDestroyed(Inspectable* i) override;
 };
@@ -51,6 +53,8 @@ public:
 	virtual void paint(Graphics& g) override;
 	virtual void resized() override;
 
+	virtual String getVizLabel() const { return baseItem->niceName; }
+
 	void inspectableSelectionChanged(Inspectable* i) override;
 	virtual void inspectableDestroyed(Inspectable* i) override;
 };
@@ -60,12 +64,12 @@ class ChainViz :
 	public Inspectable::InspectableListener,
 	public ContainerAsyncListener,
 	public AsyncSceneListener,
-	public ComponentListener
+	public ComponentListener,
+	public Parameter::AsyncListener
 {
 public:
 	ChainViz(const String& name);
 	~ChainViz();
-
 	
 	Viewport viewport;
 	Component container;
@@ -79,6 +83,8 @@ public:
 
 	Object* currentObject;
 	WeakReference<Inspectable> objectRef;
+	BoolParameter showOnlyActives;
+	std::unique_ptr<BoolButtonToggleUI> showOnlyActivesUI;
 
 	Rectangle<int> objectEffectsRect;
 	Rectangle<int> sceneRect;
@@ -101,6 +107,7 @@ public:
 
 	void newMessage(const SceneManagerEvent& e) override;
 	void newMessage(const ContainerAsyncEvent& e) override;
+	void newMessage(const Parameter::ParameterEvent& e) override;
 	void inspectableDestroyed(Inspectable*) override;
 
 	void componentMovedOrResized(Component & c, bool wasMoved, bool wasResized) override;

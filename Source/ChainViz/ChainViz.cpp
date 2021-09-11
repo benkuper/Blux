@@ -20,12 +20,17 @@ const Colour ChainVizComponent::typeColors[ChainVizTarget::CHAINVIZ_TYPE_MAX]{ P
 ChainViz::ChainViz(const String& name) :
 	ShapeShifterContentComponent(name),
 	currentObject(nullptr),
-	resizing(false)
+	resizing(false),
+	showOnlyActives("Show Only Actives", "Only show effect that are currently affecting. This hides disabled effects and effects with 0 weight", false)
 {
 	viewport.setViewedComponent(&container, false);
 	viewport.setScrollBarsShown(false, true, false, false);
 	viewport.setScrollBarThickness(16);
 	addAndMakeVisible(&viewport);
+
+	showOnlyActives.addAsyncParameterListener(this);
+	showOnlyActivesUI.reset(showOnlyActives.createButtonToggle());
+	addAndMakeVisible(showOnlyActivesUI.get());
 
 	Engine::mainEngine->addAsyncContainerListener(this);
 	SceneManager::getInstance()->addAsyncSceneManagerListener(this);
@@ -134,38 +139,38 @@ void ChainViz::paint(Graphics& g)
 	{
 		g.setColour(TEXT_COLOR.darker());
 		g.setFont(20);
-		g.drawText("Double click on an object to see it's effect chain.", getLocalBounds(), Justification::centred);
+		g.drawFittedText("Double click on an object to see it's effect chain.", getLocalBounds().reduced(5), Justification::centred,4);
 		return;
 	}
 
 	if (!objectEffectsRect.isEmpty())
 	{
 		g.setColour(ChainVizComponent::typeColors[ChainVizTarget::OBJECT_EFFECT]);
-		g.drawRoundedRectangle(objectEffectsRect.toFloat().expanded(5), 4, 1);
+		g.drawRoundedRectangle(getLocalArea(&container, objectEffectsRect.toFloat().expanded(5)), 4, 1);
 	}
 
 	if (!sceneRect.isEmpty())
 	{
 		g.setColour(ChainVizComponent::typeColors[ChainVizTarget::SCENE_EFFECT]);
-		g.drawRoundedRectangle(sceneRect.toFloat().expanded(5), 4, 1);
+		g.drawRoundedRectangle(getLocalArea(&container, sceneRect.toFloat().expanded(5)), 4, 1);
 	}
 
 	if (!sequenceRect.isEmpty())
 	{
 		g.setColour(ChainVizComponent::typeColors[ChainVizTarget::SEQUENCE_EFFECT]);
-		g.drawRoundedRectangle(sequenceRect.toFloat().expanded(5), 4, 1);
+		g.drawRoundedRectangle(getLocalArea(&container, sequenceRect.toFloat().expanded(5)), 4, 1);
 	}
 
 	if (!groupRect.isEmpty())
 	{
 		g.setColour(ChainVizComponent::typeColors[ChainVizTarget::GROUP_EFFECT]);
-		g.drawRoundedRectangle(groupRect.toFloat().expanded(5), 4, 1);
+		g.drawRoundedRectangle(getLocalArea(&container, groupRect.toFloat().expanded(5)), 4, 1);
 	}
 
 	if (!globalEffectsRect.isEmpty())
 	{
 		g.setColour(ChainVizComponent::typeColors[ChainVizTarget::GLOBAL_EFFECT]);
-		g.drawRoundedRectangle(globalEffectsRect.toFloat().expanded(5), 4, 1);
+		g.drawRoundedRectangle(getLocalArea(&container, globalEffectsRect.toFloat().expanded(5)), 4, 1);
 	}
 }
 
@@ -175,8 +180,13 @@ void ChainViz::resized()
 
 	resizing = true;
 
-	Rectangle<int> r = getLocalBounds().reduced(20);
+	Rectangle<int> r = getLocalBounds();
 
+	Rectangle<int> hr = r.removeFromTop(24);
+	showOnlyActivesUI->setBounds(hr.removeFromLeft(100).reduced(2));
+	r.reduce(2, 2);
+	r.removeFromBottom(20);
+	
 	r.setWidth(objectStartVizComponent->getWidth());
 	objectStartVizComponent->setBounds(r);
 	r.setX(r.getRight() + 20);
@@ -211,6 +221,10 @@ Rectangle<int> ChainViz::placeVizComponents(OwnedArray<ChainVizComponent>* compo
 	Rectangle<int> result(r);
 	for (auto& c : *components)
 	{
+		c->setVisible(!showOnlyActives.boolValue() || c->isReallyAffecting());
+
+		if (!c->isVisible()) continue;
+
 		int cw = c->getWidth();
 		c->setBounds(r.withWidth(cw));
 		r.translate(cw + 10, 0);
@@ -237,6 +251,14 @@ void ChainViz::newMessage(const SceneManagerEvent& e)
 void ChainViz::newMessage(const ContainerAsyncEvent& e)
 {
 	if (e.type == ContainerAsyncEvent::ChildStructureChanged) buildChain();
+}
+
+void ChainViz::newMessage(const Parameter::ParameterEvent& e)
+{
+	if (e.parameter == &showOnlyActives)
+	{
+		resized();
+	}
 }
 
 void ChainViz::inspectableDestroyed(Inspectable* i)
@@ -275,7 +297,7 @@ void ChainVizComponent::paint(Graphics& g)
 
 	if (!transparentBG)
 	{
-		g.setColour(PANEL_COLOR.darker());
+		g.setColour(isReallyAffecting()?PANEL_COLOR.darker(): BG_COLOR.brighter(.2f));
 		g.fillRoundedRectangle(getLocalBounds().toFloat(), 4);
 		g.setColour(typeColors[(int)type]);
 		g.drawRoundedRectangle(getLocalBounds().toFloat(), 4, 1);
@@ -320,7 +342,7 @@ void BaseItemChainVizComponent::paint(Graphics& g)
 
 	if (!transparentBG)
 	{
-		g.setColour(PANEL_COLOR);
+		g.setColour(isReallyAffecting()?PANEL_COLOR:PANEL_COLOR.darker());
 		g.fillRoundedRectangle(getLocalBounds().toFloat(), 4);
 	}
 	
@@ -328,7 +350,7 @@ void BaseItemChainVizComponent::paint(Graphics& g)
 	{
 		g.setColour(TEXT_COLOR);
 		g.setFont(16);
-		g.drawText(baseItem->niceName, getLocalBounds().toFloat(), Justification::centred);
+		g.drawText(getVizLabel(), getLocalBounds().toFloat(), Justification::centred);
 	}
 	
 	if (baseItem->isSelected)

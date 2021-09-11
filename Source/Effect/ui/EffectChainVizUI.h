@@ -27,6 +27,10 @@ public:
     FloatParameter intensity;
     std::unique_ptr<FloatSliderUI> intensityUI;
 
+    virtual bool isReallyAffecting();
+    virtual String getVizLabel() const override;
+
+
     void resized() override;
     void timerCallback() override;
 };
