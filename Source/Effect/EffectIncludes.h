@@ -34,6 +34,7 @@
 #include "effects/color/remap/ColorPositionRemapEffect.h"
 
 #include "effects/override/OverrideEffect.h"
+#include "effects/override/FreezeEffect.h"
 
 #include "effects/time/TimedEffect.h"
 #include "effects/time/automation/AutomationEffect.h"

@@ -383,6 +383,7 @@
 		C57457769AB82620F0822E07 /* ObjectGridUI.cpp */ /* ObjectGridUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectGridUI.cpp; path = ../../Source/Object/ui/ObjectGridUI.cpp; sourceTree = SOURCE_ROOT; };
 		C66FE6052923B8395F57E110 /* VirtualGroup.h */ /* VirtualGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VirtualGroup.h; path = ../../Source/Object/Group/groups/virtual/VirtualGroup.h; sourceTree = SOURCE_ROOT; };
 		C7C7772DDDCD163677F655CB /* ObjectGroup.h */ /* ObjectGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ObjectGroup.h; path = ../../Source/Object/Group/groups/object/ObjectGroup.h; sourceTree = SOURCE_ROOT; };
+		C83657751F184675FF322432 /* FreezeEffect.cpp */ /* FreezeEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FreezeEffect.cpp; path = ../../Source/Effect/effects/override/FreezeEffect.cpp; sourceTree = SOURCE_ROOT; };
 		C94DB70EC77AF1DB8BB1D1EB /* AutomationLayer.cpp */ /* AutomationLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AutomationLayer.cpp; path = ../../Source/Sequence/layers/automation/AutomationLayer.cpp; sourceTree = SOURCE_ROOT; };
 		CA0A46078AA6B326AF0467CD /* SceneManager.h */ /* SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SceneManager.h; path = ../../Source/Scene/SceneManager.h; sourceTree = SOURCE_ROOT; };
 		CA2698D0388040B249A2F93E /* ObjectGroupUI.cpp */ /* ObjectGroupUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectGroupUI.cpp; path = ../../Source/Object/Group/groups/object/ui/ObjectGroupUI.cpp; sourceTree = SOURCE_ROOT; };
@@ -421,6 +422,7 @@
 		DF2D5A70A391CF48CD819BA5 /* PixelShapeChooser.h */ /* PixelShapeChooser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PixelShapeChooser.h; path = ../../Source/Color/PixelShape/ui/PixelShapeChooser.h; sourceTree = SOURCE_ROOT; };
 		DF2F92C94D803653F6CEC0FC /* SequenceIncludes.h */ /* SequenceIncludes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SequenceIncludes.h; path = ../../Source/Sequence/SequenceIncludes.h; sourceTree = SOURCE_ROOT; };
 		DF8AF247FBDA07CEE3201261 /* juce_timeline */ /* juce_timeline */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_timeline; path = ../../Modules/juce_timeline; sourceTree = SOURCE_ROOT; };
+		DFE4C3236B1297457120B8F1 /* FreezeEffect.h */ /* FreezeEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FreezeEffect.h; path = ../../Source/Effect/effects/override/FreezeEffect.h; sourceTree = SOURCE_ROOT; };
 		DFED7D799EA865A875026975 /* ChainVizTarget.cpp */ /* ChainVizTarget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ChainVizTarget.cpp; path = ../../Source/ChainViz/ChainVizTarget.cpp; sourceTree = SOURCE_ROOT; };
 		E039F5165D8A404D323C934C /* ObjectAction.cpp */ /* ObjectAction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectAction.cpp; path = ../../Source/Object/actions/ObjectAction.cpp; sourceTree = SOURCE_ROOT; };
 		E04EA3EB2F4A3171D299FF6F /* EffectBlockUI.cpp */ /* EffectBlockUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EffectBlockUI.cpp; path = ../../Source/Sequence/layers/effect/ui/EffectBlockUI.cpp; sourceTree = SOURCE_ROOT; };
@@ -1808,6 +1810,8 @@
 		FFB81D5BAC442666EDA9DC53 /* override */ = {
 			isa = PBXGroup;
 			children = (
+				C83657751F184675FF322432,
+				DFE4C3236B1297457120B8F1,
 				3B4157E878CF22C9643E3956,
 				A3C745B6A567216E8B02DDAD,
 			);

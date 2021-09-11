@@ -39,12 +39,12 @@ void EffectManager::addItemInternal(Effect* e, var data)
     e->setForceDisabled(forceDisabled);
 }
 
-void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& values, float weightMultiplier)
+void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& values, float weightMultiplier, int id)
 {
     for (auto& e: items)
     {
         if (!e->enabled->boolValue()) continue;
-        e->processComponentValues(o, c, values, weightMultiplier);
+        e->processComponentValues(o, c, values, weightMultiplier, id);
         if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(e, values[0].clone());
     }
 }
@@ -87,6 +87,7 @@ EffectFactory::EffectFactory()
     defs.add(Factory<Effect>::Definition::createDef("Number", OverrideFloatEffect::getTypeStringStatic(), &OverrideFloatEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Number", NoiseEffect::getTypeStringStatic(), &NoiseEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Number", AutomationEffect::getTypeStringStatic(), &AutomationEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("Number", FreezeFloatEffect::getTypeStringStatic(), &FreezeFloatEffect::create));
 
     defs.add(Factory<Effect>::Definition::createDef("Color", ColorSourceOverrideEffect::getTypeStringStatic(), &ColorSourceOverrideEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Color", HSVAdjustEffect::getTypeStringStatic(), &HSVAdjustEffect::create));

@@ -18,7 +18,7 @@ AutomationEffect::AutomationEffect(var params) :
 	controllables.swap(controllables.indexOf(length), controllables.indexOf(sceneSaveMode)+1); //length first
 
 	clipTime = addBoolParameter("Clip Time", "If checked, this will force negative time with positive speed to clip. Useful for starting animations when loading scenes", false);
-
+	loop = addBoolParameter("Loop", "If checked, this will loop the automation. If not, this will go up until the end and stay there (taking care of time offsets)", true);
 	range = addPoint2DParameter("Range", "Range of this automation");
 
 	var val;
@@ -52,7 +52,7 @@ AutomationEffect::~AutomationEffect()
 
 var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time)
 {
-	float relTime = fmodf(time, length->floatValue());
+	float relTime = loop->boolValue() ? fmodf(time, length->floatValue()) : jmin(time, length->floatValue());
 
 	if (!clipTime->boolValue())
 	{
@@ -78,5 +78,13 @@ void AutomationEffect::onContainerParameterChangedInternal(Parameter* p)
 	if (p == range)
 	{
 		automation.valueRange->setPoint(range->getPoint());
+	}
+	else if (p == loop)
+	{
+		if (!loop->boolValue())
+		{
+			//force put curTime in 0-length range to have good ending behaviour
+			curTime = fmodf(curTime, length->floatValue());
+		}
 	}
 }

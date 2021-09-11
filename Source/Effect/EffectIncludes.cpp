@@ -22,6 +22,7 @@
 #include "effects/color/override/ColorSourceOverrideEffect.cpp"
 #include "effects/color/override/ui/ColorSourceOverrideEffectEditor.cpp"
 #include "effects/color/remap/ColorPositionRemapEffect.cpp"
+#include "effects/override/FreezeEffect.cpp"
 #include "effects/override/OverrideEffect.cpp"
 #include "effects/time/automation/AutomationEffect.cpp"
 #include "effects/time/automation/ui/AutomationEffectEditor.cpp"

@@ -23,11 +23,12 @@ public:
 
 	FloatParameter* offsetByID;
 	FloatParameter* offsetByValue;
-
+	Trigger* resetTime;
 
 	double timeAtLastUpdate;
 	float curTime;
 
+	virtual void onContainerTriggerTriggered(Trigger* t) override;
 	virtual void updateEnabled() override;
 
 	var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1) override;

@@ -22,6 +22,7 @@ public:
     FloatParameter* length;
     Point2DParameter* range;
     BoolParameter* clipTime;
+    BoolParameter* loop;
 
     Automation automation;
 

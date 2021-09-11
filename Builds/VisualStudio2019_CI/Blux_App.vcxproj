@@ -388,6 +388,9 @@
     <ClCompile Include="..\..\Source\Effect\effects\time\TimedEffect.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\override\FreezeEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\override\OverrideEffect.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -3446,6 +3449,7 @@
     <ClInclude Include="..\..\Source\Effect\effects\time\automation\AutomationEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\time\noise\NoiseEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\time\TimedEffect.h"/>
+    <ClInclude Include="..\..\Source\Effect\effects\override\FreezeEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\override\OverrideEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.h"/>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\layout\ui\LayoutFilterStageView.h"/>

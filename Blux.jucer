@@ -419,6 +419,9 @@
             <FILE id="mTKbxk" name="TimedEffect.h" compile="0" resource="0" file="Source/Effect/effects/time/TimedEffect.h"/>
           </GROUP>
           <GROUP id="{448FBE9F-BB3E-D4C2-BE7E-C573A112D794}" name="override">
+            <FILE id="yGxLzN" name="FreezeEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/override/FreezeEffect.cpp"/>
+            <FILE id="DQvpdX" name="FreezeEffect.h" compile="0" resource="0" file="Source/Effect/effects/override/FreezeEffect.h"/>
             <FILE id="fgKWtR" name="OverrideEffect.cpp" compile="0" resource="0"
                   file="Source/Effect/effects/override/OverrideEffect.cpp"/>
             <FILE id="iMhDCG" name="OverrideEffect.h" compile="0" resource="0"

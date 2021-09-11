@@ -1414,6 +1414,9 @@
     <ClCompile Include="..\..\Source\Effect\effects\time\TimedEffect.cpp">
       <Filter>Blux\Source\Effect\effects\time</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\override\FreezeEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\override</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\override\OverrideEffect.cpp">
       <Filter>Blux\Source\Effect\effects\override</Filter>
     </ClCompile>
@@ -4850,6 +4853,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\time\TimedEffect.h">
       <Filter>Blux\Source\Effect\effects\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\override\FreezeEffect.h">
+      <Filter>Blux\Source\Effect\effects\override</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\override\OverrideEffect.h">
       <Filter>Blux\Source\Effect\effects\override</Filter>

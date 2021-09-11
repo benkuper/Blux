@@ -16,13 +16,19 @@ TimedEffect::TimedEffect(const String &name, var params) :
     speed = addFloatParameter("Speed", "The speed at which play this", 1);
 	timeOffset = addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
 	timeOffset->defaultUI = FloatParameter::TIME;
-
+	resetTime = addTrigger("Reset Time", "When triggered, this will reset this effect's internal time to 0.");
 	offsetByID = addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
 	offsetByValue = addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
 }
 
 TimedEffect::~TimedEffect()
 {
+}
+
+void TimedEffect::onContainerTriggerTriggered(Trigger* t)
+{
+	Effect::onContainerTriggerTriggered(t);
+	if (t == resetTime) curTime = 0;
 }
 
 void TimedEffect::updateEnabled()
