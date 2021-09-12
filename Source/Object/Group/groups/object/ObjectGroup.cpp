@@ -1,3 +1,4 @@
+#include "ObjectGroup.h"
 /*
   ==============================================================================
 
@@ -25,18 +26,23 @@ void ObjectGroup::itemAdded(ObjectTarget* i)
 {
     i->addObjectTargetListener(this);
     if (i->currentObject != nullptr) registerLinkedInspectable(i->currentObject);
+
+    generateRandomIDs();
 }
 
 void ObjectGroup::itemRemoved(ObjectTarget* i)
 {
     i->removeObjectTargetListener(this);
     if(!i->objectRef.wasObjectDeleted()) unregisterLinkedInspectable(i->currentObject);
+    generateRandomIDs();
 }
 
 void ObjectGroup::targetChanged(Object* newTarget, Object* previousTarget)
 {
     if (previousTarget != nullptr) unregisterLinkedInspectable(previousTarget);
     if(newTarget != nullptr) registerLinkedInspectable(newTarget);
+    generateRandomIDs();
+
 }
 
 
@@ -62,6 +68,7 @@ void ObjectGroup::addObject(Object* o)
     if (getTargetForObject(o) != nullptr) return;
     ObjectTarget* ot = objectsCC.addItem();
     ot->target->setValueFromTarget(o);
+    generateRandomIDs();
 }
 
 void ObjectGroup::addObjects(Array<Object*> oList)
@@ -82,6 +89,7 @@ void ObjectGroup::addObjects(Array<Object*> oList)
     }
 
     objectsCC.addItems(targets);
+    generateRandomIDs();
 }
 
 ObjectTarget * ObjectGroup::getTargetForObject(Object* o)
@@ -108,6 +116,14 @@ int ObjectGroup::getLocalIDForObject(Object* o)
         index++;
     }
     return -1;
+}
+
+int ObjectGroup::getRandomIDForObject(Object* o)
+{
+    int index = getLocalIDForObject(o);
+    if (index == -1) return -1;
+
+    return randomIDs[index];
 }
 
 int ObjectGroup::getNumObjects()

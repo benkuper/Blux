@@ -10,7 +10,9 @@
 
 Effect::Effect(const String& name, var params) :
 	BaseItem(name),
-	forceDisabled(false)
+	forceDisabled(false),
+	parentGroup(nullptr),
+	idMode(nullptr)
 {
 	saveAndLoadRecursiveData = true;
 
@@ -46,6 +48,17 @@ bool Effect::isAffectingObject(Object* o)
 	return filterManager->isAffectingObject(o);
 }
 
+void Effect::setParentGroup(Group* g)
+{
+	parentGroup = g;
+	if (parentGroup != nullptr)
+	{
+		idMode = addEnumParameter("ID Mode", "Chooses how to handle re-identification depending on the filtered content. This will override filtered IDs", true);
+		idMode->addOption("Do not change", NO_CHANGE)->addOption("Use local", LOCAL)->addOption("Use local reversed", LOCAL_REVERSE)->addOption("Use local randomized", RANDOMIZED);
+		controllables.move(controllables.indexOf(idMode), controllables.indexOf(sceneSaveMode));
+	}
+}
+
 void Effect::setForceDisabled(bool value)
 {
 	if (forceDisabled == value) return;
@@ -63,6 +76,17 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 	}
 
 	int targetID = (id != -1 && r.id == o->globalID->intValue()) ? id : r.id;
+
+	if (idMode != nullptr)
+	{
+		IDMode m = idMode->getValueDataAsEnum<IDMode>();
+		int localID = parentGroup->getLocalIDForObject(o);
+		if (m == LOCAL) targetID = localID;
+		if (m == LOCAL_REVERSE) targetID = parentGroup->getNumObjects() - 1 - localID;
+		else if (m == RANDOMIZED) targetID = parentGroup->getRandomIDForObject(o);
+	}
+	
+
 	float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
 	if (targetWeight == 0)

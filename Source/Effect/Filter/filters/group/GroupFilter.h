@@ -18,7 +18,6 @@ public:
     ~GroupFilter();
 
     ControllableContainer groups;
-    BoolParameter* invertOrder;
 
     void controllableAdded(Controllable*) override;
 

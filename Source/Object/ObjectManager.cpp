@@ -1,3 +1,4 @@
+#include "ObjectManager.h"
 /*
   ==============================================================================
 
@@ -15,7 +16,6 @@ SubObjectManager::SubObjectManager() :
 {
     managerFactory = &ObjectManager::getInstance()->factory;
     selectItemWhenCreated = false;
-
 }
 
 SubObjectManager::~SubObjectManager()
@@ -36,6 +36,7 @@ ObjectManager::ObjectManager() :
     defaultFlashValue = addFloatParameter("Flash Value", "Flash Value", .5f, 0, 1);
     blackOut = addBoolParameter("Black Out", "Force 0 on all computed values", false);
     filterActiveInScene = addBoolParameter("Show Only active", "Show only active objects in scene", false);
+    lockUI = addBoolParameter("Lock UI", "If checked, all objects will be locked", false);
     startThread();
 
 
@@ -139,6 +140,11 @@ void ObjectManager::objectIDChanged(Object* o, int previousID)
     if (isCurrentlyLoadingData) return;
     Object* to = getObjectWithID(o->globalID->intValue(), o);
     if (to != nullptr) to->globalID->setValue(previousID);
+}
+
+void ObjectManager::onContainerParameterChanged(Parameter* p)
+{
+    if (p == lockUI) for (auto& i : items) i->isUILocked->setValue(lockUI->boolValue());
 }
 
 var ObjectManager::getSceneData()

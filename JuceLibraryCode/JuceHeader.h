@@ -47,7 +47,7 @@ namespace ProjectInfo
 {
     const char* const  projectName    = "Blux";
     const char* const  companyName    = "";
-    const char* const  versionString  = "1.0.0b23";
+    const char* const  versionString  = "1.0.0b24";
     const int          versionNumber  = 0x10000;
 }
 #endif

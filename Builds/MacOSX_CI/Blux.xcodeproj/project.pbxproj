@@ -257,6 +257,7 @@
 		7C6CC1DFB66A2352CDC55666 /* SceneUI.cpp */ /* SceneUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SceneUI.cpp; path = ../../Source/Scene/ui/SceneUI.cpp; sourceTree = SOURCE_ROOT; };
 		7C6F314DE72E46DC15EF6D8E /* GlobalEffectManager.h */ /* GlobalEffectManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GlobalEffectManager.h; path = ../../Source/Effect/GlobalEffectManager.h; sourceTree = SOURCE_ROOT; };
 		7C740152C96EEC2E537A6799 /* include_juce_osc.cpp */ /* include_juce_osc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_osc.cpp; path = ../../JuceLibraryCode/include_juce_osc.cpp; sourceTree = SOURCE_ROOT; };
+		7C9237E6B61B9436D4752156 /* ObjectCustomView.h */ /* ObjectCustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ObjectCustomView.h; path = ../../Source/Object/ui/ObjectCustomView.h; sourceTree = SOURCE_ROOT; };
 		7D041E6AFA40B21B600D5079 /* SerialDevice.cpp */ /* SerialDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SerialDevice.cpp; path = ../../Source/Common/Serial/SerialDevice.cpp; sourceTree = SOURCE_ROOT; };
 		7D155F77991F6EB5B4821121 /* ColorSourceLayer.h */ /* ColorSourceLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceLayer.h; path = ../../Source/Sequence/layers/colorsource/ColorSourceLayer.h; sourceTree = SOURCE_ROOT; };
 		7D639066A2D7374098107802 /* BluxInspector.cpp */ /* BluxInspector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BluxInspector.cpp; path = ../../Source/UI/BluxInspector.cpp; sourceTree = SOURCE_ROOT; };
@@ -360,6 +361,7 @@
 		B95911886BDAFE05FF9B4A6D /* ColorSourceLibraryGridUI.h */ /* ColorSourceLibraryGridUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceLibraryGridUI.h; path = ../../Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.h; sourceTree = SOURCE_ROOT; };
 		B98A2B5D475952244DE0BAED /* InterfaceIncludes.h */ /* InterfaceIncludes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InterfaceIncludes.h; path = ../../Source/Interface/InterfaceIncludes.h; sourceTree = SOURCE_ROOT; };
 		BB1ACA8463C5ABCBD8477B97 /* ColorSourceFactory.cpp */ /* ColorSourceFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorSourceFactory.cpp; path = ../../Source/Color/ColorSource/ColorSourceFactory.cpp; sourceTree = SOURCE_ROOT; };
+		BBD0245748092E82EFD46A13 /* ObjectCustomView.cpp */ /* ObjectCustomView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectCustomView.cpp; path = ../../Source/Object/ui/ObjectCustomView.cpp; sourceTree = SOURCE_ROOT; };
 		BC2B5905A623E67B6D8CA12E /* include_juce_simpleweb2.cpp */ /* include_juce_simpleweb2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_simpleweb2.cpp; path = ../../JuceLibraryCode/include_juce_simpleweb2.cpp; sourceTree = SOURCE_ROOT; };
 		BCB90CBFDA6561F8A804DF0E /* Group.h */ /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Group.h; path = ../../Source/Object/Group/Group.h; sourceTree = SOURCE_ROOT; };
 		BDB4A84898D8670FF05CBC63 /* serial.cc */ /* serial.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = serial.cc; path = ../../Source/Common/Serial/lib/serial/serial.cc; sourceTree = SOURCE_ROOT; };
@@ -1464,6 +1466,8 @@
 			children = (
 				B5818AF33CD789D7E67297E3,
 				5BBC171C1D753E27DBD3E119,
+				BBD0245748092E82EFD46A13,
+				7C9237E6B61B9436D4752156,
 				C57457769AB82620F0822E07,
 				48FA02D91DAA915DA1E3998C,
 				31C24D863378BC9F5222BAFB,
@@ -2042,7 +2046,7 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_MODAL_LOOPS_PERMITTED=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b23",
+					"JUCE_APP_VERSION=1.0.0b24",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2129,7 +2133,7 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_MODAL_LOOPS_PERMITTED=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.0.0b23",
+					"JUCE_APP_VERSION=1.0.0b24",
 					"JUCE_APP_VERSION_HEX=0x10000",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",

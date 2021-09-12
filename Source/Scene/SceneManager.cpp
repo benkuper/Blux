@@ -1,3 +1,4 @@
+#include "SceneManager.h"
 /*
   ==============================================================================
 
@@ -23,6 +24,8 @@ SceneManager::SceneManager() :
     loadPreviousSceneTrigger = addTrigger("Load Previous Scene", "Load the previous scene. If no scene is loaded, this will do nothing.");
 
     autoPreview = addBoolParameter("Auto Preview", "If checked, this will force preview when hovering a scene",  false);
+
+    lockUI = addBoolParameter("Lock UI", "If checked, all UI will be locked", false);
 }
 
 SceneManager::~SceneManager()
@@ -196,6 +199,12 @@ void SceneManager::onContainerTriggerTriggered(Trigger* t)
         loadScene(getPreviousScene());
     }
 }
+
+void SceneManager::onContainerParameterChanged(Parameter* p)
+{
+    if (p == lockUI) for (auto& i : items) i->isUILocked->setValue(lockUI->boolValue());
+}
+
 
 void SceneManager::inspectableDestroyed(Inspectable* i)
 {

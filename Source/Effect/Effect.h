@@ -14,6 +14,7 @@
 class ObjectComponent;
 class Object;
 class FilterManager;
+class Group;
 
 class Effect :
     public BaseItem,
@@ -28,12 +29,18 @@ public:
 
     FloatParameter* weight;
 
+    enum IDMode { NO_CHANGE, LOCAL, LOCAL_REVERSE, RANDOMIZED };
+    EnumParameter* idMode;
+    Group* parentGroup;
+
     enum SceneSaveMode { FULL, WEIGHT_ONLY, NONE };
     EnumParameter * sceneSaveMode;
 
     std::unique_ptr<FilterManager> filterManager;
 
     bool forceDisabled;
+
+    void setParentGroup(Group* g);
 
     void setForceDisabled(bool value);
     virtual void updateEnabled() {}

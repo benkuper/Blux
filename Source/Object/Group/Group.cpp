@@ -8,12 +8,15 @@
   ==============================================================================
 */
 
+
+#include <algorithm>
+
 Group::Group(String name) :
     BaseItem(name)
 {
     saveAndLoadRecursiveData = true;
  
-    effectManager.reset(new EffectManager());
+    effectManager.reset(new EffectManager(this));
     addChildControllableContainer(effectManager.get());
 }
 
@@ -22,12 +25,25 @@ Group::~Group()
 
 }
 
+void Group::generateRandomIDs()
+{
+    randomIDs.resize(getNumObjects());
+    for (int i = 0; i < randomIDs.size(); i++) randomIDs.set(i, i);
+
+    shuffle(randomIDs.begin(), randomIDs.end(), std::default_random_engine(Time::currentTimeMillis()));
+}
+
 bool Group::containsObject(Object* o)
 {
     return false;
 }
 
 int Group::getLocalIDForObject(Object* o)
+{
+    return -1;
+}
+
+int Group::getRandomIDForObject(Object* o)
 {
     return -1;
 }

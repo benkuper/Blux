@@ -37,6 +37,8 @@ public:
     Trigger* loadPreviousSceneTrigger;
     BoolParameter * autoPreview;
 
+    BoolParameter* lockUI;
+
     void addItemInternal(Scene* s, var data) override;
     void removeItemInternal(Scene* s) override;
 
@@ -55,6 +57,7 @@ public:
     void processComponentValues(Object* o, ObjectComponent* c, var& values);
 
     void onContainerTriggerTriggered(Trigger* t) override;
+    void onContainerParameterChanged(Parameter* p) override;
 
     void inspectableDestroyed(Inspectable* i) override;
 

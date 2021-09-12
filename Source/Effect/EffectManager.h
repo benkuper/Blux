@@ -12,6 +12,7 @@
 
 class Object;
 class ObjectComponent;
+class Group;
 
 class EffectFactory :
     public Factory<Effect>
@@ -25,8 +26,10 @@ class EffectManager :
     public BaseManager<Effect>
 {
 public:
-    EffectManager();
+    EffectManager(Group * g = nullptr);
     ~EffectManager();
+
+    Group* parentGroup;
 
     bool forceDisabled;
 

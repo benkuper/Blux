@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b23"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b24"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17"
               defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="JrFmSt" name="Blux">
@@ -654,6 +654,10 @@
                 file="Source/Object/ui/ObjectChainVizUI.cpp"/>
           <FILE id="Mn6IpL" name="ObjectChainVizUI.h" compile="0" resource="0"
                 file="Source/Object/ui/ObjectChainVizUI.h"/>
+          <FILE id="EGWPBu" name="ObjectCustomView.cpp" compile="0" resource="0"
+                file="Source/Object/ui/ObjectCustomView.cpp" skipPCH="0"/>
+          <FILE id="dYCqaR" name="ObjectCustomView.h" compile="0" resource="0"
+                file="Source/Object/ui/ObjectCustomView.h"/>
           <FILE id="j68vpv" name="ObjectGridUI.cpp" compile="0" resource="0"
                 file="Source/Object/ui/ObjectGridUI.cpp"/>
           <FILE id="wSoAW0" name="ObjectGridUI.h" compile="0" resource="0" file="Source/Object/ui/ObjectGridUI.h"/>

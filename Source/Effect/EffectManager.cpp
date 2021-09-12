@@ -10,9 +10,10 @@
 
 juce_ImplementSingleton(EffectFactory);
 
-EffectManager::EffectManager() :
+EffectManager::EffectManager(Group * g) :
     BaseManager("Effects"),
-    forceDisabled(false)
+    forceDisabled(false),
+    parentGroup(g)
 {
     itemDataType = "Effect";
 
@@ -37,6 +38,7 @@ void EffectManager::addItemInternal(Effect* e, var data)
 {
     BaseManager::addItemInternal(e, data);
     e->setForceDisabled(forceDisabled);
+    e->setParentGroup(parentGroup);
 }
 
 void EffectManager::processComponentValues(Object * o, ObjectComponent* c, var& values, float weightMultiplier, int id)

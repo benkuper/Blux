@@ -26,7 +26,9 @@ public:
     Filter(const String &name = "Filter");
     virtual ~Filter();
 
-    BoolParameter* useLocalID;
+
+    enum IDMode { NO_CHANGE, LOCAL, LOCAL_REVERSE, RANDOMIZED };
+    EnumParameter* idMode;
     BoolParameter* excludeFromScenes;
 
     virtual bool isAffectingObject(Object* o);

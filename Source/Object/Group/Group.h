@@ -21,9 +21,14 @@ public:
     virtual ~Group();
 
     std::unique_ptr<EffectManager> effectManager;
+    Array<int> randomIDs;
+
+    virtual void generateRandomIDs();
 
     virtual bool containsObject(Object* o);
     virtual int getLocalIDForObject(Object* o);
+    virtual int getRandomIDForObject(Object* o);
+
     virtual int getNumObjects() { return 0; }
 
     virtual Array<Object*> getObjects() { return Array<Object*>(); }
@@ -33,4 +38,16 @@ public:
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
+    
+
+    class RandomComparator
+    {
+    public:
+        Random r;
+        
+        virtual int compareElements(int a, int b)
+        {
+            return r.nextBool() ? 1 : -1;
+        }
+    };
 };

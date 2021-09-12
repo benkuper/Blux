@@ -39,6 +39,7 @@ public:
     IntParameter* gridThumbSize;
     FloatParameter* defaultFlashValue;
     BoolParameter* filterActiveInScene;
+    BoolParameter* lockUI;
 
     URL downloadURL;
     std::unique_ptr<URL::DownloadTask> downloadTask;
@@ -52,6 +53,8 @@ public:
     Object* getObjectWithID(int id, Object* excludeObject = nullptr);
 
     void objectIDChanged(Object* o, int previousID) override;
+
+    void onContainerParameterChanged(Parameter* p) override;
 
     var getSceneData();
     void updateSceneData(var& sceneData);

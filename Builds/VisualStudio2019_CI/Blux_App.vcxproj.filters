@@ -1561,6 +1561,9 @@
     <ClCompile Include="..\..\Source\Object\ui\ObjectChainVizUI.cpp">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Object\ui\ObjectCustomView.cpp">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Object\ui\ObjectGridUI.cpp">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClCompile>
@@ -4999,6 +5002,9 @@
       <Filter>Blux\Source\Object\Layout</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\ui\ObjectChainVizUI.h">
+      <Filter>Blux\Source\Object\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\ui\ObjectCustomView.h">
       <Filter>Blux\Source\Object\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\ui\ObjectGridUI.h">
