@@ -192,11 +192,11 @@ void SceneManager::onContainerTriggerTriggered(Trigger* t)
 {
     if (t == loadNextSceneTrigger)
     {
-       loadScene(getNextScene());
+        if (Scene* s = getNextScene()) s->loadTrigger->trigger();
     }
     else if (t == loadPreviousSceneTrigger)
     {
-        loadScene(getPreviousScene());
+        if (Scene* s = getPreviousScene()) s->loadTrigger->trigger();
     }
 }
 
