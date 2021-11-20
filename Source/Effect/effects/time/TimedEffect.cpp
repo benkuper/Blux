@@ -25,7 +25,7 @@ TimedEffect::TimedEffect(const String &name, var params) :
 
 TimedEffect::~TimedEffect()
 {
-	if(ObjectManager::getInstanceWithoutCreating()) ObjectManager::getInstance()->removeBaseManagerListener(this);
+	if(ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->removeBaseManagerListener(this);
 }
 
 void TimedEffect::onContainerTriggerTriggered(Trigger* t)
