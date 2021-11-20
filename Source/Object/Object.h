@@ -26,6 +26,7 @@ public:
     Object(var params = var());
     virtual ~Object();
 
+
     String objectType;
     var objectData;
 
@@ -53,6 +54,9 @@ public:
     HashMap<Effect*, float, DefaultHashFunctions, CriticalSection> effectIntensityOutMap;
 
     std::unique_ptr<ObjectManagerCustomParams> customParams;
+
+    virtual void clearItem() override;
+
 
     void rebuildInterfaceParams();
 

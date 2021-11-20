@@ -1,3 +1,4 @@
+#include "Object.h"
 /*
   ==============================================================================
 
@@ -122,6 +123,11 @@ Object::Object(var params) :
 
 Object::~Object()
 {
+}
+
+void Object::clearItem()
+{
+	effectManager->clear();
 }
 
 void Object::rebuildInterfaceParams()

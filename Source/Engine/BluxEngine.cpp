@@ -31,6 +31,7 @@ BluxEngine::BluxEngine() :
 BluxEngine::~BluxEngine()
 {
 	isClearing = true;
+	ObjectManager::getInstance()->clear();
 	ObjectManager::deleteInstance();
 	GroupManager::deleteInstance();
 	SceneManager::deleteInstance();
