@@ -18,7 +18,7 @@ Object::Object(var params) :
 {
 	saveAndLoadRecursiveData = true;
 
-	hideInEditor = true;
+	//hideInEditor = true;
 	editorIsCollapsed = true;
 
 	itemDataType = "Object";

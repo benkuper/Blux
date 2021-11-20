@@ -15,7 +15,7 @@ AutomationEffect::AutomationEffect(var params) :
 	length = effectParams.addFloatParameter("Length", "Length of this automation", 2, .1f);
 	length->defaultUI = FloatParameter::TIME;
 
-	controllables.swap(controllables.indexOf(length), controllables.indexOf(sceneSaveMode)+1); //length first
+	controllables.swap(controllables.indexOf(length), controllables.indexOf(sceneSaveMode) + 1); //length first
 
 	clipTime = effectParams.addBoolParameter("Clip Time", "If checked, this will force negative time with positive speed to clip. Useful for starting animations when loading scenes", false);
 	loop = effectParams.addBoolParameter("Loop", "If checked, this will loop the automation. If not, this will go up until the end and stay there (taking care of time offsets)", true);
@@ -87,8 +87,13 @@ void AutomationEffect::onContainerParameterChangedInternal(Parameter* p)
 		if (!loop->boolValue())
 		{
 			//force put curTime in 0-length range to have good ending behaviour
-			HashMap<Object*, float>::Iterator it(curTimes);
-			while(it.next()) curTimes.set(it.getKey(), fmodf(it.getValue(), length->floatValue()));
+			HashMap<ObjectComponent*, float>::Iterator it(curTimes);
+			while (it.next())
+			{
+				Object* o = it.getKey()->object;
+				int id = o->globalID->intValue();
+				curTimes.set(it.getKey(), fmodf(it.getValue(), GetLinkedValue(length)));
+			}
 		}
 	}
 }

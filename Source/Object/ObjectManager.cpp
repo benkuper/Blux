@@ -1,4 +1,3 @@
-#include "ObjectManager.h"
 /*
   ==============================================================================
 
@@ -111,6 +110,7 @@ void ObjectManager::updateFactoryDefinitions()
 
 void ObjectManager::addItemInternal(Object* o, var data)
 {
+    controllableContainers.move(controllableContainers.indexOf(&customParams), 0);
     o->addObjectListener(this);
     if (!isCurrentlyLoadingData) o->globalID->setValue(getFirstAvailableObjectID(o));
 }

@@ -28,8 +28,8 @@ public:
 	BoolParameter* autoResetOnNonZero;
 
 	double timeAtLastUpdate;
-	HashMap<Object*, float> curTimes;
-	HashMap<Object*, var> prevValues;
+	HashMap<ObjectComponent*, float> curTimes;
+	HashMap<ObjectComponent*, var> prevValues;
 
 
 	virtual void onContainerTriggerTriggered(Trigger* t) override;
@@ -38,7 +38,7 @@ public:
 	var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1) override;
 	virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time) { return value; }
 
-	virtual float getCurrentTime(Object* o, float timeOverride = -1);
+	virtual float getCurrentTime(ObjectComponent * c, float timeOverride = -1);
 	virtual void resetTimes();
 	virtual void resetTime(Object* o);
 

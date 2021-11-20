@@ -1,4 +1,3 @@
-#include "TimedEffect.h"
 /*
   ==============================================================================
 
@@ -26,7 +25,7 @@ TimedEffect::TimedEffect(const String &name, var params) :
 
 TimedEffect::~TimedEffect()
 {
-	if(ObjectManager::getInstanceWithoutCreating()) ObjectManager::getInstance()->addBaseManagerListener(this);
+	if(ObjectManager::getInstanceWithoutCreating()) ObjectManager::getInstance()->removeBaseManagerListener(this);
 }
 
 void TimedEffect::onContainerTriggerTriggered(Trigger* t)
@@ -40,8 +39,7 @@ void TimedEffect::updateEnabled()
 	if (isFullyEnabled())
 	{
 		timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
-		HashMap<Object*, float>::Iterator it(curTimes);
-		while (it.next()) curTimes.set(it.getKey(), 0);
+		resetTimes();
 		startTimer(20);
 	}
 	else
@@ -52,54 +50,61 @@ void TimedEffect::updateEnabled()
 
 var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
 {
-	if (!prevValues.contains(o)) prevValues.set(o, values);
+	if (!prevValues.contains(c)) prevValues.set(c, values.clone());
 
 	if (autoResetOnNonZero->boolValue() && values.size() > 0 && !values[0].isArray())
 	{
-		float pv = prevValues[o][0];
-		if (pv == 0 && (float)values[0] > 0) curTimes.set(o, 0);
+		float pv = prevValues[c][0];
+		if (pv == 0 && (float)values[0] > 0) curTimes.set(c, 0);
 	}
+	prevValues.set(c, values.clone());
+
 
 	for (int i = 0; i < values.size(); i++)
 	{
 		if (values[i].isArray()) continue;
-		float targetTime = getCurrentTime(o, time) - (float)GetLinkedValue(offsetByID) * id - (float)GetLinkedValue(offsetByValue) * i + (float)GetLinkedValue(timeOffset);
+		float targetTime = getCurrentTime(c, time) - (float)GetLinkedValue(offsetByID) * id - (float)GetLinkedValue(offsetByValue) * i + (float)GetLinkedValue(timeOffset);
 		values[i] = getProcessedComponentValueTimeInternal(o, c, values[i], id, targetTime);
 	}
-	prevValues.set(o, values);
 
 	return values;
 }
 
-float TimedEffect::getCurrentTime(Object * o, float timeOverride)
+float TimedEffect::getCurrentTime(ObjectComponent * c, float timeOverride)
 {
-	if (!curTimes.contains(o)) curTimes.set(o, 0);
-	return timeOverride >= 0 ? timeOverride : curTimes[o];
+	if (!curTimes.contains(c)) curTimes.set(c, 0);
+	return timeOverride >= 0 ? timeOverride : curTimes[c];
 }
 
 void TimedEffect::resetTimes()
 {
-	HashMap<Object*, float>::Iterator it(curTimes);
+	HashMap<ObjectComponent*, float>::Iterator it(curTimes);
 	while (it.next()) curTimes.set(it.getKey(), 0);
 }
 
 void TimedEffect::resetTime(Object* o)
 {
-	if (curTimes.contains(o)) curTimes.set(o, 0);
+	for(auto & c: o->componentManager->items) if (curTimes.contains(c)) curTimes.set(c, 0);
 }
 
 void TimedEffect::itemRemoved(Object* o)
 {
-	curTimes.remove(o);
-	prevValues.remove(o);
+	for (auto& c : o->componentManager->items)
+	{
+		curTimes.remove(c);
+		prevValues.remove(c);
+	}
 }
 
 void TimedEffect::itemsRemoved(Array<Object*> oList)
 {
 	for (auto& o : oList)
 	{
-		curTimes.remove(o);
-		prevValues.remove(o);
+		for (auto& c : o->componentManager->items)
+		{
+			curTimes.remove(c);
+			prevValues.remove(c);
+		}
 	}
 }
 
@@ -113,12 +118,12 @@ void TimedEffect::addTime()
 {
     double newTime = Time::getMillisecondCounterHiRes() / 1000.0;
 	
-	HashMap<Object*, float>::Iterator it(curTimes);
+	HashMap<ObjectComponent*, float>::Iterator it(curTimes);
 	while (it.next())
 	{
-		Object* o = it.getKey();
-		//int id = o->globalID->intValue();
-		//curTimes.set(it.getKey(), it.getValue() + (newTime - timeAtLastUpdate) * (float)GetLinkedValue(speed));
+		Object* o = it.getKey()->object;
+		int id = o->globalID->intValue();
+		curTimes.set(it.getKey(), it.getValue() + (newTime - timeAtLastUpdate) * (float)GetLinkedValue(speed));
 	}
     
 	timeAtLastUpdate = newTime;
