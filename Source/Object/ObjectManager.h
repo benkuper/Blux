@@ -10,6 +10,8 @@
 
 #pragma once
 
+class ObjectManagerCustomParams;
+
 class SubObjectManager :
     public BaseManager<Object>
 {
@@ -19,11 +21,14 @@ public:
 
 };
 
+
+
 class ObjectManager :
     public BaseManager<Object>,
     public Object::ObjectListener,
     public Thread,
-    public URL::DownloadTask::Listener
+    public URL::DownloadTask::Listener,
+    public GenericControllableManager::ManagerListener
 {
 public:
     juce_DeclareSingleton(ObjectManager, true);
@@ -43,7 +48,13 @@ public:
 
     URL downloadURL;
     std::unique_ptr<URL::DownloadTask> downloadTask;
-     
+
+    GenericControllableManager customParams;
+
+    virtual void itemAdded(GenericControllableItem*) override;
+    virtual void itemRemoved(GenericControllableItem*) override;
+
+
     void downloadObjects();
     void updateFactoryDefinitions();
     void addItemInternal(Object* o, var data) override;
@@ -65,4 +76,37 @@ public:
     virtual void progress(URL::DownloadTask* task, int64 downloaded, int64 total) override;
     virtual void finished(URL::DownloadTask* task, bool success) override;
 
+    var getJSONData() override;
+    void loadJSONDataManagerInternal(var data) override;
+
+    //Listener
+    class ObjectManagerListener
+    {
+    public:
+        /** Destructor. */
+        virtual ~ObjectManagerListener() {}
+        virtual void customParamsChanged(ObjectManager*) {}
+    };
+
+    ListenerList<ObjectManagerListener> objectManagerListeners;
+    void addObjectManagerListener(ObjectManagerListener* newListener) { objectManagerListeners.add(newListener); }
+    void removeObjectManagerListener(ObjectManagerListener* listener) { objectManagerListeners.remove(listener); }
+
+    ObjectManagerCustomParams* getCustomParams();
+};
+
+class ObjectManagerCustomParams :
+    public ControllableContainer,
+    public ObjectManager::ObjectManagerListener
+{
+public:
+    ObjectManagerCustomParams(ObjectManager* om);
+    ~ObjectManagerCustomParams();
+
+    ObjectManager* om;
+
+    void customParamsChanged(ObjectManager*);
+    void rebuildCustomParams();
+
+    var getParamValues();
 };

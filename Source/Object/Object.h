@@ -16,6 +16,8 @@ class SubObjectManager;
 class EffectManager;
 class Effect;
 
+class ObjectManagerCustomParams;
+
 class Object :
     public BaseItem,
     public ChainVizTarget
@@ -49,6 +51,8 @@ public:
 
     //chainviz
     HashMap<Effect*, float, DefaultHashFunctions, CriticalSection> effectIntensityOutMap;
+
+    std::unique_ptr<ObjectManagerCustomParams> customParams;
 
     void rebuildInterfaceParams();
 

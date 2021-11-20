@@ -13,6 +13,7 @@ ComponentSelectorUI::ComponentSelectorUI(ComponentSelector* s) :
     selector(s),
     model(s)
 {
+
 }
 
 ComponentSelectorUI::~ComponentSelectorUI()

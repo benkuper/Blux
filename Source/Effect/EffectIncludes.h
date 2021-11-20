@@ -14,6 +14,9 @@
 #include "Color/ColorIncludes.h"
 #include "ChainViz/ChainViz.h"
 
+#include "ParameterLink/ParameterLink.h"
+#include "ParameterLink/ui/ParameterLinkEditor.h"
+
 #include "actions/EffectAction.h"
 
 #include "Effect.h"

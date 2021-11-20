@@ -13,6 +13,10 @@
 #include "Scene/SceneIncludes.h"
 #include "Object/ObjectIncludes.h"
 
+
+#include "ParameterLink/ParameterLink.cpp"
+#include "ParameterLink/ui/ParameterLinkEditor.cpp"
+
 #include "actions/EffectAction.cpp"
 #include "Effect.cpp"
 #include "EffectManager.cpp"

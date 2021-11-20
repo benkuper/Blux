@@ -53,7 +53,7 @@ class OSCInterface :
 	public BaseManager<OSCOutput>::ManagerListener
 {
 public:
-	OSCInterface();
+	OSCInterface(const String &name = "OSC", bool canHaveScript = false);
 	~OSCInterface();
 
 	//RECEIVE
@@ -107,7 +107,7 @@ public:
 
 	virtual void run() override;
 
-	String getTypeString() const override { return "OSC"; }
+	String getTypeString() const override { return "Generic OSC"; }
 	static OSCInterface* create(var params) { return new OSCInterface(); };
 
 private:

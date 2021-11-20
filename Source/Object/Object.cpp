@@ -99,6 +99,9 @@ Object::Object(var params) :
 
 	if (IntensityComponent* ic = getComponent<IntensityComponent>()) slideManipParameter = ic->values[0];
 
+	customParams.reset(new ObjectManagerCustomParams(ObjectManager::getInstance()));
+	addChildControllableContainer(customParams.get());
+
 	componentManager->userCanAddItemsManually = params.getProperty("isCustom", false);
 	addChildControllableContainer(componentManager.get());
 

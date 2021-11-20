@@ -8,8 +8,8 @@
   ==============================================================================
 */
 
-OSCInterface::OSCInterface() :
-	Interface(getTypeString()),
+OSCInterface::OSCInterface(const String &name, bool canHaveScripts) :
+	Interface(name, canHaveScripts),
 	Thread("OSCZeroconf"),
 	localPort(nullptr),
 	servus("_osc._udp"),
@@ -42,15 +42,15 @@ OSCInterface::OSCInterface() :
 	}
 
 
-//Script
-scriptObject.setMethod("send", OSCInterface::sendOSCFromScript);
-scriptObject.setMethod("sendTo", OSCInterface::sendOSCToFromScript);
-scriptObject.setMethod("match", OSCInterface::matchOSCAddrFromScript);
-scriptObject.setMethod("register", OSCInterface::registerOSCCallbackFromScript);
+	//Script
+	scriptObject.setMethod("send", OSCInterface::sendOSCFromScript);
+	scriptObject.setMethod("sendTo", OSCInterface::sendOSCToFromScript);
+	scriptObject.setMethod("match", OSCInterface::matchOSCAddrFromScript);
+	scriptObject.setMethod("register", OSCInterface::registerOSCCallbackFromScript);
 
-//scriptManager->scriptTemplate += ChataigneAssetManager::getInstance()->getScriptTemplate("osc");
+	//scriptManager->scriptTemplate += ChataigneAssetManager::getInstance()->getScriptTemplate("osc");
 
-genericSender.connect("0.0.0.0", 1);
+	genericSender.connect("0.0.0.0", 1);
 }
 
 OSCInterface::~OSCInterface()
@@ -299,6 +299,7 @@ void OSCInterface::sendValuesForObject(Object* o)
 {
 	if (!enabled->boolValue()) return;
 
+	/*
 	for (auto& c : o->componentManager->items)
 	{
 		if (!c->enabled->boolValue()) continue;
@@ -309,6 +310,7 @@ void OSCInterface::sendValuesForObject(Object* o)
 			sendOSC(m);
 		}
 	}
+	*/
 }
 
 void OSCInterface::setupZeroConf()

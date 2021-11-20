@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "JuceHeader.h"
 class Object;
 class ObjectComponent;
 class InterfaceUI;
@@ -19,7 +18,7 @@ class Interface :
     public BaseItem
 {
 public:
-    Interface(String name = "Interface");
+    Interface(String name = "Interface", bool canHaveScript = false);
     virtual ~Interface();
 
     BoolParameter* logIncomingData;

@@ -11,21 +11,10 @@
 
 juce_ImplementSingleton(ObjectManager);
 
-SubObjectManager::SubObjectManager() :
-    BaseManager("Sub-Objects")
-{
-    managerFactory = &ObjectManager::getInstance()->factory;
-    selectItemWhenCreated = false;
-}
-
-SubObjectManager::~SubObjectManager()
-{
-}
-
-
 ObjectManager::ObjectManager() :
     BaseManager("Objects"),
-    Thread("ObjectManager")
+    Thread("ObjectManager"),
+    customParams("Custom Parameters")
 {
     itemDataType = "Object";
     selectItemWhenCreated = true;
@@ -37,8 +26,9 @@ ObjectManager::ObjectManager() :
     blackOut = addBoolParameter("Black Out", "Force 0 on all computed values", false);
     filterActiveInScene = addBoolParameter("Show Only active", "Show only active objects in scene", false);
     lockUI = addBoolParameter("Lock UI", "If checked, all objects will be locked", false);
-    startThread();
 
+
+    addChildControllableContainer(&customParams);
 
     File f = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName) + "/objects");
     if (!f.isDirectory())
@@ -50,6 +40,7 @@ ObjectManager::ObjectManager() :
         updateFactoryDefinitions();
     }
 
+    startThread();
 }
 
 ObjectManager::~ObjectManager()
@@ -57,6 +48,16 @@ ObjectManager::~ObjectManager()
     stopThread(1000);
 }
 
+
+void ObjectManager::itemAdded(GenericControllableItem*)
+{
+    objectManagerListeners.call(&ObjectManagerListener::customParamsChanged, this);
+}
+
+void ObjectManager::itemRemoved(GenericControllableItem*)
+{
+    objectManagerListeners.call(&ObjectManagerListener::customParamsChanged, this);
+}
 
 void ObjectManager::downloadObjects()
 {
@@ -205,4 +206,102 @@ void ObjectManager::finished(URL::DownloadTask* task, bool success)
     f.deleteFile();
 
     updateFactoryDefinitions();
+}
+
+var ObjectManager::getJSONData()
+{
+    var data = BaseManager::getJSONData();
+    data.getDynamicObject()->setProperty(customParams.shortName, customParams.getJSONData());
+    return data;
+}
+
+void ObjectManager::loadJSONDataManagerInternal(var data)
+{
+    customParams.loadJSONData(data.getProperty(customParams.shortName, var()));
+    BaseManager::loadJSONDataManagerInternal(data);
+}
+
+ObjectManagerCustomParams* ObjectManager::getCustomParams() 
+{
+    return new ObjectManagerCustomParams(this); 
+}
+
+
+
+ObjectManagerCustomParams::ObjectManagerCustomParams(ObjectManager* om) :
+    ControllableContainer("Custom Parameters"),
+    om(om)
+{
+    if (om != nullptr) om->addObjectManagerListener(this);
+    rebuildCustomParams();
+}
+
+
+ObjectManagerCustomParams::~ObjectManagerCustomParams()
+{
+    if (om != nullptr) om->removeObjectManagerListener(this);
+    om = nullptr;
+}
+
+
+void ObjectManagerCustomParams::customParamsChanged(ObjectManager*)
+{
+    rebuildCustomParams();
+}
+
+void ObjectManagerCustomParams::rebuildCustomParams()
+{
+    if (om == nullptr) return;
+
+    var oldData = getJSONData();
+    clear();
+
+    for (auto& gci : om->customParams.items)
+    {
+        if (gci->controllable->type == Controllable::TRIGGER) continue;
+
+        if (Parameter* p = ControllableFactory::createParameterFrom((Parameter*)gci->controllable, true, true))
+        {
+            p->canBeDisabledByUser = true;
+            p->setEnabled(false);
+            addParameter(p);
+        }
+    }
+
+    loadJSONData(oldData);
+}
+
+var ObjectManagerCustomParams::getParamValues()
+{
+    Array<WeakReference<Parameter>> params = getAllParameters();
+
+    var values(new DynamicObject());
+    for (auto& p : params)
+    {
+        Parameter* targetP = p;
+        if (!p->enabled)
+        {
+            if (GenericControllableItem* gci = om->customParams.getItemWithName(p->shortName)) targetP = (Parameter*)gci->controllable;
+            else targetP = nullptr;
+        }
+
+        if (targetP != nullptr) values.getDynamicObject()->setProperty(targetP->shortName, targetP->getValue());
+
+    }
+    return values;
+}
+
+
+// SUB OBJECT
+
+
+SubObjectManager::SubObjectManager() :
+    BaseManager("Sub-Objects")
+{
+    managerFactory = &ObjectManager::getInstance()->factory;
+    selectItemWhenCreated = false;
+}
+
+SubObjectManager::~SubObjectManager()
+{
 }

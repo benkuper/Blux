@@ -12,8 +12,8 @@
 #include "Object/ObjectIncludes.h"
 #include "ui/InterfaceUI.h"
 
-Interface::Interface(String name) :
-    BaseItem(name)
+Interface::Interface(String name, bool canHaveScripts) :
+    BaseItem(name, true, canHaveScripts)
 {
     saveAndLoadRecursiveData = true;
 

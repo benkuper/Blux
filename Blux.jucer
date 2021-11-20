@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.0.0b25"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b1"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17"
               defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="JrFmSt" name="Blux">
@@ -129,6 +129,29 @@
         <FILE id="mUVkYL" name="AudioManager.h" compile="0" resource="0" file="Source/Audio/AudioManager.h"/>
       </GROUP>
       <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
+        <GROUP id="{05500E00-80BA-44DB-7514-B243152CCA51}" name="Action"/>
+        <GROUP id="{69BD92BE-F884-CD6A-6DB8-EC7D6F3C3A8B}" name="CommonClasses"/>
+        <GROUP id="{CB7736EE-7CF1-AD73-F71F-1032A1C3DF5E}" name="ComponentSelector">
+          <GROUP id="{8D4DD3D9-7D2A-54BD-3713-AEFCCC9214DA}" name="ui"/>
+        </GROUP>
+        <GROUP id="{B4A324D8-3C08-E9B7-8113-FC00F938E821}" name="DMX">
+          <GROUP id="{31B9AC64-2831-1EAD-23C5-8432507CAF84}" name="device"/>
+        </GROUP>
+        <GROUP id="{9F5D7BCF-EF3D-A1E3-DAE7-3A255D1B4EC3}" name="Helpers"/>
+        <GROUP id="{CB23807F-D6C4-9CFD-0547-7928E54D1971}" name="MIDI">
+          <GROUP id="{274153F9-27CB-BAA7-458B-E6CA99F57643}" name="ui"/>
+        </GROUP>
+        <GROUP id="{2C130DF3-ADBD-D4C2-FC63-3382C46C2571}" name="Serial">
+          <GROUP id="{4DCB3AE6-5395-9CA6-1737-92A4D32F5DFF}" name="lib">
+            <GROUP id="{1A52FD60-CADA-52B4-AB99-A32B5541612A}" name="cobs"/>
+            <GROUP id="{8AA876E5-4DAF-33C7-BAB5-D9122E4076D5}" name="serial">
+              <GROUP id="{1FFAE65F-BCE5-F995-EB5A-FEFDF4A0F1E3}" name="impl">
+                <GROUP id="{A637EEA6-BB93-2F9C-8F40-E6A78FFA9A52}" name="list_ports"/>
+              </GROUP>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{A8544BF3-BD62-3CD0-BDA6-37FC73587887}" name="Zeroconf"/>
         <GROUP id="{8BB77C1B-0790-32BE-4C69-AD47EF6F4DDE}" name="CommonClasses">
           <FILE id="wIf8wb" name="ComponentType.h" compile="0" resource="0" file="Source/Common/CommonClasses/ComponentType.h"/>
           <FILE id="s0crs4" name="SceneListener.h" compile="0" resource="0" file="Source/Common/CommonClasses/SceneListener.h"/>
@@ -294,6 +317,12 @@
                   file="Source/Interface/interfaces/serial/SerialInterface.h"/>
           </GROUP>
           <GROUP id="{7E98C9EB-5E94-A855-7F6B-1651BB613019}" name="osc">
+            <GROUP id="{2FCD732A-3A8E-B207-D2CA-FC1F8FD199BD}" name="custom">
+              <FILE id="o76OfV" name="CustomOSCInterface.cpp" compile="0" resource="0"
+                    file="Source/Interface/interfaces/osc/custom/CustomOSCInterface.cpp"/>
+              <FILE id="PruzY8" name="CustomOSCInterface.h" compile="0" resource="0"
+                    file="Source/Interface/interfaces/osc/custom/CustomOSCInterface.h"/>
+            </GROUP>
             <GROUP id="{65E176ED-1CED-189A-136E-C8E96FE76FF9}" name="ui">
               <FILE id="KtpBeF" name="OSCInputEditor.cpp" compile="0" resource="0"
                     file="Source/Interface/interfaces/osc/ui/OSCInputEditor.cpp"/>
@@ -354,6 +383,17 @@
         <FILE id="k1c4Hy" name="SceneManager.h" compile="0" resource="0" file="Source/Scene/SceneManager.h"/>
       </GROUP>
       <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Effect">
+        <GROUP id="{900CDD55-6B31-5F4B-20AB-73C3F1B6A805}" name="ParameterLink">
+          <GROUP id="{FFE7C950-D0C2-5AB6-1813-C642251B176D}" name="ui">
+            <FILE id="aGgkrg" name="LinkableParameterEditor.cpp" compile="1" resource="0"
+                  file="Source/Effect/ParameterLink/ui/LinkableParameterEditor.cpp"/>
+            <FILE id="affElw" name="LinkableParameterEditor.h" compile="0" resource="0"
+                  file="Source/Effect/ParameterLink/ui/LinkableParameterEditor.h"/>
+          </GROUP>
+          <FILE id="TUmpl8" name="ParameterLink.cpp" compile="1" resource="0"
+                file="Source/Effect/ParameterLink/ParameterLink.cpp"/>
+          <FILE id="dpQz44" name="ParameterLink.h" compile="0" resource="0" file="Source/Effect/ParameterLink/ParameterLink.h"/>
+        </GROUP>
         <FILE id="POyYwr" name="EffectIncludes.cpp" compile="1" resource="0"
               file="Source/Effect/EffectIncludes.cpp"/>
         <FILE id="ykV3hZ" name="EffectIncludes.h" compile="0" resource="0"
@@ -364,6 +404,11 @@
           <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
         </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{DE260787-4523-BE90-2008-E5E304C7BFD1}" name="script">
+            <FILE id="RmiaL8" name="ScriptEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/script/ScriptEffect.cpp"/>
+            <FILE id="bIwpn1" name="ScriptEffect.h" compile="0" resource="0" file="Source/Effect/effects/script/ScriptEffect.h"/>
+          </GROUP>
           <GROUP id="{E332C34C-4F0C-6975-C7F9-116E4CFDB6D9}" name="color">
             <GROUP id="{AAE59A9F-9C00-105F-6EC1-EF62E12E8F13}" name="override">
               <GROUP id="{6C006B20-200B-04F5-AA94-7EFB9B407EB6}" name="ui">

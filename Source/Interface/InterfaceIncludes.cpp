@@ -25,6 +25,7 @@
 #include "interfaces/midi/ui/MIDIMappingEditor.cpp"
 
 #include "interfaces/osc/OSCInterface.cpp"
+#include "interfaces/osc/custom/CustomOSCInterface.cpp"
 #include "interfaces/osc/ui/OSCInputEditor.cpp"
 #include "interfaces/osc/ui/OSCOutputEditor.cpp"
 #include "interfaces/serial/SerialInterface.cpp"

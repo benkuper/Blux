@@ -16,19 +16,16 @@
 #include "Interface.h"
 #include "ui/InterfaceUI.h"
 
-#include "InterfaceManager.h"
-#include "ui/InterfaceManagerUI.h"
-
 #include "interfaces/osc/OSCInterface.h"
 #include "interfaces/osc/ui/OSCInputEditor.h"
 #include "interfaces/osc/ui/OSCOutputEditor.h"
+#include "interfaces/osc/custom/CustomOSCInterface.h"
 
 #include "interfaces/bento/BentoInterface.h"
 
 #include "interfaces/serial/SerialInterface.h"
 
 #include "interfaces/dmx/DMXInterface.h"
-#include "interfaces/dmx/ui/DMXChannelView.h"
 #include "interfaces/dmx/ui/DMXInterfaceUI.h"
 
 #include "interfaces/midi/MIDIMapping.h"
@@ -36,3 +33,8 @@
 #include "interfaces/midi/ui/MIDIMappingEditor.h"
 #include "interfaces/midi/MIDIInterface.h"
 
+
+#include "InterfaceManager.h"
+#include "ui/InterfaceManagerUI.h"
+
+#include "interfaces/dmx/ui/DMXChannelView.h"
