@@ -12,7 +12,7 @@ GradientRemapEffect::GradientRemapEffect(var params) :
 	ColorEffect(getTypeString(), params),
 	gradient(1)
 {
-	sourceChannel = addEnumParameter("Source Channel", "The channel to use as position for the gradient remap");
+	sourceChannel = effectParams.addEnumParameter("Source Channel", "The channel to use as position for the gradient remap");
 	for (int i = 0; i < CHANNEL_MAX; i++) sourceChannel->addOption(channelNames[i], (SourceChannel)i);
 
 	gradient.allowKeysOutside = false;
@@ -29,7 +29,7 @@ GradientRemapEffect::~GradientRemapEffect()
 
 void GradientRemapEffect::processedEffectColorsInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
 {
-	SourceChannel ch = sourceChannel->getValueDataAsEnum<SourceChannel>();
+	SourceChannel ch = (SourceChannel)(int)GetLinkedValue(sourceChannel);
 
 	int numColors = colors.size();
 	for (int i = 0; i < numColors; i++)

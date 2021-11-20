@@ -52,5 +52,5 @@ public:
 
     virtual void fillOutValueMap(HashMap<int, float> &channelValueMap, int startChannel);
 
-    InspectableEditor* getEditor(bool isRoot) override;
+    InspectableEditor* getEditorInternal(bool isRoot) override;
 };

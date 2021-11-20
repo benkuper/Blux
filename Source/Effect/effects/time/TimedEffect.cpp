@@ -1,3 +1,4 @@
+#include "TimedEffect.h"
 /*
   ==============================================================================
 
@@ -10,25 +11,28 @@
 
 TimedEffect::TimedEffect(const String &name, var params) :
     Effect(name, params),
-    timeAtLastUpdate(Time::getMillisecondCounterHiRes() / 1000.0),
-    curTime(0)
+    timeAtLastUpdate(Time::getMillisecondCounterHiRes() / 1000.0)
 {
-    speed = addFloatParameter("Speed", "The speed at which play this", 1);
-	timeOffset = addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
+    speed = effectParams.addFloatParameter("Speed", "The speed at which play this", 1);
+	timeOffset = effectParams.addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
 	timeOffset->defaultUI = FloatParameter::TIME;
-	resetTime = addTrigger("Reset Time", "When triggered, this will reset this effect's internal time to 0.");
-	offsetByID = addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
-	offsetByValue = addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
+	resetTimeTrigger = effectParams.addTrigger("Reset Time", "When triggered, this will reset this effect's internal time to 0.");
+	autoResetOnNonZero = effectParams.addBoolParameter("Auto Reset on NonZero", "", false);
+	offsetByID = effectParams.addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
+	offsetByValue = effectParams.addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
+
+	ObjectManager::getInstance()->addBaseManagerListener(this);
 }
 
 TimedEffect::~TimedEffect()
 {
+	if(ObjectManager::getInstanceWithoutCreating()) ObjectManager::getInstance()->addBaseManagerListener(this);
 }
 
 void TimedEffect::onContainerTriggerTriggered(Trigger* t)
 {
 	Effect::onContainerTriggerTriggered(t);
-	if (t == resetTime) curTime = 0;
+	if (t == resetTimeTrigger) resetTimes();
 }
 
 void TimedEffect::updateEnabled()
@@ -36,7 +40,8 @@ void TimedEffect::updateEnabled()
 	if (isFullyEnabled())
 	{
 		timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
-		curTime = 0;
+		HashMap<Object*, float>::Iterator it(curTimes);
+		while (it.next()) curTimes.set(it.getKey(), 0);
 		startTimer(20);
 	}
 	else
@@ -47,19 +52,55 @@ void TimedEffect::updateEnabled()
 
 var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
 {
+	if (!prevValues.contains(o)) prevValues.set(o, values);
+
+	if (autoResetOnNonZero->boolValue() && values.size() > 0 && !values[0].isArray())
+	{
+		float pv = prevValues[o][0];
+		if (pv == 0 && (float)values[0] > 0) curTimes.set(o, 0);
+	}
+
 	for (int i = 0; i < values.size(); i++)
 	{
 		if (values[i].isArray()) continue;
-		float targetTime =  getCurrentTime(time) - offsetByID->floatValue() * id - offsetByValue->floatValue() * i + timeOffset->floatValue();
+		float targetTime = getCurrentTime(o, time) - (float)GetLinkedValue(offsetByID) * id - (float)GetLinkedValue(offsetByValue) * i + (float)GetLinkedValue(timeOffset);
 		values[i] = getProcessedComponentValueTimeInternal(o, c, values[i], id, targetTime);
 	}
+	prevValues.set(o, values);
 
 	return values;
 }
 
-float TimedEffect::getCurrentTime(float timeOverride)
+float TimedEffect::getCurrentTime(Object * o, float timeOverride)
 {
-	return timeOverride >= 0 ? timeOverride : curTime;
+	if (!curTimes.contains(o)) curTimes.set(o, 0);
+	return timeOverride >= 0 ? timeOverride : curTimes[o];
+}
+
+void TimedEffect::resetTimes()
+{
+	HashMap<Object*, float>::Iterator it(curTimes);
+	while (it.next()) curTimes.set(it.getKey(), 0);
+}
+
+void TimedEffect::resetTime(Object* o)
+{
+	if (curTimes.contains(o)) curTimes.set(o, 0);
+}
+
+void TimedEffect::itemRemoved(Object* o)
+{
+	curTimes.remove(o);
+	prevValues.remove(o);
+}
+
+void TimedEffect::itemsRemoved(Array<Object*> oList)
+{
+	for (auto& o : oList)
+	{
+		curTimes.remove(o);
+		prevValues.remove(o);
+	}
 }
 
 void TimedEffect::hiResTimerCallback()
@@ -71,7 +112,15 @@ void TimedEffect::hiResTimerCallback()
 void TimedEffect::addTime()
 {
     double newTime = Time::getMillisecondCounterHiRes() / 1000.0;
-    curTime += (newTime - timeAtLastUpdate) * speed->floatValue();
-    timeAtLastUpdate = newTime;
+	
+	HashMap<Object*, float>::Iterator it(curTimes);
+	while (it.next())
+	{
+		Object* o = it.getKey();
+		//int id = o->globalID->intValue();
+		//curTimes.set(it.getKey(), it.getValue() + (newTime - timeAtLastUpdate) * (float)GetLinkedValue(speed));
+	}
+    
+	timeAtLastUpdate = newTime;
 
 }

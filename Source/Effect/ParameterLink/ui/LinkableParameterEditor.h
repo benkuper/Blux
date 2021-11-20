@@ -9,7 +9,6 @@
 */
 
 #pragma once
-#include "../ParameterLink.h"
 
 class LinkableParameterEditor :
     public InspectableEditor,
@@ -17,13 +16,10 @@ class LinkableParameterEditor :
     public ParameterLink::AsyncListener
 {
 public:
-    LinkableParameterEditor(ParameterLink* pLink, bool showMappingOptions);
+    LinkableParameterEditor(ParameterLink* pLink);
     ~LinkableParameterEditor();
 
     static Image linkImage;
-
-    bool showMappingOptions;
-
 
     ParameterLink* link;
     std::unique_ptr<ParameterEditor> paramEditor;
@@ -51,7 +47,6 @@ public:
 
     ParamLinkContainer* paramLinkContainer;
     bool showLinkEditor;
-    bool showMappingOptions;
 
     virtual InspectableEditor* getEditorUIForControllable(Controllable* c) override;
 };

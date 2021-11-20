@@ -51,5 +51,5 @@ public:
     const static String getTypeStringStatic() { return "Override (Color)"; }
     static ColorSourceOverrideEffect* create(var params) { return new ColorSourceOverrideEffect(params); }
 
-    InspectableEditor* getEditor(bool isRoot) override;
+    InspectableEditor* getEditorInternal(bool isRoot) override;
 };

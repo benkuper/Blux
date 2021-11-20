@@ -62,7 +62,7 @@ void EffectManager::resetEffectsTimes()
 {
     for (auto& e : items)
     {
-        if (TimedEffect * te = dynamic_cast<TimedEffect*>(e)) te->curTime = 0;
+        if (TimedEffect* te = dynamic_cast<TimedEffect*>(e)) te->resetTimes();
     }
 }
 

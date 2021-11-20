@@ -11,9 +11,9 @@
 HSVAdjustEffect::HSVAdjustEffect(var params) :
     ColorEffect(params)
 {
-    hue = addFloatParameter("Hue Shift", "Shifts the hue, 1 is full rainbow rotation", 0);
-    saturation = addFloatParameter("Saturation", "Shifts the hue, 1 is full rainbow rotation", 0, -1, 1);
-    brightness = addFloatParameter("Brightness", "Shifts the hue, 1 is full rainbow rotation", 0, -1, 1);
+    hue = effectParams.addFloatParameter("Hue Shift", "Shifts the hue, 1 is full rainbow rotation", 0);
+    saturation = effectParams.addFloatParameter("Saturation", "Shifts the hue, 1 is full rainbow rotation", 0, -1, 1);
+    brightness = effectParams.addFloatParameter("Brightness", "Shifts the hue, 1 is full rainbow rotation", 0, -1, 1);
 }
 
 HSVAdjustEffect::~HSVAdjustEffect()
@@ -25,7 +25,7 @@ void HSVAdjustEffect::processedEffectColorsInternal(Array<Colour, CriticalSectio
     int numColors = colors.size();
     for (int i=0;i<numColors;i++)
     {
-        colors.set(i, colors[i].withRotatedHue(hue->floatValue())
+        colors.set(i, colors[i].withRotatedHue(GetLinkedValue(hue))
             .withSaturation(jlimit<float>(0, 1, colors[i].getSaturation() + saturation->floatValue()))
             .withBrightness(jlimit<float>(0, 1, colors[i].getBrightness() + brightness->floatValue()))
         );

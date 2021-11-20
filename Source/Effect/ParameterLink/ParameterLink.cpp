@@ -8,19 +8,11 @@
   ==============================================================================
 */
 
-#include "ParameterLink.h"
-#include "ui/LinkableParameterEditor.h"
-#include "Common/Processor/ProcessorIncludes.h"
-
-ParameterLink::ParameterLink(WeakReference<Parameter> p, Multiplex* multiplex) :
-	MultiplexTarget(multiplex),
-	isLinkable(true),
-	canLinkToMapping(true),
+ParameterLink::ParameterLink(WeakReference<Parameter> p) :
 	linkType(NONE),
 	parameter(p),
-	mappingValueIndex(0),
-	list(nullptr),
-	replacementHasMappingInputToken(false),
+	isLinkable(true),
+	//replacementHasMappingInputToken(false),
 	paramLinkNotifier(5)
 {
 
@@ -28,24 +20,10 @@ ParameterLink::ParameterLink(WeakReference<Parameter> p, Multiplex* multiplex) :
 
 ParameterLink::~ParameterLink()
 {
-	if (list != nullptr && !listRef.wasObjectDeleted())
-	{
-		list->removeListListener(this);
-	}
-}
-
-void ParameterLink::multiplexCountChanged()
-{
-	mappingValues.resize(getMultiplexCount());
-	mappingValues.fill(parameter->getValue().clone());
-
-	notifyLinkUpdated();
-}
-
-void ParameterLink::multiplexPreviewIndexChanged()
-{
-	paramLinkNotifier.addMessage(new ParameterLinkEvent(ParameterLinkEvent::PREVIEW_UPDATED, this)); //only UI
-
+	//if (list != nullptr && !listRef.wasObjectDeleted())
+	//{
+	//	list->removeListListener(this);
+	//}
 }
 
 void ParameterLink::setLinkType(LinkType type)
@@ -53,87 +31,36 @@ void ParameterLink::setLinkType(LinkType type)
 	if (type == linkType) return;
 	linkType = type;
 
-	if (linkType != MULTIPLEX_LIST && linkType != CV_PRESET_PARAM)
-	{
-		if (list != nullptr && !listRef.wasObjectDeleted())
-		{
-			list->removeListListener(this);
-			list = nullptr;
-			listRef = nullptr;
-		}
-	}
-
-	if (linkType != CV_PRESET_PARAM) presetParamName = "";
-
-
 	parameter->setControllableFeedbackOnly(linkType != NONE);
 
 	notifyLinkUpdated();
 }
 
-var ParameterLink::getLinkedValue(int multiplexIndex)
+void ParameterLink::setLinkedCustomParam(Parameter* p)
 {
-	if (!isLinkable) return parameter->getValue();
+	if (linkType == CUSTOM_PARAM && linkedCustomParam == p) return;
+	linkedCustomParam = p;
+	setLinkType(CUSTOM_PARAM);
+}
 
+var ParameterLink::getLinkedValue(Object* o, int id)
+{
 	switch (linkType)
 	{
-	case NONE:
-		if (parameter->type == parameter->STRING) return getReplacementString(multiplexIndex);
-		return parameter->getValue();
-		break;
-
-	case INDEX: return multiplexIndex + 1;
-	case INDEX_ZERO: return multiplexIndex;
-		break;
-
-	case MAPPING_INPUT:
+	case NONE: return parameter->getValue();
+	case OBJECT_ID: return id;
+	case CUSTOM_PARAM:
 	{
-		var val;
-		if (parameter->isComplex())
-		{
-			for (int i = 0; i < parameter->value.size(); i++)
-			{
-				if (mappingValueIndex + i < mappingValues[multiplexIndex].size()) val.append(mappingValues[multiplexIndex][mappingValueIndex + i]);
-				else val.append(0); //default
-			}
-		}
-		else
-		{
-			if (mappingValueIndex < mappingValues[multiplexIndex].size()) val = mappingValues[multiplexIndex][mappingValueIndex];
-		}
-
-		return parameter->getCroppedValue(val);
+		if (linkedCustomParam == nullptr || linkedCustomParam.wasObjectDeleted()) return parameter->getValue();
+		return o->customParams->getParamValueFor(linkedCustomParam);
 	}
 	break;
-
-	case MULTIPLEX_LIST:
-		if (!listRef.wasObjectDeleted() && list != nullptr)
-		{
-			if (Parameter* p = dynamic_cast<Parameter*>(list->getTargetControllableAt(multiplexIndex)))
-			{
-				return parameter->getCroppedValue(p->getValue());
-			}
-		}
-		break;
-
-	case CV_PRESET_PARAM:
-		if (!listRef.wasObjectDeleted() && list != nullptr)
-		{
-			if (CVPresetMultiplexList* pList = dynamic_cast<CVPresetMultiplexList*>(list))
-			{
-				if (Parameter* p = pList->getPresetParameterAt(multiplexIndex, presetParamName))
-				{
-					return parameter->getCroppedValue(p->getValue());
-				}
-			}
-		}
-		break;
 	}
 
 	return parameter->getValue();
 }
 
-WeakReference<Controllable> ParameterLink::getLinkedTarget(int multiplexIndex)
+WeakReference<Controllable> ParameterLink::getLinkedTarget(Object* o)
 {
 	if (!isLinkable)
 	{
@@ -141,16 +68,16 @@ WeakReference<Controllable> ParameterLink::getLinkedTarget(int multiplexIndex)
 		return nullptr;
 	};
 
-	if (linkType == MULTIPLEX_LIST && list != nullptr)
+	if (linkType == CUSTOM_PARAM)
 	{
-		if (TargetParameter* p = dynamic_cast<TargetParameter*>(list->list[multiplexIndex])) return p->target;
+		if (TargetParameter* p = dynamic_cast<TargetParameter*>(o->customParams->getActiveParamFor(linkedCustomParam))) return p->target;
 	}
 
 	if (parameter->type == Parameter::TARGET) return ((TargetParameter*)parameter.get())->target;
 	return nullptr;
 }
 
-WeakReference<ControllableContainer> ParameterLink::getLinkedTargetContainer(int multiplexIndex)
+WeakReference<ControllableContainer> ParameterLink::getLinkedTargetContainer(Object *o)
 {
 	if (!isLinkable)
 	{
@@ -158,187 +85,83 @@ WeakReference<ControllableContainer> ParameterLink::getLinkedTargetContainer(int
 		return nullptr;
 	};
 
-	if (linkType == MULTIPLEX_LIST && list != nullptr && !listRef.wasObjectDeleted())
+	if (linkType == CUSTOM_PARAM)
 	{
-		if (TargetParameter* p = dynamic_cast<TargetParameter*>(list->list[multiplexIndex])) return p->targetContainer;
+		if (TargetParameter* p = dynamic_cast<TargetParameter*>(o->customParams->getActiveParamFor(linkedCustomParam))) return p->targetContainer;
 	}
 
 	if (parameter->type == Parameter::TARGET) return ((TargetParameter*)parameter.get())->targetContainer;
 	return nullptr;
 }
 
-void ParameterLink::setLinkedList(BaseMultiplexList* _list)
-{
-	if (list == _list) return;
-
-	if (list != nullptr)
-	{
-		list->removeListListener(this);
-	}
-
-	list = _list;
-	listRef = nullptr;
-
-	if (list != nullptr)
-	{
-		bool shouldNotify = linkType == MULTIPLEX_LIST; //if already, notify will not be trigger by setLinkType()
-		setLinkType(MULTIPLEX_LIST);
-		list = _list;
-		listRef = _list;;
-		list->addListListener(this);
-
-		if (shouldNotify) notifyLinkUpdated();
-	}
-	else
-	{
-		setLinkType(NONE);
-	}
-}
-
-void ParameterLink::setLinkedPresetParam(CVPresetMultiplexList* _list, const String& paramName)
-{
-	if (list == _list && presetParamName == paramName) return;
-
-	if (list != nullptr)
-	{
-		list->removeListListener(this);
-	}
-
-	list = _list;
-	listRef = nullptr;
-
-	if (list != nullptr)
-	{
-		setLinkType(CV_PRESET_PARAM);
-		list = _list;
-		listRef = _list;
-		presetParamName = paramName;
-		list->addListListener(this);
-	}
-	else
-	{
-		setLinkType(NONE);
-	}
-}
-
-void ParameterLink::updateMappingInputValue(var value, int multiplexIndex)
-{
-	if (linkType != MAPPING_INPUT && !replacementHasMappingInputToken) return;
-
-	var linkedInputValue = getInputMappingValue(value);
-	mappingValues.set(multiplexIndex, value);
-
-	if (parameter == nullptr || parameter.wasObjectDeleted()) return;
-
-	if (linkType == MAPPING_INPUT && !isMultiplexed()) parameter->setValue(linkedInputValue);
-
-	paramLinkNotifier.addMessage(new ParameterLinkEvent(ParameterLinkEvent::INPUT_VALUE_UPDATED, this)); //only for preview
-}
-
-void ParameterLink::listItemUpdated(int multiplexIndex)
-{
-	paramLinkNotifier.addMessage(new ParameterLinkEvent(ParameterLinkEvent::LIST_ITEM_UPDATED, this)); //only for preview
-}
-
-String ParameterLink::getReplacementString(int multiplexIndex)
-{
-	replacementHasMappingInputToken = false;
-	if (parameter->type != parameter->STRING) return parameter->stringValue();
-
-	std::string s = parameter->stringValue().toStdString();
-	std::regex source_regex("\\{(\\w+:\\w+|index0?)\\}");
-
-	auto source_begin = std::sregex_iterator(s.begin(), s.end(), source_regex);
-	auto source_end = std::sregex_iterator();
-
-	if (std::distance(source_begin, source_end) == 0) return parameter->stringValue();
-
-	int lastPos = 0;
-	String result = "";
-
-	for (std::sregex_iterator i = source_begin; i != source_end; ++i)
-	{
-		std::smatch m = *i;
-		String matchStr(m.str());
-
-		result += parameter->stringValue().substring(lastPos, (int)m.position());
-
-		if (matchStr == "{index}" && isMultiplexed())  result += String(multiplexIndex + 1);
-		else if (matchStr == "{index0}" && isMultiplexed())  result += String(multiplexIndex);
-		else
-		{
-			StringArray dotSplit;
-			dotSplit.addTokens(matchStr.substring(1, matchStr.length() - 1), ":", "");
-			if (dotSplit.size() == 2)
-			{
-				if (dotSplit[0] == "list")
-				{
-					if (isMultiplexed())
-					{
-						if (BaseMultiplexList* curList = multiplex->listManager.getItemWithName(dotSplit[1]))
-						{
-
-							if (Parameter* lp = dynamic_cast<Parameter*>(curList->list[multiplexIndex]))
-							{
-								result += lp->stringValue();
-							}
-							else
-							{
-								result += lp->shortName; // show shortName for triggers, might be useful
-							}
-						}
-					}
-				}
-				else if (dotSplit[0] == "input")
-				{
-					replacementHasMappingInputToken = true;
-					int valueIndex = dotSplit[1].getIntValue() - 1; //1-based to be compliant with UI naming
-					if (mappingValues.size() > 0 && valueIndex >= 0 && valueIndex < mappingValues[multiplexIndex].size()) result += mappingValues[multiplexIndex][valueIndex].toString();
-					else result += "[bad index : " + String(valueIndex) + "]";
-				}
-				else result += matchStr;
-			}
-			else result += matchStr;
-		}
-
-		lastPos = (int)m.position() + matchStr.length();
-	}
-
-	result += parameter->stringValue().substring(lastPos);
-
-	return result;
-}
-
-var ParameterLink::getInputMappingValue(var value)
-{
-	if (parameter == nullptr || parameter.wasObjectDeleted()) return var();
-
-	var result = parameter->value.clone();
-
-	if (!isLinkable) return result;
-
-	if (!value.isArray())
-	{
-		if (parameter->value.isArray())
-		{
-			result[0] = value;
-		}
-	}
-	else if (mappingValueIndex < value.size())
-	{
-		if (!parameter->value.isArray()) result = value[mappingValueIndex];
-		else
-		{
-			for (int i = 0; i < parameter->value.size(); i++)
-			{
-				int index = mappingValueIndex + i;
-				if (index < value.size()) result[i] = value[index];
-			}
-		}
-	}
-
-	return result;
-}
+//String ParameterLink::getReplacementString(int multiplexIndex)
+//{
+//	replacementHasMappingInputToken = false;
+//	if (parameter->type != parameter->STRING) return parameter->stringValue();
+//
+//	std::string s = parameter->stringValue().toStdString();
+//	std::regex source_regex("\\{(\\w+:\\w+|index0?)\\}");
+//
+//	auto source_begin = std::sregex_iterator(s.begin(), s.end(), source_regex);
+//	auto source_end = std::sregex_iterator();
+//
+//	if (std::distance(source_begin, source_end) == 0) return parameter->stringValue();
+//
+//	int lastPos = 0;
+//	String result = "";
+//
+//	for (std::sregex_iterator i = source_begin; i != source_end; ++i)
+//	{
+//		std::smatch m = *i;
+//		String matchStr(m.str());
+//
+//		result += parameter->stringValue().substring(lastPos, (int)m.position());
+//
+//		if (matchStr == "{index}" && isMultiplexed())  result += String(multiplexIndex + 1);
+//		else if (matchStr == "{index0}" && isMultiplexed())  result += String(multiplexIndex);
+//		else
+//		{
+//			StringArray dotSplit;
+//			dotSplit.addTokens(matchStr.substring(1, matchStr.length() - 1), ":", "");
+//			if (dotSplit.size() == 2)
+//			{
+//				if (dotSplit[0] == "list")
+//				{
+//					if (isMultiplexed())
+//					{
+//						if (BaseMultiplexList* curList = multiplex->listManager.getItemWithName(dotSplit[1]))
+//						{
+//
+//							if (Parameter* lp = dynamic_cast<Parameter*>(curList->list[multiplexIndex]))
+//							{
+//								result += lp->stringValue();
+//							}
+//							else
+//							{
+//								result += lp->shortName; // show shortName for triggers, might be useful
+//							}
+//						}
+//					}
+//				}
+//				else if (dotSplit[0] == "input")
+//				{
+//					replacementHasMappingInputToken = true;
+//					int valueIndex = dotSplit[1].getIntValue() - 1; //1-based to be compliant with UI naming
+//					if (mappingValues.size() > 0 && valueIndex >= 0 && valueIndex < mappingValues[multiplexIndex].size()) result += mappingValues[multiplexIndex][valueIndex].toString();
+//					else result += "[bad index : " + String(valueIndex) + "]";
+//				}
+//				else result += matchStr;
+//			}
+//			else result += matchStr;
+//		}
+//
+//		lastPos = (int)m.position() + matchStr.length();
+//	}
+//
+//	result += parameter->stringValue().substring(lastPos);
+//
+//	return result;
+//}
 
 
 void ParameterLink::notifyLinkUpdated()
@@ -354,12 +177,7 @@ var ParameterLink::getJSONData()
 	if (isLinkable)
 	{
 		data.getDynamicObject()->setProperty("linkType", linkType);
-		if (linkType == MAPPING_INPUT) data.getDynamicObject()->setProperty("mappingValueIndex", mappingValueIndex);
-		else if ((linkType == MULTIPLEX_LIST || linkType == CV_PRESET_PARAM) && list != nullptr && !listRef.wasObjectDeleted())
-		{
-			data.getDynamicObject()->setProperty("list", list->shortName);
-			if (linkType == CV_PRESET_PARAM) data.getDynamicObject()->setProperty("presetParamName", presetParamName);
-		}
+		if (linkType == CUSTOM_PARAM) data.getDynamicObject()->setProperty("linkedCustomParamName", linkedCustomParam->shortName);
 	}
 
 	return data;
@@ -370,49 +188,20 @@ void ParameterLink::loadJSONData(var data)
 	setLinkType((LinkType)(int)data.getProperty("linkType", NONE));
 
 	if (!data.isObject() || !isLinkable)  return;
-	if (linkType == MAPPING_INPUT) mappingValueIndex = data.getProperty("mappingValueIndex", 0);
-	else if (isMultiplexed())
+	if (linkType == CUSTOM_PARAM)
 	{
-		if (linkType == MULTIPLEX_LIST)
+		if (GenericControllableItem* gci = ObjectManager::getInstance()->customParams.getItemWithName(data.getProperty("linkedCustomParamName", "")))
 		{
-			setLinkedList(multiplex->listManager.getItemWithName(data.getProperty("list", "")));
-		}
-		else if (linkType == CV_PRESET_PARAM)
-		{
-			CVPresetMultiplexList* pList = dynamic_cast<CVPresetMultiplexList*>(multiplex->listManager.getItemWithName(data.getProperty("list", "")));
-			String paramName = data.getProperty("presetParamName", "");
-			setLinkedPresetParam(pList, paramName);
+			linkedCustomParam = (Parameter*)gci->controllable;
 		}
 	}
 }
 
-void ParameterLink::setInputNamesFromParams(Array<Parameter*> params)
-{
-	inputValueNames.clear();
-	for (int i = 0; i < params.size(); i++)
-	{
-		String tString = params[i]->getTypeString();
-		if (params[i]->isComplex())
-		{
-			StringArray valueNames = params[i]->getValuesNames();
-			for (auto& vName : valueNames) inputValueNames.add(tString + " (" + vName + ")");
-		}
-		else
-		{
-			inputValueNames.add(tString);
-		}
-	}
-}
-
-
-ParamLinkContainer::ParamLinkContainer(const String& name, Multiplex* multiplex) :
+ParamLinkContainer::ParamLinkContainer(const String& name) :
 	ControllableContainer(name),
-	MultiplexTarget(multiplex),
 	paramsCanBeLinked(true),
-	canLinkToMapping(true),
 	ghostData(new DynamicObject())
 {
-	scriptObject.setMethod("linkParamToMappingIndex", &ParamLinkContainer::linkParamToMappingIndexFromScript);
 }
 
 ParamLinkContainer::~ParamLinkContainer()
@@ -427,8 +216,7 @@ void ParamLinkContainer::onControllableAdded(Controllable* c)
 
 	if (Parameter* p = dynamic_cast<Parameter*>(c))
 	{
-		ParameterLink* pLink = new ParameterLink(p, multiplex);
-		pLink->inputValueNames = inputNames;
+		ParameterLink* pLink = new ParameterLink(p);
 
 		pLink->addParameterLinkListener(this);
 
@@ -473,11 +261,11 @@ ParameterLink* ParamLinkContainer::getLinkedParam(Parameter* p)
 	return paramLinkMap[p];
 }
 
-var ParamLinkContainer::getLinkedValue(Parameter* p, int multiplexIndex)
+var ParamLinkContainer::getLinkedValue(Parameter* p, Object * o, int id)
 {
 	if (p == nullptr) return var();
 	if (!paramsCanBeLinked) return p->getValue();
-	if (ParameterLink* pLink = getLinkedParam(p)) return pLink->getLinkedValue(multiplexIndex);
+	if (ParameterLink* pLink = getLinkedParam(p)) return pLink->getLinkedValue(o, id);
 	return p->getValue();
 }
 
@@ -487,71 +275,6 @@ void ParamLinkContainer::linkUpdated(ParameterLink* p)
 	paramLinkContainerListeners.call(&ParamLinkContainerListener::linkUpdated, this, p);
 }
 
-
-void ParamLinkContainer::linkParamToMappingIndex(Parameter* p, int mappingIndex)
-{
-	if (!paramsCanBeLinked || !canLinkToMapping) return;
-
-	if (ParameterLink* pLink = getLinkedParam(p))
-	{
-		if (!pLink->canLinkToMapping) return;
-		pLink->setLinkType(pLink->MAPPING_INPUT);
-		pLink->mappingValueIndex = mappingIndex;
-	}
-}
-
-var ParamLinkContainer::linkParamToMappingIndexFromScript(const var::NativeFunctionArgs& a)
-{
-	if (!checkNumArgs("linkToMappingIndex", a, 2)) return false;
-
-	if (ParamLinkContainer* linkC = getObjectFromJS<ParamLinkContainer>(a))
-	{
-		var targetPData = a.arguments[0];
-		Parameter* p = nullptr;
-		if (targetPData.isObject()) p = static_cast<Parameter*>((Parameter*)(int64)targetPData.getDynamicObject()->getProperty(scriptPtrIdentifier));
-		else if (targetPData.isString()) p = dynamic_cast<Parameter*>(linkC->getControllableForAddress("/" + targetPData.toString()));
-
-		if (p == nullptr)
-		{
-			LOGWARNING("Set target from script, Target not found " << targetPData.toString());
-			return false;
-		}
-
-		int index = jmax((int)a.arguments[1] - 1, 0);
-		linkC->linkParamToMappingIndex(p, index);
-	}
-	else
-	{
-		return false;
-	}
-
-	return true;
-}
-
-void ParamLinkContainer::setInputNamesFromParams(Array<WeakReference<Parameter>> outParams)
-{
-	if (!paramsCanBeLinked || !canLinkToMapping) return;
-
-	inputNames.clear();
-	for (int i = 0; i < outParams.size(); i++)
-	{
-		String tString = outParams[i]->getTypeString();
-		if (outParams[i]->isComplex())
-		{
-			StringArray valueNames = outParams[i]->getValuesNames();
-			for (auto& vName : valueNames) inputNames.add(tString + " (" + vName + ")");
-		}
-		else
-		{
-			inputNames.add(tString);
-		}
-	}
-
-	for (auto& pLink : paramLinks)
-	{
-		if (pLink->canLinkToMapping) pLink->inputValueNames = inputNames;
-	}
-}
 
 var ParamLinkContainer::getJSONData()
 {
@@ -591,7 +314,5 @@ void ParamLinkContainer::loadJSONDataInternal(var data)
 
 InspectableEditor* ParamLinkContainer::getEditorInternal(bool isRoot)
 {
-	if (!paramsCanBeLinked) return new GenericControllableContainerEditor(this, isRoot);
-
-	return new ParamLinkContainerEditor(this, isRoot, true);
+	return new ParamLinkContainerEditor(this, isRoot);
 }

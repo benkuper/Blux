@@ -28,6 +28,7 @@
       <FILE id="Nutaiv" name="icon2.png" compile="0" resource="1" file="Resources/icon2.png"/>
       <FILE id="f1oDk9" name="icon3.png" compile="0" resource="1" file="Resources/icon3.png"/>
       <FILE id="AkkWvI" name="icon128.png" compile="0" resource="1" file="Resources/icon128.png"/>
+      <FILE id="onrlo1" name="link.png" compile="0" resource="1" file="Resources/link.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
       <GROUP id="{2047F9AE-EF39-8CBB-3CD3-9353343FEF38}" name="Color">
@@ -385,12 +386,12 @@
       <GROUP id="{18759F83-D362-D1EE-108A-0D8B826EB825}" name="Effect">
         <GROUP id="{900CDD55-6B31-5F4B-20AB-73C3F1B6A805}" name="ParameterLink">
           <GROUP id="{FFE7C950-D0C2-5AB6-1813-C642251B176D}" name="ui">
-            <FILE id="aGgkrg" name="LinkableParameterEditor.cpp" compile="1" resource="0"
+            <FILE id="aGgkrg" name="LinkableParameterEditor.cpp" compile="0" resource="0"
                   file="Source/Effect/ParameterLink/ui/LinkableParameterEditor.cpp"/>
             <FILE id="affElw" name="LinkableParameterEditor.h" compile="0" resource="0"
                   file="Source/Effect/ParameterLink/ui/LinkableParameterEditor.h"/>
           </GROUP>
-          <FILE id="TUmpl8" name="ParameterLink.cpp" compile="1" resource="0"
+          <FILE id="TUmpl8" name="ParameterLink.cpp" compile="0" resource="0"
                 file="Source/Effect/ParameterLink/ParameterLink.cpp"/>
           <FILE id="dpQz44" name="ParameterLink.h" compile="0" resource="0" file="Source/Effect/ParameterLink/ParameterLink.h"/>
         </GROUP>

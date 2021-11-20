@@ -14,7 +14,7 @@ juce_ImplementSingleton(ObjectManager);
 ObjectManager::ObjectManager() :
     BaseManager("Objects"),
     Thread("ObjectManager"),
-    customParams("Custom Parameters")
+    customParams("Custom Parameters", false,  false, true, true)
 {
     itemDataType = "Object";
     selectItemWhenCreated = true;
@@ -271,6 +271,18 @@ void ObjectManagerCustomParams::rebuildCustomParams()
     loadJSONData(oldData);
 }
 
+var ObjectManagerCustomParams::getParamValueFor(WeakReference<Parameter> p)
+{
+    return getParamValueForName(p->shortName);
+}
+
+var ObjectManagerCustomParams::getParamValueForName(const String& name)
+{
+    if (Parameter* p = getActiveCustomParamForName(name)) return p->getValue();
+    jassertfalse;
+    return var();
+}
+
 var ObjectManagerCustomParams::getParamValues()
 {
     Array<WeakReference<Parameter>> params = getAllParameters();
@@ -289,6 +301,25 @@ var ObjectManagerCustomParams::getParamValues()
 
     }
     return values;
+}
+
+
+Parameter * ObjectManagerCustomParams::getActiveParamFor(WeakReference<Parameter> p)
+{
+    return getActiveCustomParamForName(p->shortName);
+}
+
+
+Parameter* ObjectManagerCustomParams::getActiveCustomParamForName(const String& name)
+{
+    if (Parameter* p = getParameterByName(name))
+    {
+        if (p->enabled) return p;
+    }
+
+    if (GenericControllableItem* gci = ObjectManager::getInstance()->customParams.getItemWithName(name)) return ((Parameter*)gci->controllable);
+
+    return nullptr;
 }
 
 

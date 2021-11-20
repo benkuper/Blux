@@ -155,7 +155,7 @@ void ColorComponent::loadJSONDataItemInternal(var data)
 	if (pixelShape != nullptr) data.getDynamicObject()->setProperty("pixelShape", pixelShape->getJSONData());
 }
 
-InspectableEditor* ColorComponent::getEditor(bool isRoot)
+InspectableEditor* ColorComponent::getEditorInternal(bool isRoot)
 {
 	return new ColorComponentEditor(this, isRoot);
 }

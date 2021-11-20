@@ -36,6 +36,6 @@ public:
 
     ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
 
-    InspectableEditor* getEditor(bool isRoot) override;
+    InspectableEditor* getEditorInternal(bool isRoot) override;
     String getTypeString() const override { return "Blux Sequence"; }
 };

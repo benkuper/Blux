@@ -357,8 +357,12 @@
     <ClCompile Include="..\..\Source\Scene\SceneManager.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Effect\ParameterLink\ui\LinkableParameterEditor.cpp"/>
-    <ClCompile Include="..\..\Source\Effect\ParameterLink\ParameterLink.cpp"/>
+    <ClCompile Include="..\..\Source\Effect\ParameterLink\ui\LinkableParameterEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\ParameterLink\ParameterLink.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Effect\EffectIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
@@ -5602,6 +5606,7 @@
     <None Include="..\..\Resources\icon2.png"/>
     <None Include="..\..\Resources\icon3.png"/>
     <None Include="..\..\Resources\icon128.png"/>
+    <None Include="..\..\Resources\link.png"/>
     <None Include="..\..\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt"/>
     <None Include="..\..\JUCE\modules\juce_audio_devices\native\oboe\README.md"/>
     <None Include="..\..\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

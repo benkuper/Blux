@@ -10,10 +10,6 @@
 
 #pragma once
 
-class Object;
-class ObjectComponent;
-class Group;
-
 class EffectFactory :
     public Factory<Effect>
 {

@@ -12,14 +12,14 @@ AutomationEffect::AutomationEffect(var params) :
 	TimedEffect(getTypeString(), params),
 	automation("Curve")
 {
-	length = addFloatParameter("Length", "Length of this automation", 2, .1f);
+	length = effectParams.addFloatParameter("Length", "Length of this automation", 2, .1f);
 	length->defaultUI = FloatParameter::TIME;
 
 	controllables.swap(controllables.indexOf(length), controllables.indexOf(sceneSaveMode)+1); //length first
 
-	clipTime = addBoolParameter("Clip Time", "If checked, this will force negative time with positive speed to clip. Useful for starting animations when loading scenes", false);
-	loop = addBoolParameter("Loop", "If checked, this will loop the automation. If not, this will go up until the end and stay there (taking care of time offsets)", true);
-	range = addPoint2DParameter("Range", "Range of this automation");
+	clipTime = effectParams.addBoolParameter("Clip Time", "If checked, this will force negative time with positive speed to clip. Useful for starting animations when loading scenes", false);
+	loop = effectParams.addBoolParameter("Loop", "If checked, this will loop the automation. If not, this will go up until the end and stay there (taking care of time offsets)", true);
+	range = effectParams.addPoint2DParameter("Range", "Range of this automation");
 
 	var val;
 	val.append(0);
@@ -52,23 +52,26 @@ AutomationEffect::~AutomationEffect()
 
 var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time)
 {
-	float relTime = loop->boolValue() ? fmodf(time, length->floatValue()) : jmin(time, length->floatValue());
+	float _length = GetLinkedValue(length);
+	float _speed = GetLinkedValue(speed);
 
-	if (!clipTime->boolValue())
+	float relTime = (bool)GetLinkedValue(loop) ? fmodf(time, _length) : jmin(time, _length);
+
+	if (!(bool)GetLinkedValue(clipTime))
 	{
-		if (relTime < 0) relTime += length->floatValue();
+		if (relTime < 0) relTime += _length;
 	}
 	else
 	{
-		if (relTime < 0 && speed->floatValue() > 0) relTime = 0;
-		else if (speed->floatValue() < 0)
+		if (relTime < 0 && _speed > 0) relTime = 0;
+		else if (_speed < 0)
 		{
-			if (relTime > 0) relTime = length->floatValue();
-			else relTime += length->floatValue();
+			if (relTime > 0) relTime = _length;
+			else relTime += _length;
 		}
 	}
 
-	return automation.getValueAtPosition(relTime / length->floatValue());
+	return automation.getValueAtPosition(relTime / _length);
 }
 
 void AutomationEffect::onContainerParameterChangedInternal(Parameter* p)
@@ -84,7 +87,8 @@ void AutomationEffect::onContainerParameterChangedInternal(Parameter* p)
 		if (!loop->boolValue())
 		{
 			//force put curTime in 0-length range to have good ending behaviour
-			curTime = fmodf(curTime, length->floatValue());
+			HashMap<Object*, float>::Iterator it(curTimes);
+			while(it.next()) curTimes.set(it.getKey(), fmodf(it.getValue(), length->floatValue()));
 		}
 	}
 }

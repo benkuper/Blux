@@ -26,7 +26,7 @@ public:
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 
-    InspectableEditor* getEditor(bool isRoot) override;
+    InspectableEditor* getEditorInternal(bool isRoot) override;
 
     //Listener
     class  ObjectTargetListener

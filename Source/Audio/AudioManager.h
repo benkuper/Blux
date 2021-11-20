@@ -21,7 +21,7 @@ public:
 	~AudioModuleHardwareSettings() {}
 	AudioDeviceManager * am;
 
-	InspectableEditor * getEditor(bool isRoot) override;
+	InspectableEditor * getEditorInternal(bool isRoot) override;
 };
 
 class AudioManager :

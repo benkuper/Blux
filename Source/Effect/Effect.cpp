@@ -12,8 +12,12 @@ Effect::Effect(const String& name, var params) :
 	BaseItem(name),
 	forceDisabled(false),
 	parentGroup(nullptr),
-	idMode(nullptr)
+	idMode(nullptr),
+	effectParams("Effect Parameters")
 {
+	//effectParams.hideEditorHeader = true;
+	//effectParams.editorCanBeCollapsed = false;
+
 	saveAndLoadRecursiveData = true;
 
 	sceneSaveMode = addEnumParameter("Save Mode", "Choose what to save in scenes");
@@ -31,6 +35,8 @@ Effect::Effect(const String& name, var params) :
 
 	
 	//excludeFromScenes->hideInEditor = true;
+
+	addChildControllableContainer(&effectParams);
 
 	filterManager.reset(new FilterManager());
 	addChildControllableContainer(filterManager.get());
@@ -201,7 +207,7 @@ ChainVizComponent* Effect::createVizComponent(Object* o, ChainVizTarget::ChainVi
 	return new EffectChainVizUI(this, o, type);
 }
 
-InspectableEditor* Effect::getEditor(bool isRoot)
+InspectableEditor* Effect::getEditorInternal(bool isRoot)
 {
 	return new EffectEditor(this, isRoot);
 }

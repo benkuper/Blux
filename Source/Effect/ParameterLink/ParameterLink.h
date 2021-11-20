@@ -16,26 +16,28 @@ class ParameterLink :
 public:
     enum LinkType { NONE, CUSTOM_PARAM, OBJECT_ID };
     
-    ParameterLink(Object * o);
+    ParameterLink(WeakReference<Parameter> p);
     ~ParameterLink();
 
     LinkType linkType;
     WeakReference<Parameter> parameter;
 
-    //links
-    WeakReference<Parameter> customParamRef;
+    bool isLinkable;
 
-    bool replacementHasMappingInputToken;
-    String replacementString;
+    //links
+    WeakReference<Parameter> linkedCustomParam; //from ObjectManger custom params
+
+    //bool replacementHasMappingInputToken;
+    //String replacementString;
 
     void setLinkType(LinkType type);
 
-    void setLinkedParam(WeakReference<Parameter> * _param);
-    var getLinkedValue();
+    void setLinkedCustomParam(Parameter * p);
+    var getLinkedValue(Object * o, int id);
 
     //For target parameters
-    WeakReference<Controllable> getLinkedTarget();
-    WeakReference<ControllableContainer> getLinkedTargetContainer();
+    WeakReference<Controllable> getLinkedTarget(Object * o);
+    WeakReference<ControllableContainer> getLinkedTargetContainer(Object *o);
 
     
     //String getReplacementString(int multiplexIndex);
@@ -56,7 +58,7 @@ public:
     void addParameterLinkListener(ParameterLinkListener* newListener) { parameterLinkListeners.add(newListener); }
     void removeParameterLinkListener(ParameterLinkListener* listener) { parameterLinkListeners.remove(listener); }
 
-    DECLARE_ASYNC_EVENT(ParameterLink, ParameterLink, paramLink, ENUM_LIST(LINK_UPDATED, PREVIEW_UPDATED, INPUT_VALUE_UPDATED, LIST_ITEM_UPDATED))
+    DECLARE_ASYNC_EVENT(ParameterLink, ParameterLink, paramLink, ENUM_LIST(LINK_UPDATED, PREVIEW_UPDATED))
 };
 
 class ParamLinkContainer :
@@ -67,10 +69,11 @@ public:
     ParamLinkContainer(const String& name);
     virtual ~ParamLinkContainer();
 
+    bool paramsCanBeLinked;
+
     OwnedArray<ParameterLink> paramLinks;
     HashMap<Parameter*, ParameterLink*> paramLinkMap;
     HashMap<ParameterLink*, Parameter*> linkParamMap;
-    StringArray inputNames;
 
     var ghostData;
 
@@ -78,7 +81,7 @@ public:
     virtual void onControllableRemoved(Controllable* c) override;
 
     virtual ParameterLink* getLinkedParam(Parameter* p);
-    virtual var getLinkedValue(Parameter* p, int multiplexIndex);
+    virtual var getLinkedValue(Parameter* p, Object * o, int id);
 
     virtual void linkUpdated(ParameterLink* p) override;
 
@@ -106,12 +109,6 @@ public:
 
         return dynamic_cast<T*>(target->targetContainer.get());
     }
-
-    virtual void linkParamToMappingIndex(Parameter* p, int mappingIndex);
-
-    static var linkParamToMappingIndexFromScript(const var::NativeFunctionArgs& a);
-
-    virtual void setInputNamesFromParams(Array<WeakReference<Parameter>> outParams);
 
     class ParamLinkContainerListener
     {

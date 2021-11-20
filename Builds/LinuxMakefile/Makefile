@@ -80,8 +80,6 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/serial_82f97e54.o \
   $(JUCE_OBJDIR)/InterfaceIncludes_a36db90f.o \
   $(JUCE_OBJDIR)/SceneIncludes_307e5d75.o \
-  $(JUCE_OBJDIR)/LinkableParameterEditor_1ac61f2.o \
-  $(JUCE_OBJDIR)/ParameterLink_a81b36c2.o \
   $(JUCE_OBJDIR)/EffectIncludes_1938d43b.o \
   $(JUCE_OBJDIR)/ObjectIncludes_6d2ed47b.o \
   $(JUCE_OBJDIR)/SequenceIncludes_1f9bb4bb.o \
@@ -181,16 +179,6 @@ $(JUCE_OBJDIR)/InterfaceIncludes_a36db90f.o: ../../Source/Interface/InterfaceInc
 $(JUCE_OBJDIR)/SceneIncludes_307e5d75.o: ../../Source/Scene/SceneIncludes.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SceneIncludes.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/LinkableParameterEditor_1ac61f2.o: ../../Source/Effect/ParameterLink/ui/LinkableParameterEditor.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling LinkableParameterEditor.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/ParameterLink_a81b36c2.o: ../../Source/Effect/ParameterLink/ParameterLink.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling ParameterLink.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/EffectIncludes_1938d43b.o: ../../Source/Effect/EffectIncludes.cpp

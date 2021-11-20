@@ -21,7 +21,6 @@
 		3040094A24A5F912A26CF614 /* include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = 7093A269A5A9525BDD04127A; };
 		32522ACB3AA5D03A96CAC624 /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = CD4C9B99D0453E293EB844AE; };
 		348CD136F6EC7B46B231D66E /* unix.cc */ = {isa = PBXBuildFile; fileRef = 42138BFA0E41AF88AD547092; };
-		37DDFD640FBC1BC514736BEF /* LinkableParameterEditor.cpp */ = {isa = PBXBuildFile; fileRef = 2AF18D73843E5F59C69E5EDE; };
 		384EF104808DC081FF58C1DF /* MainIncludes.cpp */ = {isa = PBXBuildFile; fileRef = D213A4D9A48A19A3081BC0B8; };
 		4138804314369FA7323A51C6 /* include_juce_core.mm */ = {isa = PBXBuildFile; fileRef = BF42209B4082FD4F3891D060; };
 		44EFB90535E373E9E47750EB /* include_juce_data_structures.mm */ = {isa = PBXBuildFile; fileRef = FFE7D73EACF6101617EC8AA1; };
@@ -43,7 +42,6 @@
 		9FCFC2E054109CCF27F850B2 /* include_juce_organicui2b.cpp */ = {isa = PBXBuildFile; fileRef = 747961454A8366C2A4D0391E; };
 		A579E79278898124223A90CA /* include_juce_organicui3.cpp */ = {isa = PBXBuildFile; fileRef = B35B4DB2E7E73F60BAA6CD35; };
 		A769722C88B31188FE5947A1 /* ObjectIncludes.cpp */ = {isa = PBXBuildFile; fileRef = 5F90EE49163CA926C874F05A; };
-		A9E2AC8D1C99840480A94C00 /* ParameterLink.cpp */ = {isa = PBXBuildFile; fileRef = E97BED3CD53B39B7A9457242; };
 		AD972DA58333EFC71D240A95 /* include_juce_opengl.mm */ = {isa = PBXBuildFile; fileRef = 471E240554E3A9946C1D64F2; };
 		B04AAFCA56E73E886FE371E0 /* include_juce_organicui4.cpp */ = {isa = PBXBuildFile; fileRef = 1000107A6F3FB09C8E603038; };
 		B462A92E879E759D824C5055 /* list_ports_win.cc */ = {isa = PBXBuildFile; fileRef = F95B517CAC6D27484B8E15BE; };
@@ -172,6 +170,7 @@
 		426F08CFDAFCF3448CACD29B /* EffectManagerEditor.cpp */ /* EffectManagerEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EffectManagerEditor.cpp; path = ../../Source/Effect/ui/EffectManagerEditor.cpp; sourceTree = SOURCE_ROOT; };
 		4281AD5501E63792AD3CD54D /* ZeroconfManager.cpp */ /* ZeroconfManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZeroconfManager.cpp; path = ../../Source/Common/Zeroconf/ZeroconfManager.cpp; sourceTree = SOURCE_ROOT; };
 		42D3A79933F691DC556118B1 /* Info-App.plist */ /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
+		432460260EE5938A6226EB34 /* link.png */ /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = link.png; path = ../../Resources/link.png; sourceTree = SOURCE_ROOT; };
 		45B0787DA5C89E0A5BF6DC79 /* SceneIncludes.cpp */ /* SceneIncludes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SceneIncludes.cpp; path = ../../Source/Scene/SceneIncludes.cpp; sourceTree = SOURCE_ROOT; };
 		4655D00E2F8A54DC7D0E9DF7 /* IntensityComponent.h */ /* IntensityComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntensityComponent.h; path = ../../Source/Object/Component/components/intensity/IntensityComponent.h; sourceTree = SOURCE_ROOT; };
 		46F6DD52EED6A1570429BED6 /* VideoColorSource.cpp */ /* VideoColorSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VideoColorSource.cpp; path = ../../Source/Color/ColorSource/sources/video/VideoColorSource.cpp; sourceTree = SOURCE_ROOT; };
@@ -846,6 +845,7 @@
 				AE198E30B914C572DF1970C9,
 				13997589DFE3488CDE8B1BF4,
 				C4ADEA9C1F1FA20ABE2B43FC,
+				432460260EE5938A6226EB34,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1970,8 +1970,6 @@
 				202A10F02FFD31D3451B6835,
 				4C5DF5BBC20BD7B63BAAC851,
 				562D28435BA2EAED16B32EA2,
-				37DDFD640FBC1BC514736BEF,
-				A9E2AC8D1C99840480A94C00,
 				056936DE2FFCBA2723FE5F98,
 				A769722C88B31188FE5947A1,
 				74E6582BDB83F608A7C8F902,

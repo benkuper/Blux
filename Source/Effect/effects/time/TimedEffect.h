@@ -12,7 +12,8 @@
 
 class TimedEffect :
 	public Effect,
-	public HighResolutionTimer
+	public HighResolutionTimer,
+	public ObjectManager::ManagerListener
 {
 public:
 	TimedEffect(const String& name, var params = var());
@@ -23,10 +24,13 @@ public:
 
 	FloatParameter* offsetByID;
 	FloatParameter* offsetByValue;
-	Trigger* resetTime;
+	Trigger* resetTimeTrigger;
+	BoolParameter* autoResetOnNonZero;
 
 	double timeAtLastUpdate;
-	float curTime;
+	HashMap<Object*, float> curTimes;
+	HashMap<Object*, var> prevValues;
+
 
 	virtual void onContainerTriggerTriggered(Trigger* t) override;
 	virtual void updateEnabled() override;
@@ -34,7 +38,13 @@ public:
 	var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1) override;
 	virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time) { return value; }
 
-	virtual float getCurrentTime(float timeOverride = -1);
+	virtual float getCurrentTime(Object* o, float timeOverride = -1);
+	virtual void resetTimes();
+	virtual void resetTime(Object* o);
+
+	virtual void itemRemoved(Object* o) override;
+	virtual void itemsRemoved(Array<Object*> o) override;
+
 
 	virtual void hiResTimerCallback() override;
 	virtual void addTime();

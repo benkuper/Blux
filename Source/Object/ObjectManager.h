@@ -102,11 +102,16 @@ class ObjectManagerCustomParams :
 public:
     ObjectManagerCustomParams(ObjectManager* om);
     ~ObjectManagerCustomParams();
-
+    
     ObjectManager* om;
 
     void customParamsChanged(ObjectManager*);
     void rebuildCustomParams();
 
+    var getParamValueFor(WeakReference<Parameter> p);
+    var getParamValueForName(const String& name);
     var getParamValues();
+
+    Parameter * getActiveParamFor(WeakReference<Parameter> p);
+    Parameter * getActiveCustomParamForName(const String& name);
 };

@@ -11,11 +11,9 @@
 #include "EffectIncludes.h"
 
 #include "Scene/SceneIncludes.h"
-#include "Object/ObjectIncludes.h"
-
 
 #include "ParameterLink/ParameterLink.cpp"
-#include "ParameterLink/ui/ParameterLinkEditor.cpp"
+#include "ParameterLink/ui/LinkableParameterEditor.cpp"
 
 #include "actions/EffectAction.cpp"
 #include "Effect.cpp"

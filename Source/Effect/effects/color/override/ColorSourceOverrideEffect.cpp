@@ -72,7 +72,7 @@ void ColorSourceOverrideEffect::loadJSONDataItemInternal(var data)
 	}
 }
 
-InspectableEditor* ColorSourceOverrideEffect::getEditor(bool isRoot)
+InspectableEditor* ColorSourceOverrideEffect::getEditorInternal(bool isRoot)
 {
 	return new ColorSourceOverrideEffectEditor(this, isRoot);
 }

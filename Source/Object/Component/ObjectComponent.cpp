@@ -91,7 +91,7 @@ void ObjectComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int 
 	}
 }
 
-InspectableEditor* ObjectComponent::getEditor(bool isRoot)
+InspectableEditor* ObjectComponent::getEditorInternal(bool isRoot)
 {
 	return new ObjectComponentEditor(this, isRoot);
 }

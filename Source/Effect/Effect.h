@@ -10,11 +10,8 @@
 
 #pragma once
 
-
-class ObjectComponent;
-class Object;
-class FilterManager;
-class Group;
+//helper, considering variables are name o for  Object and id for object's id
+#define GetLinkedValue(p) effectParams.getLinkedValue(p, o, id)
 
 class Effect :
     public BaseItem,
@@ -23,6 +20,8 @@ class Effect :
 public:
     Effect(const String& name = "Effect", var params = var());
     ~Effect();
+
+    ParamLinkContainer effectParams;
 
     enum BlendMode { OVERRIDE, ADD, MAX, MIN, MULTIPLY };
     EnumParameter* mode;
@@ -60,8 +59,9 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
+
     ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
 
-    virtual InspectableEditor* getEditor(bool isRoot) override;
+    virtual InspectableEditor* getEditorInternal(bool isRoot) override;
     String getTypeString() const override { return "Effect"; }
 };

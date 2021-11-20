@@ -10,12 +10,20 @@
 
 #pragma once
 
+//class ObjectComponent;
+//class Object;
+//class Group;
+
+class FilterManager;
+
+
+#include "Object/ObjectIncludes.h"
 #include "Common/CommonIncludes.h"
 #include "Color/ColorIncludes.h"
 #include "ChainViz/ChainViz.h"
 
 #include "ParameterLink/ParameterLink.h"
-#include "ParameterLink/ui/ParameterLinkEditor.h"
+#include "ParameterLink/ui/LinkableParameterEditor.h"
 
 #include "actions/EffectAction.h"
 
