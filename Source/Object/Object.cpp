@@ -1,4 +1,3 @@
-#include "Object.h"
 /*
   ==============================================================================
 
@@ -78,6 +77,12 @@ Object::Object(var params) :
 			}
 		}
 	}
+
+	icon->addOption("Custom", -1);
+	
+	customIcon = addFileParameter("Custom Icon", "Custom icon for this object");
+	customIcon->fileTypeFilter = "*.jpg", "*.png", "*.jpeg", "*.bmp";
+	customIcon->setEnabled(false);
 
 	globalID = addIntParameter("Global ID", "Virtual ID that is used in many places of Blux to filter, alter effects, etc.", 0, 0);
 	stagePosition = addPoint3DParameter("Stage Position", "Position on stage, can be animated with stage layouts");
@@ -169,25 +174,11 @@ void Object::onContainerParameterChangedInternal(Parameter* p)
 	{
 		if(!isCurrentlyLoadingData) stagePosition->setVector(viewUIPosition->x, stagePosition->y, viewUIPosition->y);
 	}
-}
-
-void Object::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
-{
-	BaseItem::onControllableFeedbackUpdateInternal(cc, c);
-
-	if (!enabled->boolValue()) return;
-
-	//if (c->type != Parameter::TRIGGER)
-	//{
-	//    if (ObjectComponent* oc = c->getParentAs<ObjectComponent>())
-	//    {
-	//        if (targetInterface->targetContainer != nullptr)
-	//        {
-	//            if (!oc->computedParameters.contains((Parameter*)c)) computeComponentValues(oc);
-	//            //else sendComponentParameter(oc, ((Parameter*)c));
-	//        }
-	//    }
-	//}
+	else if (p == icon)
+	{
+		var iv = icon->getValueData();
+		customIcon->setEnabled(iv.isInt() && (int)iv == -1);
+	}
 }
 
 

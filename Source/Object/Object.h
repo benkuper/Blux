@@ -47,6 +47,8 @@ public:
 
     //ui
     EnumParameter* icon;
+    FileParameter* customIcon;
+
     Parameter* slideManipParameter;
     float slideManipValueRef;
 
@@ -64,7 +66,6 @@ public:
     T* getComponent();
 
     void onContainerParameterChangedInternal(Parameter* p) override;
-    void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 
     void checkAndComputeComponentValuesIfNeeded();
     void computeComponentValues(ObjectComponent* c);

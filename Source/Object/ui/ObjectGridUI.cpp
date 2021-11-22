@@ -162,11 +162,15 @@ void ObjectGridUI::updateThumbnail()
 	{
 		img1 = File(iconData[0].toString());
 		img2 = File(iconData[1].toString());
-	}else
+	}else if(iconData.isString())
 	{
 		img1 = File(iconData.toString());
 	}
-	
+	else if (iconData.isInt() && (int)iconData == -1)
+	{
+		img1 = item->customIcon->getFile();
+	}
+
 	if (img1.existsAsFile()) objectImage = ImageCache::getFromFile(img1);
 	if (img2.existsAsFile()) objectONImage = ImageCache::getFromFile(img2);
 
@@ -338,7 +342,7 @@ void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 	{
 		shouldRepaint = true;
 	}
-	else if (c == item->icon)
+	else if (c == item->icon || c == item->customIcon)
 	{
 		updateThumbnail();
 		shouldRepaint = true;
