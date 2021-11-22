@@ -161,6 +161,7 @@ MultiPointColorSource::MultiPointColorSource(var params) :
     pointColor = addColorParameter("Color", "The color of the point", Colours::white);
     bgColor = addColorParameter("Background Color", "The color of the background", Colours::black);
     gap = addFloatParameter("Gap", "The gap between lines per prop", .25f, 0, 1);
+    size = addFloatParameter("Size", "Size of the point, relative to the gap", .5f, 0, 1);
     fade = addFloatParameter("Fade", "The fading of the point", 1, 0, 1);
 }
 
@@ -203,7 +204,7 @@ GradientColorSource::GradientColorSource(var params) :
     density = addFloatParameter("Density", "The cycle density of the rainbow", 1);
 
     gradient.reset(new GradientColorManager(1, true));
-    gradient->allowKeysOutside = false;
+    gradient->setAllowKeysOutside(false);
     addChildControllableContainer(gradient.get());
     gradientTarget = gradient.get();
 }

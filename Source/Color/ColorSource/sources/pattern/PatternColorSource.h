@@ -79,7 +79,7 @@ public:
     FloatParameter* contrast;
     FloatParameter* balance;
     ColorParameter* frontColor;
-    ColorParameter* bgColor;;
+    ColorParameter* bgColor;
 
     virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
    
