@@ -39,6 +39,7 @@ public:
     Factory<Object> factory;
 
     BoolParameter* blackOut;
+    IntParameter* updateRate;
 
     //ui
     IntParameter* gridThumbSize;

@@ -23,6 +23,7 @@ ObjectManager::ObjectManager() :
     gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 96, 32, 256);
     defaultFlashValue = addFloatParameter("Flash Value", "Flash Value", .5f, 0, 1);
     blackOut = addBoolParameter("Black Out", "Force 0 on all computed values", false);
+    updateRate = addIntParameter("Update Rate", "General update rate", 50, 1, 200);
     filterActiveInScene = addBoolParameter("Show Only active", "Show only active objects in scene", false);
     lockUI = addBoolParameter("Lock UI", "If checked, all objects will be locked", false);
 
@@ -174,7 +175,7 @@ void ObjectManager::run()
         items.getLock().exit();
         long millisAfter = Time::getMillisecondCounter();
 
-        long millisToSleep = jmax<long>(1, 30-(millisAfter-millisBefore));
+        long millisToSleep = jmax<long>(1, 1000.0/updateRate->intValue()-(millisAfter-millisBefore));
         sleep((int)millisToSleep);
     }
 }
