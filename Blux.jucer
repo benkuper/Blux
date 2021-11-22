@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b3"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b4"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17"
               defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="JrFmSt" name="Blux">
@@ -900,7 +900,7 @@
       </MODULEPATHS>
     </VS2019>
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
-               bigIcon="kxAIe6" xcodeValidArchs="x86_64">
+               bigIcon="kxAIe6" xcodeValidArchs="x86_64" customPList="&lt;plist&gt;&#10;&lt;dict&gt;&#10;&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&#10;&#9;&lt;dict&gt;&#10;&#9;&#9;&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;&#10;&#9;&#9;&lt;true/&gt;&#10;&#9;&lt;/dict&gt;&#10;&lt;/dict&gt;&#10;&lt;/plist&gt;">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/serial/include"
                        libraryPath="../../External/servus/lib/osx/debug"/>
