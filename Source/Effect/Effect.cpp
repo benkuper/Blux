@@ -23,7 +23,7 @@ Effect::Effect(const String& name, var params) :
 	sceneSaveMode = addEnumParameter("Save Mode", "Choose what to save in scenes");
 	sceneSaveMode->addOption("Save all", FULL, false)->addOption("Save weight only", WEIGHT_ONLY)->addOption("Exclude", NONE);
 	sceneSaveMode->setValueWithData(WEIGHT_ONLY);
-	
+
 	mode = addEnumParameter("Blend Mode", "Defines how the values are blended with the source ones.");
 	mode->addOption("Override", OVERRIDE)->addOption("Max", MAX)->addOption("Min", MIN)->addOption("Add", ADD)->addOption("Multiply", MULTIPLY);
 
@@ -33,7 +33,7 @@ Effect::Effect(const String& name, var params) :
 	weight->defaultValue = 0; //this allows for scene lerp default to 0
 	weight->hideInEditor = true;
 
-	
+
 	//excludeFromScenes->hideInEditor = true;
 
 	addChildControllableContainer(&effectParams);
@@ -91,7 +91,7 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 		if (m == LOCAL_REVERSE) targetID = parentGroup->getNumObjects() - 1 - localID;
 		else if (m == RANDOMIZED) targetID = parentGroup->getRandomIDForObject(o);
 	}
-	
+
 
 	float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
@@ -101,26 +101,12 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 		return;
 	}
 
-	var pValues = getProcessedComponentValuesInternal(o, c,  values.clone(), targetID, time);
+	var pValues = getProcessedComponentValuesInternal(o, c, values.clone(), targetID, time);
 	jassert(pValues.size() == values.size());
 
 	for (int i = 0; i < values.size(); i++)
 	{
-		/*if (values[i].isArray())
-		{
-			jassert(pValues[i].isArray());
-			for (int j = 0; j < values[i].size(); j++)
-			{
-				var value = pValues[i][j];
-				
-				values[i][j] = blendFloatValue(values[i][j], pValues[i][j], targetWeight);
-			}
-		}
-		else
-		{
-		*/
-			values[i] = blendValue(values[i], pValues[i], targetWeight);
-		//}
+		values[i] = blendValue(values[i], pValues[i], targetWeight);
 	}
 }
 
@@ -131,7 +117,7 @@ void Effect::onContainerParameterChangedInternal(Parameter* p)
 	if (p == enabled) updateEnabled();
 }
 
-var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c,var values, int id, float time)
+var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
 {
 	return values;
 }
@@ -160,16 +146,17 @@ var Effect::blendValue(var start, var end, float weight)
 float Effect::blendFloatValue(float start, float end, float weight)
 {
 	BlendMode blendMode = mode->getValueDataAsEnum<BlendMode>();
-	float val = jmap<float>(weight, start, end);
+	float targetVal = 0;
 	switch (blendMode)
 	{
-	case OVERRIDE: return val;
-	case ADD: return start + val;
-	case MAX: return jmax(start, val);
-	case MIN: return jmin(start, val);
-	case MULTIPLY: return start * val;
+	case OVERRIDE: targetVal = end; break;
+	case ADD: targetVal = start + end; break;
+	case MAX: targetVal = jmax(start, end); break;
+	case MIN: targetVal = jmin(start, end); break;
+	case MULTIPLY: targetVal = start * end; break;
 	}
 
+	float val = jmap<float>(weight, start, targetVal);
 	return  val;
 }
 
@@ -179,8 +166,9 @@ var Effect::getSceneData()
 	if (m == NONE) return var(new DynamicObject());
 	else if (m == FULL)
 	{
-		var data = SceneHelpers::getParamsSceneData(this);
-		data.getDynamicObject()->setProperty("filters", filterManager->getSceneData());
+		var data = SceneHelpers::getParamsSceneData(this, Array<Parameter*>());
+		data.getDynamicObject()->setProperty(effectParams.shortName, SceneHelpers::getParamsSceneData(&effectParams, Array<Parameter*>(), true));
+		data.getDynamicObject()->setProperty(filterManager->shortName, filterManager->getSceneData());
 		return data;
 	}
 
@@ -198,7 +186,12 @@ void Effect::lerpFromSceneData(var startData, var endData, float lerpWeight)
 {
 	SceneSaveMode m = sceneSaveMode->getValueDataAsEnum<SceneSaveMode>();
 	if (m == NONE) return;
-	else if (m == FULL) SceneHelpers::lerpSceneParams(this, startData, endData, lerpWeight);
+	else if (m == FULL)
+	{
+		SceneHelpers::lerpSceneParams(this, startData, endData, lerpWeight);
+		filterManager->lerpFromSceneData(startData.getProperty(filterManager->shortName, var()), endData.getProperty(filterManager->shortName, var()), lerpWeight);
+		SceneHelpers::lerpSceneParams(&effectParams, startData.getProperty(effectParams.shortName, var()), endData.getProperty(effectParams.shortName, var()), lerpWeight, true);
+	}
 	else if (m == WEIGHT_ONLY) SceneHelpers::lerpSceneParam(weight, startData, endData, lerpWeight);
 }
 

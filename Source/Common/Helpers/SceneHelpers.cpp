@@ -8,35 +8,40 @@
   ==============================================================================
 */
 
-var SceneHelpers::getParamsSceneData(BaseItem* i, Array<Parameter*> excludeParams)
+var SceneHelpers::getParamsSceneData(ControllableContainer* container, Array<Parameter*> excludeParams, bool recursive)
 {
 	var data(new DynamicObject());
-	Array<WeakReference<Parameter>> params = i->getAllParameters();
+	Array<WeakReference<Parameter>> params = container->getAllParameters(recursive);
 	for (auto& p : params)
 	{
 		if (p->type == Parameter::ENUM || p->type == Parameter::TARGET) continue;
 		if (p->isControllableFeedbackOnly) continue;
-		if (p == i->enabled || p == i->listUISize || p == i->viewUIPosition || p == i->viewUISize || p == i->miniMode || p == i->isUILocked) continue;
+		if (BaseItem* bi = dynamic_cast<BaseItem*>(container))
+		{
+			if (p == bi->enabled || p == bi->listUISize || p == bi->viewUIPosition || p == bi->viewUISize || p == bi->miniMode || p == bi->isUILocked) continue;
+		}
 
 		if (excludeParams.contains(p.get())) continue;
 
-		data.getDynamicObject()->setProperty(p->shortName, p->value);		
+		data.getDynamicObject()->setProperty(p->shortName, p->value);
 	}
 
 	return data;
 }
 
-
-void SceneHelpers::lerpSceneParams(BaseItem * i, var startData, var endData, float weight)
+void SceneHelpers::lerpSceneParams(ControllableContainer* container, var startData, var endData, float weight, bool recursive)
 {
-	Array<WeakReference<Parameter>> params = i->getAllParameters();
+	Array<WeakReference<Parameter>> params = container->getAllParameters(recursive);
 
 	for (auto& p : params)
 	{
 		if (p->type == Parameter::ENUM || p->type == Parameter::TARGET) continue;
 		if (p->isControllableFeedbackOnly) continue;
-		if (p == i->enabled || p == i->listUISize || p == i->viewUIPosition || p == i->viewUISize || p == i->miniMode || p == i->isUILocked) continue;
-		
+		if (BaseItem* bi = dynamic_cast<BaseItem*>(container))
+		{
+			if (p == bi->enabled || p == bi->listUISize || p == bi->viewUIPosition || p == bi->viewUISize || p == bi->miniMode || p == bi->isUILocked) continue;
+		}
+
 		lerpSceneParam(p, startData, endData, weight);
 	}
 }
