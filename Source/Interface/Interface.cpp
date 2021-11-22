@@ -25,6 +25,12 @@ Interface::~Interface()
 {
 }
 
+void Interface::sendValuesForObject(Object* o)
+{
+    if (!enabled->boolValue()) return;
+    sendValuesForObjectInternal(o);
+}
+
 InterfaceUI* Interface::createUI()
 {
     return new InterfaceUI(this);

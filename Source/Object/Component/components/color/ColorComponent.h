@@ -37,7 +37,7 @@ public:
 
     void update() override;
     virtual var getOriginalComputedValues() override;
-    virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel) override;
+    virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false) override;
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 

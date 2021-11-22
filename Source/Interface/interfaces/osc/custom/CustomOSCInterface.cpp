@@ -32,7 +32,7 @@ void CustomOSCInterface::itemRemoved(GenericControllableItem*)
 	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
 }
 
-void CustomOSCInterface::sendValuesForObject(Object* o)
+void CustomOSCInterface::sendValuesForObjectInternal(Object* o)
 {
 	Array<var> args;
 	args.add(o->getScriptObject());

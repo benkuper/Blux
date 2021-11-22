@@ -76,9 +76,9 @@ void ObjectComponent::lerpFromSceneData(var startData, var endData, float weight
 	SceneHelpers::lerpSceneParams(this, startData, endData, weight);
 }
 
-void ObjectComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel)
+void ObjectComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
 {
-	int sChannel = startChannel + channelOffset;
+	int sChannel = startChannel + ignoreChannelOffset ? 0 : channelOffset;
 
 	for (int i = 0; i < computedParameters.size(); i++)
 	{

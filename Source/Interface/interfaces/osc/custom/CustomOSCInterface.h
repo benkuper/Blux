@@ -21,7 +21,7 @@ public:
     virtual void itemAdded(GenericControllableItem*) override;
     virtual void itemRemoved(GenericControllableItem*) override;
 
-    virtual void sendValuesForObject(Object* o) override;
+    virtual void sendValuesForObjectInternal(Object* o) override;
 
     GenericControllableManager customParams;
 

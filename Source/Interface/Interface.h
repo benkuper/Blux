@@ -25,7 +25,8 @@ public:
     BoolParameter* logOutgoingData;
 
 
-    virtual void sendValuesForObject(Object* o) {}
+    virtual void sendValuesForObject(Object* o);
+    virtual void sendValuesForObjectInternal(Object* o) {}
 
 
     virtual ControllableContainer* getInterfaceParams() { return new ControllableContainer("Interface parameters"); }

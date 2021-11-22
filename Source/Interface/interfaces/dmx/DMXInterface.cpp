@@ -148,11 +148,9 @@ void DMXInterface::dmxDataInChanged(int numChannels, uint8* values)
 }
 
 
-void DMXInterface::sendValuesForObject(Object* o)
+void DMXInterface::sendValuesForObjectInternal(Object* o)
 {
 	if (channelTestingMode->boolValue()) return;
-
-	Interface::sendValuesForObject(o);
 
 	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
 	

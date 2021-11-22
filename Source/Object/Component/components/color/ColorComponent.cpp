@@ -100,9 +100,9 @@ var ColorComponent::getOriginalComputedValues()
 	return result;
 }
 
-void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel)
+void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
 {
-	int index = startChannel + channelOffset;
+	int index = startChannel + ignoreChannelOffset ? 0 : channelOffset;
 	for (auto& c : outColors)
 	{
 		channelValueMap.set(index++, c.getFloatRed());

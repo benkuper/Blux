@@ -50,7 +50,7 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
-    virtual void fillOutValueMap(HashMap<int, float> &channelValueMap, int startChannel);
+    virtual void fillOutValueMap(HashMap<int, float> &channelValueMap, int startChannel, bool ignoreChannelOffset = false);
 
     InspectableEditor* getEditorInternal(bool isRoot) override;
 };
