@@ -81,7 +81,7 @@ Object::Object(var params) :
 	icon->addOption("Custom", -1);
 	
 	customIcon = addFileParameter("Custom Icon", "Custom icon for this object");
-	customIcon->fileTypeFilter = "*.jpg", "*.png", "*.jpeg", "*.bmp";
+	customIcon->fileTypeFilter = "*.jpg;*.png;*.jpeg;*.bmp";
 	customIcon->setEnabled(false);
 
 	globalID = addIntParameter("Global ID", "Virtual ID that is used in many places of Blux to filter, alter effects, etc.", 0, 0);
