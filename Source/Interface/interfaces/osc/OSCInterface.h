@@ -84,10 +84,6 @@ public:
 	virtual void sendOSC(const OSCMessage& msg, String ip = "", int port = 0);
 
 
-	//Interface
-	virtual void sendValuesForObject(Object* o) override;
-
-
 	//ZEROCONF
 	void setupZeroConf();
 

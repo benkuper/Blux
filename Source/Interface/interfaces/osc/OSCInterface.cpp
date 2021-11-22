@@ -295,23 +295,6 @@ void OSCInterface::sendOSC(const OSCMessage& msg, String ip, int port)
 	}
 }
 
-void OSCInterface::sendValuesForObject(Object* o)
-{
-	if (!enabled->boolValue()) return;
-
-	/*
-	for (auto& c : o->componentManager->items)
-	{
-		if (!c->enabled->boolValue()) continue;
-
-		for (auto& p : c->computedParameters)
-		{
-			OSCMessage m = OSCHelpers::getOSCMessageForControllable(p);
-			sendOSC(m);
-		}
-	}
-	*/
-}
 
 void OSCInterface::setupZeroConf()
 {
