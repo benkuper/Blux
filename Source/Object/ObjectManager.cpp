@@ -170,11 +170,19 @@ void ObjectManager::run()
     while (!threadShouldExit()) 
     {
         long millisBefore = Time::getMillisecondCounter();
+        
+        objectManagerListeners.call(&ObjectManagerListener::updateStart);
+        for (auto& i : InterfaceManager::getInstance()->items) i->prepareSendValues(); //interfaces should listen to updateStart and updateFinish
+        
         items.getLock().enter();
         for (auto& o : items)  o->checkAndComputeComponentValuesIfNeeded();
         items.getLock().exit();
-        long millisAfter = Time::getMillisecondCounter();
+        
 
+        objectManagerListeners.call(&ObjectManagerListener::updateFinish);
+        for (auto& i : InterfaceManager::getInstance()->items) i->finishSendValues(); //interfaces should listen to updateStart and updateFinish
+
+        long millisAfter = Time::getMillisecondCounter();
         long millisToSleep = jmax<long>(1, 1000.0/updateRate->intValue()-(millisAfter-millisBefore));
         sleep((int)millisToSleep);
     }

@@ -12,8 +12,9 @@
 
 class TimedEffect :
 	public Effect,
-	public HighResolutionTimer,
-	public ObjectManager::ManagerListener
+	//public HighResolutionTimer,
+	public ObjectManager::ManagerListener,
+	public ObjectManager::ObjectManagerListener
 {
 public:
 	TimedEffect(const String& name, var params = var());
@@ -46,6 +47,8 @@ public:
 	virtual void itemsRemoved(Array<Object*> o) override;
 
 
-	virtual void hiResTimerCallback() override;
+	virtual void updateStart() override;
+
+	//virtual void hiResTimerCallback() override;
 	virtual void addTime();
 };

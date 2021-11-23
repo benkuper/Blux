@@ -33,6 +33,7 @@ public:
 
 	virtual void setupSender();
 	void sendOSC(const OSCMessage& m);
+	void sendOSC(const OSCBundle& m);
 
 	virtual void run() override;
 
@@ -43,6 +44,7 @@ public:
 private:
 	OSCSender sender;
 	std::queue<std::unique_ptr<OSCMessage>> messageQueue;
+	std::queue<std::unique_ptr<OSCBundle>> bundleQueue;
 	CriticalSection queueLock;
 };
 
@@ -59,10 +61,23 @@ public:
 	//RECEIVE
 	IntParameter* localPort;
 	BoolParameter* isConnected;
+	BoolParameter* useBundles;
+
 	OSCReceiver receiver;
 	OSCSender genericSender;
 
+	struct BundleTarget
+	{
+		String ip = "";
+		int port = 0;
+		OSCBundle bundle;
+	};
+
+	OwnedArray<BundleTarget> bundles;
+	HashMap<String, BundleTarget *> bundleMap;
+
 	//ZEROCONF
+
 	Servus servus;
 
 	std::unique_ptr<EnablingControllableContainer> receiveCC;
@@ -82,7 +97,7 @@ public:
 	//SEND
 	virtual void setupSenders();
 	virtual void sendOSC(const OSCMessage& msg, String ip = "", int port = 0);
-
+	virtual void finishSendValues() override;
 
 	//ZEROCONF
 	void setupZeroConf();

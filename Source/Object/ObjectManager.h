@@ -86,6 +86,8 @@ public:
     public:
         /** Destructor. */
         virtual ~ObjectManagerListener() {}
+        virtual void updateStart() {}
+        virtual void updateFinish() {}
         virtual void customParamsChanged(ObjectManager*) {}
     };
 

@@ -21,11 +21,16 @@ TimedEffect::TimedEffect(const String &name, var params) :
 	offsetByValue = effectParams.addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
 
 	ObjectManager::getInstance()->addBaseManagerListener(this);
+	ObjectManager::getInstance()->addObjectManagerListener(this);
 }
 
 TimedEffect::~TimedEffect()
 {
-	if(ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->removeBaseManagerListener(this);
+	if (ObjectManager::getInstanceWithoutCreating() != nullptr)
+	{
+		ObjectManager::getInstance()->removeBaseManagerListener(this);
+		ObjectManager::getInstance()->removeObjectManagerListener(this);
+	}
 }
 
 void TimedEffect::onContainerTriggerTriggered(Trigger* t)
@@ -40,11 +45,14 @@ void TimedEffect::updateEnabled()
 	{
 		timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
 		resetTimes();
-		startTimer(20);
+		//startTimer(20);
+
+		if (ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->addObjectManagerListener(this);
 	}
 	else
 	{
-		stopTimer();
+		//stopTimer();
+		if (ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->removeObjectManagerListener(this);
 	}
 }
 
@@ -108,11 +116,16 @@ void TimedEffect::itemsRemoved(Array<Object*> oList)
 	}
 }
 
-void TimedEffect::hiResTimerCallback()
+void TimedEffect::updateStart()
 {
-    if (!isFullyEnabled()) return;
-    addTime();
+	if(enabled->boolValue()) addTime();
 }
+
+//void TimedEffect::hiResTimerCallback()
+//{
+//    if (!isFullyEnabled()) return;
+//    addTime();
+//}
 
 void TimedEffect::addTime()
 {
