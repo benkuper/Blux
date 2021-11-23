@@ -23,20 +23,28 @@ void BentoInterface::sendValuesForObjectInternal(Object* o)
 	if (ColorComponent* colorComp = o->getComponent<ColorComponent>())
 	{
 		int numLeds = colorComp->resolution->intValue();
-		BentoInterfaceParams* bParams = dynamic_cast<BentoInterfaceParams*>(o->interfaceParameters.get());
 
 		HashMap<int, float> valueMap;
-		colorComp->fillOutValueMap(valueMap, 0, true);
+		float fac = 1;
+		if (IntensityComponent* ic = o->getComponent<IntensityComponent>())
+		{
+			ic->fillOutValueMap(valueMap, 0, true);
+			fac = valueMap[0];
+		}
 
+		colorComp->fillOutValueMap(valueMap, 1, true);
+
+		BentoInterfaceParams* bParams = dynamic_cast<BentoInterfaceParams*>(o->interfaceParameters.get());
+		
 		Array<uint8_t> data;
 		if (multiStripMode->boolValue()) data.add(bParams->stripIndex->intValue());
 
 		for (int i = 0; i < numLeds; i++)
 		{
 			int index = i * 3;
-			data.add(valueMap[index] * 254);
-			data.add(valueMap[index + 1] * 254);
-			data.add(valueMap[index + 2] * 254);
+			data.add(valueMap[index] * fac * 254);
+			data.add(valueMap[index + 1] * fac * 254);
+			data.add(valueMap[index + 2] * fac * 254);
 		}
 
 		data.add(255);
