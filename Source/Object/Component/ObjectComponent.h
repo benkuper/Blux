@@ -43,6 +43,7 @@ public:
     virtual void update() {}
 
     virtual var getOriginalComputedValues();
+    virtual void postProcessComponentValues(var &values) {}
 
     virtual void setupFromJSONDefinition(var data);
 

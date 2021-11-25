@@ -240,6 +240,7 @@ void Object::computeComponentValues(ObjectComponent* c)
 			GlobalSequenceManager::getInstance()->processComponentValues(this, c, values);
 			GlobalEffectManager::getInstance()->processComponentValues(this, c, values);
 
+			c->postProcessComponentValues(values);
 
 			if (c->componentType == ComponentType::COLOR)
 			{

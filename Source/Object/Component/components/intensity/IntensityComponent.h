@@ -18,6 +18,9 @@ public:
     ~IntensityComponent();
 
     Array<FloatParameter*> values;
+    Automation curve;
+
+    virtual void postProcessComponentValues(var& values) override;
 
     void setupFromJSONDefinition(var data) override;
 
