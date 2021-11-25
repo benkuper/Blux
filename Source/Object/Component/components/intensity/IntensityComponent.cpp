@@ -1,4 +1,3 @@
-#include "IntensityComponent.h"
 /*
   ==============================================================================
 
@@ -13,6 +12,8 @@ IntensityComponent::IntensityComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), INTENSITY, params),
 	curve("Remap Curve")
 {
+	saveAndLoadRecursiveData = true;
+
 	curve.setCanBeDisabled(true);
 	curve.enabled->setValue(false);
 	curve.addKey(0, 0);
