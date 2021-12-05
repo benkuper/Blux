@@ -78,7 +78,7 @@ void ObjectComponent::lerpFromSceneData(var startData, var endData, float weight
 
 void ObjectComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
 {
-	int sChannel = startChannel + ignoreChannelOffset ? 0 : channelOffset;
+	int sChannel = startChannel + (ignoreChannelOffset ? 0 : channelOffset);
 
 	for (int i = 0; i < computedParameters.size(); i++)
 	{
