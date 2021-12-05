@@ -8,15 +8,16 @@
   ==============================================================================
 */
 
-MIDIDevice::MIDIDevice(const String & deviceName, Type t) :
-	name(deviceName),
+MIDIDevice::MIDIDevice(const MidiDeviceInfo& info, Type t) :
+	id(info.identifier),
+	name(info.name),
 	type(t)
 {}
 
 
 
-MIDIInputDevice::MIDIInputDevice(const String & deviceName) :
-	MIDIDevice(deviceName, MIDI_IN)
+MIDIInputDevice::MIDIInputDevice(const MidiDeviceInfo & info) :
+	MIDIDevice(info, MIDI_IN)
 {
 }
 
@@ -29,9 +30,9 @@ void MIDIInputDevice::addMIDIInputListener(MIDIInputListener * newListener)
 	inputListeners.add(newListener);
 	if (inputListeners.size() == 1)
 	{
-		int deviceIndex = MidiInput::getDevices().indexOf(name);
+		//int deviceIndex = MidiInput::getDevices().indexOf(name);
 		device.reset();
-		device = MidiInput::openDevice(deviceIndex, this);
+		device = MidiInput::openDevice(id, this);
 
 		if (device != nullptr)
 		{
@@ -73,6 +74,10 @@ void MIDIInputDevice::handleIncomingMidiMessage(MidiInput * source, const MidiMe
 	else if (message.isPitchWheel()) inputListeners.call(&MIDIInputListener::pitchWheelReceived, message.getChannel(), message.getPitchWheelValue());
 	else if (message.isChannelPressure()) inputListeners.call(&MIDIInputListener::channelPressureReceived, message.getChannel(), message.getChannelPressureValue());
 	else if (message.isAftertouch()) inputListeners.call(&MIDIInputListener::afterTouchReceived, message.getChannel(), message.getNoteNumber(), message.getAfterTouchValue());
+	else if (message.isMidiClock()) inputListeners.call(&MIDIInputListener::midiClockReceived);
+	else if (message.isMidiStart()) inputListeners.call(&MIDIInputListener::midiStartReceived);
+	else if (message.isMidiStop()) inputListeners.call(&MIDIInputListener::midiStopReceived);
+	else if (message.isMidiContinue()) inputListeners.call(&MIDIInputListener::midiContinueReceived);
 	else
 	{
 		DBG("Not handled : " << message.getDescription());
@@ -87,8 +92,8 @@ void MIDIInputDevice::handleIncomingMidiMessage(MidiInput * source, const MidiMe
 //*****************   MIDI OUTPUT
 
 
-MIDIOutputDevice::MIDIOutputDevice(const String & deviceName) :
-	MIDIDevice(deviceName, MIDI_OUT),
+MIDIOutputDevice::MIDIOutputDevice(const MidiDeviceInfo & info) :
+	MIDIDevice(info, MIDI_OUT),
 	usageCount(0)
 {}
 
@@ -101,15 +106,15 @@ void MIDIOutputDevice::open()
 	usageCount++;
 	if (usageCount == 1)
 	{
-		int deviceIndex = MidiOutput::getDevices().indexOf(name);
+		//int deviceIndex = MidiOutput::getAvailableDevices().indexOf(name);
 		device.reset();
-		device = MidiOutput::openDevice(deviceIndex);
+		device = MidiOutput::openDevice(id);// deviceIndex);
 		if (device != nullptr)
 		{
 			LOG("MIDI Out " << device->getName() << " opened");
 		} else
 		{
-			LOG("MIDI Out " << name << " open error");
+			LOGERROR("MIDI Out " << name << " open error");
 		}
 	}
 }
