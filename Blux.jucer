@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b8"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b9"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17"
               defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="JrFmSt" name="Blux">
