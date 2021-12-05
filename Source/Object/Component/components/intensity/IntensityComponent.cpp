@@ -28,6 +28,8 @@ IntensityComponent::~IntensityComponent()
 
 void IntensityComponent::postProcessComponentValues(var& values)
 {
+	if (!curve.enabled->boolValue()) return;
+
 	for (int i = 0; i < values.size(); i++)
 	{
 		values[i] = curve.getValueAtPosition(values[i]);

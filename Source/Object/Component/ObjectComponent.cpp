@@ -85,7 +85,7 @@ void ObjectComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int 
 		Parameter* p = computedParameters[i];
 		if (p->isComplex())
 		{
-			for (int j = 0; j < p->value.size(); j++) channelValueMap.set(sChannel + paramChannels[i] + j, (float)p->value[j] * 255); //remap to 0-255 automatically
+			for (int j = 0; j < p->value.size(); j++) channelValueMap.set(sChannel + paramChannels[i] + j, (float)p->value[j]); //remap to 0-255 automatically
 		}
 		else channelValueMap.set(sChannel + paramChannels[i], p->floatValue()); //remap to 0-255 automatically
 	}
