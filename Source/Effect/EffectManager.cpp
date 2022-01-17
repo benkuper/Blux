@@ -91,6 +91,8 @@ EffectFactory::EffectFactory()
     defs.add(Factory<Effect>::Definition::createDef("Number", AutomationEffect::getTypeStringStatic(), &AutomationEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Number", FreezeFloatEffect::getTypeStringStatic(), &FreezeFloatEffect::create));
 
+    defs.add(Factory<Effect>::Definition::createDef("Number", SmoothingEffect::getTypeStringStatic(), &SmoothingEffect::create));
+
     defs.add(Factory<Effect>::Definition::createDef("Color", ColorSourceOverrideEffect::getTypeStringStatic(), &ColorSourceOverrideEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Color", HSVAdjustEffect::getTypeStringStatic(), &HSVAdjustEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Color", GradientRemapEffect::getTypeStringStatic(), &GradientRemapEffect::create));

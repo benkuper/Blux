@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b9"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b10"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17"
               defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="JrFmSt" name="Blux">
@@ -405,6 +405,15 @@
           <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
         </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{9C5F5626-2B7E-5ED9-5F11-FBEE3D54EAD2}" name="smooth">
+            <FILE id="uJc1x1" name="DampingEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/smooth/DampingEffect.cpp"/>
+            <FILE id="sHbQhR" name="DampingEffect.h" compile="0" resource="0" file="Source/Effect/effects/smooth/DampingEffect.h"/>
+            <FILE id="EdSPHw" name="SmoothingEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/smooth/SmoothingEffect.cpp"/>
+            <FILE id="sulD4P" name="SmoothingEffect.h" compile="0" resource="0"
+                  file="Source/Effect/effects/smooth/SmoothingEffect.h"/>
+          </GROUP>
           <GROUP id="{DE260787-4523-BE90-2008-E5E304C7BFD1}" name="script">
             <FILE id="RmiaL8" name="ScriptEffect.cpp" compile="0" resource="0"
                   file="Source/Effect/effects/script/ScriptEffect.cpp"/>
@@ -840,19 +849,20 @@
                JUCE_IP_AND_PORT_DETECTION="1" JUCE_EXCLUSIVE_BINDING_BY_DEFAULT="1"
                JUCE_ENABLE_BROADCAST_BY_DEFAULT="1" JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS="1"/>
   <EXPORTFORMATS>
-    <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="kxAIe6" bigIcon="kxAIe6"
-            externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib">
+    <VS2022 targetFolder="Builds/VisualStudio2022" externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib"
+            smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="Blux" binaryPath="Binaries/Debug"
-                       headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="Blux" binaryPath="Binaries/"
-                       headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"/>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+                       libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
+                       binaryPath="Binaries/Debug"/>
+        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+                       libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
+                       binaryPath="Binaries/"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics"/>
+        <MODULEPATH id="juce_audio_basics" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_audio_devices" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_audio_processors" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_audio_utils" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_core" path="D:\Softwares\JUCE\modules"/>
@@ -862,13 +872,12 @@
         <MODULEPATH id="juce_gui_basics" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_gui_extra" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_opengl" path="D:\Softwares\JUCE\modules"/>
-        <MODULEPATH id="juce_osc" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_organicui" path="Modules"/>
-        <MODULEPATH id="juce_timeline" path="Modules"/>
+        <MODULEPATH id="juce_osc" path="D:\Softwares\JUCE\modules"/>
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
-        <MODULEPATH id="juce_audio_formats" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_timeline" path="Modules"/>
       </MODULEPATHS>
-    </VS2019>
+    </VS2022>
     <VS2019 targetFolder="Builds/VisualStudio2019_CI" extraDefs="JUCE_SUPPORT_CARBON=0"
             externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib"
             smallIcon="kxAIe6" bigIcon="kxAIe6" extraCompilerFlags="/Zm1000"

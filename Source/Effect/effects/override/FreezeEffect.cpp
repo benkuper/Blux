@@ -1,4 +1,3 @@
-#include "FreezeEffect.h"
 /*
   ==============================================================================
 
@@ -18,10 +17,10 @@ FreezeEffect::FreezeEffect(const String& name, var params) :
     filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
     filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 
-    freezeMode = addEnumParameter("Mode", "Keep only higher values or lower values");
+    freezeMode = effectParams.addEnumParameter("Mode", "Keep only higher values or lower values");
     freezeMode->addOption("Hold",HOLD)->addOption("Increase Only", MAX)->addOption("Decrease Only", MIN);
 
-    reset = addTrigger("Reset", "Reset the freeze");
+    reset = effectParams.addTrigger("Reset", "Reset the freeze");
 }
 
 FreezeEffect::~FreezeEffect()

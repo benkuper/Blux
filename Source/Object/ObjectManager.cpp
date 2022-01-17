@@ -64,7 +64,7 @@ void ObjectManager::downloadObjects()
     LOG("Downloading objects...");
     downloadURL = URL("http://benjamin.kuperberg.fr/blux/download/objects.zip");
     File f = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName) + "/objects.zip");
-    downloadTask = downloadURL.downloadToFile(f, "", this);
+    downloadTask = downloadURL.downloadToFile(f, URL::DownloadTaskOptions().withListener(this));
     if (downloadTask == nullptr)
     {
         LOGERROR("Error while downloading objects,\ntry downloading it directly from the website.");

@@ -1,3 +1,4 @@
+#include "TimedEffect.h"
 /*
   ==============================================================================
 
@@ -83,6 +84,7 @@ float TimedEffect::getCurrentTime(ObjectComponent * c, float timeOverride)
 	if (!curTimes.contains(c)) curTimes.set(c, 0);
 	return timeOverride >= 0 ? timeOverride : curTimes[c];
 }
+
 
 void TimedEffect::resetTimes()
 {

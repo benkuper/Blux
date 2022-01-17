@@ -30,6 +30,8 @@
 #include "effects/time/automation/ui/AutomationEffectEditor.cpp"
 #include "effects/time/noise/NoiseEffect.cpp"
 #include "effects/time/TimedEffect.cpp"
+#include "effects/smooth/SmoothingEffect.cpp"
+#include "effects/smooth/DampingEffect.cpp"
 #include "Filter/Filter.cpp"
 #include "Filter/FilterManager.cpp"
 #include "Filter/filters/group/GroupFilter.cpp"

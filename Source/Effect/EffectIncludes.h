@@ -47,6 +47,9 @@ class FilterManager;
 #include "effects/override/OverrideEffect.h"
 #include "effects/override/FreezeEffect.h"
 
+#include "effects/smooth/SmoothingEffect.h"
+#include "effects/smooth/DampingEffect.h"
+
 #include "effects/time/TimedEffect.h"
 #include "effects/time/automation/AutomationEffect.h"
 #include "effects/time/automation/ui/AutomationEffectEditor.h"
