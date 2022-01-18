@@ -94,6 +94,11 @@ void LayoutFilterStageViewUI::newMessage(const ContainerAsyncEvent& e)
 		{
 			handle.color = filter->colorInView->getColor();
 			handle.repaint();
+			repaint();
+		}
+		else if (e.targetControllable == filter->size || ControllableUtil::findParentAs<Automation>(e.targetControllable.get(), 3))
+		{
+			repaint();
 		}
     default:
         break;
