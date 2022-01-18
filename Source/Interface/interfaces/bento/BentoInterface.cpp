@@ -32,13 +32,13 @@ void BentoInterface::sendValuesForObjectInternal(Object* o)
 			fac = valueMap[0];
 		}
 
-		colorComp->fillOutValueMap(valueMap, 1, true);
+		colorComp->fillOutValueMap(valueMap, 0, true);
 
 		BentoInterfaceParams* bParams = dynamic_cast<BentoInterfaceParams*>(o->interfaceParameters.get());
 		
 		Array<uint8_t> data;
 		if (multiStripMode->boolValue()) data.add(bParams->stripIndex->intValue());
-
+		
 		for (int i = 0; i < numLeds; i++)
 		{
 			int index = i * 3;
