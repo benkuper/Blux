@@ -29,6 +29,7 @@ public:
 
     enum IDMode { NO_CHANGE, LOCAL, LOCAL_REVERSE, RANDOMIZED };
     EnumParameter* idMode;
+    BoolParameter* invert;
     BoolParameter* excludeFromScenes;
 
     virtual bool isAffectingObject(Object* o);
