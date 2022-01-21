@@ -35,8 +35,8 @@ CurveMapEffect::~CurveMapEffect()
 
 var CurveMapEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
 {
-	var ir = GetLinkedValue(inputRange);
-	var or = GetLinkedValue(outputRange);
+	var inrR = GetLinkedValue(inputRange);
+	var outR = GetLinkedValue(outputRange);
 
 
 	for (int i = 0; i < values.size(); i++)
@@ -46,17 +46,17 @@ var CurveMapEffect::getProcessedComponentValuesInternal(Object* o, ObjectCompone
 			for (int j = 0; j < values.size(); j++)
 			{
 				float normVal = 0;
-				if(ir[0] != ir[1]) normVal = jmap<float>(values[i][j], ir[0],ir[1], 0, 1);
+				if(inrR[0] != inrR[1]) normVal = jmap<float>(values[i][j], inrR[0],inrR[1], 0, 1);
 				float mapVal = automation.getValueAtPosition(normVal);
-				values[i][j] = jmap<float>(mapVal, or[0], or[1]);
+				values[i][j] = jmap<float>(mapVal, outR[0], outR[1]);
 			}
 		}
 		else
 		{
 			float normVal = 0;
-			if (ir[0] != ir[1]) normVal = jmap<float>(values[i], ir[0], ir[1], 0, 1);
+			if (inrR[0] != inrR[1]) normVal = jmap<float>(values[i], inrR[0], inrR[1], 0, 1);
 			float mapVal = automation.getValueAtPosition(normVal);
-			values[i] = jmap<float>(mapVal, or[0], or[1]);
+			values[i] = jmap<float>(mapVal, outR[0], outR[1]);
 		}
 	}
 
