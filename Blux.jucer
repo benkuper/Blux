@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b13"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b14"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17"
               defines="JUCE_MODAL_LOOPS_PERMITTED=1">
   <MAINGROUP id="JrFmSt" name="Blux">
@@ -474,6 +474,10 @@
             <FILE id="mTKbxk" name="TimedEffect.h" compile="0" resource="0" file="Source/Effect/effects/time/TimedEffect.h"/>
           </GROUP>
           <GROUP id="{448FBE9F-BB3E-D4C2-BE7E-C573A112D794}" name="override">
+            <FILE id="e8Z6Gl" name="CurveMapEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/override/CurveMapEffect.cpp"/>
+            <FILE id="d9kUBU" name="CurveMapEffect.h" compile="0" resource="0"
+                  file="Source/Effect/effects/override/CurveMapEffect.h"/>
             <FILE id="yGxLzN" name="FreezeEffect.cpp" compile="0" resource="0"
                   file="Source/Effect/effects/override/FreezeEffect.cpp"/>
             <FILE id="DQvpdX" name="FreezeEffect.h" compile="0" resource="0" file="Source/Effect/effects/override/FreezeEffect.h"/>

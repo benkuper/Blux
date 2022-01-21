@@ -225,6 +225,7 @@
 		5FDD1FDFFE742235E27F101F /* ObjectManagerUI.h */ /* ObjectManagerUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ObjectManagerUI.h; path = ../../Source/Object/ui/ObjectManagerUI.h; sourceTree = SOURCE_ROOT; };
 		61CE3447666AC70AD92CE5DD /* EffectBlockManager.cpp */ /* EffectBlockManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EffectBlockManager.cpp; path = ../../Source/Sequence/layers/effect/EffectBlockManager.cpp; sourceTree = SOURCE_ROOT; };
 		627742083830E3A02D2379F1 /* EffectBlockManager.h */ /* EffectBlockManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectBlockManager.h; path = ../../Source/Sequence/layers/effect/EffectBlockManager.h; sourceTree = SOURCE_ROOT; };
+		633CBFF1FC95E2539257A374 /* CurveMapEffect.cpp */ /* CurveMapEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CurveMapEffect.cpp; path = ../../Source/Effect/effects/override/CurveMapEffect.cpp; sourceTree = SOURCE_ROOT; };
 		659B5041CB53A71CDCB0157A /* MIDIDeviceParameterUI.h */ /* MIDIDeviceParameterUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MIDIDeviceParameterUI.h; path = ../../Source/Common/MIDI/ui/MIDIDeviceParameterUI.h; sourceTree = SOURCE_ROOT; };
 		670AFB19B2FD4034F30BCF38 /* DMXManager.h */ /* DMXManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DMXManager.h; path = ../../Source/Common/DMX/DMXManager.h; sourceTree = SOURCE_ROOT; };
 		68A1AB447C7BE819E4D0A974 /* juce_audio_formats */ /* juce_audio_formats */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_formats; path = ../../JUCE/modules/juce_audio_formats; sourceTree = SOURCE_ROOT; };
@@ -386,6 +387,7 @@
 		C06AB6DF82908D9925D55188 /* InterfaceUI.h */ /* InterfaceUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InterfaceUI.h; path = ../../Source/Interface/ui/InterfaceUI.h; sourceTree = SOURCE_ROOT; };
 		C0BB506D0A1EF22E98AF38BD /* EffectBlockManagerUI.cpp */ /* EffectBlockManagerUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EffectBlockManagerUI.cpp; path = ../../Source/Sequence/layers/effect/ui/EffectBlockManagerUI.cpp; sourceTree = SOURCE_ROOT; };
 		C0F1374A02680BC4E10C64F4 /* DampingEffect.cpp */ /* DampingEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DampingEffect.cpp; path = ../../Source/Effect/effects/smooth/DampingEffect.cpp; sourceTree = SOURCE_ROOT; };
+		C13B6C04220DFA004409499C /* CurveMapEffect.h */ /* CurveMapEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CurveMapEffect.h; path = ../../Source/Effect/effects/override/CurveMapEffect.h; sourceTree = SOURCE_ROOT; };
 		C1886074645E3D7CFA3CDEBD /* DMXOpenUSBDevice.cpp */ /* DMXOpenUSBDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DMXOpenUSBDevice.cpp; path = ../../Source/Common/DMX/device/DMXOpenUSBDevice.cpp; sourceTree = SOURCE_ROOT; };
 		C1EF6A071CA9F578B6CAF58B /* BinaryData.cpp */ /* BinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../JuceLibraryCode/BinaryData.cpp; sourceTree = SOURCE_ROOT; };
 		C2E639E5EF8720E7F96128BF /* ColorSourceLibrary.h */ /* ColorSourceLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceLibrary.h; path = ../../Source/Color/ColorSource/ColorSourceLibrary.h; sourceTree = SOURCE_ROOT; };
@@ -1880,6 +1882,8 @@
 		FFB81D5BAC442666EDA9DC53 /* override */ = {
 			isa = PBXGroup;
 			children = (
+				633CBFF1FC95E2539257A374,
+				C13B6C04220DFA004409499C,
 				C83657751F184675FF322432,
 				DFE4C3236B1297457120B8F1,
 				3B4157E878CF22C9643E3956,
@@ -2113,7 +2117,7 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_MODAL_LOOPS_PERMITTED=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.1.0b13",
+					"JUCE_APP_VERSION=1.1.0b14",
 					"JUCE_APP_VERSION_HEX=0x10100",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2201,7 +2205,7 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_MODAL_LOOPS_PERMITTED=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.1.0b13",
+					"JUCE_APP_VERSION=1.1.0b14",
 					"JUCE_APP_VERSION_HEX=0x10100",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",

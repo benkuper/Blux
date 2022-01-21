@@ -87,6 +87,7 @@ void EffectManager::lerpFromSceneData(var startData, var endData, float weight)
 EffectFactory::EffectFactory()
 {
     defs.add(Factory<Effect>::Definition::createDef("Number", OverrideFloatEffect::getTypeStringStatic(), &OverrideFloatEffect::create));
+    defs.add(Factory<Effect>::Definition::createDef("Number", CurveMapEffect::getTypeStringStatic(), &CurveMapEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Number", NoiseEffect::getTypeStringStatic(), &NoiseEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Number", AutomationEffect::getTypeStringStatic(), &AutomationEffect::create));
     defs.add(Factory<Effect>::Definition::createDef("Number", FreezeFloatEffect::getTypeStringStatic(), &FreezeFloatEffect::create));
