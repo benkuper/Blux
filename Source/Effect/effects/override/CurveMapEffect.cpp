@@ -21,6 +21,7 @@ CurveMapEffect::CurveMapEffect(var params) :
 	k->easingType->setValueWithData(Easing::LINEAR);
 	automation.addKey(1, 1);
 	effectParams.addChildControllableContainer(&automation);
+	effectParams.saveAndLoadRecursiveData = true;
 
 	filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
 	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
