@@ -20,14 +20,15 @@ ColorSourceChooser::~ColorSourceChooser()
 void ColorSourceChooser::clicked()
 {
 	ColorSourceMenu m;
-	if (int result = m.show())
-	{
+	m.showMenuAsync(PopupMenu::Options(), [this](int result)
+		{
+			if (result == 0) return;
+			ColorSource* refColorSource = result < -1 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
+			String type = refColorSource != nullptr ? refColorSource->getTypeString() : (result > 0 ? ColorSourceFactory::getInstance()->defs[result - 1]->type : "");
 
-		ColorSource* refColorSource = result < -1 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
-		String type = refColorSource != nullptr ? refColorSource->getTypeString() : (result > 0 ? ColorSourceFactory::getInstance()->defs[result - 1]->type : "");
-
-		chooserListeners.call(&ChooserListener::sourceChosen, type, refColorSource);
-	}
+			this->chooserListeners.call(&ChooserListener::sourceChosen, type, refColorSource);
+		}
+	);
 }
 
 ColorSourceMenu::ColorSourceMenu() :
@@ -44,5 +45,5 @@ ColorSourceMenu::ColorSourceMenu() :
 	addSeparator();
 	addSubMenu("Templates", tm);
 	addSeparator();
-	addItem(-1,"Remove");
+	addItem(-1, "Remove");
 }

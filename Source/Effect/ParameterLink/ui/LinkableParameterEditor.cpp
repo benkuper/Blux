@@ -104,12 +104,14 @@ void LinkableParameterEditor::buttonClicked(Button* b)
 		p.addSeparator();
 		p.addItem(-1, "Unlink", link->linkType != link->NONE);
 
-		if (int result = p.show())
-		{
-			if (result == -1) link->setLinkType(link->NONE);
-			else if (result == 1) link->setLinkType(link->OBJECT_ID);
-			else if (result >= 100) link->setLinkedCustomParam((Parameter *)ObjectManager::getInstance()->customParams.items[result - 100]->controllable);
-		}
+		p.showMenuAsync(PopupMenu::Options(), [this](int result)
+			{
+				if (result == -1) this->link->setLinkType(this->link->NONE);
+				else if (result == 1) this->link->setLinkType(this->link->OBJECT_ID);
+				else if (result >= 100) this->link->setLinkedCustomParam((Parameter*)ObjectManager::getInstance()->customParams.items[result - 100]->controllable);
+			}
+		);
+
 	}
 }
 
@@ -136,7 +138,7 @@ String LinkableParameterEditor::getLinkLabel() const
 		break;
 
 	}
-	
+
 	return s;
 
 }
@@ -147,9 +149,9 @@ void LinkableParameterEditor::newMessage(const ParameterLink::ParameterLinkEvent
 
 	if (e.type == ParameterLink::ParameterLinkEvent::LINK_UPDATED || e.type == ParameterLink::ParameterLinkEvent::PREVIEW_UPDATED)
 	{
-	    bool visible = link->linkType == link->NONE;
-	    if (visible) addAndMakeVisible(paramEditor.get());
-	    else removeChildComponent(paramEditor.get());
+		bool visible = link->linkType == link->NONE;
+		if (visible) addAndMakeVisible(paramEditor.get());
+		else removeChildComponent(paramEditor.get());
 	}
 
 	repaint();

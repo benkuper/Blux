@@ -141,7 +141,7 @@ void ObjectAction::onContainerParameterChanged(Parameter* p)
 	}
 }
 
-Controllable* ObjectAction::showAndGetComponentParameter(const StringArray& typesFilter, const StringArray& excludeTypesFilter)
+void ObjectAction::showAndGetComponentParameter(const StringArray& typesFilter, const StringArray& excludeTypesFilter, std::function<void(Controllable *)> returnFunc)
 {
 	Array<Parameter*> params;
 	PopupMenu m;
@@ -164,11 +164,12 @@ Controllable* ObjectAction::showAndGetComponentParameter(const StringArray& type
 		m.addSubMenu(o->niceName, om);
 	}
 
-	int result = m.show();
-
-	if (result >= 1) return params[result - 1];
-
-	return nullptr;
+	m.showMenuAsync(PopupMenu::Options(), [params, returnFunc](int result)
+		{
+			if (result == 0) return;
+			returnFunc(params[result - 1]);
+		}
+	);
 }
 
 void ObjectAction::loadJSONDataInternal(var data)

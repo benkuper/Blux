@@ -25,10 +25,10 @@ void PixelShapeChooser::clicked()
     const String typeNames[numTypes]{"Point", "Line", "Circle" };
     for (int i = 0; i < numTypes; i++) m.addItem(i + 1, typeNames[i]);
 
-    int result = m.show();
-
-    if (result == 0) return;
-
-    chooserListeners.call(&ChooserListener::shapeChosen, typeNames[result-1]);
-
+    m.showMenuAsync(PopupMenu::Options(), [this, typeNames](int result)
+        {
+            if (result == 0) return;
+            this->chooserListeners.call(&ChooserListener::shapeChosen, typeNames[result - 1]);
+        }
+    );
 }

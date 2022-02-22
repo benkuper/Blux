@@ -61,7 +61,7 @@ void EffectAction::setValueInternal(var value)
 	}
 }
 
-ControllableContainer* EffectAction::showMenuAndGetEffect()
+void EffectAction::showMenuAndGetEffect(std::function<void(ControllableContainer*)> returnFunc)
 {
 	Array<Effect *> effects;
 	PopupMenu m;
@@ -126,6 +126,10 @@ ControllableContainer* EffectAction::showMenuAndGetEffect()
 	m.addSubMenu("Objects", objectsMenu);
 
 
-	int result = m.show();
-	return result == 0 ? nullptr : effects[result - 1];
+	m.showMenuAsync(PopupMenu::Options(), [effects, returnFunc](int result)
+		{
+			if (result == 0) return;
+			returnFunc(effects[result - 1]);
+		}
+	);
 }

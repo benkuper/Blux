@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    ObjectGridUI.cpp
-    Created: 26 Sep 2020 7:51:18pm
-    Author:  bkupe
+	ObjectGridUI.cpp
+	Created: 26 Sep 2020 7:51:18pm
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -15,9 +15,9 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),
 	shouldRepaint(false),
 	transparentBG(false),
-    previewIntensity(0),
+	previewIntensity(0),
 	iconIntensityRef(nullptr),
-    flashMode(false)
+	flashMode(false)
 {
 
 	updateThumbnail();
@@ -77,7 +77,7 @@ void ObjectGridUI::paint(Graphics& g)
 	}
 
 	Rectangle<int> r = getLocalBounds();
-	
+
 	r.removeFromBottom(20);
 
 	if (!previewData.isVoid())
@@ -91,7 +91,7 @@ void ObjectGridUI::paint(Graphics& g)
 		g.drawRoundedRectangle(pr, 4, .5f);
 	}
 
-	
+
 	if (colorViz == nullptr)
 	{
 
@@ -132,10 +132,10 @@ void ObjectGridUI::resized()
 	Rectangle<int> r = getLocalBounds();
 
 	globalIDUI->setVisible(r.getWidth() >= 90);
-	if(globalIDUI->isVisible()) globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
+	if (globalIDUI->isVisible()) globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
 
-	
-	
+
+
 	if (computedIntensityUI != nullptr)
 	{
 		computedIntensityUI->setBounds(r.removeFromBottom(10).reduced(2));
@@ -157,12 +157,13 @@ void ObjectGridUI::updateThumbnail()
 
 	File img1;
 	File img2;
-	
+
 	if (iconData.isArray())
 	{
 		img1 = File(iconData[0].toString());
 		img2 = File(iconData[1].toString());
-	}else if(iconData.isString())
+	}
+	else if (iconData.isString())
 	{
 		img1 = File(iconData.toString());
 	}
@@ -209,29 +210,30 @@ void ObjectGridUI::mouseDown(const MouseEvent& e)
 			}
 		}
 	}
-	else if(e.mods.isRightButtonDown())
+	else if (e.mods.isRightButtonDown())
 	{
 		PopupMenu m;
 		ColorSourceMenu cm;
 		m.addSubMenu("Set Color Source", cm);
 
-		if (int result = m.show())
-		{
-			ColorSource* refColorSource = result < -1 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
-			String type = refColorSource != nullptr ? refColorSource->getTypeString() : (result > 0 ? ColorSourceFactory::getInstance()->defs[result - 1]->type : "");
-
-			Array<Object*> objects;
-			if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
-			objects.addIfNotAlreadyThere(item);
-
-			for (auto& o : objects)
+		m.showMenuAsync(PopupMenu::Options(), [this](int result)
 			{
-				if (ColorComponent* c = o->getComponent<ColorComponent>())
+				ColorSource* refColorSource = result < -1 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
+				String type = refColorSource != nullptr ? refColorSource->getTypeString() : (result > 0 ? ColorSourceFactory::getInstance()->defs[result - 1]->type : "");
+
+				Array<Object*> objects;
+				if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
+				objects.addIfNotAlreadyThere(item);
+
+				for (auto& o : objects)
 				{
-					c->setupSource(type, refColorSource);
+					if (ColorComponent* c = o->getComponent<ColorComponent>())
+					{
+						c->setupSource(type, refColorSource);
+					}
 				}
 			}
-		}
+		);
 	}
 }
 
@@ -261,7 +263,7 @@ void ObjectGridUI::mouseUp(const MouseEvent& e)
 		Array<Object*> objects;
 		if (item->isSelected) objects.addArray(InspectableSelectionManager::activeSelectionManager->getInspectablesAs<Object>());
 		objects.addIfNotAlreadyThere(item);
-		
+
 		if (e.mods.isRightButtonDown())
 		{
 			for (auto& o : objects)
@@ -306,7 +308,8 @@ bool ObjectGridUI::keyStateChanged(bool isDown)
 			}
 
 			return true;
-		}else if (KeyPress::isKeyCurrentlyDown(KeyPress::createFromDescription("v").getKeyCode()))
+		}
+		else if (KeyPress::isKeyCurrentlyDown(KeyPress::createFromDescription("v").getKeyCode()))
 		{
 			ShapeShifterManager::getInstance()->showContent(ChainViz::panelName);
 			if (ChainViz* viz = ShapeShifterManager::getInstance()->getContentForType<ChainViz>())
