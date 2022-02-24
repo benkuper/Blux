@@ -40,8 +40,16 @@ void SerialDeviceParameter::setValueInternal(var &v)
 
 void SerialDeviceParameter::updatePortList()
 {
-	clearOptions();
 	//DBG("num ports :" << SerialManager::getInstance()->portInfos.size());
+
+	String s;
+	if (currentDevice != nullptr)
+	{
+		s = currentDevice->info->uniqueDescription;
+	}
+
+	//clearOptions();
+	enumValues.clear();
 
 	if (SerialManager::getInstance()->portInfos.size() > 0) addOption("Not connected or disconnected", var(), false);
 	for (auto &p : SerialManager::getInstance()->portInfos)
@@ -56,17 +64,31 @@ void SerialDeviceParameter::updatePortList()
 		String desc = p->uniqueDescription;
 		addOption(desc, v, false);
 	}
+
+	if (s.isNotEmpty()) setValueWithKey(s);
+
 }
 
 
-void SerialDeviceParameter::portAdded(SerialDeviceInfo *)
+void SerialDeviceParameter::portAdded(SerialDeviceInfo *s)
 {
 	//DBG("param : port added");
 	updatePortList();
+	if (getValueKey() == "" && ghostData == s->uniqueDescription)
+	{
+		setValueWithKey(ghostData);
+		ghostData = "";
+	}
 }
 
-void SerialDeviceParameter::portRemoved(SerialDeviceInfo *)
+void SerialDeviceParameter::portRemoved(SerialDeviceInfo * s)
 {
 	//DBG("param : port removed !");
+	if (s->uniqueDescription == getValueKey())
+	{
+		ghostData = s->uniqueDescription;
+		setValue("");
+	}
+
 	updatePortList();
 }

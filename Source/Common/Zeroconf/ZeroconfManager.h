@@ -88,7 +88,7 @@ public:
 
 	ZeroconfSearcher * getSearcher(StringRef name);
 
-	ServiceInfo * showMenuAndGetService(StringRef service, std::function<void(ServiceInfo *)> returnFunc, bool showLocal = true, bool showRemote = true, bool separateLocalAndRemote = true, bool excludeInternal = true);
+	void showMenuAndGetService(StringRef service, std::function<void(ServiceInfo *)> returnFunc, bool showLocal = true, bool showRemote = true, bool separateLocalAndRemote = true, bool excludeInternal = true);
 	
 	void search();
 
