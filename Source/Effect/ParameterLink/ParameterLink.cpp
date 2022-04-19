@@ -312,7 +312,7 @@ void ParamLinkContainer::loadJSONDataInternal(var data)
 
 }
 
-InspectableEditor* ParamLinkContainer::getEditorInternal(bool isRoot)
+InspectableEditor* ParamLinkContainer::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)
 {
 	return new ParamLinkContainerEditor(this, isRoot);
 }

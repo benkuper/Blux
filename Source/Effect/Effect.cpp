@@ -200,7 +200,7 @@ ChainVizComponent* Effect::createVizComponent(Object* o, ChainVizTarget::ChainVi
 	return new EffectChainVizUI(this, o, type);
 }
 
-InspectableEditor* Effect::getEditorInternal(bool isRoot)
+InspectableEditor* Effect::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)
 {
 	return new EffectEditor(this, isRoot);
 }

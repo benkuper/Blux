@@ -64,5 +64,5 @@ public:
     String getTypeString() const override { return "Color"; }
     static ColorComponent* create(Object * o, var params) { return new ColorComponent(o, params); }
 
-    InspectableEditor* getEditorInternal(bool isRoot) override;
+    InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
 };

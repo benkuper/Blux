@@ -21,7 +21,7 @@ BluxInspector::~BluxInspector()
 {
 }
 
-void BluxInspector::setCurrentInspectable(WeakReference<Inspectable> inspectable, bool setInspectableSelection)
+void BluxInspector::setCurrentInspectables(Array<Inspectable*> inspectables, bool setInspectableSelection)
 {
     if (colorViz != nullptr)
     {
@@ -29,9 +29,11 @@ void BluxInspector::setCurrentInspectable(WeakReference<Inspectable> inspectable
         colorViz.reset();
     }
 
-    Inspector::setCurrentInspectable(inspectable, setInspectableSelection);
+    Inspector::setCurrentInspectables(inspectables, setInspectableSelection);
 
-    if (Object* o = dynamic_cast<Object*>(inspectable.get()))
+    if (inspectables.isEmpty()) return;
+
+    if (Object* o = dynamic_cast<Object*>(inspectables[0]))
     {
         if (ColorComponent* c = o->getComponent<ColorComponent>())
         {

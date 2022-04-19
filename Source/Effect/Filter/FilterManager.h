@@ -30,7 +30,7 @@ public:
 	bool isAffectingObject(Object* o);
 	FilterResult getFilteredResultForComponent(Object* o, ObjectComponent* c);
 
-	InspectableEditor* getEditorInternal(bool isRoot) override;
+	InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
 
 	var getJSONData() override;
 	void loadJSONDataManagerInternal(var data) override;

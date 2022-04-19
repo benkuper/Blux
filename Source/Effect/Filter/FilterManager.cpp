@@ -112,7 +112,7 @@ FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectCompo
     return result;
 }
 
-InspectableEditor* FilterManager::getEditorInternal(bool isRoot)
+InspectableEditor* FilterManager::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)
 {
     return new FilterManagerEditor(this, isRoot);
 }

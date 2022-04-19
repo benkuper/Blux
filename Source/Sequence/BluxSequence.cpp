@@ -85,7 +85,7 @@ ChainVizComponent* BluxSequence::createVizComponent(Object* o, ChainVizTarget::C
 	return new BluxSequenceChainVizUI(this, o, type);
 }
 
-InspectableEditor* BluxSequence::getEditorInternal(bool isRoot)
+InspectableEditor* BluxSequence::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)
 {
 	return new BluxSequenceEditor(this, isRoot);
 }

@@ -171,7 +171,7 @@ void ObjectTarget::onContainerParameterChangedInternal(Parameter* p)
     }
 }
 
-InspectableEditor* ObjectTarget::getEditorInternal(bool isRoot)
+InspectableEditor* ObjectTarget::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)
 {
     return new ObjectTargetEditor(this, isRoot);
 }

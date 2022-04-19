@@ -71,6 +71,8 @@ void StageLayout2DView::resized()
     BaseManagerShapeShifterViewUI::resized();
 
     Rectangle<int> r = getLocalBounds().removeFromTop(headerSize);
+    r.setLeft(searchBar->getRight() + 8);
+
     iconSizeUI->setBounds(r.removeFromLeft(200).reduced(3));
     r.removeFromLeft(8);
     showFiltersUI->setBounds(r.removeFromLeft(100).reduced(3));

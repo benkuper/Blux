@@ -13,6 +13,9 @@ MainComponent::MainComponent()
 
 MainComponent::~MainComponent()
 {
+	SceneUI::fxImage = Image();
+	SceneUI::seqImage = Image();
+	ObjectUITimer::deleteInstance();
 }
 
 void MainComponent::init()

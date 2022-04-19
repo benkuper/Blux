@@ -11,6 +11,8 @@
 #include "ChainViz/ChainViz.h"
 #include "Color/ColorIncludes.h"
 
+juce_ImplementSingleton(ObjectUITimer)
+
 ObjectGridUI::ObjectGridUI(Object* object) :
 	BaseItemMinimalUI(object),
 	shouldRepaint(false),
@@ -52,17 +54,19 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	}
 
 	globalIDUI.reset(item->globalID->createLabelUI());
+	globalIDUI->showLabel = false;
 	addAndMakeVisible(globalIDUI.get());
 
 	setRepaintsOnMouseActivity(true);
 
 	setSize(128, 128);
 
-	startTimerHz(10);
+	ObjectUITimer::getInstance()->registerUI(this);
 }
 
 ObjectGridUI::~ObjectGridUI()
 {
+	if(ObjectUITimer* t = ObjectUITimer::getInstanceWithoutCreating()) t->unregisterUI(this);
 	//if (item != nullptr) item->removeAsyncModelListener(this);
 }
 
@@ -358,11 +362,33 @@ void ObjectGridUI::visibilityChanged()
 	if (colorViz != nullptr) colorViz->setVisible(isVisible());
 }
 
-void ObjectGridUI::timerCallback()
+void ObjectGridUI::handleRepaint()
 {
 	if (shouldRepaint)
 	{
 		repaint();
 		shouldRepaint = false;
 	}
+}
+
+
+
+ObjectUITimer::ObjectUITimer()
+{
+	startTimerHz(20);
+}
+
+void ObjectUITimer::registerUI(ObjectGridUI* ui)
+{
+	uis.addIfNotAlreadyThere(ui);
+}
+
+void ObjectUITimer::unregisterUI(ObjectGridUI* ui)
+{
+	uis.removeAllInstancesOf(ui);
+}
+
+void ObjectUITimer::timerCallback()
+{
+	for (auto& ui : uis) ui->handleRepaint();
 }

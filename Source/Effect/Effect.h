@@ -62,6 +62,6 @@ public:
 
     ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
 
-    virtual InspectableEditor* getEditorInternal(bool isRoot) override;
+    virtual InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
     String getTypeString() const override { return "Effect"; }
 };

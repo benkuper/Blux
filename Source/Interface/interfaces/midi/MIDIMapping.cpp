@@ -114,7 +114,7 @@ void MIDIMapping::handleValue(int value)
     }
 }
 
-InspectableEditor* MIDIMapping::getEditorInternal(bool isRoot)
+InspectableEditor* MIDIMapping::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)
 {
     return new MIDIMappingEditor(this, isRoot);
 }

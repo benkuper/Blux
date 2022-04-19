@@ -21,6 +21,13 @@ public:
     std::unique_ptr<TriggerButtonUI> directLoadUI;
     std::unique_ptr<FloatSliderUI> loadProgressUI;
 
+    static Image seqImage;
+    static Image fxImage;
+
+    Rectangle<float> seqRect;
+    Rectangle<float> fxRect;
+
+    void paint(Graphics& g) override;
     void resizedInternalHeader(Rectangle<int>& r) override;
     
     void mouseEnter(const MouseEvent& e) override;

@@ -213,6 +213,7 @@
 		5713FA1AEF20EF6B763D32DC /* Filter.cpp */ /* Filter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Filter.cpp; path = ../../Source/Effect/Filter/Filter.cpp; sourceTree = SOURCE_ROOT; };
 		5799E4BB53F05E337443353C /* SmoothingEffect.h */ /* SmoothingEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SmoothingEffect.h; path = ../../Source/Effect/effects/smooth/SmoothingEffect.h; sourceTree = SOURCE_ROOT; };
 		57B5EED984A508F2677BE1F9 /* cobs.cpp */ /* cobs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cobs.cpp; path = ../../Source/Common/Serial/lib/cobs/cobs.cpp; sourceTree = SOURCE_ROOT; };
+		585E2F4ED2A720A967459EC0 /* fx.png */ /* fx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fx.png; path = ../../Resources/fx.png; sourceTree = SOURCE_ROOT; };
 		59985968568ED747745223CC /* App */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2DA1DEA1433608F89026C9 /* BluxEngine.h */ /* BluxEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BluxEngine.h; path = ../../Source/Engine/BluxEngine.h; sourceTree = SOURCE_ROOT; };
 		5AD926A91C217ECC8755AFE6 /* WebKit.framework */ /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -273,6 +274,7 @@
 		7EC484F5DB2629140647D67E /* rainbow.png */ /* rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rainbow.png; path = ../../Resources/colorsource/patterns/rainbow.png; sourceTree = SOURCE_ROOT; };
 		7F002D3AC6EB4946BA3A5C3C /* Action.h */ /* Action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Action.h; path = ../../Source/Common/Action/Action.h; sourceTree = SOURCE_ROOT; };
 		7F319E3E8CE69C191444D0B6 /* crash.png */ /* crash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crash.png; path = ../../Resources/crash.png; sourceTree = SOURCE_ROOT; };
+		7F8AD6642EAE94FC6689EDD5 /* seq.png */ /* seq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seq.png; path = ../../Resources/seq.png; sourceTree = SOURCE_ROOT; };
 		8090CA2B84C69589869D05F6 /* FilterEditor.h */ /* FilterEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FilterEditor.h; path = ../../Source/Effect/Filter/ui/FilterEditor.h; sourceTree = SOURCE_ROOT; };
 		818C12A501E8DE502AF298D6 /* MIDIDevice.cpp */ /* MIDIDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MIDIDevice.cpp; path = ../../Source/Common/MIDI/MIDIDevice.cpp; sourceTree = SOURCE_ROOT; };
 		8259AF17357ACD9BE11625CD /* GlobalSequenceManagerUI.cpp */ /* GlobalSequenceManagerUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GlobalSequenceManagerUI.cpp; path = ../../Source/Sequence/ui/GlobalSequenceManagerUI.cpp; sourceTree = SOURCE_ROOT; };
@@ -847,11 +849,13 @@
 				60D0B03317AC660B56FD6BE3,
 				7F319E3E8CE69C191444D0B6,
 				21C87FE69B05D5E25044529C,
+				585E2F4ED2A720A967459EC0,
 				3F6C60474E909F986DE4A6E8,
 				AE198E30B914C572DF1970C9,
 				13997589DFE3488CDE8B1BF4,
 				C4ADEA9C1F1FA20ABE2B43FC,
 				432460260EE5938A6226EB34,
+				7F8AD6642EAE94FC6689EDD5,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2089,7 +2093,7 @@
 					"DEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60105",
+					"JUCE_PROJUCER_VERSION=0x60106",
 					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
@@ -2116,7 +2120,7 @@
 					"JUCE_IP_AND_PORT_DETECTION=1",
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.1.0b17",
+					"JUCE_APP_VERSION=1.1.0b18",
 					"JUCE_APP_VERSION_HEX=0x10100",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2176,7 +2180,7 @@
 					"NDEBUG=1",
 					"JUCE_DISPLAY_SPLASH_SCREEN=0",
 					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x60105",
+					"JUCE_PROJUCER_VERSION=0x60106",
 					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
@@ -2203,7 +2207,7 @@
 					"JUCE_IP_AND_PORT_DETECTION=1",
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.1.0b17",
+					"JUCE_APP_VERSION=1.1.0b18",
 					"JUCE_APP_VERSION_HEX=0x10100",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",

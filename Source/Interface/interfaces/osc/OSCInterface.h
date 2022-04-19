@@ -39,7 +39,7 @@ public:
 
 	void onContainerParameterChangedInternal(Parameter* p) override;
 
-	virtual InspectableEditor* getEditorInternal(bool isRoot) override;
+	virtual InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
 
 private:
 	OSCSender sender;

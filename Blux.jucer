@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b17"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b18"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -23,11 +23,13 @@
       <FILE id="s4JRaV" name="crash.png" compile="0" resource="1" file="Resources/crash.png"/>
       <FILE id="hRyytp" name="default.bluxlayout" compile="0" resource="1"
             file="Resources/default.bluxlayout"/>
+      <FILE id="YSYA7T" name="fx.png" compile="0" resource="1" file="Resources/fx.png"/>
       <FILE id="kxAIe6" name="icon.png" compile="0" resource="1" file="Resources/icon.png"/>
       <FILE id="Nutaiv" name="icon2.png" compile="0" resource="1" file="Resources/icon2.png"/>
       <FILE id="f1oDk9" name="icon3.png" compile="0" resource="1" file="Resources/icon3.png"/>
       <FILE id="AkkWvI" name="icon128.png" compile="0" resource="1" file="Resources/icon128.png"/>
       <FILE id="onrlo1" name="link.png" compile="0" resource="1" file="Resources/link.png"/>
+      <FILE id="dgm4a3" name="seq.png" compile="0" resource="1" file="Resources/seq.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
       <GROUP id="{2047F9AE-EF39-8CBB-3CD3-9353343FEF38}" name="Color">
@@ -129,15 +131,35 @@
         <FILE id="mUVkYL" name="AudioManager.h" compile="0" resource="0" file="Source/Audio/AudioManager.h"/>
       </GROUP>
       <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
-        <GROUP id="{05500E00-80BA-44DB-7514-B243152CCA51}" name="Action"/>
-        <GROUP id="{69BD92BE-F884-CD6A-6DB8-EC7D6F3C3A8B}" name="CommonClasses"/>
+        <GROUP id="{9815C68A-C9D1-C6AD-8035-814A84987EFC}" name="Action"/>
+        <GROUP id="{B2C766ED-6159-DD67-B326-1F49046E800E}" name="CommonClasses"/>
+        <GROUP id="{942BAC66-35FE-8634-FCF5-EC8C1F0D1FB9}" name="ComponentSelector">
+          <GROUP id="{5D8A3A8B-13A1-3F64-E778-87507CE44B34}" name="ui"/>
+        </GROUP>
+        <GROUP id="{EE3D9864-0002-0F35-51E5-52686E9C5EE5}" name="DMX">
+          <GROUP id="{AEA83441-19D3-5AFD-3DD0-F95D4D13B612}" name="device"/>
+        </GROUP>
+        <GROUP id="{8C4E6463-649A-0E0C-29C4-378AE8F1B469}" name="Helpers"/>
+        <GROUP id="{71DD9127-1EBB-9561-F71D-8F82BC693CDB}" name="MIDI">
+          <GROUP id="{11259F4C-2C4D-C375-9700-36F5D04E122D}" name="ui"/>
+        </GROUP>
+        <GROUP id="{199E5304-EE75-B228-7E50-B39331D33BCD}" name="Serial">
+          <GROUP id="{D251767D-5DED-D445-88D5-266C6E73D855}" name="lib">
+            <GROUP id="{BD768E78-9089-32F6-9C4A-7BEB58E2370C}" name="cobs"/>
+            <GROUP id="{BED52C83-5E91-CA34-D9C1-019687134CFF}" name="serial">
+              <GROUP id="{FA297705-213A-6E24-4D2C-AE22AA4AF93C}" name="impl">
+                <GROUP id="{19A92156-7F5C-E15A-5310-F0F8C4D59391}" name="list_ports"/>
+              </GROUP>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{A8B942B1-FC10-A76C-9FA7-9ACC002A5E8D}" name="Zeroconf"/>
         <GROUP id="{CB7736EE-7CF1-AD73-F71F-1032A1C3DF5E}" name="ComponentSelector">
           <GROUP id="{8D4DD3D9-7D2A-54BD-3713-AEFCCC9214DA}" name="ui"/>
         </GROUP>
         <GROUP id="{B4A324D8-3C08-E9B7-8113-FC00F938E821}" name="DMX">
           <GROUP id="{31B9AC64-2831-1EAD-23C5-8432507CAF84}" name="device"/>
         </GROUP>
-        <GROUP id="{9F5D7BCF-EF3D-A1E3-DAE7-3A255D1B4EC3}" name="Helpers"/>
         <GROUP id="{CB23807F-D6C4-9CFD-0547-7928E54D1971}" name="MIDI">
           <GROUP id="{274153F9-27CB-BAA7-458B-E6CA99F57643}" name="ui"/>
         </GROUP>

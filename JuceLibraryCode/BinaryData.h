@@ -45,7 +45,10 @@ namespace BinaryData
     const int            crash_pngSize = 66857;
 
     extern const char*   default_bluxlayout;
-    const int            default_bluxlayoutSize = 5554;
+    const int            default_bluxlayoutSize = 5758;
+
+    extern const char*   fx_png;
+    const int            fx_pngSize = 2635;
 
     extern const char*   icon_png;
     const int            icon_pngSize = 107960;
@@ -62,8 +65,11 @@ namespace BinaryData
     extern const char*   link_png;
     const int            link_pngSize = 1731;
 
+    extern const char*   seq_png;
+    const int            seq_pngSize = 1994;
+
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 18;
+    const int namedResourceListSize = 20;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

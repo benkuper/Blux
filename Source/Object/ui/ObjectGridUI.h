@@ -13,8 +13,7 @@
 class ColorViz;
 
 class ObjectGridUI :
-	public BaseItemMinimalUI<Object>,
-	public Timer
+	public BaseItemMinimalUI<Object>
 {
 public:
 	ObjectGridUI(Object* model);
@@ -56,6 +55,23 @@ public:
 	void controllableFeedbackUpdateInternal(Controllable* c) override;
 
 	void visibilityChanged() override;
+
+	void handleRepaint();
+};
+
+class ObjectUITimer :
+	public Timer
+{
+public:
+	juce_DeclareSingleton(ObjectUITimer, true);
+
+	ObjectUITimer();
+	~ObjectUITimer() {}
+
+	Array<ObjectGridUI*, CriticalSection> uis;
+	
+	void registerUI(ObjectGridUI* uis);
+	void unregisterUI(ObjectGridUI* uis);
 
 	void timerCallback() override;
 };

@@ -23,8 +23,8 @@ public:
 
     std::unique_ptr<ColorViz> colorViz;
 
-    void setCurrentInspectable(WeakReference<Inspectable> inspectable, bool setInspectableSelection) override;
-
+    virtual void setCurrentInspectables(Array<Inspectable*>inspectables = Array<Inspectable*>(), bool setInspectableSelection = true);
+    
     void paint(Graphics& g) override;
     void resizedInternal(Rectangle<int>& r) override;
 };

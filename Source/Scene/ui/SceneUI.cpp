@@ -8,11 +8,16 @@
   ==============================================================================
 */
 
-
+Image SceneUI::fxImage;
+Image SceneUI::seqImage;
 
 SceneUI::SceneUI(Scene* scene) :
 	BaseItemUI(scene)
 {
+
+	if(fxImage.isNull()) fxImage = ImageCache::getFromMemory(BinaryData::fx_png, BinaryData::fx_pngSize);
+	if(seqImage.isNull()) seqImage = ImageCache::getFromMemory(BinaryData::seq_png, BinaryData::seq_pngSize);
+
 	loadUI.reset(item->loadTrigger->createButtonUI());
 	addAndMakeVisible(loadUI.get());
 
@@ -34,13 +39,24 @@ SceneUI::~SceneUI()
 {
 }
 
+void SceneUI::paint(Graphics& g)
+{
+	BaseItemUI::paint(g);
+	if (item->sequenceManager->items.size() > 0) g.drawImage(seqImage, seqRect);
+	if (item->effectManager->items.size() > 0) g.drawImage(fxImage, fxRect);
+}
+
 void SceneUI::resizedInternalHeader(Rectangle<int>& r)
 {
 	directLoadUI->setBounds(r.removeFromRight(50).reduced(2));
 	r.removeFromRight(2);
 	loadUI->setBounds(r.removeFromRight(60).reduced(2));
 	r.removeFromRight(2);
-	loadProgressUI->setBounds(r.removeFromRight(100).reduced(2, 4));
+	loadProgressUI->setBounds(r.removeFromRight(80).reduced(2, 4));
+	r.removeFromRight(2);
+	seqRect = r.removeFromRight(r.getHeight()).reduced(1).toFloat();
+	r.removeFromRight(2);
+	fxRect = r.removeFromRight(r.getHeight()).reduced(1).toFloat();
 }
 
 void SceneUI::mouseEnter(const MouseEvent& e)
