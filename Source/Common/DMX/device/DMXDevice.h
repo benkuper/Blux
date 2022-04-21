@@ -15,7 +15,7 @@ class DMXDevice :
 	public HighResolutionTimer
 {
 public:
-	enum Type { OPENDMX, ENTTEC_DMXPRO, ENTTEC_MK2, ARTNET};
+	enum Type { OPENDMX, ENTTEC_DMXPRO, ENTTEC_MK2, ARTNET, SACN};
 	DMXDevice(const String &name, Type type, bool canReceive);
 	virtual ~DMXDevice();
 
@@ -24,6 +24,8 @@ public:
 	bool enabled;
 	bool isConnected;
 	
+	CriticalSection dmxLock;
+
 	uint8 dmxDataOut[512];
 	uint8 dmxDataIn[512];
 	bool canReceive;
@@ -35,13 +37,14 @@ public:
 	IntParameter * targetRate;
 
 	void setConnected(bool value);
+	virtual void refreshEnabled() {};
 
 	virtual void sendDMXValue(int channel, int value);
 	virtual void sendDMXRange(int startChannel, Array<int> values);
 	virtual void sendDMXValues();
 	virtual void sendDMXValuesInternal() = 0;
 
-	void setDMXValuesIn(int numChannels, uint8* values);
+	void setDMXValuesIn(int numChannels, uint8* values, int startChannel = 0, const String & sourceName = "");
 
 	virtual void clearDevice();
 	
@@ -58,7 +61,7 @@ public:
 
 		virtual void dmxDeviceConnected() {}
 		virtual void dmxDeviceDisconnected() {}
-		virtual void dmxDataInChanged(int /*numChannels*/, uint8* /*values*/) {}
+		virtual void dmxDataInChanged(int /*numChannels*/, uint8* /*values*/, const String &sourceName = "") {}
 	};
 
 	ListenerList<DMXDeviceListener> dmxDeviceListeners;

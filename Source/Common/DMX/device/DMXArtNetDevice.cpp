@@ -36,9 +36,8 @@ DMXArtNetDevice::DMXArtNetDevice() :
 
 DMXArtNetDevice::~DMXArtNetDevice()
 {
-	if (Engine::mainEngine != nullptr) Engine::mainEngine->removeEngineListener(this);
-	signalThreadShouldExit();
-	waitForThreadToExit(200);
+	//if (Engine::mainEngine != nullptr) Engine::mainEngine->removeEngineListener(this);
+	stopThread(200);
 }
 
 void DMXArtNetDevice::setupReceiver()
@@ -107,11 +106,11 @@ void DMXArtNetDevice::sendDMXValuesInternal()
 
 	sender.write(remoteHost->stringValue(), remotePort->intValue(), artnetPacket, 530);
 }
-void DMXArtNetDevice::endLoadFile()
-{
-	Engine::mainEngine->removeEngineListener(this);
-	setupReceiver();
-}
+//void DMXArtNetDevice::endLoadFile()
+//{
+//	Engine::mainEngine->removeEngineListener(this);
+//	setupReceiver();
+//}
 
 void DMXArtNetDevice::onControllableFeedbackUpdate(ControllableContainer* cc, Controllable* c)
 {
@@ -125,7 +124,10 @@ void DMXArtNetDevice::run()
 
 	while (!threadShouldExit())
 	{
-		int bytesRead = receiver->read(receiveBuffer, MAX_PACKET_LENGTH, false);
+		String rAddress = "";
+		int rPort = 0;
+
+		int bytesRead = receiver->read(receiveBuffer, MAX_PACKET_LENGTH, false, rAddress, rPort);
 		
 		if (bytesRead > 0)
 		{
@@ -142,16 +144,20 @@ void DMXArtNetDevice::run()
 
 			if (opcode == DMX_OPCODE)
 			{
-				//int sequence = artnetPacket[12];
+				//int sequence = receiveBuffer[12];
 
-				int universe = artnetPacket[14] & 0xF;
-				int subnet = (artnetPacket[14] >> 4) & 0xF;
-				int net = artnetPacket[15] & 0x7F;
+
+				int universe = receiveBuffer[14] & 0xF;
+				int subnet = (receiveBuffer[14] >> 4) & 0xF;
+				int net = receiveBuffer[15] & 0x7F;
+
+				//LOG("Received with universe : " << universe << "/" << subnet << "/" << net);
 
 				if (net == inputNet->intValue() && subnet == inputSubnet->intValue() && universe == inputUniverse->intValue())
 				{
 					int dmxDataLength = jmin(receiveBuffer[17] | receiveBuffer[16] << 8, NUM_CHANNELS);
-					setDMXValuesIn(dmxDataLength, receiveBuffer + DMX_HEADER_LENGTH);
+					String sName = rAddress + ":" + String(rPort);
+					setDMXValuesIn(dmxDataLength, receiveBuffer + DMX_HEADER_LENGTH, 0, sName);
 				}
 			}
 			else
@@ -161,7 +167,7 @@ void DMXArtNetDevice::run()
 		}
 		else
 		{
-			sleep(10); //100fps
+			wait(10); //100fps
 		}
 	}
 }

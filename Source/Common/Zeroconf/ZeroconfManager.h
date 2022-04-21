@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include "JuceHeader.h"
 #include "servus/servus.h"
 
 using namespace servus;
@@ -23,30 +24,12 @@ public:
 	ZeroconfManager();
 	~ZeroconfManager();
 
-	class ServiceInfo
+	struct ServiceInfo
 	{
-	public:
-		ServiceInfo(StringRef name, StringRef host, StringRef ip, int port, const HashMap<String, String>& _keys);
-
 		String name;
 		String host;
 		String ip;
 		int port;
-		HashMap<String, String> keys;
-
-		void setKeys(const HashMap<String, String>& _keys)
-		{
-			keys.clear();
-			HashMap<String, String>::Iterator i(_keys);
-			while (i.next()) keys.set(i.getKey(), i.getValue());
-		}
-
-		void addKey(String key, String value) { keys.set(key, value); }
-		String getKey(String key) { return keys.contains(key) ? keys[key] : ""; }
-
-
-		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ServiceInfo)
-
 	};
 
 	class ZeroconfSearcher
@@ -61,11 +44,12 @@ public:
 		OwnedArray<ServiceInfo> services;
 
 		bool search();
+		String getIPForHostAndPort(String host, int port);
 
 		ServiceInfo * getService(StringRef name, StringRef host, int port);
-		void addService(StringRef name, StringRef host, StringRef ip, int port, const HashMap<String, String> & keys = HashMap<String, String>());
+		void addService(StringRef name, StringRef host, StringRef ip, int port);
 		void removeService(ServiceInfo * service);
-		void updateService(ServiceInfo * service, StringRef host, StringRef ip, int port, const HashMap<String, String>  &keys = HashMap<String, String>());
+		void updateService(ServiceInfo * service, StringRef host, StringRef ip, int port);
 
 		class SearcherListener
 		{
@@ -79,6 +63,8 @@ public:
 		ListenerList<SearcherListener> listeners;
 		void addSearcherListener(SearcherListener* newListener) { listeners.add(newListener); }
 		void removeSearcherListener(SearcherListener* listener) { listeners.remove(listener); }
+
+
 	};
 
 	OwnedArray<ZeroconfSearcher, CriticalSection> searchers;
@@ -88,8 +74,8 @@ public:
 
 	ZeroconfSearcher * getSearcher(StringRef name);
 
-	void showMenuAndGetService(StringRef service, std::function<void(ServiceInfo *)> returnFunc, bool showLocal = true, bool showRemote = true, bool separateLocalAndRemote = true, bool excludeInternal = true);
-	
+	void showMenuAndGetService(StringRef service, std::function<void(ServiceInfo*)> returnFunc, bool showLocal = true, bool showRemote = true, bool separateLocalAndRemote = true, bool excludeInternal = true, const String& nameFilter = "");
+
 	void search();
 
 	virtual void timerCallback() override;

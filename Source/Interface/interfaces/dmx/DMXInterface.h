@@ -43,7 +43,7 @@ public:
     void dmxDeviceConnected() override;
     void dmxDeviceDisconnected() override;
 
-    void dmxDataInChanged(int numChannels, uint8* values) override;
+    void dmxDataInChanged(int numChannels, uint8* values, const String& sourceName = "") override;
 
     class DMXParams : public ControllableContainer
     {

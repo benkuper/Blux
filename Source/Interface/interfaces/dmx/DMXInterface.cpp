@@ -141,7 +141,7 @@ void DMXInterface::dmxDeviceDisconnected()
 	dmxConnected->setValue(false);
 }
 
-void DMXInterface::dmxDataInChanged(int numChannels, uint8* values)
+void DMXInterface::dmxDataInChanged(int numChannels, uint8* values, const String& sourceName)
 {
 	if (isClearing || !enabled->boolValue()) return;
 	if (logIncomingData->boolValue()) NLOG(niceName, "DMX In : " + String(numChannels) + " channels received.");

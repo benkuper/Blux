@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b18"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.0b19"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -137,6 +137,15 @@
           <GROUP id="{5D8A3A8B-13A1-3F64-E778-87507CE44B34}" name="ui"/>
         </GROUP>
         <GROUP id="{EE3D9864-0002-0F35-51E5-52686E9C5EE5}" name="DMX">
+          <GROUP id="{56D04621-3284-B4C8-0984-19F9C48A2A67}" name="device">
+            <GROUP id="{86A37967-524B-4022-4A6E-024135964ADD}" name="sacn">
+              <FILE id="BFgJal" name="e131.c" compile="1" resource="0" file="Source/Common/DMX/device/sacn/e131.c"/>
+              <FILE id="zK1vpP" name="e131.h" compile="0" resource="0" file="Source/Common/DMX/device/sacn/e131.h"/>
+            </GROUP>
+            <FILE id="Ns7Wfp" name="DMXSACNDevice.cpp" compile="0" resource="0"
+                  file="Source/Common/DMX/device/DMXSACNDevice.cpp"/>
+            <FILE id="yVHEV2" name="DMXSACNDevice.h" compile="0" resource="0" file="Source/Common/DMX/device/DMXSACNDevice.h"/>
+          </GROUP>
           <GROUP id="{AEA83441-19D3-5AFD-3DD0-F95D4D13B612}" name="device"/>
         </GROUP>
         <GROUP id="{8C4E6463-649A-0E0C-29C4-378AE8F1B469}" name="Helpers"/>

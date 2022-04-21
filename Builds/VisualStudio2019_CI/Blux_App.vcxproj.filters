@@ -53,6 +53,15 @@
     <Filter Include="Blux\Source\Audio">
       <UniqueIdentifier>{71B30977-1984-2838-7462-8D5A66201FFA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Common\DMX\device\sacn">
+      <UniqueIdentifier>{5213C9D4-0BB6-9CA4-A4A4-B1F9F495C8A9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Common\DMX\device">
+      <UniqueIdentifier>{A342EAA8-297B-385C-30FB-A55988C03750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Common\DMX">
+      <UniqueIdentifier>{5639F466-7537-62D1-37D8-115629D4B9EE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Common\CommonClasses">
       <UniqueIdentifier>{048C3228-77DE-614D-949C-9452B14F47DA}</UniqueIdentifier>
     </Filter>
@@ -1242,6 +1251,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Audio\AudioManager.cpp">
       <Filter>Blux\Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\DMX\device\sacn\e131.c">
+      <Filter>Blux\Source\Common\DMX\device\sacn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\DMX\device\DMXSACNDevice.cpp">
+      <Filter>Blux\Source\Common\DMX\device</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\CommonIncludes.cpp">
       <Filter>Blux\Source\Common</Filter>
@@ -4760,6 +4775,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Audio\AudioManager.h">
       <Filter>Blux\Source\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\DMX\device\sacn\e131.h">
+      <Filter>Blux\Source\Common\DMX\device\sacn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\DMX\device\DMXSACNDevice.h">
+      <Filter>Blux\Source\Common\DMX\device</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\CommonClasses\ComponentType.h">
       <Filter>Blux\Source\Common\CommonClasses</Filter>
