@@ -4818,9 +4818,6 @@
     <ClInclude Include="..\..\Source\Common\Action\ActionManager.h">
       <Filter>Blux\Source\Common\Action</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Common\Helpers\PerlinNoise.hpp">
-      <Filter>Blux\Source\Common\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h">
       <Filter>Blux\Source\Common\Helpers</Filter>
     </ClInclude>

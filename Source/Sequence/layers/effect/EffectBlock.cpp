@@ -11,8 +11,10 @@
 EffectBlock::EffectBlock(var params) :
     LayerBlock(params.getProperty("effectType",var()).toString()),
     effectType(params.getProperty("effectType", var()).toString()),
+    settingLengthFromMethod(false),
     effectBlockNotifier(5)
 {
+
     saveAndLoadRecursiveData = true;
 
     fadeIn = addFloatParameter("Fade In", "Fade in time", 0, 0, getTotalLength(), false);
@@ -31,9 +33,11 @@ EffectBlock::EffectBlock(var params) :
 
         if (TimedEffect* te = dynamic_cast<TimedEffect*>(effect.get()))
         {
-            te->speed->hideInEditor = true; //hide speed since it cannot be used alongside time
+            te->forceManualTime = true;
+            //te->speed->hideInEditor = true; //hide speed since it cannot be used alongside time
         }
 
+        effect->addEffectListener(this);
         addChildControllableContainer(effect.get());
     }
 }
@@ -68,6 +72,11 @@ void EffectBlock::onContainerParameterChangedInternal(Parameter* p)
 	{
 		fadeIn->setRange(0, getTotalLength());
 		fadeOut->setRange(0, getTotalLength());
+
+        if (p == coreLength && !settingLengthFromMethod) //force refresh automation
+        {
+            setCoreLength(coreLength->floatValue());
+        }
     }
     else if (p == fadeIn || p == fadeOut)
     {
@@ -83,5 +92,31 @@ void EffectBlock::controllableStateChanged(Controllable* c)
     {
         effectBlockListeners.call(&EffectBlockListener::effectBlockFadesChanged, this);
         effectBlockNotifier.addMessage(new EffectBlockEvent(EffectBlockEvent::FADES_CHANGED, this));
+    }
+}
+
+void EffectBlock::setCoreLength(float value, bool stretch, bool stickToCoreEnd)
+{
+    settingLengthFromMethod = true;
+    LayerBlock::setCoreLength(value, stretch, stickToCoreEnd);
+
+    Array<WeakReference<Parameter>> params = effect->effectParams.getAllParameters();
+    for (auto& pa : params)
+    {
+        if (pa->automation == nullptr) continue;
+        pa->automation->setAllowKeysOutside(true);
+        pa->automation->setLength(coreLength->floatValue(), stretch, stickToCoreEnd);
+    }
+    settingLengthFromMethod = false;
+}
+
+void EffectBlock::effectParamControlModeChanged(Parameter* p)
+{
+    if (p->controlMode == Parameter::AUTOMATION)
+    {
+  
+        p->automation->setManualMode(true);
+        p->automation->setAllowKeysOutside(true);
+        p->automation->setLength(coreLength->floatValue(), true);
     }
 }

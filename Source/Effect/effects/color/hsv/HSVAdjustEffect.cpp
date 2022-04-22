@@ -9,7 +9,7 @@
 */
 
 HSVAdjustEffect::HSVAdjustEffect(var params) :
-    ColorEffect(params)
+    ColorEffect(getTypeString(), params)
 {
     hue = effectParams.addFloatParameter("Hue Shift", "Shifts the hue, 1 is full rainbow rotation", 0);
     saturation = effectParams.addFloatParameter("Saturation", "Shifts the hue, 1 is full rainbow rotation", 0, -1, 1);

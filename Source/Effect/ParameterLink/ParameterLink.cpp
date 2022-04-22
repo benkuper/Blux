@@ -1,3 +1,4 @@
+#include "ParameterLink.h"
 /*
   ==============================================================================
 
@@ -60,6 +61,10 @@ var ParameterLink::getLinkedValue(Object* o, int id)
 	return parameter->getValue();
 }
 
+
+
+
+
 WeakReference<Controllable> ParameterLink::getLinkedTarget(Object* o)
 {
 	if (!isLinkable)
@@ -77,7 +82,7 @@ WeakReference<Controllable> ParameterLink::getLinkedTarget(Object* o)
 	return nullptr;
 }
 
-WeakReference<ControllableContainer> ParameterLink::getLinkedTargetContainer(Object *o)
+WeakReference<ControllableContainer> ParameterLink::getLinkedTargetContainer(Object* o)
 {
 	if (!isLinkable)
 	{
@@ -253,6 +258,11 @@ void ParamLinkContainer::onControllableRemoved(Controllable* c)
 	}
 }
 
+void ParamLinkContainer::parameterControlModeChanged(Parameter* p)
+{
+	paramLinkContainerListeners.call(&ParamLinkContainerListener::paramControlModeChanged, this, getLinkedParam(p));
+}
+
 ParameterLink* ParamLinkContainer::getLinkedParam(Parameter* p)
 {
 	if (!paramsCanBeLinked) return nullptr;
@@ -261,11 +271,40 @@ ParameterLink* ParamLinkContainer::getLinkedParam(Parameter* p)
 	return paramLinkMap[p];
 }
 
-var ParamLinkContainer::getLinkedValue(Parameter* p, Object * o, int id)
+var ParamLinkContainer::getLinkedValue(Parameter* p, Object* o, int id, float time)
 {
 	if (p == nullptr) return var();
-	if (!paramsCanBeLinked) return p->getValue();
-	if (ParameterLink* pLink = getLinkedParam(p)) return pLink->getLinkedValue(o, id);
+	if (!paramsCanBeLinked) return getParamValue(p, time);
+	if (ParameterLink* pLink = getLinkedParam(p))
+	{
+		if (pLink->linkType != ParameterLink::NONE) pLink->getLinkedValue(o, id);
+	}
+	return getParamValue(p, time);
+}
+
+var ParamLinkContainer::getParamValue(Parameter* p, float time)
+{
+	if (p->controlMode != Parameter::AUTOMATION) return p->getValue();
+
+	if (ParameterAutomation* a = p->automation.get())
+	{
+		if (dynamic_cast<Automation*>(a->automationContainer) != nullptr)
+		{
+			float value = ((Automation*)a->automationContainer)->getValueAtPosition(fmodf(time, a->lengthParamRef->floatValue()));
+			return value;
+		}
+		else if (dynamic_cast<GradientColorManager*>(a->automationContainer) != nullptr)
+		{
+			Colour value = ((GradientColorManager*)a->automationContainer)->getColorForPosition(fmodf(time, a->lengthParamRef->floatValue()));
+			var result;
+			result.append(value.getFloatRed());
+			result.append(value.getFloatGreen());
+			result.append(value.getFloatBlue());
+			result.append(value.getFloatAlpha());
+			return result;
+		}
+	}
+
 	return p->getValue();
 }
 

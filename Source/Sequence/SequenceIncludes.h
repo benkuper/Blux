@@ -13,6 +13,7 @@
 #include "JuceHeader.h"
 #include "Common/CommonIncludes.h"
 #include "ChainViz/ChainViz.h"
+#include "Effect/EffectIncludes.h"
 
 #include "BluxSequence.h"
 #include "BluxSequenceManager.h"

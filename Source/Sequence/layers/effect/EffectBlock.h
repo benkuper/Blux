@@ -10,10 +10,9 @@
 
 #pragma once
 
-class Effect;
-
 class EffectBlock :
-    public LayerBlock
+    public LayerBlock,
+	public Effect::EffectListener
 {
 public:
     EffectBlock(var params = var());
@@ -25,10 +24,16 @@ public:
     FloatParameter* fadeIn;
     FloatParameter* fadeOut;
 
+	bool settingLengthFromMethod;
+
     virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 	virtual void controllableStateChanged(Controllable* c) override;
+
+	void setCoreLength(float value, bool stretch = false, bool stickToCoreEnd = false) override;
+
+	void effectParamControlModeChanged(Parameter* p) override;
 
 	class  EffectBlockListener
 	{

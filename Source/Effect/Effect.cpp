@@ -1,3 +1,4 @@
+#include "Effect.h"
 /*
   ==============================================================================
 
@@ -17,6 +18,8 @@ Effect::Effect(const String& name, var params) :
 {
 	//effectParams.hideEditorHeader = true;
 	//effectParams.editorCanBeCollapsed = false;
+
+	effectParams.addParamLinkContainerListener(this);
 
 	saveAndLoadRecursiveData = true;
 
@@ -92,7 +95,6 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 		else if (m == RANDOMIZED) targetID = parentGroup->getRandomIDForObject(o);
 	}
 
-
 	float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
 	if (targetWeight == 0)
@@ -115,6 +117,16 @@ void Effect::onContainerParameterChangedInternal(Parameter* p)
 {
 	BaseItem::onContainerParameterChangedInternal(p);
 	if (p == enabled) updateEnabled();
+}
+
+void Effect::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
+{
+	if (cc == &effectParams) effectParamChanged(c);
+}
+
+void Effect::paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl)
+{
+	effectListeners.call(&EffectListener::effectParamControlModeChanged, pl->parameter);
 }
 
 var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)

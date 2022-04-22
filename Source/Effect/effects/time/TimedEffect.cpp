@@ -1,19 +1,21 @@
-#include "TimedEffect.h"
 /*
   ==============================================================================
 
-    TimedEffect.cpp
-    Created: 9 Oct 2020 9:16:14pm
-    Author:  bkupe
+	TimedEffect.cpp
+	Created: 9 Oct 2020 9:16:14pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
-TimedEffect::TimedEffect(const String &name, var params) :
-    Effect(name, params),
-    timeAtLastUpdate(Time::getMillisecondCounterHiRes() / 1000.0)
+TimedEffect::TimedEffect(const String& name, var params) :
+	Effect(name, params),
+	forceManualTime(false),
+	timeAtLastUpdate(Time::getMillisecondCounterHiRes() / 1000.0)
 {
-    speed = effectParams.addFloatParameter("Speed", "The speed at which play this", 1);
+	speed = effectParams.addFloatParameter("Speed", "The speed at which play this", 1);
+	speed->canBeAutomated = false;
+
 	timeOffset = effectParams.addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
 	timeOffset->defaultUI = FloatParameter::TIME;
 	resetTimeTrigger = effectParams.addTrigger("Reset Time", "When triggered, this will reset this effect's internal time to 0.");
@@ -72,17 +74,23 @@ var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent*
 	for (int i = 0; i < values.size(); i++)
 	{
 		if (values[i].isArray()) continue;
-		float targetTime = getCurrentTime(c, time) - (float)GetLinkedValue(offsetByID) * id - (float)GetLinkedValue(offsetByValue) * i + (float)GetLinkedValue(timeOffset);
+
+		float curTime = getCurrentTime(o, c, id, time);
+		float targetTime =  curTime - (float)GetLinkedValue(offsetByID) * id - (float)GetLinkedValue(offsetByValue) * i + (float)GetLinkedValue(timeOffset);
 		values[i] = getProcessedComponentValueTimeInternal(o, c, values[i], id, targetTime);
 	}
 
 	return values;
 }
 
-float TimedEffect::getCurrentTime(ObjectComponent * c, float timeOverride)
+float TimedEffect::getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride)
 {
 	if (!curTimes.contains(c)) curTimes.set(c, 0);
-	return timeOverride >= 0 ? timeOverride : curTimes[c];
+	if(timeOverride == 0) return curTimes[c];
+
+	float time = timeOverride * (float)GetLinkedValueT(speed, timeOverride); //speed should be calculated from start of the animation, if animated (area under curve for automation)
+
+	return time;
 }
 
 
@@ -94,7 +102,7 @@ void TimedEffect::resetTimes()
 
 void TimedEffect::resetTime(Object* o)
 {
-	for(auto & c: o->componentManager->items) if (curTimes.contains(c)) curTimes.set(c, 0);
+	for (auto& c : o->componentManager->items) if (curTimes.contains(c)) curTimes.set(c, 0);
 }
 
 void TimedEffect::itemRemoved(Object* o)
@@ -120,7 +128,7 @@ void TimedEffect::itemsRemoved(Array<Object*> oList)
 
 void TimedEffect::updateStart()
 {
-	if(enabled->boolValue()) addTime();
+	if (enabled->boolValue() && !forceManualTime) addTime();
 }
 
 //void TimedEffect::hiResTimerCallback()
@@ -131,16 +139,16 @@ void TimedEffect::updateStart()
 
 void TimedEffect::addTime()
 {
-    double newTime = Time::getMillisecondCounterHiRes() / 1000.0;
-	
+	double newTime = Time::getMillisecondCounterHiRes() / 1000.0;
+
 	HashMap<ObjectComponent*, float>::Iterator it(curTimes);
 	while (it.next())
 	{
 		Object* o = it.getKey()->object;
 		int id = o->globalID->intValue();
-		curTimes.set(it.getKey(), it.getValue() + (newTime - timeAtLastUpdate) * (float)GetLinkedValue(speed));
+		curTimes.set(it.getKey(), it.getValue() + (newTime - timeAtLastUpdate) * (float)GetLinkedValueT(speed, 0));
 	}
-    
+
 	timeAtLastUpdate = newTime;
 
 }

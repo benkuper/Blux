@@ -35,6 +35,8 @@ public:
     void setLinkedCustomParam(Parameter * p);
     var getLinkedValue(Object * o, int id);
 
+    
+
     //For target parameters
     WeakReference<Controllable> getLinkedTarget(Object * o);
     WeakReference<ControllableContainer> getLinkedTargetContainer(Object *o);
@@ -80,11 +82,14 @@ public:
     virtual void onControllableAdded(Controllable* c) override;
     virtual void onControllableRemoved(Controllable* c) override;
 
+    virtual void parameterControlModeChanged(Parameter* p) override;
+
     virtual ParameterLink* getLinkedParam(Parameter* p);
-    virtual var getLinkedValue(Parameter* p, Object * o, int id);
+    virtual var getLinkedValue(Parameter* p, Object * o, int id, float time = 0);
+
+    var getParamValue(Parameter* p, float time = 0);
 
     virtual void linkUpdated(ParameterLink* p) override;
-
 
     template<class T>
     T* getLinkedTargetAs(TargetParameter* target, Object * o)
@@ -114,7 +119,8 @@ public:
     {
     public:
         virtual ~ParamLinkContainerListener() {}
-        virtual void linkUpdated(ParamLinkContainer * container, ParameterLink* pLink) {}
+        virtual void linkUpdated(ParamLinkContainer* container, ParameterLink* pLink) {}
+        virtual void paramControlModeChanged(ParamLinkContainer * container, ParameterLink* pLink) {}
     };
 
 

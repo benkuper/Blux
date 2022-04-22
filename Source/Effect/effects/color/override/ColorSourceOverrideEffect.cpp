@@ -9,7 +9,7 @@
 */
 
 ColorSourceOverrideEffect::ColorSourceOverrideEffect(var params) :
-	ColorEffect("Override (Color)"),
+	ColorEffect(getTypeString(), params),
 	overrideEffectNotifier(5)
 {
 	filterManager->componentSelector.allowedComponents.clear();

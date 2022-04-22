@@ -35,6 +35,10 @@ public:
     EffectBlockFadeHandle fadeInHandle;
     EffectBlockFadeHandle fadeOutHandle;
 
+    std::unique_ptr<Component> automationUI;
+
+    void setTargetAutomation(ParameterAutomation* a);
+
     void paint(Graphics& g) override;
     void paintOverChildren(Graphics& g) override;
 

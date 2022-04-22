@@ -1,3 +1,4 @@
+#include "NoiseEffect.h"
 /*
   ==============================================================================
 
@@ -52,7 +53,7 @@ var NoiseEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectCompone
 	return (float)GetLinkedValue(valueOffset) + noiseVal * (float)GetLinkedValue(amplitude);
 }
 
-float NoiseEffect::getCurrentTime(ObjectComponent * c, float timeOverride)
+float NoiseEffect::getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride)
 {
-	return TimedEffect::getCurrentTime(c, timeOverride) * (float)effectParams.getLinkedValue(frequency, c->object, c->object->globalID->intValue());
+	return TimedEffect::getCurrentTime(o, c, id, timeOverride) * (float)effectParams.getLinkedValue(frequency, c->object, c->object->globalID->intValue());
 }

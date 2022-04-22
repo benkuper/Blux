@@ -14,7 +14,7 @@ SolidColorSource::SolidColorSource(var params) :
     speed->defaultValue = 0;
     speed->resetValue();
 
-    sourceColor = addColorParameter("Color", "The color to apply. The hue of this color may be modified by the speed and offset parameters.", Colours::red);
+    sourceColor = addColorParameter("Source Color", "The color to apply. The hue of this color may be modified by the speed and offset parameters.", Colours::red);
 }
 
 SolidColorSource::~SolidColorSource()

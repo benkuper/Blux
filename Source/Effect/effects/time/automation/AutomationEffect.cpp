@@ -1,3 +1,4 @@
+#include "AutomationEffect.h"
 /*
   ==============================================================================
 
@@ -14,6 +15,7 @@ AutomationEffect::AutomationEffect(var params) :
 {
 	length = effectParams.addFloatParameter("Length", "Length of this automation", 2, .1f);
 	length->defaultUI = FloatParameter::TIME;
+	length->canBeAutomated = false;
 
 	controllables.swap(controllables.indexOf(length), controllables.indexOf(sceneSaveMode) + 1); //length first
 
@@ -74,15 +76,15 @@ var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectCo
 	return automation.getValueAtPosition(relTime / _length);
 }
 
-void AutomationEffect::onContainerParameterChangedInternal(Parameter* p)
+void AutomationEffect::effectParamChanged(Controllable* c)
 {
-	TimedEffect::onContainerParameterChangedInternal(p);
+	TimedEffect::effectParamChanged(c);
 
-	if (p == range)
+	if (c == range)
 	{
 		automation.valueRange->setPoint(range->getPoint());
 	}
-	else if (p == loop)
+	else if (c == loop)
 	{
 		if (!loop->boolValue())
 		{
@@ -92,7 +94,7 @@ void AutomationEffect::onContainerParameterChangedInternal(Parameter* p)
 			{
 				Object* o = it.getKey()->object;
 				int id = o->globalID->intValue();
-				curTimes.set(it.getKey(), fmodf(it.getValue(), GetLinkedValue(length)));
+				curTimes.set(it.getKey(), fmodf(it.getValue(), GetLinkedValueT(length, 0)));
 			}
 		}
 	}

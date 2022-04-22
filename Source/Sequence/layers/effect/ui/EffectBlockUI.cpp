@@ -32,6 +32,45 @@ EffectBlockUI::~EffectBlockUI()
 	if (!inspectable.wasObjectDeleted()) effectBlock->removeAsyncEffectBlockListener(this);
 }
 
+void EffectBlockUI::setTargetAutomation(ParameterAutomation* a)
+{
+	if (automationUI != nullptr)
+	{
+		removeChildComponent(automationUI.get());
+		automationUI = nullptr;
+	}
+
+	canBeGrabbed = true;
+
+	if (a == nullptr) return;
+
+
+	if (dynamic_cast<ParameterNumberAutomation*>(a) != nullptr)
+	{
+		AutomationUI* aui = new AutomationUI((Automation*)a->automationContainer);
+		//aui->updateROI();
+		aui->showMenuOnRightClick = false;
+		automationUI.reset(aui);
+	}
+	else if (dynamic_cast<ParameterColorAutomation*>(a) != nullptr)
+	{
+		GradientColorManagerUI* gui = new GradientColorManagerUI((GradientColorManager*)a->automationContainer);
+		gui->autoResetViewRangeOnLengthUpdate = true;
+		automationUI.reset(gui);
+	}
+
+	if (automationUI != nullptr)
+	{
+		canBeGrabbed = false;
+		coreGrabber.setVisible(false);
+		grabber.setVisible(false);
+		loopGrabber.setVisible(false);
+		automationUI->addMouseListener(this, true);
+		addAndMakeVisible(automationUI.get());
+		resized();
+	}
+}
+
 void EffectBlockUI::paint(Graphics& g)
 {
 	LayerBlockUI::paint(g);
@@ -66,6 +105,18 @@ void EffectBlockUI::paintOverChildren(Graphics& g)
 
 void EffectBlockUI::resizedBlockInternal()
 {
+
+	if (automationUI != nullptr)
+	{
+		Rectangle<int> r = getCoreBounds();
+		if (automationUI != nullptr)
+		{
+			if (dynamic_cast<GradientColorManagerUI*>(automationUI.get()) != nullptr) automationUI->setBounds(r.removeFromBottom(20));
+			else automationUI->setBounds(r);
+		}
+	}
+
+
 	fadeInHandle.setCentrePosition((effectBlock->fadeIn->floatValue() / effectBlock->getTotalLength()) * getWidth(), fadeInHandle.getHeight() / 2);
 	fadeOutHandle.setCentrePosition((1 - effectBlock->fadeOut->floatValue() / effectBlock->getTotalLength()) * getWidth(), fadeOutHandle.getHeight() / 2);
 }
@@ -77,6 +128,53 @@ void EffectBlockUI::mouseDown(const MouseEvent& e)
 
 	if (e.eventComponent == &fadeInHandle) fadeValueAtMouseDown = effectBlock->fadeIn->floatValue();
 	else if (e.eventComponent == &fadeOutHandle) fadeValueAtMouseDown = effectBlock->fadeOut->floatValue();
+
+	if (e.mods.isRightButtonDown() && (e.eventComponent == this || e.eventComponent == automationUI.get()))
+	{
+		PopupMenu p;
+		p.addItem(1, "Clear automation editor");
+
+		PopupMenu ap;
+
+		Array<WeakReference<Parameter>> params = effectBlock->effect->effectParams.getAllParameters(true);
+
+		int index = 2;
+		for (auto& pa : params)
+		{
+			if (pa->canBeAutomated) ap.addItem(index, pa->niceName, true, pa->controlMode == Parameter::ControlMode::AUTOMATION);
+			index++;
+		}
+
+		p.addSubMenu("Edit...", ap);
+
+		p.showMenuAsync(PopupMenu::Options(), [this, params](int result)
+			{
+				if (result > 0)
+				{
+					if (result == 1) setTargetAutomation(nullptr);
+					else
+					{
+						WeakReference<Parameter> pa = params[result - 2];
+						if (pa->controlMode != Parameter::ControlMode::AUTOMATION)
+						{
+							pa->setControlMode(Parameter::ControlMode::AUTOMATION);
+							pa->automation->setManualMode(true);
+							Automation* a = dynamic_cast<Automation*>(pa->automation->automationContainer);
+							if (a != nullptr)
+							{
+								a->clear();
+								AutomationKey* k = a->addItem(0, 0);
+								k->setEasing(Easing::BEZIER);
+								a->addKey(a->length->floatValue(), 1);
+							}
+						}
+
+						if (!pa.wasObjectDeleted()) setTargetAutomation(pa->automation.get());
+					}
+				}
+			}
+		);
+	}
 }
 
 void EffectBlockUI::mouseDrag(const MouseEvent& e)
@@ -92,6 +190,11 @@ void EffectBlockUI::mouseDrag(const MouseEvent& e)
 	{
 		effectBlock->fadeOut->setValue((1 - (getMouseXYRelative().x * 1.0f / getWidth())) * effectBlock->getTotalLength());
 		resized();
+	}
+
+	if (e.eventComponent == automationUI.get() && e.mods.isLeftButtonDown()) //because recursive mouseListener is removed to have special handling of automation
+	{
+		item->selectThis();
 	}
 }
 
@@ -137,11 +240,11 @@ void EffectBlockUI::newMessage(const EffectBlock::EffectBlockEvent& e)
 
 EffectBlockFadeHandle::EffectBlockFadeHandle()
 {
-	setSize(14, 14);
+	setSize(12, 12);
 }
 
 void EffectBlockFadeHandle::paint(Graphics& g)
 {
 	g.setColour(isMouseOverOrDragging() ? HIGHLIGHT_COLOR : NORMAL_COLOR);
-	g.fillRoundedRectangle(getLocalBounds().reduced(2).toFloat(), 2);
+	g.fillRoundedRectangle(getLocalBounds().reduced(3).toFloat(), 2);
 }

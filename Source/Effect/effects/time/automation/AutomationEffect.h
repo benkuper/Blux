@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    AutomationEffect.h
-    Created: 4 Oct 2020 11:37:20pm
-    Author:  bkupe
+	AutomationEffect.h
+	Created: 4 Oct 2020 11:37:20pm
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -11,28 +11,28 @@
 #pragma once
 
 class AutomationEffect :
-    public TimedEffect
+	public TimedEffect
 {
 public:
-    AutomationEffect(var params = var());
-    ~AutomationEffect();
+	AutomationEffect(var params = var());
+	~AutomationEffect();
 
-    enum AutomationType { SINE, PERLIN };
+	enum AutomationType { SINE, PERLIN };
 
-    FloatParameter* length;
-    Point2DParameter* range;
-    BoolParameter* clipTime;
-    BoolParameter* loop;
+	FloatParameter* length;
+	Point2DParameter* range;
+	BoolParameter* clipTime;
+	BoolParameter* loop;
 
-    Automation automation;
+	Automation automation;
 
-    var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time) override;
+	var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time) override;
 
-    void onContainerParameterChangedInternal(Parameter* p)override;
+	void effectParamChanged(Controllable* c)override;
 
-    String getTypeString() const override { return getTypeStringStatic(); }
-    const static String getTypeStringStatic() { return "Automation"; }
+	String getTypeString() const override { return getTypeStringStatic(); }
+	const static String getTypeStringStatic() { return "Automation"; }
 
-    static AutomationEffect* create(var params) { return new AutomationEffect(params); }
+	static AutomationEffect* create(var params) { return new AutomationEffect(params); }
 
 };

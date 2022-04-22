@@ -100,7 +100,7 @@ void MainComponent::getCommandInfo(CommandID commandID, ApplicationCommandInfo& 
 
 	case BluxCommandIDs::saveCurrentScene:
 		result.setInfo("Save Current Scene", "", "Blux", 0);
-		result.addDefaultKeypress(KeyPress::createFromDescription("m").getKeyCode(), ModifierKeys::commandModifier);
+		result.addDefaultKeypress(KeyPress::createFromDescription("s").getKeyCode(), ModifierKeys::commandModifier | ModifierKeys::altModifier);
 		break;
 
 

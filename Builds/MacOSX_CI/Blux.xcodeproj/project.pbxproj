@@ -411,7 +411,6 @@
 		CC96DC4DF3AC7BC93E637EC5 /* GlobalSequenceManager.h */ /* GlobalSequenceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GlobalSequenceManager.h; path = ../../Source/Sequence/GlobalSequenceManager.h; sourceTree = SOURCE_ROOT; };
 		CD4C9B99D0453E293EB844AE /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
 		CD7671377F08B1CD79944FA6 /* AudioManager.h */ /* AudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AudioManager.h; path = ../../Source/Audio/AudioManager.h; sourceTree = SOURCE_ROOT; };
-		CF92606F23C426A9754F48FD /* PerlinNoise.hpp */ /* PerlinNoise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PerlinNoise.hpp; path = ../../Source/Common/Helpers/PerlinNoise.hpp; sourceTree = SOURCE_ROOT; };
 		CFDA35C76602682CC9A4C8CD /* include_juce_organicui2.cpp */ /* include_juce_organicui2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_organicui2.cpp; path = ../../JuceLibraryCode/include_juce_organicui2.cpp; sourceTree = SOURCE_ROOT; };
 		D04A5660BE571539A15D95C1 /* DMXEnttecProDevice.cpp */ /* DMXEnttecProDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DMXEnttecProDevice.cpp; path = ../../Source/Common/DMX/device/DMXEnttecProDevice.cpp; sourceTree = SOURCE_ROOT; };
 		D0A855103E29B74202FF0631 /* EffectChainVizUI.cpp */ /* EffectChainVizUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EffectChainVizUI.cpp; path = ../../Source/Effect/ui/EffectChainVizUI.cpp; sourceTree = SOURCE_ROOT; };
@@ -1384,7 +1383,6 @@
 		8F59BF4543E9DA2420603EBF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				CF92606F23C426A9754F48FD,
 				6A7063FAB3E5711505908343,
 				AC703A846AB3D42F740D5C58,
 			);
@@ -2154,7 +2152,7 @@
 					"JUCE_IP_AND_PORT_DETECTION=1",
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.1.0b19",
+					"JUCE_APP_VERSION=1.1.0b20",
 					"JUCE_APP_VERSION_HEX=0x10100",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2241,7 +2239,7 @@
 					"JUCE_IP_AND_PORT_DETECTION=1",
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.1.0b19",
+					"JUCE_APP_VERSION=1.1.0b20",
 					"JUCE_APP_VERSION_HEX=0x10100",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",

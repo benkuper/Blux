@@ -11,11 +11,14 @@
 #pragma once
 
 //helper, considering variables are name o for  Object and id for object's id
-#define GetLinkedValue(p) effectParams.getLinkedValue(p, o, id)
+#define GetLinkedValue(p) effectParams.getLinkedValue(p, o, id, time)
+#define GetLinkedValueT(p, time) effectParams.getLinkedValue(p, o, id, time)
+
 
 class Effect :
     public BaseItem,
-    public ChainVizTarget
+    public ChainVizTarget,
+    public ParamLinkContainer::ParamLinkContainerListener
 {
 public:
     Effect(const String& name = "Effect", var params = var());
@@ -33,7 +36,7 @@ public:
     Group* parentGroup;
 
     enum SceneSaveMode { FULL, WEIGHT_ONLY, NONE };
-    EnumParameter * sceneSaveMode;
+    EnumParameter* sceneSaveMode;
 
     std::unique_ptr<FilterManager> filterManager;
 
@@ -45,8 +48,13 @@ public:
     virtual void updateEnabled() {}
 
     bool isFullyEnabled();
-    
+
     virtual void onContainerParameterChangedInternal(Parameter* p) override;
+    virtual void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
+
+    virtual void paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl) override;
+    virtual void effectParamChanged(Controllable* c) {}
+
 
     bool isAffectingObject(Object * o);
     void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
@@ -59,9 +67,22 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
-
     ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
+
 
     virtual InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
     String getTypeString() const override { return "Effect"; }
+
+    class  EffectListener
+    {
+    public:
+        virtual ~EffectListener() {}
+        virtual void effectParamControlModeChanged(Parameter* p) {}
+        //virtual void blockBakingProgress(float progress) {}
+        //virtual void colorsUpdated() {}
+    };
+
+    ListenerList<EffectListener> effectListeners;
+    void addEffectListener(EffectListener* newListener) { effectListeners.add(newListener); }
+    void removeEffectListener(EffectListener* listener) { effectListeners.remove(listener); }
 };
