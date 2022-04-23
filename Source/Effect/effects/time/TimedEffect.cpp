@@ -86,7 +86,7 @@ var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent*
 float TimedEffect::getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride)
 {
 	if (!curTimes.contains(c)) curTimes.set(c, 0);
-	if(timeOverride == 0) return curTimes[c];
+	if(timeOverride == -1) return curTimes[c];
 
 	float time = timeOverride * (float)GetLinkedValueT(speed, timeOverride); //speed should be calculated from start of the animation, if animated (area under curve for automation)
 
