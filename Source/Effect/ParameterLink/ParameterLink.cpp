@@ -277,7 +277,7 @@ var ParamLinkContainer::getLinkedValue(Parameter* p, Object* o, int id, float ti
 	if (!paramsCanBeLinked) return getParamValue(p, time);
 	if (ParameterLink* pLink = getLinkedParam(p))
 	{
-		if (pLink->linkType != ParameterLink::NONE) pLink->getLinkedValue(o, id);
+		if (pLink->linkType != ParameterLink::NONE) return pLink->getLinkedValue(o, id);
 	}
 	return getParamValue(p, time);
 }
