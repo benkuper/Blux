@@ -4,6 +4,4 @@ A new way of controlling stage lights and other devices
 Official Website : https://benjamin.kuperberg.fr/blux
 
 ## The Badge Zone
-Linux (x64) / MacOS :  [![Build Status](https://travis-ci.com/benkuper/Blux.svg?branch=master)](https://travis-ci.com/benkuper/Blux)
-
-Windows (x64) : [![Build status](https://ci.appveyor.com/api/projects/status/7lskg35ttnsv99cq?svg=true)](https://ci.appveyor.com/project/benkuper/Blux)
+Build Status :  [![Build Status](https://github.com/benkuper/Blux/actions/workflows/build.yml/badge.svg)](https://github.com/benkuper/Blux/actions/workflows/build.yml)
