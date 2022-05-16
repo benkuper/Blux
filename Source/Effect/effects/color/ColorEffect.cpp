@@ -32,6 +32,7 @@ var ColorEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent*
         for (int i = 0; i < values.size(); i++) colors.set(i, Colour::fromFloatRGBA(values[i][0], values[i][1], values[i][2], values[i][3]));
     }
 
+    if (time == -1) time = Time::getMillisecondCounter() / 1000.0f;
     processedEffectColorsInternal(colors, o, (ColorComponent *)c, id, time);
 
     var result;
