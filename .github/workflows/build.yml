@@ -123,7 +123,8 @@ jobs:
         include:
         - arch: x64
           buildFolder: "LinuxMakefile"
-
+          buildConfig: "Release"
+          
         - arch: armhf
           packageArch: armhf
           buildFolder: "Raspberry"
