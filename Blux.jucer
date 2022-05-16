@@ -995,7 +995,7 @@
         <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
-    <LINUX_MAKE targetFolder="Builds/Raspberry" externalLibraries="Servus&#10;usb-1.0&#10;pthread"
+    <LINUX_MAKE targetFolder="Builds/Raspberry" externalLibraries="Servus&#10;usb-1.0&#10;pthread&#10;atomic"
                 extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed"
                 smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
