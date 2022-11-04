@@ -26,7 +26,7 @@ public:
     void triggerInternal() override;
     void setValueInternal(var value) override;
 
-    static void showMenuAndGetEffect(std::function<void(ControllableContainer *)> returnFunc);
+    static void showMenuAndGetEffect(ControllableContainer*, std::function<void(ControllableContainer *)> returnFunc);
 
     static EffectAction* create(var params) { return new EffectAction(params); }
 };

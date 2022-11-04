@@ -8,6 +8,9 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+#include "Scene/SceneIncludes.h"
+
 EffectAction::EffectAction(var params) :
 	Action(params),
 	weight(nullptr)
@@ -61,7 +64,7 @@ void EffectAction::setValueInternal(var value)
 	}
 }
 
-void EffectAction::showMenuAndGetEffect(std::function<void(ControllableContainer*)> returnFunc)
+void EffectAction::showMenuAndGetEffect(ControllableContainer* fromCC, std::function<void(ControllableContainer*)> returnFunc)
 {
 	Array<Effect *> effects;
 	PopupMenu m;

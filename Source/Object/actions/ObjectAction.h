@@ -32,7 +32,7 @@ public:
 
 	void onContainerParameterChanged(Parameter*) override;
 
-	static void showAndGetComponentParameter(const StringArray & typesFilter, const StringArray & excludeTypesFilter, std::function<void(Controllable *)> returnFunc);
+	static void showAndGetComponentParameter(const StringArray & typesFilter, const StringArray & excludeTypesFilter, ControllableContainer*, std::function<void(Controllable *)> returnFunc);
 
 	virtual void loadJSONDataInternal(var data) override;
 	virtual void endLoadFile() override;

@@ -18,6 +18,7 @@
 		202A10F02FFD31D3451B6835 /* serial.cc */ = {isa = PBXBuildFile; fileRef = BDB4A84898D8670FF05CBC63; };
 		2031D479D3DBCB98A7921C62 /* DiscRecording.framework */ = {isa = PBXBuildFile; fileRef = 5172CA9EFB583DAB3EA7A978; };
 		28D3F38EE71FEC83E38B0661 /* include_juce_simpleweb2.cpp */ = {isa = PBXBuildFile; fileRef = BC2B5905A623E67B6D8CA12E; };
+		2E233C645B61C18278D682B8 /* include_juce_cryptography.mm */ = {isa = PBXBuildFile; fileRef = E20E1BF657D4CB4A5167A95A; };
 		3040094A24A5F912A26CF614 /* include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = 7093A269A5A9525BDD04127A; };
 		32522ACB3AA5D03A96CAC624 /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = CD4C9B99D0453E293EB844AE; };
 		348CD136F6EC7B46B231D66E /* unix.cc */ = {isa = PBXBuildFile; fileRef = 42138BFA0E41AF88AD547092; };
@@ -70,6 +71,7 @@
 		0003993F0869AFB8AA926E17 /* MIDIInterface.cpp */ /* MIDIInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MIDIInterface.cpp; path = ../../Source/Interface/interfaces/midi/MIDIInterface.cpp; sourceTree = SOURCE_ROOT; };
 		0022342FFA09ECDEE2D3AFE4 /* MIDIDeviceParameter.cpp */ /* MIDIDeviceParameter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MIDIDeviceParameter.cpp; path = ../../Source/Common/MIDI/MIDIDeviceParameter.cpp; sourceTree = SOURCE_ROOT; };
 		006DA9E2FF4CD9E76DE57C8A /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
+		00AB0B5CDE71C277BF26E781 /* juce_cryptography */ /* juce_cryptography */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_cryptography; path = ../../JUCE/modules/juce_cryptography; sourceTree = SOURCE_ROOT; };
 		013AE2807C8B6D820CC29FAE /* ColorSourceFactory.h */ /* ColorSourceFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceFactory.h; path = ../../Source/Color/ColorSource/ColorSourceFactory.h; sourceTree = SOURCE_ROOT; };
 		01853B11F486D118C52E07F3 /* EffectAction.h */ /* EffectAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectAction.h; path = ../../Source/Effect/actions/EffectAction.h; sourceTree = SOURCE_ROOT; };
 		019AB39CF50EDD030BA53744 /* VirtualGroup.cpp */ /* VirtualGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualGroup.cpp; path = ../../Source/Object/Group/groups/virtual/VirtualGroup.cpp; sourceTree = SOURCE_ROOT; };
@@ -450,6 +452,7 @@
 		E12E7E7EC88FF6E988705813 /* CommonIncludes.cpp */ /* CommonIncludes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CommonIncludes.cpp; path = ../../Source/Common/CommonIncludes.cpp; sourceTree = SOURCE_ROOT; };
 		E13A65ECB2903EAC7C35834A /* LaserPattern.h */ /* LaserPattern.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LaserPattern.h; path = ../../Source/Object/Component/components/laser/LaserPattern/LaserPattern.h; sourceTree = SOURCE_ROOT; };
 		E1449F9B984574A35B827907 /* ColorSourceChooser.h */ /* ColorSourceChooser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceChooser.h; path = ../../Source/Color/ColorSource/ui/ColorSourceChooser.h; sourceTree = SOURCE_ROOT; };
+		E20E1BF657D4CB4A5167A95A /* include_juce_cryptography.mm */ /* include_juce_cryptography.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_cryptography.mm; path = ../../JuceLibraryCode/include_juce_cryptography.mm; sourceTree = SOURCE_ROOT; };
 		E230CAA202B3F42D52ED14CE /* EffectBlock.h */ /* EffectBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectBlock.h; path = ../../Source/Sequence/layers/effect/EffectBlock.h; sourceTree = SOURCE_ROOT; };
 		E3026DFB231C4B0D4CDA99F8 /* EffectLayerTimeline.cpp */ /* EffectLayerTimeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EffectLayerTimeline.cpp; path = ../../Source/Sequence/layers/effect/ui/EffectLayerTimeline.cpp; sourceTree = SOURCE_ROOT; };
 		E30426F737B8F411F518B7E6 /* MIDIMapping.cpp */ /* MIDIMapping.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MIDIMapping.cpp; path = ../../Source/Interface/interfaces/midi/MIDIMapping.cpp; sourceTree = SOURCE_ROOT; };
@@ -813,6 +816,7 @@
 				903CB113638A59A25D67387F,
 				5521A0F5B1860536491002C9,
 				0D351B9C6BDFE0DA4C9D9A21,
+				00AB0B5CDE71C277BF26E781,
 				0B4ABDC12406D18323EB376A,
 				22294BBBF0F575B1CEAF81C8,
 				A3311C31C46FEB77CADF3596,
@@ -1806,6 +1810,7 @@
 				E539FEB45B2679EAFA3729F0,
 				79778E9B0D4FEAA484C6A86E,
 				BF42209B4082FD4F3891D060,
+				E20E1BF657D4CB4A5167A95A,
 				FFE7D73EACF6101617EC8AA1,
 				94B63851F1117EC65CEBC816,
 				EAA7E7B755E326D7BE7683FB,
@@ -2042,6 +2047,7 @@
 				B531D86223107D53CAC00F07,
 				F0C5026F5C9A577621B905F2,
 				4138804314369FA7323A51C6,
+				2E233C645B61C18278D682B8,
 				44EFB90535E373E9E47750EB,
 				C1BA954EDEA033F749C46893,
 				84348B9420A56E427CC9FBB0,
@@ -2136,6 +2142,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_audio_processors=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_utils=1",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
+					"JUCE_MODULE_AVAILABLE_juce_cryptography=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
 					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
@@ -2223,6 +2230,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_audio_processors=1",
 					"JUCE_MODULE_AVAILABLE_juce_audio_utils=1",
 					"JUCE_MODULE_AVAILABLE_juce_core=1",
+					"JUCE_MODULE_AVAILABLE_juce_cryptography=1",
 					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
 					"JUCE_MODULE_AVAILABLE_juce_events=1",
 					"JUCE_MODULE_AVAILABLE_juce_graphics=1",

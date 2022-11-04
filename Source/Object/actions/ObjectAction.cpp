@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
+
 ObjectAction::ObjectAction(var params) :
 	Action(params)
 {
@@ -141,7 +143,7 @@ void ObjectAction::onContainerParameterChanged(Parameter* p)
 	}
 }
 
-void ObjectAction::showAndGetComponentParameter(const StringArray& typesFilter, const StringArray& excludeTypesFilter, std::function<void(Controllable *)> returnFunc)
+void ObjectAction::showAndGetComponentParameter(const StringArray& typesFilter, const StringArray& excludeTypesFilter, ControllableContainer*, std::function<void(Controllable *)> returnFunc)
 {
 	Array<Parameter*> params;
 	PopupMenu m;
