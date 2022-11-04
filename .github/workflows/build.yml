@@ -235,3 +235,10 @@ jobs:
           echo "::set-output name=pkg-name::$PKGNAME"
           ${{ github.workspace }}/appimagetool-x86_64.AppImage ${{ steps.install_deps.outputs.appImageRuntime }} ${{ env.ProjectName }}.AppDir $PKGNAME
         working-directory: ./Builds/${{ matrix.buildFolder }}
+
+      - name: Upload
+        uses: ./.github/actions/upload
+        with:
+          pkg-name: ./Builds/${{ matrix.buildFolder }}/${{ steps.create_package.outputs.pkg-name }}
+          url: ${{ secrets.UPLOADURL }}
+          pass: ${{ secrets.UPLOADPASS }}
