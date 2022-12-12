@@ -10,8 +10,8 @@
 
 #pragma once
 
-#define AUDIO_INPUT_GRAPH_ID 1
-#define AUDIO_OUTPUT_GRAPH_ID 2
+#define AUDIO_INPUT_GRAPH_ID AudioProcessorGraph::NodeID(1)
+#define AUDIO_OUTPUT_GRAPH_ID AudioProcessorGraph::NodeID(2)
 
 class AudioModuleHardwareSettings :
 	public ControllableContainer

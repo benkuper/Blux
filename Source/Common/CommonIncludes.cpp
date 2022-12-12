@@ -21,19 +21,6 @@
 #include "ComponentSelector/ComponentSelector.cpp"
 #include "ComponentSelector/ui/ComponentSelectorUI.cpp"
 
-#include "Serial/lib/cobs/cobs.cpp"
-#include "Serial/SerialDevice.cpp"
-#include "Serial/SerialDeviceParameter.cpp"
-#include "Serial/SerialManager.cpp"
-
-#include "DMX/device/DMXDevice.cpp"
-#include "DMX/device/DMXSerialDevice.cpp"
-#include "DMX/device/DMXArtNetDevice.cpp"
-#include "DMX/device/DMXEnttecProDevice.cpp"
-#include "DMX/device/DMXOpenUSBDevice.cpp"
-#include "DMX/device/DMXSACNDevice.cpp"
-#include "DMX/DMXManager.cpp"
-
 #include "Helpers/SceneHelpers.cpp"
 
 #include "MIDI/MIDIDevice.cpp"

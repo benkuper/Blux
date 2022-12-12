@@ -10,14 +10,14 @@
 #endif
 
 
-#include "serial/serial.h"
+//#include "serial.h"
 
 
-#ifdef _WIN32
-#include "serial/impl/win.h"
-#else
-#include "serial/impl/unix.h"
-#endif
+//#ifdef _WIN32
+//#include "impl/win.h"
+//#else
+//#include "impl/unix.h"
+//#endif
 
 
 

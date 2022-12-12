@@ -32,6 +32,70 @@
       <FILE id="dgm4a3" name="seq.png" compile="0" resource="1" file="Resources/seq.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{6C202BEC-8036-59E9-E037-774A938FF34C}" name="Common">
+        <GROUP id="{3698B081-1A63-F3A6-3572-F3E4E882352C}" name="Action">
+          <FILE id="vU05WU" name="Action.cpp" compile="0" resource="0" file="Source/Common/Action/Action.cpp"/>
+          <FILE id="s287tA" name="Action.h" compile="0" resource="0" file="Source/Common/Action/Action.h"/>
+          <FILE id="shIryx" name="ActionManager.cpp" compile="0" resource="0"
+                file="Source/Common/Action/ActionManager.cpp"/>
+          <FILE id="Ev5mHh" name="ActionManager.h" compile="0" resource="0" file="Source/Common/Action/ActionManager.h"/>
+        </GROUP>
+        <GROUP id="{7C82B08F-26C8-4043-E80A-352E1119A31E}" name="CommonClasses">
+          <FILE id="MMYMjd" name="ComponentType.h" compile="0" resource="0" file="Source/Common/CommonClasses/ComponentType.h"/>
+          <FILE id="ScKDSK" name="SceneListener.h" compile="0" resource="0" file="Source/Common/CommonClasses/SceneListener.h"/>
+        </GROUP>
+        <GROUP id="{B1B8A94D-11D9-BF07-BE16-1C3773B06D2D}" name="ComponentSelector">
+          <GROUP id="{4831DD3D-4C8D-5647-E40B-255F43EC6EB5}" name="ui">
+            <FILE id="QXX4nj" name="ComponentSelectorUI.cpp" compile="0" resource="0"
+                  file="Source/Common/ComponentSelector/ui/ComponentSelectorUI.cpp"/>
+            <FILE id="wJGFkh" name="ComponentSelectorUI.h" compile="0" resource="0"
+                  file="Source/Common/ComponentSelector/ui/ComponentSelectorUI.h"/>
+          </GROUP>
+          <FILE id="TUllvN" name="ComponentSelector.cpp" compile="0" resource="0"
+                file="Source/Common/ComponentSelector/ComponentSelector.cpp"/>
+          <FILE id="GYa0ii" name="ComponentSelector.h" compile="0" resource="0"
+                file="Source/Common/ComponentSelector/ComponentSelector.h"/>
+        </GROUP>
+        <GROUP id="{FDBCF8F9-5A2F-1AB7-233C-193390137552}" name="Helpers">
+          <FILE id="QtCTVD" name="SceneHelpers.cpp" compile="0" resource="0"
+                file="Source/Common/Helpers/SceneHelpers.cpp"/>
+          <FILE id="QtOGLe" name="SceneHelpers.h" compile="0" resource="0" file="Source/Common/Helpers/SceneHelpers.h"/>
+        </GROUP>
+        <GROUP id="{BF9F00C2-E56B-566D-1778-6E0C3F9A4768}" name="MIDI">
+          <GROUP id="{86092771-0F49-8ED8-D052-C755987B1560}" name="ui">
+            <FILE id="QwQ4qG" name="MIDIDeviceChooser.cpp" compile="0" resource="0"
+                  file="Source/Common/MIDI/ui/MIDIDeviceChooser.cpp"/>
+            <FILE id="ZIKaiI" name="MIDIDeviceChooser.h" compile="0" resource="0"
+                  file="Source/Common/MIDI/ui/MIDIDeviceChooser.h"/>
+            <FILE id="KBqC6P" name="MIDIDeviceParameterUI.cpp" compile="0" resource="0"
+                  file="Source/Common/MIDI/ui/MIDIDeviceParameterUI.cpp"/>
+            <FILE id="iiVLh6" name="MIDIDeviceParameterUI.h" compile="0" resource="0"
+                  file="Source/Common/MIDI/ui/MIDIDeviceParameterUI.h"/>
+          </GROUP>
+          <FILE id="aDR0IA" name="MIDIDevice.cpp" compile="0" resource="0" file="Source/Common/MIDI/MIDIDevice.cpp"/>
+          <FILE id="qg0tE2" name="MIDIDevice.h" compile="0" resource="0" file="Source/Common/MIDI/MIDIDevice.h"/>
+          <FILE id="fUlc3X" name="MIDIDeviceParameter.cpp" compile="0" resource="0"
+                file="Source/Common/MIDI/MIDIDeviceParameter.cpp"/>
+          <FILE id="ty2UZR" name="MIDIDeviceParameter.h" compile="0" resource="0"
+                file="Source/Common/MIDI/MIDIDeviceParameter.h"/>
+          <FILE id="OSc6vO" name="MIDIManager.cpp" compile="0" resource="0" file="Source/Common/MIDI/MIDIManager.cpp"/>
+          <FILE id="ub0IQO" name="MIDIManager.h" compile="0" resource="0" file="Source/Common/MIDI/MIDIManager.h"/>
+          <FILE id="GONa9q" name="MTCReceiver.cpp" compile="0" resource="0" file="Source/Common/MIDI/MTCReceiver.cpp"/>
+          <FILE id="ubPGr2" name="MTCReceiver.h" compile="0" resource="0" file="Source/Common/MIDI/MTCReceiver.h"/>
+          <FILE id="QL5Fpo" name="MTCSender.cpp" compile="0" resource="0" file="Source/Common/MIDI/MTCSender.cpp"/>
+          <FILE id="vuZvxu" name="MTCSender.h" compile="0" resource="0" file="Source/Common/MIDI/MTCSender.h"/>
+        </GROUP>
+        <GROUP id="{C95BFB6F-DA7A-E94F-D3B3-FBBABEAE83E5}" name="Zeroconf">
+          <FILE id="trFfAs" name="ZeroconfManager.cpp" compile="0" resource="0"
+                file="Source/Common/Zeroconf/ZeroconfManager.cpp"/>
+          <FILE id="JRMqzE" name="ZeroconfManager.h" compile="0" resource="0"
+                file="Source/Common/Zeroconf/ZeroconfManager.h"/>
+        </GROUP>
+        <FILE id="YzwBYy" name="CommonIncludes.cpp" compile="1" resource="0"
+              file="Source/Common/CommonIncludes.cpp"/>
+        <FILE id="Eg3RQg" name="CommonIncludes.h" compile="0" resource="0"
+              file="Source/Common/CommonIncludes.h"/>
+      </GROUP>
       <GROUP id="{2047F9AE-EF39-8CBB-3CD3-9353343FEF38}" name="Color">
         <GROUP id="{3AE6DD1B-440C-B30D-719A-8B9BD861BD72}" name="ColorSource">
           <GROUP id="{B6F4F5AC-D226-7CBC-022B-70525AD97083}" name="sources">
@@ -129,179 +193,6 @@
         <FILE id="Jp4A8n" name="AudioManager.cpp" compile="0" resource="0"
               file="Source/Audio/AudioManager.cpp"/>
         <FILE id="mUVkYL" name="AudioManager.h" compile="0" resource="0" file="Source/Audio/AudioManager.h"/>
-      </GROUP>
-      <GROUP id="{4B9E14A6-3547-5C27-DBA8-3246A9241BCE}" name="Common">
-        <GROUP id="{9815C68A-C9D1-C6AD-8035-814A84987EFC}" name="Action"/>
-        <GROUP id="{B2C766ED-6159-DD67-B326-1F49046E800E}" name="CommonClasses"/>
-        <GROUP id="{942BAC66-35FE-8634-FCF5-EC8C1F0D1FB9}" name="ComponentSelector">
-          <GROUP id="{5D8A3A8B-13A1-3F64-E778-87507CE44B34}" name="ui"/>
-        </GROUP>
-        <GROUP id="{EE3D9864-0002-0F35-51E5-52686E9C5EE5}" name="DMX">
-          <GROUP id="{56D04621-3284-B4C8-0984-19F9C48A2A67}" name="device">
-            <GROUP id="{86A37967-524B-4022-4A6E-024135964ADD}" name="sacn">
-              <FILE id="BFgJal" name="e131.c" compile="1" resource="0" file="Source/Common/DMX/device/sacn/e131.c"/>
-              <FILE id="zK1vpP" name="e131.h" compile="0" resource="0" file="Source/Common/DMX/device/sacn/e131.h"/>
-            </GROUP>
-            <FILE id="Ns7Wfp" name="DMXSACNDevice.cpp" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXSACNDevice.cpp"/>
-            <FILE id="yVHEV2" name="DMXSACNDevice.h" compile="0" resource="0" file="Source/Common/DMX/device/DMXSACNDevice.h"/>
-          </GROUP>
-          <GROUP id="{AEA83441-19D3-5AFD-3DD0-F95D4D13B612}" name="device"/>
-        </GROUP>
-        <GROUP id="{8C4E6463-649A-0E0C-29C4-378AE8F1B469}" name="Helpers"/>
-        <GROUP id="{71DD9127-1EBB-9561-F71D-8F82BC693CDB}" name="MIDI">
-          <GROUP id="{11259F4C-2C4D-C375-9700-36F5D04E122D}" name="ui"/>
-        </GROUP>
-        <GROUP id="{199E5304-EE75-B228-7E50-B39331D33BCD}" name="Serial">
-          <GROUP id="{D251767D-5DED-D445-88D5-266C6E73D855}" name="lib">
-            <GROUP id="{BD768E78-9089-32F6-9C4A-7BEB58E2370C}" name="cobs"/>
-            <GROUP id="{BED52C83-5E91-CA34-D9C1-019687134CFF}" name="serial">
-              <GROUP id="{FA297705-213A-6E24-4D2C-AE22AA4AF93C}" name="impl">
-                <GROUP id="{19A92156-7F5C-E15A-5310-F0F8C4D59391}" name="list_ports"/>
-              </GROUP>
-            </GROUP>
-          </GROUP>
-        </GROUP>
-        <GROUP id="{A8B942B1-FC10-A76C-9FA7-9ACC002A5E8D}" name="Zeroconf"/>
-        <GROUP id="{CB7736EE-7CF1-AD73-F71F-1032A1C3DF5E}" name="ComponentSelector">
-          <GROUP id="{8D4DD3D9-7D2A-54BD-3713-AEFCCC9214DA}" name="ui"/>
-        </GROUP>
-        <GROUP id="{B4A324D8-3C08-E9B7-8113-FC00F938E821}" name="DMX">
-          <GROUP id="{31B9AC64-2831-1EAD-23C5-8432507CAF84}" name="device"/>
-        </GROUP>
-        <GROUP id="{CB23807F-D6C4-9CFD-0547-7928E54D1971}" name="MIDI">
-          <GROUP id="{274153F9-27CB-BAA7-458B-E6CA99F57643}" name="ui"/>
-        </GROUP>
-        <GROUP id="{2C130DF3-ADBD-D4C2-FC63-3382C46C2571}" name="Serial">
-          <GROUP id="{4DCB3AE6-5395-9CA6-1737-92A4D32F5DFF}" name="lib">
-            <GROUP id="{1A52FD60-CADA-52B4-AB99-A32B5541612A}" name="cobs"/>
-            <GROUP id="{8AA876E5-4DAF-33C7-BAB5-D9122E4076D5}" name="serial">
-              <GROUP id="{1FFAE65F-BCE5-F995-EB5A-FEFDF4A0F1E3}" name="impl">
-                <GROUP id="{A637EEA6-BB93-2F9C-8F40-E6A78FFA9A52}" name="list_ports"/>
-              </GROUP>
-            </GROUP>
-          </GROUP>
-        </GROUP>
-        <GROUP id="{A8544BF3-BD62-3CD0-BDA6-37FC73587887}" name="Zeroconf"/>
-        <GROUP id="{8BB77C1B-0790-32BE-4C69-AD47EF6F4DDE}" name="CommonClasses">
-          <FILE id="wIf8wb" name="ComponentType.h" compile="0" resource="0" file="Source/Common/CommonClasses/ComponentType.h"/>
-          <FILE id="s0crs4" name="SceneListener.h" compile="0" resource="0" file="Source/Common/CommonClasses/SceneListener.h"/>
-        </GROUP>
-        <FILE id="N88r0o" name="CommonIncludes.cpp" compile="1" resource="0"
-              file="Source/Common/CommonIncludes.cpp"/>
-        <FILE id="RvFRyc" name="CommonIncludes.h" compile="0" resource="0"
-              file="Source/Common/CommonIncludes.h"/>
-        <GROUP id="{727B0ED1-B897-9E05-995D-3239D3C5CEDD}" name="MIDI">
-          <GROUP id="{DED7E921-A58B-30A8-1752-929892AE0AF8}" name="ui">
-            <FILE id="h5e7QL" name="MIDIDeviceChooser.cpp" compile="0" resource="0"
-                  file="Source/Common/MIDI/ui/MIDIDeviceChooser.cpp"/>
-            <FILE id="O32fDC" name="MIDIDeviceChooser.h" compile="0" resource="0"
-                  file="Source/Common/MIDI/ui/MIDIDeviceChooser.h"/>
-            <FILE id="Jmo0Gz" name="MIDIDeviceParameterUI.cpp" compile="0" resource="0"
-                  file="Source/Common/MIDI/ui/MIDIDeviceParameterUI.cpp"/>
-            <FILE id="EH9aA4" name="MIDIDeviceParameterUI.h" compile="0" resource="0"
-                  file="Source/Common/MIDI/ui/MIDIDeviceParameterUI.h"/>
-          </GROUP>
-          <FILE id="CLOKaX" name="MIDIDevice.cpp" compile="0" resource="0" file="Source/Common/MIDI/MIDIDevice.cpp"/>
-          <FILE id="GKQkGQ" name="MIDIDevice.h" compile="0" resource="0" file="Source/Common/MIDI/MIDIDevice.h"/>
-          <FILE id="MqsHh1" name="MIDIDeviceParameter.cpp" compile="0" resource="0"
-                file="Source/Common/MIDI/MIDIDeviceParameter.cpp"/>
-          <FILE id="YIElMz" name="MIDIDeviceParameter.h" compile="0" resource="0"
-                file="Source/Common/MIDI/MIDIDeviceParameter.h"/>
-          <FILE id="gTxKaF" name="MIDIManager.cpp" compile="0" resource="0" file="Source/Common/MIDI/MIDIManager.cpp"/>
-          <FILE id="R1FFP8" name="MIDIManager.h" compile="0" resource="0" file="Source/Common/MIDI/MIDIManager.h"/>
-          <FILE id="LduhhC" name="MTCReceiver.cpp" compile="0" resource="0" file="Source/Common/MIDI/MTCReceiver.cpp"/>
-          <FILE id="fbIXLj" name="MTCReceiver.h" compile="0" resource="0" file="Source/Common/MIDI/MTCReceiver.h"/>
-          <FILE id="uhYgGy" name="MTCSender.cpp" compile="0" resource="0" file="Source/Common/MIDI/MTCSender.cpp"/>
-          <FILE id="kQWrbe" name="MTCSender.h" compile="0" resource="0" file="Source/Common/MIDI/MTCSender.h"/>
-        </GROUP>
-        <GROUP id="{E2211BA7-0CB7-C57B-A667-8D0A5EB023CE}" name="Action">
-          <FILE id="cV9Roi" name="Action.cpp" compile="0" resource="0" file="Source/Common/Action/Action.cpp"/>
-          <FILE id="mIgYMe" name="Action.h" compile="0" resource="0" file="Source/Common/Action/Action.h"/>
-          <FILE id="tUFEKM" name="ActionManager.cpp" compile="0" resource="0"
-                file="Source/Common/Action/ActionManager.cpp"/>
-          <FILE id="XGtF3V" name="ActionManager.h" compile="0" resource="0" file="Source/Common/Action/ActionManager.h"/>
-        </GROUP>
-        <GROUP id="{4C1C3D21-33AC-FE15-251E-9B0AE685FCBD}" name="Helpers">
-          <FILE id="BHqMlI" name="SceneHelpers.cpp" compile="0" resource="0"
-                file="Source/Common/Helpers/SceneHelpers.cpp"/>
-          <FILE id="Puwoxc" name="SceneHelpers.h" compile="0" resource="0" file="Source/Common/Helpers/SceneHelpers.h"/>
-        </GROUP>
-        <GROUP id="{137B22EF-3249-961C-2E0C-8DA0CED6D6AB}" name="ComponentSelector">
-          <GROUP id="{E7D4A0FE-FBC4-75CA-B2FB-85C60C79C120}" name="ui">
-            <FILE id="oR4Unx" name="ComponentSelectorUI.cpp" compile="0" resource="0"
-                  file="Source/Common/ComponentSelector/ui/ComponentSelectorUI.cpp"/>
-            <FILE id="d8BXYf" name="ComponentSelectorUI.h" compile="0" resource="0"
-                  file="Source/Common/ComponentSelector/ui/ComponentSelectorUI.h"/>
-          </GROUP>
-          <FILE id="Kelt6x" name="ComponentSelector.cpp" compile="0" resource="0"
-                file="Source/Common/ComponentSelector/ComponentSelector.cpp"/>
-          <FILE id="mLJRTY" name="ComponentSelector.h" compile="0" resource="0"
-                file="Source/Common/ComponentSelector/ComponentSelector.h"/>
-        </GROUP>
-        <GROUP id="{A1CD121E-9B16-9040-8954-4E6DC9DD384E}" name="DMX">
-          <GROUP id="{20CB527A-3FDC-CFCF-2853-F56E8351E593}" name="device">
-            <FILE id="MmraqT" name="DMXArtNetDevice.cpp" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXArtNetDevice.cpp"/>
-            <FILE id="ufTuHP" name="DMXArtNetDevice.h" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXArtNetDevice.h"/>
-            <FILE id="UN6EQw" name="DMXDevice.cpp" compile="0" resource="0" file="Source/Common/DMX/device/DMXDevice.cpp"/>
-            <FILE id="RbE0oS" name="DMXDevice.h" compile="0" resource="0" file="Source/Common/DMX/device/DMXDevice.h"/>
-            <FILE id="z7eHrl" name="DMXEnttecProDevice.cpp" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXEnttecProDevice.cpp"/>
-            <FILE id="NfZvCM" name="DMXEnttecProDevice.h" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXEnttecProDevice.h"/>
-            <FILE id="weDNNK" name="DMXOpenUSBDevice.cpp" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXOpenUSBDevice.cpp"/>
-            <FILE id="qytN6V" name="DMXOpenUSBDevice.h" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXOpenUSBDevice.h"/>
-            <FILE id="EXbR2F" name="DMXSerialDevice.cpp" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXSerialDevice.cpp"/>
-            <FILE id="cCIRxU" name="DMXSerialDevice.h" compile="0" resource="0"
-                  file="Source/Common/DMX/device/DMXSerialDevice.h"/>
-          </GROUP>
-          <FILE id="u8jGJ4" name="DMXManager.cpp" compile="0" resource="0" file="Source/Common/DMX/DMXManager.cpp"/>
-          <FILE id="PWnqIi" name="DMXManager.h" compile="0" resource="0" file="Source/Common/DMX/DMXManager.h"/>
-        </GROUP>
-        <GROUP id="{555F8E88-CB3B-0BD6-7F40-052569C2E398}" name="Serial">
-          <GROUP id="{E88CCBF0-A061-08C6-C1B4-A7EFD40F48F2}" name="lib">
-            <GROUP id="{3651A516-02E9-8A93-E800-7BE012044195}" name="cobs">
-              <FILE id="jF5xSJ" name="cobs.cpp" compile="0" resource="0" file="Source/Common/Serial/lib/cobs/cobs.cpp"/>
-              <FILE id="HWywOp" name="cobs.h" compile="0" resource="0" file="Source/Common/Serial/lib/cobs/cobs.h"/>
-            </GROUP>
-            <GROUP id="{770585B2-E217-5973-78F6-DC55B5494084}" name="serial">
-              <GROUP id="{6A9C6765-F8FD-D32E-84AA-969FA028294B}" name="impl">
-                <GROUP id="{210E8914-268B-BC89-EAD4-3D732A6229D7}" name="list_ports">
-                  <FILE id="Jcue5h" name="list_ports_linux.cc" compile="1" resource="0"
-                        file="Source/Common/Serial/lib/serial/impl/list_ports/list_ports_linux.cc"/>
-                  <FILE id="QoR8UR" name="list_ports_osx.cc" compile="1" resource="0"
-                        file="Source/Common/Serial/lib/serial/impl/list_ports/list_ports_osx.cc"/>
-                  <FILE id="oXfoUM" name="list_ports_win.cc" compile="1" resource="0"
-                        file="Source/Common/Serial/lib/serial/impl/list_ports/list_ports_win.cc"/>
-                </GROUP>
-                <FILE id="N7wXFz" name="unix.cc" compile="1" resource="0" file="Source/Common/Serial/lib/serial/impl/unix.cc"/>
-                <FILE id="uqaSDN" name="win.cc" compile="1" resource="0" file="Source/Common/Serial/lib/serial/impl/win.cc"/>
-              </GROUP>
-              <FILE id="TsWzCf" name="serial.cc" compile="1" resource="0" file="Source/Common/Serial/lib/serial/serial.cc"/>
-            </GROUP>
-          </GROUP>
-          <FILE id="n4nolj" name="SerialDevice.cpp" compile="0" resource="0"
-                file="Source/Common/Serial/SerialDevice.cpp"/>
-          <FILE id="MDE2XB" name="SerialDevice.h" compile="0" resource="0" file="Source/Common/Serial/SerialDevice.h"/>
-          <FILE id="tPM0M6" name="SerialDeviceParameter.cpp" compile="0" resource="0"
-                file="Source/Common/Serial/SerialDeviceParameter.cpp"/>
-          <FILE id="XEQpgc" name="SerialDeviceParameter.h" compile="0" resource="0"
-                file="Source/Common/Serial/SerialDeviceParameter.h"/>
-          <FILE id="QRrEDT" name="SerialManager.cpp" compile="0" resource="0"
-                file="Source/Common/Serial/SerialManager.cpp"/>
-          <FILE id="Vv7DYk" name="SerialManager.h" compile="0" resource="0" file="Source/Common/Serial/SerialManager.h"/>
-        </GROUP>
-        <GROUP id="{56DFA39C-55A8-FC10-9726-CD97D06D0038}" name="Zeroconf">
-          <FILE id="Uuz4Ko" name="ZeroconfManager.cpp" compile="0" resource="0"
-                file="Source/Common/Zeroconf/ZeroconfManager.cpp"/>
-          <FILE id="bxGJzT" name="ZeroconfManager.h" compile="0" resource="0"
-                file="Source/Common/Zeroconf/ZeroconfManager.h"/>
-        </GROUP>
       </GROUP>
       <GROUP id="{A160C785-C903-CCE2-D4B9-153AA0DB551D}" name="Interface">
         <FILE id="cCpfBN" name="InterfaceIncludes.cpp" compile="1" resource="0"
@@ -882,13 +773,13 @@
                JUCE_IP_AND_PORT_DETECTION="1" JUCE_EXCLUSIVE_BINDING_BY_DEFAULT="1"
                JUCE_ENABLE_BROADCAST_BY_DEFAULT="1" JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS="1"/>
   <EXPORTFORMATS>
-    <VS2022 targetFolder="Builds/VisualStudio2022" externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib"
+    <VS2022 targetFolder="Builds/VisualStudio2022" externalLibraries="Servus.lib&#10;dnssd.lib"
             smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
                        binaryPath="Binaries/Debug"/>
-        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
                        binaryPath="Binaries/"/>
       </CONFIGURATIONS>
@@ -910,10 +801,11 @@
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
         <MODULEPATH id="juce_cryptography" path="D:\Softwares\JUCE\modules"/>
+        <MODULEPATH id="juce_dmx" path="Modules"/>
+        <MODULEPATH id="juce_serial" path="Modules"/>
       </MODULEPATHS>
     </VS2022>
-    <VS2019 targetFolder="Builds/VisualStudio2019_CI" extraDefs="JUCE_SUPPORT_CARBON=0"
-            externalLibraries="Setupapi.lib&#10;Servus.lib&#10;dnssd.lib"
+    <VS2019 targetFolder="Builds/VisualStudio2019_CI" externalLibraries="Servus.lib&#10;dnssd.lib"
             smallIcon="kxAIe6" bigIcon="kxAIe6" extraCompilerFlags="/Zm1000"
             extraLinkerFlags="/HEAP:0x400000,0x10000">
       <CONFIGURATIONS>
@@ -941,6 +833,8 @@
         <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="JUCE/modules"/>
+        <MODULEPATH id="juce_dmx" path="Modules"/>
+        <MODULEPATH id="juce_serial" path="Modules"/>
       </MODULEPATHS>
     </VS2019>
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
@@ -969,6 +863,8 @@
         <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="JUCE/modules"/>
+        <MODULEPATH id="juce_dmx" path="Modules"/>
+        <MODULEPATH id="juce_serial" path="Modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed"
@@ -997,6 +893,8 @@
         <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="JUCE/modules"/>
+        <MODULEPATH id="juce_dmx" path="Modules"/>
+        <MODULEPATH id="juce_serial" path="Modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
     <LINUX_MAKE targetFolder="Builds/Raspberry" externalLibraries="Servus&#10;usb-1.0&#10;pthread&#10;atomic"
@@ -1028,6 +926,8 @@
         <MODULEPATH id="juce_audio_devices" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="JUCE/modules"/>
+        <MODULEPATH id="juce_dmx" path="Modules"/>
+        <MODULEPATH id="juce_serial" path="Modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -1040,6 +940,7 @@
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_dmx" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
@@ -1047,6 +948,7 @@
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_organicui" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_serial" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_simpleweb" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_timeline" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>

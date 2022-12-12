@@ -8,6 +8,9 @@
   ==============================================================================
 */
 
+#include "Interface/InterfaceIncludes.h"
+#include "Object/ObjectIncludes.h"
+
 DMXInterface::DMXInterface() :
 	Interface(getTypeString())
 {
@@ -83,7 +86,7 @@ void DMXInterface::sendDMXValue(int channel, int value)
 {
 	if (!enabled->boolValue() || dmxDevice == nullptr) return;
 	if (logOutgoingData->boolValue()) NLOG(niceName, "Send DMX : " + String(channel) + " > " + String(value));
-	dmxDevice->sendDMXValue(channel, value);
+	//dmxDevice->sendDMXValue(0, 0, 0, channel, value);
 }
 
 void DMXInterface::sendDMXValues(int startChannel, Array<int> values)
@@ -101,15 +104,15 @@ void DMXInterface::sendDMXValues(int startChannel, Array<int> values)
 		NLOG(niceName, s);
 	}
 
-	dmxDevice->sendDMXRange(startChannel, values);
+	//dmxDevice->sendDMXRange(startChannel, values);
 }
 
 void DMXInterface::send16BitDMXValue(int startChannel, int value, DMXByteOrder byteOrder)
 {
 	if (!enabled->boolValue() || dmxDevice == nullptr) return;
 	if (logOutgoingData->boolValue()) NLOG(niceName, "Send 16-bit DMX : " + String(startChannel) + " > " + String(value));
-	dmxDevice->sendDMXValue(startChannel, byteOrder == MSB ? (value >> 8) & 0xFF : value & 0xFF);
-	dmxDevice->sendDMXValue(startChannel + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
+	//dmxDevice->sendDMXValue(startChannel, byteOrder == MSB ? (value >> 8) & 0xFF : value & 0xFF);
+	//dmxDevice->sendDMXValue(startChannel + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
 
 }
 
@@ -128,7 +131,7 @@ void DMXInterface::send16BitDMXValues(int startChannel, Array<int> values, DMXBy
 		dmxValues.set(i * 2 + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
 	}
 
-	dmxDevice->sendDMXRange(startChannel, dmxValues);
+	//dmxDevice->sendDMXRange(startChannel, dmxValues);
 }
 
 void DMXInterface::dmxDeviceConnected()
@@ -141,10 +144,10 @@ void DMXInterface::dmxDeviceDisconnected()
 	dmxConnected->setValue(false);
 }
 
-void DMXInterface::dmxDataInChanged(int numChannels, uint8* values, const String& sourceName)
+void DMXInterface::dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName)
 {
 	if (isClearing || !enabled->boolValue()) return;
-	if (logIncomingData->boolValue()) NLOG(niceName, "DMX In : " + String(numChannels) + " channels received.");
+	if (logIncomingData->boolValue()) NLOG(niceName, "DMX In : Net " << net << ", Subnet " << subnet << ", Universe " << universe);
 }
 
 
@@ -153,12 +156,12 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	if (channelTestingMode->boolValue()) return;
 
 	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
-	
+
 	jassert(dmxParams != nullptr);
 
 	int startChannel = dmxParams->startChannel->intValue();
 	HashMap<int, float> compValues;
-	
+
 	for (auto& c : o->componentManager->items)
 	{
 		if (!c->enabled->boolValue()) continue;

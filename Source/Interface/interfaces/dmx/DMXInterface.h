@@ -1,63 +1,61 @@
 /*
   ==============================================================================
 
-    DMXInterface.h
-    Created: 26 Sep 2020 1:51:42pm
-    Author:  bkupe
+	DMXInterface.h
+	Created: 26 Sep 2020 1:51:42pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
 #pragma once
 
-#include "Common/CommonIncludes.h"
-
 class DMXInterface :
-    public Interface,
-    public DMXDevice::DMXDeviceListener
+	public Interface,
+	public DMXDevice::DMXDeviceListener
 {
 public:
-    DMXInterface();
-    ~DMXInterface();
+	DMXInterface();
+	~DMXInterface();
 
-    enum DMXByteOrder { BIT8, MSB, LSB };
+	enum DMXByteOrder { BIT8, MSB, LSB };
 
-    EnumParameter* dmxType;
-    std::unique_ptr<DMXDevice> dmxDevice;
-    BoolParameter* dmxConnected;
+	EnumParameter* dmxType;
+	std::unique_ptr<DMXDevice> dmxDevice;
+	BoolParameter* dmxConnected;
 
-    BoolParameter * channelTestingMode;
-    FloatParameter* channelTestingFlashValue;
+	BoolParameter* channelTestingMode;
+	FloatParameter* channelTestingFlashValue;
 
-    void clearItem() override;
+	void clearItem() override;
 
-    void onContainerParameterChanged(Parameter* p) override;
-    
-    void setCurrentDMXDevice(DMXDevice* d);
+	void onContainerParameterChanged(Parameter* p) override;
 
-    void sendDMXValue(int channel, int value);
-    void sendDMXValues(int startChannel, Array<int> values);
-    void send16BitDMXValue(int startChannel, int value, DMXByteOrder byteOrder);
-    void send16BitDMXValues(int startChannel, Array<int> values, DMXByteOrder byteOrder);
+	void setCurrentDMXDevice(DMXDevice* d);
 
-    void dmxDeviceConnected() override;
-    void dmxDeviceDisconnected() override;
+	void sendDMXValue(int channel, int value);
+	void sendDMXValues(int startChannel, Array<int> values);
+	void send16BitDMXValue(int startChannel, int value, DMXByteOrder byteOrder);
+	void send16BitDMXValues(int startChannel, Array<int> values, DMXByteOrder byteOrder);
 
-    void dmxDataInChanged(int numChannels, uint8* values, const String& sourceName = "") override;
+	void dmxDeviceConnected() override;
+	void dmxDeviceDisconnected() override;
 
-    class DMXParams : public ControllableContainer
-    {
-    public:
-        DMXParams();
-        IntParameter* startChannel;
-    };
+	void dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") override;
 
-    ControllableContainer* getInterfaceParams() override { return new DMXParams(); }
+	class DMXParams : public ControllableContainer
+	{
+	public:
+		DMXParams();
+		IntParameter* startChannel;
+	};
 
-    void sendValuesForObjectInternal(Object* o) override;
+	ControllableContainer* getInterfaceParams() override { return new DMXParams(); }
 
-    String getTypeString() const override { return "DMX"; }
-    static DMXInterface* create(var params) { return new DMXInterface(); };
+	void sendValuesForObjectInternal(Object* o) override;
 
-    virtual InterfaceUI* createUI() override;
+	String getTypeString() const override { return "DMX"; }
+	static DMXInterface* create(var params) { return new DMXInterface(); };
+
+	virtual InterfaceUI* createUI() override;
 };
