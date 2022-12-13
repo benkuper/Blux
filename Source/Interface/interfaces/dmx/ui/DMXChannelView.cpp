@@ -140,7 +140,7 @@ void DMXChannelView::rebuildChannelItems()
 
 void DMXChannelView::sendDMXValue(int channel, float value)
 {
-	if (currentInterface != nullptr && currentInterface->channelTestingMode->boolValue()) currentInterface->sendDMXValue(channel, value);
+	//if (currentInterface != nullptr && currentInterface->channelTestingMode->boolValue()) currentInterface->setDMXValue(channel, value);
 }
 
 void DMXChannelView::newMessage(const InterfaceManager::ManagerEvent& e)

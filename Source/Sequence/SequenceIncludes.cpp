@@ -35,6 +35,15 @@
 #include "layers/effect/ui/EffectBlockUI.cpp"
 #include "layers/effect/ui/EffectLayerTimeline.cpp"
 
+#include "layers/rawdata/RawDataBlock.cpp"
+#include "layers/rawdata/RawDataBlockManager.cpp"
+#include "layers/rawdata/RawDataLayer.cpp"
+
+#include "layers/rawdata/ui/RawDataBlockUI.cpp"
+#include "layers/rawdata/ui/RawDataBlockManagerUI.cpp"
+#include "layers/rawdata/ui/RawDataLayerTimeline.cpp"
+#include "layers/rawdata/ui/RawDataLayerPanel.cpp"
+
 #include "ui/BluxSequenceChainVizUI.cpp"
 #include "ui/BluxSequenceEditor.cpp"
 #include "ui/GlobalSequenceManagerUI.cpp"

@@ -1,13 +1,15 @@
 /*
   ==============================================================================
 
-    BluxSequence.cpp
-    Created: 5 Oct 2020 2:42:07pm
-    Author:  bkupe
+	BluxSequence.cpp
+	Created: 5 Oct 2020 2:42:07pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
+#include "Sequence/SequenceIncludes.h"
+#include "Audio/AudioManager.h"
 
 BluxSequence::BluxSequence() :
 	manualStartAtLoad(false)
@@ -16,6 +18,7 @@ BluxSequence::BluxSequence() :
 	//layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Automation", &AutomationLayer::create, this));
 	//layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Color Source", &ColorSourceLayer::create, this));
 	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Actions", &ActionLayer::create, this));
+	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", RawDataLayer::getTypeStringStatic(), &RawDataLayer::create, this));
 	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Audio", &AudioLayer::create, this, true));
 
 	layerManager->addBaseManagerListener(this);
@@ -41,9 +44,9 @@ bool BluxSequence::isAffectingObject(Object* o)
 	return false;
 }
 
-Array<ChainVizTarget *> BluxSequence::getChainVizTargetsForObject(Object* o)
+Array<ChainVizTarget*> BluxSequence::getChainVizTargetsForObject(Object* o)
 {
-	Array<ChainVizTarget *> result;
+	Array<ChainVizTarget*> result;
 	for (int i = layerManager->items.size() - 1; i >= 0; --i)
 	{
 		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))

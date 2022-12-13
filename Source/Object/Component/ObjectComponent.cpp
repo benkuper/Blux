@@ -8,6 +8,7 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
 
 ObjectComponent::ObjectComponent(Object* o, String name, ComponentType componentType, var params) :
 	BaseItem(name),

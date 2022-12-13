@@ -545,6 +545,27 @@
     <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataBlockManagerUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataBlockUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataLayerPanel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataLayerTimeline.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\RawDataBlock.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\RawDataBlockManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\RawDataLayer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -3833,6 +3854,13 @@
     <ClInclude Include="..\..\Source\Engine\BluxEngine.h"/>
     <ClInclude Include="..\..\Source\Engine\GenericAction.h"/>
     <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataBlockManagerUI.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataBlockUI.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataLayerPanel.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataLayerTimeline.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\RawDataBlock.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\RawDataBlockManager.h"/>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\RawDataLayer.h"/>
     <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h"/>
     <ClInclude Include="..\..\Source\Sequence\layers\action\ActionTrigger.h"/>
     <ClInclude Include="..\..\Source\Sequence\layers\automation\AutomationLayer.h"/>

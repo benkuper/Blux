@@ -676,6 +676,36 @@
                 file="Source/Sequence/actions/SequenceAction.h"/>
         </GROUP>
         <GROUP id="{47A4E042-1EFE-5733-D500-651382570D61}" name="layers">
+          <GROUP id="{E16A3526-F51E-3034-7A13-67E4B8C8CEFA}" name="rawdata">
+            <GROUP id="{4AB4ED89-23F8-516D-306A-85C285D0DBB4}" name="ui">
+              <FILE id="ZShevB" name="RawDataBlockManagerUI.cpp" compile="0" resource="0"
+                    file="Source/Sequence/layers/rawdata/ui/RawDataBlockManagerUI.cpp"/>
+              <FILE id="tBwCNz" name="RawDataBlockManagerUI.h" compile="0" resource="0"
+                    file="Source/Sequence/layers/rawdata/ui/RawDataBlockManagerUI.h"/>
+              <FILE id="c3fLxg" name="RawDataBlockUI.cpp" compile="0" resource="0"
+                    file="Source/Sequence/layers/rawdata/ui/RawDataBlockUI.cpp"/>
+              <FILE id="jhmEU9" name="RawDataBlockUI.h" compile="0" resource="0"
+                    file="Source/Sequence/layers/rawdata/ui/RawDataBlockUI.h"/>
+              <FILE id="ncytvo" name="RawDataLayerPanel.cpp" compile="0" resource="0"
+                    file="Source/Sequence/layers/rawdata/ui/RawDataLayerPanel.cpp"/>
+              <FILE id="qid7en" name="RawDataLayerPanel.h" compile="0" resource="0"
+                    file="Source/Sequence/layers/rawdata/ui/RawDataLayerPanel.h"/>
+              <FILE id="S50Jfp" name="RawDataLayerTimeline.cpp" compile="0" resource="0"
+                    file="Source/Sequence/layers/rawdata/ui/RawDataLayerTimeline.cpp"/>
+              <FILE id="xU2joE" name="RawDataLayerTimeline.h" compile="0" resource="0"
+                    file="Source/Sequence/layers/rawdata/ui/RawDataLayerTimeline.h"/>
+            </GROUP>
+            <FILE id="rYZsUX" name="RawDataBlock.cpp" compile="0" resource="0"
+                  file="Source/Sequence/layers/rawdata/RawDataBlock.cpp"/>
+            <FILE id="lfSnxC" name="RawDataBlock.h" compile="0" resource="0" file="Source/Sequence/layers/rawdata/RawDataBlock.h"/>
+            <FILE id="GAtqgO" name="RawDataBlockManager.cpp" compile="0" resource="0"
+                  file="Source/Sequence/layers/rawdata/RawDataBlockManager.cpp"/>
+            <FILE id="VRxFqp" name="RawDataBlockManager.h" compile="0" resource="0"
+                  file="Source/Sequence/layers/rawdata/RawDataBlockManager.h"/>
+            <FILE id="nHWvbb" name="RawDataLayer.cpp" compile="0" resource="0"
+                  file="Source/Sequence/layers/rawdata/RawDataLayer.cpp"/>
+            <FILE id="MQ7LTO" name="RawDataLayer.h" compile="0" resource="0" file="Source/Sequence/layers/rawdata/RawDataLayer.h"/>
+          </GROUP>
           <GROUP id="{AB827E54-9C49-D8A3-319B-C9ACAD9DDE01}" name="action">
             <FILE id="Bpf2hH" name="ActionLayer.cpp" compile="0" resource="0" file="Source/Sequence/layers/action/ActionLayer.cpp"/>
             <FILE id="NS2oZm" name="ActionLayer.h" compile="0" resource="0" file="Source/Sequence/layers/action/ActionLayer.h"/>

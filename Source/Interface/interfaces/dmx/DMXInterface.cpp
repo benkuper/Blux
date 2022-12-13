@@ -12,7 +12,8 @@
 #include "Object/ObjectIncludes.h"
 
 DMXInterface::DMXInterface() :
-	Interface(getTypeString())
+	Interface(getTypeString()),
+	Thread("DMX Interface")
 {
 	dmxType = addEnumParameter("DMX Type", "Choose the type of dmx interface you want to connect");
 
@@ -23,6 +24,15 @@ DMXInterface::DMXInterface() :
 	dmxConnected->isControllableFeedbackOnly = true;
 	dmxConnected->isSavable = false;
 
+	defaultNet = addIntParameter("Net", "If appliccable the net for this universe", 0, 0, 15, false);
+	defaultSubnet = addIntParameter("Subnet", "If applicable the subnet for this universe", 0, 0, 15, false);
+	defaultUniverse = addIntParameter("Universe", "The universe", 0, 0, false);
+
+	sendRate = addIntParameter("Send Rate", "The rate at which to send data.", 40, 1, 200);
+	sendOnChangeOnly = addBoolParameter("Send On Change Only", "Only send a universe if one of its channels has changed", true);
+
+
+
 	channelTestingMode = addBoolParameter("Channel Testing Mode", "Is testing with the Channel view ?", false);
 	channelTestingMode->hideInEditor = true;
 
@@ -31,6 +41,11 @@ DMXInterface::DMXInterface() :
 
 	setCurrentDMXDevice(DMXDevice::create((DMXDevice::Type)(int)dmxType->getValueData()));
 
+	//for (int i = 0; i < DMX_MAX_UNIVERSES;i++)
+	//{
+		//DMXUniverse * u = getUniverse(i >> 8 & 0xf, i >> 4 & 0xf, i & 0x7f);
+		//DBG("Create " << u->toString());
+	//}
 }
 
 DMXInterface::~DMXInterface()
@@ -61,6 +76,9 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 {
 	if (dmxDevice.get() == d) return;
 
+
+	GenericScopedLock lock(deviceLock);
+
 	if (dmxDevice != nullptr)
 	{
 		dmxDevice->removeDMXDeviceListener(this);
@@ -82,57 +100,59 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 	}
 }
 
-void DMXInterface::sendDMXValue(int channel, int value)
-{
-	if (!enabled->boolValue() || dmxDevice == nullptr) return;
-	if (logOutgoingData->boolValue()) NLOG(niceName, "Send DMX : " + String(channel) + " > " + String(value));
-	//dmxDevice->sendDMXValue(0, 0, 0, channel, value);
-}
+//void DMXInterface::sendDMXValue(int channel, int value)
+//{
+//	if (!enabled->boolValue() || dmxDevice == nullptr) return;
+//	if (logOutgoingData->boolValue()) NLOG(niceName, "Send DMX : " + String(channel) + " > " + String(value));
+//	//dmxDevice->sendDMXValue(0, 0, 0, channel, value);
+//}
+//
 
-void DMXInterface::sendDMXValues(int startChannel, Array<int> values)
-{
-	if (!enabled->boolValue() || dmxDevice == nullptr) return;
-	if (logOutgoingData->boolValue())
-	{
-		String s = "Send DMX : " + String(startChannel) + ", " + String(values.size()) + " values";
-		int ch = startChannel;
-		for (auto& v : values)
-		{
-			s += "\nChannel " + String(ch) + " : " + String(v);
-			ch++;
-		}
-		NLOG(niceName, s);
-	}
+//void DMXInterface::sendDMXValues(int net, int subnet, int universe, Array<int> values)
+//{
+//	if (!enabled->boolValue() || dmxDevice == nullptr) return;
+//	if (logOutgoingData->boolValue())
+//	{
+//		String s = "Send DMX : " + String(startChannel) + ", " + String(values.size()) + " values";
+//		int ch = startChannel;
+//		for (auto& v : values)
+//		{
+//			s += "\nChannel " + String(ch) + " : " + String(v);
+//			ch++;
+//		}
+//		NLOG(niceName, s);
+//	}
+//
+//
+//	//dmxDevice->sendDMXRange(startChannel, values);
+//}
 
-	//dmxDevice->sendDMXRange(startChannel, values);
-}
-
-void DMXInterface::send16BitDMXValue(int startChannel, int value, DMXByteOrder byteOrder)
-{
-	if (!enabled->boolValue() || dmxDevice == nullptr) return;
-	if (logOutgoingData->boolValue()) NLOG(niceName, "Send 16-bit DMX : " + String(startChannel) + " > " + String(value));
-	//dmxDevice->sendDMXValue(startChannel, byteOrder == MSB ? (value >> 8) & 0xFF : value & 0xFF);
-	//dmxDevice->sendDMXValue(startChannel + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
-
-}
-
-void DMXInterface::send16BitDMXValues(int startChannel, Array<int> values, DMXByteOrder byteOrder)
-{
-	if (!enabled->boolValue() || dmxDevice == nullptr) return;
-	if (logOutgoingData->boolValue()) NLOG(niceName, "Send 16-bit DMX : " + String(startChannel) + " > " + String(values.size()) + " values");
-
-	Array<int> dmxValues;
-	int numValues = values.size();
-	dmxValues.resize(numValues * 2);
-	for (int i = 0; i < numValues; ++i)
-	{
-		int value = values[i];
-		dmxValues.set(i * 2, byteOrder == MSB ? (value >> 8) & 0xFF : value & 0xFF);
-		dmxValues.set(i * 2 + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
-	}
-
-	//dmxDevice->sendDMXRange(startChannel, dmxValues);
-}
+//void DMXInterface::send16BitDMXValue(int startChannel, int value, DMXByteOrder byteOrder)
+//{
+//	if (!enabled->boolValue() || dmxDevice == nullptr) return;
+//	if (logOutgoingData->boolValue()) NLOG(niceName, "Send 16-bit DMX : " + String(startChannel) + " > " + String(value));
+//	//dmxDevice->sendDMXValue(startChannel, byteOrder == MSB ? (value >> 8) & 0xFF : value & 0xFF);
+//	//dmxDevice->sendDMXValue(startChannel + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
+//
+//}
+//
+//void DMXInterface::send16BitDMXValues(int startChannel, Array<int> values, DMXByteOrder byteOrder)
+//{
+//	if (!enabled->boolValue() || dmxDevice == nullptr) return;
+//	if (logOutgoingData->boolValue()) NLOG(niceName, "Send 16-bit DMX : " + String(startChannel) + " > " + String(values.size()) + " values");
+//
+//	Array<int> dmxValues;
+//	int numValues = values.size();
+//	dmxValues.resize(numValues * 2);
+//	for (int i = 0; i < numValues; ++i)
+//	{
+//		int value = values[i];
+//		dmxValues.set(i * 2, byteOrder == MSB ? (value >> 8) & 0xFF : value & 0xFF);
+//		dmxValues.set(i * 2 + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
+//	}
+//
+//	//dmxDevice->sendDMXRange(startChannel, dmxValues);
+//}
 
 void DMXInterface::dmxDeviceConnected()
 {
@@ -159,6 +179,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 
 	jassert(dmxParams != nullptr);
 
+	//Fill map with active dmx channels from object manager
 	int startChannel = dmxParams->startChannel->intValue();
 	HashMap<int, float> compValues;
 
@@ -168,12 +189,63 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 		c->fillOutValueMap(compValues, startChannel);
 	}
 
-	HashMap<int, float>::Iterator it(compValues);
-	while (it.next()) sendDMXValue(it.getKey(), it.getValue() * 255);
+	//Store these channels in local universe
+	int net = dmxParams->net->enabled ? dmxParams->net->intValue() : defaultNet->intValue();
+	int subnet = dmxParams->subnet->enabled ? dmxParams->subnet->intValue() : defaultSubnet->intValue();
+	int universe = dmxParams->universe->enabled ? dmxParams->universe->intValue() : defaultUniverse->intValue();
+	DMXUniverse* u = getUniverse(net, subnet, universe);
 
+	HashMap<int, float>::Iterator it(compValues);
+	while (it.next()) u->updateValue(it.getKey(), it.getValue() * 255);
 }
 
 
+DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool createIfNotExist)
+{
+	const int index = getUniverseIndex(net, subnet, universe);
+	if (universeIdMap.contains(index)) return universeIdMap[index];
+
+	if (!createIfNotExist) return nullptr;
+
+	DMXUniverse* u = new DMXUniverse(net, subnet, universe);
+	universes.add(u);
+	universeIdMap.set(index, u);
+	return universeIdMap[index];
+}
+
+inline int DMXInterface::getUniverseIndex(int net, int subnet, int universe) const
+{
+	return universe | subnet << 4 | net << 8;
+}
+
+void DMXInterface::run()
+{
+	double prevTime = Time::getMillisecondCounterHiRes();
+	while (!threadShouldExit())
+	{
+		{
+			GenericScopedLock lock(deviceLock);
+			if (dmxDevice == nullptr) return;
+
+			bool sendOnChange = sendOnChangeOnly->boolValue();
+			for (auto& u : universes)
+			{
+				if (sendOnChange && !u->isDirty) continue;
+				dmxDevice->sendDMXValues(u);
+				u->isDirty = false;
+			}
+		}
+
+		double t = Time::getMillisecondCounterHiRes();
+		double diffTime = t - prevTime;
+		double rateMS = 1000.0 / sendRate->intValue();
+		prevTime = t;
+
+		double msToWait = rateMS - diffTime;
+		if (msToWait > 0) wait(msToWait);
+
+	}
+}
 
 InterfaceUI* DMXInterface::createUI()
 {
@@ -185,6 +257,13 @@ InterfaceUI* DMXInterface::createUI()
 DMXInterface::DMXParams::DMXParams() :
 	ControllableContainer("DMX Params")
 {
+	net = addIntParameter("Net", "If appliccable the net for this universe", 0, 0, 15, false);
+	subnet = addIntParameter("Subnet", "If applicable the subnet for this universe", 0, 0, 15, false);
+	universe = addIntParameter("Universe", "The universe", 0, 0, false);
+
+	net->canBeDisabledByUser = true;
+	subnet->canBeDisabledByUser = true;
+	universe->canBeDisabledByUser = true;
 
 	startChannel = addIntParameter("Start Channel", "The first channel to set the values. The values will automatically distributed depending on the object.", 1, 1, 512);
 }

@@ -287,6 +287,12 @@
     <Filter Include="Blux\Source\Sequence\actions">
       <UniqueIdentifier>{4AFD7A54-5DD4-AFDF-7377-248AE8959118}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Sequence\layers\rawdata\ui">
+      <UniqueIdentifier>{799953A8-71BB-4444-426A-68950C7DAAA7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Sequence\layers\rawdata">
+      <UniqueIdentifier>{2A20AB89-59DB-6F2F-CD81-4228AEE27A3D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Sequence\layers\action">
       <UniqueIdentifier>{F16A5B3E-6BA7-C928-096D-E5BE3EAE28D0}</UniqueIdentifier>
     </Filter>
@@ -1740,6 +1746,27 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\actions\SequenceAction.cpp">
       <Filter>Blux\Source\Sequence\actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataBlockManagerUI.cpp">
+      <Filter>Blux\Source\Sequence\layers\rawdata\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataBlockUI.cpp">
+      <Filter>Blux\Source\Sequence\layers\rawdata\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataLayerPanel.cpp">
+      <Filter>Blux\Source\Sequence\layers\rawdata\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataLayerTimeline.cpp">
+      <Filter>Blux\Source\Sequence\layers\rawdata\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\RawDataBlock.cpp">
+      <Filter>Blux\Source\Sequence\layers\rawdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\RawDataBlockManager.cpp">
+      <Filter>Blux\Source\Sequence\layers\rawdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\rawdata\RawDataLayer.cpp">
+      <Filter>Blux\Source\Sequence\layers\rawdata</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\layers\action\ActionLayer.cpp">
       <Filter>Blux\Source\Sequence\layers\action</Filter>
@@ -5528,6 +5555,27 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Sequence\actions\SequenceAction.h">
       <Filter>Blux\Source\Sequence\actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataBlockManagerUI.h">
+      <Filter>Blux\Source\Sequence\layers\rawdata\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataBlockUI.h">
+      <Filter>Blux\Source\Sequence\layers\rawdata\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataLayerPanel.h">
+      <Filter>Blux\Source\Sequence\layers\rawdata\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\ui\RawDataLayerTimeline.h">
+      <Filter>Blux\Source\Sequence\layers\rawdata\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\RawDataBlock.h">
+      <Filter>Blux\Source\Sequence\layers\rawdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\RawDataBlockManager.h">
+      <Filter>Blux\Source\Sequence\layers\rawdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\rawdata\RawDataLayer.h">
+      <Filter>Blux\Source\Sequence\layers\rawdata</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Sequence\layers\action\ActionLayer.h">
       <Filter>Blux\Source\Sequence\layers\action</Filter>

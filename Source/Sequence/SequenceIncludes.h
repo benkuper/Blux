@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    SequenceIncludes.h
-    Created: 9 Sep 2021 7:02:15pm
-    Author:  bkupe
+	SequenceIncludes.h
+	Created: 9 Sep 2021 7:02:15pm
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -11,9 +11,11 @@
 #pragma once
 
 #include "JuceHeader.h"
+
 #include "Common/CommonIncludes.h"
 #include "ChainViz/ChainViz.h"
 #include "Effect/EffectIncludes.h"
+#include "Interface/InterfaceIncludes.h"
 
 #include "BluxSequence.h"
 #include "BluxSequenceManager.h"
@@ -34,6 +36,15 @@
 #include "layers/effect/ui/EffectBlockManagerUI.h"
 
 #include "layers/effect/ui/EffectLayerTimeline.h"
+
+#include "layers/rawdata/RawDataBlock.h"
+#include "layers/rawdata/RawDataBlockManager.h"
+#include "layers/rawdata/RawDataLayer.h"
+
+#include "layers/rawdata/ui/RawDataBlockUI.h"
+#include "layers/rawdata/ui/RawDataBlockManagerUI.h"
+#include "layers/rawdata/ui/RawDataLayerTimeline.h"
+#include "layers/rawdata/ui/RawDataLayerPanel.h"
 
 #include "ui/BluxSequenceChainVizUI.h"
 #include "ui/BluxSequenceEditor.h"
