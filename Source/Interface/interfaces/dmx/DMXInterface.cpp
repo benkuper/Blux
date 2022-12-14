@@ -168,6 +168,8 @@ void DMXInterface::dmxDataInChanged(int net, int subnet, int universe, Array<uin
 {
 	if (isClearing || !enabled->boolValue()) return;
 	if (logIncomingData->boolValue()) NLOG(niceName, "DMX In : Net " << net << ", Subnet " << subnet << ", Universe " << universe);
+
+	dmxInterfaceListeners.call(&DMXInterfaceListener::dmxDataInChanged, net, subnet, universe, values, sourceName);
 }
 
 
@@ -202,7 +204,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 
 DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool createIfNotExist)
 {
-	const int index = getUniverseIndex(net, subnet, universe);
+	const int index = DMXUniverse::getUniverseIndex(net, subnet, universe);
 	if (universeIdMap.contains(index)) return universeIdMap[index];
 
 	if (!createIfNotExist) return nullptr;
@@ -211,11 +213,6 @@ DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool c
 	universes.add(u);
 	universeIdMap.set(index, u);
 	return universeIdMap[index];
-}
-
-inline int DMXInterface::getUniverseIndex(int net, int subnet, int universe) const
-{
-	return universe | subnet << 4 | net << 8;
 }
 
 void DMXInterface::run()

@@ -46,7 +46,7 @@ public:
 
 	void setCurrentDMXDevice(DMXDevice* d);
 
-	void setDMXValue(int net, int subnet, int universe, int startChannel, Array<int> values);
+	//void setDMXValue(int net, int subnet, int universe, int startChannel, Array<int> values);
 	//void sendDMXValues(int net, int subnet, int universe, int startChannel, Array<int> values);
 	//void sendDMXValue(int net, int subnet, int universe, int channel, int value);
 	//void send16BitDMXValue(int net, int subnet, int universe, int startChannel, int value, DMXByteOrder byteOrder);
@@ -59,7 +59,6 @@ public:
 	void sendValuesForObjectInternal(Object* o) override;
 
 	DMXUniverse* getUniverse(int net, int subnet, int universe, bool createIfNotExist = true);
-	int getUniverseIndex(int net, int subnet, int universe) const;
 
 	void run() override;
 
@@ -73,10 +72,24 @@ public:
 		IntParameter* startChannel;
 	};
 
+
+
 	ControllableContainer* getInterfaceParams() override { return new DMXParams(); }
 
+	class DMXInterfaceListener
+	{
+	public:
+		virtual ~DMXInterfaceListener() {}
 
-	String getTypeString() const override { return "DMX"; }
+		virtual void dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") {}
+	};
+
+	ListenerList<DMXInterfaceListener> dmxInterfaceListeners;
+	void addDMXInterfaceListener(DMXInterfaceListener* newListener) { dmxInterfaceListeners.add(newListener); }
+	void removeDMXInterfaceListener(DMXInterfaceListener* listener) { dmxInterfaceListeners.remove(listener); }
+
+
+	DECLARE_TYPE("DMX");
 	static DMXInterface* create(var params) { return new DMXInterface(); };
 
 	virtual InterfaceUI* createUI() override;

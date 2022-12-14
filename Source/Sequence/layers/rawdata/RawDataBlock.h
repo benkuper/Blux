@@ -42,7 +42,14 @@ public:
 	RawDataBlock();
 	~RawDataBlock();
 
+	FileParameter* fileParam;
+	File file;
 	OwnedArray<UniverseRecord> records;
+
+	void onContainerParameterChangedInternal(Parameter* p) override;
+
+	void readInfos();
+	void readAtTime(float time);
 
 	DECLARE_ASYNC_EVENT(RawDataBlock, RawDataBlock, rawData, ENUM_LIST(LOADED))
 	DECLARE_TYPE("Raw Data Block");
