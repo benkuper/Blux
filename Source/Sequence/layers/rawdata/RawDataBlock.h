@@ -44,13 +44,28 @@ public:
 
 	FileParameter* fileParam;
 	File file;
-	OwnedArray<UniverseRecord> records;
+	OwnedArray<UniverseRecord> rencords;
+
+	std::unique_ptr<FileInputStream> fs;
+
+	struct FrameData
+	{
+		float time = -1;
+		int numUniverses = 0;
+		int filePos = 0;
+	};
+
+	Array<FrameData> frames;
+
+	int lastReadFrameIndex;
 
 	void onContainerParameterChangedInternal(Parameter* p) override;
 
 	void readInfos();
-	void readAtTime(float time);
+	Array<DMXUniverse *> readAtTime(float time);
 
-	DECLARE_ASYNC_EVENT(RawDataBlock, RawDataBlock, rawData, ENUM_LIST(LOADED))
+	FrameData getFrameDataAtTime(float time);
+
+	DECLARE_ASYNC_EVENT(RawDataBlock, RawDataBlock, rawData, ENUM_LIST(LOADED));
 	DECLARE_TYPE("Raw Data Block");
 };

@@ -64,6 +64,8 @@ void DMXInterface::onContainerParameterChanged(Parameter* p)
 	if (p == enabled)
 	{
 		if (dmxDevice != nullptr) dmxDevice->enabled = enabled->boolValue();
+		if (enabled->boolValue() && dmxDevice != nullptr) startThread();
+		else stopThread(1000);
 
 	}
 	else if (p == dmxType)
@@ -76,6 +78,7 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 {
 	if (dmxDevice.get() == d) return;
 
+	stopThread(1000);
 
 	GenericScopedLock lock(deviceLock);
 
@@ -98,6 +101,8 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 		addChildControllableContainer(dmxDevice.get());
 		dmxConnected->setValue(true);
 	}
+
+	if (enabled->boolValue() && dmxDevice != nullptr) startThread();
 }
 
 //void DMXInterface::sendDMXValue(int channel, int value)
@@ -229,6 +234,10 @@ void DMXInterface::run()
 			{
 				if (sendOnChange && !u->isDirty) continue;
 				dmxDevice->sendDMXValues(u);
+				if (logOutgoingData->boolValue())
+				{
+					NLOG(niceName, "Sending Universe " << u->toString());
+				}
 				u->isDirty = false;
 			}
 		}

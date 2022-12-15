@@ -115,13 +115,13 @@ void RawDataLayer::recordOneFrame()
 
 	if (numUniverses == 0) return;
 
-	int packetSize = b.getSize() + 4 + 4;//including curTime and numUniverses, not including packetSize part
+	int dataSize = b.getSize(); // +4 + 4;//including curTime and numUniverses, not including packetSize part
 
 	if (timeAtRecord == -1) timeAtRecord = sequence->currentTime->floatValue();
 	float time = sequence->currentTime->floatValue() - timeAtRecord;
 
-	output->writeInt(packetSize);
-	output->writeInt(time);
+	output->writeInt(dataSize);
+	output->writeFloat(time);
 	output->writeInt(numUniverses);
 	output->write(b.getData(), b.getSize());
 
@@ -171,7 +171,27 @@ void RawDataLayer::sequencePlayStateChanged(Sequence* s)
 
 void RawDataLayer::sequenceCurrentTimeChanged(Sequence*, float, bool)
 {
-	if (isRecording->boolValue()) recordOneFrame();
+	if (isRecording->boolValue())
+	{
+		recordOneFrame();
+		return;
+	}
+
+	if (dmxInterface == nullptr) return;
+
+	float seqTime = sequence->currentTime->floatValue();
+ 	if (LayerBlock* b = blockManager.getBlockAtTime(seqTime, false))
+	{
+		RawDataBlock* rb = (RawDataBlock*)b;
+		OwnedArray<DMXUniverse> frameUniverses;
+		frameUniverses.addArray(rb->readAtTime(seqTime));
+
+		for (auto& u : frameUniverses)
+		{
+			DMXUniverse* interfaceU = dmxInterface->getUniverse(u->net, u->subnet, u->universe);
+			interfaceU->updateValues(u->values);
+		}
+	}
 }
 
 void RawDataLayer::dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName)
