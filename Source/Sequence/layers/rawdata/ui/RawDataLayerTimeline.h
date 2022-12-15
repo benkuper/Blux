@@ -21,9 +21,12 @@ public:
     RawDataLayer* rawDataLayer;
     RawDataBlockManagerUI blockManagerUI;
 
+    void paintOverChildren(Graphics &g) override;
     void resized() override;
     void updateContent() override;
     virtual void updateMiniModeUI() override;
+
+    virtual void controllableFeedbackUpdateInternal(Controllable* c) override;
 
     virtual void addSelectableComponentsAndInspectables(Array<Component*>& selectables, Array<Inspectable*>& inspectables) override;
 };

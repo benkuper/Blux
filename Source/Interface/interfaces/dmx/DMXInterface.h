@@ -23,7 +23,7 @@ public:
 
 	EnumParameter* dmxType;
 
-	SpinLock deviceLock;
+	SpinLock sendLock;
 	std::unique_ptr<DMXDevice> dmxDevice;
 	BoolParameter* dmxConnected;
 

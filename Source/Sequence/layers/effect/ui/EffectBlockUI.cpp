@@ -8,9 +8,12 @@
   ==============================================================================
 */
 
+#include "Sequence/SequenceIncludes.h"
+
 EffectBlockUI::EffectBlockUI(EffectBlock* b) :
 	LayerBlockUI(b),
-	effectBlock(b)
+	effectBlock(b),
+	fadeValueAtMouseDown(0)
 {
 
 	addChildComponent(&fadeInHandle, 0);

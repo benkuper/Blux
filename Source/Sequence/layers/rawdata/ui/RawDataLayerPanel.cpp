@@ -8,4 +8,21 @@
   ==============================================================================
 */
 
-#include "RawDataLayerPanel.h"
+#include "Sequence/SequenceIncludes.h"
+
+RawDataLayerPanel::RawDataLayerPanel(RawDataLayer* layer) :
+    SequenceLayerPanel(layer),
+    rawDataLayer(layer)
+{
+    armUI.reset(layer->arm->createToggle());
+    addAndMakeVisible(armUI.get());
+}
+
+RawDataLayerPanel::~RawDataLayerPanel()
+{
+}
+
+void RawDataLayerPanel::resizedInternalContent(Rectangle<int>& r)
+{
+    armUI->setBounds(r.removeFromTop(20));
+}

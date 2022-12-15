@@ -16,10 +16,24 @@ RawDataLayerTimeline::RawDataLayerTimeline(RawDataLayer* l) :
 	blockManagerUI(this)
 {
 	addAndMakeVisible(&blockManagerUI);
+	needle.toFront(false);
 }
 
 RawDataLayerTimeline::~RawDataLayerTimeline()
 {
+}
+
+void RawDataLayerTimeline::paintOverChildren(Graphics& g)
+{
+	SequenceLayerTimeline::paintOverChildren(g);
+	if (rawDataLayer->isRecording->boolValue())
+	{
+		int sx = getXForTime(rawDataLayer->timeAtRecord);
+		int tx = getXForTime(item->sequence->currentTime->floatValue());	
+
+		g.setColour(RED_COLOR.withAlpha(.5f));
+		g.fillRect(Rectangle<float>(sx, 0, tx - sx, getHeight()));
+	}
 }
 
 void RawDataLayerTimeline::resized()
@@ -35,6 +49,20 @@ void RawDataLayerTimeline::updateContent()
 void RawDataLayerTimeline::updateMiniModeUI()
 {
 	blockManagerUI.setMiniMode(item->miniMode->boolValue());
+}
+
+void RawDataLayerTimeline::controllableFeedbackUpdateInternal(Controllable* c)
+{
+	SequenceLayerTimeline::controllableFeedbackUpdateInternal(c);
+	if (c == rawDataLayer->arm)
+	{
+		needle.timeBarColor = rawDataLayer->arm->boolValue() ? RED_COLOR : needle.defaultTimeBarColor;
+		repaint();
+	}
+	else if (c == item->sequence->currentTime)
+	{
+		repaint();
+	}
 }
 
 void RawDataLayerTimeline::addSelectableComponentsAndInspectables(Array<Component*>& selectables, Array<Inspectable*>& inspectables)

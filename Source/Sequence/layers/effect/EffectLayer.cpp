@@ -1,71 +1,72 @@
+#include "EffectLayer.h"
 /*
   ==============================================================================
 
-    EffectLayer.cpp
-    Created: 5 Oct 2020 4:03:18pm
-    Author:  bkupe
+	EffectLayer.cpp
+	Created: 5 Oct 2020 4:03:18pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
 
 EffectLayer::EffectLayer(Sequence* s, var params) :
-    SequenceLayer(s, "Effect"),
-    blockManager(this)
+	SequenceLayer(s, "Effect"),
+	blockManager(this)
 {
-    saveAndLoadRecursiveData = true;
-    
-    timeOffsetByID = addFloatParameter("Time Offset by ID", "Offset by id to apply to the entire layer", 0);
-    timeOffsetByID->defaultUI = FloatParameter::TIME;
+	saveAndLoadRecursiveData = true;
 
-    addChildControllableContainer(&blockManager);
+	timeOffsetByID = addFloatParameter("Time Offset by ID", "Offset by id to apply to the entire layer", 0);
+	timeOffsetByID->defaultUI = FloatParameter::TIME;
 
-    filterManager.reset(new FilterManager());
-    filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::COLOR, true);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
-    addChildControllableContainer(filterManager.get());
+	addChildControllableContainer(&blockManager);
+
+	filterManager.reset(new FilterManager());
+	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::COLOR, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
+	addChildControllableContainer(filterManager.get());
 }
 
 EffectLayer::~EffectLayer()
 {
 }
 
-Array<ChainVizTarget *> EffectLayer::getChainVizTargetsForObject(Object* o)
+Array<ChainVizTarget*> EffectLayer::getChainVizTargetsForObject(Object* o)
 {
-    Array<ChainVizTarget *> result;
-    
-    if (!filterManager->isAffectingObject(o)) return result;
+	Array<ChainVizTarget*> result;
 
-    FilterResult fr = filterManager->getFilteredResultForComponent(o, nullptr);
-    int id = fr.id == -1 ? o->globalID->intValue() : fr.id;
+	if (!filterManager->isAffectingObject(o)) return result;
 
-    float time = sequence->currentTime->floatValue() - timeOffsetByID->floatValue() * id;
-    Array<LayerBlock*> blocks = blockManager.getBlocksAtTime(time);
+	FilterResult fr = filterManager->getFilteredResultForComponent(o, nullptr);
+	int id = fr.id == -1 ? o->globalID->intValue() : fr.id;
 
-    for (auto& i : blocks)
-    {
-        EffectBlock* eb = (EffectBlock*)i;
-        if (eb->effect->filterManager->isAffectingObject(o)) result.add(eb->effect.get());
-    }
+	float time = sequence->currentTime->floatValue() - timeOffsetByID->floatValue() * id;
+	Array<LayerBlock*> blocks = blockManager.getBlocksAtTime(time);
 
-    return result;
+	for (auto& i : blocks)
+	{
+		EffectBlock* eb = (EffectBlock*)i;
+		if (eb->effect->filterManager->isAffectingObject(o)) result.add(eb->effect.get());
+	}
+
+	return result;
 }
 
 void EffectLayer::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
 {
-    FilterResult fr = filterManager->getFilteredResultForComponent(o, c);
-    if (fr.id == -1) return;
+	FilterResult fr = filterManager->getFilteredResultForComponent(o, c);
+	if (fr.id == -1) return;
 
-    float time = sequence->currentTime->floatValue() - timeOffsetByID->floatValue() * fr.id;
-    Array<LayerBlock *> blocks = blockManager.getBlocksAtTime(time, false);
-    for(auto & b : blocks) ((EffectBlock *)b)->processComponentValues(o, c, values, fr.weight * weightMultiplier, fr.id, time);
+	float time = sequence->currentTime->floatValue() - timeOffsetByID->floatValue() * fr.id;
+	Array<LayerBlock*> blocks = blockManager.getBlocksAtTime(time, false);
+	for (auto& b : blocks) ((EffectBlock*)b)->processComponentValues(o, c, values, fr.weight * weightMultiplier, fr.id, time);
 }
 
 
 SequenceLayerTimeline* EffectLayer::getTimelineUI()
 {
-    return new EffectLayerTimeline(this);
+	return new EffectLayerTimeline(this);
 }

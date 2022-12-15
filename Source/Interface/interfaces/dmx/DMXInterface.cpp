@@ -80,7 +80,7 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 
 	stopThread(1000);
 
-	GenericScopedLock lock(deviceLock);
+	GenericScopedLock lock(sendLock);
 
 	if (dmxDevice != nullptr)
 	{
@@ -226,7 +226,7 @@ void DMXInterface::run()
 	while (!threadShouldExit())
 	{
 		{
-			GenericScopedLock lock(deviceLock);
+			GenericScopedLock lock(sendLock);
 			if (dmxDevice == nullptr) return;
 
 			bool sendOnChange = sendOnChangeOnly->boolValue();

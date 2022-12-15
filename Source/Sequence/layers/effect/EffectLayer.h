@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    EffectLayer.h
-    Created: 5 Oct 2020 4:03:18pm
-    Author:  bkupe
+	EffectLayer.h
+	Created: 5 Oct 2020 4:03:18pm
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -15,24 +15,24 @@ class ObjectComponent;
 class FilterManager;
 
 class EffectLayer :
-    public SequenceLayer
+	public SequenceLayer
 {
 public:
-    EffectLayer(Sequence* s, var params = var());
-    ~EffectLayer();
+	EffectLayer(Sequence* s, var params = var());
+	~EffectLayer();
 
-    EffectBlockManager blockManager;
-    std::unique_ptr<FilterManager> filterManager;
+	EffectBlockManager blockManager;
+	std::unique_ptr<FilterManager> filterManager;
 
-    FloatParameter* timeOffsetByID;
-    
-    Array<EffectBlock*, CriticalSection> activeBlocks;
+	FloatParameter* timeOffsetByID;
 
-    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
-    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
+	Array<EffectBlock*, CriticalSection> activeBlocks;
 
-    SequenceLayerTimeline * getTimelineUI() override;
+	Array<ChainVizTarget*> getChainVizTargetsForObject(Object* o);
+	virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
 
-    String getTypeString() const override { return "Effect"; }
-    static EffectLayer* create(Sequence* s, var params) { return new EffectLayer(s, params); }
+	SequenceLayerTimeline* getTimelineUI() override;
+
+	String getTypeString() const override { return "Effect"; }
+	static EffectLayer* create(Sequence* s, var params) { return new EffectLayer(s, params); }
 };

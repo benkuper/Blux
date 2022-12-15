@@ -9,12 +9,14 @@
 */
 
 #include "Sequence/SequenceIncludes.h"
+#include "RawDataLayer.h"
 
 RawDataLayer::RawDataLayer(Sequence* s, var params) :
 	SequenceLayer(s, "Raw Data"),
 	blockManager(this),
 	timeAtRecord(0),
 	numWrittenFrames(0),
+	needsToSendAllUniverses(true),
 	dmxInterface(nullptr)
 {
 	saveAndLoadRecursiveData = true;
@@ -25,14 +27,18 @@ RawDataLayer::RawDataLayer(Sequence* s, var params) :
 	targetInterface->maxDefaultSearchLevel = 0;
 	targetInterface->typesFilter.add(DMXInterface::getTypeStringStatic());
 
+	forceResetValues = addBoolParameter("Force Reset Values", "If checked, this will force a value to zero before resetting", false);
+
 	arm = addBoolParameter("arm", "arm", false);
 	autoDisarm = addBoolParameter("autoDisarm", "autoDisarm", true);
 
 	recordToSave = addFileParameter("recordToSave", "recordToSave");
 	recordToSave->setValue("records/sample.rawdata");
+	recordToSave->saveMode = true;
 
 	isRecording = addBoolParameter("Is Recording", "", false);
 	isRecording->setControllableFeedbackOnly(true);
+
 
 }
 
@@ -130,6 +136,10 @@ void RawDataLayer::recordOneFrame()
 
 void RawDataLayer::stopRecording()
 {
+	isRecording->setValue(false);
+
+	if (output == nullptr) return;
+
 	if (timeAtRecord == -1 || universes.size() == 0)
 	{
 		output->flush();
@@ -146,7 +156,6 @@ void RawDataLayer::stopRecording()
 	output->flush();
 	output.reset();
 
-	isRecording->setValue(false);
 	LOG("Record saved to " << recordingFile.getFullPathName());
 
 	RawDataBlock* b = new RawDataBlock();
@@ -167,9 +176,11 @@ void RawDataLayer::sequencePlayStateChanged(Sequence* s)
 		if (isRecording->boolValue()) stopRecording();
 		if (autoDisarm->boolValue()) arm->setValue(false);
 	}
+
+	needsToSendAllUniverses = true;
 }
 
-void RawDataLayer::sequenceCurrentTimeChanged(Sequence*, float, bool)
+void RawDataLayer::sequenceCurrentTimeChanged(Sequence* s, float prevTime, bool)
 {
 	if (isRecording->boolValue())
 	{
@@ -180,17 +191,87 @@ void RawDataLayer::sequenceCurrentTimeChanged(Sequence*, float, bool)
 	if (dmxInterface == nullptr) return;
 
 	float seqTime = sequence->currentTime->floatValue();
- 	if (LayerBlock* b = blockManager.getBlockAtTime(seqTime, false))
+	if (LayerBlock* b = blockManager.getBlockAtTime(seqTime, false))
 	{
 		RawDataBlock* rb = (RawDataBlock*)b;
+
+		if (rb != activeBlock)
+		{
+			activeBlock = rb;
+			needsToSendAllUniverses = true;
+		}
+
 		OwnedArray<DMXUniverse> frameUniverses;
-		frameUniverses.addArray(rb->readAtTime(seqTime));
+
+		if (s->isSeeking || prevTime > s->currentTime->floatValue()) needsToSendAllUniverses = true;
+
+		if (needsToSendAllUniverses)
+		{
+			LOG("Read All Universes");
+			frameUniverses.addArray(rb->readAllUniversesAtTime(seqTime));
+			needsToSendAllUniverses = false;
+		}
+		else
+		{
+			frameUniverses.addArray(rb->readFrameAtTime(seqTime));
+		}
+
+		float fade = rb->getFadeFactorAtTime(seqTime);
+		RawDataBlock::BlendMode m = rb->blendMode->getValueDataAsEnum<RawDataBlock::BlendMode>();
+
+		std::function<int(int, int)> blendFunc = nullptr;
+
+		if (fade != 1 || m != RawDataBlock::ALPHA)
+		{
+			switch (m)
+			{
+			case RawDataBlock::ALPHA:
+				blendFunc = [](int a, int b) { return b; };
+				break;
+			case RawDataBlock::ADD:
+				blendFunc = [](int a, int b) { return jmin(a + b, 255); };
+				break;
+			case RawDataBlock::MULTIPLY:
+				blendFunc = [](int a, int b) {return (int)(a * (b * 1.0f / 255.0f)); };
+				break;
+			case RawDataBlock::MAX:
+				blendFunc = [](int a, int b) {return jmax(a, b); };
+				break;
+			case RawDataBlock::MIN:
+				blendFunc = [](int a, int b) {return jmin(a, b); };
+				break;
+			}
+		}
+
+		GenericScopedLock lock(dmxInterface->sendLock);
 
 		for (auto& u : frameUniverses)
 		{
 			DMXUniverse* interfaceU = dmxInterface->getUniverse(u->net, u->subnet, u->universe);
-			interfaceU->updateValues(u->values);
+
+
+			if (fade == 1 && m == RawDataBlock::ALPHA)
+			{
+				interfaceU->updateValues(u->values);
+			}
+			else
+			{
+				GenericScopedLock lock(interfaceU->valuesLock);
+
+				if (forceResetValues->boolValue()) 
+					interfaceU->values.fill(0);
+
+				for (int i = 0; i < DMX_NUM_CHANNELS; i++)
+				{
+					int targetVal = blendFunc(interfaceU->values[i], u->values[i]);
+					if (fade != 1) targetVal = (int)jmap<float>(fade, 0, 1, interfaceU->values[i], targetVal);
+					interfaceU->values.set(i, targetVal);
+				}
+
+				interfaceU->isDirty = true;
+			}
 		}
+
 	}
 }
 
@@ -216,6 +297,11 @@ inline DMXUniverse* RawDataLayer::getUniverse(int net, int subnet, int universe,
 	universes.add(u);
 	universeIdMap.set(index, u);
 	return universeIdMap[index];
+}
+
+SequenceLayerPanel* RawDataLayer::getPanel()
+{
+	return new RawDataLayerPanel(this);
 }
 
 SequenceLayerTimeline* RawDataLayer::getTimelineUI()
