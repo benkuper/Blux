@@ -17,7 +17,7 @@ DMXInterface::DMXInterface() :
 {
 	dmxType = addEnumParameter("DMX Type", "Choose the type of dmx interface you want to connect");
 
-	dmxType->addOption("Open DMX", DMXDevice::OPENDMX)->addOption("Enttec DMX Pro", DMXDevice::ENTTEC_DMXPRO)->addOption("Enttec DMX MkII", DMXDevice::ENTTEC_MK2)->addOption("Art-Net", DMXDevice::ARTNET);
+	dmxType->addOption("Open DMX", DMXDevice::OPENDMX)->addOption("Enttec DMX Pro", DMXDevice::ENTTEC_DMXPRO)->addOption("Enttec DMX MkII", DMXDevice::ENTTEC_MK2)->addOption("Art-Net", DMXDevice::ARTNET)->addOption("sACN/E1.31", DMXDevice::SACN);
 	dmxType->setValueWithKey("Open DMX");
 
 	dmxConnected = addBoolParameter("Connected", "DMX is connected ?", false);
