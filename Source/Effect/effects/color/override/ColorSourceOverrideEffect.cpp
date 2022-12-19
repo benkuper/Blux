@@ -27,7 +27,7 @@ void ColorSourceOverrideEffect::setupSource(const String& type, ColorSource* tem
 {
 	if (colorSource != nullptr)
 	{
-		removeChildControllableContainer(colorSource.get());
+		effectParams.removeChildControllableContainer(colorSource.get());
 	}
 
 	ColorSource* cs = ColorSourceFactory::getInstance()->create(type);
@@ -36,7 +36,7 @@ void ColorSourceOverrideEffect::setupSource(const String& type, ColorSource* tem
 	if (colorSource != nullptr)
 	{
 		if (templateRef != nullptr) cs->linkToTemplate(templateRef);
-		addChildControllableContainer(colorSource.get(), false, 0);
+		effectParams.addChildControllableContainer(colorSource.get(), false, 0);
 	}
 
 	overrideEffectNotifier.addMessage(new OverrideEffectEvent(OverrideEffectEvent::SOURCE_CHANGED, this));
