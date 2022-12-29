@@ -2056,6 +2056,7 @@
 					"JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1",
 					"JUCE_IP_AND_PORT_DETECTION=1",
 					"JUCE_STANDALONE_APPLICATION=1",
+					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
 					"JUCE_APP_VERSION=1.1.1b3",
 					"JUCE_APP_VERSION_HEX=0x10101",
@@ -2088,7 +2089,7 @@
 					"\"../../Modules/juce_simpleweb/libs/MacOSX\"",
 					"\"../../Modules/juce_simpleweb/libs/MacOSX/${CURRENT_ARCH}\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../External/serial/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lssl -lcrypto -weak_framework Metal -weak_framework MetalKit";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
@@ -2145,6 +2146,7 @@
 					"JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1",
 					"JUCE_IP_AND_PORT_DETECTION=1",
 					"JUCE_STANDALONE_APPLICATION=1",
+					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
 					"JUCE_APP_VERSION=1.1.1b3",
 					"JUCE_APP_VERSION_HEX=0x10101",
@@ -2178,7 +2180,7 @@
 					"\"../../Modules/juce_simpleweb/libs/MacOSX/${CURRENT_ARCH}\"",
 				);
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../External/serial/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lssl -lcrypto -weak_framework Metal -weak_framework MetalKit";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
