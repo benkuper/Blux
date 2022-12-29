@@ -24,7 +24,8 @@ EffectLayer::EffectLayer(Sequence* s, var params) :
 	filterManager.reset(new FilterManager());
 	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
 	filterManager->componentSelector.selectedComponents.set(ComponentType::COLOR, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::PANTILT, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::PAN, true);
+	filterManager->componentSelector.selectedComponents.set(ComponentType::TILT, true);
 	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
 	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 	addChildControllableContainer(filterManager.get());

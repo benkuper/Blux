@@ -203,7 +203,11 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	DMXUniverse* u = getUniverse(net, subnet, universe);
 
 	HashMap<int, float>::Iterator it(compValues);
-	while (it.next()) u->updateValue(it.getKey(), it.getValue() * 255);
+	while (it.next())
+	{
+		int channelZeroBased = it.getKey() - 1;
+		u->updateValue(channelZeroBased, it.getValue() * 255);
+	}
 }
 
 

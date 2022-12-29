@@ -10,16 +10,28 @@
 
 #pragma once
 
-class PanTiltComponent :
+class PanComponent :
     public ObjectComponent
 {
 public:
-    PanTiltComponent(Object* o, var params);
-    ~PanTiltComponent();
+    PanComponent(Object* o, var params);
+    ~PanComponent();
 
     FloatParameter* pan;
+
+    String getTypeString() const override { return "Pan"; }
+    static PanComponent* create(Object * o, var params) { return new PanComponent(o, params); }
+};
+
+class TiltComponent :
+    public ObjectComponent
+{
+public:
+    TiltComponent(Object* o, var params);
+    ~TiltComponent();
+
     FloatParameter* tilt;
 
-    String getTypeString() const override { return "PanTilt"; }
-    static PanTiltComponent* create(Object * o, var params) { return new PanTiltComponent(o, params); }
+    String getTypeString() const override { return "Tilt"; }
+    static TiltComponent* create(Object* o, var params) { return new TiltComponent(o, params); }
 };

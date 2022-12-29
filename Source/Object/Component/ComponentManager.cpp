@@ -72,7 +72,8 @@ ComponentFactory::ComponentFactory(Object * o)
     defs.add(ComponentDefinition::createDef("", "Intensity", &IntensityComponent::create, o));
     defs.add(ComponentDefinition::createDef("", "Color", &ColorComponent::create, o));
     defs.add(ComponentDefinition::createDef("", "Strobe", &StrobeComponent::create, o));
-    defs.add(ComponentDefinition::createDef("", "PanTilt", &PanTiltComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Pan", &PanComponent::create, o));
+    defs.add(ComponentDefinition::createDef("", "Tilt", &TiltComponent::create, o));
     defs.add(ComponentDefinition::createDef("", "Gobo", &GoboComponent::create, o));
     defs.add(ComponentDefinition::createDef("", "Servo", &ServoComponent::create, o));
     defs.add(ComponentDefinition::createDef("", "Stepper", &StepperComponent::create, o));
