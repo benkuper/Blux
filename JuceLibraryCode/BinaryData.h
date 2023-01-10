@@ -45,7 +45,7 @@ namespace BinaryData
     const int            crash_pngSize = 66857;
 
     extern const char*   default_bluxlayout;
-    const int            default_bluxlayoutSize = 5758;
+    const int            default_bluxlayoutSize = 5554;
 
     extern const char*   fx_png;
     const int            fx_pngSize = 2635;
