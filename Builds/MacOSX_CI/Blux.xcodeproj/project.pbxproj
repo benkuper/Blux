@@ -2076,7 +2076,6 @@
 					"$(SRCROOT)/../../Modules",
 					"$(SRCROOT)/../../External/servus/include",
 					"$(SRCROOT)/../../External/dnssd/include",
-					"$(SRCROOT)/../../External/serial/include",
 					"$(SRCROOT)/../../Source",
 					"$(inherited)",
 				);
@@ -2092,7 +2091,7 @@
 					"\"../../Modules/juce_simpleweb/libs/MacOSX/${CURRENT_ARCH}\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../External/serial/include $(SRCROOT)/../../Source";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lserial -lssl -lcrypto -weak_framework Metal -weak_framework MetalKit";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
 				PRODUCT_NAME = "Blux";
@@ -2168,7 +2167,6 @@
 					"$(SRCROOT)/../../Modules",
 					"$(SRCROOT)/../../External/servus/include",
 					"$(SRCROOT)/../../External/dnssd/include",
-					"$(SRCROOT)/../../External/serial/include",
 					"$(SRCROOT)/../../Source",
 					"$(inherited)",
 				);
@@ -2185,7 +2183,7 @@
 				);
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../External/serial/include $(SRCROOT)/../../Source";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lserial -lssl -lcrypto -weak_framework Metal -weak_framework MetalKit";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
 				PRODUCT_NAME = "Blux";
