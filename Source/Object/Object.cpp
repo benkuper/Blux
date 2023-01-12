@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
+
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
@@ -26,7 +28,7 @@ Object::Object(var params) :
 	File objPath = File(params.getProperty("path", ""));
 
 	icon = addEnumParameter("Icon", "Bring some fancy in you life ! Put icons in the objects folders and find them here to customize you view");
-	
+
 	if (objPath.exists())
 	{
 
@@ -79,7 +81,7 @@ Object::Object(var params) :
 	}
 
 	icon->addOption("Custom", -1);
-	
+
 	customIcon = addFileParameter("Custom Icon", "Custom icon for this object");
 	customIcon->fileTypeFilter = "*.jpg;*.png;*.jpeg;*.bmp";
 	customIcon->setEnabled(false);
@@ -133,10 +135,22 @@ Object::~Object()
 void Object::clearItem()
 {
 	effectManager->clear();
+
+	if (!sourceInterfaceParamsRef.wasObjectDeleted() && sourceInterfaceParamsRef != nullptr)
+	{
+		sourceInterfaceParamsRef->removeControllableContainerListener(this);
+	}
+	
 }
 
 void Object::rebuildInterfaceParams()
 {
+	if (!sourceInterfaceParamsRef.wasObjectDeleted() && sourceInterfaceParamsRef != nullptr)
+	{
+		sourceInterfaceParamsRef->removeControllableContainerListener(this);
+	}
+
+
 	if (interfaceParameters != nullptr)
 	{
 		var gData = interfaceParameters->getJSONData();
@@ -144,10 +158,15 @@ void Object::rebuildInterfaceParams()
 		removeChildControllableContainer(interfaceParameters.get());
 	}
 
+	sourceInterfaceParamsRef = nullptr;
 	if (targetInterface->targetContainer != nullptr)
 	{
+		sourceInterfaceParamsRef = targetInterface->targetContainer;
+		sourceInterfaceParamsRef->addControllableContainerListener(this);
+
 		interfaceParameters.reset(((Interface*)targetInterface->targetContainer.get())->getInterfaceParams());
 		addChildControllableContainer(interfaceParameters.get(), false, 0);
+
 	}
 	else interfaceParameters.reset();
 
@@ -172,7 +191,7 @@ void Object::onContainerParameterChangedInternal(Parameter* p)
 	}
 	else if (p == viewUIPosition)
 	{
-		if(!isCurrentlyLoadingData) stagePosition->setVector(viewUIPosition->x, stagePosition->y, viewUIPosition->y);
+		if (!isCurrentlyLoadingData) stagePosition->setVector(viewUIPosition->x, stagePosition->y, viewUIPosition->y);
 	}
 	else if (p == icon)
 	{
@@ -180,6 +199,21 @@ void Object::onContainerParameterChangedInternal(Parameter* p)
 		customIcon->setEnabled(iv.isInt() && (int)iv == -1);
 	}
 }
+
+void Object::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
+{
+	if (cc == sourceInterfaceParamsRef)
+	{
+		if (Parameter* p = dynamic_cast<Parameter*>(c))
+		{
+			if (Parameter* pp = interfaceParameters->getParameterByName(p->shortName))
+			{
+				pp->setRange(p->minimumValue, p->maximumValue);
+			}
+		}
+	}
+}
+
 
 
 void Object::checkAndComputeComponentValuesIfNeeded()
@@ -269,7 +303,7 @@ var Object::getSceneData()
 	if (excludeFromScenes->boolValue()) return var(new DynamicObject());
 	var data(new DynamicObject());
 	data.getDynamicObject()->setProperty(componentManager->shortName, componentManager->getSceneData());
-	data.getDynamicObject()->setProperty(effectManager->shortName,effectManager->getSceneData());
+	data.getDynamicObject()->setProperty(effectManager->shortName, effectManager->getSceneData());
 	return data;
 }
 
@@ -281,12 +315,12 @@ void Object::lerpFromSceneData(var startData, var endData, float weight)
 {
 	if (excludeFromScenes->boolValue()) return;
 	componentManager->lerpFromSceneData(startData.getProperty(componentManager->shortName, var()), endData.getProperty(componentManager->shortName, var()), weight);
-	effectManager->lerpFromSceneData(startData.getProperty(effectManager->shortName, var()), endData.getProperty(effectManager->shortName,var()), weight);
+	effectManager->lerpFromSceneData(startData.getProperty(effectManager->shortName, var()), endData.getProperty(effectManager->shortName, var()), weight);
 }
 
-Array<ChainVizTarget *> Object::getEffectChain()
+Array<ChainVizTarget*> Object::getEffectChain()
 {
-	Array<ChainVizTarget *> result;
+	Array<ChainVizTarget*> result;
 	result.addArray(effectManager->getChainVizTargetsForObject(this));
 	result.addArray(SceneManager::getInstance()->getChainVizTargetsForObject(this));
 	result.addArray(GroupManager::getInstance()->getChainVizTargetsForObject(this));
@@ -295,8 +329,8 @@ Array<ChainVizTarget *> Object::getEffectChain()
 	return result;
 }
 
-ChainVizComponent* Object::createVizComponent(Object * o, ChainVizTarget::ChainVizType type)
+ChainVizComponent* Object::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
 {
 	jassert(o == this);
-	return new ObjectChainVizUI(this,  type);
+	return new ObjectChainVizUI(this, type);
 }

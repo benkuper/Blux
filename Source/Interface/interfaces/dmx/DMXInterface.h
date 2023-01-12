@@ -32,13 +32,16 @@ public:
 
 	IntParameter* sendRate;
 	BoolParameter* sendOnChangeOnly;
+	BoolParameter* useIntensityForColor;
 
 	IntParameter* defaultNet;
 	IntParameter* defaultSubnet;
 	IntParameter* defaultUniverse;
 
+
 	OwnedArray<DMXUniverse> universes;
 	HashMap<int, DMXUniverse*> universeIdMap; //internally used
+
 
 	void clearItem() override;
 

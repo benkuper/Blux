@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    Object.h
-    Created: 26 Sep 2020 10:02:32am
-    Author:  bkupe
+	Object.h
+	Created: 26 Sep 2020 10:02:32am
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -19,89 +19,91 @@ class Effect;
 class ObjectManagerCustomParams;
 
 class Object :
-    public BaseItem,
-    public ChainVizTarget
+	public BaseItem,
+	public ChainVizTarget
 {
 public:
-    Object(var params = var());
-    virtual ~Object();
+	Object(var params = var());
+	virtual ~Object();
 
 
-    String objectType;
-    var objectData;
+	String objectType;
+	var objectData;
 
-    TargetParameter* targetInterface;
-    std::unique_ptr<ControllableContainer> interfaceParameters;
-    var interfaceGhostData;
+	TargetParameter* targetInterface;
+	WeakReference<ControllableContainer> sourceInterfaceParamsRef;
+	std::unique_ptr<ControllableContainer> interfaceParameters;
+	var interfaceGhostData;
 
-    std::unique_ptr<ComponentManager> componentManager;
-    std::unique_ptr<EffectManager> effectManager;
-    std::unique_ptr<SubObjectManager> objectManager;
+	std::unique_ptr<ComponentManager> componentManager;
+	std::unique_ptr<EffectManager> effectManager;
+	std::unique_ptr<SubObjectManager> objectManager;
 
-    IntParameter* globalID;
-    int previousID;
-    
-    BoolParameter* excludeFromScenes;
+	IntParameter* globalID;
+	int previousID;
 
-    Point3DParameter* stagePosition;
+	BoolParameter* excludeFromScenes;
 
-    //ui
-    EnumParameter* icon;
-    FileParameter* customIcon;
+	Point3DParameter* stagePosition;
 
-    Parameter* slideManipParameter;
-    float slideManipValueRef;
+	//ui
+	EnumParameter* icon;
+	FileParameter* customIcon;
 
-    //chainviz
-    HashMap<Effect*, float, DefaultHashFunctions, CriticalSection> effectIntensityOutMap;
+	Parameter* slideManipParameter;
+	float slideManipValueRef;
 
-    std::unique_ptr<ObjectManagerCustomParams> customParams;
+	//chainviz
+	HashMap<Effect*, float, DefaultHashFunctions, CriticalSection> effectIntensityOutMap;
 
-    virtual void clearItem() override;
+	std::unique_ptr<ObjectManagerCustomParams> customParams;
 
-
-    void rebuildInterfaceParams();
-
-    template<class T>
-    T* getComponent();
-
-    void onContainerParameterChangedInternal(Parameter* p) override;
-
-    void checkAndComputeComponentValuesIfNeeded();
-    void computeComponentValues(ObjectComponent* c);
-
-    var getSceneData();
-    void updateSceneData(var& sceneData);
-    void lerpFromSceneData(var startData, var endData, float weight);
+	virtual void clearItem() override;
 
 
-    Array<ChainVizTarget *> getEffectChain();
+	void rebuildInterfaceParams();
 
-    ChainVizComponent* createVizComponent(Object * o, ChainVizTarget::ChainVizType type) override;
+	template<class T>
+	T* getComponent();
 
-    //Listener
-    class  ObjectListener
-    {
-    public:
-        /** Destructor. */
-        virtual ~ObjectListener() {}
-        virtual void objectIDChanged(Object * o, int previousID) {}
-    };
+	void onContainerParameterChangedInternal(Parameter* p) override;
+	void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 
-    ListenerList<ObjectListener> objectListeners;
-    void addObjectListener(ObjectListener* newListener) { objectListeners.add(newListener); }
-    void removeObjectListener(ObjectListener* listener) { objectListeners.remove(listener); }
+	void checkAndComputeComponentValuesIfNeeded();
+	void computeComponentValues(ObjectComponent* c);
 
-    String getTypeString() const override { return objectType; }
-    static Object* create(var params) { return new Object(params); }
+	var getSceneData();
+	void updateSceneData(var& sceneData);
+	void lerpFromSceneData(var startData, var endData, float weight);
+
+
+	Array<ChainVizTarget*> getEffectChain();
+
+	ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
+
+	//Listener
+	class  ObjectListener
+	{
+	public:
+		/** Destructor. */
+		virtual ~ObjectListener() {}
+		virtual void objectIDChanged(Object* o, int previousID) {}
+	};
+
+	ListenerList<ObjectListener> objectListeners;
+	void addObjectListener(ObjectListener* newListener) { objectListeners.add(newListener); }
+	void removeObjectListener(ObjectListener* listener) { objectListeners.remove(listener); }
+
+	String getTypeString() const override { return objectType; }
+	static Object* create(var params) { return new Object(params); }
 };
 
 template<class T>
 T* Object::getComponent()
 {
-    for (auto& c : componentManager->items)
-    {
-        if (T* result = dynamic_cast<T*>(c)) return result;
-    }
-    return nullptr;
+	for (auto& c : componentManager->items)
+	{
+		if (T* result = dynamic_cast<T*>(c)) return result;
+	}
+	return nullptr;
 }

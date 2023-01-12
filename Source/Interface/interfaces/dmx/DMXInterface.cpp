@@ -26,12 +26,11 @@ DMXInterface::DMXInterface() :
 
 	defaultNet = addIntParameter("Net", "If appliccable the net for this universe", 0, 0, 15, false);
 	defaultSubnet = addIntParameter("Subnet", "If applicable the subnet for this universe", 0, 0, 15, false);
-	defaultUniverse = addIntParameter("Universe", "The universe", 0, 0, false);
+	defaultUniverse = addIntParameter("Universe", "The universe", 0, 0, 15, false);
 
 	sendRate = addIntParameter("Send Rate", "The rate at which to send data.", 40, 1, 200);
 	sendOnChangeOnly = addBoolParameter("Send On Change Only", "Only send a universe if one of its channels has changed", true);
-
-
+	useIntensityForColor = addBoolParameter("Use Intensity For Color", "If checked, this will multiply color values with intensity. Useful for ledstrips for instance.", false);
 
 	channelTestingMode = addBoolParameter("Channel Testing Mode", "Is testing with the Channel view ?", false);
 	channelTestingMode->hideInEditor = true;
@@ -100,6 +99,33 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 		dmxDevice->addDMXDeviceListener(this);
 		addChildControllableContainer(dmxDevice.get());
 		dmxConnected->setValue(true);
+
+
+
+		switch (dmxDevice->type)
+		{
+		case DMXDevice::OPENDMX:
+		case DMXDevice::ENTTEC_DMXPRO:
+		case DMXDevice::ENTTEC_MK2:
+			defaultNet->setEnabled(false);
+			defaultSubnet->setEnabled(false);
+			defaultUniverse->setEnabled(false);
+			break;
+
+		case DMXDevice::ARTNET:
+			defaultUniverse->setRange(0, 15);
+			defaultNet->setEnabled(true);
+			defaultSubnet->setEnabled(true);
+			defaultUniverse->setEnabled(true);
+			break;
+
+		case DMXDevice::SACN:
+			defaultUniverse->setRange(1, 63999);
+			defaultNet->setEnabled(false);
+			defaultSubnet->setEnabled(false);
+			defaultUniverse->setEnabled(true);
+			break;
+		}
 	}
 
 	if (enabled->boolValue() && dmxDevice != nullptr) startThread();
@@ -190,10 +216,35 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	int startChannel = dmxParams->startChannel->intValue();
 	HashMap<int, float> compValues;
 
+	ColorComponent* colorComp = nullptr;
+	if (useIntensityForColor->boolValue())
+	{
+		if (ColorComponent* cComp = o->getComponent<ColorComponent>())
+		{
+			colorComp = cComp;
+			float fac = 1;
+			HashMap<int, float> valueMap;
+			if (IntensityComponent* ic = o->getComponent<IntensityComponent>())
+			{
+				ic->fillOutValueMap(valueMap, 0, true);
+				fac = valueMap[0];
+			}
+
+			colorComp->fillOutValueMap(compValues, startChannel, true);
+
+			if (fac != 1)
+			{
+				HashMap<int, float>::Iterator it(compValues);
+				while (it.next()) compValues.set(it.getKey(), it.getValue() * fac);
+			}
+		}
+	}
+
 	for (auto& c : o->componentManager->items)
 	{
 		if (!c->enabled->boolValue()) continue;
-		c->fillOutValueMap(compValues, startChannel);
+		if (c == colorComp) continue; //colorComp is only set if useIntensityForColor is set
+		c->fillOutValueMap(compValues, startChannel, true);
 	}
 
 	//Store these channels in local universe
@@ -269,7 +320,7 @@ DMXInterface::DMXParams::DMXParams() :
 {
 	net = addIntParameter("Net", "If appliccable the net for this universe", 0, 0, 15, false);
 	subnet = addIntParameter("Subnet", "If applicable the subnet for this universe", 0, 0, 15, false);
-	universe = addIntParameter("Universe", "The universe", 0, 0, false);
+	universe = addIntParameter("Universe", "The universe", 0, 0, 63999, false);
 
 	net->canBeDisabledByUser = true;
 	subnet->canBeDisabledByUser = true;
