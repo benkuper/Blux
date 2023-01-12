@@ -4858,9 +4858,6 @@
     <ClCompile Include="..\..\Modules\juce_serial\lib\serial\impl\list_ports\list_ports_linux.cc">
       <Filter>JUCE Modules\juce_serial\lib\serial\impl\list_ports</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Modules\juce_serial\lib\serial\impl\list_ports\list_ports_osx.cc">
-      <Filter>JUCE Modules\juce_serial\lib\serial\impl\list_ports</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_serial\lib\serial\impl\list_ports\list_ports_win.cc">
       <Filter>JUCE Modules\juce_serial\lib\serial\impl\list_ports</Filter>
     </ClCompile>
