@@ -9,6 +9,7 @@
 */
 
 #include "Object/ObjectIncludes.h"
+#include "Interface/InterfaceIncludes.h"
 
 DMXChannelView::DMXChannelView(const String& name) :
 	ShapeShifterContentComponent(name),
@@ -132,7 +133,7 @@ void DMXChannelView::rebuildChannelItems()
 
 	for (int i = 0; i < 512; i++)
 	{
-		DMXChannelItem* it = new DMXChannelItem(i + 1, this);
+		DMXChannelItem* it = new DMXChannelItem(i, this);
 		channelContainer.addAndMakeVisible(it);
 		channelItems.add(it);
 	}
@@ -140,7 +141,10 @@ void DMXChannelView::rebuildChannelItems()
 
 void DMXChannelView::sendDMXValue(int channel, float value)
 {
-	//if (currentInterface != nullptr && currentInterface->channelTestingMode->boolValue()) currentInterface->setDMXValue(channel, value);
+	if (currentInterface != nullptr && currentInterface->channelTestingMode->boolValue())
+	{
+		currentInterface->setDMXValue(currentInterface->defaultNet->intValue(), currentInterface->defaultSubnet->intValue(), currentInterface->defaultUniverse->intValue(), channel, value);
+	}
 }
 
 void DMXChannelView::newMessage(const InterfaceManager::ManagerEvent& e)
@@ -292,5 +296,5 @@ void DMXChannelItem::paint(Graphics& g)
 
 	g.setColour(Colours::white.withAlpha(.8f));
 	g.setFont(jlimit<float>(12, 20, getHeight() - 30));
-	g.drawText(String(channel), getLocalBounds().toFloat(), Justification::centred, false);
+	g.drawText(String(channel + 1), getLocalBounds().toFloat(), Justification::centred, false);
 }

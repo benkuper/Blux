@@ -49,7 +49,7 @@ public:
 
 	void setCurrentDMXDevice(DMXDevice* d);
 
-	//void setDMXValue(int net, int subnet, int universe, int startChannel, Array<int> values);
+	void setDMXValue(int net, int subnet, int universe, int startChannel, Array<int> values);
 	//void sendDMXValues(int net, int subnet, int universe, int startChannel, Array<int> values);
 	//void sendDMXValue(int net, int subnet, int universe, int channel, int value);
 	//void send16BitDMXValue(int net, int subnet, int universe, int startChannel, int value, DMXByteOrder byteOrder);

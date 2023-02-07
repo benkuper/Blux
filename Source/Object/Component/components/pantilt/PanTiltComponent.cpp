@@ -11,7 +11,7 @@
 PanComponent::PanComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), PAN, params)
 {
-	pan = addFloatParameter("Pan", "Pan", 0, 0, 1);
+	pan = addFloatParameter("Value", "Pan", 0, 0, 1);
 
 	sourceParameters.add(pan);
 
@@ -25,7 +25,7 @@ PanComponent::~PanComponent()
 TiltComponent::TiltComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), TILT, params)
 {
-	tilt = addFloatParameter("Tilt", "Tilt", 0, 0, 1);
+	tilt = addFloatParameter("Value", "Tilt", 0, 0, 1);
 
 	sourceParameters.add(tilt);
 

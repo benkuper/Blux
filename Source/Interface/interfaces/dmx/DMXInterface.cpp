@@ -29,7 +29,7 @@ DMXInterface::DMXInterface() :
 	defaultUniverse = addIntParameter("Universe", "The universe", 0, 0, 15, false);
 
 	sendRate = addIntParameter("Send Rate", "The rate at which to send data.", 40, 1, 200);
-	sendOnChangeOnly = addBoolParameter("Send On Change Only", "Only send a universe if one of its channels has changed", true);
+	sendOnChangeOnly = addBoolParameter("Send On Change Only", "Only send a universe if one of its channels has changed", false);
 	useIntensityForColor = addBoolParameter("Use Intensity For Color", "If checked, this will multiply color values with intensity. Useful for ledstrips for instance.", false);
 
 	channelTestingMode = addBoolParameter("Channel Testing Mode", "Is testing with the Channel view ?", false);
@@ -131,6 +131,12 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 	if (enabled->boolValue() && dmxDevice != nullptr) startThread();
 }
 
+void DMXInterface::setDMXValue(int net, int subnet, int universe, int startChannel, Array<int> values)
+{
+	DMXUniverse* u = getUniverse(net, subnet, universe);
+	for (int i = 0; i < values.size(); i++) u->updateValue(startChannel + i, values[i]);
+}
+
 //void DMXInterface::sendDMXValue(int channel, int value)
 //{
 //	if (!enabled->boolValue() || dmxDevice == nullptr) return;
@@ -213,7 +219,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	jassert(dmxParams != nullptr);
 
 	//Fill map with active dmx channels from object manager
-	int startChannel = dmxParams->startChannel->intValue();
+	int startChannel = dmxParams->startChannel->intValue() - 1; //definition channels have offset to comply with doc
 	HashMap<int, float> compValues;
 
 	ColorComponent* colorComp = nullptr;
@@ -244,7 +250,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	{
 		if (!c->enabled->boolValue()) continue;
 		if (c == colorComp) continue; //colorComp is only set if useIntensityForColor is set
-		c->fillOutValueMap(compValues, startChannel, true);
+		c->fillOutValueMap(compValues, startChannel);
 	}
 
 	//Store these channels in local universe
@@ -254,10 +260,14 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	DMXUniverse* u = getUniverse(net, subnet, universe);
 
 	HashMap<int, float>::Iterator it(compValues);
+
+	if (logOutgoingData->boolValue()) NLOG(niceName, "Updating " << compValues.size() << " values");
+
 	while (it.next())
 	{
-		int channelZeroBased = it.getKey() - 1;
-		u->updateValue(channelZeroBased, it.getValue() * 255);
+		if (logOutgoingData->boolValue()) NLOG(niceName, (it.getKey() + 1) << " : " << (int)(it.getValue() * 255));
+
+		u->updateValue(it.getKey(), it.getValue() * 255);
 	}
 }
 
