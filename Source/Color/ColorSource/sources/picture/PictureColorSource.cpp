@@ -1,15 +1,16 @@
 /*
   ==============================================================================
 
-    PictureColorSource.cpp
-    Created: 2 Nov 2020 6:20:22pm
-    Author:  bkupe
+	PictureColorSource.cpp
+	Created: 2 Nov 2020 6:20:22pm
+	Author:  bkupe
 
   ==============================================================================
 */
+#include "Color/ColorIncludes.h"
 
 PictureColorSource::PictureColorSource(var params) :
-    TimedColorSource(getTypeString(), params)
+	TimedColorSource(getTypeString(), params)
 {
 	pictureFile = new FileParameter("Picture File", "The file, the picture, the thing", "");
 	addParameter(pictureFile);
@@ -23,7 +24,7 @@ PictureColorSource::~PictureColorSource()
 {
 }
 
-void PictureColorSource::onContainerParameterChangedInternal(Parameter *p)
+void PictureColorSource::onContainerParameterChangedInternal(Parameter* p)
 {
 	TimedColorSource::onContainerParameterChangedInternal(p);
 
@@ -34,7 +35,7 @@ void PictureColorSource::onContainerParameterChangedInternal(Parameter *p)
 	}
 }
 
-void PictureColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
+void PictureColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime)
 {
 	if (picture.getWidth() == 0) return;
 
@@ -49,6 +50,6 @@ void PictureColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalS
 
 		float h = 0, s = 0, b = 0;
 		picture.getPixelAt(tx, ty).getHSB(h, s, b);
-		colors.set(i, Colour::fromHSV(h + hue->floatValue(), jmin(1.0f, s * saturation->floatValue()), jmin(1.0f, b * brightness->floatValue()), 1));
+		colors.set(i, Colour::fromHSV(h + (float)GetSourceLinkedValue(hue), jmin(1.0f, s * (float)GetSourceLinkedValue(saturation)), jmin(1.0f, b * (float)GetSourceLinkedValue(brightness)), 1));
 	}
 }

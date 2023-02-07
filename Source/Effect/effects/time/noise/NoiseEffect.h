@@ -29,7 +29,7 @@ public:
     FloatParameter* valueOffset;
     std::unique_ptr<siv::PerlinNoise> perlin;
 
-    var getProcessedComponentValueTimeInternal(Object * o, ObjectComponent* c, var value, int id, float time) override;
+    var getProcessedComponentValueTimeInternal(Object * o, ObjectComponent* c, var value, int id, float time, float originalTime) override;
 
     float getCurrentTime(Object*o, ObjectComponent * c, int id, float timeOverride) override;
 

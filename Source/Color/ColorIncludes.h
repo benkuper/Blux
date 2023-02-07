@@ -11,6 +11,7 @@
 #pragma once
 #include "JuceHeader.h"
 
+#include "Common/CommonIncludes.h"
 #include "ColorSource/ColorSource.h"
 
 #include "PixelShape/PixelShape.h"

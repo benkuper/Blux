@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Sequence/SequenceIncludes.h"
+
 EffectBlock::EffectBlock(var params) :
     LayerBlock(params.getProperty("effectType",var()).toString()),
     effectType(params.getProperty("effectType", var()).toString()),
@@ -36,6 +38,8 @@ EffectBlock::EffectBlock(var params) :
             te->forceManualTime = true;
             //te->speed->hideInEditor = true; //hide speed since it cannot be used alongside time
         }
+
+
 
         effect->addEffectListener(this);
         addChildControllableContainer(effect.get());
@@ -100,12 +104,13 @@ void EffectBlock::setCoreLength(float value, bool stretch, bool stickToCoreEnd)
     settingLengthFromMethod = true;
     LayerBlock::setCoreLength(value, stretch, stickToCoreEnd);
 
-    Array<WeakReference<Parameter>> params = effect->effectParams.getAllParameters();
+    Array<WeakReference<Parameter>> params = effect->effectParams.getAllParameters(true);
     for (auto& pa : params)
     {
         if (pa->automation == nullptr) continue;
         pa->automation->setAllowKeysOutside(true);
         pa->automation->setLength(coreLength->floatValue(), stretch, stickToCoreEnd);
+
     }
     settingLengthFromMethod = false;
 }

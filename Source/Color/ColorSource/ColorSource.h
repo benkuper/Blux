@@ -1,69 +1,96 @@
 /*
   ==============================================================================
 
-    ColorSource.h
-    Created: 2 Nov 2020 6:13:15pm
-    Author:  bkupe
+	ColorSource.h
+	Created: 2 Nov 2020 6:13:15pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
 #pragma once
 
+
 class Object;
 class ColorComponent;
 
+#define GetSourceLinkedValue(p) sourceParams.getLinkedValue(p, o, id, originalTime)
+#define GetLinkedColor(p) getLinkedColor(p, o, id, originalTime)
+
 class ColorSource :
-    public BaseItem,
-    public Inspectable::InspectableListener
+	public BaseItem,
+	public Inspectable::InspectableListener,
+	public ParamLinkContainer::ParamLinkContainerListener
 {
 public:
-    ColorSource(const String &name = "ColorSource", var params = var());
-    virtual ~ColorSource();
+	ColorSource(const String& name = "ColorSource", var params = var());
+	virtual ~ColorSource();
 
-    String sourceType;
-    File imgPath;
+	String sourceType;
+	File imgPath;
 
-    ColorSource* sourceTemplate;
-    WeakReference<Inspectable> sourceTemplateRef;
+	ParamLinkContainer sourceParams;
 
-    virtual void linkToTemplate(ColorSource* st);
+	ColorSource* sourceTemplate;
+	WeakReference<Inspectable> sourceTemplateRef;
 
-    void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1);
-    virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1);
+	virtual void linkToTemplate(ColorSource* st);
 
-    virtual void controllableFeedbackUpdate(ControllableContainer * cc, Controllable *c) override;
+	virtual void paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl) override;
 
-    virtual void inspectableDestroyed(Inspectable * i) override;
-    
-    //ui
-    virtual String getSourceLabel() const;
+	void fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id = -1, float time = -1);
+	virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1);
+
+	virtual void controllableFeedbackUpdate(ControllableContainer* cc, Controllable* c) override;
+
+	virtual void inspectableDestroyed(Inspectable* i) override;
+
+	Colour getLinkedColor(ColorParameter* p, Object* o, int id, float time);
+
+
+
+	class  ColorSourceListener
+	{
+	public:
+		virtual ~ColorSourceListener() {}
+		virtual void colorSourceParamControlModeChanged(Parameter* p) {}
+		//virtual void blockBakingProgress(float progress) {}
+		//virtual void colorsUpdated() {}
+	};
+
+	ListenerList<ColorSourceListener> colorSourceListeners;
+	void addColorSourceListener(ColorSourceListener* newListener) { colorSourceListeners.add(newListener); }
+	void removeColorSourceListener(ColorSourceListener* listener) { colorSourceListeners.remove(listener); }
+
+	//ui
+	virtual String getSourceLabel() const;
+
 };
 
 class TimedColorSource :
-    public ColorSource,
-    public HighResolutionTimer
+	public ColorSource,
+	public HighResolutionTimer
 {
 public:
-    TimedColorSource(const String& name, var params = var());
-    virtual ~TimedColorSource();
+	TimedColorSource(const String& name, var params = var());
+	virtual ~TimedColorSource();
 
-    FloatParameter* speed;
-    FloatParameter* timeOffset;
+	FloatParameter* speed;
+	FloatParameter* timeOffset;
 
-    FloatParameter* offsetByID;
+	FloatParameter* offsetByID;
 
-    double timeAtLastUpdate;
-    double curTime;
+	double timeAtLastUpdate;
+	double curTime;
 
-    void linkToTemplate(ColorSource* st) override;
+	void linkToTemplate(ColorSource* st) override;
 
-    virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1) override;
-    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time) { }
+	virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1) override;
+	virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time, float originalTime) { }
 
-    virtual float getCurrentTime(float timeOverride = -1);
+	virtual float getCurrentTime(float timeOverride = -1);
 
-    virtual void hiResTimerCallback() override;
-    virtual void addTime();
+	virtual void hiResTimerCallback() override;
+	virtual void addTime();
 
 };

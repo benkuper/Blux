@@ -10,6 +10,8 @@
 
 #pragma once
 
+#define GetLinkedValueO(p) GetLinkedValueT(p, originalTime)
+
 class TimedEffect :
 	public Effect,
 	//public HighResolutionTimer,
@@ -39,7 +41,7 @@ public:
 	virtual void updateEnabled() override;
 
 	var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1) override;
-	virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time) { return value; }
+	virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time, float originalTime) { return value; }
 
 	virtual float getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride = -1);
 

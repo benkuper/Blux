@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 ColorSourceOverrideEffect::ColorSourceOverrideEffect(var params) :
 	ColorEffect(getTypeString(), params),
 	overrideEffectNotifier(5)
@@ -37,6 +39,7 @@ void ColorSourceOverrideEffect::setupSource(const String& type, ColorSource* tem
 	{
 		if (templateRef != nullptr) cs->linkToTemplate(templateRef);
 		effectParams.addChildControllableContainer(colorSource.get(), false, 0);
+		colorSource->addColorSourceListener(this);
 	}
 
 	overrideEffectNotifier.addMessage(new OverrideEffectEvent(OverrideEffectEvent::SOURCE_CHANGED, this));
@@ -46,6 +49,11 @@ void ColorSourceOverrideEffect::processedEffectColorsInternal(Array<Colour, Crit
 {
 	if (colorSource == nullptr) return;
 	colorSource->fillColorsForObject(colors, o, c, id, time);
+}
+
+void ColorSourceOverrideEffect::colorSourceParamControlModeChanged(Parameter* p)
+{
+	effectListeners.call(&EffectListener::effectParamControlModeChanged, p);
 }
 
 var ColorSourceOverrideEffect::getJSONData()

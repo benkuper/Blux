@@ -13,7 +13,8 @@
 class ColorSource;
 
 class ColorSourceOverrideEffect :
-    public ColorEffect
+    public ColorEffect,
+    public ColorSource::ColorSourceListener
 {
 public:
     ColorSourceOverrideEffect(var params);
@@ -25,6 +26,8 @@ public:
     void setupSource(const String& type, ColorSource * templateRef = nullptr);
 
     void processedEffectColorsInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1);
+
+    virtual void colorSourceParamControlModeChanged(Parameter* p) override;
 
     var getJSONData() override;
     void loadJSONDataItemInternal(var data) override;

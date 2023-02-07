@@ -12,6 +12,9 @@
 
 #include "JuceHeader.h"
 
+#include "ParameterLink/ParameterLink.h"
+#include "ParameterLink/ui/LinkableParameterEditor.h"
+
 #include "CommonClasses/SceneListener.h"
 #include "CommonClasses/ComponentType.h"
 

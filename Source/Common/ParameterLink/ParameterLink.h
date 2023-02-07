@@ -10,6 +10,8 @@
 
 #pragma once
 
+class Object;
+
 class ParameterLink :
     public Inspectable::InspectableListener
 {

@@ -32,6 +32,12 @@
     <Filter Include="Blux\Source\Common\MIDI">
       <UniqueIdentifier>{8590E3AA-62F4-2E1F-8828-7C0736C7EC24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Common\ParameterLink\ui">
+      <UniqueIdentifier>{8FD90EA3-B66F-CE9A-026F-E18425509B17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Common\ParameterLink">
+      <UniqueIdentifier>{B9A49933-5345-5A78-B6C3-CFAB91FC1E67}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Common\Zeroconf">
       <UniqueIdentifier>{E71E1089-89E9-F7F5-25BD-6C4BF8B6A4B7}</UniqueIdentifier>
     </Filter>
@@ -124,12 +130,6 @@
     </Filter>
     <Filter Include="Blux\Source\Scene">
       <UniqueIdentifier>{10C2081F-CBEB-7A90-E45D-C04A3F43893C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Effect\ParameterLink\ui">
-      <UniqueIdentifier>{B33844EF-F000-1B8C-85B2-5B39B3F4EE8E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Effect\ParameterLink">
-      <UniqueIdentifier>{5E894184-3202-145A-29D8-B8AA5CB1711D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Effect\actions">
       <UniqueIdentifier>{34DAE7F0-D89C-AA58-E8B8-91F231D8F5C0}</UniqueIdentifier>
@@ -1375,6 +1375,12 @@
     <ClCompile Include="..\..\Source\Common\MIDI\MTCSender.cpp">
       <Filter>Blux\Source\Common\MIDI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Common\ParameterLink\ui\LinkableParameterEditor.cpp">
+      <Filter>Blux\Source\Common\ParameterLink\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\ParameterLink\ParameterLink.cpp">
+      <Filter>Blux\Source\Common\ParameterLink</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Zeroconf\ZeroconfManager.cpp">
       <Filter>Blux\Source\Common\Zeroconf</Filter>
     </ClCompile>
@@ -1512,12 +1518,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Scene\SceneManager.cpp">
       <Filter>Blux\Source\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Effect\ParameterLink\ui\LinkableParameterEditor.cpp">
-      <Filter>Blux\Source\Effect\ParameterLink\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Effect\ParameterLink\ParameterLink.cpp">
-      <Filter>Blux\Source\Effect\ParameterLink</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\EffectIncludes.cpp">
       <Filter>Blux\Source\Effect</Filter>
@@ -5181,6 +5181,12 @@
     <ClInclude Include="..\..\Source\Common\MIDI\MTCSender.h">
       <Filter>Blux\Source\Common\MIDI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Common\ParameterLink\ui\LinkableParameterEditor.h">
+      <Filter>Blux\Source\Common\ParameterLink\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\ParameterLink\ParameterLink.h">
+      <Filter>Blux\Source\Common\ParameterLink</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Common\Zeroconf\ZeroconfManager.h">
       <Filter>Blux\Source\Common\Zeroconf</Filter>
     </ClInclude>
@@ -5318,12 +5324,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Scene\SceneManager.h">
       <Filter>Blux\Source\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Effect\ParameterLink\ui\LinkableParameterEditor.h">
-      <Filter>Blux\Source\Effect\ParameterLink\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Effect\ParameterLink\ParameterLink.h">
-      <Filter>Blux\Source\Effect\ParameterLink</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\EffectIncludes.h">
       <Filter>Blux\Source\Effect</Filter>

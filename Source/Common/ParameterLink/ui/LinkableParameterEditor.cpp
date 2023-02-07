@@ -8,6 +8,9 @@
   ==============================================================================
 */
 
+#include "Common/CommonIncludes.h"
+#include "Object/ObjectIncludes.h"
+
 LinkableParameterEditor::LinkableParameterEditor(ParameterLink* pLink) :
 	InspectableEditor(pLink->parameter.get(), false),
 	link(pLink)

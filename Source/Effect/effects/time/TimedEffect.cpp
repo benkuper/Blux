@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 TimedEffect::TimedEffect(const String& name, var params) :
 	Effect(name, params),
 	forceManualTime(false),
@@ -77,7 +79,7 @@ var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent*
 
 		float curTime = getCurrentTime(o, c, id, time);
 		float targetTime =  curTime - (float)GetLinkedValue(offsetByID) * id - (float)GetLinkedValue(offsetByValue) * i + (float)GetLinkedValue(timeOffset);
-		values[i] = getProcessedComponentValueTimeInternal(o, c, values[i], id, targetTime);
+		values[i] = getProcessedComponentValueTimeInternal(o, c, values[i], id, targetTime, time);
 	}
 
 	return values;

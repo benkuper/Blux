@@ -189,6 +189,12 @@
     <ClCompile Include="..\..\Source\Common\MIDI\MTCSender.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Common\ParameterLink\ui\LinkableParameterEditor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\ParameterLink\ParameterLink.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Zeroconf\ZeroconfManager.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -313,12 +319,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Scene\SceneIncludes.cpp"/>
     <ClCompile Include="..\..\Source\Scene\SceneManager.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Effect\ParameterLink\ui\LinkableParameterEditor.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Effect\ParameterLink\ParameterLink.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\EffectIncludes.cpp"/>
@@ -3727,6 +3727,8 @@
     <ClInclude Include="..\..\Source\Common\MIDI\MIDIManager.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\MTCReceiver.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\MTCSender.h"/>
+    <ClInclude Include="..\..\Source\Common\ParameterLink\ui\LinkableParameterEditor.h"/>
+    <ClInclude Include="..\..\Source\Common\ParameterLink\ParameterLink.h"/>
     <ClInclude Include="..\..\Source\Common\Zeroconf\ZeroconfManager.h"/>
     <ClInclude Include="..\..\Source\Common\CommonIncludes.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h"/>
@@ -3773,8 +3775,6 @@
     <ClInclude Include="..\..\Source\Scene\Scene.h"/>
     <ClInclude Include="..\..\Source\Scene\SceneIncludes.h"/>
     <ClInclude Include="..\..\Source\Scene\SceneManager.h"/>
-    <ClInclude Include="..\..\Source\Effect\ParameterLink\ui\LinkableParameterEditor.h"/>
-    <ClInclude Include="..\..\Source\Effect\ParameterLink\ParameterLink.h"/>
     <ClInclude Include="..\..\Source\Effect\EffectIncludes.h"/>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\smooth\DampingEffect.h"/>

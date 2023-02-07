@@ -1,20 +1,30 @@
 /*
   ==============================================================================
 
-    ColorSource.cpp
-    Created: 2 Nov 2020 6:13:15pm
-    Author:  bkupe
+	ColorSource.cpp
+	Created: 2 Nov 2020 6:13:15pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
+#include "Color/ColorIncludes.h"
+#include "Object/ObjectIncludes.h"
 
 ColorSource::ColorSource(const String& name, var params) :
 	BaseItem(name, false),
+	sourceParams("Parameters"),
 	sourceTemplate(nullptr)
 {
+
 	saveAndLoadRecursiveData = true;
 	itemDataType = "ColorSource";
+
+	sourceParams.hideEditorHeader = true;
+	sourceParams.editorCanBeCollapsed = false;
+	sourceParams.addParamLinkContainerListener(this);
+	addChildControllableContainer(&sourceParams);
+
 }
 
 ColorSource::~ColorSource()
@@ -57,17 +67,28 @@ void ColorSource::linkToTemplate(ColorSource* st)
 	}
 }
 
+void ColorSource::paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl)
+{
+	colorSourceListeners.call(&ColorSourceListener::colorSourceParamControlModeChanged, pl->parameter);
+}
+
 void ColorSource::inspectableDestroyed(Inspectable* i)
 {
 	if (i == sourceTemplateRef) linkToTemplate(nullptr);
 }
 
-String ColorSource::getSourceLabel() const
+Colour ColorSource::getLinkedColor(ColorParameter* p, Object* o, int id, float originalTime)
 {
-	return sourceTemplate != nullptr? ("[T] "+sourceTemplate->niceName):getTypeString();
+	var cVar = GetSourceLinkedValue(p);
+	return Colour::fromFloatRGBA(cVar[0], cVar[1], cVar[2], cVar[3]);
 }
 
-void ColorSource::fillColorsForObject(Array<Colour, CriticalSection> & colors, Object* o, ColorComponent* c, int id, float time)
+String ColorSource::getSourceLabel() const
+{
+	return sourceTemplate != nullptr ? ("[T] " + sourceTemplate->niceName) : getTypeString();
+}
+
+void ColorSource::fillColorsForObject(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
 {
 	if (id == -1) id = o->globalID->intValue();
 	fillColorsForObjectInternal(colors, o, c, id, time);
@@ -104,11 +125,11 @@ TimedColorSource::TimedColorSource(const String& name, var params) :
 	ColorSource(name, params),
 	curTime(0)
 {
-	speed = addFloatParameter("Speed", "The speed at which play this", .5f);
-	timeOffset = addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
+	speed = sourceParams.addFloatParameter("Speed", "The speed at which play this", .5f);
+	timeOffset = sourceParams.addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
 	timeOffset->defaultUI = FloatParameter::TIME;
 
-	offsetByID = addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
+	offsetByID = sourceParams.addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
 
 	timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
 	curTime = 0;
@@ -141,7 +162,7 @@ void TimedColorSource::linkToTemplate(ColorSource* st)
 void TimedColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
 {
 	float targetTime = getCurrentTime(time) - offsetByID->floatValue() * id + timeOffset->floatValue();
-	fillColorsForObjectTimeInternal(colors, o, c, id, targetTime);
+	fillColorsForObjectTimeInternal(colors, o, c, id, targetTime, time);
 }
 
 
@@ -149,7 +170,7 @@ float TimedColorSource::getCurrentTime(float timeOverride)
 {
 	if (sourceTemplate != nullptr && !sourceTemplateRef.wasObjectDeleted()) return ((TimedColorSource*)sourceTemplate)->getCurrentTime();
 
-	return timeOverride >= 0 ? timeOverride*speed->floatValue() : curTime;
+	return timeOverride >= 0 ? timeOverride * speed->floatValue() : curTime;
 }
 
 void TimedColorSource::hiResTimerCallback()

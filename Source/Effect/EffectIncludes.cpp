@@ -12,9 +12,6 @@
 
 #include "Scene/SceneIncludes.h"
 
-#include "ParameterLink/ParameterLink.cpp"
-#include "ParameterLink/ui/LinkableParameterEditor.cpp"
-
 #include "actions/EffectAction.cpp"
 #include "Effect.cpp"
 #include "EffectManager.cpp"

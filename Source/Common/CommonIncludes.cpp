@@ -15,6 +15,10 @@
 #include "Sequence/SequenceIncludes.h"
 #include "Effect/EffectIncludes.h"
 
+
+#include "ParameterLink/ParameterLink.cpp"
+#include "ParameterLink/ui/LinkableParameterEditor.cpp"
+
 #include "Action/Action.cpp"
 #include "Action/ActionManager.cpp"
 

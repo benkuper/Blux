@@ -17,6 +17,6 @@ ScriptColorSource::~ScriptColorSource()
 {
 }
 
-void ScriptColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
+void ScriptColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime)
 {
 }

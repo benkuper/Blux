@@ -1,4 +1,3 @@
-#include "ParameterLink.h"
 /*
   ==============================================================================
 
@@ -8,6 +7,8 @@
 
   ==============================================================================
 */
+#include "Common/CommonIncludes.h"
+#include "Object/ObjectIncludes.h"
 
 ParameterLink::ParameterLink(WeakReference<Parameter> p) :
 	linkType(NONE),

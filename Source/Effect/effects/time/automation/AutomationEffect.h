@@ -26,7 +26,7 @@ public:
 
 	Automation automation;
 
-	var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time) override;
+	var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time, float originalTime) override;
 
 	void effectParamChanged(Controllable* c)override;
 

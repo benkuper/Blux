@@ -22,9 +22,6 @@ class FilterManager;
 #include "Color/ColorIncludes.h"
 #include "ChainViz/ChainViz.h"
 
-#include "ParameterLink/ParameterLink.h"
-#include "ParameterLink/ui/LinkableParameterEditor.h"
-
 #include "actions/EffectAction.h"
 
 #include "Effect.h"

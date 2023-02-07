@@ -55,7 +55,7 @@ AutomationEffect::~AutomationEffect()
 {
 }
 
-var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time)
+var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time, float originalTime)
 {
 	float _length = GetLinkedValue(length);
 	float _speed = GetLinkedValue(speed);

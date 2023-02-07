@@ -1,4 +1,3 @@
-#include "NoiseEffect.h"
 /*
   ==============================================================================
 
@@ -8,6 +7,8 @@
 
   ==============================================================================
 */
+
+#include "Effect/EffectIncludes.h"
 
 NoiseEffect::NoiseEffect(var params) :
 	TimedEffect(getTypeString(), params)
@@ -36,7 +37,7 @@ NoiseEffect::~NoiseEffect()
 {
 }
 
-var NoiseEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time)
+var NoiseEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time, float originalTime)
 {
 	NoiseType t = (NoiseType)(int)GetLinkedValue(type);// type->getValueDataAsEnum<NoiseType>();
 	float noiseVal = 0;
@@ -51,7 +52,7 @@ var NoiseEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectCompone
 		break;
 	}
 
-	return (float)GetLinkedValue(valueOffset) + noiseVal * (float)GetLinkedValue(amplitude);
+	return (float)GetLinkedValueO(valueOffset) + noiseVal * (float)GetLinkedValueO(amplitude);
 }
 
 float NoiseEffect::getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride)

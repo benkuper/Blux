@@ -19,7 +19,7 @@ public:
 
     ColorParameter* sourceColor;
 
-    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
 
     String getTypeString() const override { return "Solid Color"; }
     static SolidColorSource* create(var params) { return new SolidColorSource(params); }
@@ -37,7 +37,7 @@ public:
     FloatParameter* brightness;
     FloatParameter* saturation;
 
-    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
 
     String getTypeString() const override { return "Rainbow"; }
     static RainbowColorSource* create(var params) { return new RainbowColorSource(params); }
@@ -54,7 +54,7 @@ public:
     ColorParameter* colorOFF;
     FloatParameter* onOffBalance;
 
-    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
 
     String getTypeString() const override { return "Strobe"; }
     static StrobeColorSource* create(var params) { return new StrobeColorSource(params); }
@@ -81,7 +81,7 @@ public:
     ColorParameter* frontColor;
     ColorParameter* bgColor;
 
-    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
    
     String getTypeString() const override { return "Noise"; }
     static NoiseColorSource* create(var params) { return new NoiseColorSource(params); }
@@ -124,7 +124,7 @@ public:
     ColorParameter* pointColor;
     ColorParameter* bgColor;
 
-    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
     
     String getTypeString() const override { return "Multipoint"; }
     static MultiPointColorSource* create(var params) { return new MultiPointColorSource(params); }
@@ -145,7 +145,7 @@ public:
 
     void linkToTemplate(ColorSource* sourceTemplate) override;
 
-    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
 
     void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 

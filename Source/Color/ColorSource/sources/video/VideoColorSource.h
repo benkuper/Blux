@@ -23,7 +23,7 @@ public:
 
     Image sourceImage;
 
-    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time) override;
+    virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
 };
 
 class VideoColorSource :

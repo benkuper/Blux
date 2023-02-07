@@ -11,9 +11,9 @@
 PixelMapColorSource::PixelMapColorSource(const String &name, var params) :
     TimedColorSource(name, params)
 {
-    brightness = addFloatParameter("Brightness", "Brightness to multiply the source pixel to", 1, 0, 1);
-    saturation = addFloatParameter("Saturation", "Saturation to multiply the source pixel to", 1, 0, 1);
-    hue = addFloatParameter("Hue", "Hue shift to apply after grabbing the pixel color", 0, 0, 1);
+    brightness = sourceParams.addFloatParameter("Brightness", "Brightness to multiply the source pixel to", 1, 0, 1);
+    saturation = sourceParams.addFloatParameter("Saturation", "Saturation to multiply the source pixel to", 1, 0, 1);
+    hue = sourceParams.addFloatParameter("Hue", "Hue shift to apply after grabbing the pixel color", 0, 0, 1);
 
 }
 
@@ -21,7 +21,7 @@ PixelMapColorSource::~PixelMapColorSource()
 {
 }
 
-void PixelMapColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time)
+void PixelMapColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime)
 {
     if (!sourceImage.isValid()) return;
 
