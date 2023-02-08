@@ -223,20 +223,24 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	HashMap<int, float> compValues;
 
 	ColorComponent* colorComp = nullptr;
+
+	ColorComponent* cComp = o->getComponent<ColorComponent>();
+	IntensityComponent * ic = o->getComponent<IntensityComponent>();
+
 	if (useIntensityForColor->boolValue())
 	{
-		if (ColorComponent* cComp = o->getComponent<ColorComponent>())
+		if (cComp != nullptr)
 		{
 			colorComp = cComp;
 			float fac = 1;
 			HashMap<int, float> valueMap;
-			if (IntensityComponent* ic = o->getComponent<IntensityComponent>())
+			if (ic)
 			{
 				ic->fillOutValueMap(valueMap, 0, true);
 				fac = valueMap[0];
 			}
 
-			colorComp->fillOutValueMap(compValues, startChannel, true);
+			colorComp->fillOutValueMap(compValues, startChannel, useIntensityForColor->boolValue());
 
 			if (fac != 1)
 			{
@@ -250,6 +254,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	{
 		if (!c->enabled->boolValue()) continue;
 		if (c == colorComp) continue; //colorComp is only set if useIntensityForColor is set
+		if (colorComp != nullptr && c == ic && useIntensityForColor->boolValue()) continue;
 		c->fillOutValueMap(compValues, startChannel);
 	}
 
@@ -287,9 +292,10 @@ DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool c
 
 void DMXInterface::run()
 {
-	double prevTime = Time::getMillisecondCounterHiRes();
 	while (!threadShouldExit())
 	{
+		double loopStartTime = Time::getMillisecondCounterHiRes();
+
 		{
 			GenericScopedLock lock(sendLock);
 			if (dmxDevice == nullptr) return;
@@ -307,10 +313,10 @@ void DMXInterface::run()
 			}
 		}
 
+
 		double t = Time::getMillisecondCounterHiRes();
-		double diffTime = t - prevTime;
+		double diffTime = t - loopStartTime;
 		double rateMS = 1000.0 / sendRate->intValue();
-		prevTime = t;
 
 		double msToWait = rateMS - diffTime;
 		if (msToWait > 0) wait(msToWait);
