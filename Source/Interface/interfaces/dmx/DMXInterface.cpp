@@ -227,7 +227,10 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	ColorComponent* cComp = o->getComponent<ColorComponent>();
 	IntensityComponent * ic = o->getComponent<IntensityComponent>();
 
-	if (useIntensityForColor->boolValue())
+	bool intensityForColor = useIntensityForColor->boolValue();
+	if (cComp != nullptr && cComp->useIntensityForColor->boolValue()) intensityForColor = true;
+
+	if (intensityForColor)
 	{
 		if (cComp != nullptr)
 		{
@@ -240,7 +243,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 				fac = valueMap[0];
 			}
 
-			colorComp->fillOutValueMap(compValues, startChannel, useIntensityForColor->boolValue());
+			colorComp->fillOutValueMap(compValues, startChannel, intensityForColor);
 
 			if (fac != 1)
 			{
@@ -254,7 +257,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	{
 		if (!c->enabled->boolValue()) continue;
 		if (c == colorComp) continue; //colorComp is only set if useIntensityForColor is set
-		if (colorComp != nullptr && c == ic && useIntensityForColor->boolValue()) continue;
+		if (colorComp != nullptr && c == ic && intensityForColor) continue;
 		c->fillOutValueMap(compValues, startChannel);
 	}
 

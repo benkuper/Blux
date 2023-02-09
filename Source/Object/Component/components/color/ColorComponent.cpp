@@ -13,6 +13,7 @@ ColorComponent::ColorComponent(Object* o, var params) :
 	colorComponentNotifier(5)
 {
 	resolution = addIntParameter("Resolution", "Number of different colors/pixels for this object", 1, 1);
+	useIntensityForColor = addBoolParameter("Use Intensity for Color", "If checked, use the intensity component for color opacity", false);
 }
 
 ColorComponent::~ColorComponent()

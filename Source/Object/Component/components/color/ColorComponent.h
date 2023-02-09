@@ -22,6 +22,7 @@ public:
     ~ColorComponent();
 
     IntParameter* resolution;
+    BoolParameter* useIntensityForColor;
 
     Array<Colour, CriticalSection> sourceColors;
     Array<Colour, CriticalSection> outColors;
