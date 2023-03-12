@@ -54,7 +54,7 @@ public:
 
 
     Array<ChainVizTarget *> getChainVizTargetsForObject(Object * o);
-    void processComponentValues(Object* o, ObjectComponent* c, var& values);
+    void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values);
 
     void onContainerTriggerTriggered(Trigger* t) override;
     void onContainerParameterChanged(Parameter* p) override;

@@ -8,11 +8,14 @@
   ==============================================================================
 */
 
+#include "EffectIncludes.h"
+
 Effect::Effect(const String& name, var params) :
 	BaseItem(name),
 	forceDisabled(false),
 	parentGroup(nullptr),
 	idMode(nullptr),
+	computePreviousValues(false),
 	effectParams("Effect Parameters")
 {
 	//effectParams.hideEditorHeader = true;
@@ -74,12 +77,12 @@ void Effect::setForceDisabled(bool value)
 	updateEnabled();
 }
 
-void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier, int id, float time)
+void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id, float time)
 {
 	FilterResult r = filterManager->getFilteredResultForComponent(o, c);
 	if (r.id == -1)
 	{
-		if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
+		if (c->componentType == ComponentType::DIMMER) o->effectIntensityOutMap.set(this, ((DimmerComponent*)c)->value->floatValue());
 		return;
 	}
 
@@ -98,16 +101,43 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 
 	if (targetWeight == 0)
 	{
-		if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
+		if (c->componentType == ComponentType::DIMMER) o->effectIntensityOutMap.set(this, ((DimmerComponent*)c)->value->floatValue());
 		return;
 	}
 
-	var pValues = getProcessedComponentValuesInternal(o, c, values.clone(), targetID, time);
-	jassert(pValues.size() == values.size());
-
-	for (int i = 0; i < values.size(); i++)
+	if (computePreviousValues)
 	{
-		values[i] = blendValue(values[i], pValues[i], targetWeight);
+		if (!prevValues.contains(c))
+		{
+			HashMap<Parameter*, var> prevVals;
+			HashMap<Parameter*, var>::Iterator it(values);
+			while (it.next()) prevVals.set(it.getKey(), it.getValue().clone());
+			//prevValues.set(c, prevVals); //PROBLEM WITH NESTED HASHMAP
+		}
+	}
+
+	HashMap<Parameter*, var> targetValues;
+	processComponentInternal(o, c, values, targetValues, targetID, time);
+
+	HashMap<Parameter*, var>::Iterator it(targetValues);
+	while (it.next())
+	{
+		Parameter* cp = it.getKey();
+		var initVal = values[cp];
+		var val = it.getValue().clone();
+		if (initVal != val)
+		{
+			var bVal = blendValue(initVal, val, targetWeight);
+			values.set(cp, bVal);
+		}
+	}
+
+	if (computePreviousValues)
+	{
+		HashMap<Parameter*, var> prevVals;
+		HashMap<Parameter*, var>::Iterator it(targetValues);
+		while (it.next()) prevVals.set(it.getKey(), it.getValue().clone());
+		//prevValues.set(c, prevVals); //PROBLEM, SEE ABOVE
 	}
 }
 
@@ -128,9 +158,9 @@ void Effect::paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl)
 	effectListeners.call(&EffectListener::effectParamControlModeChanged, pl->parameter);
 }
 
-var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
+void Effect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
-	return values;
+
 }
 
 bool Effect::isFullyEnabled()

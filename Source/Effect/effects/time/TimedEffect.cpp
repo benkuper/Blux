@@ -15,6 +15,8 @@ TimedEffect::TimedEffect(const String& name, var params) :
 	forceManualTime(false),
 	timeAtLastUpdate(Time::getMillisecondCounterHiRes() / 1000.0)
 {
+	computePreviousValues = true;
+
 	speed = effectParams.addFloatParameter("Speed", "The speed at which play this", 1);
 	speed->canBeAutomated = false;
 
@@ -23,7 +25,7 @@ TimedEffect::TimedEffect(const String& name, var params) :
 	resetTimeTrigger = effectParams.addTrigger("Reset Time", "When triggered, this will reset this effect's internal time to 0.");
 	autoResetOnNonZero = effectParams.addBoolParameter("Auto Reset on NonZero", "", false);
 	offsetByID = effectParams.addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
-	offsetByValue = effectParams.addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
+	//offsetByValue = effectParams.addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
 
 	ObjectManager::getInstance()->addBaseManagerListener(this);
 	ObjectManager::getInstance()->addObjectManagerListener(this);
@@ -61,34 +63,32 @@ void TimedEffect::updateEnabled()
 	}
 }
 
-var TimedEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
+void TimedEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
-	if (!prevValues.contains(c)) prevValues.set(c, values.clone());
-
-	if (autoResetOnNonZero->boolValue() && values.size() > 0 && !values[0].isArray())
+	if (autoResetOnNonZero->boolValue() && c->computedParameters.size() > 0) //component needs to have a reference to "main param" for this kind of purpose
 	{
-		float pv = prevValues[c][0];
-		if (pv == 0 && (float)values[0] > 0) curTimes.set(c, 0);
-	}
-	prevValues.set(c, values.clone());
+		Parameter* p = c->computedParameters[0];
 
-
-	for (int i = 0; i < values.size(); i++)
-	{
-		if (values[i].isArray()) continue;
-
-		float curTime = getCurrentTime(o, c, id, time);
-		float targetTime =  curTime - (float)GetLinkedValue(offsetByID) * id - (float)GetLinkedValue(offsetByValue) * i + (float)GetLinkedValue(timeOffset);
-		values[i] = getProcessedComponentValueTimeInternal(o, c, values[i], id, targetTime, time);
+		//PROBLEM WITH NESTED HASHMAP
+		//if (prevValues[c].contains(p) && values.contains(p))
+		//{
+		//	if ((float)prevValues[c][p] == 0 && (float)values[p] > 0) curTimes.set(c, 0);
+		//}
 	}
 
-	return values;
+
+	float curTime = getCurrentTime(o, c, id, time);
+	float targetTime = curTime - (float)GetLinkedValue(offsetByID) * id /* - (float)GetLinkedValue(offsetByValue) * i*/ + (float)GetLinkedValue(timeOffset);
+
+
+	processedComponentTimeInternal(o, c, values, targetValues, id, targetTime, time);
+
 }
 
 float TimedEffect::getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride)
 {
 	if (!curTimes.contains(c)) curTimes.set(c, 0);
-	if(timeOverride == -1) return curTimes[c];
+	if (timeOverride == -1) return curTimes[c];
 
 	float time = timeOverride * (float)GetLinkedValueT(speed, timeOverride); //speed should be calculated from start of the animation, if animated (area under curve for automation)
 

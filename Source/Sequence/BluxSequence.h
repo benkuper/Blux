@@ -28,7 +28,7 @@ public:
     bool isAffectingObject(Object* o);
     Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
 
-    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
+    virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f);
 
     virtual void itemAdded(SequenceLayer* layer) override;
 

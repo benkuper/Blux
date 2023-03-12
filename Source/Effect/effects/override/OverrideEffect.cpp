@@ -8,15 +8,11 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 OverrideEffect::OverrideEffect(const String &name, var params) :
     Effect(name, params)
 {
-    filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::PAN, true);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::TILT, true);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-    filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 }
 
 OverrideEffect::~OverrideEffect()
@@ -35,24 +31,11 @@ OverrideFloatEffect::~OverrideFloatEffect()
 {
 }
 
-var OverrideFloatEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
+void OverrideFloatEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
+    if (c->mainParameter == nullptr) return;
+    jassert(!c->mainParameter->isComplex());
+
     float val = GetLinkedValue(value);
-
-    for (int i = 0; i < values.size(); i++)
-    {
-        if (values[i].isArray())
-        {
-            for (int j = 0; j < values.size(); j++)
-            {
-                values[i][j] = val;
-            }
-        }
-        else
-        {
-            values[i] = val;
-        }
-    }
-
-    return values;
+    targetValues.set(c->mainParameter, val);
 }

@@ -18,7 +18,6 @@ public:
     ~EffectGroup();
 
     EffectManager effectManager;
-    ComponentSelector componentSelector;
 
     BoolParameter* excludeFromScenes;
 
@@ -39,7 +38,7 @@ public:
     ~GlobalEffectManager();
 
     Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
-    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values);
+    virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values);
 
     var getSceneData();
     void updateSceneData(var& sceneData);

@@ -17,7 +17,6 @@ public:
     SmoothingEffect(var params = var());
     virtual ~SmoothingEffect();
 
-    HashMap<ObjectComponent*, var> prevValues;
     HashMap<ObjectComponent*, double> prevTimes;
 
     FloatParameter* smoothing;
@@ -28,7 +27,7 @@ public:
     virtual void onContainerTriggerTriggered(Trigger* t) override;
     virtual void onContainerParameterChangedInternal(Parameter* p) override;
 
-    var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1.f) override;
+    void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) override;
 
     String getTypeString() const override { return getTypeStringStatic(); }
     const static String getTypeStringStatic() { return "Smoothing"; }

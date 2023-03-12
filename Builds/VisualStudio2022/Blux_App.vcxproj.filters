@@ -17,12 +17,6 @@
     <Filter Include="Blux\Source\Common\CommonClasses">
       <UniqueIdentifier>{048C3228-77DE-614D-949C-9452B14F47DA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Common\ComponentSelector\ui">
-      <UniqueIdentifier>{5E5C2E50-7D33-26B7-F5A5-F10355E3B9D0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Common\ComponentSelector">
-      <UniqueIdentifier>{050F681C-517A-4D1B-0EFB-AB4BD3E43434}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blux\Source\Common\Helpers">
       <UniqueIdentifier>{E4AB837E-197D-92E7-5BED-79D1349DAD55}</UniqueIdentifier>
     </Filter>
@@ -209,41 +203,20 @@
     <Filter Include="Blux\Source\Object\Component\ui">
       <UniqueIdentifier>{4D1343A4-D6A8-883F-3A93-DF66FCE0539A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\script\ui">
-      <UniqueIdentifier>{2C73248C-9A8C-CC88-5505-541620420808}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\script">
-      <UniqueIdentifier>{B99750EB-55E0-4E80-592C-ADD38E8EFB8B}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Blux\Source\Object\Component\components\color\ui">
       <UniqueIdentifier>{0BFABBCF-D1B0-E711-0F9D-D6AB2AB83095}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Object\Component\components\color">
       <UniqueIdentifier>{4B754B5A-FFCD-B508-12DE-F64FBD8813D2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\gobo">
-      <UniqueIdentifier>{7BAA21AC-54B6-F02A-7117-D661A8BB699C}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Object\Component\components\dimmer">
+      <UniqueIdentifier>{B4AD45EB-4CCC-70CE-C8C6-9FD87DC240A9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\intensity">
-      <UniqueIdentifier>{02989230-FEC6-4B58-9D28-FA86EBF66700}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Object\Component\components\orientation">
+      <UniqueIdentifier>{1C97BD67-A596-7FF4-12E9-163DABF37106}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\laser\LaserPattern">
-      <UniqueIdentifier>{EACE77DE-48AA-C40C-B5FE-9D2C2AFA8293}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\laser">
-      <UniqueIdentifier>{FBF255BD-C88E-1D6C-746F-55A5DDE1D839}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\pantilt">
-      <UniqueIdentifier>{F467DF91-C58A-9F46-4C25-87F1F320C2E1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\servo">
-      <UniqueIdentifier>{807E5848-E66F-51D5-6166-876455BD6246}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\stepper">
-      <UniqueIdentifier>{DC5A580E-5374-B420-0A4D-1A7AC01389AB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blux\Source\Object\Component\components\strobe">
-      <UniqueIdentifier>{7B2E4993-D540-9F3B-7570-407FDCDC0183}</UniqueIdentifier>
+    <Filter Include="Blux\Source\Object\Component\components\shutter">
+      <UniqueIdentifier>{C27A0FD5-C3F1-3FFF-CD87-94B1B006A31B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blux\Source\Object\Component\components">
       <UniqueIdentifier>{E0A636F7-BE1E-5A8E-E998-BE92F43C166B}</UniqueIdentifier>
@@ -1345,12 +1318,6 @@
     <ClCompile Include="..\..\Source\Common\Action\ActionManager.cpp">
       <Filter>Blux\Source\Common\Action</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.cpp">
-      <Filter>Blux\Source\Common\ComponentSelector\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Common\ComponentSelector\ComponentSelector.cpp">
-      <Filter>Blux\Source\Common\ComponentSelector</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Helpers\SceneHelpers.cpp">
       <Filter>Blux\Source\Common\Helpers</Filter>
     </ClCompile>
@@ -1630,41 +1597,20 @@
     <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp">
       <Filter>Blux\Source\Object\Component\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.cpp">
-      <Filter>Blux\Source\Object\Component\components\script\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\script\ScriptComponent.cpp">
-      <Filter>Blux\Source\Object\Component\components\script</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.cpp">
       <Filter>Blux\Source\Object\Component\components\color\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\components\color\ColorComponent.cpp">
       <Filter>Blux\Source\Object\Component\components\color</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\gobo\GoboComponent.cpp">
-      <Filter>Blux\Source\Object\Component\components\gobo</Filter>
+    <ClCompile Include="..\..\Source\Object\Component\components\dimmer\DimmerComponent.cpp">
+      <Filter>Blux\Source\Object\Component\components\dimmer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\intensity\IntensityComponent.cpp">
-      <Filter>Blux\Source\Object\Component\components\intensity</Filter>
+    <ClCompile Include="..\..\Source\Object\Component\components\orientation\OrientationComponent.cpp">
+      <Filter>Blux\Source\Object\Component\components\orientation</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\laser\LaserPattern\LaserPattern.cpp">
-      <Filter>Blux\Source\Object\Component\components\laser\LaserPattern</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\laser\LaserComponent.cpp">
-      <Filter>Blux\Source\Object\Component\components\laser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\pantilt\PanTiltComponent.cpp">
-      <Filter>Blux\Source\Object\Component\components\pantilt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\servo\ServoComponent.cpp">
-      <Filter>Blux\Source\Object\Component\components\servo</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\stepper\StepperComponent.cpp">
-      <Filter>Blux\Source\Object\Component\components\stepper</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.cpp">
-      <Filter>Blux\Source\Object\Component\components\strobe</Filter>
+    <ClCompile Include="..\..\Source\Object\Component\components\shutter\ShutterComponent.cpp">
+      <Filter>Blux\Source\Object\Component\components\shutter</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\ComponentManager.cpp">
       <Filter>Blux\Source\Object\Component</Filter>
@@ -3886,6 +3832,9 @@
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_android_FileChooser.cpp">
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_android_NativeMessageBox.cpp">
+      <Filter>JUCE Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_android_Windowing.cpp">
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
@@ -3895,6 +3844,9 @@
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_ios_FileChooser.mm">
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_ios_NativeMessageBox.mm">
+      <Filter>JUCE Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_ios_UIViewComponentPeer.mm">
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
@@ -3902,6 +3854,9 @@
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_linux_FileChooser.cpp">
+      <Filter>JUCE Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_linux_NativeMessageBox.cpp">
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_linux_Windowing.cpp">
@@ -3916,6 +3871,9 @@
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_mac_MouseCursor.mm">
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_mac_NativeMessageBox.mm">
+      <Filter>JUCE Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_mac_NSViewComponentPeer.mm">
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
@@ -3926,6 +3884,9 @@
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_win32_FileChooser.cpp">
+      <Filter>JUCE Modules\juce_gui_basics\native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_win32_NativeMessageBox.cpp">
       <Filter>JUCE Modules\juce_gui_basics\native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_win32_Windowing.cpp">
@@ -4030,7 +3991,16 @@
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_DocumentWindow.cpp">
       <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_MessageBoxOptions.cpp">
+      <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_NativeMessageBox.cpp">
+      <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ResizableWindow.cpp">
+      <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ScopedMessageBox.cpp">
       <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ThreadWithProgressWindow.cpp">
@@ -5151,12 +5121,6 @@
     <ClInclude Include="..\..\Source\Common\CommonClasses\SceneListener.h">
       <Filter>Blux\Source\Common\CommonClasses</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.h">
-      <Filter>Blux\Source\Common\ComponentSelector\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Common\ComponentSelector\ComponentSelector.h">
-      <Filter>Blux\Source\Common\ComponentSelector</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h">
       <Filter>Blux\Source\Common\Helpers</Filter>
     </ClInclude>
@@ -5436,41 +5400,20 @@
     <ClInclude Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.h">
       <Filter>Blux\Source\Object\Component\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.h">
-      <Filter>Blux\Source\Object\Component\components\script\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\script\ScriptComponent.h">
-      <Filter>Blux\Source\Object\Component\components\script</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.h">
       <Filter>Blux\Source\Object\Component\components\color\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ColorComponent.h">
       <Filter>Blux\Source\Object\Component\components\color</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\gobo\GoboComponent.h">
-      <Filter>Blux\Source\Object\Component\components\gobo</Filter>
+    <ClInclude Include="..\..\Source\Object\Component\components\dimmer\DimmerComponent.h">
+      <Filter>Blux\Source\Object\Component\components\dimmer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\intensity\IntensityComponent.h">
-      <Filter>Blux\Source\Object\Component\components\intensity</Filter>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\OrientationComponent.h">
+      <Filter>Blux\Source\Object\Component\components\orientation</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\laser\LaserPattern\LaserPattern.h">
-      <Filter>Blux\Source\Object\Component\components\laser\LaserPattern</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\laser\LaserComponent.h">
-      <Filter>Blux\Source\Object\Component\components\laser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\pantilt\PanTiltComponent.h">
-      <Filter>Blux\Source\Object\Component\components\pantilt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\servo\ServoComponent.h">
-      <Filter>Blux\Source\Object\Component\components\servo</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\stepper\StepperComponent.h">
-      <Filter>Blux\Source\Object\Component\components\stepper</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.h">
-      <Filter>Blux\Source\Object\Component\components\strobe</Filter>
+    <ClInclude Include="..\..\Source\Object\Component\components\shutter\ShutterComponent.h">
+      <Filter>Blux\Source\Object\Component\components\shutter</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\ComponentManager.h">
       <Filter>Blux\Source\Object\Component</Filter>
@@ -7005,6 +6948,9 @@
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_SortedSet.h">
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_Span.h">
+      <Filter>JUCE Modules\juce_core\containers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_SparseSet.h">
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClInclude>
@@ -8266,6 +8212,9 @@
       <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ResizableWindow.h">
+      <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ScopedMessageBox.h">
       <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ThreadWithProgressWindow.h">

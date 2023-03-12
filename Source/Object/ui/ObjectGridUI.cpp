@@ -10,6 +10,7 @@
 
 #include "ChainViz/ChainViz.h"
 #include "Color/ColorIncludes.h"
+#include "Object/ObjectIncludes.h"
 
 juce_ImplementSingleton(ObjectUITimer)
 
@@ -34,9 +35,9 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	}
 
 
-	if (IntensityComponent* ic = item->getComponent<IntensityComponent>())
+	if (DimmerComponent* ic = item->getComponent<DimmerComponent>())
 	{
-		iconIntensityRef = (FloatParameter*)ic->computedParameters[0];
+		iconIntensityRef = (FloatParameter*)ic->computedParamMap[ic->value];
 		computedIntensityUI.reset(iconIntensityRef->createSlider());
 		computedIntensityUI->useCustomBGColor = true;
 		computedIntensityUI->customBGColor = BG_COLOR.darker(.6f);
@@ -45,7 +46,7 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 		addAndMakeVisible(computedIntensityUI.get());
 
 
-		intensityUI.reset(((FloatParameter*)ic->values[0])->createSlider());
+		intensityUI.reset(((FloatParameter*)ic->value)->createSlider());
 		intensityUI->useCustomBGColor = true;
 		intensityUI->customBGColor = BG_COLOR.darker(.6f);
 		intensityUI->showLabel = false;
@@ -66,7 +67,7 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 
 ObjectGridUI::~ObjectGridUI()
 {
-	if(ObjectUITimer* t = ObjectUITimer::getInstanceWithoutCreating()) t->unregisterUI(this);
+	if (ObjectUITimer* t = ObjectUITimer::getInstanceWithoutCreating()) t->unregisterUI(this);
 	//if (item != nullptr) item->removeAsyncModelListener(this);
 }
 
@@ -345,7 +346,7 @@ bool ObjectGridUI::keyStateChanged(bool isDown)
 
 void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 {
-	if (IntensityComponent* ic = c->getParentAs<IntensityComponent>())
+	if (DimmerComponent* ic = c->getParentAs<DimmerComponent>())
 	{
 		shouldRepaint = true;
 	}

@@ -21,18 +21,13 @@
 
 #include "Component/ObjectComponent.cpp"
 #include "Component/ComponentManager.cpp"
+
+#include "Component/components/dimmer/DimmerComponent.cpp"
 #include "Component/components/color/ColorComponent.cpp"
 #include "Component/components/color/ui/ColorComponentEditor.cpp"
-#include "Component/components/gobo/GoboComponent.cpp"
-#include "Component/components/intensity/IntensityComponent.cpp"
-#include "Component/components/laser/LaserComponent.cpp"
-#include "Component/components/laser/LaserPattern/LaserPattern.cpp"
-#include "Component/components/pantilt/PanTiltComponent.cpp"
-#include "Component/components/script/ScriptComponent.cpp"
-#include "Component/components/script/ui/ScriptComponentEditor.cpp"
-#include "Component/components/servo/ServoComponent.cpp"
-#include "Component/components/stepper/StepperComponent.cpp"
-#include "Component/components/strobe/StrobeComponent.cpp"
+#include "Component/components/shutter/ShutterComponent.cpp"
+#include "Component/components/orientation/OrientationComponent.cpp"
+
 #include "Component/ui/ComponentManagerEditor.cpp"
 #include "Component/ui/ObjectComponentEditor.cpp"
 

@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 juce_ImplementSingleton(GlobalEffectManager)
 
 GlobalEffectManager::GlobalEffectManager() :
@@ -28,12 +30,12 @@ Array<ChainVizTarget *> GlobalEffectManager::getChainVizTargetsForObject(Object*
     return result;
 }
 
-void GlobalEffectManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
+void GlobalEffectManager::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values)
 {
     for (auto& i : items)
     {
         if (!i->enabled->boolValue()) continue;
-        i->effectManager.processComponentValues(o, c, values);
+        i->effectManager.processComponent(o, c, values);
     }
 }
 

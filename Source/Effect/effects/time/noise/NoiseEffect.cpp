@@ -21,14 +21,7 @@ NoiseEffect::NoiseEffect(var params) :
 	valueOffset = effectParams.addFloatParameter("Value Offset", "This defines the center value of the noise. For example, 0 will make the sine oscillate from -amplitude/2 to +amplitude/2", .5f);
 
 	offsetByID->defaultUI = FloatParameter::TIME;
-	offsetByValue->defaultUI = FloatParameter::TIME;
-
-	filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::PAN, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::TILT, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
+	//offsetByValue->defaultUI = FloatParameter::TIME;
 
 	perlin.reset(new siv::PerlinNoise());
 }
@@ -37,8 +30,10 @@ NoiseEffect::~NoiseEffect()
 {
 }
 
-var NoiseEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time, float originalTime)
+void NoiseEffect::processedComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
 {
+	if (c->mainParameter != nullptr) return;
+
 	NoiseType t = (NoiseType)(int)GetLinkedValue(type);// type->getValueDataAsEnum<NoiseType>();
 	float noiseVal = 0;
 	switch (t)
@@ -51,8 +46,10 @@ var NoiseEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectCompone
 		noiseVal = sinf(time * float_Pi) * .5f;
 		break;
 	}
+	
 
-	return (float)GetLinkedValueO(valueOffset) + noiseVal * (float)GetLinkedValueO(amplitude);
+	var val = noiseVal * (float)GetLinkedValueO(amplitude);
+	targetValues.set(c->mainParameter, val);
 }
 
 float NoiseEffect::getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride)

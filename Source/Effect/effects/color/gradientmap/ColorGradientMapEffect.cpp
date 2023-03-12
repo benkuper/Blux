@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 GradientRemapEffect::GradientRemapEffect(var params) :
 	ColorEffect(getTypeString(), params),
 	gradient(1)

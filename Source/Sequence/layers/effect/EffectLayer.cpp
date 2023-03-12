@@ -1,4 +1,4 @@
-#include "EffectLayer.h"
+
 /*
   ==============================================================================
 
@@ -9,6 +9,7 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
 
 EffectLayer::EffectLayer(Sequence* s, var params) :
 	SequenceLayer(s, "Effect"),
@@ -22,12 +23,6 @@ EffectLayer::EffectLayer(Sequence* s, var params) :
 	addChildControllableContainer(&blockManager);
 
 	filterManager.reset(new FilterManager());
-	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::COLOR, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::PAN, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::TILT, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 	addChildControllableContainer(filterManager.get());
 }
 
@@ -56,14 +51,14 @@ Array<ChainVizTarget*> EffectLayer::getChainVizTargetsForObject(Object* o)
 	return result;
 }
 
-void EffectLayer::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
+void EffectLayer::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier)
 {
 	FilterResult fr = filterManager->getFilteredResultForComponent(o, c);
 	if (fr.id == -1) return;
 
 	float time = sequence->currentTime->floatValue() - timeOffsetByID->floatValue() * fr.id;
 	Array<LayerBlock*> blocks = blockManager.getBlocksAtTime(time, false);
-	for (auto& b : blocks) ((EffectBlock*)b)->processComponentValues(o, c, values, fr.weight * weightMultiplier, fr.id, time);
+	for (auto& b : blocks) ((EffectBlock*)b)->processComponent(o, c, values, fr.weight * weightMultiplier, fr.id, time);
 }
 
 

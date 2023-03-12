@@ -51,7 +51,7 @@ EffectBlock::~EffectBlock()
 
 }
 
-void EffectBlock::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier, int id, float absoluteTime)
+void EffectBlock::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id, float absoluteTime)
 {
     if (effect == nullptr) return;
 
@@ -64,8 +64,8 @@ void EffectBlock::processComponentValues(Object* o, ObjectComponent* c, var& val
     float targetWeight = factor * weightMultiplier;
 
 	double relTimeLooped = getRelativeTime(absoluteTime, true);
-    effect->processComponentValues(o, c, values, targetWeight, id, relTimeLooped);
-    if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(effect.get(), values[0].clone());
+    effect->processComponent(o, c, values, targetWeight, id, relTimeLooped);
+    if (c->componentType == ComponentType::DIMMER && values.size() > 0) o->effectIntensityOutMap.set(effect.get(), values[0].clone());
 }
 
 void EffectBlock::onContainerParameterChangedInternal(Parameter* p)

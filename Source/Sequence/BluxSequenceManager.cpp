@@ -31,9 +31,9 @@ Array<ChainVizTarget *> BluxSequenceManager::getChainVizTargetsForObject(Object*
     return result;
 }
 
-void BluxSequenceManager::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
+void BluxSequenceManager::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier)
 {
-    for (auto& i : items) ((BluxSequence *)i)->processComponentValues(o, c, values, weightMultiplier);
+    for (auto& i : items) ((BluxSequence *)i)->processComponent(o, c, values, weightMultiplier);
 }
 
 Sequence* BluxSequenceManager::createItem()

@@ -1,49 +1,59 @@
 /*
   ==============================================================================
 
-    ColorEffect.cpp
-    Created: 9 Nov 2020 12:53:03pm
-    Author:  bkupe
+	ColorEffect.cpp
+	Created: 9 Nov 2020 12:53:03pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 ColorEffect::ColorEffect(const String& name, var params) :
-    Effect(name, params),
-    fillWithOriginalColors(true)
+	Effect(name, params),
+	fillWithOriginalColors(true)
 {
-    filterManager->componentSelector.selectedComponents.set(ComponentType::COLOR, true);
 }
 
 ColorEffect::~ColorEffect()
 {
 }
 
-var ColorEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
+void ColorEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
-    if (!values[0].isArray()) return values;
+	if (c->componentType != COLOR) return;
+	ColorComponent* cComp = (ColorComponent*)c;
 
-    Array<Colour, CriticalSection> colors;
-    colors.resize(values.size());
+	int resolution = cComp->resolution->intValue();
+	Array<Colour, CriticalSection> targetColors;
+	targetColors.resize(resolution);
 
+	var sourceColors = values[nullptr]; // using nullptr to hold colors or whatever is not related to a computed parameter
 
-    if (fillWithOriginalColors)
-    {
-        for (int i = 0; i < values.size(); i++) colors.set(i, Colour::fromFloatRGBA(values[i][0], values[i][1], values[i][2], values[i][3]));
-    }
+	if (fillWithOriginalColors)
+	{
+		for (int i = 0; i < resolution; i++)
+		{
+			if (i >= sourceColors.size()) targetColors.set(i, Colours::black);
+			var col = sourceColors[i];
+			targetColors.set(i, Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
+		}
+	}
 
-    if (time == -1) time = Time::getMillisecondCounter() / 1000.0f;
-    processedEffectColorsInternal(colors, o, (ColorComponent *)c, id, time);
+	if (time == -1) time = Time::getMillisecondCounter() / 1000.0f;
+	processedEffectColorsInternal(targetColors, o, (ColorComponent*)c, id, time);
 
-    var result;
-    for (auto& col : colors)
-    {
-        var cv;
-        cv.append(col.getFloatRed());
-        cv.append(col.getFloatGreen());
-        cv.append(col.getFloatBlue());
-        cv.append(col.getFloatAlpha());
-        result.append(cv);
-    }
-    return result;
+	var result;
+	for (auto& col : targetColors)
+	{
+		var cv;
+		cv.append(col.getFloatRed());
+		cv.append(col.getFloatGreen());
+		cv.append(col.getFloatBlue());
+		cv.append(col.getFloatAlpha());
+		result.append(cv);
+	}
+
+	targetValues.set(nullptr, result);
 }

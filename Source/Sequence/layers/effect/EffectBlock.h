@@ -26,7 +26,7 @@ public:
 
 	bool settingLengthFromMethod;
 
-    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
+    virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 	virtual void controllableStateChanged(Controllable* c) override;

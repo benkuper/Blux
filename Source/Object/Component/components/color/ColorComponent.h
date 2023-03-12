@@ -37,8 +37,12 @@ public:
     void setupFromJSONDefinition(var definition) override;
 
     void update() override;
-    virtual var getOriginalComputedValues() override;
-    virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false) override;
+    void fillComputedValueMap(HashMap<Parameter*, var>& values) override;
+    void updateComputedValues(HashMap<Parameter*, var>& values) override;
+
+
+    
+    //virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false) override;
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 

@@ -98,7 +98,7 @@ bool Scene::isObjectActiveInScene(Object* o)
 
 	for (auto& e : effectManager->items)
 	{
-		if (e->filterManager->getFilteredResultForComponent(o, o->getComponent<IntensityComponent>()).id != -1)
+		if (e->filterManager->getFilteredResultForComponent(o, o->getComponent<DimmerComponent>()).id != -1)
 		{
 			result = true;
 			break;

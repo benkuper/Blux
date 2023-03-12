@@ -173,19 +173,19 @@ Array<ChainVizTarget *> SceneManager::getChainVizTargetsForObject(Object* o)
     return result;
 }
 
-void SceneManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
+void SceneManager::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values)
 {
     if (currentScene == nullptr) return;
 
     float progressWeight = currentScene->isCurrent->boolValue() ? 1 : currentScene->loadProgress->floatValue();
     if (previousScene != nullptr && progressWeight < 1)
     {
-        previousScene->sequenceManager->processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
-        previousScene->effectManager->processComponentValues(o, c, values, 1 - currentScene->loadProgress->floatValue());
+        previousScene->sequenceManager->processComponent(o, c, values, 1 - currentScene->loadProgress->floatValue());
+        previousScene->effectManager->processComponent(o, c, values, 1 - currentScene->loadProgress->floatValue());
     }
 
-    currentScene->sequenceManager->processComponentValues(o, c, values, progressWeight);
-    currentScene->effectManager->processComponentValues(o, c, values,  progressWeight);
+    currentScene->sequenceManager->processComponent(o, c, values, progressWeight);
+    currentScene->effectManager->processComponent(o, c, values,  progressWeight);
 }
 
 void SceneManager::onContainerTriggerTriggered(Trigger* t)

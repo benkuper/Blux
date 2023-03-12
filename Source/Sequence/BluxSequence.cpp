@@ -57,13 +57,13 @@ Array<ChainVizTarget*> BluxSequence::getChainVizTargetsForObject(Object* o)
 	return result;
 }
 
-void BluxSequence::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
+void BluxSequence::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier)
 {
 	for (int i = layerManager->items.size() - 1; i >= 0; --i)
 	{
 		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
 		{
-			e->processComponentValues(o, c, values, weightMultiplier);
+			e->processComponent(o, c, values, weightMultiplier);
 		}
 	}
 }

@@ -20,8 +20,6 @@
 
 #include "Action/Action.h"
 #include "Action/ActionManager.h"
-#include "ComponentSelector/ComponentSelector.h"
-#include "ComponentSelector/ui/ComponentSelectorUI.h"
 
 
 #include "Helpers/SceneHelpers.h"

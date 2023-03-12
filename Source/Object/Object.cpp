@@ -9,7 +9,10 @@
 */
 
 #include "Object/ObjectIncludes.h"
-
+#include "Interface/InterfaceIncludes.h"
+#include "Effect/EffectIncludes.h"
+#include "Scene/SceneIncludes.h"
+#include "Sequence/SequenceIncludes.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
@@ -106,7 +109,7 @@ Object::Object(var params) :
 		for (auto& cp : cProps) componentManager->addComponentFromDefinition(cp.name, cp.value, false);
 	}
 
-	if (IntensityComponent* ic = getComponent<IntensityComponent>()) slideManipParameter = ic->values[0];
+	if (DimmerComponent* ic = getComponent<DimmerComponent>()) slideManipParameter = ic->value;
 
 	customParams.reset(new ObjectManagerCustomParams(ObjectManager::getInstance()));
 	addChildControllableContainer(customParams.get());
@@ -140,7 +143,7 @@ void Object::clearItem()
 	{
 		sourceInterfaceParamsRef->removeControllableContainerListener(this);
 	}
-	
+
 }
 
 void Object::rebuildInterfaceParams()
@@ -260,42 +263,28 @@ void Object::computeComponentValues(ObjectComponent* c)
 	else
 	{
 		c->update();
-		var values = c->getOriginalComputedValues();
+		HashMap<Parameter*, var> values;
+		c->fillComputedValueMap(values);
 
-		if (!values.isVoid())
+		if (values.size() > 0)
 		{
 			//local effects
-			effectManager->processComponentValues(this, c, values);
+			effectManager->processComponent(this, c, values);
+
 			//scene effects
-			SceneManager::getInstance()->processComponentValues(this, c, values);
+			SceneManager::getInstance()->processComponent(this, c, values);
+
 			//group effects
-			GroupManager::getInstance()->processComponentValues(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
+			GroupManager::getInstance()->processComponent(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
+
 			//global effects
-			GlobalSequenceManager::getInstance()->processComponentValues(this, c, values);
-			GlobalEffectManager::getInstance()->processComponentValues(this, c, values);
+			GlobalSequenceManager::getInstance()->processComponent(this, c, values);
+			GlobalEffectManager::getInstance()->processComponent(this, c, values);
 
-			c->postProcessComponentValues(values);
-
-			if (c->componentType == ComponentType::COLOR)
-			{
-				ColorComponent* colorComp = (ColorComponent*)c;
-				for (int i = 0; i < values.size(); i++)
-				{
-					colorComp->outColors.set(i, Colour::fromFloatRGBA(values[i][0], values[i][1], values[i][2], values[i][3]));
-				}
-			}
-			else
-			{
-				int index = 0;
-				for (auto& p : c->computedParameters)
-				{
-					p->setValue(values[index++]);
-				}
-			}
+			
+			c->updateComputedValues(values);
 		}
 	}
-
-	c->isDirty = false;
 }
 
 var Object::getSceneData()

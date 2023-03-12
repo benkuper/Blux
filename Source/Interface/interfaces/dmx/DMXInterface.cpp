@@ -225,7 +225,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	ColorComponent* colorComp = nullptr;
 
 	ColorComponent* cComp = o->getComponent<ColorComponent>();
-	IntensityComponent * ic = o->getComponent<IntensityComponent>();
+	DimmerComponent * ic = o->getComponent<DimmerComponent>();
 
 	bool intensityForColor = useIntensityForColor->boolValue();
 	if (cComp != nullptr && cComp->useIntensityForColor->boolValue()) intensityForColor = true;
@@ -239,11 +239,11 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 			HashMap<int, float> valueMap;
 			if (ic)
 			{
-				ic->fillOutValueMap(valueMap, 0, true);
+				//ic->fillOutValueMap(valueMap, 0, true);
 				fac = valueMap[0];
 			}
 
-			colorComp->fillOutValueMap(compValues, startChannel, intensityForColor);
+			//colorComp->fillOutValueMap(compValues, startChannel, intensityForColor);
 
 			if (fac != 1)
 			{
@@ -258,7 +258,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 		if (!c->enabled->boolValue()) continue;
 		if (c == colorComp) continue; //colorComp is only set if useIntensityForColor is set
 		if (colorComp != nullptr && c == ic && intensityForColor) continue;
-		c->fillOutValueMap(compValues, startChannel);
+		//c->fillOutValueMap(compValues, startChannel);
 	}
 
 	//Store these channels in local universe

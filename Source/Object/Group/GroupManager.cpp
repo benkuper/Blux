@@ -33,12 +33,12 @@ Array<ChainVizTarget *> GroupManager::getChainVizTargetsForObject(Object* o)
     return result;
 }
 
-void GroupManager::processComponentValues(Object* o, ObjectComponent* c, var& values)
+void GroupManager::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values)
 {
     for (auto& g : items)
     {
         if (!g->enabled->boolValue()) continue;
-        if (g->containsObject(o)) g->processComponentValues(o,  c, values);
+        if (g->containsObject(o)) g->processComponent(o,  c, values);
     }
 }
 

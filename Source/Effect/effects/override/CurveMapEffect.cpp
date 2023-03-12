@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 CurveMapEffect::CurveMapEffect(var params) :
 	Effect(getTypeString(), params),
 	automation("Curve")
@@ -17,50 +19,45 @@ CurveMapEffect::CurveMapEffect(var params) :
 	inputRange->setPoint(0, 1);
 	outputRange->setPoint(0, 1);
 
-	AutomationKey * k = automation.addKey(0, 0);
+	AutomationKey* k = automation.addKey(0, 0);
 	k->easingType->setValueWithData(Easing::LINEAR);
 	automation.addKey(1, 1);
 	effectParams.addChildControllableContainer(&automation);
 	effectParams.saveAndLoadRecursiveData = true;
-
-	filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::PAN, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::TILT, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 }
 
 CurveMapEffect::~CurveMapEffect()
 {
 }
 
-var CurveMapEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
+void CurveMapEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
 	var inR = GetLinkedValue(inputRange);
 	var outR = GetLinkedValue(outputRange);
 
-
-	for (int i = 0; i < values.size(); i++)
+	HashMap<Parameter*, var>::Iterator it(values);
+	while (it.next())
 	{
-		if (values[i].isArray())
+		var val = it.getValue().clone();
+
+		if (val.isArray())
 		{
 			for (int j = 0; j < values.size(); j++)
 			{
 				float normVal = 0;
-				if(inR[0] != inR[1]) normVal = jmap<float>(values[i][j], inR[0],inR[1], 0, 1);
+				if (inR[0] != inR[1]) normVal = jmap<float>(val[j], inR[0], inR[1], 0, 1);
 				float mapVal = automation.getValueAtPosition(normVal);
-				values[i][j] = jmap<float>(mapVal, outR[0], outR[1]);
+				val[j] = jmap<float>(mapVal, outR[0], outR[1]);
 			}
 		}
 		else
 		{
 			float normVal = 0;
-			if (inR[0] != inR[1]) normVal = jmap<float>(values[i], inR[0], inR[1], 0, 1);
+			if (inR[0] != inR[1]) normVal = jmap<float>(val, inR[0], inR[1], 0, 1);
 			float mapVal = automation.getValueAtPosition(normVal);
-			values[i] = jmap<float>(mapVal, outR[0], outR[1]);
+			val = jmap<float>(mapVal, outR[0], outR[1]);
 		}
-	}
 
-	return values;
+		targetValues.set(it.getKey(), val);
+	}
 }

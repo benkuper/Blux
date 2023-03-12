@@ -8,6 +8,9 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
+#include "ColorComponent.h"
+
 ColorComponent::ColorComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), COLOR, params),
 	colorComponentNotifier(5)
@@ -62,7 +65,7 @@ void ColorComponent::setupFromJSONDefinition(var definition)
 
 	var shapeData = definition.getProperty("shape", var());
 	if (shapeData.isObject()) defaultShape = shapeData.getProperty("type", "");
-	
+
 	setupShape(defaultShape);
 
 	pixelShape->loadJSONData(shapeData);
@@ -85,9 +88,9 @@ void ColorComponent::update()
 	else sourceColors.fill(Colours::transparentBlack);
 }
 
-var ColorComponent::getOriginalComputedValues()
+void ColorComponent::fillComputedValueMap(HashMap<Parameter*, var>& values)
 {
-	var result;
+	var colors;
 	for (auto& i : sourceColors)
 	{
 		var c;
@@ -95,23 +98,35 @@ var ColorComponent::getOriginalComputedValues()
 		c.append(i.getFloatGreen());
 		c.append(i.getFloatBlue());
 		c.append(i.getFloatAlpha());
-		result.append(c);
+		colors.append(c);
 	}
 
-	return result;
+	values.set(nullptr, colors); //using nullptr as placeholders for values not linked to a computed parameter
 }
 
-void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
+void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
-	int index = startChannel + (ignoreChannelOffset ? 0 : channelOffset);
-	for (auto& c : outColors)
+	var colValues = values[nullptr]; //using nullptr as placeholders for values not linked to a computed parameter
+
+	jassert(colValues.size() == resolution->intValue());
+	for (int i = 0; i < colValues.size(); i++)
 	{
-		channelValueMap.set(index++, c.getFloatRed());
-		channelValueMap.set(index++, c.getFloatGreen());
-		channelValueMap.set(index++, c.getFloatBlue());
-		//if(useAlpha) channelValueMap.set(index++, c.getFloatAlpha());
+		var col = colValues[i];
+		outColors.set(i, Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
 	}
 }
+
+//void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
+//{
+//	int index = startChannel + (ignoreChannelOffset ? 0 : channelOffset);
+//	for (auto& c : outColors)
+//	{
+//		channelValueMap.set(index++, c.getFloatRed());
+//		channelValueMap.set(index++, c.getFloatGreen());
+//		channelValueMap.set(index++, c.getFloatBlue());
+//		//if(useAlpha) channelValueMap.set(index++, c.getFloatAlpha());
+//	}
+//}
 
 void ColorComponent::onContainerParameterChangedInternal(Parameter* p)
 {

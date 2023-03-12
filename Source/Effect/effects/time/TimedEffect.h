@@ -26,7 +26,7 @@ public:
 	FloatParameter* timeOffset;
 
 	FloatParameter* offsetByID;
-	FloatParameter* offsetByValue;
+	//FloatParameter* offsetByValue;²
 	Trigger* resetTimeTrigger;
 	BoolParameter* autoResetOnNonZero;
 
@@ -34,14 +34,14 @@ public:
 
 	double timeAtLastUpdate;
 	HashMap<ObjectComponent*, float> curTimes;
-	HashMap<ObjectComponent*, var> prevValues;
+
 
 
 	virtual void onContainerTriggerTriggered(Trigger* t) override;
 	virtual void updateEnabled() override;
 
-	var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1) override;
-	virtual var getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time, float originalTime) { return value; }
+	void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) override;
+	virtual void processedComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) {}
 
 	virtual float getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride = -1);
 

@@ -66,7 +66,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;D:\Softwares\JUCE\modules;..\..\Modules;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x70004;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_cryptography=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_dmx=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_serial=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=1.1.1b8;JUCE_APP_VERSION_HEX=0x10101;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x70005;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_cryptography=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_dmx=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_serial=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=1.2.0b1;JUCE_APP_VERSION_HEX=0x10200;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -80,7 +80,7 @@
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;D:\Softwares\JUCE\modules;..\..\Modules;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x70004;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_cryptography=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_dmx=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_serial=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=1.1.1b8;JUCE_APP_VERSION_HEX=0x10101;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x70005;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_cryptography=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_dmx=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_serial=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=1.2.0b1;JUCE_APP_VERSION_HEX=0x10200;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
       <OutputFile>$(OutDir)\Blux.exe</OutputFile>
@@ -113,7 +113,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;D:\Softwares\JUCE\modules;..\..\Modules;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x70004;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_cryptography=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_dmx=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_serial=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=1.1.1b8;JUCE_APP_VERSION_HEX=0x10101;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x70005;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_cryptography=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_dmx=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_serial=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=1.2.0b1;JUCE_APP_VERSION_HEX=0x10200;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -127,7 +127,7 @@
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\JuceLibraryCode;D:\Softwares\JUCE\modules;..\..\Modules;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x70004;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_cryptography=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_dmx=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_serial=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=1.1.1b8;JUCE_APP_VERSION_HEX=0x10101;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_DISPLAY_SPLASH_SCREEN=0;JUCE_USE_DARK_SPLASH_SCREEN=1;JUCE_PROJUCER_VERSION=0x70005;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_cryptography=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_dmx=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_opengl=1;JUCE_MODULE_AVAILABLE_juce_organicui=1;JUCE_MODULE_AVAILABLE_juce_osc=1;JUCE_MODULE_AVAILABLE_juce_serial=1;JUCE_MODULE_AVAILABLE_juce_simpleweb=1;JUCE_MODULE_AVAILABLE_juce_timeline=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;JUCE_STRICT_REFCOUNTEDPOINTER=1;ORGANICUI_USE_SERVUS=1;ORGANICUI_USE_WEBSERVER=1;JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1;JUCE_ENABLE_BROADCAST_BY_DEFAULT=1;JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1;JUCE_IP_AND_PORT_DETECTION=1;JUCE_STANDALONE_APPLICATION=1;JUCER_VS2022_78A503E=1;JUCE_APP_VERSION=1.2.0b1;JUCE_APP_VERSION_HEX=0x10200;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
       <OutputFile>$(OutDir)\Blux.exe</OutputFile>
@@ -157,12 +157,6 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\Action\ActionManager.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Common\ComponentSelector\ComponentSelector.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\Helpers\SceneHelpers.cpp">
@@ -430,40 +424,19 @@
     <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\script\ScriptComponent.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\components\color\ColorComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\gobo\GoboComponent.cpp">
+    <ClCompile Include="..\..\Source\Object\Component\components\dimmer\DimmerComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\intensity\IntensityComponent.cpp">
+    <ClCompile Include="..\..\Source\Object\Component\components\orientation\OrientationComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\laser\LaserPattern\LaserPattern.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\laser\LaserComponent.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\pantilt\PanTiltComponent.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\servo\ServoComponent.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\stepper\StepperComponent.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.cpp">
+    <ClCompile Include="..\..\Source\Object\Component\components\shutter\ShutterComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\ComponentManager.cpp">
@@ -2594,6 +2567,9 @@
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_android_FileChooser.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_android_NativeMessageBox.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_android_Windowing.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2603,6 +2579,9 @@
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_linux_FileChooser.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_linux_NativeMessageBox.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_linux_Windowing.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2610,6 +2589,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_win32_FileChooser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_win32_NativeMessageBox.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\native\juce_win32_Windowing.cpp">
@@ -2714,7 +2696,16 @@
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_DocumentWindow.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_MessageBoxOptions.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_NativeMessageBox.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ResizableWindow.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ScopedMessageBox.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ThreadWithProgressWindow.cpp">
@@ -3717,8 +3708,6 @@
     <ClInclude Include="..\..\Source\Common\Action\ActionManager.h"/>
     <ClInclude Include="..\..\Source\Common\CommonClasses\ComponentType.h"/>
     <ClInclude Include="..\..\Source\Common\CommonClasses\SceneListener.h"/>
-    <ClInclude Include="..\..\Source\Common\ComponentSelector\ui\ComponentSelectorUI.h"/>
-    <ClInclude Include="..\..\Source\Common\ComponentSelector\ComponentSelector.h"/>
     <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceParameterUI.h"/>
@@ -3812,18 +3801,11 @@
     <ClInclude Include="..\..\Source\Object\actions\ObjectAction.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\script\ui\ScriptComponentEditor.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\script\ScriptComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ColorComponent.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\gobo\GoboComponent.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\intensity\IntensityComponent.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\laser\LaserPattern\LaserPattern.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\laser\LaserComponent.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\pantilt\PanTiltComponent.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\servo\ServoComponent.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\stepper\StepperComponent.h"/>
-    <ClInclude Include="..\..\Source\Object\Component\components\strobe\StrobeComponent.h"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\dimmer\DimmerComponent.h"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\OrientationComponent.h"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\shutter\ShutterComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ComponentManager.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ObjectComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Group\groups\object\ui\ObjectGroupUI.h"/>
@@ -4335,6 +4317,7 @@
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_ScopedValueSetter.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_SingleThreadedAbstractFifo.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_SortedSet.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_Span.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_SparseSet.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\containers\juce_Variant.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_core\files\juce_AndroidDocument.h"/>
@@ -4756,6 +4739,7 @@
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_MessageBoxOptions.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_NativeMessageBox.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ResizableWindow.h"/>
+    <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ScopedMessageBox.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_ThreadWithProgressWindow.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_TooltipWindow.h"/>
     <ClInclude Include="..\..\..\..\..\..\Softwares\JUCE\modules\juce_gui_basics\windows\juce_TopLevelWindow.h"/>

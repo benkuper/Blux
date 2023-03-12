@@ -1,18 +1,19 @@
 /*
   ==============================================================================
 
-    StrobeComponent.cpp
+    ShutterComponent.cpp
     Created: 26 Sep 2020 2:21:24pm
     Author:  bkupe
 
   ==============================================================================
 */
+#include "Object/ObjectIncludes.h"
 
-StrobeComponent::StrobeComponent(Object* o, var params) :
-    ObjectComponent(o, getTypeString(), STROBE, params)
+ShutterComponent::ShutterComponent(Object* o, var params) :
+    ObjectComponent(o, getTypeString(), SHUTTER, params)
 {
 }
 
-StrobeComponent::~StrobeComponent()
+ShutterComponent::~ShutterComponent()
 {
 }
