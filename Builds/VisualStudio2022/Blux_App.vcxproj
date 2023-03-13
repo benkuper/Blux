@@ -319,6 +319,9 @@
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\orientation\OrientationEffect.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\smooth\DampingEffect.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -3766,6 +3769,7 @@
     <ClInclude Include="..\..\Source\Scene\SceneManager.h"/>
     <ClInclude Include="..\..\Source\Effect\EffectIncludes.h"/>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h"/>
+    <ClInclude Include="..\..\Source\Effect\effects\orientation\OrientationEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\smooth\DampingEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\smooth\SmoothingEffect.h"/>
     <ClInclude Include="..\..\Source\Effect\effects\script\ScriptEffect.h"/>

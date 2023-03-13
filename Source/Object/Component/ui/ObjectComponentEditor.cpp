@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
+
 ObjectComponentEditor::ObjectComponentEditor(ObjectComponent* component, bool isRoot, bool showComputedParams) :
     BaseItemEditor(component, isRoot),
     component(component),
@@ -15,12 +17,23 @@ ObjectComponentEditor::ObjectComponentEditor(ObjectComponent* component, bool is
 {
     if (showComputedParams)
     {
-        for (int i = 0; i < component->computedParameters.size(); i++)
+        if (component->mainParameter != nullptr)
         {
-            computedUI.add(component->computedParameters[i]->createDefaultUI());
-            addAndMakeVisible(computedUI[i]);
+            computedUI.add(component->mainParameter->createDefaultUI());
+            addAndMakeVisible(computedUI[0]);
         }
+        else
+        {
+            for (int i = 0; i < component->computedParameters.size(); i++)
+            {
+                computedUI.add(component->computedParameters[i]->createDefaultUI());
+                addAndMakeVisible(computedUI[i]);
+            }
+        }
+
     }
+
+    for (auto& cui : computedUI) cui->showLabel = !((Parameter*)cui->controllable.get())->isComplex();
 }
 
 ObjectComponentEditor::~ObjectComponentEditor()
@@ -33,7 +46,7 @@ void ObjectComponentEditor::resizedInternalHeaderItemInternal(Rectangle<int>& r)
     {
         for (int i = computedUI.size() - 1; i >= 0; i--)
         {
-            computedUI[i]->setBounds(r.removeFromRight(100).reduced(2));
+            computedUI[i]->setBounds(r.removeFromRight(200).reduced(2));
         }
     }
 }

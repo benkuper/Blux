@@ -314,6 +314,12 @@
           <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
         </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{1B2652FA-5299-BCFF-CBFA-59F6D213361B}" name="orientation">
+            <FILE id="CQmwZt" name="OrientationEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/orientation/OrientationEffect.cpp"/>
+            <FILE id="nWkpXe" name="OrientationEffect.h" compile="0" resource="0"
+                  file="Source/Effect/effects/orientation/OrientationEffect.h"/>
+          </GROUP>
           <GROUP id="{9C5F5626-2B7E-5ED9-5F11-FBEE3D54EAD2}" name="smooth">
             <FILE id="uJc1x1" name="DampingEffect.cpp" compile="0" resource="0"
                   file="Source/Effect/effects/smooth/DampingEffect.cpp"/>

@@ -20,7 +20,8 @@ class ObjectManagerCustomParams;
 
 class Object :
 	public BaseItem,
-	public ChainVizTarget
+	public ChainVizTarget,
+	public ComponentManager::ManagerListener
 {
 public:
 	Object(var params = var());
@@ -76,6 +77,14 @@ public:
 	void updateSceneData(var& sceneData);
 	void lerpFromSceneData(var startData, var endData, float weight);
 
+	void componentsChanged();
+
+	void itemAdded(ObjectComponent* c) override { componentsChanged(); }
+	void itemsAdded(Array<ObjectComponent*> c) override { componentsChanged(); }
+	void itemRemoved(ObjectComponent* c) override { componentsChanged(); }
+	void itemsRemoved(Array<ObjectComponent*> c) override { componentsChanged(); }
+
+	void afterLoadJSONDataInternal() override;
 
 	Array<ChainVizTarget*> getEffectChain();
 

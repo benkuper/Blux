@@ -116,6 +116,7 @@
 		218ED473E6294E236ACBFADB /* DMXInterface.cpp */ /* DMXInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DMXInterface.cpp; path = ../../Source/Interface/interfaces/dmx/DMXInterface.cpp; sourceTree = SOURCE_ROOT; };
 		21C87FE69B05D5E25044529C /* default.bluxlayout */ /* default.bluxlayout */ = {isa = PBXFileReference; lastKnownFileType = file.bluxlayout; name = default.bluxlayout; path = ../../Resources/default.bluxlayout; sourceTree = SOURCE_ROOT; };
 		21D8F484CC5A3FCA41AD3BA1 /* ColorIncludes.cpp */ /* ColorIncludes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorIncludes.cpp; path = ../../Source/Color/ColorIncludes.cpp; sourceTree = SOURCE_ROOT; };
+		21FED14F470B98C42249BCA4 /* OrientationEffect.h */ /* OrientationEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrientationEffect.h; path = ../../Source/Effect/effects/orientation/OrientationEffect.h; sourceTree = SOURCE_ROOT; };
 		22294BBBF0F575B1CEAF81C8 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = ../../JUCE/modules/juce_events; sourceTree = SOURCE_ROOT; };
 		22E90C766B0446D7D6630F64 /* RawDataLayerPanel.cpp */ /* RawDataLayerPanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RawDataLayerPanel.cpp; path = ../../Source/Sequence/layers/rawdata/ui/RawDataLayerPanel.cpp; sourceTree = SOURCE_ROOT; };
 		2322E7B6F35CFF0F30DC8B7D /* MIDIDevice.h */ /* MIDIDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MIDIDevice.h; path = ../../Source/Common/MIDI/MIDIDevice.h; sourceTree = SOURCE_ROOT; };
@@ -330,6 +331,7 @@
 		A6519DD8271E813FECBC9F3D /* PictureColorSource.cpp */ /* PictureColorSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PictureColorSource.cpp; path = ../../Source/Color/ColorSource/sources/picture/PictureColorSource.cpp; sourceTree = SOURCE_ROOT; };
 		A7000034A7855ADD70945C91 /* MainIncludes.h */ /* MainIncludes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainIncludes.h; path = ../../Source/MainIncludes.h; sourceTree = SOURCE_ROOT; };
 		A71099E4A1F2F239959CBEC9 /* Interface.h */ /* Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Interface.h; path = ../../Source/Interface/Interface.h; sourceTree = SOURCE_ROOT; };
+		A7610873460E2A5A2E2D3D78 /* OrientationEffect.cpp */ /* OrientationEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = OrientationEffect.cpp; path = ../../Source/Effect/effects/orientation/OrientationEffect.cpp; sourceTree = SOURCE_ROOT; };
 		A7D029232D277EDE80B30337 /* MIDIMappingManager.cpp */ /* MIDIMappingManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MIDIMappingManager.cpp; path = ../../Source/Interface/interfaces/midi/MIDIMappingManager.cpp; sourceTree = SOURCE_ROOT; };
 		A8F8B78564FB0C59AF4386D1 /* GroupUI.cpp */ /* GroupUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GroupUI.cpp; path = ../../Source/Object/Group/ui/GroupUI.cpp; sourceTree = SOURCE_ROOT; };
 		AB3380151D4E0B9C983C8AEC /* PixelShape.h */ /* PixelShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PixelShape.h; path = ../../Source/Color/PixelShape/PixelShape.h; sourceTree = SOURCE_ROOT; };
@@ -1545,6 +1547,7 @@
 		D9FE837C1612F50C76902DC6 /* effects */ = {
 			isa = PBXGroup;
 			children = (
+				FBB652BAD8BC8EF8E810259F,
 				64B1DBF929D21BCC66503911,
 				82E4747FA72A76A5B0CF57EC,
 				24AC335A15A4F15494235437,
@@ -1699,6 +1702,15 @@
 				41F42750DF70DE898B65DACC,
 			);
 			name = actions;
+			sourceTree = "<group>";
+		};
+		FBB652BAD8BC8EF8E810259F /* orientation */ = {
+			isa = PBXGroup;
+			children = (
+				A7610873460E2A5A2E2D3D78,
+				21FED14F470B98C42249BCA4,
+			);
+			name = orientation;
 			sourceTree = "<group>";
 		};
 		FE0DB475B43B9EF942D7C4BD /* ui */ = {

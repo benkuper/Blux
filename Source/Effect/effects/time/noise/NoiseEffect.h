@@ -25,8 +25,7 @@ public:
     enum NoiseType { SINE, PERLIN };
     EnumParameter * type;
     FloatParameter* frequency;
-    FloatParameter* amplitude;
-    FloatParameter* valueOffset;
+    Point2DParameter* valueRange;
     std::unique_ptr<siv::PerlinNoise> perlin;
 
     void processedComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) override;

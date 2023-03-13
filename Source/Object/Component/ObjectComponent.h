@@ -28,19 +28,20 @@ public:
     ComponentType componentType;
     BoolParameter* excludeFromScenes;
 
-    ControllableContainer interfaceParams;
+    ControllableContainer interfaceParamCC;
+    Array<Parameter*> interfaceParams;
+    HashMap<Parameter*, Parameter*> computedInterfaceMap;
+    var interfaceParamsGhostData;
 
     //dmx
     Array<Parameter*> sourceParameters;
     Array<Parameter*> computedParameters;
     HashMap<Parameter*, Parameter*> computedParamMap;
+    HashMap<Parameter*, Parameter*> paramComputedMap;
 
-    HashMap<Parameter*, int> localDMXChannels; //if set, will be used by fillInterfaceData for DMX interfaces to automatically fill.
+    void rebuildInterfaceParams(Interface* i);
 
-    void generateInterfaceParams(Interface* i);
-
-    void addComputedParameter(Parameter* p, Parameter* originalParameter = nullptr);
-    void linkComputedParamToDMXChannel(Parameter* cp, int localChannel);
+    Parameter* addComputedParameter(Parameter* p, ControllableContainer* parent = nullptr);
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 
@@ -58,6 +59,9 @@ public:
     virtual void fillInterfaceData(Interface* i, var data, var params);// (HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false);
     virtual void fillInterfaceDataInternal(Interface* i, var data, var params);// (HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false);
     //virtual void fillOutValueMap(HashMap<int, float> &channelValueMap, int startChannel, bool ignoreChannelOffset = false);
+
+    var getJSONData() override;
+    void loadJSONDataItemInternal(var data) override;
 
     InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
 };

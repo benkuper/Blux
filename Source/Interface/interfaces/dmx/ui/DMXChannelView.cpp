@@ -15,7 +15,8 @@ DMXChannelView::DMXChannelView(const String& name) :
 	ShapeShifterContentComponent(name),
 	currentInterface(nullptr),
 	testingUI(nullptr),
-	flashValue(nullptr)
+	flashValue(nullptr),
+	shouldRepaint(false)
 {
 	dmxList.setTextWhenNoChoicesAvailable("No DMX Interface");
 	dmxList.setTextWhenNothingSelected("Select a DMX interface");
@@ -29,6 +30,8 @@ DMXChannelView::DMXChannelView(const String& name) :
 	viewport.setViewedComponent(&channelContainer);
 
 	InterfaceManager::getInstance()->addAsyncManagerListener(this);
+
+	startTimerHz(20);
 }
 
 DMXChannelView::~DMXChannelView()
@@ -86,6 +89,8 @@ void DMXChannelView::setCurrentInterface(DMXInterface* i)
 		testingUI.reset();
 		removeChildComponent(flashValue.get());
 		flashValue.reset();
+
+		currentInterface->removeAsyncDMXInterfaceListener(this);
 	}
 
 	currentInterface = i;
@@ -99,6 +104,8 @@ void DMXChannelView::setCurrentInterface(DMXInterface* i)
 		addAndMakeVisible(testingUI.get());
 		flashValue.reset(currentInterface->channelTestingFlashValue->createSlider());
 		addAndMakeVisible(flashValue.get());
+
+		currentInterface->addAsyncCoalescedDMXInterfaceListener(this);
 
 		resized();
 	}
@@ -156,6 +163,24 @@ void DMXChannelView::newMessage(const InterfaceManager::ManagerEvent& e)
 	}
 }
 
+void DMXChannelView::newMessage(const DMXInterface::DMXInterfaceEvent& e)
+{
+	if (currentInterface == nullptr) return;
+	if (currentInterface->channelTestingMode->boolValue()) return;
+
+	if (e.type == DMXInterface::DMXInterfaceEvent::UNIVERSE_SENT)
+	{
+		if (e.universe->universe == currentInterface->defaultUniverse->intValue()
+			&& e.universe->net == currentInterface->defaultNet->intValue()
+			&& e.universe->subnet == currentInterface->defaultSubnet->intValue())
+		{
+			for (int i = 0; i < DMX_NUM_CHANNELS; i++) channelItems[i]->value = e.values[i] / 255.0f;
+			shouldRepaint = true;
+		}
+		
+	}
+}
+
 void DMXChannelView::comboBoxChanged(ComboBox* comboBoxThatHasChanged)
 {
 	DMXInterface* d = (dmxList.getSelectedId() == -1) ? nullptr : (DMXInterface*)InterfaceManager::getInstance()->items[dmxList.getSelectedId() - 1];
@@ -165,6 +190,12 @@ void DMXChannelView::comboBoxChanged(ComboBox* comboBoxThatHasChanged)
 float DMXChannelView::getFlashValue()
 {
 	return currentInterface != nullptr ? currentInterface->channelTestingFlashValue->floatValue() : 1;
+}
+
+void DMXChannelView::timerCallback()
+{
+	if (shouldRepaint) repaint();
+	shouldRepaint = false;
 }
 
 void DMXChannelView::inspectableDestroyed(Inspectable* i)
@@ -203,6 +234,7 @@ void DMXChannelItem::mouseExit(const MouseEvent& e)
 void DMXChannelItem::mouseDown(const MouseEvent& e)
 {
 	if (tmpFlash || e.mods.isShiftDown()) return;
+	if (channelView->currentInterface != nullptr && !channelView->currentInterface->channelTestingMode->boolValue()) return;
 
 	valueAtMouseDown = value;
 	if (e.mods.isLeftButtonDown() && !e.mods.isAltDown())
@@ -236,6 +268,7 @@ void DMXChannelItem::mouseDown(const MouseEvent& e)
 void DMXChannelItem::mouseDrag(const MouseEvent& e)
 {
 	if (tmpFlash || e.mods.isShiftDown()) return;
+	if (channelView->currentInterface != nullptr && !channelView->currentInterface->channelTestingMode->boolValue()) return;
 
 	if (e.mods.isLeftButtonDown() && e.mods.isAltDown())
 	{
@@ -246,6 +279,8 @@ void DMXChannelItem::mouseDrag(const MouseEvent& e)
 void DMXChannelItem::mouseUp(const MouseEvent& e)
 {
 	if (tmpFlash) return;
+	if (channelView->currentInterface != nullptr && !channelView->currentInterface->channelTestingMode->boolValue()) return;
+
 	if (e.mods.isLeftButtonDown() && !e.mods.isAltDown())
 	{
 		updateDMXValue(valueAtMouseDown);
@@ -287,6 +322,9 @@ void DMXChannelItem::paint(Graphics& g)
 
 
 	c = Colours::hotpink.darker();
+
+	if (channelView->currentInterface != nullptr && !channelView->currentInterface->channelTestingMode->boolValue()) c = BLUE_COLOR.brighter();
+
 	if (isMouseOver()) c = c.brighter(.2f);
 	g.setColour(c);
 	g.fillRoundedRectangle(r.withTrimmedTop((1 - value) * r.getHeight()).toFloat(), 4);

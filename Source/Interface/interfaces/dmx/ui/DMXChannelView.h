@@ -44,7 +44,9 @@ class DMXChannelView :
     public ShapeShifterContentComponent,
     public InterfaceManager::AsyncListener,
     public ComboBox::Listener,
-    public Inspectable::InspectableListener
+    public Inspectable::InspectableListener,
+    public Timer,
+    public DMXInterface::AsyncListener
 {
 public:
 
@@ -62,6 +64,8 @@ public:
 
     DMXInterface* currentInterface;
 
+    bool shouldRepaint;
+
     void resized() override;
 
     void setCurrentInterface(DMXInterface* i);
@@ -69,15 +73,18 @@ public:
     void rebuildDMXList();
     void rebuildChannelItems();
 
-
     void sendDMXValue(int channel, float value);
 
     void newMessage(const InterfaceManager::ManagerEvent& e) override;
+
+    void newMessage(const DMXInterface::DMXInterfaceEvent& e) override;
 
     // Inherited via Listener
     virtual void comboBoxChanged(ComboBox* comboBoxThatHasChanged) override;
 
     float getFlashValue();
+
+    void timerCallback() override;
 
     void inspectableDestroyed(Inspectable* i) override;
 

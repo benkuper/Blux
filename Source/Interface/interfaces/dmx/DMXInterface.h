@@ -32,7 +32,6 @@ public:
 
 	IntParameter* sendRate;
 	BoolParameter* sendOnChangeOnly;
-	BoolParameter* useIntensityForColor;
 
 	IntParameter* defaultNet;
 	IntParameter* defaultSubnet;
@@ -59,6 +58,8 @@ public:
 	void dmxDeviceDisconnected() override;
 
 	void dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") override;
+
+	void prepareSendValues() override;
 	void sendValuesForObjectInternal(Object* o) override;
 
 	DMXUniverse* getUniverse(int net, int subnet, int universe, bool createIfNotExist = true);
@@ -85,11 +86,32 @@ public:
 		virtual ~DMXInterfaceListener() {}
 
 		virtual void dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") {}
+		virtual void dmxUniverseSent(DMXUniverse* u) {}
 	};
 
 	ListenerList<DMXInterfaceListener> dmxInterfaceListeners;
 	void addDMXInterfaceListener(DMXInterfaceListener* newListener) { dmxInterfaceListeners.add(newListener); }
 	void removeDMXInterfaceListener(DMXInterfaceListener* listener) { dmxInterfaceListeners.remove(listener); }
+
+
+	class DMXInterfaceEvent
+	{
+	public:
+		enum Type { DATA_IN_CHANGED, UNIVERSE_SENT };
+
+		DMXInterfaceEvent(Type t, DMXUniverse* universe, Array<uint8> values) : type(t), universe(universe), values(values) {}
+
+		Type type;
+		DMXUniverse* universe;
+		Array<uint8> values;
+	};
+
+	QueuedNotifier<DMXInterfaceEvent> dmxInterfaceNotifier;
+	typedef QueuedNotifier<DMXInterfaceEvent>::Listener AsyncListener;
+
+	void addAsyncDMXInterfaceListener(AsyncListener* newListener) { dmxInterfaceNotifier.addListener(newListener); }
+	void addAsyncCoalescedDMXInterfaceListener(AsyncListener* newListener) { dmxInterfaceNotifier.addAsyncCoalescedListener(newListener); }
+	void removeAsyncDMXInterfaceListener(AsyncListener* listener) { dmxInterfaceNotifier.removeListener(listener); }
 
 
 	DECLARE_TYPE("DMX");

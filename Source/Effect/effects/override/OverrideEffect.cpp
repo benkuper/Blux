@@ -23,7 +23,7 @@ OverrideEffect::~OverrideEffect()
 OverrideFloatEffect::OverrideFloatEffect(var params) :
     OverrideEffect(getTypeString(), params)
 {
-    value = effectParams.addFloatParameter("Value", "Overriding value", 0, 0 ,1);
+    value = effectParams.addFloatParameter("Value", "Overriding value", 0, -1 ,1);
     value->isCustomizableByUser = true;
 }
 

@@ -10,51 +10,80 @@
 
 #include "Object/ObjectIncludes.h"
 #include "Interface/InterfaceIncludes.h"
-#include "ObjectComponent.h"
 
 ObjectComponent::ObjectComponent(Object* o, String name, ComponentType componentType, var params) :
 	BaseItem(name, true),
 	object(o),
 	componentType(componentType),
 	mainParameter(nullptr),
-	interfaceParams("Interface Params")
+	interfaceParamCC("Interface Params")
 {
+	saveAndLoadRecursiveData = true;
+
 	excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked ,this will not be included in scene data", false);
 	canBeCopiedAndPasted = false;
-	canBeReorderedInEditor = false;
+	userCanDuplicate = false;
+	canBeReorderedInEditor = true;
 
-	interfaceParams.hideInEditor = interfaceParams.controllables.isEmpty();
+	interfaceParamCC.hideInEditor = interfaceParams.isEmpty();
+	addChildControllableContainer(&interfaceParamCC);
 }
 
 ObjectComponent::~ObjectComponent()
 {
 }
 
-void ObjectComponent::generateInterfaceParams(Interface* i)
+void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 {
+
+	var oldData = interfaceParamsGhostData.isVoid() ? interfaceParamCC.getJSONData() : interfaceParamsGhostData;
+
+	interfaceParamCC.clear();
 	interfaceParams.clear();
-	if (i == nullptr) return;
+	computedInterfaceMap.clear();
+
+	if (interface == nullptr) return;
 
 	//default behaviours here
+	if (DMXInterface* dmxI = dynamic_cast<DMXInterface*>(interface))
+	{
+		interfaceParamCC.setNiceName("DMX Parameters");
 
-	interfaceParams.hideInEditor = interfaceParams.controllables.isEmpty();
+		int i = 1;
+		for (auto& cp : computedParameters)
+		{
+			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName, "Channel for this parameter", i, 1, 512, true);
+			p->canBeDisabledByUser = true;
+			interfaceParams.add(p);
+			computedInterfaceMap.set(cp, p);
+			i += p->value.size();
+		}
+	}
+
+	interfaceParamCC.hideInEditor = interfaceParams.isEmpty();
+	interfaceParamCC.loadJSONData(oldData);
+
+	interfaceParamsGhostData = var();
 }
 
-void ObjectComponent::addComputedParameter(Parameter* p, Parameter* originalParameter)
+Parameter* ObjectComponent::addComputedParameter(Parameter* p, ControllableContainer* parent)
 {
-	p->setControllableFeedbackOnly(true);
-	computedParameters.add(p);
-	computedParamMap.set(p, originalParameter);
-	addParameter(p);
+	if (parent == nullptr) parent = this;
+	sourceParameters.add(p);
+	parent->addParameter(p);
 
-	if (computedParameters.size() == 1) mainParameter = p;
+	Parameter* cp = ControllableFactory::createParameterFrom(p, false, true);
+	cp->setNiceName("Out " + p->niceName);
+	cp->setControllableFeedbackOnly(true);
+	cp->hideInEditor = true;
+	computedParameters.add(cp);
+	computedParamMap.set(cp, p);
+	paramComputedMap.set(p, cp);
+	addParameter(cp);
 
-	p->hideInEditor = true;
-}
+	if (computedParameters.size() == 1) mainParameter = cp;
 
-void ObjectComponent::linkComputedParamToDMXChannel(Parameter* cp, int localChannel)
-{
-	localDMXChannels.set(cp, localChannel);
+	return p;
 }
 
 void ObjectComponent::onContainerParameterChangedInternal(Parameter* p)
@@ -69,7 +98,11 @@ void ObjectComponent::fillComputedValueMap(HashMap<Parameter*, var>& values)
 {
 	for (auto& c : computedParameters)
 	{
-		if (computedParamMap.contains(c)) values.set(c, computedParamMap[c]->getValue().clone());
+		if (computedParamMap.contains(c))
+		{
+			//DBG("Set computed value to source value " << computedParamMap[c]->niceName << " : " << computedParamMap[c]->floatValue());
+			values.set(c, computedParamMap[c]->getValue().clone());
+		}
 	}
 }
 
@@ -77,6 +110,7 @@ void ObjectComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
 	for (auto& p : computedParameters)
 	{
+		//DBG("update computed value after chain, " << p->niceName << " : " << values[p].toString());
 		p->setValue(values[p]);
 	}
 }
@@ -118,25 +152,29 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 	if (DMXInterface* di = dynamic_cast<DMXInterface*>(i))
 	{
 		int channelOffset = params.getProperty("channelOffset", 0);
-		HashMap<Parameter*, int>::Iterator it(localDMXChannels);
 		var channelsData = data.getProperty("channels", var());
-		while (it.next())
+
+		for (auto& cp : computedParameters)
 		{
-			int targetChannel = channelOffset + it.getValue() - 1;
-			Parameter* p = it.getKey();
-			if (p->isComplex())
+			Parameter* channelP = computedInterfaceMap[cp];
+
+			if (channelP == nullptr) continue;
+			int channel = channelP->intValue();
+			int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
+
+			if (cp->isComplex())
 			{
-				var val = p->getValue();
+				var val = cp->getValue();
 				for (int i = 0; i < val.size(); i++)
 				{
-					if (p->type == Controllable::FLOAT) channelsData[targetChannel + i] = (int)((float)val[i] * 255);
-					else if (p->type == Controllable::INT) channelsData[targetChannel + i] = (int)val[i];
+					if (cp->type == Controllable::FLOAT) channelsData[targetChannel + i] = (int)((float)val[i] * 255);
+					else if (cp->type == Controllable::INT) channelsData[targetChannel + i] = (int)val[i];
 				}
 			}
 			else
 			{
-				if (p->type == Controllable::FLOAT) channelsData[targetChannel] = (int)(it.getKey()->floatValue() * 255);
-				else if (p->type == Controllable::INT) channelsData[targetChannel] = it.getKey()->intValue();
+				if (cp->type == Controllable::FLOAT) channelsData[targetChannel] = (int)(cp->floatValue() * 255);
+				else if (cp->type == Controllable::INT) channelsData[targetChannel] = cp->intValue();
 			}
 		}
 	}
@@ -165,6 +203,18 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 //		else channelValueMap.set(sChannel + paramChannels[i], p->floatValue()); //remap to 0-255 automatically
 //	}
 //}
+
+var ObjectComponent::getJSONData()
+{
+	var data = BaseItem::getJSONData();
+	data.getDynamicObject()->setProperty("interfaceParams", interfaceParamCC.getJSONData());
+	return data;
+}
+
+void ObjectComponent::loadJSONDataItemInternal(var data)
+{
+	interfaceParamsGhostData = data.getProperty("interfaceParams", var());
+}
 
 InspectableEditor* ObjectComponent::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)
 {

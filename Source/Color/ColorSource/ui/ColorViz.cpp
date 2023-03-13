@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Color/ColorIncludes.h"
+
 ColorViz::ColorViz(ColorComponent* comp) :
     InspectableEditor(comp, false),
     comp(comp)
@@ -25,6 +27,7 @@ void ColorViz::paint(Graphics& g)
 {
     if (inspectable.wasObjectDeleted()) return;
     if (comp->pixelShape == nullptr) return;
+    if (comp->outColors.isEmpty()) return;
 
     Rectangle<int> r = getLocalBounds().reduced(2);
     float minSize = jmin(r.getWidth(), r.getHeight());

@@ -10,12 +10,17 @@
 #include "Object/ObjectIncludes.h"
 
 OrientationComponent::OrientationComponent(Object* o, var params) :
-	ObjectComponent(o, getTypeString(), ORIENTATION, params)
+	ObjectComponent(o, getTypeString(), ORIENTATION, params),
+	panTiltCC("Pan Tilt Control")
 {
-	target = addPoint3DParameter("Target", "The point to target in 3D");
-	sourceParameters.add(target);
+	target = (Point3DParameter*)addComputedParameter(new Point3DParameter("Target", "Orientation after all effects applied"));
 
-	addComputedParameter(new Point3DParameter("Target", "Computed orientation after all effects applied"), target);
+	usePreciseChannels = panTiltCC.addBoolParameter("Use Precise Channels", "If checked, this will also set the 2 precision channels. Depends on the device used.", false);
+	pan = (FloatParameter*)addComputedParameter(new FloatParameter("Pan", "Pan", 0, 0, 1), &panTiltCC);
+	tilt = (FloatParameter*)addComputedParameter(new FloatParameter("Tilt", "Tilt", 0, 0, 1), &panTiltCC);
+
+	addChildControllableContainer(&panTiltCC);
+
 }
 
 OrientationComponent::~OrientationComponent()

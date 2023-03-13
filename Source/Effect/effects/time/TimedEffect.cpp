@@ -65,9 +65,9 @@ void TimedEffect::updateEnabled()
 
 void TimedEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
-	if (autoResetOnNonZero->boolValue() && c->computedParameters.size() > 0) //component needs to have a reference to "main param" for this kind of purpose
+	if (autoResetOnNonZero->boolValue() && c->mainParameter != nullptr) //component needs to have a reference to "main param" for this kind of purpose
 	{
-		Parameter* p = c->computedParameters[0];
+		//Parameter* p = c->computedParameters[0];
 
 		//PROBLEM WITH NESTED HASHMAP
 		//if (prevValues[c].contains(p) && values.contains(p))

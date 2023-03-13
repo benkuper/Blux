@@ -88,15 +88,18 @@ void EffectManager::lerpFromSceneData(var startData, var endData, float weight)
 
 EffectFactory::EffectFactory()
 {
-	defs.add(Factory<Effect>::Definition::createDef("Number", OverrideFloatEffect::getTypeStringStatic(), &OverrideFloatEffect::create));
-	defs.add(Factory<Effect>::Definition::createDef("Number", CurveMapEffect::getTypeStringStatic(), &CurveMapEffect::create));
-	defs.add(Factory<Effect>::Definition::createDef("Number", NoiseEffect::getTypeStringStatic(), &NoiseEffect::create));
-	defs.add(Factory<Effect>::Definition::createDef("Number", AutomationEffect::getTypeStringStatic(), &AutomationEffect::create));
-	defs.add(Factory<Effect>::Definition::createDef("Number", FreezeFloatEffect::getTypeStringStatic(), &FreezeFloatEffect::create));
+	defs.add(Factory<Effect>::Definition::createDef<OverrideFloatEffect>("Number"));
+	defs.add(Factory<Effect>::Definition::createDef<CurveMapEffect>("Number"));
+	defs.add(Factory<Effect>::Definition::createDef<NoiseEffect>("Number"));
+	defs.add(Factory<Effect>::Definition::createDef<AutomationEffect>("Number"));
+	defs.add(Factory<Effect>::Definition::createDef<FreezeFloatEffect>("Number"));
 
-	defs.add(Factory<Effect>::Definition::createDef("Number", SmoothingEffect::getTypeStringStatic(), &SmoothingEffect::create));
+	defs.add(Factory<Effect>::Definition::createDef<SmoothingEffect>("Number"));
 
-	defs.add(Factory<Effect>::Definition::createDef("Color", ColorSourceOverrideEffect::getTypeStringStatic(), &ColorSourceOverrideEffect::create));
-	defs.add(Factory<Effect>::Definition::createDef("Color", HSVAdjustEffect::getTypeStringStatic(), &HSVAdjustEffect::create));
-	defs.add(Factory<Effect>::Definition::createDef("Color", GradientRemapEffect::getTypeStringStatic(), &GradientRemapEffect::create));
+	defs.add(Factory<Effect>::Definition::createDef<ColorSourceOverrideEffect>("Color"));
+	defs.add(Factory<Effect>::Definition::createDef<HSVAdjustEffect>("Color"));
+	defs.add(Factory<Effect>::Definition::createDef<GradientRemapEffect>("Color"));
+
+	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetEffect>("Orientation"));
+	defs.add(Factory<Effect>::Definition::createDef<OrientationPanTiltEffect>("Orientation"));
 }

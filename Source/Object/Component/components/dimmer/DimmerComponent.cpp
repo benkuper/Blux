@@ -17,7 +17,7 @@ DimmerComponent::DimmerComponent(Object* o, var params) :
 
 	saveAndLoadRecursiveData = true;
 
-	value = addFloatParameter("Value", "Valuer of the dimmer", 0, 0, 1);
+	value = (FloatParameter*)addComputedParameter(new FloatParameter("Value", "Valuer of the dimmer", 0, 0, 1));
 	curve.setCanBeDisabled(true);
 	curve.enabled->setValue(false);
 	curve.addKey(0, 0);
@@ -32,12 +32,13 @@ DimmerComponent::~DimmerComponent()
 
 void DimmerComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
-	if (!curve.enabled->boolValue()) return;
-
-	Parameter* compValue = computedParamMap[value];
-	float val = values[compValue];
-	float endVal = curve.getValueAtPosition(val);
-	values.set(compValue, endVal);
+	if (curve.enabled->boolValue())
+	{
+		Parameter* compValue = paramComputedMap[value];
+		float val = values[compValue];
+		float endVal = curve.getValueAtPosition(val);
+		values.set(compValue, endVal);
+	}
 
 	ObjectComponent::updateComputedValues(values);
 }

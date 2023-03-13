@@ -15,8 +15,8 @@ ObjectChainVizUI::ObjectChainVizUI(Object* o, ChainVizTarget::ChainVizType type)
 {
 	if (DimmerComponent* ic = o->getComponent<DimmerComponent>())
 	{
-		FloatParameter* sourceIntensity = (FloatParameter*)ic->computedParamMap[ic->value];
-		FloatParameter* computedIntensity = (FloatParameter*)ic->computedParameters[0];
+		FloatParameter* sourceIntensity = (FloatParameter*)ic->value;
+		FloatParameter* computedIntensity = (FloatParameter*)ic->paramComputedMap[ic->value];
 		FloatParameter* ip = (type == ChainVizTarget::ChainVizType::OBJECT_START) ? sourceIntensity : computedIntensity;
 		if (ip != nullptr)
 		{

@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
+
 juce_ImplementSingleton(ObjectManager);
 
 ObjectManager::ObjectManager() :
@@ -78,7 +80,8 @@ void ObjectManager::updateFactoryDefinitions()
     Image img = ImageCache::getFromMemory(BinaryData::icon128_png, BinaryData::icon128_pngSize);
 
     var customParams(new DynamicObject());
-    customParams.getDynamicObject()->setProperty("canCustomize", true);
+    //customParams.getDynamicObject()->setProperty("canCustomize", true);
+    customParams.getDynamicObject()->setProperty("isCustom", true);
     factory.defs.add(Factory<Object>::Definition::createDef("", "Custom", &Object::create, customParams)->addIcon(img));
 
     File objectsFolder = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName)+"/objects");

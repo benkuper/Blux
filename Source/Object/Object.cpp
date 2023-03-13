@@ -97,9 +97,6 @@ Object::Object(var params) :
 	targetInterface->targetType = TargetParameter::CONTAINER;
 	targetInterface->maxDefaultSearchLevel = 0;
 
-	if (!Engine::mainEngine->isLoadingFile && InterfaceManager::getInstance()->items.size() == 1) targetInterface->setValueFromTarget(InterfaceManager::getInstance()->items[0]);
-
-
 	componentManager.reset(new ComponentManager(this));
 
 	var cData = params.getProperty("components", var());
@@ -109,12 +106,11 @@ Object::Object(var params) :
 		for (auto& cp : cProps) componentManager->addComponentFromDefinition(cp.name, cp.value, false);
 	}
 
-	if (DimmerComponent* ic = getComponent<DimmerComponent>()) slideManipParameter = ic->value;
-
 	customParams.reset(new ObjectManagerCustomParams(ObjectManager::getInstance()));
 	addChildControllableContainer(customParams.get());
 
 	componentManager->userCanAddItemsManually = params.getProperty("isCustom", false);
+	componentManager->addBaseManagerListener(this);
 	addChildControllableContainer(componentManager.get());
 
 	effectManager.reset(new EffectManager());
@@ -129,6 +125,8 @@ Object::Object(var params) :
 		objectManager->userCanAddItemsManually = canCustomize;
 		addChildControllableContainer(objectManager.get());
 	}
+
+	if (!Engine::mainEngine->isLoadingFile && InterfaceManager::getInstance()->items.size() == 1) targetInterface->setValueFromTarget(InterfaceManager::getInstance()->items[0]);
 }
 
 Object::~Object()
@@ -138,7 +136,7 @@ Object::~Object()
 void Object::clearItem()
 {
 	effectManager->clear();
-
+	componentManager->removeBaseManagerListener(this);
 	if (!sourceInterfaceParamsRef.wasObjectDeleted() && sourceInterfaceParamsRef != nullptr)
 	{
 		sourceInterfaceParamsRef->removeControllableContainerListener(this);
@@ -152,7 +150,6 @@ void Object::rebuildInterfaceParams()
 	{
 		sourceInterfaceParamsRef->removeControllableContainerListener(this);
 	}
-
 
 	if (interfaceParameters != nullptr)
 	{
@@ -174,6 +171,8 @@ void Object::rebuildInterfaceParams()
 	else interfaceParameters.reset();
 
 	if (interfaceParameters != nullptr && !interfaceGhostData.isVoid()) interfaceParameters->loadJSONData(interfaceGhostData);
+
+	if (componentManager != nullptr) for (auto& c : componentManager->items) c->rebuildInterfaceParams((Interface*)targetInterface->targetContainer.get());
 }
 
 void Object::onContainerParameterChangedInternal(Parameter* p)
@@ -281,7 +280,7 @@ void Object::computeComponentValues(ObjectComponent* c)
 			GlobalSequenceManager::getInstance()->processComponent(this, c, values);
 			GlobalEffectManager::getInstance()->processComponent(this, c, values);
 
-			
+
 			c->updateComputedValues(values);
 		}
 	}
@@ -305,6 +304,22 @@ void Object::lerpFromSceneData(var startData, var endData, float weight)
 	if (excludeFromScenes->boolValue()) return;
 	componentManager->lerpFromSceneData(startData.getProperty(componentManager->shortName, var()), endData.getProperty(componentManager->shortName, var()), weight);
 	effectManager->lerpFromSceneData(startData.getProperty(effectManager->shortName, var()), endData.getProperty(effectManager->shortName, var()), weight);
+}
+
+void Object::componentsChanged()
+{
+	if (DimmerComponent* ic = getComponent<DimmerComponent>()) slideManipParameter = ic->value;
+	else slideManipParameter = nullptr;
+
+	if (!isCurrentlyLoadingData)
+	{
+		if (Interface* i = (Interface*)targetInterface->targetContainer.get()) for (auto& c : componentManager->items) c->rebuildInterfaceParams(i);
+	}
+}
+
+void Object::afterLoadJSONDataInternal()
+{
+	if (Interface* i = (Interface*)targetInterface->targetContainer.get()) for (auto& c : componentManager->items) c->rebuildInterfaceParams(i);
 }
 
 Array<ChainVizTarget*> Object::getEffectChain()

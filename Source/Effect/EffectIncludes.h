@@ -53,6 +53,8 @@ class FilterManager;
 #include "effects/time/automation/ui/AutomationEffectEditor.h"
 #include "effects/time/noise/NoiseEffect.h"
 
+#include "effects/orientation/OrientationEffect.h"
+
 #include "Filter/Filter.h"
 #include "Filter/FilterManager.h"
 #include "Filter/filters/group/GroupFilter.h"
