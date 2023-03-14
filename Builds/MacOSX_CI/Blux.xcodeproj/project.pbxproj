@@ -52,6 +52,7 @@
 		C65133D1C46A866FBF59EB2C /* BinaryData.cpp */ = {isa = PBXBuildFile; fileRef = C1EF6A071CA9F578B6CAF58B; };
 		D22C9B50D20880A24C6699E9 /* include_juce_audio_devices.mm */ = {isa = PBXBuildFile; fileRef = 518CA3516EE96E22D610486C; };
 		D4205D555306A060B09D2F4F /* AudioToolbox.framework */ = {isa = PBXBuildFile; fileRef = 9799B30D2C26F7F693998034; };
+		D44E8B9BD582500594A79477 /* Viz.cpp */ = {isa = PBXBuildFile; fileRef = 5B084FFD3594BB6AE2F57107; };
 		D4CF9D5DFCEF13890EBA89C8 /* ColorIncludes.cpp */ = {isa = PBXBuildFile; fileRef = 21D8F484CC5A3FCA41AD3BA1; };
 		D8282176A00D64D8E8C6186D /* Foundation.framework */ = {isa = PBXBuildFile; fileRef = 5346403F24D6117BCF6C5831; };
 		D8E8FC19FE0873A1B4A636C4 /* include_juce_organicui2.cpp */ = {isa = PBXBuildFile; fileRef = CFDA35C76602682CC9A4C8CD; };
@@ -70,6 +71,7 @@
 		006DA9E2FF4CD9E76DE57C8A /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
 		00AB0B5CDE71C277BF26E781 /* juce_cryptography */ /* juce_cryptography */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_cryptography; path = ../../JUCE/modules/juce_cryptography; sourceTree = SOURCE_ROOT; };
 		013AE2807C8B6D820CC29FAE /* ColorSourceFactory.h */ /* ColorSourceFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceFactory.h; path = ../../Source/Color/ColorSource/ColorSourceFactory.h; sourceTree = SOURCE_ROOT; };
+		0155206A84A142D5A21701D6 /* Viz.h */ /* Viz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Viz.h; path = ../../Source/Viz/Viz.h; sourceTree = SOURCE_ROOT; };
 		01853B11F486D118C52E07F3 /* EffectAction.h */ /* EffectAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectAction.h; path = ../../Source/Effect/actions/EffectAction.h; sourceTree = SOURCE_ROOT; };
 		019AB39CF50EDD030BA53744 /* VirtualGroup.cpp */ /* VirtualGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualGroup.cpp; path = ../../Source/Object/Group/groups/virtual/VirtualGroup.cpp; sourceTree = SOURCE_ROOT; };
 		02B28215A4B748FD21AEEA48 /* BentoInterface.h */ /* BentoInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BentoInterface.h; path = ../../Source/Interface/interfaces/bento/BentoInterface.h; sourceTree = SOURCE_ROOT; };
@@ -211,6 +213,7 @@
 		5A2DA1DEA1433608F89026C9 /* BluxEngine.h */ /* BluxEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BluxEngine.h; path = ../../Source/Engine/BluxEngine.h; sourceTree = SOURCE_ROOT; };
 		5AD926A91C217ECC8755AFE6 /* WebKit.framework */ /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		5AFAEE015993C09FBDF1EC8E /* EffectEditor.h */ /* EffectEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectEditor.h; path = ../../Source/Effect/ui/EffectEditor.h; sourceTree = SOURCE_ROOT; };
+		5B084FFD3594BB6AE2F57107 /* Viz.cpp */ /* Viz.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Viz.cpp; path = ../../Source/Viz/Viz.cpp; sourceTree = SOURCE_ROOT; };
 		5BBC171C1D753E27DBD3E119 /* ObjectChainVizUI.h */ /* ObjectChainVizUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ObjectChainVizUI.h; path = ../../Source/Object/ui/ObjectChainVizUI.h; sourceTree = SOURCE_ROOT; };
 		5D16C722BF568BE6D9DCCB97 /* EffectChainVizUI.h */ /* EffectChainVizUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectChainVizUI.h; path = ../../Source/Effect/ui/EffectChainVizUI.h; sourceTree = SOURCE_ROOT; };
 		5DF09F87AE4D6E4F26959550 /* include_juce_serial.cpp */ /* include_juce_serial.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_serial.cpp; path = ../../JuceLibraryCode/include_juce_serial.cpp; sourceTree = SOURCE_ROOT; };
@@ -331,6 +334,7 @@
 		A6519DD8271E813FECBC9F3D /* PictureColorSource.cpp */ /* PictureColorSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PictureColorSource.cpp; path = ../../Source/Color/ColorSource/sources/picture/PictureColorSource.cpp; sourceTree = SOURCE_ROOT; };
 		A7000034A7855ADD70945C91 /* MainIncludes.h */ /* MainIncludes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainIncludes.h; path = ../../Source/MainIncludes.h; sourceTree = SOURCE_ROOT; };
 		A71099E4A1F2F239959CBEC9 /* Interface.h */ /* Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Interface.h; path = ../../Source/Interface/Interface.h; sourceTree = SOURCE_ROOT; };
+		A755816C1CED17B3F6D93289 /* FastNoiseLite.h */ /* FastNoiseLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FastNoiseLite.h; path = ../../Source/Common/Helpers/FastNoiseLite.h; sourceTree = SOURCE_ROOT; };
 		A7610873460E2A5A2E2D3D78 /* OrientationEffect.cpp */ /* OrientationEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = OrientationEffect.cpp; path = ../../Source/Effect/effects/orientation/OrientationEffect.cpp; sourceTree = SOURCE_ROOT; };
 		A7D029232D277EDE80B30337 /* MIDIMappingManager.cpp */ /* MIDIMappingManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MIDIMappingManager.cpp; path = ../../Source/Interface/interfaces/midi/MIDIMappingManager.cpp; sourceTree = SOURCE_ROOT; };
 		A8F8B78564FB0C59AF4386D1 /* GroupUI.cpp */ /* GroupUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GroupUI.cpp; path = ../../Source/Object/Group/ui/GroupUI.cpp; sourceTree = SOURCE_ROOT; };
@@ -492,6 +496,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00A3FD09E345116DE1A2BBF6 /* Viz */ = {
+			isa = PBXGroup;
+			children = (
+				5B084FFD3594BB6AE2F57107,
+				0155206A84A142D5A21701D6,
+			);
+			name = Viz;
+			sourceTree = "<group>";
+		};
 		066B48AC82B3C57542AF7EB3 /* groups */ = {
 			isa = PBXGroup;
 			children = (
@@ -882,6 +895,7 @@
 		44657D546832EF89815CB9EB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A755816C1CED17B3F6D93289,
 				6A7063FAB3E5711505908343,
 				AC703A846AB3D42F740D5C58,
 			);
@@ -1099,6 +1113,7 @@
 		6E9F1AD50FC257BAEE7B1A6A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				00A3FD09E345116DE1A2BBF6,
 				B795528345BB0A79A53C60B7,
 				2E4097C67D2D41EB37640537,
 				4789238EA8BC1FE09AFC5991,
@@ -1827,6 +1842,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D44E8B9BD582500594A79477,
 				5CB8F8F8716207DCD5FF01AF,
 				D4CF9D5DFCEF13890EBA89C8,
 				10EA515C3226184043546018,
@@ -1957,6 +1973,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_timeline=1",
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
 					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
+					"JUCE_USE_WIN_WEBVIEW2=1",
 					"ORGANICUI_USE_SERVUS=1",
 					"ORGANICUI_USE_WEBSERVER=1",
 					"JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1",
@@ -2048,6 +2065,7 @@
 					"JUCE_MODULE_AVAILABLE_juce_timeline=1",
 					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
 					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
+					"JUCE_USE_WIN_WEBVIEW2=1",
 					"ORGANICUI_USE_SERVUS=1",
 					"ORGANICUI_USE_WEBSERVER=1",
 					"JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1",

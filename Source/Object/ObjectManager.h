@@ -56,6 +56,7 @@ public:
     virtual void itemRemoved(GenericControllableItem*) override;
 
 
+
     void downloadObjects();
     void updateFactoryDefinitions();
     void addItemInternal(Object* o, var data) override;
@@ -71,6 +72,9 @@ public:
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
+
+    virtual var getVizData();
+
 
     void run() override;
 

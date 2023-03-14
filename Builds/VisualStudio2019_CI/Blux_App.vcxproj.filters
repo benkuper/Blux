@@ -11,6 +11,9 @@
     <Filter Include="Blux\Resources">
       <UniqueIdentifier>{BF26CDE0-ADF7-D8C6-0A26-38627B2C18D8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Viz">
+      <UniqueIdentifier>{79484F8F-F9FE-1E30-6EFC-08AD6E545402}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Common\Action">
       <UniqueIdentifier>{E4384191-0A4E-CF99-811C-B719F5F7E8C4}</UniqueIdentifier>
     </Filter>
@@ -1315,6 +1318,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Viz\Viz.cpp">
+      <Filter>Blux\Source\Viz</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Action\Action.cpp">
       <Filter>Blux\Source\Common\Action</Filter>
     </ClCompile>
@@ -5115,6 +5121,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Viz\Viz.h">
+      <Filter>Blux\Source\Viz</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Common\Action\Action.h">
       <Filter>Blux\Source\Common\Action</Filter>
     </ClInclude>
@@ -5126,6 +5135,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\CommonClasses\SceneListener.h">
       <Filter>Blux\Source\Common\CommonClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Helpers\FastNoiseLite.h">
+      <Filter>Blux\Source\Common\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h">
       <Filter>Blux\Source\Common\Helpers</Filter>
@@ -12212,6 +12224,7 @@
     <None Include=".\icon.ico">
       <Filter>JUCE Library Code</Filter>
     </None>
+    <None Include="packages.config"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include=".\resources.rc">

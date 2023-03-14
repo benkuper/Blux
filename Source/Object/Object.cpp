@@ -91,6 +91,7 @@ Object::Object(var params) :
 
 	globalID = addIntParameter("Global ID", "Virtual ID that is used in many places of Blux to filter, alter effects, etc.", 0, 0);
 	stagePosition = addPoint3DParameter("Stage Position", "Position on stage, can be animated with stage layouts");
+	stageRotation = addPoint3DParameter("Stage Rotation", "Rotation on stage, can be animated with stage layouts");
 	excludeFromScenes = addBoolParameter("Exclude From Scenes", "If enabled, this object will not be modified when loading scenes", false);
 
 	targetInterface = addTargetParameter("Interface", "The interface to link this object to", InterfaceManager::getInstance());
@@ -304,6 +305,19 @@ void Object::lerpFromSceneData(var startData, var endData, float weight)
 	if (excludeFromScenes->boolValue()) return;
 	componentManager->lerpFromSceneData(startData.getProperty(componentManager->shortName, var()), endData.getProperty(componentManager->shortName, var()), weight);
 	effectManager->lerpFromSceneData(startData.getProperty(effectManager->shortName, var()), endData.getProperty(effectManager->shortName, var()), weight);
+}
+
+var Object::getVizData()
+{
+	var data(new DynamicObject());
+	data.getDynamicObject()->setProperty("niceName", niceName);
+	data.getDynamicObject()->setProperty("controlAddress", getControlAddress(Engine::mainEngine));
+	data.getDynamicObject()->setProperty("stagePosition", stagePosition->getValue());
+	data.getDynamicObject()->setProperty("stageRotation", stageRotation->getValue());
+	data.getDynamicObject()->setProperty("type", getTypeString());
+	data.getDynamicObject()->setProperty("shape", "Moving Head");
+	data.getDynamicObject()->setProperty("components", componentManager->getVizData());
+	return data;
 }
 
 void Object::componentsChanged()

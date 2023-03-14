@@ -60,8 +60,8 @@ void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 		}
 	}
 
-	interfaceParamCC.hideInEditor = interfaceParams.isEmpty();
 	interfaceParamCC.loadJSONData(oldData);
+	interfaceParamCC.hideInEditor = interfaceParams.isEmpty();
 
 	interfaceParamsGhostData = var();
 }
@@ -134,6 +134,16 @@ void ObjectComponent::lerpFromSceneData(var startData, var endData, float weight
 {
 	if (excludeFromScenes->boolValue()) return;
 	SceneHelpers::lerpSceneParams(this, startData, endData, weight);
+}
+
+var ObjectComponent::getVizData()
+{
+	var data(new DynamicObject());
+	var computedData(new DynamicObject());
+	for (auto& p : computedParameters) computedData.getDynamicObject()->setProperty(p->shortName, p->getValue());
+	data.getDynamicObject()->setProperty("computedParams", computedData);
+
+	return data;
 }
 
 void ObjectComponent::fillInterfaceData(Interface* i, var data, var params)

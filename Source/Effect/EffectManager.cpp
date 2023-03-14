@@ -101,5 +101,6 @@ EffectFactory::EffectFactory()
 	defs.add(Factory<Effect>::Definition::createDef<GradientRemapEffect>("Color"));
 
 	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetEffect>("Orientation"));
+	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetNoiseEffect>("Orientation"));
 	defs.add(Factory<Effect>::Definition::createDef<OrientationPanTiltEffect>("Orientation"));
 }

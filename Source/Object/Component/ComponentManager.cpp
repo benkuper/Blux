@@ -9,6 +9,7 @@
 */
 
 #include "Object/ObjectIncludes.h"
+#include "ComponentManager.h"
 
 ComponentManager::ComponentManager(Object* o) :
 	BaseManager("Components"),
@@ -50,6 +51,13 @@ void ComponentManager::updateSceneData(var& sceneData)
 void ComponentManager::lerpFromSceneData(var startData, var endData, float weight)
 {
 	for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
+}
+
+var ComponentManager::getVizData()
+{
+	var data(new DynamicObject());
+	for (auto& i : items) data.getDynamicObject()->setProperty(i->shortName, i->getVizData());
+	return data;
 }
 
 

@@ -32,6 +32,10 @@
       <FILE id="dgm4a3" name="seq.png" compile="0" resource="1" file="Resources/seq.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{E4D06182-EF76-AD0B-E12C-F5D33B208844}" name="Viz">
+        <FILE id="oDvzgg" name="Viz.cpp" compile="1" resource="0" file="Source/Viz/Viz.cpp"/>
+        <FILE id="PAPRob" name="Viz.h" compile="0" resource="0" file="Source/Viz/Viz.h"/>
+      </GROUP>
       <GROUP id="{6C202BEC-8036-59E9-E037-774A938FF34C}" name="Common">
         <GROUP id="{3698B081-1A63-F3A6-3572-F3E4E882352C}" name="Action">
           <FILE id="vU05WU" name="Action.cpp" compile="0" resource="0" file="Source/Common/Action/Action.cpp"/>
@@ -45,6 +49,7 @@
           <FILE id="ScKDSK" name="SceneListener.h" compile="0" resource="0" file="Source/Common/CommonClasses/SceneListener.h"/>
         </GROUP>
         <GROUP id="{FDBCF8F9-5A2F-1AB7-233C-193390137552}" name="Helpers">
+          <FILE id="qSFKvb" name="FastNoiseLite.h" compile="0" resource="0" file="Source/Common/Helpers/FastNoiseLite.h"/>
           <FILE id="QtCTVD" name="SceneHelpers.cpp" compile="0" resource="0"
                 file="Source/Common/Helpers/SceneHelpers.cpp"/>
           <FILE id="QtOGLe" name="SceneHelpers.h" compile="0" resource="0" file="Source/Common/Helpers/SceneHelpers.h"/>
@@ -756,7 +761,8 @@
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" ORGANICUI_USE_SERVUS="1" ORGANICUI_USE_WEBSERVER="1"
                JUCE_IP_AND_PORT_DETECTION="1" JUCE_EXCLUSIVE_BINDING_BY_DEFAULT="1"
-               JUCE_ENABLE_BROADCAST_BY_DEFAULT="1" JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS="1"/>
+               JUCE_ENABLE_BROADCAST_BY_DEFAULT="1" JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS="1"
+               JUCE_USE_WIN_WEBVIEW2="1"/>
   <EXPORTFORMATS>
     <VS2022 targetFolder="Builds/VisualStudio2022" externalLibraries="Servus.lib&#10;dnssd.lib"
             smallIcon="kxAIe6" bigIcon="kxAIe6">

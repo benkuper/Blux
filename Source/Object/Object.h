@@ -46,6 +46,7 @@ public:
 	BoolParameter* excludeFromScenes;
 
 	Point3DParameter* stagePosition;
+	Point3DParameter* stageRotation;
 
 	//ui
 	EnumParameter* icon;
@@ -76,6 +77,8 @@ public:
 	var getSceneData();
 	void updateSceneData(var& sceneData);
 	void lerpFromSceneData(var startData, var endData, float weight);
+
+	virtual var getVizData();
 
 	void componentsChanged();
 

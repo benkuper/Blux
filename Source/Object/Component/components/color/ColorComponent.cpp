@@ -17,6 +17,13 @@ ColorComponent::ColorComponent(Object* o, var params) :
 {
 	resolution = addIntParameter("Resolution", "Number of different colors/pixels for this object", 1, 1);
 	useIntensityForColor = addBoolParameter("Use Intensity for Color", "If checked, use the intensity component for color opacity", false);
+
+	mainOutColor = addColorParameter("Out Color", "Computed out color, not used to send DMX but for feedback", Colours::black);
+	mainOutColor->hideInEditor = true;
+	mainOutColor->setControllableFeedbackOnly(true);
+	computedParameters.add(mainOutColor);
+
+	update();
 }
 
 ColorComponent::~ColorComponent()
@@ -114,6 +121,13 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 		var col = colValues[i];
 		outColors.set(i, Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
 	}
+
+	if (colValues.size() > 0)
+	{
+		var col = colValues[0];
+		mainOutColor->setColor(Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
+	}
+
 }
 
 //void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)

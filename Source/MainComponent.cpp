@@ -1,3 +1,4 @@
+#include "Viz/Viz.h"
 
 String getAppVersion();
 ApplicationProperties& getAppProperties();
@@ -7,7 +8,7 @@ ApplicationCommandManager& getCommandManager();
 //==============================================================================
 MainComponent::MainComponent()
 {
-    setSize (800,600);
+	setSize(800, 600);
 	getCommandManager().registerAllCommandsForTarget(this);
 }
 
@@ -30,6 +31,7 @@ void MainComponent::init()
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Sequence Editor", &TimeMachineView::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(StageLayoutManager::getInstance()->niceName, &StageLayoutManagerUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 2D View", &StageLayout2DView::create));
+	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 3D View", &VizPanel::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(ColorSourceLibrary::getInstance()->niceName, &ColorSourceLibraryGridUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("DMX Channel Tester", &DMXChannelView::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(ChainViz::panelName, &ChainViz::create));

@@ -9,6 +9,7 @@
 */
 
 #include "Object/ObjectIncludes.h"
+#include "ObjectManager.h"
 
 juce_ImplementSingleton(ObjectManager);
 
@@ -166,6 +167,13 @@ void ObjectManager::updateSceneData(var& sceneData)
 void ObjectManager::lerpFromSceneData(var startData, var endData, float weight)
 {
     for (auto& o : items) o->lerpFromSceneData(startData.getProperty(o->shortName,var()), endData.getProperty(o->shortName, var()), weight);
+}
+
+var ObjectManager::getVizData()
+{
+    var data(new DynamicObject());
+    for (auto& i : items) data.getDynamicObject()->setProperty(i->shortName, i->getVizData());
+    return data;
 }
 
 void ObjectManager::run()

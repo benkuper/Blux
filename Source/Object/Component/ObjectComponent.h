@@ -56,12 +56,15 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
+    virtual var getVizData();
+
     virtual void fillInterfaceData(Interface* i, var data, var params);// (HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false);
     virtual void fillInterfaceDataInternal(Interface* i, var data, var params);// (HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false);
     //virtual void fillOutValueMap(HashMap<int, float> &channelValueMap, int startChannel, bool ignoreChannelOffset = false);
 
     var getJSONData() override;
     void loadJSONDataItemInternal(var data) override;
+
 
     InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
 };

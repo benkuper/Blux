@@ -174,7 +174,19 @@ var Effect::blendValue(var start, var end, float weight)
 	var result;
 	if (start.isArray())
 	{
-		for (int i = 0; i < start.size(); i++) result.append(blendFloatValue(start[i], end[i], weight));
+		for (int i = 0; i < start.size(); i++)
+		{
+			if (start[i].isArray())
+			{
+				var v;
+				for (int j = 0; j < start[i].size(); j++) v.append(blendFloatValue(start[i][j], end[i][j], weight));
+				result.append(v);
+			}
+			else
+			{
+				result.append(blendFloatValue(start[i], end[i], weight));
+			}
+		}
 	}
 	else
 	{
