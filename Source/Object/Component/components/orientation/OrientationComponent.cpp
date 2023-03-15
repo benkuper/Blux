@@ -23,6 +23,7 @@ OrientationComponent::OrientationComponent(Object* o, var params) :
 	controlMode->addOption("Target", TARGET)->addOption("Pan/Tilt", PANTILT);
 
 	target = (Point3DParameter*)addComputedParameter(new Point3DParameter("Target", "Orientation after all effects applied"));
+	paramComputedMap[target]->setEnabled(false);
 
 	usePreciseChannels = panTiltCC.addBoolParameter("Use Precise Channels", "If checked, this will also set the 2 precision channels. Depends on the device used.", false);
 	pan = (FloatParameter*)addComputedParameter(new FloatParameter("Pan", "Pan", 0, 0, 1), &panTiltCC);
@@ -44,7 +45,7 @@ OrientationComponent::OrientationComponent(Object* o, var params) :
 	headOffset = addFloatParameter("Head Offset", "Head distance to the base, to calculate target positionning", 0, 0);
 
 
-	debugPos = (Point3DParameter*)addComputedParameter(new Point3DParameter("Debug", "Debug Position"));
+	//debugPos = (Point3DParameter*)addComputedParameter(new Point3DParameter("Debug", "Debug Position"));
 	addChildControllableContainer(&panTiltCC);
 }
 
@@ -63,7 +64,7 @@ void OrientationComponent::setPanTiltFromTarget(Vec3 worldTarget)
 	Vec3 computedTarget = ((Point3DParameter*)paramComputedMap[target])->getVector();
 	Vec3 localTarget = inverseTransformPoint(object->stagePosition->getVector(), rot, Vector3D<float>(1, 1, 1), computedTarget);
 
-	debugPos->setVector(localTarget.X, localTarget.Y, localTarget.Z);
+	//debugPos->setVector(localTarget.X, localTarget.Y, localTarget.Z);
 
 	float targetTilt = 0;
 	//Point<float> xzPos = new Point<float>(position.X, position.Z);
@@ -140,20 +141,24 @@ void OrientationComponent::onContainerParameterChangedInternal(Parameter* p)
 
 void OrientationComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
-	ControlMode cm = controlMode->getValueDataAsEnum<ControlMode>();
-	if (cm == TARGET)
+	
+	if (!ObjectManager::getInstance()->blackOut->boolValue())
 	{
-		target->setEnabled(cm == TARGET);
+		ControlMode cm = controlMode->getValueDataAsEnum<ControlMode>();
+		if (cm == TARGET)
+		{
+			target->setEnabled(cm == TARGET);
 
-		Parameter* targetC = paramComputedMap[target];
-		Parameter* panC = paramComputedMap[pan];
-		Parameter* tiltC = paramComputedMap[tilt];
+			Parameter* targetC = paramComputedMap[target];
+			Parameter* panC = paramComputedMap[pan];
+			Parameter* tiltC = paramComputedMap[tilt];
 
-		var tVal = values[targetC];
-		setPanTiltFromTarget(Vec3(tVal[0], tVal[1], tVal[1]));
+			var tVal = values[targetC];
+			setPanTiltFromTarget(Vec3(tVal[0], tVal[1], tVal[1]));
 
-		values.set(panC, pan->getValue());
-		values.set(tiltC, tilt->getValue());
+			values.set(panC, pan->getValue());
+			values.set(tiltC, tilt->getValue());
+		}
 	}
 
 	ObjectComponent::updateComputedValues(values);

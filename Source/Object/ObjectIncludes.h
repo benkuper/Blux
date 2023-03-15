@@ -32,6 +32,9 @@
 
 #include "Component/components/orientation/OrientationComponent.h"
 
+#include "Component/components/custom/CustomComponent.h"
+
+
 #include "Group/Group.h"
 #include "Group/GroupManager.h"
 #include "Group/groups/object/ObjectGroup.h"

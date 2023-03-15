@@ -80,7 +80,7 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 
 	stopThread(1000);
 
-	GenericScopedLock lock(sendLock);
+	GenericScopedLock lock(deviceLock);
 
 	if (dmxDevice != nullptr)
 	{
@@ -138,60 +138,6 @@ void DMXInterface::setDMXValue(int net, int subnet, int universe, int startChann
 	for (int i = 0; i < values.size(); i++) u->updateValue(startChannel + i, values[i]);
 }
 
-//void DMXInterface::sendDMXValue(int channel, int value)
-//{
-//	if (!enabled->boolValue() || dmxDevice == nullptr) return;
-//	if (logOutgoingData->boolValue()) NLOG(niceName, "Send DMX : " + String(channel) + " > " + String(value));
-//	//dmxDevice->sendDMXValue(0, 0, 0, channel, value);
-//}
-//
-
-//void DMXInterface::sendDMXValues(int net, int subnet, int universe, Array<int> values)
-//{
-//	if (!enabled->boolValue() || dmxDevice == nullptr) return;
-//	if (logOutgoingData->boolValue())
-//	{
-//		String s = "Send DMX : " + String(startChannel) + ", " + String(values.size()) + " values";
-//		int ch = startChannel;
-//		for (auto& v : values)
-//		{
-//			s += "\nChannel " + String(ch) + " : " + String(v);
-//			ch++;
-//		}
-//		NLOG(niceName, s);
-//	}
-//
-//
-//	//dmxDevice->sendDMXRange(startChannel, values);
-//}
-
-//void DMXInterface::send16BitDMXValue(int startChannel, int value, DMXByteOrder byteOrder)
-//{
-//	if (!enabled->boolValue() || dmxDevice == nullptr) return;
-//	if (logOutgoingData->boolValue()) NLOG(niceName, "Send 16-bit DMX : " + String(startChannel) + " > " + String(value));
-//	//dmxDevice->sendDMXValue(startChannel, byteOrder == MSB ? (value >> 8) & 0xFF : value & 0xFF);
-//	//dmxDevice->sendDMXValue(startChannel + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
-//
-//}
-//
-//void DMXInterface::send16BitDMXValues(int startChannel, Array<int> values, DMXByteOrder byteOrder)
-//{
-//	if (!enabled->boolValue() || dmxDevice == nullptr) return;
-//	if (logOutgoingData->boolValue()) NLOG(niceName, "Send 16-bit DMX : " + String(startChannel) + " > " + String(values.size()) + " values");
-//
-//	Array<int> dmxValues;
-//	int numValues = values.size();
-//	dmxValues.resize(numValues * 2);
-//	for (int i = 0; i < numValues; ++i)
-//	{
-//		int value = values[i];
-//		dmxValues.set(i * 2, byteOrder == MSB ? (value >> 8) & 0xFF : value & 0xFF);
-//		dmxValues.set(i * 2 + 1, byteOrder == MSB ? 0xFF : (value >> 8) & 0xFF);
-//	}
-//
-//	//dmxDevice->sendDMXRange(startChannel, dmxValues);
-//}
-
 void DMXInterface::dmxDeviceConnected()
 {
 	dmxConnected->setValue(true);
@@ -214,8 +160,6 @@ void DMXInterface::dmxDataInChanged(int net, int subnet, int universe, Array<uin
 void DMXInterface::prepareSendValues()
 {
 	if (sendOnChangeOnly->boolValue() || channelTestingMode->boolValue()) return;
-
-	GenericScopedLock lock(sendLock);
 	for (auto& u : universes) u->values.fill(0); // reset all universes to 0
 }
 
@@ -226,39 +170,6 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	DMXParams* dmxParams = dynamic_cast<DMXParams*>(o->interfaceParameters.get());
 
 	jassert(dmxParams != nullptr);
-
-
-	//ColorComponent* colorComp = nullptr;
-
-	//ColorComponent* cComp = o->getComponent<ColorComponent>();
-	//DimmerComponent * ic = o->getComponent<DimmerComponent>();
-
-	//bool intensityForColor = useIntensityForColor->boolValue();
-	//if (cComp != nullptr && cComp->useIntensityForColor->boolValue()) intensityForColor = true;
-
-	//if (intensityForColor)
-	//{
-	//	if (cComp != nullptr)
-	//	{
-	//		colorComp = cComp;
-	//		float fac = 1;
-	//		HashMap<int, float> valueMap;
-	//		if (ic)
-	//		{
-	//			ic->fill
-	//			//ic->fillOutValueMap(valueMap, 0, true);
-	//			fac = valueMap[0];
-	//		}
-
-	//		//colorComp->fillOutValueMap(compValues, startChannel, intensityForColor);
-
-	//		if (fac != 1)
-	//		{
-	//			HashMap<int, float>::Iterator it(compValues);
-	//			while (it.next()) compValues.set(it.getKey(), it.getValue() * fac);
-	//		}
-	//	}
-	//}
 
 	int channelOffset = dmxParams->startChannel->intValue() - 1; //channelOffset is zero based to fill the universe array
 
@@ -288,7 +199,6 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	}
 
 
-
 	//HashMap<int, float>::Iterator it(compValues);
 
 	//if (logOutgoingData->boolValue()) NLOG(niceName, "Updating " << compValues.size() << " values");
@@ -299,6 +209,17 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	{
 		if (logOutgoingData->boolValue()) NLOG(niceName, String(i + 1) << " : " << (int)(channelsData[i]));
 		u->updateValue(i, (int)channelsData[i], sOnChangeOnly);
+	}
+}
+
+void DMXInterface::finishSendValues()
+{
+	GenericScopedLock lock(universesToSend.getLock());
+	universesToSend.clear();
+	for (auto& u : universes)
+	{
+		universesToSend.add(new DMXUniverse(u));
+		u->isDirty = false;
 	}
 }
 
@@ -318,19 +239,25 @@ DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool c
 
 void DMXInterface::run()
 {
+
 	while (!threadShouldExit())
 	{
 		double loopStartTime = Time::getMillisecondCounterHiRes();
 
 		{
-			GenericScopedLock lock(sendLock);
 			//if (dmxDevice == nullptr) return;
 
 			bool sendOnChange = sendOnChangeOnly->boolValue();
-			for (auto& u : universes)
+
+			GenericScopedLock lock(universesToSend.getLock());
+			for (auto& u : universesToSend)
 			{
 				if (sendOnChange && !u->isDirty) continue;
-				if(dmxDevice != nullptr) dmxDevice->sendDMXValues(u);
+				{
+					GenericScopedLock lock(deviceLock);
+					if (dmxDevice != nullptr) dmxDevice->sendDMXValues(u);
+				}
+
 
 				if (logOutgoingData->boolValue())
 				{
@@ -340,7 +267,6 @@ void DMXInterface::run()
 				Array<uint8> values(u->values.getRawDataPointer(), u->values.size());
 				dmxInterfaceNotifier.addMessage(new DMXInterfaceEvent(DMXInterfaceEvent::UNIVERSE_SENT, u, values));
 
-				u->isDirty = false;
 			}
 		}
 

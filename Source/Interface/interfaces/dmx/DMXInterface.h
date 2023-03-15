@@ -23,7 +23,7 @@ public:
 
 	EnumParameter* dmxType;
 
-	SpinLock sendLock;
+	SpinLock deviceLock;
 	std::unique_ptr<DMXDevice> dmxDevice;
 	BoolParameter* dmxConnected;
 
@@ -37,10 +37,10 @@ public:
 	IntParameter* defaultSubnet;
 	IntParameter* defaultUniverse;
 
-
 	OwnedArray<DMXUniverse> universes;
 	HashMap<int, DMXUniverse*> universeIdMap; //internally used
 
+	OwnedArray<DMXUniverse, CriticalSection> universesToSend;
 
 	void clearItem() override;
 
@@ -61,6 +61,7 @@ public:
 
 	void prepareSendValues() override;
 	void sendValuesForObjectInternal(Object* o) override;
+	void finishSendValues() override;
 
 	DMXUniverse* getUniverse(int net, int subnet, int universe, bool createIfNotExist = true);
 

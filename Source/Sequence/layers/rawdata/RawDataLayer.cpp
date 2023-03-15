@@ -243,7 +243,7 @@ void RawDataLayer::sequenceCurrentTimeChanged(Sequence* s, float prevTime, bool)
 			}
 		}
 
-		GenericScopedLock lock(dmxInterface->sendLock);
+		//GenericScopedLock lock(dmxInterface->sendLock); //should keep a lock here to avoid cross call with Object Manager ?
 
 		for (auto& u : frameUniverses)
 		{

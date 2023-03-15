@@ -52,7 +52,7 @@ void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 		int i = 1;
 		for (auto& cp : computedParameters)
 		{
-			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName+" Channel", "Channel for this parameter", i, 1, 512, true);
+			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName + " Channel", "Channel for this parameter", i, 1, 512, true);
 			p->canBeDisabledByUser = true;
 			interfaceParams.add(p);
 			computedInterfaceMap.set(cp, p);
@@ -86,6 +86,25 @@ Parameter* ObjectComponent::addComputedParameter(Parameter* p, ControllableConta
 	return p;
 }
 
+void ObjectComponent::removeComputedParameter(Parameter* p)
+{
+	if (p == nullptr) return;
+	if (!computedParameters.contains(p)) return;
+
+	computedParameters.removeAllInstancesOf(p);
+
+	Parameter* sourceP = computedParamMap[p];
+	if (sourceP != nullptr)
+	{
+		sourceParameters.removeAllInstancesOf(sourceP);
+		paramComputedMap.remove(sourceP);
+		sourceP->parentContainer->removeControllable(sourceP);
+	}
+
+	computedParamMap.remove(p);
+	p->parentContainer->removeControllable(p);
+}
+
 void ObjectComponent::onContainerParameterChangedInternal(Parameter* p)
 {
 	BaseItem::onContainerParameterChangedInternal(p);
@@ -108,6 +127,34 @@ void ObjectComponent::fillComputedValueMap(HashMap<Parameter*, var>& values)
 
 void ObjectComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
+	if (ObjectManager::getInstance()->blackOut->boolValue())
+	{
+		for (auto& p : computedParameters)
+		{
+			if (values[p].isArray())
+			{
+				for (int i = 0; i < values[p].size(); i++)
+				{
+					if (values[p][i].isArray())
+					{
+						for (int j = 0; j < values[p].size(); j++)
+						{
+							values[p][i][j] = 0;
+						}
+					}
+					else
+					{
+						values[p][i] = 0;
+					}
+				}
+			}
+			else
+			{
+				values[p] = 0;
+			}
+		}
+	}
+
 	for (auto& p : computedParameters)
 	{
 		//DBG("update computed value after chain, " << p->niceName << " : " << values[p].toString());
@@ -159,6 +206,8 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 {
 	//depending on interface, change what's happening here.
 
+	bool blackout = ObjectManager::getInstance()->blackOut->boolValue();
+
 	if (DMXInterface* di = dynamic_cast<DMXInterface*>(i))
 	{
 		int channelOffset = params.getProperty("channelOffset", 0);
@@ -167,7 +216,6 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 		for (auto& cp : computedParameters)
 		{
 			Parameter* channelP = computedInterfaceMap[cp];
-
 			if (channelP == nullptr || !channelP->enabled) continue;
 			int channel = channelP->intValue();
 			int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
@@ -176,11 +224,11 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 			if (cp->isComplex())
 			{
 				var val = cp->getValue();
-				for (int i = 0; i < val.size(); i++) channelsData[targetChannel + i] = mappedVal[i];
+				for (int i = 0; i < val.size(); i++) channelsData[targetChannel + i] = blackout ? 0 : mappedVal[i];
 			}
 			else
 			{
-				channelsData[targetChannel] = mappedVal;
+				channelsData[targetChannel] = blackout ? 0 : mappedVal;
 			}
 		}
 	}

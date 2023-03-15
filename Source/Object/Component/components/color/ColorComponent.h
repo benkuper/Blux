@@ -42,7 +42,7 @@ public:
     void fillComputedValueMap(HashMap<Parameter*, var>& values) override;
     void updateComputedValues(HashMap<Parameter*, var>& values) override;
 
-
+    virtual void fillInterfaceDataInternal(Interface* i, var data, var params) override;// (HashMap<int, float>& channelValueMap, int startChannel, bool 
     
     //virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false) override;
 

@@ -243,31 +243,16 @@ void Object::computeComponentValues(ObjectComponent* c)
 
 	effectIntensityOutMap.clear();
 
-	if (ObjectManager::getInstance()->blackOut->boolValue())
-	{
-		if (c->componentType == ComponentType::COLOR)
-		{
-			((ColorComponent*)c)->outColors.fill(Colours::black);
-		}
-		else
-		{
-			for (auto& p : c->computedParameters)
-			{
-				var zeroVal;
-				if (p->isComplex()) for (int i = 0; i < p->value.size(); i++) zeroVal.append(0);
-				else zeroVal = 0;
-				p->setValue(zeroVal);
-			}
-		}
-	}
-	else
-	{
-		c->update();
-		HashMap<Parameter*, var> values;
-		c->fillComputedValueMap(values);
 
-		if (values.size() > 0)
+	c->update();
+	HashMap<Parameter*, var> values;
+	c->fillComputedValueMap(values);
+
+	if (values.size() > 0)
+	{
+		if (!ObjectManager::getInstance()->blackOut->boolValue())
 		{
+
 			//local effects
 			effectManager->processComponent(this, c, values);
 
@@ -282,9 +267,11 @@ void Object::computeComponentValues(ObjectComponent* c)
 			GlobalEffectManager::getInstance()->processComponent(this, c, values);
 
 
-			c->updateComputedValues(values);
 		}
+
+		c->updateComputedValues(values);
 	}
+
 }
 
 var Object::getSceneData()

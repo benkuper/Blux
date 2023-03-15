@@ -59,7 +59,7 @@ void OrientationTargetEffect::updateEffectParameters()
 		params.add(effectParams.addFloatParameter("Offset Angle", "Offset angle of the circle", 0));
 		params.add(effectParams.addFloatParameter("Start Angle", "Start angle of the circle to draw partial shape", 0, 0, 1));
 		params.add(effectParams.addFloatParameter("End Angle", "End angle of the circle", 1, 0, 1));
-		params.add(effectParams.addFloatParameter("Turn Speed", "Speed of the circle", 1, 0, 1));
+		params.add(effectParams.addFloatParameter("Turn Speed", "Speed of the circle", 0));
 		break;
 	}
 

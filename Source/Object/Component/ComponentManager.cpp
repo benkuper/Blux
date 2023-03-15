@@ -89,4 +89,5 @@ ComponentFactory::ComponentFactory(Object* o)
 	defs.add(ComponentDefinition::createDef("", "Color", &ColorComponent::create, o));
 	defs.add(ComponentDefinition::createDef("", "Shutter", &ShutterComponent::create, o));
 	defs.add(ComponentDefinition::createDef("", "Orientation", &OrientationComponent::create, o));
+	defs.add(ComponentDefinition::createDef("", "Custom", &CustomComponent::create, o));
 }

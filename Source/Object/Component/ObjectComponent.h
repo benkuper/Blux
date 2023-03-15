@@ -42,6 +42,7 @@ public:
     void rebuildInterfaceParams(Interface* i);
 
     Parameter* addComputedParameter(Parameter* p, ControllableContainer* parent = nullptr);
+    void removeComputedParameter(Parameter* p);
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 

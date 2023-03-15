@@ -428,6 +428,9 @@
     <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\custom\CustomComponent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -3808,6 +3811,7 @@
     <ClInclude Include="..\..\Source\Object\actions\ObjectAction.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ui\ComponentManagerEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.h"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\custom\CustomComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ColorComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\dimmer\DimmerComponent.h"/>

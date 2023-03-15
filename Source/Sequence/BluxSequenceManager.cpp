@@ -33,7 +33,11 @@ Array<ChainVizTarget *> BluxSequenceManager::getChainVizTargetsForObject(Object*
 
 void BluxSequenceManager::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier)
 {
-    for (auto& i : items) ((BluxSequence *)i)->processComponent(o, c, values, weightMultiplier);
+    for (auto& i : items)
+    {
+        if (!i->enabled->boolValue()) return;
+        ((BluxSequence*)i)->processComponent(o, c, values, weightMultiplier);
+    }
 }
 
 Sequence* BluxSequenceManager::createItem()

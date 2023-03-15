@@ -22,8 +22,6 @@ public:
 
 	virtual void updateComputedValues(HashMap<Parameter*, var>& values) override;
 
-	void setupFromJSONDefinition(var data) override;
-
 	String getTypeString() const override { return "Dimmer"; }
 	static DimmerComponent* create(Object* o, var params) { return new DimmerComponent(o, params); }
 };

@@ -493,6 +493,12 @@
                   file="Source/Object/Component/ui/ObjectComponentEditor.h"/>
           </GROUP>
           <GROUP id="{95663C75-73C8-432B-C499-B0F789F06966}" name="components">
+            <GROUP id="{C04141F0-AC61-91AC-2B60-10A311C24F96}" name="custom">
+              <FILE id="HAaeBB" name="CustomComponent.cpp" compile="0" resource="0"
+                    file="Source/Object/Component/components/custom/CustomComponent.cpp"/>
+              <FILE id="S4AEMz" name="CustomComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/custom/CustomComponent.h"/>
+            </GROUP>
             <GROUP id="{CF76E215-E97D-AE67-ACE1-5AD7F346A4C2}" name="color">
               <GROUP id="{3F11A279-2E6F-B762-779C-F4BE655ABD1C}" name="ui">
                 <FILE id="kqNqrv" name="ColorComponentEditor.cpp" compile="0" resource="0"

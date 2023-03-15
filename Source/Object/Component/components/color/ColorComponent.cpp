@@ -9,7 +9,7 @@
 */
 
 #include "Object/ObjectIncludes.h"
-#include "ColorComponent.h"
+#include "Interface/InterfaceIncludes.h"
 
 ColorComponent::ColorComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), COLOR, params),
@@ -116,11 +116,31 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	var colValues = values[nullptr]; //using nullptr as placeholders for values not linked to a computed parameter
 
 	jassert(colValues.size() == resolution->intValue());
-	for (int i = 0; i < colValues.size(); i++)
+	
+	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
-		var col = colValues[i];
-		outColors.set(i, Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
+		var zeroVal;
+		zeroVal.append(0);
+		zeroVal.append(0);
+		zeroVal.append(0);
+		zeroVal.append(0);
+		colValues.getArray()->fill(zeroVal);
+		outColors.fill(Colours::black);
 	}
+	else
+	{
+		for (int i = 0; i < colValues.size(); i++)
+		{
+			var col;
+			col.append(colValues[i][0]);
+			col.append(colValues[i][1]);
+			col.append(colValues[i][2]);
+			col.append(colValues[i][3]);
+			//not adding white here
+			outColors.set(i, Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
+		}
+	}
+
 
 	if (colValues.size() > 0)
 	{
@@ -128,6 +148,32 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 		mainOutColor->setColor(Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
 	}
 
+}
+
+void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var params)
+{
+	if (DMXInterface* di = dynamic_cast<DMXInterface*>(i))
+	{
+		int channelOffset = params.getProperty("channelOffset", 0);
+		var channelsData = data.getProperty("channels", var());
+
+		Parameter* channelP = computedInterfaceMap[mainOutColor];
+		if (channelP == nullptr || !channelP->enabled) return;
+		int channel = channelP->intValue();
+		int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
+
+		for (int i = 0; i < outColors.size(); i++)
+		{
+			int ch = targetChannel + i * 3;
+			channelsData[ch] = outColors[i].getRed();
+			channelsData[ch+1] = outColors[i].getGreen();
+			channelsData[ch+2] = outColors[i].getBlue();
+		}
+
+		return;
+	}
+	
+	ObjectComponent::fillInterfaceDataInternal(i, data, params);
 }
 
 //void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)

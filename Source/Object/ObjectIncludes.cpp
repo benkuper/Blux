@@ -28,6 +28,9 @@
 #include "Component/components/shutter/ShutterComponent.cpp"
 #include "Component/components/orientation/OrientationComponent.cpp"
 
+#include "Component/components/custom/CustomComponent.cpp"
+
+
 #include "Component/ui/ComponentManagerEditor.cpp"
 #include "Component/ui/ObjectComponentEditor.cpp"
 

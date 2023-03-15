@@ -84,6 +84,7 @@
 		0AD023E539094E9404F6C1F1 /* EffectManager.h */ /* EffectManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectManager.h; path = ../../Source/Effect/EffectManager.h; sourceTree = SOURCE_ROOT; };
 		0AEFE197A55CC4FA3B4EE1FE /* BluxSequenceManager.h */ /* BluxSequenceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BluxSequenceManager.h; path = ../../Source/Sequence/BluxSequenceManager.h; sourceTree = SOURCE_ROOT; };
 		0B4ABDC12406D18323EB376A /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = ../../JUCE/modules/juce_data_structures; sourceTree = SOURCE_ROOT; };
+		0CA65DC94E84DAECA8B21801 /* CustomComponent.h */ /* CustomComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CustomComponent.h; path = ../../Source/Object/Component/components/custom/CustomComponent.h; sourceTree = SOURCE_ROOT; };
 		0D351B9C6BDFE0DA4C9D9A21 /* juce_core */ /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = ../../JUCE/modules/juce_core; sourceTree = SOURCE_ROOT; };
 		0EB1A756B7F1F7C2473C4272 /* BluxSequence.h */ /* BluxSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BluxSequence.h; path = ../../Source/Sequence/BluxSequence.h; sourceTree = SOURCE_ROOT; };
 		0F50A28950B8D9AF317E3CB5 /* LayoutFilterStageView.h */ /* LayoutFilterStageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LayoutFilterStageView.h; path = ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.h; sourceTree = SOURCE_ROOT; };
@@ -110,6 +111,7 @@
 		19BD00D4956B70F46D18AC84 /* DimmerComponent.cpp */ /* DimmerComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DimmerComponent.cpp; path = ../../Source/Object/Component/components/dimmer/DimmerComponent.cpp; sourceTree = SOURCE_ROOT; };
 		1BB80399C435A24F62550D49 /* ObjectGroupUI.h */ /* ObjectGroupUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ObjectGroupUI.h; path = ../../Source/Object/Group/groups/object/ui/ObjectGroupUI.h; sourceTree = SOURCE_ROOT; };
 		1C4C8B94AAA6A720C951E2CD /* SequenceIncludes.cpp */ /* SequenceIncludes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SequenceIncludes.cpp; path = ../../Source/Sequence/SequenceIncludes.cpp; sourceTree = SOURCE_ROOT; };
+		1CE67EA4A7B264A020E28F94 /* CustomComponent.cpp */ /* CustomComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CustomComponent.cpp; path = ../../Source/Object/Component/components/custom/CustomComponent.cpp; sourceTree = SOURCE_ROOT; };
 		1DF8689157F328CED11820E1 /* ObjectGroup.cpp */ /* ObjectGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectGroup.cpp; path = ../../Source/Object/Group/groups/object/ObjectGroup.cpp; sourceTree = SOURCE_ROOT; };
 		1E13E3FA782AB661A08AD286 /* OSCInputEditor.h */ /* OSCInputEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OSCInputEditor.h; path = ../../Source/Interface/interfaces/osc/ui/OSCInputEditor.h; sourceTree = SOURCE_ROOT; };
 		1E48948F6256CF5A102269D0 /* MIDIDeviceChooser.h */ /* MIDIDeviceChooser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MIDIDeviceChooser.h; path = ../../Source/Common/MIDI/ui/MIDIDeviceChooser.h; sourceTree = SOURCE_ROOT; };
@@ -962,6 +964,7 @@
 		4DE1A0FCF6FBBAB4CB37C4D3 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				B81482AA2134043300F1E772,
 				9A8B30B749D26A82830AA207,
 				BCE11DA56025A88AE3797C6C,
 				880D052E180C7237FE3DCE1C,
@@ -1477,6 +1480,15 @@
 				6C2036D52D2A8A0E12E269F1,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		B81482AA2134043300F1E772 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				1CE67EA4A7B264A020E28F94,
+				0CA65DC94E84DAECA8B21801,
+			);
+			name = custom;
 			sourceTree = "<group>";
 		};
 		B9A99678F14A28B02A9B7F22 /* colorsource */ = {

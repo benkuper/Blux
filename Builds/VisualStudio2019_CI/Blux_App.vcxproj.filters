@@ -209,6 +209,9 @@
     <Filter Include="Blux\Source\Object\Component\ui">
       <UniqueIdentifier>{4D1343A4-D6A8-883F-3A93-DF66FCE0539A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Object\Component\components\custom">
+      <UniqueIdentifier>{2FBBD9DB-7FF1-C53C-136E-7F457C9A6DA7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Object\Component\components\color\ui">
       <UniqueIdentifier>{0BFABBCF-D1B0-E711-0F9D-D6AB2AB83095}</UniqueIdentifier>
     </Filter>
@@ -1608,6 +1611,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.cpp">
       <Filter>Blux\Source\Object\Component\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Object\Component\components\custom\CustomComponent.cpp">
+      <Filter>Blux\Source\Object\Component\components\custom</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.cpp">
       <Filter>Blux\Source\Object\Component\components\color\ui</Filter>
@@ -5420,6 +5426,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\ui\ObjectComponentEditor.h">
       <Filter>Blux\Source\Object\Component\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Component\components\custom\CustomComponent.h">
+      <Filter>Blux\Source\Object\Component\components\custom</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.h">
       <Filter>Blux\Source\Object\Component\components\color\ui</Filter>
