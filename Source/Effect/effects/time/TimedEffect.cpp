@@ -67,13 +67,13 @@ void TimedEffect::processComponentInternal(Object* o, ObjectComponent* c, const 
 {
 	if (autoResetOnNonZero->boolValue() && c->mainParameter != nullptr) //component needs to have a reference to "main param" for this kind of purpose
 	{
-		//Parameter* p = c->computedParameters[0];
+		if (!prevValuesMap.contains(c)) return;
 
-		//PROBLEM WITH NESTED HASHMAP
-		//if (prevValues[c].contains(p) && values.contains(p))
-		//{
-		//	if ((float)prevValues[c][p] == 0 && (float)values[p] > 0) curTimes.set(c, 0);
-		//}
+		Parameter* p = c->mainParameter;
+		if (prevValuesMap[c]->contains(p) && values.contains(p))
+		{
+			if ((float)(*prevValuesMap[c])[p] == 0 && (float)values[p] > 0) curTimes.set(c, 0);
+		}
 	}
 
 
@@ -112,7 +112,12 @@ void TimedEffect::itemRemoved(Object* o)
 	for (auto& c : o->componentManager->items)
 	{
 		curTimes.remove(c);
-		prevValues.remove(c);
+
+		if (prevValuesMap.contains(c))
+		{
+			prevValues.removeObject(prevValuesMap[c]);
+			prevValuesMap.remove(c);
+		}
 	}
 }
 
@@ -123,7 +128,12 @@ void TimedEffect::itemsRemoved(Array<Object*> oList)
 		for (auto& c : o->componentManager->items)
 		{
 			curTimes.remove(c);
-			prevValues.remove(c);
+
+			if (prevValuesMap.contains(c))
+			{
+				prevValues.removeObject(prevValuesMap[c]);
+				prevValuesMap.remove(c);
+			}
 		}
 	}
 }

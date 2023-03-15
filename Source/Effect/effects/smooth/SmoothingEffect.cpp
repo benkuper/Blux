@@ -62,7 +62,7 @@ void SmoothingEffect::processComponentInternal(Object* o, ObjectComponent* c, co
 	{
 		Parameter* p = it.getKey();
 
-		var prevVal = var();// prevValues[c][p]; //PROBLEM WITH NESTED HASHMAPs
+		var prevVal = (*prevValuesMap[c])[p];
 		var val = it.getValue();
 		jassert(prevVal.size() == val.size());
 

@@ -107,12 +107,13 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 
 	if (computePreviousValues)
 	{
-		if (!prevValues.contains(c))
+		if (!prevValuesMap.contains(c))
 		{
-			HashMap<Parameter*, var> prevVals;
+			HashMap<Parameter*, var>* prevVals = new HashMap<Parameter*, var>();
 			HashMap<Parameter*, var>::Iterator it(values);
-			while (it.next()) prevVals.set(it.getKey(), it.getValue().clone());
-			//prevValues.set(c, prevVals); //PROBLEM WITH NESTED HASHMAP
+			while (it.next()) prevVals->set(it.getKey(), it.getValue().clone());
+			prevValues.add(prevVals);
+			prevValuesMap.set(c, prevVals);
 		}
 	}
 
@@ -134,10 +135,13 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 
 	if (computePreviousValues)
 	{
-		HashMap<Parameter*, var> prevVals;
+		HashMap<Parameter*, var>* prevVals = prevValuesMap[c];
 		HashMap<Parameter*, var>::Iterator it(targetValues);
-		while (it.next()) prevVals.set(it.getKey(), it.getValue().clone());
-		//prevValues.set(c, prevVals); //PROBLEM, SEE ABOVE
+		while (it.next())
+		{
+			DBG("Set prev value " << it.getKey()->niceName << " : " << it.getValue().toString());
+			prevVals->set(it.getKey(), it.getValue().clone());
+		}
 	}
 }
 

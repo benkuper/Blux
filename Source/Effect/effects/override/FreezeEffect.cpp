@@ -66,8 +66,8 @@ void FreezeFloatEffect::processComponentFreezeInternal(Object* o, ObjectComponen
 
 	if (m == HOLD)
 	{
-		//HashMap<Parameter*, var>::Iterator it(prevValues[c]); //PROBLEM WITH NESTED HASHMAP
-		//while (it.next()) targetValues.set(it.getKey(), it.getValue());
+		HashMap<Parameter*, var>::Iterator it(*prevValuesMap[c]);
+		while (it.next()) targetValues.set(it.getKey(), it.getValue());
 		return;
 	}
 
@@ -75,7 +75,7 @@ void FreezeFloatEffect::processComponentFreezeInternal(Object* o, ObjectComponen
 	while (it.next())
 	{
 		Parameter* p = it.getKey();
-		var prevVal = var(); // prevValues[c][p]; //PROBLEM WITH NESTED HASHMAP
+		var prevVal = (*prevValuesMap[c])[p];
 		var val = it.getValue();
 		jassert(prevVal.size() == val.size());
 

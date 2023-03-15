@@ -41,7 +41,8 @@ public:
 	std::unique_ptr<FilterManager> filterManager;
 
 	bool computePreviousValues;
-	HashMap<ObjectComponent*, HashMap<Parameter*, var>> prevValues;
+	OwnedArray<HashMap<Parameter*, var>>  prevValues;
+	HashMap<ObjectComponent*, HashMap<Parameter*, var>*> prevValuesMap;
 
 	bool forceDisabled;
 
