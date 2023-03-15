@@ -59,6 +59,7 @@ void OrientationTargetEffect::updateEffectParameters()
 		params.add(effectParams.addFloatParameter("Offset Angle", "Offset angle of the circle", 0));
 		params.add(effectParams.addFloatParameter("Start Angle", "Start angle of the circle to draw partial shape", 0, 0, 1));
 		params.add(effectParams.addFloatParameter("End Angle", "End angle of the circle", 1, 0, 1));
+		params.add(effectParams.addFloatParameter("Turn Speed", "Speed of the circle", 1, 0, 1));
 		break;
 	}
 
@@ -109,26 +110,29 @@ void OrientationTargetEffect::processComponentInternal(Object* o, ObjectComponen
 		float offset = GetLinkedValue(params[3]);
 		float start = GetLinkedValue(params[4]);
 		float end = GetLinkedValue(params[5]);
+		float turnSpeed = GetLinkedValue(params[6]);
 
 		Vector3D<float> center(centerV[0], centerV[1], centerV[2]);
-		Vector3D<float> axis = Vector3D<float>(orientationV[0], orientationV[1], orientationV[2]).normalised();
+
+
 
 		// Calculate points on circle
 		float relPos = id * 1.0f / numObjects;
 		relPos = jmap(relPos, start, end);
-
-		relPos = fmodf(relPos + offset, 1);
+		relPos = fmodf(relPos + offset + time * turnSpeed, 1);
 
 		float angle = 2 * MathConstants<float>::pi * relPos; // Calculate angle
+		float px = cos(angle) * radius;
+		float pz = sin(angle) * radius;
 
-		double x = center.x + radius * (cos(angle) * axis.x + sin(angle) * (axis.y * axis.x + axis.z * sqrt(1 - axis.x * axis.x)));
-		double y = center.y + radius * (cos(angle) * axis.y - sin(angle) * (axis.x * axis.z + axis.y * sqrt(1 - axis.y * axis.y)));
-		double z = center.z + radius * (cos(angle) * axis.z + sin(angle) * sqrt(1 - axis.z * axis.z));
-		;
+		Vector3D<float> radRot = Vector3D<float>(degreesToRadians((float)orientationV[0]), degreesToRadians((float)orientationV[1]), degreesToRadians((float)orientationV[2]));
+		Quat q = Quat::FromEuler(radRot);
+		Vec3 p = q * Vec3(px, 0, pz) + center;
+
 		var v;
-		v.append(x);
-		v.append(y);
-		v.append(z);
+		v.append(p.X);
+		v.append(p.Y);
+		v.append(p.Z);
 		targetValues.set(oc->paramComputedMap[oc->target], v);
 	}
 	break;

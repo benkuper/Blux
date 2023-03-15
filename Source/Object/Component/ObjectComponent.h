@@ -62,6 +62,8 @@ public:
     virtual void fillInterfaceDataInternal(Interface* i, var data, var params);// (HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false);
     //virtual void fillOutValueMap(HashMap<int, float> &channelValueMap, int startChannel, bool ignoreChannelOffset = false);
 
+    virtual var getMappedValueForComputedParam(Interface* i, Parameter* computedP);
+
     var getJSONData() override;
     void loadJSONDataItemInternal(var data) override;
 

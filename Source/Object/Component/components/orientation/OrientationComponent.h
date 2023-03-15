@@ -1,29 +1,56 @@
 /*
   ==============================================================================
 
-    OrientationTiltComponent.h
-    Created: 26 Sep 2020 2:21:02pm
-    Author:  bkupe
+	OrientationTiltComponent.h
+	Created: 26 Sep 2020 2:21:02pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
 #pragma once
 
+#include "Quaternion.hpp"
+#include "Vector2.hpp"
+#include "Vector3.hpp"
+#include "Matrix3x3.hpp"
+typedef  unityports::Quaternion Quat;
+typedef  unityports::Vector2 Vec2;
+typedef  unityports::Vector3 Vec3;
+typedef  unityports::Matrix3x3 Mat3;
+
 class OrientationComponent :
-    public ObjectComponent
+	public ObjectComponent
 {
 public:
-    OrientationComponent(Object* o, var params);
-    ~OrientationComponent();
+	OrientationComponent(Object* o, var params);
+	~OrientationComponent();
 
-    Point3DParameter* target;
+	enum ControlMode { TARGET, PANTILT };
+	EnumParameter* controlMode;
+	Point3DParameter* target;
 
-    EnablingControllableContainer panTiltCC;
-    BoolParameter* usePreciseChannels;
-    FloatParameter* pan;
-    FloatParameter* tilt;
+	EnablingControllableContainer panTiltCC;
+	BoolParameter* usePreciseChannels;
+	FloatParameter* pan;
+	FloatParameter* tilt;
 
-    String getTypeString() const override { return "Orientation"; }
-    static OrientationComponent* create(Object * o, var params) { return new OrientationComponent(o, params); }
+	FloatParameter* headOffset; //up offset from the base
+	Point2DParameter* dmxPanValueRange; //min and max to do 180% on pan
+	Point2DParameter* dmxTiltValueRange; //min and max to do 180% on tilt
+
+	Point3DParameter* debugPos;
+
+
+	void setPanTiltFromTarget(Vec3 worldTarget);
+	Vec3 inverseTransformPoint(Vec3 localPos, Vec3 localRot, Vec3 localScale, Vec3 targetPos);
+
+	void onContainerParameterChangedInternal(Parameter*) override;
+	
+	void updateComputedValues(HashMap<Parameter*, var>& values) override;
+
+	var getMappedValueForComputedParam(Interface* i, Parameter* cp) override;
+	
+	String getTypeString() const override { return "Orientation"; }
+	static OrientationComponent* create(Object* o, var params) { return new OrientationComponent(o, params); }
 };

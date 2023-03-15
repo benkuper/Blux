@@ -23,6 +23,7 @@ public:
 
     FloatParameter* fadeIn;
     FloatParameter* fadeOut;
+	Automation fadeCurve;
 
 	bool settingLengthFromMethod;
 

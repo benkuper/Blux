@@ -512,10 +512,14 @@
                     file="Source/Object/Component/components/dimmer/DimmerComponent.h"/>
             </GROUP>
             <GROUP id="{6D0F1CEA-3034-6B14-087D-0E5A47A9E0EB}" name="orientation">
+              <FILE id="mBZieE" name="Matrix3x3.hpp" compile="0" resource="0" file="Source/Object/Component/components/orientation/Matrix3x3.hpp"/>
               <FILE id="lgy5vd" name="OrientationComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/orientation/OrientationComponent.cpp"/>
               <FILE id="BWsHyx" name="OrientationComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/orientation/OrientationComponent.h"/>
+              <FILE id="az9P3n" name="Quaternion.hpp" compile="0" resource="0" file="Source/Object/Component/components/orientation/Quaternion.hpp"/>
+              <FILE id="ZbcbSO" name="Vector2.hpp" compile="0" resource="0" file="Source/Object/Component/components/orientation/Vector2.hpp"/>
+              <FILE id="nMSKnu" name="Vector3.hpp" compile="0" resource="0" file="Source/Object/Component/components/orientation/Vector3.hpp"/>
             </GROUP>
             <GROUP id="{7E9CD71C-37DE-A443-19DD-93998257E59D}" name="shutter">
               <FILE id="GEN10E" name="ShutterComponent.cpp" compile="0" resource="0"

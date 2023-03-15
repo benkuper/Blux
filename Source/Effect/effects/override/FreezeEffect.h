@@ -21,8 +21,7 @@ public:
     EnumParameter* freezeMode;
     Trigger* reset;
 
-    virtual void onContainerTriggerTriggered(Trigger* t) override;
-    virtual void onContainerParameterChangedInternal(Parameter* p) override;
+    virtual void effectParamChanged(Controllable *c) override;
 
     void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) override;
     virtual void processComponentFreezeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) = 0;

@@ -88,19 +88,25 @@ void EffectManager::lerpFromSceneData(var startData, var endData, float weight)
 
 EffectFactory::EffectFactory()
 {
-	defs.add(Factory<Effect>::Definition::createDef<OverrideFloatEffect>("Number"));
-	defs.add(Factory<Effect>::Definition::createDef<CurveMapEffect>("Number"));
-	defs.add(Factory<Effect>::Definition::createDef<NoiseEffect>("Number"));
-	defs.add(Factory<Effect>::Definition::createDef<AutomationEffect>("Number"));
-	defs.add(Factory<Effect>::Definition::createDef<FreezeFloatEffect>("Number"));
+	defs.add(Factory<Effect>::Definition::createDef<OverrideFloatEffect>("Dimmer")->addParam("types", DIMMER));
+	defs.add(Factory<Effect>::Definition::createDef<CurveMapEffect>("Dimmer")->addParam("types", DIMMER));
+	defs.add(Factory<Effect>::Definition::createDef<NoiseEffect>("Dimmer")->addParam("types", DIMMER));
+	defs.add(Factory<Effect>::Definition::createDef<AutomationEffect>("Dimmer")->addParam("types", DIMMER));
+	defs.add(Factory<Effect>::Definition::createDef<FreezeFloatEffect>("Dimmer")->addParam("types", DIMMER));
+	defs.add(Factory<Effect>::Definition::createDef<SmoothingEffect>("Dimmer")->addParam("types", DIMMER));
 
-	defs.add(Factory<Effect>::Definition::createDef<SmoothingEffect>("Number"));
+	defs.add(Factory<Effect>::Definition::createDef<OverrideFloatEffect>("Shutter")->addParam("types", SHUTTER));
+	defs.add(Factory<Effect>::Definition::createDef<CurveMapEffect>("Shutter")->addParam("types", SHUTTER));
+	defs.add(Factory<Effect>::Definition::createDef<NoiseEffect>("Shutter")->addParam("types", SHUTTER));
+	defs.add(Factory<Effect>::Definition::createDef<AutomationEffect>("Shutter")->addParam("types", SHUTTER));
+	defs.add(Factory<Effect>::Definition::createDef<FreezeFloatEffect>("Shutter")->addParam("types", SHUTTER));
+	defs.add(Factory<Effect>::Definition::createDef<SmoothingEffect>("Shutter")->addParam("types", SHUTTER));
 
-	defs.add(Factory<Effect>::Definition::createDef<ColorSourceOverrideEffect>("Color"));
-	defs.add(Factory<Effect>::Definition::createDef<HSVAdjustEffect>("Color"));
-	defs.add(Factory<Effect>::Definition::createDef<GradientRemapEffect>("Color"));
+	defs.add(Factory<Effect>::Definition::createDef<ColorSourceOverrideEffect>("Color")->addParam("types", COLOR));
+	defs.add(Factory<Effect>::Definition::createDef<HSVAdjustEffect>("Color")->addParam("types", COLOR));
+	defs.add(Factory<Effect>::Definition::createDef<GradientRemapEffect>("Color")->addParam("types", COLOR));
 
-	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetEffect>("Orientation"));
-	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetNoiseEffect>("Orientation"));
-	defs.add(Factory<Effect>::Definition::createDef<OrientationPanTiltEffect>("Orientation"));
+	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetEffect>("Orientation")->addParam("types", ORIENTATION));
+	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetNoiseEffect>("Orientation")->addParam("types", ORIENTATION));
+	defs.add(Factory<Effect>::Definition::createDef<OrientationPanTiltEffect>("Orientation")->addParam("types", ORIENTATION));
 }

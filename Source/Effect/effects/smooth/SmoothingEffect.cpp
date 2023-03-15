@@ -49,6 +49,8 @@ void SmoothingEffect::processComponentInternal(Object* o, ObjectComponent* c, co
 	double t = time == -1 ? Time::getMillisecondCounterHiRes() / 1000.0 : time;
 	if (!prevTimes.contains(c)) prevTimes.set(c, t);
 
+	if (!prevValuesMap.contains(c)) return;
+
 	double deltaTime = t - prevTimes[c];
 
 	if (deltaTime == 0) return;

@@ -16,8 +16,6 @@ class OverrideEffect :
 public:
     OverrideEffect(const String &name = "Override", var params = var());
     virtual ~OverrideEffect();
-
-
 };
 
 class OverrideFloatEffect :

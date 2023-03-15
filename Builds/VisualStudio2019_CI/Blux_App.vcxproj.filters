@@ -5430,7 +5430,19 @@
     <ClInclude Include="..\..\Source\Object\Component\components\dimmer\DimmerComponent.h">
       <Filter>Blux\Source\Object\Component\components\dimmer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\Matrix3x3.hpp">
+      <Filter>Blux\Source\Object\Component\components\orientation</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\components\orientation\OrientationComponent.h">
+      <Filter>Blux\Source\Object\Component\components\orientation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\Quaternion.hpp">
+      <Filter>Blux\Source\Object\Component\components\orientation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\Vector2.hpp">
+      <Filter>Blux\Source\Object\Component\components\orientation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\Vector3.hpp">
       <Filter>Blux\Source\Object\Component\components\orientation</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Object\Component\components\shutter\ShutterComponent.h">

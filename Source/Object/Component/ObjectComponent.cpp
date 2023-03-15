@@ -52,7 +52,7 @@ void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 		int i = 1;
 		for (auto& cp : computedParameters)
 		{
-			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName, "Channel for this parameter", i, 1, 512, true);
+			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName+" Channel", "Channel for this parameter", i, 1, 512, true);
 			p->canBeDisabledByUser = true;
 			interfaceParams.add(p);
 			computedInterfaceMap.set(cp, p);
@@ -168,23 +168,19 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 		{
 			Parameter* channelP = computedInterfaceMap[cp];
 
-			if (channelP == nullptr) continue;
+			if (channelP == nullptr || !channelP->enabled) continue;
 			int channel = channelP->intValue();
 			int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
 
+			var mappedVal = getMappedValueForComputedParam(i, cp);
 			if (cp->isComplex())
 			{
 				var val = cp->getValue();
-				for (int i = 0; i < val.size(); i++)
-				{
-					if (cp->type == Controllable::FLOAT) channelsData[targetChannel + i] = (int)((float)val[i] * 255);
-					else if (cp->type == Controllable::INT) channelsData[targetChannel + i] = (int)val[i];
-				}
+				for (int i = 0; i < val.size(); i++) channelsData[targetChannel + i] = mappedVal[i];
 			}
 			else
 			{
-				if (cp->type == Controllable::FLOAT) channelsData[targetChannel] = (int)(cp->floatValue() * 255);
-				else if (cp->type == Controllable::INT) channelsData[targetChannel] = cp->intValue();
+				channelsData[targetChannel] = mappedVal;
 			}
 		}
 	}
@@ -213,6 +209,31 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 //		else channelValueMap.set(sChannel + paramChannels[i], p->floatValue()); //remap to 0-255 automatically
 //	}
 //}
+
+var ObjectComponent::getMappedValueForComputedParam(Interface* i, Parameter* cp)
+{
+	if (DMXInterface* di = dynamic_cast<DMXInterface*>(i))
+	{
+
+		if (cp->type == Controllable::FLOAT)  return cp->floatValue() * 255;
+		else if (cp->type == Controllable::INT) return cp->intValue();
+
+		if (cp->isComplex())
+		{
+			var result = cp->getValue().clone();
+			for (int i = 0; i < result.size(); i++)
+			{
+				result[i] = (int)((float)result[i] * 255);
+				result[i] = (int)result[i];
+			}
+
+			return result;
+		}
+	}
+
+
+	return cp->getValue();
+}
 
 var ObjectComponent::getJSONData()
 {

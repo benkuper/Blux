@@ -25,24 +25,13 @@ FreezeEffect::~FreezeEffect()
 {
 }
 
-void FreezeEffect::onContainerTriggerTriggered(Trigger* t)
+
+void FreezeEffect::effectParamChanged(Controllable* c)
 {
-	Effect::onContainerTriggerTriggered(t);
-	if (t == reset) prevValues.clear();
+	Effect::effectParamChanged(c);
+	if (c == reset) clearPrevValues();
 }
 
-void FreezeEffect::onContainerParameterChangedInternal(Parameter* p)
-{
-	Effect::onContainerParameterChangedInternal(p);
-	if (p == enabled)
-	{
-		if (enabled->boolValue()) prevValues.clear();
-	}
-	else if (p == weight)
-	{
-		if (weight->floatValue() == 0) prevValues.clear();
-	}
-}
 
 void FreezeEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
@@ -63,6 +52,8 @@ FreezeFloatEffect::~FreezeFloatEffect()
 void FreezeFloatEffect::processComponentFreezeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
 	FreezeMode m = freezeMode->getValueDataAsEnum<FreezeMode>();
+
+	if (!prevValuesMap.contains(c)) return;
 
 	if (m == HOLD)
 	{

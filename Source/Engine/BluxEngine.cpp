@@ -67,8 +67,8 @@ BluxEngine::~BluxEngine()
 	ColorSourceFactory::deleteInstance();
 
 	MIDIManager::deleteInstance();
-	
-	if(vizServer != nullptr) vizServer->stop();
+
+	if (vizServer != nullptr) vizServer->stop();
 }
 
 void BluxEngine::initVizServer()
@@ -86,7 +86,7 @@ void BluxEngine::initVizServer()
 	//vizServer->addWebSocketListener(this);
 
 	vizServer->rootPath = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(ProjectInfo::projectName + String("/server"));
-	
+
 	int port = 6060;
 	vizServer->start(port);
 	vizServer->addWebSocketListener(this);
@@ -128,8 +128,8 @@ void BluxEngine::sendControllableData(Controllable* c)
 	var data(new DynamicObject());
 	data.getDynamicObject()->setProperty("controlAddress", p->getControlAddress(this));
 	data.getDynamicObject()->setProperty("value", p->getValue());
-	
-;	var msgData(new DynamicObject());
+
+	;	var msgData(new DynamicObject());
 	msgData.getDynamicObject()->setProperty("type", "controllable");
 	msgData.getDynamicObject()->setProperty("data", data);
 	sendServerMessage(JSON::toString(msgData));
@@ -151,7 +151,7 @@ var BluxEngine::getVizData()
 void BluxEngine::onControllableFeedbackUpdate(ControllableContainer* cc, Controllable* c)
 {
 	Engine::onControllableFeedbackUpdate(cc, c);
-	if(cc == ObjectManager::getInstance()) sendControllableData(c);
+	if (!isClearing && ObjectManager::getInstanceWithoutCreating() != nullptr && cc == ObjectManager::getInstance()) sendControllableData(c);
 }
 
 void BluxEngine::clearInternal()

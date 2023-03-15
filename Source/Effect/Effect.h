@@ -46,6 +46,8 @@ public:
 
 	bool forceDisabled;
 
+	Array<ComponentType> typeFilters;
+
 	void setParentGroup(Group* g);
 
 	void setForceDisabled(bool value);
@@ -58,6 +60,8 @@ public:
 
 	virtual void paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl) override;
 	virtual void effectParamChanged(Controllable* c) {}
+	
+	void clearPrevValues();
 
 
 	bool isAffectingObject(Object* o);

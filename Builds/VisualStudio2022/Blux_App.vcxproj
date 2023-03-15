@@ -3811,7 +3811,11 @@
     <ClInclude Include="..\..\Source\Object\Component\components\color\ui\ColorComponentEditor.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\color\ColorComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\components\dimmer\DimmerComponent.h"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\Matrix3x3.hpp"/>
     <ClInclude Include="..\..\Source\Object\Component\components\orientation\OrientationComponent.h"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\Quaternion.hpp"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\Vector2.hpp"/>
+    <ClInclude Include="..\..\Source\Object\Component\components\orientation\Vector3.hpp"/>
     <ClInclude Include="..\..\Source\Object\Component\components\shutter\ShutterComponent.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ComponentManager.h"/>
     <ClInclude Include="..\..\Source\Object\Component\ObjectComponent.h"/>

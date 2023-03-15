@@ -9,6 +9,7 @@
 */
 
 #include "EffectIncludes.h"
+#include "Effect.h"
 
 Effect::Effect(const String& name, var params) :
 	BaseItem(name),
@@ -48,6 +49,16 @@ Effect::Effect(const String& name, var params) :
 	//showInspectorOnSelect = false;
 
 	canBeCopiedAndPasted = true;
+	
+	var typesF = params.getProperty("types",var());
+	if (typesF.isArray())
+	{
+		for (int i = 0; i < typesF.size(); i++) typeFilters.add((ComponentType)(int)typesF[i]);
+	}
+	else if(!typesF.isVoid())
+	{
+		typeFilters.add((ComponentType)(int)typesF);
+	}
 }
 
 Effect::~Effect()
@@ -79,6 +90,8 @@ void Effect::setForceDisabled(bool value)
 
 void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id, float time)
 {
+	if (!typeFilters.isEmpty() && !typeFilters.contains(c->componentType)) return;
+
 	FilterResult r = filterManager->getFilteredResultForComponent(o, c);
 	if (r.id == -1)
 	{
@@ -149,7 +162,12 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 void Effect::onContainerParameterChangedInternal(Parameter* p)
 {
 	BaseItem::onContainerParameterChangedInternal(p);
-	if (p == enabled) updateEnabled();
+	if (p == enabled)
+	{
+		updateEnabled();
+		if (enabled->boolValue()) clearPrevValues();
+	}
+	else if (p == weight && weight->floatValue() == 0) clearPrevValues();
 }
 
 void Effect::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
@@ -160,6 +178,12 @@ void Effect::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Con
 void Effect::paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl)
 {
 	effectListeners.call(&EffectListener::effectParamControlModeChanged, pl->parameter);
+}
+
+void Effect::clearPrevValues()
+{
+	prevValuesMap.clear();
+	prevValues.clear();
 }
 
 void Effect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
