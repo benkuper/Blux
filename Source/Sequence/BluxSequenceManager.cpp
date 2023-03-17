@@ -20,27 +20,39 @@ BluxSequenceManager::~BluxSequenceManager()
 {
 }
 
-Array<ChainVizTarget *> BluxSequenceManager::getChainVizTargetsForObject(Object* o)
+
+Sequence* BluxSequenceManager::createItem()
 {
-    Array<ChainVizTarget *> result;
+    return new BluxSequence();
+}
+
+
+
+void BluxSequenceManager::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier)
+{
+    for (auto& i : items)
+    {
+        if (!i->enabled->boolValue()) continue;
+        ((BluxSequence*)i)->processComponent(o, c, values, weightMultiplier);
+    }
+}
+
+void BluxSequenceManager::processRawData()
+{
+    for (auto& i : items)
+    {
+        if (!i->enabled->boolValue()) continue;
+        ((BluxSequence*)i)->processRawData();
+    }
+}
+
+Array<ChainVizTarget*> BluxSequenceManager::getChainVizTargetsForObject(Object* o)
+{
+    Array<ChainVizTarget*> result;
     for (auto& i : items)
     {
         BluxSequence* bs = (BluxSequence*)i;
         if (bs->isAffectingObject(o)) result.add(bs);
     }
     return result;
-}
-
-void BluxSequenceManager::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier)
-{
-    for (auto& i : items)
-    {
-        if (!i->enabled->boolValue()) return;
-        ((BluxSequence*)i)->processComponent(o, c, values, weightMultiplier);
-    }
-}
-
-Sequence* BluxSequenceManager::createItem()
-{
-    return new BluxSequence();
 }

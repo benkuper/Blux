@@ -77,8 +77,6 @@ public:
 		IntParameter* startChannel;
 	};
 
-
-
 	ControllableContainer* getInterfaceParams() override { return new DMXParams(); }
 
 	class DMXInterfaceListener

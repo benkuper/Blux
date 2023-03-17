@@ -174,6 +174,9 @@ void Object::rebuildInterfaceParams()
 	if (interfaceParameters != nullptr && !interfaceGhostData.isVoid()) interfaceParameters->loadJSONData(interfaceGhostData);
 
 	if (componentManager != nullptr) for (auto& c : componentManager->items) c->rebuildInterfaceParams((Interface*)targetInterface->targetContainer.get());
+
+	if (DimmerComponent* ic = getComponent<DimmerComponent>()) slideManipParameter = ic->value;
+	else slideManipParameter = nullptr;
 }
 
 void Object::onContainerParameterChangedInternal(Parameter* p)

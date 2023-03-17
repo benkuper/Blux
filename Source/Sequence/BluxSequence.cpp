@@ -10,6 +10,7 @@
 
 #include "Sequence/SequenceIncludes.h"
 #include "Audio/AudioManager.h"
+#include "BluxSequence.h"
 
 BluxSequence::BluxSequence() :
 	manualStartAtLoad(false)
@@ -67,6 +68,15 @@ void BluxSequence::processComponent(Object* o, ObjectComponent* c, HashMap<Param
 		{
 			e->processComponent(o, c, values, weightMultiplier);
 		}
+	}
+}
+
+void BluxSequence::processRawData()
+{
+	for (auto& i : layerManager->items)
+	{
+		if (!i->enabled->boolValue()) continue;
+		if(RawDataLayer* ri = dynamic_cast<RawDataLayer*>(i)) ri->processRawData();
 	}
 }
 

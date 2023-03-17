@@ -18,9 +18,7 @@ class SubObjectManager :
 public:
     SubObjectManager();
     ~SubObjectManager();
-
 };
-
 
 
 class ObjectManager :
@@ -56,8 +54,6 @@ public:
 
     virtual void itemAdded(GenericControllableItem*) override;
     virtual void itemRemoved(GenericControllableItem*) override;
-
-
 
     void downloadObjects();
     void updateFactoryDefinitions();

@@ -30,6 +30,8 @@ public:
 
     virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f);
 
+    virtual void processRawData();
+
     virtual void itemAdded(SequenceLayer* layer) override;
 
     void endLoadFile() override;

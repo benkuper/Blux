@@ -10,6 +10,7 @@
 
 #include "Interface/InterfaceIncludes.h"
 #include "Object/ObjectIncludes.h"
+#include "DMXInterface.h"
 
 DMXInterface::DMXInterface() :
 	Interface(getTypeString()),
@@ -160,7 +161,11 @@ void DMXInterface::dmxDataInChanged(int net, int subnet, int universe, Array<uin
 void DMXInterface::prepareSendValues()
 {
 	if (sendOnChangeOnly->boolValue() || channelTestingMode->boolValue()) return;
-	for (auto& u : universes) u->values.fill(0); // reset all universes to 0
+
+	universes.clear();
+	universeIdMap.clear();
+
+	//for (auto& u : universes) u->values.fill(0); // reset all universes to 0
 }
 
 void DMXInterface::sendValuesForObjectInternal(Object* o)
@@ -234,7 +239,7 @@ DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool c
 	DMXUniverse* u = new DMXUniverse(net, subnet, universe);
 	universes.add(u);
 	universeIdMap.set(index, u);
-	return universeIdMap[index];
+	return u;
 }
 
 void DMXInterface::run()

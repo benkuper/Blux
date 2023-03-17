@@ -35,6 +35,8 @@ public:
 	RawDataBlockManager blockManager;
 	RawDataBlock* activeBlock;
 
+	SpinLock blockLock;
+
 	OwnedArray<DMXUniverse> universes;
 	HashMap<int, DMXUniverse*> universeIdMap; //internally used
 
@@ -42,6 +44,8 @@ public:
 	float timeAtRecord;
 	int numWrittenFrames;
 	DMXInterface* dmxInterface;
+
+	OwnedArray<DMXUniverse, CriticalSection> frameUniverses; //the one that will be copied to interface
 
 	void onContainerParameterChangedInternal(Parameter* p) override;
 
@@ -55,6 +59,8 @@ public:
 	virtual void sequenceCurrentTimeChanged(Sequence*, float prevTime, bool /*evaluateSkippedData*/) override;
 
 	void dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") override;
+
+	void processRawData();
 
 	DMXUniverse* getUniverse(int net, int subnet, int universe, bool createIfNotExist = true);
 
