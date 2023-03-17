@@ -33,6 +33,7 @@ public:
     void mouseEnter(const MouseEvent& e) override;
     void mouseExit(const MouseEvent& e) override;
     void mouseDown(const MouseEvent& e) override;
+    void mouseDoubleClick(const MouseEvent& e) override;
 
     void itemDropped(const DragAndDropTarget::SourceDetails& e) override;
 

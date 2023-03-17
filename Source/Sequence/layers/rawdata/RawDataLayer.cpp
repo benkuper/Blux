@@ -169,7 +169,7 @@ void RawDataLayer::sequencePlayStateChanged(Sequence* s)
 {
 	if (s->isPlaying->boolValue())
 	{
-		if (arm->boolValue()) startRecording();
+		if (enabled->boolValue() && arm->boolValue()) startRecording();
 	}
 	else
 	{
@@ -182,6 +182,8 @@ void RawDataLayer::sequencePlayStateChanged(Sequence* s)
 
 void RawDataLayer::sequenceCurrentTimeChanged(Sequence* s, float prevTime, bool)
 {
+	if (!enabled->boolValue()) return;
+
 	if (isRecording->boolValue())
 	{
 		recordOneFrame();

@@ -8,8 +8,13 @@
   ==============================================================================
 */
 
+
+#include "Scene/SceneIncludes.h"
+
 Image SceneUI::fxImage;
 Image SceneUI::seqImage;
+
+
 
 SceneUI::SceneUI(Scene* scene) :
 	BaseItemUI(scene)
@@ -103,6 +108,23 @@ void SceneUI::mouseDown(const MouseEvent& e)
 			}
 		);
 	}
+}
+
+void SceneUI::mouseDoubleClick(const MouseEvent& e)
+{
+	if (seqRect.contains(e.getEventRelativeTo(this).mouseDownPosition))
+	{
+		if (Sequence* s = item->sequenceManager->items.getFirst())
+		{
+			if (TimeMachineView* v = ShapeShifterManager::getInstance()->getContentForType<TimeMachineView>())
+			{
+				v->setSequence(s);
+			}
+			return;
+		}
+	}
+
+	BaseItemUI::mouseDoubleClick(e);
 }
 
 void SceneUI::itemDropped(const DragAndDropTarget::SourceDetails& details)

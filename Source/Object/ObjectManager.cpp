@@ -52,6 +52,13 @@ ObjectManager::~ObjectManager()
 }
 
 
+void ObjectManager::clear()
+{
+    stopThread(1000);
+    BaseManager::clear();
+}
+
+
 void ObjectManager::itemAdded(GenericControllableItem*)
 {
     objectManagerListeners.call(&ObjectManagerListener::customParamsChanged, this);
@@ -239,6 +246,11 @@ void ObjectManager::loadJSONDataManagerInternal(var data)
 {
     customParams.loadJSONData(data.getProperty(customParams.shortName, var()));
     BaseManager::loadJSONDataManagerInternal(data);
+}
+
+void ObjectManager::afterLoadJSONDataInternal()
+{
+    startThread();
 }
 
 ObjectManagerCustomParams* ObjectManager::getCustomParams() 

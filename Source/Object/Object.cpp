@@ -110,22 +110,22 @@ Object::Object(var params) :
 	customParams.reset(new ObjectManagerCustomParams(ObjectManager::getInstance()));
 	addChildControllableContainer(customParams.get());
 
-	componentManager->userCanAddItemsManually = params.getProperty("isCustom", false);
+	//componentManager->userCanAddItemsManually = params.getProperty("isCustom", ftalse);
 	componentManager->addBaseManagerListener(this);
 	addChildControllableContainer(componentManager.get());
 
 	effectManager.reset(new EffectManager());
 	addChildControllableContainer(effectManager.get());
 
-	bool canCustomize = params.getProperty("canCustomize", false);
-	var objectsData = params.getProperty("objects", var());
+	//bool canCustomize = params.getProperty("canCustomize", false);
+	//var objectsData = params.getProperty("objects", var());
 
-	if (objectsData.isObject() || canCustomize)
+	/*if (objectsData.isObject() || canCustomize)
 	{
 		objectManager.reset(new SubObjectManager());
 		objectManager->userCanAddItemsManually = canCustomize;
 		addChildControllableContainer(objectManager.get());
-	}
+	}*/
 
 	if (!Engine::mainEngine->isLoadingFile && InterfaceManager::getInstance()->items.size() == 1) targetInterface->setValueFromTarget(InterfaceManager::getInstance()->items[0]);
 }

@@ -36,6 +36,8 @@ public:
     ObjectManager();
     ~ObjectManager();
 
+    virtual void clear() override;
+
     Factory<Object> factory;
 
     BoolParameter* blackOut;
@@ -83,6 +85,7 @@ public:
 
     var getJSONData() override;
     void loadJSONDataManagerInternal(var data) override;
+    void afterLoadJSONDataInternal() override;
 
     //Listener
     class ObjectManagerListener

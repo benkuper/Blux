@@ -14,7 +14,8 @@ EffectBlock::EffectBlock(var params) :
 	LayerBlock(params.getProperty("effectType", var()).toString()),
 	effectType(params.getProperty("effectType", var()).toString()),
 	settingLengthFromMethod(false),
-	effectBlockNotifier(5)
+	effectBlockNotifier(5),
+	fadeCurve("Fade Curve")
 {
 
 	saveAndLoadRecursiveData = true;

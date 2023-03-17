@@ -81,7 +81,7 @@ void TimedEffect::processComponentInternal(Object* o, ObjectComponent* c, const 
 	float targetTime = curTime - (float)GetLinkedValue(offsetByID) * id /* - (float)GetLinkedValue(offsetByValue) * i*/ + (float)GetLinkedValue(timeOffset);
 
 
-	processedComponentTimeInternal(o, c, values, targetValues, id, targetTime, time);
+	processComponentTimeInternal(o, c, values, targetValues, id, targetTime, time);
 
 }
 

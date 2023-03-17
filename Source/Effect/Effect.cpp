@@ -25,6 +25,7 @@ Effect::Effect(const String& name, var params) :
 	effectParams.addParamLinkContainerListener(this);
 
 	saveAndLoadRecursiveData = true;
+	effectParams.saveAndLoadRecursiveData = true;
 
 	sceneSaveMode = addEnumParameter("Save Mode", "Choose what to save in scenes");
 	sceneSaveMode->addOption("Save all", FULL, false)->addOption("Save weight only", WEIGHT_ONLY)->addOption("Exclude", NONE);

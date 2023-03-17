@@ -62,7 +62,7 @@ void BluxSequence::processComponent(Object* o, ObjectComponent* c, HashMap<Param
 {
 	for (int i = layerManager->items.size() - 1; i >= 0; --i)
 	{
-		if (!layerManager->items[i]->enabled->boolValue()) return;
+		if (!layerManager->items[i]->enabled->boolValue()) continue;
 		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
 		{
 			e->processComponent(o, c, values, weightMultiplier);

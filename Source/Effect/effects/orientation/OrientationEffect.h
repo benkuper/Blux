@@ -11,7 +11,7 @@
 #pragma once
 
 class OrientationTargetEffect :
-	public Effect
+	public TimedEffect
 {
 public:
 	OrientationTargetEffect(var params = var());
@@ -27,11 +27,34 @@ public:
 
 	void updateEffectParameters();
 
-	void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) override;
+	void processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) override;
 
 	void effectParamChanged(Controllable* c) override;
 
 	DECLARE_TYPE("Orientation Target")
+
+};
+
+class OrientationMultiTargetffect :
+	public TimedEffect
+{
+public:
+	OrientationMultiTargetffect(var params = var());
+	virtual ~OrientationMultiTargetffect();
+
+	IntParameter* numPositions;
+	BoolParameter* loop;
+	Array<Parameter*> positions;
+
+	SpinLock posLock;
+	
+	void rebuildPositions();
+
+	void effectParamChanged(Controllable* p) override;
+
+	void processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) override;
+
+	DECLARE_TYPE("Orientation MultiTarget")
 
 };
 
@@ -49,7 +72,7 @@ public:
 	Point3DParameter* axisMultiplier;
 	Point2DParameter* range;
 
-	void processedComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) override;
+	void processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) override;
 
 	DECLARE_TYPE("Orientation Noise")
 

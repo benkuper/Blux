@@ -41,7 +41,7 @@ public:
 	virtual void updateEnabled() override;
 
 	void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) override;
-	virtual void processedComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) {}
+	virtual void processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) {}
 
 	virtual float getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride = -1);
 

@@ -23,7 +23,6 @@ CurveMapEffect::CurveMapEffect(var params) :
 	k->easingType->setValueWithData(Easing::LINEAR);
 	automation.addKey(1, 1);
 	effectParams.addChildControllableContainer(&automation);
-	effectParams.saveAndLoadRecursiveData = true;
 }
 
 CurveMapEffect::~CurveMapEffect()

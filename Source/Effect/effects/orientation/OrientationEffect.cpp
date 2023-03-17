@@ -15,7 +15,7 @@
 #include "Common/Helpers/FastNoiseLite.h"
 
 OrientationTargetEffect::OrientationTargetEffect(var params) :
-	Effect(getTypeString(), params)
+	TimedEffect(getTypeString(), params)
 {
 	shape = effectParams.addEnumParameter("Shape", "Shape for multi device effects");
 	shape->addOption("Point", POINT)->addOption("Line", LINE)->addOption("Circle", CIRCLE);
@@ -65,7 +65,7 @@ void OrientationTargetEffect::updateEffectParameters()
 
 }
 
-void OrientationTargetEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
+void OrientationTargetEffect::processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
 {
 	OrientationComponent* oc = dynamic_cast<OrientationComponent*>(c);
 	if (oc == nullptr) return;
@@ -169,7 +169,7 @@ OrientationTargetNoiseEffect::~OrientationTargetNoiseEffect()
 {
 }
 
-void OrientationTargetNoiseEffect::processedComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
+void OrientationTargetNoiseEffect::processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
 {
 
 	OrientationComponent* oc = dynamic_cast<OrientationComponent*>(c);
@@ -211,6 +211,54 @@ void OrientationTargetNoiseEffect::processedComponentTimeInternal(Object* o, Obj
 	}
 }
 
+
+OrientationMultiTargetffect::OrientationMultiTargetffect(var params) :
+	TimedEffect(getTypeString(), params)
+{
+	numPositions = effectParams.addIntParameter("Num Targets", "Number of targets, from local ID 0", 3, 1);
+	loop = effectParams.addBoolParameter("Loop", "If checked, will loop local IDs with num targets", false);
+	rebuildPositions();
+}
+
+OrientationMultiTargetffect::~OrientationMultiTargetffect()
+{
+}
+
+void OrientationMultiTargetffect::rebuildPositions()
+{
+	GenericScopedLock lock(posLock);
+	while (positions.size() > numPositions->intValue())
+	{
+		effectParams.removeControllable(positions.getLast());
+		positions.removeLast();
+	}
+
+	while (positions.size() < numPositions->intValue())
+	{
+		positions.add(effectParams.addPoint3DParameter("Target " + String(positions.size()), "Target position for local ID " + String(positions.size())));
+	}
+}
+
+void OrientationMultiTargetffect::effectParamChanged(Controllable* p)
+{
+	if (p == numPositions) rebuildPositions();
+}
+
+void OrientationMultiTargetffect::processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
+{
+	OrientationComponent* oc = dynamic_cast<OrientationComponent*>(c);
+	if (oc == nullptr) return;
+
+	GenericScopedLock lock(posLock);
+
+	int numPos = (int)GetLinkedValue(numPositions);
+	int localID = (bool)GetLinkedValue(loop) ? id % numPos : id;
+	if (localID >= numPos) return;
+	jassert(localID < positions.size());
+
+	var pos = GetLinkedValue(positions[localID]);
+	targetValues.set(oc->paramComputedMap[oc->target], pos);
+}
 
 
 

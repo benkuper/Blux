@@ -35,7 +35,7 @@ NoiseEffect::~NoiseEffect()
 {
 }
 
-void NoiseEffect::processedComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
+void NoiseEffect::processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
 {
 	if (c->mainParameter == nullptr) return;
 

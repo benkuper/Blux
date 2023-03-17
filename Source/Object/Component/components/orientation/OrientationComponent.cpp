@@ -11,6 +11,7 @@
 #include "Interface/InterfaceIncludes.h"
 #include "Matrix3x3.hpp"
 #include "Vector3.hpp"
+#include "OrientationComponent.h"
 
 OrientationComponent::OrientationComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), ORIENTATION, params),
@@ -36,6 +37,17 @@ OrientationComponent::OrientationComponent(Object* o, var params) :
 	dmxTiltValueRange->setBounds(0, 0, 255, 255);
 	dmxTiltValueRange->setPoint(0, 255);
 
+	useAlternativeRange = panTiltCC.addBoolParameter("Use Alternative Range", "Use the Range 2, allows to change where the pan break is", false);
+	alternativeAxis = panTiltCC.addEnumParameter("Alternative Axis", "Axis to add 180% to when using alternative range");
+	alternativeAxis->addOption("X", X)->addOption("Y", Y)->addOption("Z", Z)->addOption("None", None);
+
+	dmxPanValueRange2 = panTiltCC.addPoint2DParameter("DMX Pan Range 2", "Alternative Min and Max value for 360% pan rotation");
+	dmxPanValueRange2->setBounds(0, 0, 255, 255);
+	dmxPanValueRange2->setPoint(0, 255);
+	dmxTiltValueRange2 = panTiltCC.addPoint2DParameter("DMX Tilt Range 2", "Alternative Min and Max value for 180% tilt rotation");
+	dmxTiltValueRange2->setBounds(0, 0, 255, 255);
+	dmxTiltValueRange2->setPoint(0, 255);
+
 
 	ControlMode cm = controlMode->getValueDataAsEnum<ControlMode>();
 	target->setEnabled(cm == TARGET);
@@ -59,6 +71,18 @@ void OrientationComponent::setPanTiltFromTarget(Vec3 worldTarget)
 	Vec3 position = Vec3::Up() * headOffset->floatValue();// InverseTransformPoint(transform.position, transform.rotation, transform.localScale, tiltT.position);
 
 	Vec3 rot = object->stageRotation->getVector();
+
+	if (useAlternativeRange->boolValue())
+	{
+		Axis ax = alternativeAxis->getValueDataAsEnum<Axis>();
+		switch (ax)
+		{
+		case None: break;
+		case X: rot.X += 180;
+		case Y: rot.Y += 180;
+		case Z: rot.Z += 180;
+		}
+	}
 
 
 	Vec3 computedTarget = ((Point3DParameter*)paramComputedMap[target])->getVector();
@@ -141,7 +165,6 @@ void OrientationComponent::onContainerParameterChangedInternal(Parameter* p)
 
 void OrientationComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
-	
 	if (!ObjectManager::getInstance()->blackOut->boolValue())
 	{
 		ControlMode cm = controlMode->getValueDataAsEnum<ControlMode>();
@@ -164,12 +187,53 @@ void OrientationComponent::updateComputedValues(HashMap<Parameter*, var>& values
 	ObjectComponent::updateComputedValues(values);
 }
 
+void OrientationComponent::fillInterfaceData(Interface* i, var data, var params)
+{
+	ObjectComponent::fillInterfaceData(i, data, params);
+
+	if (ObjectManager::getInstance()->blackOut->boolValue()) return;
+
+	if (DMXInterface* di = dynamic_cast<DMXInterface*>(i))
+	{
+		int channelOffset = params.getProperty("channelOffset", 0);
+		var channelsData = data.getProperty("channels", var());
+
+		if (usePreciseChannels->boolValue())
+		{
+			Array<Parameter*> panTilts{ pan, tilt };
+
+			for (auto& p : panTilts)
+			{
+
+				Parameter* pCh = computedInterfaceMap[paramComputedMap[p]];
+				if (pCh != nullptr || pCh->enabled)
+				{
+					int pChannel = channelOffset + pCh->intValue() - 1;
+
+					float pVal = (float)channelsData[pChannel];
+					int pVal1 = floor(pVal);
+					int pVal2 = fmodf(pVal, 1) * 255;
+
+					channelsData[pChannel] = pVal1;
+					channelsData[pChannel+1] = pVal2;
+
+				}
+			}
+		}
+	}
+
+}
+
 var OrientationComponent::getMappedValueForComputedParam(Interface* i, Parameter* cp)
 {
 	if (DMXInterface* di = dynamic_cast<DMXInterface*>(i))
 	{
-		if (cp == paramComputedMap[pan]) return jmap<float>(cp->floatValue(), dmxPanValueRange->x, dmxPanValueRange->y);
-		else if (cp == paramComputedMap[tilt]) return jmap<float>(cp->floatValue(), dmxTiltValueRange->x, dmxTiltValueRange->y);
+		bool useAlt = useAlternativeRange->boolValue();
+		Point2DParameter* panR = useAlt ? dmxPanValueRange2 : dmxPanValueRange;
+		Point2DParameter* tiltR = useAlt ? dmxTiltValueRange2 : dmxTiltValueRange;
+
+		if (cp == paramComputedMap[pan]) return jmap<float>(cp->floatValue(), panR->x, panR->y);
+		else if (cp == paramComputedMap[tilt]) return jmap<float>(cp->floatValue(), tiltR->x, tiltR->y);
 	}
 
 	return ObjectComponent::getMappedValueForComputedParam(i, cp);

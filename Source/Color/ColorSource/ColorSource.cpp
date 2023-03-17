@@ -23,6 +23,7 @@ ColorSource::ColorSource(const String& name, var params) :
 	sourceParams.hideEditorHeader = true;
 	sourceParams.editorCanBeCollapsed = false;
 	sourceParams.addParamLinkContainerListener(this);
+	sourceParams.saveAndLoadRecursiveData = true;
 	addChildControllableContainer(&sourceParams);
 
 }
