@@ -87,7 +87,7 @@ void BluxEngine::initVizServer()
 
 	vizServer->rootPath = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(ProjectInfo::projectName + String("/server"));
 
-	int port = 6060;
+	int port = 6080;
 	vizServer->start(port);
 	vizServer->addWebSocketListener(this);
 

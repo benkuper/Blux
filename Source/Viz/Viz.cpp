@@ -17,7 +17,7 @@ VizPanel::VizPanel(StringRef name) :
         WebBrowserComponent::Options::WinWebView2().withUserDataFolder(File::getSpecialLocation(File::windowsLocalAppData).getChildFile(ProjectInfo::projectName)).withStatusBarDisabled()))
 #endif
 {
-    web.goToURL("http://127.0.0.1:6060");
+    web.goToURL("http://127.0.0.1:6080");
     addAndMakeVisible(web);
 }
 
