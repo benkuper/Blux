@@ -7,6 +7,7 @@
 
   ==============================================================================
 */
+#include "Common/CommonIncludes.h"
 
 var SceneHelpers::getParamsSceneData(ControllableContainer* container, Array<Parameter*> excludeParams, bool recursive)
 {
@@ -35,6 +36,7 @@ void SceneHelpers::lerpSceneParams(ControllableContainer* container, var startDa
 
 	for (auto& p : params)
 	{
+		if (p.wasObjectDeleted() || p == nullptr) continue;
 		if (p->type == Parameter::ENUM || p->type == Parameter::TARGET) continue;
 		if (p->isControllableFeedbackOnly) continue;
 		if (BaseItem* bi = dynamic_cast<BaseItem*>(container))

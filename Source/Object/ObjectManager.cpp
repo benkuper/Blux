@@ -44,10 +44,12 @@ ObjectManager::ObjectManager() :
 	}
 
 	startThread();
+	Engine::mainEngine->addEngineListener(this);
 }
 
 ObjectManager::~ObjectManager()
 {
+	Engine::mainEngine->removeEngineListener(this);
 	stopThread(1000);
 }
 
@@ -255,6 +257,16 @@ void ObjectManager::loadJSONDataManagerInternal(var data)
 void ObjectManager::afterLoadJSONDataInternal()
 {
 	startThread();
+}
+
+void ObjectManager::endLoadFile()
+{
+	startThread();
+}
+
+void ObjectManager::engineCleared()
+{
+	stopThread(1000);
 }
 
 ObjectManagerCustomParams* ObjectManager::getCustomParams()

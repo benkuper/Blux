@@ -229,6 +229,7 @@
 		627742083830E3A02D2379F1 /* EffectBlockManager.h */ /* EffectBlockManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectBlockManager.h; path = ../../Source/Sequence/layers/effect/EffectBlockManager.h; sourceTree = SOURCE_ROOT; };
 		633CBFF1FC95E2539257A374 /* CurveMapEffect.cpp */ /* CurveMapEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CurveMapEffect.cpp; path = ../../Source/Effect/effects/override/CurveMapEffect.cpp; sourceTree = SOURCE_ROOT; };
 		659B5041CB53A71CDCB0157A /* MIDIDeviceParameterUI.h */ /* MIDIDeviceParameterUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MIDIDeviceParameterUI.h; path = ../../Source/Common/MIDI/ui/MIDIDeviceParameterUI.h; sourceTree = SOURCE_ROOT; };
+		6747B79768021E6A1BC29EFD /* CustomComponentEffect.cpp */ /* CustomComponentEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CustomComponentEffect.cpp; path = ../../Source/Effect/effects/customcomponent/CustomComponentEffect.cpp; sourceTree = SOURCE_ROOT; };
 		68A1AB447C7BE819E4D0A974 /* juce_audio_formats */ /* juce_audio_formats */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_formats; path = ../../JUCE/modules/juce_audio_formats; sourceTree = SOURCE_ROOT; };
 		69208D8485C1CB9E8AB276F9 /* juce_organicui */ /* juce_organicui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_organicui; path = ../../Modules/juce_organicui; sourceTree = SOURCE_ROOT; };
 		6A7063FAB3E5711505908343 /* SceneHelpers.cpp */ /* SceneHelpers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SceneHelpers.cpp; path = ../../Source/Common/Helpers/SceneHelpers.cpp; sourceTree = SOURCE_ROOT; };
@@ -424,6 +425,7 @@
 		DDC99FD0CFC088E7CBC32F55 /* ColorSourceLibrary.cpp */ /* ColorSourceLibrary.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorSourceLibrary.cpp; path = ../../Source/Color/ColorSource/ColorSourceLibrary.cpp; sourceTree = SOURCE_ROOT; };
 		DEE231A6167A8473311A06AB /* ActionTrigger.h */ /* ActionTrigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ActionTrigger.h; path = ../../Source/Sequence/layers/action/ActionTrigger.h; sourceTree = SOURCE_ROOT; };
 		DF146D01FAE15983FCCFCFFC /* juce_audio_basics */ /* juce_audio_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_basics; path = ../../JUCE/modules/juce_audio_basics; sourceTree = SOURCE_ROOT; };
+		DF1A1EEE6303B60FE64059A4 /* CustomComponentEffect.h */ /* CustomComponentEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CustomComponentEffect.h; path = ../../Source/Effect/effects/customcomponent/CustomComponentEffect.h; sourceTree = SOURCE_ROOT; };
 		DF2CF4978FF247F032BE184E /* BluxSequence.cpp */ /* BluxSequence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BluxSequence.cpp; path = ../../Source/Sequence/BluxSequence.cpp; sourceTree = SOURCE_ROOT; };
 		DF2D5A70A391CF48CD819BA5 /* PixelShapeChooser.h */ /* PixelShapeChooser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PixelShapeChooser.h; path = ../../Source/Color/PixelShape/ui/PixelShapeChooser.h; sourceTree = SOURCE_ROOT; };
 		DF2F92C94D803653F6CEC0FC /* SequenceIncludes.h */ /* SequenceIncludes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SequenceIncludes.h; path = ../../Source/Sequence/SequenceIncludes.h; sourceTree = SOURCE_ROOT; };
@@ -1304,6 +1306,15 @@
 			name = ui;
 			sourceTree = "<group>";
 		};
+		93FBA3F27859B2687F490E2E /* customcomponent */ = {
+			isa = PBXGroup;
+			children = (
+				6747B79768021E6A1BC29EFD,
+				DF1A1EEE6303B60FE64059A4,
+			);
+			name = customcomponent;
+			sourceTree = "<group>";
+		};
 		946A1D7033ECD9C8F2B2EDB4 /* picture */ = {
 			isa = PBXGroup;
 			children = (
@@ -1582,6 +1593,7 @@
 		D9FE837C1612F50C76902DC6 /* effects */ = {
 			isa = PBXGroup;
 			children = (
+				93FBA3F27859B2687F490E2E,
 				FBB652BAD8BC8EF8E810259F,
 				64B1DBF929D21BCC66503911,
 				82E4747FA72A76A5B0CF57EC,

@@ -319,6 +319,12 @@
           <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
         </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{8F3C161E-3759-748F-F820-C2E665006ADE}" name="customcomponent">
+            <FILE id="FpDSSz" name="CustomComponentEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/customcomponent/CustomComponentEffect.cpp"/>
+            <FILE id="D0jAAT" name="CustomComponentEffect.h" compile="0" resource="0"
+                  file="Source/Effect/effects/customcomponent/CustomComponentEffect.h"/>
+          </GROUP>
           <GROUP id="{1B2652FA-5299-BCFF-CBFA-59F6D213361B}" name="orientation">
             <FILE id="CQmwZt" name="OrientationEffect.cpp" compile="0" resource="0"
                   file="Source/Effect/effects/orientation/OrientationEffect.cpp"/>

@@ -41,7 +41,7 @@ void CustomComponent::rebuildValues()
 	while (computedParameters.size() < numValues->intValue())
 	{
 		FloatParameter* v = new FloatParameter("Value " + String(computedParameters.size() + 1), "", 0, 0, 1);
-		v->userCanChangeName = true;
+		//v->userCanChangeName = true;
 		v->isCustomizableByUser = true;
 		addComputedParameter(v);
 	}
@@ -53,18 +53,18 @@ void CustomComponent::rebuildValues()
 var CustomComponent::getJSONData()
 {
 	var data = ObjectComponent::getJSONData();
-	var valueNames;
-	var valueRanges;
-	for (auto& sp : sourceParameters)
-	{
-		valueNames.append(sp->niceName);
-		var r;
-		r.append(sp->minimumValue);
-		r.append(sp->maximumValue);
-		valueRanges.append(r);
-	}
-	data.getDynamicObject()->setProperty("valueNames", valueNames);
-	data.getDynamicObject()->setProperty("valueRanges", valueRanges);
+	//var valueNames;
+	//var valueRanges;
+	//for (auto& sp : sourceParameters)
+	//{
+	//	valueNames.append(sp->niceName);
+	//	var r;
+	//	r.append(sp->minimumValue);
+	//	r.append(sp->maximumValue);
+	//	valueRanges.append(r);
+	//}
+	//data.getDynamicObject()->setProperty("valueNames", valueNames);
+	//data.getDynamicObject()->setProperty("valueRanges", valueRanges);
 
 	return data;
 }
@@ -73,11 +73,11 @@ void CustomComponent::loadJSONDataItemInternal(var data)
 {
 	ObjectComponent::loadJSONDataItemInternal(data);
 	
-	var vData = data["valueNames"];
-	var rData = data["valueRanges"];
-	for (int i = 0; i < sourceParameters.size() && i < vData.size(); i++)
-	{
-		sourceParameters[i]->setNiceName(vData[i]);
-		if (i < rData.size()) sourceParameters[i]->setRange(rData[i][0],rData[i][1]);
-	}
+	//var vData = data["valueNames"];
+	//var rData = data["valueRanges"];
+	//for (int i = 0; i < sourceParameters.size() && i < vData.size(); i++)
+	//{
+	//	sourceParameters[i]->setNiceName(vData[i]);
+	//	if (i < rData.size()) sourceParameters[i]->setRange(rData[i][0],rData[i][1]);
+	//}
 }

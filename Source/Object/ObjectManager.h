@@ -26,7 +26,8 @@ class ObjectManager :
     public Object::ObjectListener,
     public Thread,
     public URL::DownloadTask::Listener,
-    public GenericControllableManager::ManagerListener
+    public GenericControllableManager::ManagerListener,
+    public EngineListener
 {
 public:
     juce_DeclareSingleton(ObjectManager, true);
@@ -82,6 +83,9 @@ public:
     var getJSONData() override;
     void loadJSONDataManagerInternal(var data) override;
     void afterLoadJSONDataInternal() override;
+
+    void endLoadFile() override;
+    void engineCleared() override;
 
     //Listener
     class ObjectManagerListener

@@ -131,6 +131,9 @@
     <Filter Include="Blux\Source\Effect\actions">
       <UniqueIdentifier>{34DAE7F0-D89C-AA58-E8B8-91F231D8F5C0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Effect\effects\customcomponent">
+      <UniqueIdentifier>{80B985EF-AD9F-CB13-1D22-5F322D4632EF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Effect\effects\orientation">
       <UniqueIdentifier>{1CB0BD2A-5CD0-CEEF-D55B-760F43093A62}</UniqueIdentifier>
     </Filter>
@@ -1503,6 +1506,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\actions\EffectAction.cpp">
       <Filter>Blux\Source\Effect\actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\customcomponent\CustomComponentEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\customcomponent</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Effect\effects\orientation\OrientationEffect.cpp">
       <Filter>Blux\Source\Effect\effects\orientation</Filter>
@@ -5318,6 +5324,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\actions\EffectAction.h">
       <Filter>Blux\Source\Effect\actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\customcomponent\CustomComponentEffect.h">
+      <Filter>Blux\Source\Effect\effects\customcomponent</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\orientation\OrientationEffect.h">
       <Filter>Blux\Source\Effect\effects\orientation</Filter>

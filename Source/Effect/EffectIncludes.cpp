@@ -31,6 +31,7 @@
 #include "effects/smooth/SmoothingEffect.cpp"
 #include "effects/smooth/DampingEffect.cpp"
 #include "effects/orientation/OrientationEffect.cpp"
+#include "effects/customcomponent/CustomComponentEffect.cpp"
 #include "Filter/Filter.cpp"
 #include "Filter/FilterManager.cpp"
 #include "Filter/filters/group/GroupFilter.cpp"

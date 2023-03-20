@@ -110,4 +110,6 @@ EffectFactory::EffectFactory()
 	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetNoiseEffect>("Orientation")->addParam("types", ORIENTATION));
 	defs.add(Factory<Effect>::Definition::createDef<OrientationMultiTargetffect>("Orientation")->addParam("types", ORIENTATION));
 	defs.add(Factory<Effect>::Definition::createDef<OrientationPanTiltEffect>("Orientation")->addParam("types", ORIENTATION));
+
+	defs.add(Factory<Effect>::Definition::createDef<CustomComponentEffect>("Custom")->addParam("types", CUSTOM));
 }

@@ -213,7 +213,7 @@ void OrientationTargetNoiseEffect::processComponentTimeInternal(Object* o, Objec
 
 
 OrientationMultiTargetffect::OrientationMultiTargetffect(var params) :
-	TimedEffect(getTypeString(), params)
+	Effect(getTypeString(), params)
 {
 	numPositions = effectParams.addIntParameter("Num Targets", "Number of targets, from local ID 0", 3, 1);
 	loop = effectParams.addBoolParameter("Loop", "If checked, will loop local IDs with num targets", false);
@@ -244,7 +244,7 @@ void OrientationMultiTargetffect::effectParamChanged(Controllable* p)
 	if (p == numPositions) rebuildPositions();
 }
 
-void OrientationMultiTargetffect::processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
+void OrientationMultiTargetffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
 	OrientationComponent* oc = dynamic_cast<OrientationComponent*>(c);
 	if (oc == nullptr) return;

@@ -36,7 +36,7 @@ public:
 };
 
 class OrientationMultiTargetffect :
-	public TimedEffect
+	public Effect
 {
 public:
 	OrientationMultiTargetffect(var params = var());
@@ -52,7 +52,7 @@ public:
 
 	void effectParamChanged(Controllable* p) override;
 
-	void processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1, float originalTime = -1) override;
+	void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) override;
 
 	DECLARE_TYPE("Orientation MultiTarget")
 
