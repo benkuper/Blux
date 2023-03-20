@@ -21,7 +21,12 @@ public:
 	EnumParameter* shape;
 
 	IntParameter* count;
+
+	FloatParameter* panOffset;
+	FloatParameter* tiltOffset;
+
 	Array<Parameter*> params;
+
 
 	SpinLock paramLock;
 
@@ -47,6 +52,7 @@ public:
 	Array<Parameter*> positions;
 
 	SpinLock posLock;
+
 	
 	void rebuildPositions();
 
@@ -85,6 +91,7 @@ public:
 	OrientationPanTiltEffect(var params = var());
 	virtual ~OrientationPanTiltEffect();
 
+	BoolParameter* affectOffset;
 	FloatParameter* pan;
 	FloatParameter* tilt;
 

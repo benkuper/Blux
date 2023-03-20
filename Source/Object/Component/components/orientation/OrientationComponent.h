@@ -29,6 +29,8 @@ public:
 	enum ControlMode { TARGET, PANTILT };
 	EnumParameter* controlMode;
 	Point3DParameter* target;
+	FloatParameter* panOffset;
+	FloatParameter* tiltOffset;
 
 	EnablingControllableContainer panTiltCC;
 	BoolParameter* usePreciseChannels;

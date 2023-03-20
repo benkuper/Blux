@@ -24,6 +24,8 @@ OrientationComponent::OrientationComponent(Object* o, var params) :
 	controlMode->addOption("Target", TARGET)->addOption("Pan/Tilt", PANTILT);
 
 	target = (Point3DParameter*)addComputedParameter(new Point3DParameter("Target", "Orientation after all effects applied"));
+	panOffset = (FloatParameter*)addComputedParameter(new FloatParameter("Pan Offset", "Pan Offset from target", 0, -1, 1));
+	tiltOffset = (FloatParameter*)addComputedParameter(new FloatParameter("Tilt Offset", "Tilt Offset from target", 0, -1, 1));
 	paramComputedMap[target]->setEnabled(false);
 
 	usePreciseChannels = panTiltCC.addBoolParameter("Use Precise Channels", "If checked, this will also set the 2 precision channels. Depends on the device used.", false);
@@ -127,8 +129,8 @@ void OrientationComponent::setPanTiltFromTarget(Vec3 worldTarget)
 	}
 
 
-	pan->setValue(targetPan);
-	tilt->setValue(targetTilt);
+	pan->setValue(targetPan + paramComputedMap[panOffset]->floatValue());
+	tilt->setValue(targetTilt + paramComputedMap[tiltOffset]->floatValue());
 
 }
 
@@ -215,7 +217,7 @@ void OrientationComponent::fillInterfaceData(Interface* i, var data, var params)
 					int pVal2 = fmodf(pVal, 1) * 255;
 
 					channelsData[pChannel] = pVal1;
-					channelsData[pChannel+1] = pVal2;
+					channelsData[pChannel + 1] = pVal2;
 
 				}
 			}

@@ -20,6 +20,11 @@ OrientationTargetEffect::OrientationTargetEffect(var params) :
 	shape = effectParams.addEnumParameter("Shape", "Shape for multi device effects");
 	shape->addOption("Point", POINT)->addOption("Line", LINE)->addOption("Circle", CIRCLE);
 
+	panOffset = effectParams.addFloatParameter("Pan Offset", "Pan Offset from target", 0, -1, 1, false);
+	panOffset->canBeDisabledByUser = true;
+	tiltOffset = effectParams.addFloatParameter("Tilt Offset", "Tilt Offset from target", 0, -1, 1, false);
+	tiltOffset->canBeDisabledByUser = true;
+
 	count = effectParams.addIntParameter("Count", "Number of objects to consider for the effect", 1, 1);
 
 
@@ -137,6 +142,10 @@ void OrientationTargetEffect::processComponentTimeInternal(Object* o, ObjectComp
 	}
 	break;
 	}
+
+	if (panOffset->enabled) targetValues.set(oc->paramComputedMap[oc->panOffset], GetLinkedValue(panOffset));
+	if (tiltOffset->enabled) targetValues.set(oc->paramComputedMap[oc->tiltOffset], GetLinkedValue(tiltOffset));
+
 }
 
 void OrientationTargetEffect::effectParamChanged(Controllable* c)
@@ -269,6 +278,8 @@ OrientationPanTiltEffect::OrientationPanTiltEffect(var params) :
 	pan->canBeDisabledByUser = true;
 	tilt = effectParams.addFloatParameter("Tilt", "Tilt", 0, -1, 1);
 	tilt->canBeDisabledByUser = true;
+
+	affectOffset = effectParams.addBoolParameter("Affect Offset", "If checked, this will affect pan/tilt offset from target control mode instead of direct pan tilt", false);
 }
 
 OrientationPanTiltEffect::~OrientationPanTiltEffect()
@@ -282,6 +293,14 @@ void OrientationPanTiltEffect::processComponentInternal(Object* o, ObjectCompone
 
 	Parameter* panCP = oc->paramComputedMap[oc->pan];
 	Parameter* tiltCP = oc->paramComputedMap[oc->tilt];
+
+	var off = GetLinkedValue(affectOffset);
+
+	if ((bool)off)
+	{
+		panCP = oc->paramComputedMap[oc->panOffset];
+		tiltCP = oc->paramComputedMap[oc->tiltOffset];
+	}
 
 	if (pan->enabled) targetValues.set(panCP, GetLinkedValue(pan));
 	if (tilt->enabled) targetValues.set(tiltCP, GetLinkedValue(tilt));
