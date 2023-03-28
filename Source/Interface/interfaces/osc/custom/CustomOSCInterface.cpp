@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Interface/InterfaceIncludes.h"
+#include "Object/ObjectIncludes.h"
 
 CustomOSCInterface::CustomOSCInterface() :
 	OSCInterface(getTypeString(), true),
@@ -33,23 +35,21 @@ void CustomOSCInterface::itemRemoved(GenericControllableItem*)
 
 void CustomOSCInterface::sendValuesForObjectInternal(Object* o)
 {
-	Array<var> args;
-	args.add(o->getScriptObject());
+	var data(new DynamicObject());
+	data.getDynamicObject()->setProperty("values", new DynamicObject()); //needed to fill
 
-	var valuesData(new DynamicObject());
 	for (auto& c : o->componentManager->items)
 	{
 		if (!c->enabled->boolValue()) continue;
-
-		var compData(new DynamicObject());
-		for (auto& p : c->computedParameters) compData.getDynamicObject()->setProperty(p->shortName, p->getValue());
-		valuesData.getDynamicObject()->setProperty(c->shortName, compData);
+		c->fillInterfaceData(this, data, var());
 	}
-	args.add(valuesData);
-	
-	var itfParams = ((CustomOSCParams*)o->interfaceParameters.get())->getParamValues();
-	args.add(itfParams);
 
+	var itfParams = ((CustomOSCParams*)o->interfaceParameters.get())->getParamValues();
+
+	Array<var> args;
+	args.add(o->getScriptObject());
+	args.add(data);
+	args.add(itfParams);
 	scriptManager->callFunctionOnAllItems("sendValuesForObject", args);
 }
 
@@ -85,7 +85,7 @@ void CustomOSCInterface::CustomOSCParams::rebuildArgsFromInterface()
 	{
 		if (gci->controllable->type == Controllable::TRIGGER) continue;
 
-		if (Parameter* p = ControllableFactory::createParameterFrom((Parameter *)gci->controllable, true, true))
+		if (Parameter* p = ControllableFactory::createParameterFrom((Parameter*)gci->controllable, true, true))
 		{
 			p->canBeDisabledByUser = true;
 			p->setEnabled(false);
