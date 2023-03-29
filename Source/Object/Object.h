@@ -55,9 +55,6 @@ public:
 	Parameter* slideManipParameter;
 	float slideManipValueRef;
 
-	//chainviz
-	HashMap<Effect*, float, DefaultHashFunctions, CriticalSection> effectIntensityOutMap;
-
 	std::unique_ptr<ObjectManagerCustomParams> customParams;
 
 	virtual void clearItem() override;
@@ -67,6 +64,7 @@ public:
 
 	template<class T>
 	T* getComponent();
+	ObjectComponent* getComponentForType(ComponentType t);
 
 	void onContainerParameterChangedInternal(Parameter* p) override;
 	void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
@@ -89,9 +87,9 @@ public:
 
 	void afterLoadJSONDataInternal() override;
 
-	Array<ChainVizTarget*> getEffectChain();
+	Array<ChainVizTarget*> getEffectChain(ComponentType ct);
 
-	ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
+	ChainVizComponent* createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) override;
 
 	//Listener
 	class  ObjectListener

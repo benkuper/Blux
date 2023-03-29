@@ -34,7 +34,7 @@ public:
     void addItemInternal(Effect* e, var data) override;
 
     virtual void processComponent(Object * o, ObjectComponent * c, HashMap<Parameter*, var> &values, float weightMultiplier = 1.0f, int id = -1);
-    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
+    Array<ChainVizTarget *> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
 
     void resetEffectsTimes();
 

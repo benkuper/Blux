@@ -53,7 +53,7 @@ public:
     void askForLoadScene(Scene* s, float time) override;
 
 
-    Array<ChainVizTarget *> getChainVizTargetsForObject(Object * o);
+    Array<ChainVizTarget *> getChainVizTargetsForObjectAndComponent(Object * o, ComponentType t);
     void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values);
 
     void onContainerTriggerTriggered(Trigger* t) override;

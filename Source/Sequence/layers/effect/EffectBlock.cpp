@@ -71,7 +71,6 @@ void EffectBlock::processComponent(Object* o, ObjectComponent* c, HashMap<Parame
 
 	double relTimeLooped = getRelativeTime(absoluteTime, true);
 	effect->processComponent(o, c, values, targetWeight, id, relTimeLooped);
-	if (c->componentType == ComponentType::DIMMER && values.size() > 0) o->effectIntensityOutMap.set(effect.get(), values[0].clone());
 }
 
 void EffectBlock::onContainerParameterChangedInternal(Parameter* p)

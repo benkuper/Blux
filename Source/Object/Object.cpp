@@ -179,6 +179,12 @@ void Object::rebuildInterfaceParams()
 	else slideManipParameter = nullptr;
 }
 
+ObjectComponent* Object::getComponentForType(ComponentType t)
+{
+	for(auto & c: componentManager->items) if(c->componentType == t) return c;
+	return nullptr;
+}
+
 void Object::onContainerParameterChangedInternal(Parameter* p)
 {
 	BaseItem::onContainerParameterChangedInternal(p);
@@ -243,9 +249,6 @@ void Object::checkAndComputeComponentValuesIfNeeded()
 void Object::computeComponentValues(ObjectComponent* c)
 {
 	if (!c->enabled->boolValue()) return;
-
-	effectIntensityOutMap.clear();
-
 
 	c->update();
 	HashMap<Parameter*, var> values;
@@ -326,19 +329,19 @@ void Object::afterLoadJSONDataInternal()
 	if (Interface* i = (Interface*)targetInterface->targetContainer.get()) for (auto& c : componentManager->items) c->rebuildInterfaceParams(i);
 }
 
-Array<ChainVizTarget*> Object::getEffectChain()
+Array<ChainVizTarget*> Object::getEffectChain(ComponentType ct)
 {
 	Array<ChainVizTarget*> result;
-	result.addArray(effectManager->getChainVizTargetsForObject(this));
-	result.addArray(SceneManager::getInstance()->getChainVizTargetsForObject(this));
-	result.addArray(GroupManager::getInstance()->getChainVizTargetsForObject(this));
-	//result.addArray(GlobalSequenceManager::getInstance()->.getChainVizTargetsForObject(this));
-	result.addArray(GlobalEffectManager::getInstance()->getChainVizTargetsForObject(this));
+	result.addArray(effectManager->getChainVizTargetsForObjectAndComponent(this, ct));
+	result.addArray(SceneManager::getInstance()->getChainVizTargetsForObjectAndComponent(this, ct));
+	result.addArray(GroupManager::getInstance()->getChainVizTargetsForObjectAndComponent(this, ct));
+	//result.addArray(GlobalSequenceManager::getInstance()->.getChainVizTargetsForObjectAndComponent(this, ct));
+	result.addArray(GlobalEffectManager::getInstance()->getChainVizTargetsForObjectAndComponent(this, ct));
 	return result;
 }
 
-ChainVizComponent* Object::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
+ChainVizComponent* Object::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)
 {
 	jassert(o == this);
-	return new ObjectChainVizUI(this, type);
+	return new ObjectChainVizUI(this, ct, type);
 }

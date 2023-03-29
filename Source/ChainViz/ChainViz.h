@@ -20,7 +20,7 @@ class ChainVizComponent :
 	public Inspectable::InspectableListener
 {
 public:
-	ChainVizComponent(ChainVizTarget * item, Object * o, ChainVizTarget::ChainVizType type);
+	ChainVizComponent(ChainVizTarget * item, Object * o, ComponentType ct, ChainVizTarget::ChainVizType type);
 	virtual ~ChainVizComponent();
 
 	static const Colour typeColors[ChainVizTarget::CHAINVIZ_TYPE_MAX];
@@ -29,6 +29,7 @@ public:
 
 	ChainVizTarget * item;
 	Object* object;
+	ComponentType componentType;
 	ChainVizTarget::ChainVizType type;
 
 	virtual bool isReallyAffecting() { return true; }
@@ -42,7 +43,7 @@ class BaseItemChainVizComponent :
 	public ChainVizComponent
 {
 public:
-	BaseItemChainVizComponent(BaseItem* i, Object * o, ChainVizTarget::ChainVizType type);
+	BaseItemChainVizComponent(BaseItem* i, Object * o, ComponentType ct, ChainVizTarget::ChainVizType type);
 	virtual ~BaseItemChainVizComponent();
 
 	BaseItem* baseItem;
@@ -85,6 +86,8 @@ public:
 	WeakReference<Inspectable> objectRef;
 	BoolParameter showOnlyActives;
 	std::unique_ptr<BoolButtonToggleUI> showOnlyActivesUI;
+	EnumParameter componentSelect;
+	std::unique_ptr<EnumParameterUI> componentSelectUI;
 
 	Rectangle<int> objectEffectsRect;
 	Rectangle<int> sceneRect;

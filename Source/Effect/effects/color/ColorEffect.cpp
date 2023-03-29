@@ -56,4 +56,14 @@ void ColorEffect::processComponentInternal(Object* o, ObjectComponent* c, const 
 	}
 
 	targetValues.set(nullptr, result);
+
+	//viz
+	if (targetColors.size() > 0)
+	{
+		if (vizParameter != nullptr && !vizParameter.wasObjectDeleted() && vizComputedParamRef != nullptr && vizComputedParamRef == c->mainParameter)
+		{
+			((ColorParameter*)vizParameter.get())->setColor(targetColors[0]);
+		}
+	}
+
 }

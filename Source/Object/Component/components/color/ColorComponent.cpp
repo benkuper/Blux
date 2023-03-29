@@ -18,10 +18,8 @@ ColorComponent::ColorComponent(Object* o, var params) :
 	resolution = addIntParameter("Resolution", "Number of different colors/pixels for this object", 1, 1);
 	useIntensityForColor = addBoolParameter("Use Intensity for Color", "If checked, use the intensity component for color opacity", false);
 
-	mainOutColor = addColorParameter("Out Color", "Computed out color, not used to send DMX but for feedback", Colours::black);
-	mainOutColor->hideInEditor = true;
-	mainOutColor->setControllableFeedbackOnly(true);
-	computedParameters.add(mainOutColor);
+	mainColor = (ColorParameter*)addComputedParameter(new ColorParameter("Out Color", "Computed out color, not used to send DMX but for feedback", Colours::black));
+	mainColor->hideInEditor = true;
 
 	update();
 }
@@ -116,7 +114,7 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	var colValues = values[nullptr]; //using nullptr as placeholders for values not linked to a computed parameter
 
 	jassert(colValues.size() == resolution->intValue());
-	
+
 	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
 		var zeroVal;
@@ -144,8 +142,7 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 
 	if (colValues.size() > 0)
 	{
-		var col = colValues[0];
-		mainOutColor->setColor(Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
+		paramComputedMap[mainColor]->setValue(colValues[0]);
 	}
 
 }
@@ -157,7 +154,7 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 		int channelOffset = params.getProperty("channelOffset", 0);
 		var channelsData = data.getProperty("channels", var());
 
-		Parameter* channelP = computedInterfaceMap[mainOutColor];
+		Parameter* channelP = computedInterfaceMap[paramComputedMap[mainColor]];
 		if (channelP == nullptr || !channelP->enabled) return;
 		int channel = channelP->intValue();
 		int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
@@ -166,13 +163,13 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 		{
 			int ch = targetChannel + i * 3;
 			channelsData[ch] = outColors[i].getRed();
-			channelsData[ch+1] = outColors[i].getGreen();
-			channelsData[ch+2] = outColors[i].getBlue();
+			channelsData[ch + 1] = outColors[i].getGreen();
+			channelsData[ch + 2] = outColors[i].getBlue();
 		}
 
 		return;
 	}
-	
+
 	ObjectComponent::fillInterfaceDataInternal(i, data, params);
 }
 

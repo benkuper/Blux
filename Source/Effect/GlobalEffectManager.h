@@ -37,7 +37,7 @@ public:
     GlobalEffectManager();
     ~GlobalEffectManager();
 
-    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
+    Array<ChainVizTarget *> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
     virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values);
 
     var getSceneData();

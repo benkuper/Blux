@@ -9,6 +9,7 @@
   ==============================================================================
 */
 
+#include "Sequence/SequenceIncludes.h"
 #include "Effect/EffectIncludes.h"
 
 EffectLayer::EffectLayer(Sequence* s, var params) :
@@ -30,7 +31,7 @@ EffectLayer::~EffectLayer()
 {
 }
 
-Array<ChainVizTarget*> EffectLayer::getChainVizTargetsForObject(Object* o)
+Array<ChainVizTarget*> EffectLayer::getChainVizTargetsForObjectAndComponent(Object* o, ComponentType c)
 {
 	Array<ChainVizTarget*> result;
 
@@ -45,7 +46,7 @@ Array<ChainVizTarget*> EffectLayer::getChainVizTargetsForObject(Object* o)
 	for (auto& i : blocks)
 	{
 		EffectBlock* eb = (EffectBlock*)i;
-		if (eb->effect->filterManager->isAffectingObject(o)) result.add(eb->effect.get());
+		if (eb->effect->isAffectingObjectAndComponent(o, c)) result.add(eb->effect.get());
 	}
 
 	return result;

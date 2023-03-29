@@ -24,7 +24,7 @@ public:
 
     Factory<Group> factory;
 
-    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
+    Array<ChainVizTarget *> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
     virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values);
 
     var getSceneData();

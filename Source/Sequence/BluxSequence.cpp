@@ -46,14 +46,14 @@ bool BluxSequence::isAffectingObject(Object* o)
 	return false;
 }
 
-Array<ChainVizTarget*> BluxSequence::getChainVizTargetsForObject(Object* o)
+Array<ChainVizTarget*> BluxSequence::getChainVizTargetsForObjectAndComponent(Object* o, ComponentType c)
 {
 	Array<ChainVizTarget*> result;
 	for (int i = layerManager->items.size() - 1; i >= 0; --i)
 	{
 		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
 		{
-			result.addArray(e->getChainVizTargetsForObject(o));
+			result.addArray(e->getChainVizTargetsForObjectAndComponent(o, c));
 		}
 	}
 	return result;
@@ -95,9 +95,9 @@ void BluxSequence::endLoadFile()
 	Sequence::endLoadFile();
 }
 
-ChainVizComponent* BluxSequence::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
+ChainVizComponent* BluxSequence::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)
 {
-	return new BluxSequenceChainVizUI(this, o, type);
+	return new BluxSequenceChainVizUI(this, o, ct, type);
 }
 
 InspectableEditor* BluxSequence::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)

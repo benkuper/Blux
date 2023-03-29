@@ -18,7 +18,7 @@ class BluxSequenceChainVizUI :
     public Sequence::SequenceListener
 {
 public:
-    BluxSequenceChainVizUI(BluxSequence * s, Object* o, ChainVizTarget::ChainVizType type);
+    BluxSequenceChainVizUI(BluxSequence * s, Object* o, ComponentType ct, ChainVizTarget::ChainVizType type);
     ~BluxSequenceChainVizUI();
 
     BluxSequence* sequence;

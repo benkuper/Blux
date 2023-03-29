@@ -32,7 +32,7 @@ public:
 
     std::unique_ptr<PixelShape> pixelShape;
 
-    ColorParameter* mainOutColor; //fake computed parameter for viz
+    ColorParameter* mainColor; //fake computed parameter for viz
 
     void setupSource(const String &type, ColorSource * templateRef = nullptr);
     void setupShape(const String &type);

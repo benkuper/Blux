@@ -10,6 +10,7 @@
 
 #pragma once
 
+enum ComponentType;
 class ChainVizComponent;
 class Object;
 
@@ -19,5 +20,5 @@ public:
     enum ChainVizType { OBJECT_START, OBJECT_END, OBJECT_EFFECT, SCENE_EFFECT, GROUP_EFFECT, GLOBAL_EFFECT, SEQUENCE_EFFECT, CHAINVIZ_TYPE_MAX };
 
     virtual ~ChainVizTarget();
-    virtual ChainVizComponent* createVizComponent(Object * o, ChainVizType type);
+    virtual ChainVizComponent* createVizComponent(Object * o, ComponentType ct, ChainVizType type);
 };

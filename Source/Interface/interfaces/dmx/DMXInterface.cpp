@@ -152,6 +152,8 @@ void DMXInterface::dmxDeviceDisconnected()
 void DMXInterface::dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName)
 {
 	if (isClearing || !enabled->boolValue()) return;
+
+	inActivityTrigger->trigger();
 	if (logIncomingData->boolValue()) NLOG(niceName, "DMX In : Net " << net << ", Subnet " << subnet << ", Universe " << universe);
 
 	dmxInterfaceListeners.call(&DMXInterfaceListener::dmxDataInChanged, net, subnet, universe, values, sourceName);
@@ -204,9 +206,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	}
 
 
-	//HashMap<int, float>::Iterator it(compValues);
-
-	//if (logOutgoingData->boolValue()) NLOG(niceName, "Updating " << compValues.size() << " values");
+	outActivityTrigger->trigger();
 
 	bool sOnChangeOnly = sendOnChangeOnly->boolValue();
 

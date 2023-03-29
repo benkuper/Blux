@@ -165,13 +165,13 @@ void SceneManager::askForLoadScene(Scene* s, float loadTime)
 	loadScene(s, loadTime);
 }
 
-Array<ChainVizTarget*> SceneManager::getChainVizTargetsForObject(Object* o)
+Array<ChainVizTarget*> SceneManager::getChainVizTargetsForObjectAndComponent(Object* o, ComponentType c)
 {
 	Array<ChainVizTarget*> result;
 	if (currentScene == nullptr) return result;
 
-	result.addArray(currentScene->sequenceManager->getChainVizTargetsForObject(o));
-	result.addArray(currentScene->effectManager->getChainVizTargetsForObject(o));
+	result.addArray(currentScene->sequenceManager->getChainVizTargetsForObjectAndComponent(o, c));
+	result.addArray(currentScene->effectManager->getChainVizTargetsForObjectAndComponent(o, c));
 	return result;
 }
 

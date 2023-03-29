@@ -50,13 +50,13 @@ Effect::Effect(const String& name, var params) :
 	//showInspectorOnSelect = false;
 
 	canBeCopiedAndPasted = true;
-	
-	var typesF = params.getProperty("types",var());
+
+	var typesF = params.getProperty("types", var());
 	if (typesF.isArray())
 	{
 		for (int i = 0; i < typesF.size(); i++) typeFilters.add((ComponentType)(int)typesF[i]);
 	}
-	else if(!typesF.isVoid())
+	else if (!typesF.isVoid())
 	{
 		typeFilters.add((ComponentType)(int)typesF);
 	}
@@ -68,7 +68,15 @@ Effect::~Effect()
 
 bool Effect::isAffectingObject(Object* o)
 {
-	return filterManager->isAffectingObject(o);
+	return 	filterManager->isAffectingObject(o);
+}
+
+bool Effect::isAffectingObjectAndComponent(Object* o, ComponentType t)
+{
+	if (!typeFilters.isEmpty() && !typeFilters.contains(t)) return false;
+	if (!isAffectingObject(o)) return false;
+
+	return true;
 }
 
 void Effect::setParentGroup(Group* g)
@@ -91,14 +99,10 @@ void Effect::setForceDisabled(bool value)
 
 void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id, float time)
 {
-	if (!typeFilters.isEmpty() && !typeFilters.contains(c->componentType)) return;
+	if (!isAffectingObjectAndComponent(o, c->componentType))return;
 
 	FilterResult r = filterManager->getFilteredResultForComponent(o, c);
-	if (r.id == -1)
-	{
-		if (c->componentType == ComponentType::DIMMER) o->effectIntensityOutMap.set(this, ((DimmerComponent*)c)->value->floatValue());
-		return;
-	}
+	if (r.id == -1) return;
 
 	int targetID = (id != -1 && r.id == o->globalID->intValue()) ? id : r.id;
 
@@ -113,11 +117,7 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 
 	float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
-	if (targetWeight == 0)
-	{
-		if (c->componentType == ComponentType::DIMMER) o->effectIntensityOutMap.set(this, ((DimmerComponent*)c)->value->floatValue());
-		return;
-	}
+	if (targetWeight == 0) return;
 
 	if (computePreviousValues)
 	{
@@ -145,6 +145,8 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 			var bVal = blendValue(initVal, val, targetWeight);
 			values.set(cp, bVal);
 		}
+
+		if (cp == vizComputedParamRef && vizParameter != nullptr && !vizParameter.wasObjectDeleted()) vizParameter->setValue(values[cp]);
 	}
 
 	if (computePreviousValues)
@@ -277,9 +279,21 @@ void Effect::lerpFromSceneData(var startData, var endData, float lerpWeight)
 	else if (m == WEIGHT_ONLY) SceneHelpers::lerpSceneParam(weight, startData, endData, lerpWeight);
 }
 
-ChainVizComponent* Effect::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
+ChainVizComponent* Effect::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)
 {
-	return new EffectChainVizUI(this, o, type);
+	return new EffectChainVizUI(this, o, ct, type);
+}
+
+void Effect::registerVizFeedback(Parameter* vizParam, Parameter* computedRef)
+{
+	vizParameter = vizParam;
+	vizComputedParamRef = computedRef;
+}
+
+void Effect::clearVizFeedback()
+{
+	vizComputedParamRef = nullptr;
+	vizParameter = nullptr;
 }
 
 InspectableEditor* Effect::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)

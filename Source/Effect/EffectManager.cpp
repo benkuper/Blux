@@ -49,14 +49,13 @@ void EffectManager::processComponent(Object* o, ObjectComponent* c, HashMap<Para
 	{
 		if (!e->enabled->boolValue()) continue;
 		e->processComponent(o, c, values, weightMultiplier, id);
-		if (c->componentType == ComponentType::DIMMER && values.size() > 0) o->effectIntensityOutMap.set(e, values[0].clone());
 	}
 }
 
-Array<ChainVizTarget*> EffectManager::getChainVizTargetsForObject(Object* o)
+Array<ChainVizTarget*> EffectManager::getChainVizTargetsForObjectAndComponent(Object* o, ComponentType c)
 {
 	Array<ChainVizTarget*> result;
-	for (auto& e : items) if (e->isAffectingObject(o)) result.add(e);
+	for (auto& e : items) if (e->isAffectingObjectAndComponent(o, c)) result.add(e);
 	return result;
 }
 

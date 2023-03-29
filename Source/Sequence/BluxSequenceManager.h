@@ -25,7 +25,7 @@ public:
 
     void processRawData();
 
-    Array<ChainVizTarget*> getChainVizTargetsForObject(Object* o);
+    Array<ChainVizTarget*> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
 
 
 };

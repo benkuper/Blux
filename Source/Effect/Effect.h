@@ -48,6 +48,10 @@ public:
 
 	Array<ComponentType> typeFilters;
 
+	//viz
+	WeakReference<Parameter> vizParameter;
+	WeakReference<Parameter> vizComputedParamRef
+		; 
 	void setParentGroup(Group* g);
 
 	void setForceDisabled(bool value);
@@ -60,11 +64,12 @@ public:
 
 	virtual void paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl) override;
 	virtual void effectParamChanged(Controllable* c) {}
-	
+
 	void clearPrevValues();
 
 
-	bool isAffectingObject(Object* o);
+	virtual bool isAffectingObject(Object* o);
+	virtual bool isAffectingObjectAndComponent(Object* o, ComponentType t);
 	void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
 	virtual void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1);
 
@@ -75,8 +80,10 @@ public:
 	void updateSceneData(var& sceneData);
 	void lerpFromSceneData(var startData, var endData, float weight);
 
-	ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
+	ChainVizComponent* createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) override;
 
+	void registerVizFeedback(Parameter* vizParam, Parameter* computedRef);
+	void clearVizFeedback();
 
 	virtual InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
 	String getTypeString() const override { return "Effect"; }

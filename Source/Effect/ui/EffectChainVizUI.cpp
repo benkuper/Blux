@@ -1,64 +1,77 @@
 /*
   ==============================================================================
 
-    EffectChainVizUI.cpp
-    Created: 30 Oct 2020 4:35:34pm
-    Author:  bkupe
+	EffectChainVizUI.cpp
+	Created: 30 Oct 2020 4:35:34pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
-EffectChainVizUI::EffectChainVizUI(Effect* e, Object* o, ChainVizTarget::ChainVizType type) :
-    BaseItemChainVizComponent(e, o, type),
-    intensity("Out", "", 0, 0, 1),
-    effect(e)
-{
-    intensity.setControllableFeedbackOnly(true);
-    weightUI.reset(e->weight->createSlider());
-    intensityUI.reset(intensity.createSlider());
-    object->addInspectableListener(this);
+#include "Effect/EffectIncludes.h"
 
-    addAndMakeVisible(weightUI.get());
-    addAndMakeVisible(intensityUI.get());
-    startTimerHz(30);
-    timerCallback(); //show directly
+EffectChainVizUI::EffectChainVizUI(Effect* e, Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) :
+	BaseItemChainVizComponent(e, o, ct, type),
+	effect(e),
+	effectRef(e)
+{
+	object->addInspectableListener(this);
+
+	weightUI.reset(e->weight->createSlider());
+	addAndMakeVisible(weightUI.get());
+
+	if (ObjectComponent* c = o->getComponentForType(ct))
+	{
+		param.reset(ControllableFactory::createParameterFrom(c->mainParameter, true));
+		if (param != nullptr)
+		{
+			param->setControllableFeedbackOnly(true);
+			paramUI.reset((ParameterUI*)param->createDefaultUI());
+			paramUI->showLabel = false;
+			addAndMakeVisible(paramUI.get());
+
+			effect->registerVizFeedback(param.get(), c->mainParameter);
+		}
+	}
+
+
+	startTimerHz(30);
+	timerCallback(); //show directly
 }
 
 EffectChainVizUI::~EffectChainVizUI()
 {
-    if (object != nullptr) object->removeInspectableListener(this);
+	if (object != nullptr) object->removeInspectableListener(this);
+	if (!effectRef.wasObjectDeleted()) effect->clearVizFeedback();
 }
 
 bool EffectChainVizUI::isReallyAffecting()
 {
-    return effect->isAffectingObject(object) && effect->enabled->boolValue() && effect->weight->floatValue() > 0;
+	return effect->isAffectingObject(object) && effect->enabled->boolValue() && effect->weight->floatValue() > 0;
 }
 
 String EffectChainVizUI::getVizLabel() const
 {
-    return baseItem->niceName + "\n(" + baseItem->parentContainer->parentContainer->niceName + ")";
+	return baseItem->niceName + "\n(" + baseItem->parentContainer->parentContainer->niceName + ")";
 }
 
 void EffectChainVizUI::resized()
 {
-    BaseItemChainVizComponent::resized();
-    Rectangle<int> r = getLocalBounds().reduced(2);
-    intensityUI->setBounds(r.removeFromBottom(16));
+	BaseItemChainVizComponent::resized();
+	Rectangle<int> r = getLocalBounds().reduced(2);
 
-    r.removeFromLeft(30);
-    weightUI->setBounds(r.removeFromTop(16));
+	if (paramUI != nullptr) paramUI->setBounds(r.removeFromBottom(16));
+
+	r.removeFromLeft(30);
+	weightUI->setBounds(r.removeFromTop(16));
 }
 
 void EffectChainVizUI::timerCallback()
 {
-    if (object == nullptr)
-    {
-        stopTimer();
-        return;
-    }
+	if (object == nullptr)
+	{
+		stopTimer();
+		return;
+	}
 
-    if (object->effectIntensityOutMap.contains(effect))
-    {
-        intensity.setValue(object->effectIntensityOutMap[effect]);
-    }
 }

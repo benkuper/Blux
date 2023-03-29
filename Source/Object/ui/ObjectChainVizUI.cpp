@@ -10,18 +10,17 @@
 
 #include "Object/ObjectIncludes.h"
 
-ObjectChainVizUI::ObjectChainVizUI(Object* o, ChainVizTarget::ChainVizType type) :
-	BaseItemChainVizComponent(o, o, type)
+ObjectChainVizUI::ObjectChainVizUI(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) :
+	BaseItemChainVizComponent(o, o, ct, type)
 {
-	if (DimmerComponent* ic = o->getComponent<DimmerComponent>())
+	if (ObjectComponent* ic = o->getComponentForType(ct))
 	{
-		FloatParameter* sourceIntensity = (FloatParameter*)ic->value;
-		FloatParameter* computedIntensity = (FloatParameter*)ic->paramComputedMap[ic->value];
-		FloatParameter* ip = (type == ChainVizTarget::ChainVizType::OBJECT_START) ? sourceIntensity : computedIntensity;
-		if (ip != nullptr)
+		Parameter* p = type == ChainVizTarget::ChainVizType::OBJECT_START ? ic->computedParamMap[ic->mainParameter] : ic->mainParameter;
+		if (p != nullptr)
 		{
-			intensityUI.reset(ip->createSlider());
-			addAndMakeVisible(intensityUI.get());
+			paramUI.reset((ParameterUI*)p->createDefaultUI());
+			paramUI->showLabel = false;
+			addAndMakeVisible(paramUI.get());
 		}
 	}
 }
@@ -36,8 +35,8 @@ void ObjectChainVizUI::resized()
 	BaseItemChainVizComponent::resized();
 	Rectangle<int> r = getLocalBounds().reduced(4);
 
-	if (intensityUI != nullptr)
+	if (paramUI != nullptr)
 	{
-		intensityUI->setBounds(r.removeFromBottom(16));
+		paramUI->setBounds(r.removeFromBottom(16));
 	}
 }
