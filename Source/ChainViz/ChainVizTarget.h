@@ -10,7 +10,8 @@
 
 #pragma once
 
-enum ComponentType;
+#include "Common/CommonClasses/ComponentType.h"
+
 class ChainVizComponent;
 class Object;
 
