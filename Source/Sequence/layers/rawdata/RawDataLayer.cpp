@@ -217,16 +217,11 @@ void RawDataLayer::sequenceCurrentTimeChanged(Sequence* s, float prevTime, bool)
 		{
 			//LOG("Read All Universes");
 			frameUniverses.addArray(rb->readAllUniversesAtTime(seqTime));
-			needsToSendAllUniverses = true; //switch to false to "optimize", but right now it doesn't work because it won't send data and overlay layers and objects may not blend good if some values have not been updated between frames
+			needsToSendAllUniverses = false;
 		}
 		else
 		{
 			frameUniverses.addArray(rb->readFrameAtTime(seqTime));
-		}
-
-		if (frameUniverses.size() == 0)
-		{
-			LOGWARNING("No universe read");
 		}
 	}
 	else
@@ -294,11 +289,6 @@ void RawDataLayer::processRawData()
 
 	{
 		GenericScopedLock fLock(frameUniverses.getLock());
-		if (frameUniverses.size() == 0)
-		{
-			LOGWARNING("No universes here !");
-		}
-
 		for (auto& u : frameUniverses)
 		{
 			DMXUniverse* interfaceU = dmxInterface->getUniverse(u->net, u->subnet, u->universe); //will force creation of the universe if doesn't exist
