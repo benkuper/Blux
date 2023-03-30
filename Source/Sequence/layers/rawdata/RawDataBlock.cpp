@@ -133,7 +133,10 @@ Array<DMXUniverse*> RawDataBlock::readAllUniversesAtTime(float time)
 	for (auto& univ : recordedUniverseIndices)
 	{
 		DMXUniverse* u = readUniverseAtTime(time, univ);
-		if (u == nullptr) continue;
+		if (u == nullptr)
+		{
+			continue;
+		}
 		result.add(u);
 	}
 
@@ -143,8 +146,10 @@ Array<DMXUniverse*> RawDataBlock::readAllUniversesAtTime(float time)
 DMXUniverse* RawDataBlock::readUniverseAtTime(float time, int universeIndex)
 {
 	FrameData* f = getFrameDataAtTime(time, universeIndex);
-	if (f == nullptr) return nullptr;
-
+	if (f == nullptr)
+	{
+		return nullptr;
+	}
 	fs->setPosition(f->universePosMap[universeIndex]);
 
 	DMXUniverse* u = new DMXUniverse(universeIndex);

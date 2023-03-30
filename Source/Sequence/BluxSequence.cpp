@@ -73,10 +73,10 @@ void BluxSequence::processComponent(Object* o, ObjectComponent* c, HashMap<Param
 
 void BluxSequence::processRawData()
 {
-	for (auto& i : layerManager->items)
+	for (int i = layerManager->items.size() - 1; i >= 0; --i)
 	{
-		if (!i->enabled->boolValue()) continue;
-		if(RawDataLayer* ri = dynamic_cast<RawDataLayer*>(i)) ri->processRawData();
+		if (!layerManager->items[i]->enabled->boolValue()) continue;
+		if (RawDataLayer* ri = dynamic_cast<RawDataLayer*>(layerManager->items[i])) ri->processRawData();
 	}
 }
 
