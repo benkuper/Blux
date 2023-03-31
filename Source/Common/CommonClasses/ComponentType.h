@@ -10,6 +10,8 @@
 
 #pragma once
 
+#include "JuceHeader.h"
+
 enum ComponentType { DIMMER, COLOR, SHUTTER, ORIENTATION, CUSTOM, TYPES_MAX };
 const String componentTypeNames[TYPES_MAX]{ "Dimmer", "Color", "Shutter", "Orientation", "Custom" };
 
