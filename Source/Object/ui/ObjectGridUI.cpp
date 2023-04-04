@@ -211,6 +211,18 @@ void ObjectGridUI::updateThumbnail()
 	else if (iconData.isInt() && (int)iconData == -1)
 	{
 		img1 = item->customIcon->getFile();
+		if (img1.existsAsFile())
+		{
+			StringArray fSplit;
+			fSplit.addTokens(img1.getFileNameWithoutExtension(), "_", "\"");
+			File offFile = img1.getParentDirectory().getChildFile(fSplit[0] + "_off" + img1.getFileExtension());
+			if (offFile.existsAsFile())
+			{
+				img2 = img1;
+				img1 = offFile;
+			}
+		}
+
 	}
 
 	if (img1.existsAsFile()) objectImage = ImageCache::getFromFile(img1);
