@@ -28,11 +28,15 @@ SceneManager::SceneManager() :
 	autoPreview = addBoolParameter("Auto Preview", "If checked, this will force preview when hovering a scene", false);
 
 	lockUI = addBoolParameter("Lock UI", "If checked, all UI will be locked", false);
+
+	OSCRemoteControl::getInstance()->addRemoteControlListener(this);
 }
 
 SceneManager::~SceneManager()
 {
-	threadShouldExit();
+	stopThread(1000);
+	if (OSCRemoteControl::getInstanceWithoutCreating() != nullptr) OSCRemoteControl::getInstance()->removeRemoteControlListener(this);
+
 }
 
 
@@ -188,7 +192,7 @@ void SceneManager::processComponent(Object* o, ObjectComponent* c, HashMap<Param
 
 		HashMap<Parameter*, var>::Iterator copyIt(values);
 		while (copyIt.next()) prevSceneValues.set(copyIt.getKey(), copyIt.getValue().clone());
-;
+		;
 		previousScene->sequenceManager->processComponent(o, c, prevSceneValues);
 		previousScene->effectManager->processComponent(o, c, prevSceneValues);
 
@@ -247,6 +251,25 @@ void SceneManager::onContainerTriggerTriggered(Trigger* t)
 void SceneManager::onContainerParameterChanged(Parameter* p)
 {
 	if (p == lockUI) for (auto& i : items) i->isUILocked->setValue(lockUI->boolValue());
+}
+
+void SceneManager::processMessage(const OSCMessage& m)
+{
+	StringArray addSplit;
+	addSplit.addTokens(m.getAddressPattern().toString(), "/", "\"");
+
+	if (addSplit.size() < 3 || addSplit[1] != "scenes") return;
+
+	String cmd = addSplit[2];
+	if (cmd == "/loadScene")
+	{
+		if (m.size() > 0)
+		{
+			String sceneName = m[0].getString();
+			Scene* s = getItemWithName(sceneName, true);
+			if (s != nullptr) s->loadTrigger->trigger();
+		}
+	}
 }
 
 

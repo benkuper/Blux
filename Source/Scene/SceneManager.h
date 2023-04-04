@@ -17,6 +17,7 @@ class SceneManager :
     public BaseManager<Scene>,
     public Inspectable::InspectableListener,
     public SceneListener,
+    public OSCRemoteControl::RemoteControlListener,
     public Thread
 {
 public:
@@ -58,6 +59,8 @@ public:
 
     void onContainerTriggerTriggered(Trigger* t) override;
     void onContainerParameterChanged(Parameter* p) override;
+
+    void processMessage(const OSCMessage& m) override;
 
     void inspectableDestroyed(Inspectable* i) override;
 
