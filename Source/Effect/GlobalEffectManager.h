@@ -25,7 +25,7 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
-    String getTypeString() const override { return "EffectGroup"; }
+    DECLARE_TYPE("EffectGroup");
 };
 
 class GlobalEffectManager :

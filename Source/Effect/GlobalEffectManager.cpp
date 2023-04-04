@@ -15,7 +15,7 @@ juce_ImplementSingleton(GlobalEffectManager)
 GlobalEffectManager::GlobalEffectManager() :
 	BaseManager("Global Effects")
 {
-
+	itemDataType = EffectGroup::getTypeStringStatic();
 }
 
 GlobalEffectManager::~GlobalEffectManager()
