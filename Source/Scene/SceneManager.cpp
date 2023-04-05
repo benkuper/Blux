@@ -261,7 +261,7 @@ void SceneManager::processMessage(const OSCMessage& m)
 	if (addSplit.size() < 3 || addSplit[1] != "scenes") return;
 
 	String cmd = addSplit[2];
-	if (cmd == "/loadScene")
+	if (cmd == "loadScene")
 	{
 		if (m.size() > 0)
 		{
