@@ -3677,6 +3677,9 @@
     <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\ui\SequenceUI.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Metronome.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Sequence.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -6064,6 +6067,7 @@
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\ui\SequenceTimelineSeeker.h"/>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\ui\SequenceTransportUI.h"/>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\ui\SequenceUI.h"/>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Metronome.h"/>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Sequence.h"/>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\ui\SequenceManagerUI.h"/>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\ui\TimeMachineView.h"/>
