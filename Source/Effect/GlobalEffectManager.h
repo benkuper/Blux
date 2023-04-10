@@ -18,7 +18,6 @@ public:
     ~EffectGroup();
 
     EffectManager effectManager;
-    ComponentSelector componentSelector;
 
     BoolParameter* excludeFromScenes;
 
@@ -26,7 +25,7 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
-    String getTypeString() const override { return "EffectGroup"; }
+    DECLARE_TYPE("EffectGroup");
 };
 
 class GlobalEffectManager :
@@ -38,8 +37,8 @@ public:
     GlobalEffectManager();
     ~GlobalEffectManager();
 
-    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
-    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values);
+    Array<ChainVizTarget *> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
+    virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values);
 
     var getSceneData();
     void updateSceneData(var& sceneData);

@@ -17,15 +17,16 @@ class EffectChainVizUI :
     public Timer
 {
 public:
-    EffectChainVizUI(Effect * e, Object* o, ChainVizTarget::ChainVizType type);
+    EffectChainVizUI(Effect * e, Object* o, ComponentType ct, ChainVizTarget::ChainVizType type);
     ~EffectChainVizUI();
 
     Effect* effect;
+    WeakReference<Inspectable> effectRef;
     
     std::unique_ptr<FloatSliderUI> weightUI;
 
-    FloatParameter intensity;
-    std::unique_ptr<FloatSliderUI> intensityUI;
+    std::unique_ptr<Parameter> param;
+    std::unique_ptr<ParameterUI> paramUI;
 
     virtual bool isReallyAffecting();
     virtual String getVizLabel() const override;

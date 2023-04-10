@@ -10,7 +10,7 @@
 
 #pragma once
 
-class ComponentSelectorUI;
+//class ComponentSelectorUI;
 
 class FilterManagerEditor :
     public GenericManagerEditor<Filter>
@@ -19,7 +19,7 @@ public:
     FilterManagerEditor(FilterManager * manager , bool isRoot);
     ~FilterManagerEditor();
 
-    std::unique_ptr<ComponentSelectorUI> componentSelectorUI;
+    //std::unique_ptr<ComponentSelectorUI> componentSelectorUI;
 
     void resizedInternalHeader(Rectangle<int>& r) override;
 };

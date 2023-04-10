@@ -8,7 +8,9 @@
   ==============================================================================
 */
 
-OSCInterface::OSCInterface(const String &name, bool canHaveScripts) :
+#include "Interface/InterfaceIncludes.h"
+
+OSCInterface::OSCInterface(const String& name, bool canHaveScripts) :
 	Interface(name, canHaveScripts),
 	Thread("OSCZeroconf"),
 	localPort(nullptr),
@@ -107,6 +109,7 @@ void OSCInterface::setupReceiver()
 
 void OSCInterface::processMessage(const OSCMessage& msg)
 {
+	inActivityTrigger->trigger();
 	if (logIncomingData->boolValue())
 	{
 		String s = "";
@@ -153,7 +156,8 @@ void OSCInterface::sendOSC(const OSCMessage& msg, String ip, int port)
 
 	if (!outputManager->enabled->boolValue()) return;
 
-	
+
+	outActivityTrigger->trigger();
 
 	if (useBundles->boolValue())
 	{
@@ -183,7 +187,7 @@ void OSCInterface::sendOSC(const OSCMessage& msg, String ip, int port)
 	{
 		if (logOutgoingData->boolValue())
 		{
-			NLOG(niceName, "Send OSC : " << msg.getAddressPattern().toString());
+			NLOG(niceName, "Send OSC : " << msg.getAddressPattern().toString() << " to " << ip << ":" << port);
 			for (auto& a : msg)
 			{
 				LOG(OSCHelpers::getStringArg(a));
@@ -210,10 +214,11 @@ void OSCInterface::finishSendValues()
 			if (logOutgoingData->boolValue()) NLOG(niceName, "Send OSC (bundle) : " << bundles.size() << " bundles.");
 		}
 
-		for(auto & b : bundles)
+		for (auto& b : bundles)
 		{
 			if (b->ip.isNotEmpty() && b->port > 0)
 			{
+				if (logOutgoingData->boolValue()) NLOG(niceName, "Send Bundle to " << b->ip << " / " << b->port);
 				genericSender.sendToIPAddress(b->ip, b->port, b->bundle);
 			}
 			else
@@ -558,7 +563,7 @@ void OSCOutput::run()
 	while (!Engine::mainEngine->isClearing && !threadShouldExit())
 	{
 		bool sent = false;
-		
+
 		std::unique_ptr<OSCMessage> msgToSend;
 		{
 			const ScopedLock sl(queueLock);
@@ -568,7 +573,7 @@ void OSCOutput::run()
 				messageQueue.pop();
 			}
 		}
-		
+
 		if (msgToSend)
 		{
 			sent = true;
@@ -592,7 +597,7 @@ void OSCOutput::run()
 		}
 
 
-		if(!sent) wait(1000); // notify() is called when a message is added to the queue
+		if (!sent) wait(1000); // notify() is called when a message is added to the queue
 	}
 
 	// Clear queue

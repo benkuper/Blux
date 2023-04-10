@@ -1,30 +1,28 @@
 /*
   ==============================================================================
 
-    ObjectChainVizUI.cpp
-    Created: 30 Oct 2020 4:35:09pm
-    Author:  bkupe
+	ObjectChainVizUI.cpp
+	Created: 30 Oct 2020 4:35:09pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
-ObjectChainVizUI::ObjectChainVizUI(Object* o, ChainVizTarget::ChainVizType type) :
-    BaseItemChainVizComponent(o, o, type)
+#include "Object/ObjectIncludes.h"
+
+ObjectChainVizUI::ObjectChainVizUI(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) :
+	BaseItemChainVizComponent(o, o, ct, type)
 {
-    if (IntensityComponent* ic = o->getComponent<IntensityComponent>())
-    {
-        if (ic->values.size() > 0)
-        {
-            FloatParameter* sourceIntensity = ic->values[0];
-            FloatParameter* computedIntensity = (FloatParameter *)ic->computedParameters[0];
-            FloatParameter* ip = (type == ChainVizTarget::ChainVizType::OBJECT_START) ? sourceIntensity : computedIntensity;
-            if (ip != nullptr)
-            {
-                intensityUI.reset(ip->createSlider());
-                addAndMakeVisible(intensityUI.get());
-            }
-        }
-    }
+	if (ObjectComponent* ic = o->getComponentForType(ct))
+	{
+		Parameter* p = type == ChainVizTarget::ChainVizType::OBJECT_START ? ic->computedParamMap[ic->mainParameter] : ic->mainParameter;
+		if (p != nullptr)
+		{
+			paramUI.reset((ParameterUI*)p->createDefaultUI());
+			paramUI->showLabel = false;
+			addAndMakeVisible(paramUI.get());
+		}
+	}
 }
 
 
@@ -34,11 +32,11 @@ ObjectChainVizUI::~ObjectChainVizUI()
 
 void ObjectChainVizUI::resized()
 {
-    BaseItemChainVizComponent::resized();
-    Rectangle<int> r = getLocalBounds().reduced(4);
+	BaseItemChainVizComponent::resized();
+	Rectangle<int> r = getLocalBounds().reduced(4);
 
-    if (intensityUI != nullptr)
-    {
-        intensityUI->setBounds(r.removeFromBottom(16));
-    }
+	if (paramUI != nullptr)
+	{
+		paramUI->setBounds(r.removeFromBottom(16));
+	}
 }

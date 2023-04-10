@@ -10,6 +10,7 @@
 
 #include "Sequence/SequenceIncludes.h"
 #include "Audio/AudioManager.h"
+#include "BluxSequence.h"
 
 BluxSequence::BluxSequence() :
 	manualStartAtLoad(false)
@@ -35,6 +36,7 @@ bool BluxSequence::isAffectingObject(Object* o)
 {
 	for (int i = layerManager->items.size() - 1; i >= 0; --i)
 	{
+		if (!layerManager->items[i]->enabled->boolValue()) continue;
 		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
 		{
 			if (e->filterManager->isAffectingObject(o)) return true;
@@ -44,27 +46,37 @@ bool BluxSequence::isAffectingObject(Object* o)
 	return false;
 }
 
-Array<ChainVizTarget*> BluxSequence::getChainVizTargetsForObject(Object* o)
+Array<ChainVizTarget*> BluxSequence::getChainVizTargetsForObjectAndComponent(Object* o, ComponentType c)
 {
 	Array<ChainVizTarget*> result;
 	for (int i = layerManager->items.size() - 1; i >= 0; --i)
 	{
 		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
 		{
-			result.addArray(e->getChainVizTargetsForObject(o));
+			result.addArray(e->getChainVizTargetsForObjectAndComponent(o, c));
 		}
 	}
 	return result;
 }
 
-void BluxSequence::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier)
+void BluxSequence::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier)
 {
 	for (int i = layerManager->items.size() - 1; i >= 0; --i)
 	{
+		if (!layerManager->items[i]->enabled->boolValue()) continue;
 		if (EffectLayer* e = dynamic_cast<EffectLayer*>(layerManager->items[i]))
 		{
-			e->processComponentValues(o, c, values, weightMultiplier);
+			e->processComponent(o, c, values, weightMultiplier);
 		}
+	}
+}
+
+void BluxSequence::processRawData()
+{
+	for (int i = layerManager->items.size() - 1; i >= 0; --i)
+	{
+		if (!layerManager->items[i]->enabled->boolValue()) continue;
+		if (RawDataLayer* ri = dynamic_cast<RawDataLayer*>(layerManager->items[i])) ri->processRawData();
 	}
 }
 
@@ -83,9 +95,9 @@ void BluxSequence::endLoadFile()
 	Sequence::endLoadFile();
 }
 
-ChainVizComponent* BluxSequence::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
+ChainVizComponent* BluxSequence::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)
 {
-	return new BluxSequenceChainVizUI(this, o, type);
+	return new BluxSequenceChainVizUI(this, o, ct, type);
 }
 
 InspectableEditor* BluxSequence::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)

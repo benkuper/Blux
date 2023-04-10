@@ -8,12 +8,20 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
+#include "Interface/InterfaceIncludes.h"
+
 ColorComponent::ColorComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), COLOR, params),
 	colorComponentNotifier(5)
 {
 	resolution = addIntParameter("Resolution", "Number of different colors/pixels for this object", 1, 1);
 	useIntensityForColor = addBoolParameter("Use Intensity for Color", "If checked, use the intensity component for color opacity", false);
+
+	mainColor = (ColorParameter*)addComputedParameter(new ColorParameter("Out Color", "Computed out color, not used to send DMX but for feedback", Colours::black));
+	mainColor->hideInEditor = true;
+
+	update();
 }
 
 ColorComponent::~ColorComponent()
@@ -62,7 +70,7 @@ void ColorComponent::setupFromJSONDefinition(var definition)
 
 	var shapeData = definition.getProperty("shape", var());
 	if (shapeData.isObject()) defaultShape = shapeData.getProperty("type", "");
-	
+
 	setupShape(defaultShape);
 
 	pixelShape->loadJSONData(shapeData);
@@ -85,9 +93,9 @@ void ColorComponent::update()
 	else sourceColors.fill(Colours::transparentBlack);
 }
 
-var ColorComponent::getOriginalComputedValues()
+void ColorComponent::fillComputedValueMap(HashMap<Parameter*, var>& values)
 {
-	var result;
+	var colors;
 	for (auto& i : sourceColors)
 	{
 		var c;
@@ -95,23 +103,87 @@ var ColorComponent::getOriginalComputedValues()
 		c.append(i.getFloatGreen());
 		c.append(i.getFloatBlue());
 		c.append(i.getFloatAlpha());
-		result.append(c);
+		colors.append(c);
 	}
 
-	return result;
+	values.set(nullptr, colors); //using nullptr as placeholders for values not linked to a computed parameter
 }
 
-void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
+void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
-	int index = startChannel + (ignoreChannelOffset ? 0 : channelOffset);
-	for (auto& c : outColors)
+	var colValues = values[nullptr]; //using nullptr as placeholders for values not linked to a computed parameter
+
+	jassert(colValues.size() == resolution->intValue());
+
+	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
-		channelValueMap.set(index++, c.getFloatRed());
-		channelValueMap.set(index++, c.getFloatGreen());
-		channelValueMap.set(index++, c.getFloatBlue());
-		//if(useAlpha) channelValueMap.set(index++, c.getFloatAlpha());
+		var zeroVal;
+		zeroVal.append(0);
+		zeroVal.append(0);
+		zeroVal.append(0);
+		zeroVal.append(0);
+		colValues.getArray()->fill(zeroVal);
+		outColors.fill(Colours::black);
 	}
+	else
+	{
+		for (int i = 0; i < colValues.size(); i++)
+		{
+			var col;
+			col.append(colValues[i][0]);
+			col.append(colValues[i][1]);
+			col.append(colValues[i][2]);
+			col.append(colValues[i][3]);
+			//not adding white here
+			outColors.set(i, Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
+		}
+	}
+
+
+	if (colValues.size() > 0)
+	{
+		paramComputedMap[mainColor]->setValue(colValues[0]);
+	}
+
 }
+
+void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var params)
+{
+	if (DMXInterface* di = dynamic_cast<DMXInterface*>(i))
+	{
+		int channelOffset = params.getProperty("channelOffset", 0);
+		var channelsData = data.getProperty("channels", var());
+
+		Parameter* channelP = computedInterfaceMap[paramComputedMap[mainColor]];
+		if (channelP == nullptr || !channelP->enabled) return;
+		int channel = channelP->intValue();
+		int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
+
+		for (int i = 0; i < outColors.size(); i++)
+		{
+			int ch = targetChannel + i * 3;
+			channelsData[ch] = outColors[i].getRed();
+			channelsData[ch + 1] = outColors[i].getGreen();
+			channelsData[ch + 2] = outColors[i].getBlue();
+		}
+
+		return;
+	}
+
+	ObjectComponent::fillInterfaceDataInternal(i, data, params);
+}
+
+//void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
+//{
+//	int index = startChannel + (ignoreChannelOffset ? 0 : channelOffset);
+//	for (auto& c : outColors)
+//	{
+//		channelValueMap.set(index++, c.getFloatRed());
+//		channelValueMap.set(index++, c.getFloatGreen());
+//		channelValueMap.set(index++, c.getFloatBlue());
+//		//if(useAlpha) channelValueMap.set(index++, c.getFloatAlpha());
+//	}
+//}
 
 void ColorComponent::onContainerParameterChangedInternal(Parameter* p)
 {

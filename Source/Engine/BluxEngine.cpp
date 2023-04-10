@@ -8,6 +8,14 @@
   ==============================================================================
 */
 
+#include "BluxEngine.h"
+#include "Object/ObjectIncludes.h"
+#include "Interface/InterfaceIncludes.h"
+#include "Effect/EffectIncludes.h"
+#include "Sequence/SequenceIncludes.h"
+#include "Scene/SceneIncludes.h"
+#include "Audio/AudioManager.h"
+#include "Common/CommonIncludes.h"
 
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
@@ -24,8 +32,13 @@ BluxEngine::BluxEngine() :
 	GlobalSettings::getInstance()->addChildControllableContainer(BluxSettings::getInstance());
 	GlobalSettings::getInstance()->addChildControllableContainer(AudioManager::getInstance());
 
+	ColorSourceFactory::getInstance(); //avoid initialization in other than main thread;
+
 	convertURL = "http://benjamin.kuperberg.fr/blux/releases/convert.php";
 	breakingChangesVersions.add("1.0.0b4");
+	breakingChangesVersions.add("1.2.0b1");
+
+	initVizServer();
 }
 
 BluxEngine::~BluxEngine()
@@ -54,6 +67,91 @@ BluxEngine::~BluxEngine()
 	ColorSourceFactory::deleteInstance();
 
 	MIDIManager::deleteInstance();
+
+	if (vizServer != nullptr) vizServer->stop();
+}
+
+void BluxEngine::initVizServer()
+{
+	if (vizServer != nullptr && vizServer->isConnected)
+	{
+		NLOG(niceName, "Stopping Server");
+		//vizServer->removeWebSocketListener(this);
+		vizServer->stop();
+	}
+
+	vizServer.reset();
+
+	vizServer.reset(new SimpleWebSocketServer());
+	//vizServer->addWebSocketListener(this);
+
+	vizServer->rootPath = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(ProjectInfo::projectName + String("/server"));
+
+	int port = 6080;
+	vizServer->start(port);
+	vizServer->addWebSocketListener(this);
+
+	if (vizServer->isConnected)
+	{
+		NLOG(niceName, "Server is running on port " << port);
+	}
+	else
+	{
+		NLOGERROR(niceName, "Error starting server on port " << port);
+	}
+}
+
+void BluxEngine::connectionOpened(const String& id)
+{
+	sendAllData(id);
+}
+
+void BluxEngine::messageReceived(const String& id, const String& message)
+{
+
+}
+
+void BluxEngine::sendAllData(const String& id)
+{
+	var data = getVizData();
+	var msgData(new DynamicObject());
+	msgData.getDynamicObject()->setProperty("type", "setup");
+	msgData.getDynamicObject()->setProperty("data", data);
+	sendServerMessage(JSON::toString(msgData), id);
+}
+
+void BluxEngine::sendControllableData(Controllable* c)
+{
+	if (c->type == Controllable::TRIGGER) return;
+	Parameter* p = (Parameter*)c;
+
+	var data(new DynamicObject());
+	data.getDynamicObject()->setProperty("controlAddress", p->getControlAddress(this));
+	data.getDynamicObject()->setProperty("value", p->getValue());
+
+	;	var msgData(new DynamicObject());
+	msgData.getDynamicObject()->setProperty("type", "controllable");
+	msgData.getDynamicObject()->setProperty("data", data);
+	sendServerMessage(JSON::toString(msgData));
+}
+
+void BluxEngine::sendServerMessage(const String message, const String& id)
+{
+	if (id.isNotEmpty()) vizServer->sendTo(message, id);
+	else vizServer->send(message);
+}
+
+var BluxEngine::getVizData()
+{
+	var data(new DynamicObject());
+	data.getDynamicObject()->setProperty("objects", ObjectManager::getInstance()->getVizData());
+	return data;
+}
+
+void BluxEngine::onControllableFeedbackUpdate(ControllableContainer* cc, Controllable* c)
+{
+	Engine::onControllableFeedbackUpdate(cc, c);
+	if (!isClearing && ObjectManager::getInstanceWithoutCreating() != nullptr && cc == ObjectManager::getInstance()) sendControllableData(c);
 }
 
 void BluxEngine::clearInternal()
@@ -99,7 +197,7 @@ void BluxEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 
 	InterfaceManager::getInstance()->loadJSONData(data.getProperty(InterfaceManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.1f);
-	
+
 	ColorSourceLibrary::getInstance()->loadJSONData(data.getProperty(ColorSourceLibrary::getInstance()->shortName, var()));
 	bluxTask->setProgress(.15f);
 
@@ -111,7 +209,7 @@ void BluxEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 
 	SceneManager::getInstance()->loadJSONData(data.getProperty(SceneManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.4f);
-	
+
 	GlobalEffectManager::getInstance()->loadJSONData(data.getProperty(GlobalEffectManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(.5f);
 
@@ -120,7 +218,7 @@ void BluxEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 
 	StageLayoutManager::getInstance()->loadJSONData(data.getProperty(StageLayoutManager::getInstance()->shortName, var()));
 	bluxTask->setProgress(1);
-	
+
 	bluxTask->end();
 }
 

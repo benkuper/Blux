@@ -13,7 +13,8 @@
 class ColorViz;
 
 class ObjectGridUI :
-	public BaseItemMinimalUI<Object>
+	public BaseItemMinimalUI<Object>,
+	public ComponentManager::AsyncListener
 {
 public:
 	ObjectGridUI(Object* model);
@@ -41,6 +42,7 @@ public:
 	void paintOverChildren(Graphics& g) override;
 	void resized() override;
 
+	virtual void updateUI();
 	virtual void updateThumbnail();
 
 	void setPreviewData(var data = var());
@@ -55,6 +57,8 @@ public:
 	void controllableFeedbackUpdateInternal(Controllable* c) override;
 
 	void visibilityChanged() override;
+
+	void newMessage(const ComponentManager::ManagerEvent& e) override;
 
 	void handleRepaint();
 };

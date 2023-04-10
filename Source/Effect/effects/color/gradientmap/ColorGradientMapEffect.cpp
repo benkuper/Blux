@@ -8,10 +8,14 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 GradientRemapEffect::GradientRemapEffect(var params) :
 	ColorEffect(getTypeString(), params),
 	gradient(1)
 {
+	saveAndLoadRecursiveData = true;
+
 	sourceChannel = effectParams.addEnumParameter("Source Channel", "The channel to use as position for the gradient remap");
 	for (int i = 0; i < CHANNEL_MAX; i++) sourceChannel->addOption(channelNames[i], (SourceChannel)i);
 

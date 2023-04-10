@@ -32,13 +32,19 @@ public:
 
     std::unique_ptr<PixelShape> pixelShape;
 
+    ColorParameter* mainColor; //fake computed parameter for viz
+
     void setupSource(const String &type, ColorSource * templateRef = nullptr);
     void setupShape(const String &type);
     void setupFromJSONDefinition(var definition) override;
 
     void update() override;
-    virtual var getOriginalComputedValues() override;
-    virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false) override;
+    void fillComputedValueMap(HashMap<Parameter*, var>& values) override;
+    void updateComputedValues(HashMap<Parameter*, var>& values) override;
+
+    virtual void fillInterfaceDataInternal(Interface* i, var data, var params) override;// (HashMap<int, float>& channelValueMap, int startChannel, bool 
+    
+    //virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false) override;
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 

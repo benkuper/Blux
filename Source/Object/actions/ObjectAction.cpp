@@ -60,15 +60,16 @@ void ObjectAction::setValueParameter(Parameter* p)
 
 void ObjectAction::triggerInternal()
 {
-	if (target->target == nullptr) return;
 
 	switch (actionType)
 	{
 	case SET_COMPONENT_PARAMETER_VALUE:
 	{
 		if (value == nullptr) return;
-		Parameter* p = static_cast<Parameter*>(target->target.get());
-		p->setValue(value->getValue());
+		if (Parameter* p = static_cast<Parameter*>(target->target.get()))
+		{
+			p->setValue(value->getValue());
+		}
 	}
 	break;
 
@@ -89,12 +90,14 @@ void ObjectAction::setValueInternal(var _value)
 	{
 	case SET_COMPONENT_PARAMETER_VALUE:
 	{
-		Parameter* p = static_cast<Parameter*>(target->target.get());
 
-		if (!value->isComplex() || value->value.size() == _value.size())
+		if (Parameter* p = static_cast<Parameter*>(target->target.get()))
 		{
-			value->setValue(_value);
-			p->setValue(value->getValue());
+			if (!value->isComplex() || value->value.size() == _value.size())
+			{
+				value->setValue(_value);
+				p->setValue(value->getValue());
+			}
 		}
 	}
 	break;
@@ -143,7 +146,7 @@ void ObjectAction::onContainerParameterChanged(Parameter* p)
 	}
 }
 
-void ObjectAction::showAndGetComponentParameter(const StringArray& typesFilter, const StringArray& excludeTypesFilter, ControllableContainer*, std::function<void(Controllable *)> returnFunc)
+void ObjectAction::showAndGetComponentParameter(const StringArray& typesFilter, const StringArray& excludeTypesFilter, ControllableContainer*, std::function<void(Controllable*)> returnFunc)
 {
 	Array<Parameter*> params;
 	PopupMenu m;

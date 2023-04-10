@@ -26,15 +26,17 @@ public:
     bool manualStartAtLoad;
 
     bool isAffectingObject(Object* o);
-    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
+    Array<ChainVizTarget *> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
 
-    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
+    virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f);
+
+    virtual void processRawData();
 
     virtual void itemAdded(SequenceLayer* layer) override;
 
     void endLoadFile() override;
 
-    ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
+    ChainVizComponent* createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) override;
 
     InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
     String getTypeString() const override { return "Blux Sequence"; }

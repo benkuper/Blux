@@ -22,9 +22,6 @@
 #include "Action/Action.cpp"
 #include "Action/ActionManager.cpp"
 
-#include "ComponentSelector/ComponentSelector.cpp"
-#include "ComponentSelector/ui/ComponentSelectorUI.cpp"
-
 #include "Helpers/SceneHelpers.cpp"
 
 #include "MIDI/MIDIDevice.cpp"

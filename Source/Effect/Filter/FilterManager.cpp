@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 FilterManager::FilterManager() :
     BaseManager("Filters")
 {
@@ -44,17 +46,17 @@ void FilterManager::lerpFromSceneData(var startData, var endData, float weight)
 
 bool FilterManager::isAffectingObject(Object* o)
 {
-    bool hasSelectedComponents = false;
-    for (auto& c : o->componentManager->items)
-    {
-        if (componentSelector.selectedComponents[c->componentType])
-        {
-            hasSelectedComponents = true;
-            break;
-        }
-    }
+    //bool hasSelectedComponents = false;
+    //for (auto& c : o->componentManager->items)
+    //{
+    //    if (componentSelector.selectedComponents[c->componentType])
+    //    {
+    //        hasSelectedComponents = true;
+    //        break;
+    //    }
+    //}
     
-    if (!hasSelectedComponents) return false;
+    //if (!hasSelectedComponents) return false;
 
     if (items.size() == 0) return true;
 
@@ -77,7 +79,7 @@ bool FilterManager::isAffectingObject(Object* o)
 
 FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectComponent* c)
 {
-    if (c != nullptr && !componentSelector.selectedComponents[c->componentType]) return FilterResult();
+    //if (c != nullptr && !componentSelector.selectedComponents[c->componentType]) return FilterResult();
 
     bool hasFilteredAtLeastOnce = false;
 
@@ -120,12 +122,12 @@ InspectableEditor* FilterManager::getEditorInternal(bool isRoot, Array<Inspectab
 var FilterManager::getJSONData()
 {
     var data = BaseManager::getJSONData();
-    data.getDynamicObject()->setProperty("selectedComponents", componentSelector.getJSONData());
+    //data.getDynamicObject()->setProperty("selectedComponents", componentSelector.getJSONData());
     return data;
 }
 
 void FilterManager::loadJSONDataManagerInternal(var data)
 {
     BaseManager::loadJSONDataManagerInternal(data);
-    componentSelector.loadJSONData(data.getProperty("selectedComponents", var()));
+    //componentSelector.loadJSONData(data.getProperty("selectedComponents", var()));
 }

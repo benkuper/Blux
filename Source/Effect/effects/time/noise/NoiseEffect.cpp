@@ -17,18 +17,16 @@ NoiseEffect::NoiseEffect(var params) :
 	type->addOption("Sine", SINE)->addOption("Perlin", PERLIN);
 
 	frequency = effectParams.addFloatParameter("Frequency", "Frequency of the noise. This will act weirdly when animating it !", 1);
-	amplitude = effectParams.addFloatParameter("Amplitude", "Amplitude of the noise", 1, 0);
-	valueOffset = effectParams.addFloatParameter("Value Offset", "This defines the center value of the noise. For example, 0 will make the sine oscillate from -amplitude/2 to +amplitude/2", .5f);
+	valueRange = effectParams.addPoint2DParameter("Value Range", "Min and Max for this noise");
+	valueRange->setBounds(-1, -1, 1, 1);
+	valueRange->canShowExtendedEditor = false;
+	var valDefault;
+	valDefault.append(0);
+	valDefault.append(1);
+	valueRange->setDefaultValue(valDefault);
 
 	offsetByID->defaultUI = FloatParameter::TIME;
-	offsetByValue->defaultUI = FloatParameter::TIME;
-
-	filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::PAN, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::TILT, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
+	//offsetByValue->defaultUI = FloatParameter::TIME;
 
 	perlin.reset(new siv::PerlinNoise());
 }
@@ -37,22 +35,38 @@ NoiseEffect::~NoiseEffect()
 {
 }
 
-var NoiseEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time, float originalTime)
+void NoiseEffect::processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
 {
+	if (c->mainParameter == nullptr) return;
+
 	NoiseType t = (NoiseType)(int)GetLinkedValue(type);// type->getValueDataAsEnum<NoiseType>();
 	float noiseVal = 0;
+
+	//all noise type should generate a value between 0 and 1
 	switch (t)
 	{
 	case PERLIN:
-		noiseVal = perlin->noise(time) * 2;
+		noiseVal = perlin->noise(time) * 2 + .5f;
 		break;
 
 	case SINE:
-		noiseVal = sinf(time * float_Pi) * .5f;
+		noiseVal = sinf(time * float_Pi) * .5f + .5f;
 		break;
 	}
 
-	return (float)GetLinkedValueO(valueOffset) + noiseVal * (float)GetLinkedValueO(amplitude);
+
+	var rangeVal = GetLinkedValueO(valueRange);
+	float targetVal = jmap<float>(noiseVal, rangeVal[0], rangeVal[1]);
+	if (c->mainParameter->isComplex())
+	{
+		var v;
+		for (int i = 0; i < c->mainParameter->value.size(); i++) v.append(targetVal);
+		targetValues.set(c->mainParameter, v);
+	}
+	else
+	{
+		targetValues.set(c->mainParameter, targetVal);
+	}
 }
 
 float NoiseEffect::getCurrentTime(Object* o, ObjectComponent* c, int id, float timeOverride)

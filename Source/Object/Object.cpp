@@ -9,7 +9,10 @@
 */
 
 #include "Object/ObjectIncludes.h"
-
+#include "Interface/InterfaceIncludes.h"
+#include "Effect/EffectIncludes.h"
+#include "Scene/SceneIncludes.h"
+#include "Sequence/SequenceIncludes.h"
 
 Object::Object(var params) :
 	BaseItem(params.getProperty("name", "Object")),
@@ -88,14 +91,12 @@ Object::Object(var params) :
 
 	globalID = addIntParameter("Global ID", "Virtual ID that is used in many places of Blux to filter, alter effects, etc.", 0, 0);
 	stagePosition = addPoint3DParameter("Stage Position", "Position on stage, can be animated with stage layouts");
+	stageRotation = addPoint3DParameter("Stage Rotation", "Rotation on stage, can be animated with stage layouts");
 	excludeFromScenes = addBoolParameter("Exclude From Scenes", "If enabled, this object will not be modified when loading scenes", false);
 
 	targetInterface = addTargetParameter("Interface", "The interface to link this object to", InterfaceManager::getInstance());
 	targetInterface->targetType = TargetParameter::CONTAINER;
 	targetInterface->maxDefaultSearchLevel = 0;
-
-	if (!Engine::mainEngine->isLoadingFile && InterfaceManager::getInstance()->items.size() == 1) targetInterface->setValueFromTarget(InterfaceManager::getInstance()->items[0]);
-
 
 	componentManager.reset(new ComponentManager(this));
 
@@ -106,26 +107,27 @@ Object::Object(var params) :
 		for (auto& cp : cProps) componentManager->addComponentFromDefinition(cp.name, cp.value, false);
 	}
 
-	if (IntensityComponent* ic = getComponent<IntensityComponent>()) slideManipParameter = ic->values[0];
-
 	customParams.reset(new ObjectManagerCustomParams(ObjectManager::getInstance()));
 	addChildControllableContainer(customParams.get());
 
-	componentManager->userCanAddItemsManually = params.getProperty("isCustom", false);
+	//componentManager->userCanAddItemsManually = params.getProperty("isCustom", ftalse);
+	componentManager->addBaseManagerListener(this);
 	addChildControllableContainer(componentManager.get());
 
 	effectManager.reset(new EffectManager());
 	addChildControllableContainer(effectManager.get());
 
-	bool canCustomize = params.getProperty("canCustomize", false);
-	var objectsData = params.getProperty("objects", var());
+	//bool canCustomize = params.getProperty("canCustomize", false);
+	//var objectsData = params.getProperty("objects", var());
 
-	if (objectsData.isObject() || canCustomize)
+	/*if (objectsData.isObject() || canCustomize)
 	{
 		objectManager.reset(new SubObjectManager());
 		objectManager->userCanAddItemsManually = canCustomize;
 		addChildControllableContainer(objectManager.get());
-	}
+	}*/
+
+	if (!Engine::mainEngine->isLoadingFile && InterfaceManager::getInstance()->items.size() == 1) targetInterface->setValueFromTarget(InterfaceManager::getInstance()->items[0]);
 }
 
 Object::~Object()
@@ -135,12 +137,12 @@ Object::~Object()
 void Object::clearItem()
 {
 	effectManager->clear();
-
+	componentManager->removeBaseManagerListener(this);
 	if (!sourceInterfaceParamsRef.wasObjectDeleted() && sourceInterfaceParamsRef != nullptr)
 	{
 		sourceInterfaceParamsRef->removeControllableContainerListener(this);
 	}
-	
+
 }
 
 void Object::rebuildInterfaceParams()
@@ -149,7 +151,6 @@ void Object::rebuildInterfaceParams()
 	{
 		sourceInterfaceParamsRef->removeControllableContainerListener(this);
 	}
-
 
 	if (interfaceParameters != nullptr)
 	{
@@ -171,6 +172,17 @@ void Object::rebuildInterfaceParams()
 	else interfaceParameters.reset();
 
 	if (interfaceParameters != nullptr && !interfaceGhostData.isVoid()) interfaceParameters->loadJSONData(interfaceGhostData);
+
+	if (componentManager != nullptr) for (auto& c : componentManager->items) c->rebuildInterfaceParams((Interface*)targetInterface->targetContainer.get());
+
+	if (DimmerComponent* ic = getComponent<DimmerComponent>()) slideManipParameter = ic->value;
+	else slideManipParameter = nullptr;
+}
+
+ObjectComponent* Object::getComponentForType(ComponentType t)
+{
+	for(auto & c: componentManager->items) if(c->componentType == t) return c;
+	return nullptr;
 }
 
 void Object::onContainerParameterChangedInternal(Parameter* p)
@@ -238,64 +250,34 @@ void Object::computeComponentValues(ObjectComponent* c)
 {
 	if (!c->enabled->boolValue()) return;
 
-	effectIntensityOutMap.clear();
+	c->update();
+	HashMap<Parameter*, var> values;
+	c->fillComputedValueMap(values);
 
-	if (ObjectManager::getInstance()->blackOut->boolValue())
+	if (values.size() > 0)
 	{
-		if (c->componentType == ComponentType::COLOR)
+		if (!ObjectManager::getInstance()->blackOut->boolValue())
 		{
-			((ColorComponent*)c)->outColors.fill(Colours::black);
-		}
-		else
-		{
-			for (auto& p : c->computedParameters)
-			{
-				var zeroVal;
-				if (p->isComplex()) for (int i = 0; i < p->value.size(); i++) zeroVal.append(0);
-				else zeroVal = 0;
-				p->setValue(zeroVal);
-			}
-		}
-	}
-	else
-	{
-		c->update();
-		var values = c->getOriginalComputedValues();
 
-		if (!values.isVoid())
-		{
 			//local effects
-			effectManager->processComponentValues(this, c, values);
+			effectManager->processComponent(this, c, values);
+
 			//scene effects
-			SceneManager::getInstance()->processComponentValues(this, c, values);
+			SceneManager::getInstance()->processComponent(this, c, values);
+
 			//group effects
-			GroupManager::getInstance()->processComponentValues(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
+			GroupManager::getInstance()->processComponent(this, c, values); //to optimize with group registration on add/remove and not checking always at compute time
+
 			//global effects
-			GlobalSequenceManager::getInstance()->processComponentValues(this, c, values);
-			GlobalEffectManager::getInstance()->processComponentValues(this, c, values);
+			GlobalSequenceManager::getInstance()->processComponent(this, c, values);
+			GlobalEffectManager::getInstance()->processComponent(this, c, values);
 
-			c->postProcessComponentValues(values);
 
-			if (c->componentType == ComponentType::COLOR)
-			{
-				ColorComponent* colorComp = (ColorComponent*)c;
-				for (int i = 0; i < values.size(); i++)
-				{
-					colorComp->outColors.set(i, Colour::fromFloatRGBA(values[i][0], values[i][1], values[i][2], values[i][3]));
-				}
-			}
-			else
-			{
-				int index = 0;
-				for (auto& p : c->computedParameters)
-				{
-					p->setValue(values[index++]);
-				}
-			}
 		}
+
+		c->updateComputedValues(values);
 	}
 
-	c->isDirty = false;
 }
 
 var Object::getSceneData()
@@ -318,19 +300,48 @@ void Object::lerpFromSceneData(var startData, var endData, float weight)
 	effectManager->lerpFromSceneData(startData.getProperty(effectManager->shortName, var()), endData.getProperty(effectManager->shortName, var()), weight);
 }
 
-Array<ChainVizTarget*> Object::getEffectChain()
+var Object::getVizData()
+{
+	var data(new DynamicObject());
+	data.getDynamicObject()->setProperty("niceName", niceName);
+	data.getDynamicObject()->setProperty("controlAddress", getControlAddress(Engine::mainEngine));
+	data.getDynamicObject()->setProperty("stagePosition", stagePosition->getValue());
+	data.getDynamicObject()->setProperty("stageRotation", stageRotation->getValue());
+	data.getDynamicObject()->setProperty("type", getTypeString());
+	data.getDynamicObject()->setProperty("shape", "Moving Head");
+	data.getDynamicObject()->setProperty("components", componentManager->getVizData());
+	return data;
+}
+
+void Object::componentsChanged()
+{
+	if (DimmerComponent* ic = getComponent<DimmerComponent>()) slideManipParameter = ic->value;
+	else slideManipParameter = nullptr;
+
+	if (!isCurrentlyLoadingData)
+	{
+		if (Interface* i = (Interface*)targetInterface->targetContainer.get()) for (auto& c : componentManager->items) c->rebuildInterfaceParams(i);
+	}
+}
+
+void Object::afterLoadJSONDataInternal()
+{
+	if (Interface* i = (Interface*)targetInterface->targetContainer.get()) for (auto& c : componentManager->items) c->rebuildInterfaceParams(i);
+}
+
+Array<ChainVizTarget*> Object::getEffectChain(ComponentType ct)
 {
 	Array<ChainVizTarget*> result;
-	result.addArray(effectManager->getChainVizTargetsForObject(this));
-	result.addArray(SceneManager::getInstance()->getChainVizTargetsForObject(this));
-	result.addArray(GroupManager::getInstance()->getChainVizTargetsForObject(this));
-	//result.addArray(GlobalSequenceManager::getInstance()->.getChainVizTargetsForObject(this));
-	result.addArray(GlobalEffectManager::getInstance()->getChainVizTargetsForObject(this));
+	result.addArray(effectManager->getChainVizTargetsForObjectAndComponent(this, ct));
+	result.addArray(SceneManager::getInstance()->getChainVizTargetsForObjectAndComponent(this, ct));
+	result.addArray(GroupManager::getInstance()->getChainVizTargetsForObjectAndComponent(this, ct));
+	//result.addArray(GlobalSequenceManager::getInstance()->.getChainVizTargetsForObjectAndComponent(this, ct));
+	result.addArray(GlobalEffectManager::getInstance()->getChainVizTargetsForObjectAndComponent(this, ct));
 	return result;
 }
 
-ChainVizComponent* Object::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
+ChainVizComponent* Object::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)
 {
 	jassert(o == this);
-	return new ObjectChainVizUI(this, type);
+	return new ObjectChainVizUI(this, ct, type);
 }

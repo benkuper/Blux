@@ -21,4 +21,5 @@ public:
     GlobalSequenceManager();
     ~GlobalSequenceManager();
 
+
 };

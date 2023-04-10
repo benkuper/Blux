@@ -20,7 +20,8 @@ class ObjectManagerCustomParams;
 
 class Object :
 	public BaseItem,
-	public ChainVizTarget
+	public ChainVizTarget,
+	public ComponentManager::ManagerListener
 {
 public:
 	Object(var params = var());
@@ -45,6 +46,7 @@ public:
 	BoolParameter* excludeFromScenes;
 
 	Point3DParameter* stagePosition;
+	Point3DParameter* stageRotation;
 
 	//ui
 	EnumParameter* icon;
@@ -52,9 +54,6 @@ public:
 
 	Parameter* slideManipParameter;
 	float slideManipValueRef;
-
-	//chainviz
-	HashMap<Effect*, float, DefaultHashFunctions, CriticalSection> effectIntensityOutMap;
 
 	std::unique_ptr<ObjectManagerCustomParams> customParams;
 
@@ -65,6 +64,7 @@ public:
 
 	template<class T>
 	T* getComponent();
+	ObjectComponent* getComponentForType(ComponentType t);
 
 	void onContainerParameterChangedInternal(Parameter* p) override;
 	void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
@@ -76,10 +76,20 @@ public:
 	void updateSceneData(var& sceneData);
 	void lerpFromSceneData(var startData, var endData, float weight);
 
+	virtual var getVizData();
 
-	Array<ChainVizTarget*> getEffectChain();
+	void componentsChanged();
 
-	ChainVizComponent* createVizComponent(Object* o, ChainVizTarget::ChainVizType type) override;
+	void itemAdded(ObjectComponent* c) override { componentsChanged(); }
+	void itemsAdded(Array<ObjectComponent*> c) override { componentsChanged(); }
+	void itemRemoved(ObjectComponent* c) override { componentsChanged(); }
+	void itemsRemoved(Array<ObjectComponent*> c) override { componentsChanged(); }
+
+	void afterLoadJSONDataInternal() override;
+
+	Array<ChainVizTarget*> getEffectChain(ComponentType ct);
+
+	ChainVizComponent* createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) override;
 
 	//Listener
 	class  ObjectListener

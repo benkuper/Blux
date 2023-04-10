@@ -10,6 +10,8 @@
 
 #pragma once
 
-enum ComponentType { INTENSITY, COLOR, GOBO, LASER, PAN, TILT, SERVO, STEPPER, STROBE, SCRIPT, CUSTOM, TYPES_MAX };
-const String componentTypeNames[TYPES_MAX]{ "Intensity", "Color", "Gobo", "Laser", "Pan", "Tilt", "Servo", "Stepper", "Strobe", "Script", "Custom" };
+#include "JuceHeader.h"
+
+enum ComponentType { DIMMER, COLOR, SHUTTER, ORIENTATION, CUSTOM, TYPES_MAX };
+const String componentTypeNames[TYPES_MAX]{ "Dimmer", "Color", "Shutter", "Orientation", "Custom" };
 

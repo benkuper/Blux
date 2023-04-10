@@ -28,8 +28,8 @@ public:
 
 	Array<EffectBlock*, CriticalSection> activeBlocks;
 
-	Array<ChainVizTarget*> getChainVizTargetsForObject(Object* o);
-	virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
+	Array<ChainVizTarget*> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
+	virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f);
 
 	SequenceLayerTimeline* getTimelineUI() override;
 

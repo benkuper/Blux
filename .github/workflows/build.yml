@@ -8,7 +8,13 @@ jobs:
   windows:
     name: Windows
     if: true # always skip job (heap space needs fix)
-    runs-on: windows-2019
+    runs-on: windows-2022
+    strategy:
+      matrix:
+        include:
+        - arch: win-x64
+          buildFolder: "VisualStudio2022_CI"
+          installerName: install
 
     steps:
       - name: Checkout repo
@@ -35,11 +41,11 @@ jobs:
       - name: Force 64-bit Linker
         shell: powershell
         run: |
-          cmd.exe /c "call `"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat`" && set > %temp%\vcvars.txt"
+          cmd.exe /c "call `"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat`" && set > %temp%\vcvars.txt"
           Get-Content "$env:temp\vcvars.txt" | Foreach-Object { if ($_ -match "^(.*?)=(.*)$") { Set-Content "env:\$($matches[1])" $matches[2] }}
-    
+     
       - name: Build
-        run:  msbuild "Builds/VisualStudio2019_CI/${{ env.ProjectName }}.sln" /m /verbosity:normal /p:Configuration=${{ steps.set_variables.outputs.config }}
+        run:  msbuild "Builds/VisualStudio2022_CI/${{ env.ProjectName }}.sln" /m /verbosity:normal /p:Configuration=${{ steps.set_variables.outputs.config }}
 
       - name: Create Package
         id: create_package
@@ -60,8 +66,22 @@ jobs:
           pass: ${{ secrets.UPLOADPASS }}
 
   osx:
+    # if: false # tmp disable
     name: OSX
     runs-on: macos-latest
+    
+    strategy:
+      matrix:
+        include:
+        - arch: x86_64
+          suffix: intel
+          config: Release
+
+        - arch: arm64
+          suffix: silicon
+          config: ReleaseSilicon
+        
+      fail-fast: false
 
     steps:
       - name: Checkout repo
@@ -76,11 +96,11 @@ jobs:
           ref: develop-local
           path: JUCE
 
-      - name: Set Variables
+      - name: Set Suffix
         id: set_variables
         uses: ./.github/actions/set-suffix
         with:
-          os: 'osx'
+          os: 'osx-${{ matrix.suffix }}'
 
       - name: Download Packages 
         run: |
@@ -90,13 +110,14 @@ jobs:
           hdiutil detach "/Volumes/Packages ${{ env.PackagesVersion }}/"
 
       - name: Build
-        uses: sersoft-gmbh/xcodebuild-action@v1.3
+        uses: sersoft-gmbh/xcodebuild-action@v2.0.1
         with:
           project: Builds/MacOSX_CI/${{ env.ProjectName }}.xcodeproj
           destination: platform=macOS
           jobs: 2
           action: build
-          configuration: Release
+          arch: ${{ matrix.arch }}
+          configuration: ${{ matrix.config }}
           use-xcpretty: true
 
       - name: Create Package

@@ -18,7 +18,6 @@ public:
 	~FilterManager();
 
 	Factory<Filter> factory;
-	ComponentSelector componentSelector;
 
 	enum WeightOperator { MIN, MAX, MULTIPLY};
 	EnumParameter* weightOperator;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.1.1b8"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.2.0b2"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
@@ -32,6 +32,10 @@
       <FILE id="dgm4a3" name="seq.png" compile="0" resource="1" file="Resources/seq.png"/>
     </GROUP>
     <GROUP id="{A850F670-385E-48F5-00FC-869936AD83D9}" name="Source">
+      <GROUP id="{E4D06182-EF76-AD0B-E12C-F5D33B208844}" name="Viz">
+        <FILE id="oDvzgg" name="Viz.cpp" compile="1" resource="0" file="Source/Viz/Viz.cpp"/>
+        <FILE id="PAPRob" name="Viz.h" compile="0" resource="0" file="Source/Viz/Viz.h"/>
+      </GROUP>
       <GROUP id="{6C202BEC-8036-59E9-E037-774A938FF34C}" name="Common">
         <GROUP id="{3698B081-1A63-F3A6-3572-F3E4E882352C}" name="Action">
           <FILE id="vU05WU" name="Action.cpp" compile="0" resource="0" file="Source/Common/Action/Action.cpp"/>
@@ -44,19 +48,8 @@
           <FILE id="MMYMjd" name="ComponentType.h" compile="0" resource="0" file="Source/Common/CommonClasses/ComponentType.h"/>
           <FILE id="ScKDSK" name="SceneListener.h" compile="0" resource="0" file="Source/Common/CommonClasses/SceneListener.h"/>
         </GROUP>
-        <GROUP id="{B1B8A94D-11D9-BF07-BE16-1C3773B06D2D}" name="ComponentSelector">
-          <GROUP id="{4831DD3D-4C8D-5647-E40B-255F43EC6EB5}" name="ui">
-            <FILE id="QXX4nj" name="ComponentSelectorUI.cpp" compile="0" resource="0"
-                  file="Source/Common/ComponentSelector/ui/ComponentSelectorUI.cpp"/>
-            <FILE id="wJGFkh" name="ComponentSelectorUI.h" compile="0" resource="0"
-                  file="Source/Common/ComponentSelector/ui/ComponentSelectorUI.h"/>
-          </GROUP>
-          <FILE id="TUllvN" name="ComponentSelector.cpp" compile="0" resource="0"
-                file="Source/Common/ComponentSelector/ComponentSelector.cpp"/>
-          <FILE id="GYa0ii" name="ComponentSelector.h" compile="0" resource="0"
-                file="Source/Common/ComponentSelector/ComponentSelector.h"/>
-        </GROUP>
         <GROUP id="{FDBCF8F9-5A2F-1AB7-233C-193390137552}" name="Helpers">
+          <FILE id="qSFKvb" name="FastNoiseLite.h" compile="0" resource="0" file="Source/Common/Helpers/FastNoiseLite.h"/>
           <FILE id="QtCTVD" name="SceneHelpers.cpp" compile="0" resource="0"
                 file="Source/Common/Helpers/SceneHelpers.cpp"/>
           <FILE id="QtOGLe" name="SceneHelpers.h" compile="0" resource="0" file="Source/Common/Helpers/SceneHelpers.h"/>
@@ -326,6 +319,18 @@
           <FILE id="HlmeQX" name="EffectAction.h" compile="0" resource="0" file="Source/Effect/actions/EffectAction.h"/>
         </GROUP>
         <GROUP id="{CC2D2666-656E-4F67-5076-9DBC9AB33261}" name="effects">
+          <GROUP id="{8F3C161E-3759-748F-F820-C2E665006ADE}" name="customcomponent">
+            <FILE id="FpDSSz" name="CustomComponentEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/customcomponent/CustomComponentEffect.cpp"/>
+            <FILE id="D0jAAT" name="CustomComponentEffect.h" compile="0" resource="0"
+                  file="Source/Effect/effects/customcomponent/CustomComponentEffect.h"/>
+          </GROUP>
+          <GROUP id="{1B2652FA-5299-BCFF-CBFA-59F6D213361B}" name="orientation">
+            <FILE id="CQmwZt" name="OrientationEffect.cpp" compile="0" resource="0"
+                  file="Source/Effect/effects/orientation/OrientationEffect.cpp"/>
+            <FILE id="nWkpXe" name="OrientationEffect.h" compile="0" resource="0"
+                  file="Source/Effect/effects/orientation/OrientationEffect.h"/>
+          </GROUP>
           <GROUP id="{9C5F5626-2B7E-5ED9-5F11-FBEE3D54EAD2}" name="smooth">
             <FILE id="uJc1x1" name="DampingEffect.cpp" compile="0" resource="0"
                   file="Source/Effect/effects/smooth/DampingEffect.cpp"/>
@@ -494,17 +499,11 @@
                   file="Source/Object/Component/ui/ObjectComponentEditor.h"/>
           </GROUP>
           <GROUP id="{95663C75-73C8-432B-C499-B0F789F06966}" name="components">
-            <GROUP id="{8EEE3204-0175-82FC-77AE-8C2E21AF19B4}" name="script">
-              <GROUP id="{31D85460-7635-885C-9A8D-AA8F79DFB629}" name="ui">
-                <FILE id="rY1yDK" name="ScriptComponentEditor.cpp" compile="0" resource="0"
-                      file="Source/Object/Component/components/script/ui/ScriptComponentEditor.cpp"/>
-                <FILE id="jhuKu5" name="ScriptComponentEditor.h" compile="0" resource="0"
-                      file="Source/Object/Component/components/script/ui/ScriptComponentEditor.h"/>
-              </GROUP>
-              <FILE id="T42Rte" name="ScriptComponent.cpp" compile="0" resource="0"
-                    file="Source/Object/Component/components/script/ScriptComponent.cpp"/>
-              <FILE id="gBXRlP" name="ScriptComponent.h" compile="0" resource="0"
-                    file="Source/Object/Component/components/script/ScriptComponent.h"/>
+            <GROUP id="{C04141F0-AC61-91AC-2B60-10A311C24F96}" name="custom">
+              <FILE id="HAaeBB" name="CustomComponent.cpp" compile="0" resource="0"
+                    file="Source/Object/Component/components/custom/CustomComponent.cpp"/>
+              <FILE id="S4AEMz" name="CustomComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/custom/CustomComponent.h"/>
             </GROUP>
             <GROUP id="{CF76E215-E97D-AE67-ACE1-5AD7F346A4C2}" name="color">
               <GROUP id="{3F11A279-2E6F-B762-779C-F4BE655ABD1C}" name="ui">
@@ -518,51 +517,27 @@
               <FILE id="CsIHMw" name="ColorComponent.h" compile="0" resource="0"
                     file="Source/Object/Component/components/color/ColorComponent.h"/>
             </GROUP>
-            <GROUP id="{263A09DA-4344-1913-249B-4D36C0555590}" name="gobo">
-              <FILE id="t3Q31E" name="GoboComponent.cpp" compile="0" resource="0"
-                    file="Source/Object/Component/components/gobo/GoboComponent.cpp"/>
-              <FILE id="kcsXYk" name="GoboComponent.h" compile="0" resource="0" file="Source/Object/Component/components/gobo/GoboComponent.h"/>
+            <GROUP id="{41CCF3AD-7E9C-36C2-C6B9-1B67A42D4804}" name="dimmer">
+              <FILE id="E4n4Ss" name="DimmerComponent.cpp" compile="0" resource="0"
+                    file="Source/Object/Component/components/dimmer/DimmerComponent.cpp"/>
+              <FILE id="WSfPXK" name="DimmerComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/dimmer/DimmerComponent.h"/>
             </GROUP>
-            <GROUP id="{41CCF3AD-7E9C-36C2-C6B9-1B67A42D4804}" name="intensity">
-              <FILE id="VSA3Tn" name="IntensityComponent.cpp" compile="0" resource="0"
-                    file="Source/Object/Component/components/intensity/IntensityComponent.cpp"/>
-              <FILE id="ECNIUC" name="IntensityComponent.h" compile="0" resource="0"
-                    file="Source/Object/Component/components/intensity/IntensityComponent.h"/>
+            <GROUP id="{6D0F1CEA-3034-6B14-087D-0E5A47A9E0EB}" name="orientation">
+              <FILE id="mBZieE" name="Matrix3x3.hpp" compile="0" resource="0" file="Source/Object/Component/components/orientation/Matrix3x3.hpp"/>
+              <FILE id="lgy5vd" name="OrientationComponent.cpp" compile="0" resource="0"
+                    file="Source/Object/Component/components/orientation/OrientationComponent.cpp"/>
+              <FILE id="BWsHyx" name="OrientationComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/orientation/OrientationComponent.h"/>
+              <FILE id="az9P3n" name="Quaternion.hpp" compile="0" resource="0" file="Source/Object/Component/components/orientation/Quaternion.hpp"/>
+              <FILE id="ZbcbSO" name="Vector2.hpp" compile="0" resource="0" file="Source/Object/Component/components/orientation/Vector2.hpp"/>
+              <FILE id="nMSKnu" name="Vector3.hpp" compile="0" resource="0" file="Source/Object/Component/components/orientation/Vector3.hpp"/>
             </GROUP>
-            <GROUP id="{239F4EC2-7966-39A9-2B2D-5781C77AE6EA}" name="laser">
-              <GROUP id="{9EF086BC-6748-F711-D859-9DF946C70D99}" name="LaserPattern">
-                <FILE id="zdhddT" name="LaserPattern.cpp" compile="0" resource="0"
-                      file="Source/Object/Component/components/laser/LaserPattern/LaserPattern.cpp"/>
-                <FILE id="Stuavs" name="LaserPattern.h" compile="0" resource="0" file="Source/Object/Component/components/laser/LaserPattern/LaserPattern.h"/>
-              </GROUP>
-              <FILE id="oXQEeJ" name="LaserComponent.cpp" compile="0" resource="0"
-                    file="Source/Object/Component/components/laser/LaserComponent.cpp"/>
-              <FILE id="yvE4IK" name="LaserComponent.h" compile="0" resource="0"
-                    file="Source/Object/Component/components/laser/LaserComponent.h"/>
-            </GROUP>
-            <GROUP id="{DBD3032D-A58D-D970-2A00-DE3A3C3F9B60}" name="pantilt">
-              <FILE id="xUonqJ" name="PanTiltComponent.cpp" compile="0" resource="0"
-                    file="Source/Object/Component/components/pantilt/PanTiltComponent.cpp"/>
-              <FILE id="rXw4rx" name="PanTiltComponent.h" compile="0" resource="0"
-                    file="Source/Object/Component/components/pantilt/PanTiltComponent.h"/>
-            </GROUP>
-            <GROUP id="{6B99AB6C-A26F-2CD2-E7EF-C565EBB5C1E5}" name="servo">
-              <FILE id="JKHmhX" name="ServoComponent.cpp" compile="0" resource="0"
-                    file="Source/Object/Component/components/servo/ServoComponent.cpp"/>
-              <FILE id="fWOV2W" name="ServoComponent.h" compile="0" resource="0"
-                    file="Source/Object/Component/components/servo/ServoComponent.h"/>
-            </GROUP>
-            <GROUP id="{55AC1F61-6490-0735-69B9-A7EC49956ED5}" name="stepper">
-              <FILE id="eTrqyy" name="StepperComponent.cpp" compile="0" resource="0"
-                    file="Source/Object/Component/components/stepper/StepperComponent.cpp"/>
-              <FILE id="thJWzC" name="StepperComponent.h" compile="0" resource="0"
-                    file="Source/Object/Component/components/stepper/StepperComponent.h"/>
-            </GROUP>
-            <GROUP id="{B3938BE1-FE2D-67BE-2B0D-1B5EC2E61811}" name="strobe">
-              <FILE id="Alno29" name="StrobeComponent.cpp" compile="0" resource="0"
-                    file="Source/Object/Component/components/strobe/StrobeComponent.cpp"/>
-              <FILE id="WA66HQ" name="StrobeComponent.h" compile="0" resource="0"
-                    file="Source/Object/Component/components/strobe/StrobeComponent.h"/>
+            <GROUP id="{7E9CD71C-37DE-A443-19DD-93998257E59D}" name="shutter">
+              <FILE id="GEN10E" name="ShutterComponent.cpp" compile="0" resource="0"
+                    file="Source/Object/Component/components/shutter/ShutterComponent.cpp"/>
+              <FILE id="Sr56MQ" name="ShutterComponent.h" compile="0" resource="0"
+                    file="Source/Object/Component/components/shutter/ShutterComponent.h"/>
             </GROUP>
           </GROUP>
           <FILE id="NGl0Is" name="ComponentManager.cpp" compile="0" resource="0"
@@ -802,7 +777,8 @@
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" ORGANICUI_USE_SERVUS="1" ORGANICUI_USE_WEBSERVER="1"
                JUCE_IP_AND_PORT_DETECTION="1" JUCE_EXCLUSIVE_BINDING_BY_DEFAULT="1"
-               JUCE_ENABLE_BROADCAST_BY_DEFAULT="1" JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS="1"/>
+               JUCE_ENABLE_BROADCAST_BY_DEFAULT="1" JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS="1"
+               JUCE_USE_WIN_WEBVIEW2="1"/>
   <EXPORTFORMATS>
     <VS2022 targetFolder="Builds/VisualStudio2022" externalLibraries="Servus.lib&#10;dnssd.lib"
             smallIcon="kxAIe6" bigIcon="kxAIe6">
@@ -836,40 +812,41 @@
         <MODULEPATH id="juce_serial" path="Modules"/>
       </MODULEPATHS>
     </VS2022>
-    <VS2019 targetFolder="Builds/VisualStudio2019_CI" externalLibraries="Servus.lib&#10;dnssd.lib"
-            smallIcon="kxAIe6" bigIcon="kxAIe6" extraCompilerFlags="/Zm1000"
-            extraLinkerFlags="/HEAP:0x400000,0x10000">
+    <VS2022 targetFolder="Builds/VisualStudio2022_CI" extraCompilerFlags="/Zm1000"
+            extraLinkerFlags="/HEAP:0x400000,0x10000" externalLibraries="Servus.lib&#10;dnssd.lib"
+            smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" binaryPath="Binaries/CI" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"/>
-        <CONFIGURATION isDebug="0" name="Release" binaryPath="Binaries/CI" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
+                       libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
+                       binaryPath="Binaries/CI"/>
+        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
-                       alwaysGenerateDebugSymbols="1"/>
+                       alwaysGenerateDebugSymbols="1" binaryPath="Binaries/CI"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_timeline" path="Modules"/>
-        <MODULEPATH id="juce_simpleweb" path="Modules"/>
-        <MODULEPATH id="juce_osc" path="JUCE/modules"/>
-        <MODULEPATH id="juce_organicui" path="Modules"/>
-        <MODULEPATH id="juce_opengl" path="JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="JUCE/modules"/>
         <MODULEPATH id="juce_dmx" path="Modules"/>
+        <MODULEPATH id="juce_events" path="JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="JUCE/modules"/>
+        <MODULEPATH id="juce_organicui" path="Modules"/>
+        <MODULEPATH id="juce_osc" path="JUCE/modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
+        <MODULEPATH id="juce_simpleweb" path="Modules"/>
+        <MODULEPATH id="juce_timeline" path="Modules"/>
       </MODULEPATHS>
-    </VS2019>
+    </VS2022>
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
-               bigIcon="kxAIe6" xcodeValidArchs="x86_64" customPList="&lt;plist&gt;&#10;&lt;dict&gt;&#10;&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&#10;&#9;&lt;dict&gt;&#10;&#9;&#9;&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;&#10;&#9;&#9;&lt;true/&gt;&#10;&#9;&lt;/dict&gt;&#10;&lt;/dict&gt;&#10;&lt;/plist&gt;"
+               bigIcon="kxAIe6" xcodeValidArchs="arm64,x86_64" customPList="&lt;plist&gt;&#10;&lt;dict&gt;&#10;&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&#10;&#9;&lt;dict&gt;&#10;&#9;&#9;&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;&#10;&#9;&#9;&lt;true/&gt;&#10;&#9;&lt;/dict&gt;&#10;&lt;/dict&gt;&#10;&lt;/plist&gt;"
                extraDefs="JUCE_COREGRAPHICS_DRAW_ASYNC=1">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/servus/include&#10;../../External/dnssd/include"
@@ -877,7 +854,10 @@
                        osxCompatibility="10.10 SDK"/>
         <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/osx/release" macOSDeploymentTarget="10.10"
-                       osxCompatibility="10.10 SDK"/>
+                       osxCompatibility="10.10 SDK" binaryPath="Release"/>
+        <CONFIGURATION isDebug="0" name="ReleaseSilicon" headerPath="../../External/servus/include&#10;../../External/dnssd/include"
+                       libraryPath="../../External/servus/lib/silicon/release" macOSDeploymentTarget="10.10"
+                       osxCompatibility="10.10 SDK" binaryPath="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_timeline" path="Modules"/>

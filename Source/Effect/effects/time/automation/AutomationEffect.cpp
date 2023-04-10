@@ -41,22 +41,18 @@ AutomationEffect::AutomationEffect(var params) :
 	automation.selectItemWhenCreated = false;
 	automation.rangeRemapMode->setValueWithData(Automation::RangeRemapMode::PROPORTIONAL);
 
-	addChildControllableContainer(&automation);
+	effectParams.addChildControllableContainer(&automation);
 
-	filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::PAN, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::TILT, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
 }
 
 AutomationEffect::~AutomationEffect()
 {
 }
 
-var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectComponent* c, var value, int id, float time, float originalTime)
+void AutomationEffect::processComponentTimeInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time, float originalTime)
 {
+	if (c->mainParameter == nullptr) return;
+
 	float _length = GetLinkedValue(length);
 	float _speed = GetLinkedValue(speed);
 
@@ -76,7 +72,9 @@ var AutomationEffect::getProcessedComponentValueTimeInternal(Object* o, ObjectCo
 		}
 	}
 
-	return automation.getValueAtPosition(relTime / _length);
+	float val = automation.getValueAtPosition(relTime / _length);
+	
+	targetValues.set(c->mainParameter, val);
 }
 
 void AutomationEffect::effectParamChanged(Controllable* c)

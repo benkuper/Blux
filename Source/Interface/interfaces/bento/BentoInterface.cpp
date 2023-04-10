@@ -26,13 +26,13 @@ void BentoInterface::sendValuesForObjectInternal(Object* o)
 
 		HashMap<int, float> valueMap;
 		float fac = 1;
-		if (IntensityComponent* ic = o->getComponent<IntensityComponent>())
+		if (DimmerComponent* ic = o->getComponent<DimmerComponent>())
 		{
-			ic->fillOutValueMap(valueMap, 0, true);
+			//ic->fillOutValueMap(valueMap, 0, true);
 			fac = valueMap[0];
 		}
 
-		colorComp->fillOutValueMap(valueMap, 0, true);
+		//colorComp->fillOutValueMap(valueMap, 0, true);
 
 		BentoInterfaceParams* bParams = dynamic_cast<BentoInterfaceParams*>(o->interfaceParameters.get());
 		

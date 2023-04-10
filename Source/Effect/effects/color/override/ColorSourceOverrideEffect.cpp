@@ -14,9 +14,6 @@ ColorSourceOverrideEffect::ColorSourceOverrideEffect(var params) :
 	ColorEffect(getTypeString(), params),
 	overrideEffectNotifier(5)
 {
-	filterManager->componentSelector.allowedComponents.clear();
-	filterManager->componentSelector.allowedComponents.add(ComponentType::COLOR);
-
 	fillWithOriginalColors = false;
 	setupSource("Solid Color");
 }

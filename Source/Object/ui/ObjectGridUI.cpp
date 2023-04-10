@@ -10,6 +10,7 @@
 
 #include "ChainViz/ChainViz.h"
 #include "Color/ColorIncludes.h"
+#include "Object/ObjectIncludes.h"
 
 juce_ImplementSingleton(ObjectUITimer)
 
@@ -26,32 +27,8 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	bringToFrontOnSelect = false;
 	autoHideWhenDragging = false;
 
+	item->componentManager->addAsyncManagerListener(this);
 
-	if (ColorComponent* colorComp = item->getComponent<ColorComponent>())
-	{
-		colorViz.reset(new ColorViz(colorComp));
-		addAndMakeVisible(colorViz.get());
-	}
-
-
-	if (IntensityComponent* ic = item->getComponent<IntensityComponent>())
-	{
-		iconIntensityRef = (FloatParameter*)ic->computedParameters[0];
-		computedIntensityUI.reset(iconIntensityRef->createSlider());
-		computedIntensityUI->useCustomBGColor = true;
-		computedIntensityUI->customBGColor = BG_COLOR.darker(.6f);
-		computedIntensityUI->showLabel = false;
-		computedIntensityUI->showValue = false;
-		addAndMakeVisible(computedIntensityUI.get());
-
-
-		intensityUI.reset(((FloatParameter*)ic->values[0])->createSlider());
-		intensityUI->useCustomBGColor = true;
-		intensityUI->customBGColor = BG_COLOR.darker(.6f);
-		intensityUI->showLabel = false;
-		intensityUI->showValue = false;
-		addAndMakeVisible(intensityUI.get());
-	}
 
 	globalIDUI.reset(item->globalID->createLabelUI());
 	globalIDUI->showLabel = false;
@@ -61,13 +38,18 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 
 	setSize(128, 128);
 
+	updateUI();
+
 	ObjectUITimer::getInstance()->registerUI(this);
 }
 
 ObjectGridUI::~ObjectGridUI()
 {
-	if(ObjectUITimer* t = ObjectUITimer::getInstanceWithoutCreating()) t->unregisterUI(this);
-	//if (item != nullptr) item->removeAsyncModelListener(this);
+	if (ObjectUITimer* t = ObjectUITimer::getInstanceWithoutCreating()) t->unregisterUI(this);
+	if (item != nullptr)
+	{
+		item->componentManager->removeAsyncManagerListener(this);
+	}
 }
 
 void ObjectGridUI::paint(Graphics& g)
@@ -135,6 +117,8 @@ void ObjectGridUI::resized()
 {
 	Rectangle<int> r = getLocalBounds();
 
+	if (globalIDUI == nullptr) return;
+
 	globalIDUI->setVisible(r.getWidth() >= 90);
 	if (globalIDUI->isVisible()) globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
 
@@ -155,6 +139,59 @@ void ObjectGridUI::resized()
 }
 
 
+void ObjectGridUI::updateUI()
+{
+	if (ColorComponent* colorComp = item->getComponent<ColorComponent>())
+	{
+		if (colorViz == nullptr)
+		{
+			colorViz.reset(new ColorViz(colorComp));
+			addAndMakeVisible(colorViz.get());
+		}
+
+	}
+	else if (colorViz != nullptr)
+	{
+		removeChildComponent(colorViz.get());
+		colorViz.reset();
+	}
+
+
+	if (DimmerComponent* ic = item->getComponent<DimmerComponent>())
+	{
+		if (computedIntensityUI == nullptr)
+		{
+
+			iconIntensityRef = (FloatParameter*)ic->paramComputedMap[ic->value];
+			jassert(iconIntensityRef != nullptr);
+			computedIntensityUI.reset(iconIntensityRef->createSlider());
+			computedIntensityUI->useCustomBGColor = true;
+			computedIntensityUI->customBGColor = BG_COLOR.darker(.6f);
+			computedIntensityUI->showLabel = false;
+			computedIntensityUI->showValue = false;
+			addAndMakeVisible(computedIntensityUI.get());
+
+
+			intensityUI.reset(((FloatParameter*)ic->value)->createSlider());
+			intensityUI->useCustomBGColor = true;
+			intensityUI->customBGColor = BG_COLOR.darker(.6f);
+			intensityUI->showLabel = false;
+			intensityUI->showValue = false;
+			addAndMakeVisible(intensityUI.get());
+		}
+	}
+	else if (computedIntensityUI != nullptr)
+	{
+		removeChildComponent(computedIntensityUI.get());
+		removeChildComponent(intensityUI.get());
+		computedIntensityUI.reset();
+		intensityUI.reset();
+	}
+
+	resized();
+	repaint();
+}
+
 void ObjectGridUI::updateThumbnail()
 {
 	var iconData = item->icon->getValueData();
@@ -174,6 +211,18 @@ void ObjectGridUI::updateThumbnail()
 	else if (iconData.isInt() && (int)iconData == -1)
 	{
 		img1 = item->customIcon->getFile();
+		if (img1.existsAsFile())
+		{
+			StringArray fSplit;
+			fSplit.addTokens(img1.getFileNameWithoutExtension(), "_", "\"");
+			File offFile = img1.getParentDirectory().getChildFile(fSplit[0] + "_off" + img1.getFileExtension());
+			if (offFile.existsAsFile())
+			{
+				img2 = img1;
+				img1 = offFile;
+			}
+		}
+
 	}
 
 	if (img1.existsAsFile()) objectImage = ImageCache::getFromFile(img1);
@@ -190,7 +239,7 @@ void ObjectGridUI::setPreviewData(var data)
 	if (previewData.isVoid() && data.isVoid()) return; //Avoid repainting all the time
 
 	previewData = data.clone();
-	var iData = previewData.getProperty("components", var()).getProperty("intensity", var()).getProperty("value", var());
+	var iData = previewData.getProperty("components", var()).getProperty("dimmer", var()).getProperty("value", var());
 	if (!iData.isVoid()) previewIntensity = (float)iData;
 
 	repaint();
@@ -345,7 +394,7 @@ bool ObjectGridUI::keyStateChanged(bool isDown)
 
 void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 {
-	if (IntensityComponent* ic = c->getParentAs<IntensityComponent>())
+	if (DimmerComponent* ic = c->getParentAs<DimmerComponent>())
 	{
 		shouldRepaint = true;
 	}
@@ -360,6 +409,11 @@ void ObjectGridUI::visibilityChanged()
 {
 	BaseItemMinimalUI::visibilityChanged();
 	if (colorViz != nullptr) colorViz->setVisible(isVisible());
+}
+
+void ObjectGridUI::newMessage(const ComponentManager::ManagerEvent& e)
+{
+	updateUI();
 }
 
 void ObjectGridUI::handleRepaint()

@@ -33,7 +33,7 @@ public:
 
     virtual Array<Object*> getObjects() { return Array<Object*>(); }
 
-    void processComponentValues(Object* o, ObjectComponent* c, var& values);
+    void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values);
 
     var getSceneData();
     void updateSceneData(var& sceneData);

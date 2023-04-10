@@ -18,9 +18,7 @@ class SubObjectManager :
 public:
     SubObjectManager();
     ~SubObjectManager();
-
 };
-
 
 
 class ObjectManager :
@@ -28,13 +26,16 @@ class ObjectManager :
     public Object::ObjectListener,
     public Thread,
     public URL::DownloadTask::Listener,
-    public GenericControllableManager::ManagerListener
+    public GenericControllableManager::ManagerListener,
+    public EngineListener
 {
 public:
     juce_DeclareSingleton(ObjectManager, true);
 
     ObjectManager();
     ~ObjectManager();
+
+    virtual void clear() override;
 
     Factory<Object> factory;
 
@@ -55,7 +56,6 @@ public:
     virtual void itemAdded(GenericControllableItem*) override;
     virtual void itemRemoved(GenericControllableItem*) override;
 
-
     void downloadObjects();
     void updateFactoryDefinitions();
     void addItemInternal(Object* o, var data) override;
@@ -72,6 +72,9 @@ public:
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
 
+    virtual var getVizData();
+
+
     void run() override;
 
     virtual void progress(URL::DownloadTask* task, int64 downloaded, int64 total) override;
@@ -79,6 +82,10 @@ public:
 
     var getJSONData() override;
     void loadJSONDataManagerInternal(var data) override;
+    void afterLoadJSONDataInternal() override;
+
+    void endLoadFile() override;
+    void engineCleared() override;
 
     //Listener
     class ObjectManagerListener

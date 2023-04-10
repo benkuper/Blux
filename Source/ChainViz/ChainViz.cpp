@@ -21,12 +21,19 @@ ChainViz::ChainViz(const String& name) :
 	ShapeShifterContentComponent(name),
 	currentObject(nullptr),
 	resizing(false),
+	componentSelect("Component", "Select the component to show in the chain viz"),
 	showOnlyActives("Show Only Actives", "Only show effect that are currently affecting. This hides disabled effects and effects with 0 weight", false)
 {
 	viewport.setViewedComponent(&container, false);
 	viewport.setScrollBarsShown(false, true, false, false);
 	viewport.setScrollBarThickness(16);
 	addAndMakeVisible(&viewport);
+
+	componentSelect.addAsyncParameterListener(this);
+	for (int i = 0; i < ComponentType::TYPES_MAX; i++) componentSelect.addOption(componentTypeNames[i], (ComponentType)i);
+
+	componentSelectUI.reset(componentSelect.createUI());
+	addAndMakeVisible(componentSelectUI.get());
 
 	showOnlyActives.addAsyncParameterListener(this);
 	showOnlyActivesUI.reset(showOnlyActives.createButtonToggle());
@@ -88,14 +95,17 @@ void ChainViz::buildChain()
 {
 	if (currentObject == nullptr || objectRef.wasObjectDeleted()) return;
 
-	objectStartVizComponent.reset(currentObject->createVizComponent(currentObject, ChainVizTarget::OBJECT_START));
+	ComponentType t = componentSelect.getValueDataAsEnum<ComponentType>();
+
+	objectStartVizComponent.reset(currentObject->createVizComponent(currentObject, t, ChainVizTarget::OBJECT_START));
 	container.addAndMakeVisible(objectStartVizComponent.get());
 
-	Array<ChainVizTarget*> objectEffects = currentObject->effectManager->getChainVizTargetsForObject(currentObject);
-	Array<ChainVizTarget*> sceneEffects = SceneManager::getInstance()->getChainVizTargetsForObject(currentObject);
-	Array<ChainVizTarget*> sequenceEffects = GlobalSequenceManager::getInstance()->getChainVizTargetsForObject(currentObject);
-	Array<ChainVizTarget*> groupEffects = GroupManager::getInstance()->getChainVizTargetsForObject(currentObject);
-	Array<ChainVizTarget*> globalEffects = GlobalEffectManager::getInstance()->getChainVizTargetsForObject(currentObject);
+
+	Array<ChainVizTarget*> objectEffects = currentObject->effectManager->getChainVizTargetsForObjectAndComponent(currentObject, t);
+	Array<ChainVizTarget*> sceneEffects = SceneManager::getInstance()->getChainVizTargetsForObjectAndComponent(currentObject, t);
+	Array<ChainVizTarget*> sequenceEffects = GlobalSequenceManager::getInstance()->getChainVizTargetsForObjectAndComponent(currentObject, t);
+	Array<ChainVizTarget*> groupEffects = GroupManager::getInstance()->getChainVizTargetsForObjectAndComponent(currentObject, t);
+	Array<ChainVizTarget*> globalEffects = GlobalEffectManager::getInstance()->getChainVizTargetsForObjectAndComponent(currentObject, t);
 
 	rebuildTargetVizComponents(objectEffects, &objectEffectsVizComponents, ChainVizTarget::OBJECT_EFFECT);
 	rebuildTargetVizComponents(sceneEffects, &sceneVizComponents, ChainVizTarget::SCENE_EFFECT);
@@ -103,7 +113,7 @@ void ChainViz::buildChain()
 	rebuildTargetVizComponents(groupEffects, &groupVizComponents, ChainVizTarget::GROUP_EFFECT);
 	rebuildTargetVizComponents(globalEffects, &globalEffectsVizComponents, ChainVizTarget::GLOBAL_EFFECT);
 
-	objectEndVizComponent.reset(currentObject->createVizComponent(currentObject, ChainVizTarget::OBJECT_END));
+	objectEndVizComponent.reset(currentObject->createVizComponent(currentObject, t, ChainVizTarget::OBJECT_END));
 	container.addAndMakeVisible(objectEndVizComponent.get());
 
 	resized();
@@ -114,11 +124,13 @@ void ChainViz::buildChain()
 void ChainViz::rebuildTargetVizComponents(Array<ChainVizTarget*> effectsToAdd, OwnedArray<ChainVizComponent>* arrayToAdd, ChainVizTarget::ChainVizType type)
 {
 	for (auto& c : *arrayToAdd) removeVizComponent(c);
-
 	arrayToAdd->clear();
+
+	ComponentType t = componentSelect.getValueDataAsEnum<ComponentType>();
+
 	for (auto& e : effectsToAdd)
 	{
-		ChainVizComponent* ec = e->createVizComponent(currentObject, type);
+		ChainVizComponent* ec = e->createVizComponent(currentObject, t, type);
 		container.addAndMakeVisible(ec);
 		ec->addComponentListener(this);
 		arrayToAdd->add(ec);
@@ -139,7 +151,7 @@ void ChainViz::paint(Graphics& g)
 	{
 		g.setColour(TEXT_COLOR.darker());
 		g.setFont(20);
-		g.drawFittedText("Double click on an object to see it's effect chain.", getLocalBounds().reduced(5), Justification::centred,4);
+		g.drawFittedText("Double click on an object to see it's effect chain.", getLocalBounds().reduced(5), Justification::centred, 4);
 		return;
 	}
 
@@ -183,10 +195,12 @@ void ChainViz::resized()
 	Rectangle<int> r = getLocalBounds();
 
 	Rectangle<int> hr = r.removeFromTop(24);
+	componentSelectUI->setBounds(hr.removeFromLeft(150).reduced(2));
+	r.removeFromLeft(2);
 	showOnlyActivesUI->setBounds(hr.removeFromLeft(100).reduced(2));
 	r.reduce(2, 2);
 	r.removeFromBottom(20);
-	
+
 	r.setWidth(objectStartVizComponent->getWidth());
 	objectStartVizComponent->setBounds(r);
 	r.setX(r.getRight() + 20);
@@ -241,7 +255,9 @@ void ChainViz::newMessage(const SceneManagerEvent& e)
 
 	if (e.type == e.SCENE_LOAD_START)
 	{
-		Array<ChainVizTarget*> sceneEffects = SceneManager::getInstance()->getChainVizTargetsForObject(currentObject);
+		ComponentType t = componentSelect.getValueDataAsEnum<ComponentType>();
+
+		Array<ChainVizTarget*> sceneEffects = SceneManager::getInstance()->getChainVizTargetsForObjectAndComponent(currentObject, t);
 		rebuildTargetVizComponents(sceneEffects, &sceneVizComponents, ChainVizTarget::OBJECT_EFFECT);
 		resized();
 		repaint();
@@ -259,6 +275,10 @@ void ChainViz::newMessage(const Parameter::ParameterEvent& e)
 	{
 		resized();
 	}
+	else if (e.parameter == &componentSelect)
+	{
+		buildChain();
+	}
 }
 
 void ChainViz::inspectableDestroyed(Inspectable* i)
@@ -275,14 +295,15 @@ void ChainViz::componentMovedOrResized(Component& c, bool wasMoved, bool wasResi
 	}
 }
 
-ChainVizComponent::ChainVizComponent(ChainVizTarget* item, Object* o, ChainVizTarget::ChainVizType type) :
+ChainVizComponent::ChainVizComponent(ChainVizTarget* item, Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) :
 	item(item),
 	object(o),
+	componentType(ct),
 	type(type),
 	transparentBG(false)
 {
 	object->addInspectableListener(this);
-	setSize(130, 100);
+	setSize(200, 100);
 }
 
 ChainVizComponent::~ChainVizComponent()
@@ -297,7 +318,7 @@ void ChainVizComponent::paint(Graphics& g)
 
 	if (!transparentBG)
 	{
-		g.setColour(isReallyAffecting()?PANEL_COLOR.darker(): BG_COLOR.brighter(.2f));
+		g.setColour(isReallyAffecting() ? PANEL_COLOR.darker() : BG_COLOR.brighter(.2f));
 		g.fillRoundedRectangle(getLocalBounds().toFloat(), 4);
 		g.setColour(typeColors[(int)type]);
 		g.drawRoundedRectangle(getLocalBounds().toFloat(), 4, 1);
@@ -309,8 +330,8 @@ void ChainVizComponent::inspectableDestroyed(Inspectable* i)
 	if (i == object) object = nullptr;
 }
 
-BaseItemChainVizComponent::BaseItemChainVizComponent(BaseItem* i, Object* o, ChainVizTarget::ChainVizType type) :
-	ChainVizComponent((ChainVizTarget*)i, o, type),
+BaseItemChainVizComponent::BaseItemChainVizComponent(BaseItem* i, Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) :
+	ChainVizComponent((ChainVizTarget*)i, o, ct, type),
 	baseItem(i),
 	showItemName(true)
 {
@@ -342,17 +363,17 @@ void BaseItemChainVizComponent::paint(Graphics& g)
 
 	if (!transparentBG)
 	{
-		g.setColour(isReallyAffecting()?PANEL_COLOR:PANEL_COLOR.darker());
+		g.setColour(isReallyAffecting() ? PANEL_COLOR : PANEL_COLOR.darker());
 		g.fillRoundedRectangle(getLocalBounds().toFloat(), 4);
 	}
-	
+
 	if (showItemName)
 	{
 		g.setColour(TEXT_COLOR);
 		g.setFont(16);
 		g.drawText(getVizLabel(), getLocalBounds().toFloat(), Justification::centred);
 	}
-	
+
 	if (baseItem->isSelected)
 	{
 		g.setColour(HIGHLIGHT_COLOR);

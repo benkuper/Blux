@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 HSVAdjustEffect::HSVAdjustEffect(var params) :
     ColorEffect(getTypeString(), params)
 {

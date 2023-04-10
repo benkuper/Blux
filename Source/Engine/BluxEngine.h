@@ -11,13 +11,26 @@
 #pragma once
 #include "JuceHeader.h"
 
-class BluxEngine : public Engine
+class BluxEngine : public Engine,
+    public SimpleWebSocketServer::Listener
 {
 public:
     BluxEngine();
     ~BluxEngine();
 
+    std::unique_ptr<SimpleWebSocketServer> vizServer;
+    void initVizServer();
 
+    void connectionOpened(const String& id);
+    void messageReceived(const String& id, const String& message);
+
+    void sendAllData(const String& id = "");
+    void sendControllableData(Controllable* c);
+    void sendServerMessage(const String message = "", const String & id = "");
+
+    var getVizData();
+
+    void onControllableFeedbackUpdate(ControllableContainer* cc, Controllable* c) override;
     void clearInternal() override;
 
     virtual String getMinimumRequiredFileVersion() override;

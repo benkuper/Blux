@@ -19,8 +19,13 @@ public:
     BluxSequenceManager();
     ~BluxSequenceManager();
 
-    Array<ChainVizTarget *> getChainVizTargetsForObject(Object* o);
-    virtual void processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier = 1.0f);
-
     Sequence* createItem();
+
+    virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f);
+
+    void processRawData();
+
+    Array<ChainVizTarget*> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
+
+
 };

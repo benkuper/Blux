@@ -23,7 +23,7 @@ public:
 
 	EnumParameter* dmxType;
 
-	SpinLock sendLock;
+	SpinLock deviceLock;
 	std::unique_ptr<DMXDevice> dmxDevice;
 	BoolParameter* dmxConnected;
 
@@ -32,16 +32,15 @@ public:
 
 	IntParameter* sendRate;
 	BoolParameter* sendOnChangeOnly;
-	BoolParameter* useIntensityForColor;
 
 	IntParameter* defaultNet;
 	IntParameter* defaultSubnet;
 	IntParameter* defaultUniverse;
 
-
 	OwnedArray<DMXUniverse> universes;
 	HashMap<int, DMXUniverse*> universeIdMap; //internally used
 
+	OwnedArray<DMXUniverse, CriticalSection> universesToSend;
 
 	void clearItem() override;
 
@@ -59,7 +58,10 @@ public:
 	void dmxDeviceDisconnected() override;
 
 	void dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") override;
+
+	void prepareSendValues() override;
 	void sendValuesForObjectInternal(Object* o) override;
+	void finishSendValues() override;
 
 	DMXUniverse* getUniverse(int net, int subnet, int universe, bool createIfNotExist = true);
 
@@ -75,8 +77,6 @@ public:
 		IntParameter* startChannel;
 	};
 
-
-
 	ControllableContainer* getInterfaceParams() override { return new DMXParams(); }
 
 	class DMXInterfaceListener
@@ -85,11 +85,32 @@ public:
 		virtual ~DMXInterfaceListener() {}
 
 		virtual void dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") {}
+		virtual void dmxUniverseSent(DMXUniverse* u) {}
 	};
 
 	ListenerList<DMXInterfaceListener> dmxInterfaceListeners;
 	void addDMXInterfaceListener(DMXInterfaceListener* newListener) { dmxInterfaceListeners.add(newListener); }
 	void removeDMXInterfaceListener(DMXInterfaceListener* listener) { dmxInterfaceListeners.remove(listener); }
+
+
+	class DMXInterfaceEvent
+	{
+	public:
+		enum Type { DATA_IN_CHANGED, UNIVERSE_SENT };
+
+		DMXInterfaceEvent(Type t, DMXUniverse* universe, Array<uint8> values) : type(t), universe(universe), values(values) {}
+
+		Type type;
+		DMXUniverse* universe;
+		Array<uint8> values;
+	};
+
+	QueuedNotifier<DMXInterfaceEvent> dmxInterfaceNotifier;
+	typedef QueuedNotifier<DMXInterfaceEvent>::Listener AsyncListener;
+
+	void addAsyncDMXInterfaceListener(AsyncListener* newListener) { dmxInterfaceNotifier.addListener(newListener); }
+	void addAsyncCoalescedDMXInterfaceListener(AsyncListener* newListener) { dmxInterfaceNotifier.addAsyncCoalescedListener(newListener); }
+	void removeAsyncDMXInterfaceListener(AsyncListener* listener) { dmxInterfaceNotifier.removeListener(listener); }
 
 
 	DECLARE_TYPE("DMX");

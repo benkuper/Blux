@@ -21,7 +21,8 @@ public:
 
 	bool fillWithOriginalColors;
 
-	virtual var getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time = -1);
+	void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) override;
+
 	virtual void processedEffectColorsInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c,int id, float time = -1) {}
 
 };

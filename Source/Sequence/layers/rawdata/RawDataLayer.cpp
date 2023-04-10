@@ -16,6 +16,7 @@ RawDataLayer::RawDataLayer(Sequence* s, var params) :
 	blockManager(this),
 	timeAtRecord(0),
 	numWrittenFrames(0),
+	activeBlock(nullptr),
 	needsToSendAllUniverses(true),
 	dmxInterface(nullptr)
 {
@@ -169,7 +170,7 @@ void RawDataLayer::sequencePlayStateChanged(Sequence* s)
 {
 	if (s->isPlaying->boolValue())
 	{
-		if (arm->boolValue()) startRecording();
+		if (enabled->boolValue() && arm->boolValue()) startRecording();
 	}
 	else
 	{
@@ -182,6 +183,9 @@ void RawDataLayer::sequencePlayStateChanged(Sequence* s)
 
 void RawDataLayer::sequenceCurrentTimeChanged(Sequence* s, float prevTime, bool)
 {
+
+	if (!enabled->boolValue()) return;
+
 	if (isRecording->boolValue())
 	{
 		recordOneFrame();
@@ -195,19 +199,23 @@ void RawDataLayer::sequenceCurrentTimeChanged(Sequence* s, float prevTime, bool)
 	{
 		RawDataBlock* rb = (RawDataBlock*)b;
 
-		if (rb != activeBlock)
 		{
-			activeBlock = rb;
-			needsToSendAllUniverses = true;
+			GenericScopedLock bLock(blockLock);
+			if (rb != activeBlock)
+			{
+				activeBlock = rb;
+				needsToSendAllUniverses = true;
+			}
 		}
 
-		OwnedArray<DMXUniverse> frameUniverses;
+		GenericScopedLock fLock(frameUniverses.getLock());
+		frameUniverses.clear(); //only clear if block found, then when no block found, frameUniverses will keep memory of universes to send black to
 
 		if (s->isSeeking || prevTime > s->currentTime->floatValue()) needsToSendAllUniverses = true;
 
 		if (needsToSendAllUniverses)
 		{
-			LOG("Read All Universes");
+			//LOG("Read All Universes");
 			frameUniverses.addArray(rb->readAllUniversesAtTime(seqTime));
 			needsToSendAllUniverses = false;
 		}
@@ -215,63 +223,13 @@ void RawDataLayer::sequenceCurrentTimeChanged(Sequence* s, float prevTime, bool)
 		{
 			frameUniverses.addArray(rb->readFrameAtTime(seqTime));
 		}
-
-		float fade = rb->getFadeFactorAtTime(seqTime);
-		RawDataBlock::BlendMode m = rb->blendMode->getValueDataAsEnum<RawDataBlock::BlendMode>();
-
-		std::function<int(int, int)> blendFunc = nullptr;
-
-		if (fade != 1 || m != RawDataBlock::ALPHA)
+	}
+	else
+	{
 		{
-			switch (m)
-			{
-			case RawDataBlock::ALPHA:
-				blendFunc = [](int a, int b) { return b; };
-				break;
-			case RawDataBlock::ADD:
-				blendFunc = [](int a, int b) { return jmin(a + b, 255); };
-				break;
-			case RawDataBlock::MULTIPLY:
-				blendFunc = [](int a, int b) {return (int)(a * (b * 1.0f / 255.0f)); };
-				break;
-			case RawDataBlock::MAX:
-				blendFunc = [](int a, int b) {return jmax(a, b); };
-				break;
-			case RawDataBlock::MIN:
-				blendFunc = [](int a, int b) {return jmin(a, b); };
-				break;
-			}
+			GenericScopedLock bLock(blockLock);
+			activeBlock = nullptr;
 		}
-
-		GenericScopedLock lock(dmxInterface->sendLock);
-
-		for (auto& u : frameUniverses)
-		{
-			DMXUniverse* interfaceU = dmxInterface->getUniverse(u->net, u->subnet, u->universe);
-
-
-			if (fade == 1 && m == RawDataBlock::ALPHA)
-			{
-				interfaceU->updateValues(u->values);
-			}
-			else
-			{
-				GenericScopedLock lock(interfaceU->valuesLock);
-
-				if (forceResetValues->boolValue()) 
-					interfaceU->values.fill(0);
-
-				for (int i = 0; i < DMX_NUM_CHANNELS; i++)
-				{
-					int targetVal = blendFunc(interfaceU->values[i], u->values[i]);
-					if (fade != 1) targetVal = (int)jmap<float>(fade, 0, 1, interfaceU->values[i], targetVal);
-					interfaceU->values.set(i, targetVal);
-				}
-
-				interfaceU->isDirty = true;
-			}
-		}
-
 	}
 }
 
@@ -284,6 +242,87 @@ void RawDataLayer::dmxDataInChanged(int net, int subnet, int universe, Array<uin
 
 	jassert(u != nullptr);
 	u->updateValues(values, true);
+}
+
+void RawDataLayer::processRawData()
+{
+	if (dmxInterface == nullptr) return;
+	if (!enabled->boolValue()) return;
+	if (isRecording->boolValue()) return;
+
+	std::function<int(int, int)> blendFunc = nullptr;
+
+	float fade = 0;
+	RawDataBlock::BlendMode m = RawDataBlock::ALPHA;
+
+	{
+		GenericScopedLock bLock(blockLock);
+		if (activeBlock != nullptr)
+		{
+
+			m = activeBlock->blendMode->getValueDataAsEnum<RawDataBlock::BlendMode>();
+			fade = activeBlock->getFadeFactorAtTime(sequence->currentTime->floatValue());
+
+			if (fade != 1 || m != RawDataBlock::ALPHA)
+			{
+				switch (m)
+				{
+				case RawDataBlock::ALPHA:
+					blendFunc = [](int a, int b) { return b; };
+					break;
+				case RawDataBlock::ADD:
+					blendFunc = [](int a, int b) { return jmin(a + b, 255); };
+					break;
+				case RawDataBlock::MULTIPLY:
+					blendFunc = [](int a, int b) {return (int)(a * (b * 1.0f / 255.0f)); };
+					break;
+				case RawDataBlock::MAX:
+					blendFunc = [](int a, int b) {return jmax(a, b); };
+					break;
+				case RawDataBlock::MIN:
+					blendFunc = [](int a, int b) {return jmin(a, b); };
+					break;
+				}
+			}
+		}
+	}
+
+	{
+		GenericScopedLock fLock(frameUniverses.getLock());
+		for (auto& u : frameUniverses)
+		{
+			DMXUniverse* interfaceU = dmxInterface->getUniverse(u->net, u->subnet, u->universe); //will force creation of the universe if doesn't exist
+
+			{
+				GenericScopedLock bLock(blockLock);
+				if (activeBlock == nullptr) continue; //if not active block, only checking universe and creating one if necessary, will be filled with zeros
+			}
+
+			//ddGenericScopedLock uLock(u->valuesLock);
+
+			if (fade == 1 && m == RawDataBlock::ALPHA)
+			{
+				interfaceU->updateValues(u->values);
+			}
+			else
+			{
+				//GenericScopedLock lock(interfaceU->valuesLock);
+
+				//if (forceResetValues->boolValue())
+				//	interfaceU->values.fill(0);
+
+				for (int i = 0; i < DMX_NUM_CHANNELS; i++)
+				{
+					int targetVal = blendFunc(interfaceU->values[i], u->values[i]);
+					if (fade != 1) targetVal = (int)jmap<float>(fade, 0, 1, interfaceU->values[i], targetVal);
+					interfaceU->values.set(i, targetVal);
+				}
+
+				interfaceU->isDirty = true;
+
+			}
+		}
+	}
 }
 
 inline DMXUniverse* RawDataLayer::getUniverse(int net, int subnet, int universe, bool createIfNotExist)

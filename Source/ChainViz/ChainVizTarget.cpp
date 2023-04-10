@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    ChainVizTarget.cpp
-    Created: 31 Oct 2020 10:49:00am
-    Author:  bkupe
+	ChainVizTarget.cpp
+	Created: 31 Oct 2020 10:49:00am
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -12,11 +12,11 @@
 #include "ChainViz.h"
 #include "Object/ObjectIncludes.h"
 
-ChainVizTarget::~ChainVizTarget() 
+ChainVizTarget::~ChainVizTarget()
 {
 }
 
 
-ChainVizComponent* ChainVizTarget::createVizComponent(Object * o, ChainVizType type) {
-    return new ChainVizComponent(this, o, type);
+ChainVizComponent* ChainVizTarget::createVizComponent(Object* o, ComponentType ct, ChainVizType type) {
+	return new ChainVizComponent(this, o, ct, type);
 }

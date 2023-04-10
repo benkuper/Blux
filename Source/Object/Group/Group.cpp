@@ -48,9 +48,9 @@ int Group::getRandomIDForObject(Object* o)
     return -1;
 }
 
-void Group::processComponentValues(Object* o, ObjectComponent* c, var& values)
+void Group::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values)
 {
-    effectManager->processComponentValues(o, c, values, 1, getLocalIDForObject(o));
+    effectManager->processComponent(o, c, values, 1, getLocalIDForObject(o));
 }
 
 var Group::getSceneData()

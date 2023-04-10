@@ -16,10 +16,10 @@ class ObjectChainVizUI :
     public BaseItemChainVizComponent
 {
 public:
-    ObjectChainVizUI(Object* o, ChainVizTarget::ChainVizType type);
+    ObjectChainVizUI(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type);
     ~ObjectChainVizUI();
 
-    std::unique_ptr<FloatSliderUI> intensityUI;
+    std::unique_ptr<ParameterUI> paramUI;
   
     void resized() override;
 };

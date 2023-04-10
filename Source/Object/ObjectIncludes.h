@@ -23,25 +23,17 @@
 #include "Component/ComponentManager.h"
 #include "Component/ui/ComponentManagerEditor.h"
 
+#include "Component/components/dimmer/DimmerComponent.h"
+
 #include "Component/components/color/ColorComponent.h"
 #include "Component/components/color/ui/ColorComponentEditor.h"
 
-#include "Component/components/gobo/GoboComponent.h"
+#include "Component/components/shutter/ShutterComponent.h"
 
-#include "Component/components/intensity/IntensityComponent.h"
+#include "Component/components/orientation/OrientationComponent.h"
 
-#include "Component/components/laser/LaserComponent.h"
-#include "Component/components/laser/LaserPattern/LaserPattern.h"
+#include "Component/components/custom/CustomComponent.h"
 
-#include "Component/components/pantilt/PanTiltComponent.h"
-
-#include "Component/components/script/ScriptComponent.h"
-#include "Component/components/script/ui/ScriptComponentEditor.h"
-
-#include "Component/components/servo/ServoComponent.h"
-
-#include "Component/components/stepper/StepperComponent.h"
-#include "Component/components/strobe/StrobeComponent.h"
 
 #include "Group/Group.h"
 #include "Group/GroupManager.h"

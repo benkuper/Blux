@@ -8,15 +8,12 @@
   ==============================================================================
 */
 
+#include "Effect/EffectIncludes.h"
+
 SmoothingEffect::SmoothingEffect(var params) :
 	Effect(getTypeString(), params)
 {
-	filterManager->componentSelector.allowedComponents.removeAllInstancesOf(ComponentType::COLOR);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::INTENSITY, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::PAN, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::TILT, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::SERVO, true);
-	filterManager->componentSelector.selectedComponents.set(ComponentType::STEPPER, true);
+	computePreviousValues = true;
 
 	smoothing = effectParams.addFloatParameter("Smoothing", "Smoothing intensity, higher value means smoother result", .5f, 0, 1);
 	fallSmoothing = effectParams.addFloatParameter("Fall Smoothing", "Smoothing intensity, higher value means smoother result", .5f, 0, 1, false);
@@ -46,46 +43,52 @@ void SmoothingEffect::onContainerParameterChangedInternal(Parameter* p)
 	}
 }
 
-var SmoothingEffect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
+void SmoothingEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
-	if (!prevValues.contains(c)) prevValues.set(c, values.clone());
 
 	double t = time == -1 ? Time::getMillisecondCounterHiRes() / 1000.0 : time;
 	if (!prevTimes.contains(c)) prevTimes.set(c, t);
 
+	if (!prevValuesMap.contains(c)) return;
+
 	double deltaTime = t - prevTimes[c];
 
-	if (deltaTime == 0) return values;
+	if (deltaTime == 0) return;
 
-	var targetValues = values.clone();
-	var curPrevValues = prevValues[c];
 
 	float smoothVal = GetLinkedValue(smoothing);
 	float fallSmoothVal = GetLinkedValue(fallSmoothing);
 
-	for (int i = 0; i < values.size(); i++)
+	HashMap<Parameter*, var>::Iterator it(values);
+	while(it.next())
 	{
-		if (targetValues[i].isArray())
+		Parameter* p = it.getKey();
+
+		var prevVal = (*prevValuesMap[c])[p];
+		var val = it.getValue();
+		jassert(prevVal.size() == val.size());
+
+		var targetVal = val.clone();
+
+		if (targetVal.isArray())
 		{
-			for (int j = 0; j < targetValues.size(); j++)
+			for (int i = 0; i < targetVal.size(); i++)
 			{
-				float pVal = (float)curPrevValues[i][j];
-				float diff = (float)values[i][j] - pVal;
+				float diff = (float)val[i] - (float)prevVal[i];
 				float fac = (diff > 0 || !fallSmoothing->enabled) ? smoothVal : fallSmoothVal;
-				if (fac > 0) targetValues[i][j] = pVal + diff * deltaTime / fac;
+				if (fac > 0) targetVal = (float)prevVal[i] + diff * deltaTime / fac;
 			}
 		}
 		else
 		{
-			float pVal = (float)curPrevValues[i];
-			float diff = (float)values[i] - pVal;
+			float diff = (float)val - (float)prevVal;
 			float fac = (diff > 0 || !fallSmoothing->enabled) ? smoothVal : fallSmoothVal;
-			if (fac > 0) targetValues[i] = pVal + diff * deltaTime / fac;
+			if (fac > 0) targetVal = (float)prevVal + diff * deltaTime / fac;
 		}
+
+		targetValues.set(p, targetVal);
 	}
 
-	prevValues.set(c, targetValues.clone());
 	prevTimes.set(c, t);
 
-	return targetValues;
 }

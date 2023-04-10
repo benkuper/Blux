@@ -8,11 +8,15 @@
   ==============================================================================
 */
 
+#include "EffectIncludes.h"
+#include "Effect.h"
+
 Effect::Effect(const String& name, var params) :
 	BaseItem(name),
 	forceDisabled(false),
 	parentGroup(nullptr),
 	idMode(nullptr),
+	computePreviousValues(false),
 	effectParams("Effect Parameters")
 {
 	//effectParams.hideEditorHeader = true;
@@ -21,6 +25,7 @@ Effect::Effect(const String& name, var params) :
 	effectParams.addParamLinkContainerListener(this);
 
 	saveAndLoadRecursiveData = true;
+	effectParams.saveAndLoadRecursiveData = true;
 
 	sceneSaveMode = addEnumParameter("Save Mode", "Choose what to save in scenes");
 	sceneSaveMode->addOption("Save all", FULL, false)->addOption("Save weight only", WEIGHT_ONLY)->addOption("Exclude", NONE);
@@ -45,6 +50,16 @@ Effect::Effect(const String& name, var params) :
 	//showInspectorOnSelect = false;
 
 	canBeCopiedAndPasted = true;
+
+	var typesF = params.getProperty("types", var());
+	if (typesF.isArray())
+	{
+		for (int i = 0; i < typesF.size(); i++) typeFilters.add((ComponentType)(int)typesF[i]);
+	}
+	else if (!typesF.isVoid())
+	{
+		typeFilters.add((ComponentType)(int)typesF);
+	}
 }
 
 Effect::~Effect()
@@ -53,7 +68,15 @@ Effect::~Effect()
 
 bool Effect::isAffectingObject(Object* o)
 {
-	return filterManager->isAffectingObject(o);
+	return 	filterManager->isAffectingObject(o);
+}
+
+bool Effect::isAffectingObjectAndComponent(Object* o, ComponentType t)
+{
+	if (!typeFilters.isEmpty() && !typeFilters.contains(t)) return false;
+	if (!isAffectingObject(o)) return false;
+
+	return true;
 }
 
 void Effect::setParentGroup(Group* g)
@@ -74,14 +97,12 @@ void Effect::setForceDisabled(bool value)
 	updateEnabled();
 }
 
-void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, float weightMultiplier, int id, float time)
+void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id, float time)
 {
+	if (!isAffectingObjectAndComponent(o, c->componentType))return;
+
 	FilterResult r = filterManager->getFilteredResultForComponent(o, c);
-	if (r.id == -1)
-	{
-		if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
-		return;
-	}
+	if (r.id == -1) return;
 
 	int targetID = (id != -1 && r.id == o->globalID->intValue()) ? id : r.id;
 
@@ -96,18 +117,47 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 
 	float targetWeight = r.weight * weight->floatValue() * weightMultiplier;
 
-	if (targetWeight == 0)
+	if (targetWeight == 0) return;
+
+	if (computePreviousValues)
 	{
-		if (c->componentType == ComponentType::INTENSITY && values.size() > 0) o->effectIntensityOutMap.set(this, values[0]);
-		return;
+		if (!prevValuesMap.contains(c))
+		{
+			HashMap<Parameter*, var>* prevVals = new HashMap<Parameter*, var>();
+			HashMap<Parameter*, var>::Iterator it(values);
+			while (it.next()) prevVals->set(it.getKey(), it.getValue().clone());
+			prevValues.add(prevVals);
+			prevValuesMap.set(c, prevVals);
+		}
 	}
 
-	var pValues = getProcessedComponentValuesInternal(o, c, values.clone(), targetID, time);
-	jassert(pValues.size() == values.size());
+	HashMap<Parameter*, var> targetValues;
+	processComponentInternal(o, c, values, targetValues, targetID, time);
 
-	for (int i = 0; i < values.size(); i++)
+	HashMap<Parameter*, var>::Iterator it(targetValues);
+	while (it.next())
 	{
-		values[i] = blendValue(values[i], pValues[i], targetWeight);
+		Parameter* cp = it.getKey();
+		var initVal = values[cp];
+		var val = it.getValue().clone();
+		if (initVal != val)
+		{
+			var bVal = blendValue(initVal, val, targetWeight);
+			values.set(cp, bVal);
+		}
+
+		if (cp == vizComputedParamRef && vizParameter != nullptr && !vizParameter.wasObjectDeleted()) vizParameter->setValue(values[cp]);
+	}
+
+	if (computePreviousValues)
+	{
+		HashMap<Parameter*, var>* prevVals = prevValuesMap[c];
+		HashMap<Parameter*, var>::Iterator it(targetValues);
+		while (it.next())
+		{
+			DBG("Set prev value " << it.getKey()->niceName << " : " << it.getValue().toString());
+			prevVals->set(it.getKey(), it.getValue().clone());
+		}
 	}
 }
 
@@ -115,7 +165,12 @@ void Effect::processComponentValues(Object* o, ObjectComponent* c, var& values, 
 void Effect::onContainerParameterChangedInternal(Parameter* p)
 {
 	BaseItem::onContainerParameterChangedInternal(p);
-	if (p == enabled) updateEnabled();
+	if (p == enabled)
+	{
+		updateEnabled();
+		if (enabled->boolValue()) clearPrevValues();
+	}
+	else if (p == weight && weight->floatValue() == 0) clearPrevValues();
 }
 
 void Effect::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
@@ -128,9 +183,15 @@ void Effect::paramControlModeChanged(ParamLinkContainer* pc, ParameterLink* pl)
 	effectListeners.call(&EffectListener::effectParamControlModeChanged, pl->parameter);
 }
 
-var Effect::getProcessedComponentValuesInternal(Object* o, ObjectComponent* c, var values, int id, float time)
+void Effect::clearPrevValues()
 {
-	return values;
+	prevValuesMap.clear();
+	prevValues.clear();
+}
+
+void Effect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
+{
+
 }
 
 bool Effect::isFullyEnabled()
@@ -144,7 +205,19 @@ var Effect::blendValue(var start, var end, float weight)
 	var result;
 	if (start.isArray())
 	{
-		for (int i = 0; i < start.size(); i++) result.append(blendFloatValue(start[i], end[i], weight));
+		for (int i = 0; i < start.size(); i++)
+		{
+			if (start[i].isArray())
+			{
+				var v;
+				for (int j = 0; j < start[i].size(); j++) v.append(blendFloatValue(start[i][j], end[i][j], weight));
+				result.append(v);
+			}
+			else
+			{
+				result.append(blendFloatValue(start[i], end[i], weight));
+			}
+		}
 	}
 	else
 	{
@@ -206,9 +279,21 @@ void Effect::lerpFromSceneData(var startData, var endData, float lerpWeight)
 	else if (m == WEIGHT_ONLY) SceneHelpers::lerpSceneParam(weight, startData, endData, lerpWeight);
 }
 
-ChainVizComponent* Effect::createVizComponent(Object* o, ChainVizTarget::ChainVizType type)
+ChainVizComponent* Effect::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)
 {
-	return new EffectChainVizUI(this, o, type);
+	return new EffectChainVizUI(this, o, ct, type);
+}
+
+void Effect::registerVizFeedback(Parameter* vizParam, Parameter* computedRef)
+{
+	vizParameter = vizParam;
+	vizComputedParamRef = computedRef;
+}
+
+void Effect::clearVizFeedback()
+{
+	vizComputedParamRef = nullptr;
+	vizParameter = nullptr;
 }
 
 InspectableEditor* Effect::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)

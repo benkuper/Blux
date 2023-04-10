@@ -2,25 +2,25 @@
   "mainLayout": {
     "type": 1,
     "width": 1920,
-    "height": 997,
+    "height": 989,
     "direction": 2,
     "shifters": [
       {
         "type": 1,
         "width": 1920,
-        "height": 997,
+        "height": 989,
         "direction": 1,
         "shifters": [
           {
             "type": 1,
-            "width": 195,
-            "height": 997,
+            "width": 355,
+            "height": 989,
             "direction": 2,
             "shifters": [
               {
                 "type": 0,
-                "width": 195,
-                "height": 119,
+                "width": 355,
+                "height": 117,
                 "currentContent": "Interfaces",
                 "tabs": [
                   {
@@ -30,8 +30,8 @@
               },
               {
                 "type": 0,
-                "width": 195,
-                "height": 481,
+                "width": 355,
+                "height": 479,
                 "currentContent": "Objects",
                 "tabs": [
                   {
@@ -41,8 +41,8 @@
               },
               {
                 "type": 0,
-                "width": 195,
-                "height": 146,
+                "width": 355,
+                "height": 144,
                 "currentContent": "Groups",
                 "tabs": [
                   {
@@ -52,8 +52,8 @@
               },
               {
                 "type": 0,
-                "width": 195,
-                "height": 232,
+                "width": 355,
+                "height": 230,
                 "currentContent": "Global Effects",
                 "tabs": [
                   {
@@ -65,37 +65,26 @@
           },
           {
             "type": 1,
-            "width": 1326,
-            "height": 997,
+            "width": 1197,
+            "height": 989,
             "direction": 2,
             "shifters": [
               {
                 "type": 1,
-                "width": 1326,
-                "height": 708,
+                "width": 1197,
+                "height": 704,
                 "direction": 1,
                 "shifters": [
                   {
-                    "type": 0,
-                    "width": 290,
-                    "height": 708,
-                    "currentContent": "Color Templates",
-                    "tabs": [
-                      {
-                        "name": "Color Templates"
-                      }
-                    ]
-                  },
-                  {
                     "type": 1,
-                    "width": 696,
-                    "height": 708,
+                    "width": 888,
+                    "height": 704,
                     "direction": 2,
                     "shifters": [
                       {
                         "type": 0,
-                        "width": 696,
-                        "height": 547,
+                        "width": 888,
+                        "height": 543,
                         "currentContent": "Objects Grid View",
                         "tabs": [
                           {
@@ -111,7 +100,7 @@
                       },
                       {
                         "type": 0,
-                        "width": 696,
+                        "width": 888,
                         "height": 155,
                         "currentContent": "Effect Chain Viz",
                         "tabs": [
@@ -124,8 +113,8 @@
                   },
                   {
                     "type": 0,
-                    "width": 328,
-                    "height": 708,
+                    "width": 302,
+                    "height": 704,
                     "currentContent": "Scenes",
                     "tabs": [
                       {
@@ -137,14 +126,14 @@
               },
               {
                 "type": 1,
-                "width": 1326,
-                "height": 282,
+                "width": 1197,
+                "height": 278,
                 "direction": 1,
                 "shifters": [
                   {
                     "type": 0,
                     "width": 227,
-                    "height": 282,
+                    "height": 278,
                     "currentContent": "Global Sequences",
                     "tabs": [
                       {
@@ -154,8 +143,8 @@
                   },
                   {
                     "type": 0,
-                    "width": 1093,
-                    "height": 282,
+                    "width": 964,
+                    "height": 278,
                     "currentContent": "Sequence Editor",
                     "tabs": [
                       {
@@ -169,14 +158,14 @@
           },
           {
             "type": 1,
-            "width": 386,
-            "height": 997,
+            "width": 355,
+            "height": 989,
             "direction": 2,
             "shifters": [
               {
                 "type": 0,
-                "width": 386,
-                "height": 744,
+                "width": 355,
+                "height": 740,
                 "currentContent": "Inspector",
                 "tabs": [
                   {
@@ -186,8 +175,8 @@
               },
               {
                 "type": 0,
-                "width": 386,
-                "height": 246,
+                "width": 355,
+                "height": 242,
                 "currentContent": "Logger",
                 "tabs": [
                   {
