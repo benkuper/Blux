@@ -239,7 +239,7 @@ void ObjectGridUI::setPreviewData(var data)
 	if (previewData.isVoid() && data.isVoid()) return; //Avoid repainting all the time
 
 	previewData = data.clone();
-	var iData = previewData.getProperty("components", var()).getProperty("intensity", var()).getProperty("value", var());
+	var iData = previewData.getProperty("components", var()).getProperty("dimmer", var()).getProperty("value", var());
 	if (!iData.isVoid()) previewIntensity = (float)iData;
 
 	repaint();
