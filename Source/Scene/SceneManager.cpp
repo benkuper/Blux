@@ -22,10 +22,17 @@ SceneManager::SceneManager() :
 	managerFactory = &factory;
 	factory.defs.add(Factory<Scene>::Definition::createDef("", "Scene", &Scene::create));
 
+	addLoadToUndo = addBoolParameter("Undoable Load", "If checked, this will add the load of a scene to the Undo Manager", true);
+	forceLoadTime = addFloatParameter("Force Load Time", "If enabled, this will always load with this timing", .5f, 0);
+	forceLoadTime->defaultUI = FloatParameter::TIME;
+	forceLoadTime->setEnabled(false);
+	forceLoadTime->canBeDisabledByUser = true;
+
 	loadNextSceneTrigger = addTrigger("Load Next Scene", "Load the next scene. If no scene is loaded, will load first one");
 	loadPreviousSceneTrigger = addTrigger("Load Previous Scene", "Load the previous scene. If no scene is loaded, this will do nothing.");
 
-	autoPreview = addBoolParameter("Auto Preview", "If checked, this will force preview when hovering a scene", false);
+	previewMode = addEnumParameter("Preview Mode", "The mode to use to preview values from a different scene");
+	previewMode->addOption("None", NONE)->addOption("Next Scene", NEXT)->addOption("Hover", HOVER)->addOption("Selected", SELECTED);
 
 	lockUI = addBoolParameter("Lock UI", "If checked, all UI will be locked", false);
 
@@ -51,11 +58,18 @@ void SceneManager::removeItemInternal(Scene* s)
 	s->removeSceneListener(this);
 }
 
-void SceneManager::loadScene(Scene* s, float time)
+void SceneManager::loadScene(Scene* s, float time, bool setUndoIfNeeded)
 {
-	//if (s == currentScene) return;
-
 	stopThread(1000);
+
+	if (forceLoadTime->enabled) time = forceLoadTime->floatValue();
+
+	if (setUndoIfNeeded && addLoadToUndo->boolValue() && currentScene != nullptr && s != nullptr)
+	{
+		UndoMaster::getInstance()->performAction("Load Scene " + currentScene->niceName, new SceneLoadAction(currentScene, loadTime, s, time));
+		return;
+	}
+
 
 	if (currentScene != nullptr)
 	{
@@ -76,7 +90,6 @@ void SceneManager::loadScene(Scene* s, float time)
 	}
 
 	currentScene->addInspectableListener(this);
-
 
 	loadTime = time >= 0 ? time : currentScene->defaultLoadTime->floatValue();
 
@@ -265,9 +278,9 @@ void SceneManager::processMessage(const OSCMessage& m)
 	{
 		if (m.size() > 0)
 		{
-			String sceneName = m[0].getString();
+			String sceneName = OSCHelpers::getStringArg(m[0]);
 			Scene* s = getItemWithName(sceneName, true);
-			if (s != nullptr) s->loadTrigger->trigger();
+			loadScene(s, m.size() > 1 ? OSCHelpers::getFloatArg(m[1]) : -1);
 		}
 	}
 }
@@ -280,4 +293,26 @@ void SceneManager::inspectableDestroyed(Inspectable* i)
 		stopThread(100);
 		currentScene = nullptr;
 	}
+}
+
+SceneManager::SceneLoadAction::SceneLoadAction(Scene* prevScene, float prevTime, Scene* s, float time) :
+	prevScene(prevScene), prevSceneRef(prevScene), prevTime(prevTime), scene(s), sceneRef(s), time(time)
+{
+}
+
+
+
+bool SceneManager::SceneLoadAction::perform()
+{
+	if (sceneRef == nullptr || sceneRef.wasObjectDeleted()) return false;
+
+	SceneManager::getInstance()->loadScene(scene, time, false);
+	return true;
+}
+
+bool SceneManager::SceneLoadAction::undo()
+{
+	if (prevSceneRef == nullptr || prevSceneRef.wasObjectDeleted()) return false;
+	SceneManager::getInstance()->loadScene(prevScene, prevTime, false);
+	return true;
 }

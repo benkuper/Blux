@@ -20,7 +20,7 @@ public:
 
     std::unique_ptr<TriggerButtonUI> prevSceneUI;
     std::unique_ptr<TriggerButtonUI> nextSceneUI;
-    std::unique_ptr<BoolButtonToggleUI> autoPreviewUI;
+    std::unique_ptr<EnumParameterUI> previewModeUI;
 
     void mouseEnter(const MouseEvent& e) override;
     void mouseExit(const MouseEvent& e) override;
@@ -28,6 +28,7 @@ public:
     void resizedInternalHeader(Rectangle<int>& r) override;
 
     void newMessage(const SceneManagerEvent& e) override;
+    virtual void newMessage(const InspectableSelectionManager::SelectionEvent& e) override;
 
     static SceneManagerUI* create(const String& name) { return new SceneManagerUI(name); }
 

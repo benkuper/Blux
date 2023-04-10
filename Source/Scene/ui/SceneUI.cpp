@@ -20,8 +20,8 @@ SceneUI::SceneUI(Scene* scene) :
 	BaseItemUI(scene)
 {
 
-	if(fxImage.isNull()) fxImage = ImageCache::getFromMemory(BinaryData::fx_png, BinaryData::fx_pngSize);
-	if(seqImage.isNull()) seqImage = ImageCache::getFromMemory(BinaryData::seq_png, BinaryData::seq_pngSize);
+	if (fxImage.isNull()) fxImage = ImageCache::getFromMemory(BinaryData::fx_png, BinaryData::fx_pngSize);
+	if (seqImage.isNull()) seqImage = ImageCache::getFromMemory(BinaryData::seq_png, BinaryData::seq_pngSize);
 
 	loadUI.reset(item->loadTrigger->createButtonUI());
 	addAndMakeVisible(loadUI.get());
@@ -67,14 +67,15 @@ void SceneUI::resizedInternalHeader(Rectangle<int>& r)
 void SceneUI::mouseEnter(const MouseEvent& e)
 {
 	BaseItemUI::mouseEnter(e);
-	if (SceneManager::getInstance()->autoPreview->boolValue()) showPreview(true);
-
+	SceneManager::PreviewMode m = SceneManager::getInstance()->previewMode->getValueDataAsEnum<SceneManager::PreviewMode>();
+	if (m == SceneManager::HOVER) showPreview(true);
 }
 
 void SceneUI::mouseExit(const MouseEvent& e)
 {
 	BaseItemUI::mouseExit(e);
-	showPreview(false);
+	SceneManager::PreviewMode m = SceneManager::getInstance()->previewMode->getValueDataAsEnum<SceneManager::PreviewMode>();
+	if (m == SceneManager::HOVER) showPreview(false);
 }
 
 void SceneUI::mouseDown(const MouseEvent& e)
@@ -85,7 +86,7 @@ void SceneUI::mouseDown(const MouseEvent& e)
 		if (e.mods.isAltDown())
 		{
 			if (e.mods.isCommandDown()) item->saveScene();
-			else item->loadScene(0);
+			else item->loadScene(e.mods.isShiftDown() ? SceneManager::getInstance()->forceLoadTime->floatValue() : 0);
 		}
 	}
 	else if (e.mods.isRightButtonDown())
