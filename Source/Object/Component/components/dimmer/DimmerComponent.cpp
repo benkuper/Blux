@@ -36,7 +36,8 @@ void DimmerComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	{
 		Parameter* compValue = paramComputedMap[value];
 		float val = values[compValue];
-		float endVal = curve.getValueAtPosition(val);
+		curve.position->setValue(val);
+		float endVal = curve.value->floatValue();
 		values.set(compValue, endVal);
 	}
 
