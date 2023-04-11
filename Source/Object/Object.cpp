@@ -112,6 +112,8 @@ Object::Object(var params) :
 
 	//componentManager->userCanAddItemsManually = params.getProperty("isCustom", ftalse);
 	componentManager->addBaseManagerListener(this);
+	componentsChanged();//force one time here to set things from components
+
 	addChildControllableContainer(componentManager.get());
 
 	effectManager.reset(new EffectManager());
