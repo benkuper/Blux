@@ -18,7 +18,7 @@ ColorComponent::ColorComponent(Object* o, var params) :
 	resolution = addIntParameter("Resolution", "Number of different colors/pixels for this object", 1, 1);
 	useIntensityForColor = addBoolParameter("Use Intensity for Color", "If checked, use the intensity component for color opacity", false);
 
-	mainColor = (ColorParameter*)addComputedParameter(new ColorParameter("Out Color", "Computed out color, not used to send DMX but for feedback", Colours::black));
+	mainColor = (ColorParameter*)addComputedParameter(new ColorParameter("Main Color", "Computed main color, not used to send DMX but for feedback", Colours::black));
 	mainColor->hideInEditor = true;
 
 	update();
