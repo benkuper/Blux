@@ -111,7 +111,7 @@ void ColorComponent::fillComputedValueMap(HashMap<Parameter*, var>& values)
 
 void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
-	var colValues = values[nullptr]; //using nullptr as placeholders for values not linked to a computed parameter
+	var colValues = values[nullptr].clone(); //using nullptr as placeholders for values not linked to a computed parameter
 
 	jassert(colValues.size() == resolution->intValue());
 
@@ -129,6 +129,7 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	{
 		for (int i = 0; i < colValues.size(); i++)
 		{
+			if (colValues[i].size() < 4) continue;
 			var col;
 			col.append(colValues[i][0]);
 			col.append(colValues[i][1]);
