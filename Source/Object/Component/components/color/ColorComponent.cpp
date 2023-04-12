@@ -114,6 +114,7 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	var colValues = values[nullptr].clone(); //using nullptr as placeholders for values not linked to a computed parameter
 
 	jassert(colValues.size() == resolution->intValue());
+	jassert(colValues[0].size() >= 4);
 
 	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
@@ -141,7 +142,7 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	}
 
 
-	if (colValues.size() > 0)
+	if (colValues.size() > 0 && colValues[0].size() >= 4)
 	{
 		paramComputedMap[mainColor]->setValue(colValues[0]);
 	}
