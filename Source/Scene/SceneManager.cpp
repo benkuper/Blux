@@ -230,12 +230,25 @@ void SceneManager::processComponent(Object* o, ObjectComponent* c, HashMap<Param
 				var val;
 				if (newVal.isArray())
 				{
-					for (int i = 0; i < newVal.size(); i++) val.append(jmap(progressWeight, (float)prevVal, (float)newVal));
+					for (int i = 0; i < newVal.size(); i++)
+					{
+						if (newVal[i].isArray())
+						{
+							var vv;
+							for (int j = 0; j < newVal[i].size(); j++) vv.append(jmap(progressWeight, (float)prevVal[i][j], (float)newVal[i][j]));
+							val.append(vv);
+						}
+						else
+						{
+							val.append(jmap(progressWeight, (float)prevVal[i], (float)newVal[i]));
+						}
+					}
 				}
 				else
 				{
 					val = jmap(progressWeight, (float)prevVal, (float)newVal);
 				}
+
 				values.set(cp, val);
 			}
 		}
