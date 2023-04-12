@@ -34,7 +34,7 @@ public:
 
     virtual void itemAdded(SequenceLayer* layer) override;
 
-    void endLoadFile() override;
+    void handleStartAtLoad() override;
 
     ChainVizComponent* createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) override;
 

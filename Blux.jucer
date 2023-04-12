@@ -53,6 +53,10 @@
           <FILE id="QtCTVD" name="SceneHelpers.cpp" compile="0" resource="0"
                 file="Source/Common/Helpers/SceneHelpers.cpp"/>
           <FILE id="QtOGLe" name="SceneHelpers.h" compile="0" resource="0" file="Source/Common/Helpers/SceneHelpers.h"/>
+          <FILE id="zhK4Zy" name="TimedEffectHiresTimer.cpp" compile="0" resource="0"
+                file="Source/Common/Helpers/TimedEffectHiresTimer.cpp"/>
+          <FILE id="K6TMfc" name="TimedEffectHiresTimer.h" compile="0" resource="0"
+                file="Source/Common/Helpers/TimedEffectHiresTimer.h"/>
         </GROUP>
         <GROUP id="{BF9F00C2-E56B-566D-1778-6E0C3F9A4768}" name="MIDI">
           <GROUP id="{86092771-0F49-8ED8-D052-C755987B1560}" name="ui">

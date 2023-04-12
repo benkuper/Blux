@@ -129,7 +129,7 @@ void SceneManager::run()
 	sceneManagerNotifier.addMessage(new SceneManagerEvent(SceneManagerEvent::SCENE_LOAD_START));
 
 
-	var dataAtLoad = currentScene->getSceneData();
+	var dataAtLoad = currentScene->getSceneData().clone();
 	double timeAtLoad = Time::getMillisecondCounter() / 1000.0;
 	if (loadTime > 0)
 	{

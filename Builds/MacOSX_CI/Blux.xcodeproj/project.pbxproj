@@ -139,6 +139,7 @@
 		2978EC72B7EEDA927449DAB6 /* ActionTrigger.cpp */ /* ActionTrigger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ActionTrigger.cpp; path = ../../Source/Sequence/layers/action/ActionTrigger.cpp; sourceTree = SOURCE_ROOT; };
 		2A0F118BD09CA08D5A350664 /* ColorSource.cpp */ /* ColorSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorSource.cpp; path = ../../Source/Color/ColorSource/ColorSource.cpp; sourceTree = SOURCE_ROOT; };
 		2E3BA0B9295E6F46032AF07A /* RawDataBlockUI.h */ /* RawDataBlockUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RawDataBlockUI.h; path = ../../Source/Sequence/layers/rawdata/ui/RawDataBlockUI.h; sourceTree = SOURCE_ROOT; };
+		30D2F4768EB6A4F4226EC1CE /* TimedEffectHiresTimer.h */ /* TimedEffectHiresTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimedEffectHiresTimer.h; path = ../../Source/Common/Helpers/TimedEffectHiresTimer.h; sourceTree = SOURCE_ROOT; };
 		30D8F1C06D45396001CEDCC6 /* InterfaceManager.cpp */ /* InterfaceManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = InterfaceManager.cpp; path = ../../Source/Interface/InterfaceManager.cpp; sourceTree = SOURCE_ROOT; };
 		31995FA54E5C1A136885E42E /* ChainViz.h */ /* ChainViz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChainViz.h; path = ../../Source/ChainViz/ChainViz.h; sourceTree = SOURCE_ROOT; };
 		31C24D863378BC9F5222BAFB /* ObjectManagerGridUI.cpp */ /* ObjectManagerGridUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectManagerGridUI.cpp; path = ../../Source/Object/ui/ObjectManagerGridUI.cpp; sourceTree = SOURCE_ROOT; };
@@ -460,6 +461,7 @@
 		F064DFE34C200D4E1E782FA7 /* MIDIMapping.h */ /* MIDIMapping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MIDIMapping.h; path = ../../Source/Interface/interfaces/midi/MIDIMapping.h; sourceTree = SOURCE_ROOT; };
 		F1C4C751A891682F275FAFF0 /* Main.h */ /* Main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Main.h; path = ../../Source/Main.h; sourceTree = SOURCE_ROOT; };
 		F23997F9807937B47A219938 /* ShutterComponent.h */ /* ShutterComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ShutterComponent.h; path = ../../Source/Object/Component/components/shutter/ShutterComponent.h; sourceTree = SOURCE_ROOT; };
+		F241FA87D495EE229822F27D /* TimedEffectHiresTimer.cpp */ /* TimedEffectHiresTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TimedEffectHiresTimer.cpp; path = ../../Source/Common/Helpers/TimedEffectHiresTimer.cpp; sourceTree = SOURCE_ROOT; };
 		F273B71B8034FC657140C1A5 /* RawDataBlock.cpp */ /* RawDataBlock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RawDataBlock.cpp; path = ../../Source/Sequence/layers/rawdata/RawDataBlock.cpp; sourceTree = SOURCE_ROOT; };
 		F2BE404EBCF81E57AB1FFFEE /* HSVAdjustEffect.h */ /* HSVAdjustEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HSVAdjustEffect.h; path = ../../Source/Effect/effects/color/hsv/HSVAdjustEffect.h; sourceTree = SOURCE_ROOT; };
 		F79452457CFF3768AB5FF919 /* InterfaceManager.h */ /* InterfaceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InterfaceManager.h; path = ../../Source/Interface/InterfaceManager.h; sourceTree = SOURCE_ROOT; };
@@ -906,6 +908,8 @@
 				A755816C1CED17B3F6D93289,
 				6A7063FAB3E5711505908343,
 				AC703A846AB3D42F740D5C58,
+				F241FA87D495EE229822F27D,
+				30D2F4768EB6A4F4226EC1CE,
 			);
 			name = Helpers;
 			sourceTree = "<group>";

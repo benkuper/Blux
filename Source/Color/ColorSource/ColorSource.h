@@ -67,9 +67,11 @@ public:
 
 };
 
+
+
 class TimedColorSource :
 	public ColorSource,
-	public HighResolutionTimer
+	public TimedEffectHiResTimer::TimerListener
 {
 public:
 	TimedColorSource(const String& name, var params = var());
@@ -90,7 +92,9 @@ public:
 
 	virtual float getCurrentTime(float timeOverride = -1);
 
-	virtual void hiResTimerCallback() override;
 	virtual void addTime();
 
+	virtual void hiResTimerCallback() override;
+
 };
+

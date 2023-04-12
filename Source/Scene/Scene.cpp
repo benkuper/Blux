@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Scene/SceneIncludes.h"
+
 Scene::Scene(const String& name) :
 	BaseItem(name, false),
 	interpolationCurve("Loading Curve"),
@@ -128,7 +130,7 @@ void Scene::onContainerParameterChangedInternal(Parameter* p)
 
 void Scene::itemAdded(Sequence* s)
 {
-	s->startAtLoad->setValue(true);
+	if(!isCurrentlyLoadingData) s->startAtLoad->setValue(true);
 	((BluxSequence*)s)->manualStartAtLoad = true;
 }
 

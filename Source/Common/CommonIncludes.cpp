@@ -23,6 +23,7 @@
 #include "Action/ActionManager.cpp"
 
 #include "Helpers/SceneHelpers.cpp"
+#include "Helpers/TimedEffectHiresTimer.cpp"
 
 #include "MIDI/MIDIDevice.cpp"
 #include "MIDI/MIDIDeviceParameter.cpp"

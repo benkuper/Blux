@@ -23,6 +23,7 @@
 
 
 #include "Helpers/SceneHelpers.h"
+#include "Helpers/TimedEffectHiresTimer.h"
 
 #include "MIDI/MIDIDevice.h"
 #include "MIDI/MIDIManager.h"
@@ -33,4 +34,5 @@
 #include "MIDI/ui/MIDIDeviceParameterUI.h"
 
 #include "Zeroconf/ZeroconfManager.h"
+
 

@@ -134,11 +134,14 @@ TimedColorSource::TimedColorSource(const String& name, var params) :
 
 	timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
 	curTime = 0;
-	startTimer(50);
+	
+	TimedEffectHiResTimer::getInstance()->addTimerListener(this);
 }
 
 TimedColorSource::~TimedColorSource()
 {
+	if(TimedEffectHiResTimer::getInstanceWithoutCreating() != nullptr) TimedEffectHiResTimer::getInstance()->removeTimerListener(this);
+
 }
 
 void TimedColorSource::linkToTemplate(ColorSource* st)
@@ -149,14 +152,14 @@ void TimedColorSource::linkToTemplate(ColorSource* st)
 	{
 		speed->hideInEditor = false;
 		speed->setControllableFeedbackOnly(false);
-		startTimer(50);
+		if (TimedEffectHiResTimer::getInstanceWithoutCreating() != nullptr) TimedEffectHiResTimer::getInstance()->addTimerListener(this);
 	}
 	else
 	{
 		speed->hideInEditor = true;
 		speed->setControllableFeedbackOnly(true);
 		speed->resetValue();
-		stopTimer();
+		if (TimedEffectHiResTimer::getInstanceWithoutCreating() != nullptr) TimedEffectHiResTimer::getInstance()->removeTimerListener(this);
 	}
 }
 

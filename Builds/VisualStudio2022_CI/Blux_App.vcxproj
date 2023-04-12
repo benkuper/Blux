@@ -168,6 +168,9 @@
     <ClCompile Include="..\..\Source\Common\Helpers\SceneHelpers.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Helpers\TimedEffectHiresTimer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -3738,6 +3741,7 @@
     <ClInclude Include="..\..\Source\Common\CommonClasses\SceneListener.h"/>
     <ClInclude Include="..\..\Source\Common\Helpers\FastNoiseLite.h"/>
     <ClInclude Include="..\..\Source\Common\Helpers\SceneHelpers.h"/>
+    <ClInclude Include="..\..\Source\Common\Helpers\TimedEffectHiresTimer.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceChooser.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\ui\MIDIDeviceParameterUI.h"/>
     <ClInclude Include="..\..\Source\Common\MIDI\MIDIDevice.h"/>

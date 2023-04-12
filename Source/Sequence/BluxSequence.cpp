@@ -89,10 +89,9 @@ void BluxSequence::itemAdded(SequenceLayer* layer)
 	}
 }
 
-void BluxSequence::endLoadFile()
+void BluxSequence::handleStartAtLoad()
 {
-	if (manualStartAtLoad) return;
-	Sequence::endLoadFile();
+	//do nothing for start at load, handled by scene manager
 }
 
 ChainVizComponent* BluxSequence::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)
