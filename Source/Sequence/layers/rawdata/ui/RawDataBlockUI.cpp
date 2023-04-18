@@ -55,6 +55,16 @@ void RawDataBlockUI::paintOverChildren(Graphics& g)
 	Colour fInColor = (rawDataBlock->fadeIn->enabled ? NORMAL_COLOR : BLUE_COLOR).withAlpha(.5f);
 	Colour fOutColor = (rawDataBlock->fadeOut->enabled ? NORMAL_COLOR : BLUE_COLOR).withAlpha(.5f);
 
+	float lastFrameTime = rawDataBlock->getLastFrameTime();
+	if (lastFrameTime != rawDataBlock->coreLength->floatValue())
+	{
+		float rel = rawDataBlock->coreLength->floatValue() / lastFrameTime;
+		if (rel > 1) rel = 1 / rel;
+		Rectangle<int> r = getCoreBounds().withLeft(rel * getCoreWidth());
+		g.setColour(Colours::white.withAlpha(.1f));
+		g.fillRoundedRectangle(r.toFloat(), 2.0f);
+	}
+
 	if (rawDataBlock->fadeIn->floatValue() > 0)
 	{
 		g.setColour(fInColor);

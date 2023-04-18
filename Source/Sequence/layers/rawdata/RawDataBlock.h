@@ -51,6 +51,8 @@ public:
 	DMXUniverse* readUniverseAtTime(float time, int universeIndex);
 
 	FrameData* getFrameDataAtTime(float time, int universeIndex = -1);
+	
+	float getLastFrameTime();
 
 	float getFadeFactorAtTime(float time);
 

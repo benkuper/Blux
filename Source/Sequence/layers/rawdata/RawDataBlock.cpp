@@ -69,7 +69,7 @@ void RawDataBlock::readInfos()
 	int numWrittenFrames = fs->readInt();
 
 	LOG("Read data, total time : " << totalTime << ", num universes : " << numUniverses << ", num written frames : " << numWrittenFrames);
-
+	if (!isCurrentlyLoadingData && !Engine::mainEngine->isLoadingFile) setNiceName(file.getFileNameWithoutExtension());
 
 	while (fs->getNumBytesRemaining() > 0)
 	{
@@ -102,7 +102,7 @@ void RawDataBlock::readInfos()
 
 	LOG("Check, num stored frames " << frames.size());
 
-	setCoreLength(totalTime, false);
+	if(!coreLength->isOverriden) coreLength->setDefaultValue(totalTime, true);
 }
 
 Array<DMXUniverse*> RawDataBlock::readFrameAtTime(float time)
@@ -185,6 +185,13 @@ RawDataBlock::FrameData* RawDataBlock::getFrameDataAtTime(float time, int univer
 	if (frameIndex < 0) return nullptr;
 
 	return univFrames[frameIndex];
+}
+
+float RawDataBlock::getLastFrameTime()
+{
+	FrameData* f = frames.getLast();
+	if (f == nullptr) return 0;
+	return f->time;
 }
 
 float RawDataBlock::getFadeFactorAtTime(float t)
