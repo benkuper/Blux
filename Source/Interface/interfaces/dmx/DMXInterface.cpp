@@ -206,7 +206,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	}
 
 
-	outActivityTrigger->trigger();
+	//outActivityTrigger->trigger();
 
 	bool sOnChangeOnly = sendOnChangeOnly->boolValue();
 
@@ -266,6 +266,7 @@ void DMXInterface::run()
 
 				if (logOutgoingData->boolValue())
 				{
+					outActivityTrigger->trigger();
 					NLOG(niceName, "Sending Universe " << u->toString());
 				}
 
