@@ -41,7 +41,7 @@ void ColorEffect::processComponentInternal(Object* o, ObjectComponent* c, const 
 		}
 	}
 
-	if (time == -1) time = Time::getMillisecondCounter() / 1000.0f;
+	//if (time == -1) time = Time::getMillisecondCounter() / 1000.0f;
 	processedEffectColorsInternal(targetColors, o, (ColorComponent*)c, id, time);
 
 	var result;
