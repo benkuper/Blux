@@ -915,7 +915,7 @@
         <MODULEPATH id="juce_serial" path="Modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
-    <LINUX_MAKE targetFolder="Builds/Raspberry" externalLibraries="bluetooth&#10;Servus&#10;rubberband&#10;curl&#10;usb-1.0&#10;pthread&#10;atomic&#10;stdc++"
+    <LINUX_MAKE targetFolder="Builds/Raspberry" externalLibraries="bluetooth&#10;Servus&#10;curl&#10;usb-1.0&#10;pthread&#10;atomic&#10;stdc++"
                 extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed&#10;-lm"
                 smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
@@ -950,7 +950,7 @@
     </LINUX_MAKE>
     <LINUX_MAKE targetFolder="Builds/Raspberry64" smallIcon="kxAIe6" bigIcon="kxAIe6"
                 extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed"
-                externalLibraries="bluetooth&#10;Servus&#10;rubberband&#10;curl&#10;usb-1.0&#10;pthread&#10;atomic&#10;stdc++">
+                externalLibraries="bluetooth&#10;Servus&#10;curl&#10;usb-1.0&#10;pthread&#10;atomic&#10;stdc++">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0&#10;"
                        libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"/>
