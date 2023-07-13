@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include "Interface/InterfaceIncludes.h"
+
 SerialInterface::SerialInterface() :
 	Interface("Serial", true),
 	port(nullptr),
@@ -24,8 +26,8 @@ SerialInterface::SerialInterface() :
 	isConnected->isSavable = false;
 	//connectionFeedbackRef = isConnected;
 
-	scriptObject.setMethod(sendId, SerialInterface::sendStringFromScript);
-	scriptObject.setMethod(sendBytesId, SerialInterface::sendBytesFromScript);
+	scriptObject.getDynamicObject()->setMethod(sendId, SerialInterface::sendStringFromScript);
+	scriptObject.getDynamicObject()->setMethod(sendBytesId, SerialInterface::sendBytesFromScript);
 
 	addChildControllableContainer(&customParams);
 	customParams.addBaseManagerListener(this);

@@ -60,6 +60,8 @@ void SceneManager::removeItemInternal(Scene* s)
 
 void SceneManager::loadScene(Scene* s, float time, bool setUndoIfNeeded)
 {
+	if (s == nullptr) return;
+
 	stopThread(1000);
 
 	if (forceLoadTime->enabled) time = forceLoadTime->floatValue();
@@ -292,8 +294,10 @@ void SceneManager::processMessage(const OSCMessage& m)
 		if (m.size() > 0)
 		{
 			String sceneName = OSCHelpers::getStringArg(m[0]);
-			Scene* s = getItemWithName(sceneName, true);
-			loadScene(s, m.size() > 1 ? OSCHelpers::getFloatArg(m[1]) : -1);
+			if (Scene* s = getItemWithName(sceneName, true))
+			{
+				loadScene(s, m.size() > 1 ? OSCHelpers::getFloatArg(m[1]) : -1);
+			}
 		}
 	}
 }
