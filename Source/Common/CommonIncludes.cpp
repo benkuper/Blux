@@ -24,6 +24,7 @@
 
 #include "Helpers/SceneHelpers.cpp"
 #include "Helpers/TimedEffectHiresTimer.cpp"
+#include "Helpers/ColorHelpers.cpp"
 
 #include "MIDI/MIDIDevice.cpp"
 #include "MIDI/MIDIDeviceParameter.cpp"

@@ -1351,6 +1351,9 @@
     <ClCompile Include="..\..\Source\Common\Action\ActionManager.cpp">
       <Filter>Blux\Source\Common\Action</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Helpers\ColorHelpers.cpp">
+      <Filter>Blux\Source\Common\Helpers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Helpers\SceneHelpers.cpp">
       <Filter>Blux\Source\Common\Helpers</Filter>
     </ClCompile>
@@ -5210,6 +5213,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\CommonClasses\SceneListener.h">
       <Filter>Blux\Source\Common\CommonClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Helpers\ColorHelpers.h">
+      <Filter>Blux\Source\Common\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\Helpers\FastNoiseLite.h">
       <Filter>Blux\Source\Common\Helpers</Filter>

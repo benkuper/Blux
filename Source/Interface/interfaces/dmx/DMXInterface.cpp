@@ -200,8 +200,6 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 	for (auto& c : o->componentManager->items)
 	{
 		if (!c->enabled->boolValue()) continue;
-		//if (c == colorComp) continue; //colorComp is only set if useIntensityForColor is set
-		//if (colorComp != nullptr && c == ic && intensityForColor) continue;
 		c->fillInterfaceData(this, data, params);// , compValues, startChannel);
 	}
 

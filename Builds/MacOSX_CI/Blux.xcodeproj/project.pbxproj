@@ -276,6 +276,7 @@
 		7EC484F5DB2629140647D67E /* rainbow.png */ /* rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rainbow.png; path = ../../Resources/colorsource/patterns/rainbow.png; sourceTree = SOURCE_ROOT; };
 		7F002D3AC6EB4946BA3A5C3C /* Action.h */ /* Action.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Action.h; path = ../../Source/Common/Action/Action.h; sourceTree = SOURCE_ROOT; };
 		7F319E3E8CE69C191444D0B6 /* crash.png */ /* crash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crash.png; path = ../../Resources/crash.png; sourceTree = SOURCE_ROOT; };
+		7F6C9F1207D670D9A44CD311 /* ColorHelpers.h */ /* ColorHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorHelpers.h; path = ../../Source/Common/Helpers/ColorHelpers.h; sourceTree = SOURCE_ROOT; };
 		7F8AD6642EAE94FC6689EDD5 /* seq.png */ /* seq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = seq.png; path = ../../Resources/seq.png; sourceTree = SOURCE_ROOT; };
 		8090CA2B84C69589869D05F6 /* FilterEditor.h */ /* FilterEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FilterEditor.h; path = ../../Source/Effect/Filter/ui/FilterEditor.h; sourceTree = SOURCE_ROOT; };
 		814A05BBFE96674AA49E83AA /* RawDataLayer.h */ /* RawDataLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RawDataLayer.h; path = ../../Source/Sequence/layers/rawdata/RawDataLayer.h; sourceTree = SOURCE_ROOT; };
@@ -392,6 +393,7 @@
 		C2E639E5EF8720E7F96128BF /* ColorSourceLibrary.h */ /* ColorSourceLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceLibrary.h; path = ../../Source/Color/ColorSource/ColorSourceLibrary.h; sourceTree = SOURCE_ROOT; };
 		C325D9CA4B30AC1D40C66C14 /* DMXInterfaceUI.h */ /* DMXInterfaceUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DMXInterfaceUI.h; path = ../../Source/Interface/interfaces/dmx/ui/DMXInterfaceUI.h; sourceTree = SOURCE_ROOT; };
 		C40A54A2DA49F9D0FA914A0F /* VideoColorSource.h */ /* VideoColorSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VideoColorSource.h; path = ../../Source/Color/ColorSource/sources/video/VideoColorSource.h; sourceTree = SOURCE_ROOT; };
+		C4173DD266872625591D2D57 /* ColorHelpers.cpp */ /* ColorHelpers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorHelpers.cpp; path = ../../Source/Common/Helpers/ColorHelpers.cpp; sourceTree = SOURCE_ROOT; };
 		C4ADEA9C1F1FA20ABE2B43FC /* icon128.png */ /* icon128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon128.png; path = ../../Resources/icon128.png; sourceTree = SOURCE_ROOT; };
 		C57457769AB82620F0822E07 /* ObjectGridUI.cpp */ /* ObjectGridUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectGridUI.cpp; path = ../../Source/Object/ui/ObjectGridUI.cpp; sourceTree = SOURCE_ROOT; };
 		C66FE6052923B8395F57E110 /* VirtualGroup.h */ /* VirtualGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VirtualGroup.h; path = ../../Source/Object/Group/groups/virtual/VirtualGroup.h; sourceTree = SOURCE_ROOT; };
@@ -905,6 +907,8 @@
 		44657D546832EF89815CB9EB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C4173DD266872625591D2D57,
+				7F6C9F1207D670D9A44CD311,
 				A755816C1CED17B3F6D93289,
 				6A7063FAB3E5711505908343,
 				AC703A846AB3D42F740D5C58,
@@ -2019,7 +2023,7 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.0b5",
+					"JUCE_APP_VERSION=1.2.0b6",
 					"JUCE_APP_VERSION_HEX=0x10200",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2158,7 +2162,7 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.0b5",
+					"JUCE_APP_VERSION=1.2.0b6",
 					"JUCE_APP_VERSION_HEX=0x10200",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2251,7 +2255,7 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.0b5",
+					"JUCE_APP_VERSION=1.2.0b6",
 					"JUCE_APP_VERSION_HEX=0x10200",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",

@@ -40,6 +40,7 @@ public:
     HashMap<Parameter*, Parameter*> paramComputedMap;
 
     void rebuildInterfaceParams(Interface* i);
+    virtual bool checkDefaultInterfaceParamEnabled(Parameter* p) { return true; }
 
     Parameter* addComputedParameter(Parameter* p, ControllableContainer* parent = nullptr);
     void removeComputedParameter(Parameter* p);

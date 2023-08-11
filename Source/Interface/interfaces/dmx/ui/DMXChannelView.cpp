@@ -177,7 +177,7 @@ void DMXChannelView::newMessage(const DMXInterface::DMXInterfaceEvent& e)
 			for (int i = 0; i < DMX_NUM_CHANNELS; i++) channelItems[i]->value = e.values[i] / 255.0f;
 			shouldRepaint = true;
 		}
-		
+
 	}
 }
 
@@ -335,4 +335,8 @@ void DMXChannelItem::paint(Graphics& g)
 	g.setColour(Colours::white.withAlpha(.8f));
 	g.setFont(jlimit<float>(12, 20, getHeight() - 30));
 	g.drawText(String(channel + 1), getLocalBounds().toFloat(), Justification::centred, false);
+
+	g.setColour(Colours::white.withAlpha(.5f));
+	g.setFont(10);
+	g.drawText(String(roundToInt(value * 255)), getLocalBounds().reduced(3).toFloat(), Justification::topRight, false);
 }

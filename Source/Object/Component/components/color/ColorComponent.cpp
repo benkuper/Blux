@@ -13,12 +13,19 @@
 
 ColorComponent::ColorComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), COLOR, params),
+	dimmerComponent(nullptr),
 	colorComponentNotifier(5)
 {
 	resolution = addIntParameter("Resolution", "Number of different colors/pixels for this object", 1, 1);
-	useIntensityForColor = addBoolParameter("Use Intensity for Color", "If checked, use the intensity component for color opacity", false);
+	useDimmerForOpacity = addBoolParameter("Use Dimmer for Opacity", "If checked, use the dimmer component for color opacity", false);
+
+	colorMode = addEnumParameter("Color Mode", "Color mode for this object");
+	colorMode->addOption("RGB", RGB)->addOption("RGBW", RGBW)->addOption("WRGB", WRGB)->addOption("RGBWA", RGBWA);
+
+	whiteTemperature = addIntParameter("White Temperature", "Temperature of the white color in Kelvin", 6500, 1000, 12000);
 
 	mainColor = (ColorParameter*)addComputedParameter(new ColorParameter("Main Color", "Computed main color, not used to send DMX but for feedback", Colours::black));
+	mainColor->setControllableFeedbackOnly(true);
 	mainColor->hideInEditor = true;
 
 	update();
@@ -116,6 +123,7 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	jassert(colValues.size() == resolution->intValue());
 	jassert(colValues[0].size() >= 4);
 
+
 	if (ObjectManager::getInstance()->blackOut->boolValue())
 	{
 		var zeroVal;
@@ -128,15 +136,25 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	}
 	else
 	{
+		float mult = 1;
+		if (useDimmerForOpacity->boolValue())
+		{
+			if (dimmerComponent == nullptr)
+			{
+				dimmerComponent = dynamic_cast<DimmerComponent*>(object->getComponentForType(ComponentType::DIMMER));
+			}
+			if (dimmerComponent != nullptr) mult = dimmerComponent->mainParameter->floatValue();
+		}
+
 		for (int i = 0; i < colValues.size(); i++)
 		{
 			if (colValues[i].size() < 4) continue;
 			var col;
-			col.append(colValues[i][0]);
-			col.append(colValues[i][1]);
-			col.append(colValues[i][2]);
-			col.append(colValues[i][3]);
-			//not adding white here
+			col.append((float)colValues[i][0] * mult);
+			col.append((float)colValues[i][1] * mult);
+			col.append((float)colValues[i][2] * mult);
+			col.append((float)colValues[i][3] * mult);
+
 			outColors.set(i, Colour::fromFloatRGBA(col[0], col[1], col[2], col[3]));
 		}
 	}
@@ -146,8 +164,8 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 	{
 		paramComputedMap[mainColor]->setValue(colValues[0]);
 	}
-
 }
+
 
 void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var params)
 {
@@ -161,12 +179,31 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 		int channel = channelP->intValue();
 		int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
 
+		ColorMode cm = (ColorMode)colorMode->intValue();
+		const int* indices = colorModeIndices[(int)cm];
+
+		int colorSize = cm == RGB ? 3 : (cm == RGBW || cm == WRGB) ? 4 : 5;
+
+		int temp = whiteTemperature->intValue();
+
 		for (int i = 0; i < outColors.size(); i++)
 		{
-			int ch = targetChannel + i * 3;
-			channelsData[ch] = outColors[i].getRed();
-			channelsData[ch + 1] = outColors[i].getGreen();
-			channelsData[ch + 2] = outColors[i].getBlue();
+			var c;
+			if (cm == RGBW || cm == WRGB) c = ColorHelpers::getRGBWFromRGB(outColors[i], temp);
+			else if (cm == RGBWA || cm == RGBAW) c = ColorHelpers::getRGBWAFromRGB(outColors[i]);
+			else
+			{
+				c.append(outColors[i].getFloatRed());
+				c.append(outColors[i].getFloatGreen());
+				c.append(outColors[i].getFloatBlue());
+			}
+
+			int ch = targetChannel + i * colorSize;
+			for (int ci = 0; ci < colorSize; ci++)
+			{
+				if (ch + ci >= channelsData.size()) break;
+				channelsData[ch + ci] = roundToInt((float)c[indices[ci]] * 255);
+			}
 		}
 
 		return;

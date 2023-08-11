@@ -54,6 +54,8 @@ void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 		{
 			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName + " Channel", "Channel for this parameter", i, 1, 512, true);
 			p->canBeDisabledByUser = true;
+			if (!checkDefaultInterfaceParamEnabled(cp)) cp->setEnabled(false);
+
 			interfaceParams.add(p);
 			computedInterfaceMap.set(cp, p);
 			i += p->value.size();
