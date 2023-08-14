@@ -83,7 +83,7 @@ void ObjectManagerGridUI::resizedInternalContent(Rectangle<int>& r)
 	const int thumbSize = manager->gridThumbSize->floatValue();
 
 	int numThumbs = getFilteredItems().size();
-	int numThumbPerLine = jmin(r.getWidth() / (thumbSize + gap), numThumbs);
+	int numThumbPerLine = jmax(1, jmin(r.getWidth() / (thumbSize + gap), numThumbs));
 	int numLines = numThumbs == 0 ? 0 : ceil(numThumbs * 1.f / numThumbPerLine);
 	
 	Rectangle<int> cr;
