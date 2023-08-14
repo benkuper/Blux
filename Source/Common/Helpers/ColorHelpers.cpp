@@ -128,16 +128,21 @@ void ColorHelpers::init()
 	temperatureColorMap.set(12000, Colour(195, 209, 255));
 }
 
-var ColorHelpers::getRGBWFromRGB(Colour col, int temperature)
+Colour ColorHelpers::getColorForTemperature(float temperature)
 {
 	if (temperatureColorMap.size() == 0) init();
 
-	int temp = jlimit(1000, 12000, temperature);
+	int temp = jlimit<int>(1000, 12000, temperature);
 	temp = roundToInt(temp / 100) * 100;
 
 	// Constructor
 	// 
-	Colour tempColor = temperatureColorMap[temp];
+	return temperatureColorMap[temp];
+}
+
+var ColorHelpers::getRGBWFromRGB(Colour col, float temperature)
+{
+	Colour tempColor = getColorForTemperature(temperature);
 
 	float r = col.getFloatRed();
 	float g = col.getFloatGreen();
@@ -177,14 +182,25 @@ var ColorHelpers::getRGBWFromRGB(Colour col, int temperature)
 }
 
 
-var ColorHelpers::getRGBWAFromRGB(Colour col)
+var ColorHelpers::getRGBWAFromRGB(Colour col, float temperature)
 {
+	Colour tempColor = getColorForTemperature(temperature);
+
 	var result;
-	result.append(col.getFloatRed());
-	result.append(col.getFloatGreen());
-	result.append(col.getFloatBlue());
-	result.append(0);
-	result.append(0);
+
+	float r = col.getFloatRed() * tempColor.getFloatRed();
+	float g = col.getFloatGreen() * tempColor.getFloatGreen();
+	float b = col.getFloatBlue() * tempColor.getFloatBlue();
+
+	// Calculate white and amber channels
+	float w = (r + g + b) / 3;
+	float a = (r + g) / 2 - w;
+
+	result.append(r);
+	result.append(g);
+	result.append(b);
+	result.append(w);
+	result.append(a);
 
 	return result;
 }

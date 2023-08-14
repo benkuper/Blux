@@ -44,7 +44,7 @@ public:
 	};
 
 	EnumParameter* colorMode;
-	IntParameter* whiteTemperature;
+	FloatParameter* whiteTemperature;
 
 	ColorParameter* mainColor; //fake computed parameter for viz
 
