@@ -204,8 +204,8 @@ var ColorHelpers::getRGBWAFromRGB(Colour col, float temperature)
 	float wOut = jmin(wRed, wGreen, wBlue);
 
 	float wr = r - wOut * tempRed;
-	float wg = r - wOut * tempGreen;
-	float wb = r - wOut * tempBlue;
+	float wg = g - wOut * tempGreen;
+	float wb = b - wOut * tempBlue;
 
 	float aOut = wr;
 	if (aOut > wg * 2) aOut = wg * 2;
