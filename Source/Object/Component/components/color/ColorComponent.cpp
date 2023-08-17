@@ -20,10 +20,10 @@ ColorComponent::ColorComponent(Object* o, var params) :
 	useDimmerForOpacity = addBoolParameter("Use Dimmer for Opacity", "If checked, use the dimmer component for color opacity", false);
 
 	colorMode = addEnumParameter("Color Mode", "Color mode for this object");
-	colorMode->addOption("RGB", RGB)->addOption("RGBW", RGBW)->addOption("WRGB", WRGB)->addOption("RGBAW",RGBAW)->addOption("RGBWA", RGBWA);
+	colorMode->addOption("RGB", RGB)->addOption("RGBW", RGBW)->addOption("WRGB", WRGB)->addOption("RGBAW", RGBAW)->addOption("RGBWA", RGBWA);
 
-	whiteTemperature = addFloatParameter("White Temperature", "Temperature of the white color in Kelvin", 6500, 1000, 12000);
-	whiteTemperature->unitSteps = 100;
+	whiteTemperature = addFloatParameter("White Temperature", "Temperature of the white color in Kelvin", 6500, 2000, 12000);
+	whiteTemperature->unitSteps = 1.0f / 100;
 
 	mainColor = (ColorParameter*)addComputedParameter(new ColorParameter("Main Color", "Computed main color, not used to send DMX but for feedback", Colours::black));
 	mainColor->setControllableFeedbackOnly(true);

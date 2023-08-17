@@ -10,7 +10,6 @@
 
 #include "Common/CommonIncludes.h"
 
-
 HashMap<int, Colour> ColorHelpers::temperatureColorMap;
 
 void ColorHelpers::init()
@@ -130,13 +129,14 @@ void ColorHelpers::init()
 
 Colour ColorHelpers::getColorForTemperature(float temperature)
 {
-	if (temperatureColorMap.size() == 0) init();
+	if (temperatureColorMap.size() == 0)
+		init();
 
 	int temp = jlimit<int>(1000, 12000, temperature);
 	temp = roundToInt(temp / 100) * 100;
 
 	// Constructor
-	// 
+	//
 	return temperatureColorMap[temp];
 }
 
@@ -153,18 +153,21 @@ var ColorHelpers::getRGBWFromRGB(Colour col, float temperature)
 	float tempBlue = tempColor.getFloatBlue();
 
 	// Calculate all of the color's white values corrected taking into account the white color temperature.
-	float wRed = r * 1 / tempRed;
-	float wGreen = g * 1 / tempGreen;
-	float wBlue = b * 1 / tempBlue;
+	float wRed = r / tempRed;
+	float wGreen = g / tempGreen;
+	float wBlue = b / tempBlue;
 
 	// Determine the smallest white value from above.
-	float wMin = jmin(wRed, jmin(wGreen, wBlue));
+	float wMin = jmin(wRed, wGreen, wBlue);
 
 	// Make the color with the smallest white value to be the output white value
 	float wOut;
-	if (wMin == wRed)  wOut = r;
-	else if (wMin == wGreen)  wOut = g;
-	else wOut = b;
+	if (wMin == wRed)
+		wOut = r;
+	else if (wMin == wGreen)
+		wOut = g;
+	else
+		wOut = b;
 
 	// Calculate the output red, green and blue values, taking into account the white color temperature.
 	float rOut = r - wOut * tempRed;
@@ -181,26 +184,41 @@ var ColorHelpers::getRGBWFromRGB(Colour col, float temperature)
 	return result;
 }
 
-
 var ColorHelpers::getRGBWAFromRGB(Colour col, float temperature)
 {
 	Colour tempColor = getColorForTemperature(temperature);
 
+	float r = col.getFloatRed();
+	float g = col.getFloatGreen();
+	float b = col.getFloatBlue();
+
+	float tempRed = tempColor.getFloatRed();
+	float tempGreen = tempColor.getFloatGreen();
+	float tempBlue = tempColor.getFloatBlue();
+
+	// Calculate all of the color's white values corrected taking into account the white color temperature.
+	float wRed = r / tempRed;
+	float wGreen = g / tempGreen;
+	float wBlue = b / tempBlue;
+
+	float wOut = jmin(wRed, wGreen, wBlue);
+
+	float wr = r - wOut * tempRed;
+	float wg = r - wOut * tempGreen;
+	float wb = r - wOut * tempBlue;
+
+	float aOut = wr;
+	if (aOut > wg * 2) aOut = wg * 2;
+	float rOut = wr - aOut;
+	float gOut = wg - aOut / 2;
+	float bOut = wb;
+
 	var result;
-
-	float r = col.getFloatRed() * tempColor.getFloatRed();
-	float g = col.getFloatGreen() * tempColor.getFloatGreen();
-	float b = col.getFloatBlue() * tempColor.getFloatBlue();
-
-	// Calculate white and amber channels
-	float w = (r + g + b) / 3;
-	float a = (r + g) / 2 - w;
-
-	result.append(r);
-	result.append(g);
-	result.append(b);
-	result.append(w);
-	result.append(a);
+	result.append(rOut);
+	result.append(gOut);
+	result.append(bOut);
+	result.append(wOut);
+	result.append(aOut);
 
 	return result;
 }
