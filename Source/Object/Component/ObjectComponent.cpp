@@ -226,11 +226,11 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 			if (cp->isComplex())
 			{
 				var val = cp->getValue();
-				for (int i = 0; i < val.size(); i++) channelsData[targetChannel + i] = blackout ? 0 : mappedVal[i];
+				for (int i = 0; i < val.size(); i++) channelsData[targetChannel + i] = blackout ? 0.f : (float)mappedVal[i];
 			}
 			else
 			{
-				channelsData[targetChannel] = blackout ? 0 : mappedVal;
+				channelsData[targetChannel] = blackout ? 0.f : (float)mappedVal;
 			}
 		}
 	}
