@@ -18,9 +18,12 @@ public:
 	~DimmerComponent();
 
 	FloatParameter* value;
+	BoolParameter* useFineValue;
+
 	Automation curve;
 
 	virtual void updateComputedValues(HashMap<Parameter*, var>& values) override;
+	virtual void fillInterfaceData(Interface* i, var data, var params) override;// (HashMap<int, float>& channelValueMap, int startChannel, bool 
 
 	String getTypeString() const override { return "Dimmer"; }
 	static DimmerComponent* create(Object* o, var params) { return new DimmerComponent(o, params); }

@@ -22,6 +22,9 @@ ColorComponent::ColorComponent(Object* o, var params) :
 	colorMode = addEnumParameter("Color Mode", "Color mode for this object");
 	colorMode->addOption("RGB", RGB)->addOption("RGBW", RGBW)->addOption("WRGB", WRGB)->addOption("RGBAW", RGBAW)->addOption("RGBWA", RGBWA);
 
+	fineMode = addEnumParameter("Fine Mode", "Fine Color Mode for this object. None means not using fine channels. Alternate means R/R fine, G/G fine, etc. Follow means R/G/B/R fine/G fine/ B fine, etc.");
+	fineMode->addOption("None", None)->addOption("Alternate", Alternate)->addOption("Follow", Follow);
+
 	whiteTemperature = addFloatParameter("White Temperature", "Temperature of the white color in Kelvin", 6500, 2000, 12000);
 	whiteTemperature->unitSteps = 1.0f / 100;
 
@@ -183,6 +186,8 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 		ColorMode cm = (ColorMode)colorMode->intValue();
 		const int* indices = colorModeIndices[(int)cm];
 
+		FineMode fm = fineMode->getValueDataAsEnum<FineMode>();
+
 		int colorSize = cm == RGB ? 3 : (cm == RGBW || cm == WRGB) ? 4 : 5;
 
 		int temp = whiteTemperature->intValue();
@@ -200,10 +205,33 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 			}
 
 			int ch = targetChannel + i * colorSize;
+
 			for (int ci = 0; ci < colorSize; ci++)
 			{
 				if (ch + ci >= channelsData.size()) break;
-				channelsData[ch + ci] = roundToInt((float)c[indices[ci]] * 255);
+
+				switch (fm)
+				{
+				case None:
+					channelsData[ch + ci] = roundToInt((float)c[indices[ci]] * 255);
+					break;
+
+				case Alternate:
+				case Follow:
+				{
+					int index1 = fm == Alternate ? ch + ci * 2 : ch + ci;
+					int index2 = fm == Alternate ? index1 + 1 : index1 + colorSize;
+
+					if (index2 >= channelsData.size()) break;
+
+					float val = (float)c[indices[ci]] * 255;
+
+					channelsData[index1] = floor(val);
+					channelsData[index2] = fmodf(val, 1) * 255;
+
+				}
+				break;
+				}
 			}
 		}
 

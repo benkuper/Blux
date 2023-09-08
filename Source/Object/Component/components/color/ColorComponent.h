@@ -43,6 +43,9 @@ public:
 		{ 0, 1, 2, 3, 4 } 
 	};
 
+	enum FineMode { None, Alternate, Follow };
+	EnumParameter* fineMode;
+
 	EnumParameter* colorMode;
 	FloatParameter* whiteTemperature;
 

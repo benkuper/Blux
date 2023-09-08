@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.2.0b7"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="1.2.0b8"
               headerPath="../../Source" projectLineFeed="&#10;" cppLanguageStandard="17">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">

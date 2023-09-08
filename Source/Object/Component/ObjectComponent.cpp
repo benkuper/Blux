@@ -226,11 +226,11 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 			if (cp->isComplex())
 			{
 				var val = cp->getValue();
-				for (int i = 0; i < val.size(); i++) channelsData[targetChannel + i] = blackout ? 0 : (int)mappedVal[i];
+				for (int i = 0; i < val.size(); i++) channelsData[targetChannel + i] = blackout ? 0 : mappedVal[i];
 			}
 			else
 			{
-				channelsData[targetChannel] = blackout ? 0 : (int)mappedVal;
+				channelsData[targetChannel] = blackout ? 0 : mappedVal;
 			}
 		}
 	}
@@ -273,8 +273,8 @@ var ObjectComponent::getMappedValueForComputedParam(Interface* i, Parameter* cp)
 			var result = cp->getValue().clone();
 			for (int i = 0; i < result.size(); i++)
 			{
-				result[i] = (int)((float)result[i] * 255);
-				result[i] = (int)result[i];
+				result[i] = (float)result[i] * 255;
+				//result[i] = (int)result[i];
 			}
 
 			return result;
