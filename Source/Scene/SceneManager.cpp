@@ -31,6 +31,13 @@ SceneManager::SceneManager() :
 	loadNextSceneTrigger = addTrigger("Load Next Scene", "Load the next scene. If no scene is loaded, will load first one");
 	loadPreviousSceneTrigger = addTrigger("Load Previous Scene", "Load the previous scene. If no scene is loaded, this will do nothing.");
 
+	previousSceneName = addStringParameter("Previous Scene Name", "The name of the previous Scene.", "");
+	previousSceneName->setControllableFeedbackOnly(true);
+	currentSceneName = addStringParameter("Current Scene Name", "The name of the current Scene.", "");
+	currentSceneName->setControllableFeedbackOnly(true);
+	nextSceneName = addStringParameter("Next Scene Name", "The name of the next Scene", "");
+	nextSceneName->setControllableFeedbackOnly(true);
+
 	previewMode = addEnumParameter("Preview Mode", "The mode to use to preview values from a different scene");
 	previewMode->addOption("None", NONE)->addOption("Next Scene", NEXT)->addOption("Hover", HOVER)->addOption("Selected", SELECTED);
 
@@ -324,6 +331,15 @@ bool SceneManager::SceneLoadAction::perform()
 	if (sceneRef == nullptr || sceneRef.wasObjectDeleted()) return false;
 
 	SceneManager::getInstance()->loadScene(scene, time, false);
+	
+	Scene* prev = SceneManager::getInstance()->getPreviousScene();
+	Scene* current = SceneManager::getInstance()->currentScene;
+	Scene* next = SceneManager::getInstance()->getNextScene();
+
+	if (prev != nullptr) SceneManager::getInstance()->previousSceneName->setValue(prev->niceName);
+	if (current != nullptr) SceneManager::getInstance()->currentSceneName->setValue(current->niceName);
+	if (next != nullptr) SceneManager::getInstance()->nextSceneName->setValue(next->niceName);
+
 	return true;
 }
 

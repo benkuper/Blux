@@ -38,6 +38,10 @@ public:
 	Scene* previousScene;
 	Scene* currentScene;
 
+	StringParameter* previousSceneName;
+	StringParameter* currentSceneName;
+	StringParameter* nextSceneName;
+
 	Trigger* loadNextSceneTrigger;
 	Trigger* loadPreviousSceneTrigger;
 
