@@ -37,6 +37,7 @@ BluxEngine::BluxEngine() :
 	convertURL = "http://benjamin.kuperberg.fr/blux/releases/convert.php";
 	breakingChangesVersions.add("1.0.0b4");
 	breakingChangesVersions.add("1.2.0b1");
+	breakingChangesVersions.add("1.2.0");
 
 	initVizServer();
 }
