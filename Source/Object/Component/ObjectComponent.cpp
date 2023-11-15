@@ -68,7 +68,7 @@ void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 	interfaceParamsGhostData = var();
 }
 
-Parameter* ObjectComponent::addComputedParameter(Parameter* p, ControllableContainer* parent)
+Parameter* ObjectComponent::addComputedParameter(Parameter* p, ControllableContainer* parent, bool addToSceneParams)
 {
 	if (parent == nullptr) parent = this;
 	sourceParameters.add(p);
@@ -82,6 +82,8 @@ Parameter* ObjectComponent::addComputedParameter(Parameter* p, ControllableConta
 	computedParamMap.set(cp, p);
 	paramComputedMap.set(p, cp);
 	addParameter(cp);
+
+	if (addToSceneParams) sceneDataParameters.addIfNotAlreadyThere(p);
 
 	if (computedParameters.size() == 1) mainParameter = cp;
 
@@ -100,6 +102,7 @@ void ObjectComponent::removeComputedParameter(Parameter* p)
 	{
 		sourceParameters.removeAllInstancesOf(sourceP);
 		paramComputedMap.remove(sourceP);
+		sceneDataParameters.removeAllInstancesOf(sourceP);
 		sourceP->parentContainer->removeControllable(sourceP);
 	}
 
@@ -172,7 +175,18 @@ void ObjectComponent::setupFromJSONDefinition(var data)
 var ObjectComponent::getSceneData()
 {
 	if (excludeFromScenes->boolValue()) return var(new DynamicObject());
-	return SceneHelpers::getParamsSceneData(this, { excludeFromScenes }, true);
+
+	var data(new DynamicObject());
+	for (auto& p : sceneDataParameters)
+	{
+		if (p == nullptr || p.wasObjectDeleted()) continue;
+		if(p->isControllableFeedbackOnly) continue;
+		data.getDynamicObject()->setProperty(p->getControlAddress(this), p->getValue());
+	}
+
+	return data;
+
+	//return SceneHelpers::getParamsSceneData(this, { excludeFromScenes });
 }
 
 void ObjectComponent::updateSceneData(var& sceneData)
@@ -182,7 +196,17 @@ void ObjectComponent::updateSceneData(var& sceneData)
 void ObjectComponent::lerpFromSceneData(var startData, var endData, float weight)
 {
 	if (excludeFromScenes->boolValue()) return;
-	SceneHelpers::lerpSceneParams(this, startData, endData, weight, true);
+
+	for (auto& p : sceneDataParameters)
+	{
+		if (p == nullptr || p.wasObjectDeleted()) continue;
+		if (p->isControllableFeedbackOnly) continue;
+
+		SceneHelpers::lerpSceneParam(this, p, startData, endData, weight);
+		//data.getDynamicObject()->setProperty(p->getControlAddress(this), p->getValue());
+	}
+
+	//SceneHelpers::lerpSceneParams(this, startData, endData, weight);
 }
 
 var ObjectComponent::getVizData()

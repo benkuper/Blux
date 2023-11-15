@@ -39,10 +39,12 @@ public:
     HashMap<Parameter*, Parameter*> computedParamMap;
     HashMap<Parameter*, Parameter*> paramComputedMap;
 
+    Array<WeakReference<Parameter>> sceneDataParameters;
+
     void rebuildInterfaceParams(Interface* i);
     virtual bool checkDefaultInterfaceParamEnabled(Parameter* p) { return true; }
 
-    Parameter* addComputedParameter(Parameter* p, ControllableContainer* parent = nullptr);
+    Parameter* addComputedParameter(Parameter* p, ControllableContainer* parent = nullptr, bool addToSceneParams = true);
     void removeComputedParameter(Parameter* p);
 
     void onContainerParameterChangedInternal(Parameter* p) override;

@@ -258,7 +258,7 @@ var Effect::getSceneData()
 
 	//WEIGHT_ONLY
 	var data(new DynamicObject());
-	data.getDynamicObject()->setProperty("weight", weight->floatValue());
+	data.getDynamicObject()->setProperty(weight->getControlAddress(this), weight->floatValue());
 	return data;
 }
 
@@ -276,7 +276,7 @@ void Effect::lerpFromSceneData(var startData, var endData, float lerpWeight)
 		filterManager->lerpFromSceneData(startData.getProperty(filterManager->shortName, var()), endData.getProperty(filterManager->shortName, var()), lerpWeight);
 		SceneHelpers::lerpSceneParams(&effectParams, startData.getProperty(effectParams.shortName, var()), endData.getProperty(effectParams.shortName, var()), lerpWeight, true);
 	}
-	else if (m == WEIGHT_ONLY) SceneHelpers::lerpSceneParam(weight, startData, endData, lerpWeight);
+	else if (m == WEIGHT_ONLY) SceneHelpers::lerpSceneParam(this, weight, startData, endData, lerpWeight);
 }
 
 ChainVizComponent* Effect::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)

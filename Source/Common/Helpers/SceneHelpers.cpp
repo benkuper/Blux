@@ -24,7 +24,7 @@ var SceneHelpers::getParamsSceneData(ControllableContainer* container, Array<Par
 
 		if (excludeParams.contains(p.get())) continue;
 
-		data.getDynamicObject()->setProperty(p->shortName, p->value);
+		data.getDynamicObject()->setProperty(p->getControlAddress(container), p->value);
 	}
 
 	return data;
@@ -44,15 +44,16 @@ void SceneHelpers::lerpSceneParams(ControllableContainer* container, var startDa
 			if (p == bi->enabled || p == bi->listUISize || p == bi->viewUIPosition || p == bi->viewUISize || p == bi->miniMode || p == bi->isUILocked) continue;
 		}
 
-		lerpSceneParam(p, startData, endData, weight);
+		lerpSceneParam(container, p, startData, endData, weight);
 	}
 }
 
-void SceneHelpers::lerpSceneParam(Parameter* p, var startData, var endData, float weight)
+void SceneHelpers::lerpSceneParam(ControllableContainer* container, Parameter* p, var startData, var endData, float weight)
 {
 	var val = var();
-	var startValue = startData.getProperty(p->shortName, p->defaultValue);
-	var endValue = endData.getProperty(p->shortName, p->defaultValue);
+	String addr = p->getControlAddress(container);
+	var startValue = startData.getProperty(addr, p->defaultValue);
+	var endValue = endData.getProperty(addr, p->defaultValue);
 
 	if (p->value.isArray())
 	{

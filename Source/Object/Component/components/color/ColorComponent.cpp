@@ -28,7 +28,7 @@ ColorComponent::ColorComponent(Object* o, var params) :
 	whiteTemperature = addFloatParameter("White Temperature", "Temperature of the white color in Kelvin", 6500, 2000, 12000);
 	whiteTemperature->unitSteps = 1.0f / 100;
 
-	mainColor = (ColorParameter*)addComputedParameter(new ColorParameter("Main Color", "Computed main color, not used to send DMX but for feedback", Colours::black));
+	mainColor = (ColorParameter*)addComputedParameter(new ColorParameter("Main Color", "Computed main color, not used to send DMX but for feedback", Colours::black), nullptr, false);
 	mainColor->setControllableFeedbackOnly(true);
 	mainColor->hideInEditor = true;
 
@@ -43,6 +43,9 @@ void ColorComponent::setupSource(const String& type, ColorSource* templateRef)
 {
 	if (colorSource != nullptr)
 	{
+		Array<WeakReference<Parameter>> sourceParams = colorSource->sourceParams.getAllParameters(true);
+		for (auto& p : sourceParams) sceneDataParameters.removeAllInstancesOf(p);
+
 		removeChildControllableContainer(colorSource.get());
 	}
 
@@ -53,6 +56,9 @@ void ColorComponent::setupSource(const String& type, ColorSource* templateRef)
 	{
 		if (templateRef != nullptr) cs->linkToTemplate(templateRef);
 		addChildControllableContainer(colorSource.get());
+
+		Array<WeakReference<Parameter>> sourceParams = colorSource->sourceParams.getAllParameters(true);
+		for (auto& p : sourceParams) sceneDataParameters.addIfNotAlreadyThere(p);
 	}
 
 	colorComponentNotifier.addMessage(new ColorComponentEvent(ColorComponentEvent::SOURCE_CHANGED, this));

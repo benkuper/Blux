@@ -69,7 +69,7 @@ StrobeColorSource::~StrobeColorSource()
 
 void StrobeColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime)
 {
-	Colour c = fmodf(curTime, 1) < (double)GetSourceLinkedValue(onOffBalance) ? GetLinkedColor(colorON) : GetLinkedColor(colorOFF);
+	Colour c = fmodf(time, 1) < (double)GetSourceLinkedValue(onOffBalance) ? GetLinkedColor(colorON) : GetLinkedColor(colorOFF);
 	colors.fill(c);
 }
 
