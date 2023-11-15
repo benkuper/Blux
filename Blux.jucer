@@ -788,7 +788,8 @@
                JUCE_USE_WIN_WEBVIEW2="1"/>
   <EXPORTFORMATS>
     <VS2022 targetFolder="Builds/VisualStudio2022" externalLibraries="Servus.lib&#10;dnssd.lib"
-            smallIcon="kxAIe6" bigIcon="kxAIe6">
+            smallIcon="kxAIe6" bigIcon="kxAIe6" extraCompilerFlags="/bigobj"
+            extraLinkerFlags="/HEAP:0x200000,0x10000">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
@@ -819,7 +820,7 @@
         <MODULEPATH id="juce_serial" path="Modules"/>
       </MODULEPATHS>
     </VS2022>
-    <VS2022 targetFolder="Builds/VisualStudio2022_CI" extraCompilerFlags="/Zm1000"
+    <VS2022 targetFolder="Builds/VisualStudio2022_CI" extraCompilerFlags="/bigobj"
             extraLinkerFlags="/HEAP:0x400000,0x10000" externalLibraries="Servus.lib&#10;dnssd.lib"
             smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>

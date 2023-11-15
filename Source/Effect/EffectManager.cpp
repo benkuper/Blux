@@ -38,9 +38,17 @@ void EffectManager::setForceDisabled(bool value)
 
 void EffectManager::addItemInternal(Effect* e, var data)
 {
-	BaseManager::addItemInternal(e, data);
 	e->setForceDisabled(forceDisabled);
 	e->setParentGroup(parentGroup);
+}
+
+void EffectManager::addItemsInternal(Array<Effect*> items, var data)
+{
+	for (auto& i : items)
+	{
+		i->setForceDisabled(forceDisabled);
+		i->setParentGroup(parentGroup);
+	}
 }
 
 void EffectManager::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id)

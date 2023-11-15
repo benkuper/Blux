@@ -66,7 +66,17 @@ void ObjectManager::itemAdded(GenericControllableItem*)
 	objectManagerListeners.call(&ObjectManagerListener::customParamsChanged, this);
 }
 
+void ObjectManager::itemsAdded(Array<GenericControllableItem*>)
+{
+	objectManagerListeners.call(&ObjectManagerListener::customParamsChanged, this);
+}
+
 void ObjectManager::itemRemoved(GenericControllableItem*)
+{
+	objectManagerListeners.call(&ObjectManagerListener::customParamsChanged, this);
+}
+
+void ObjectManager::itemsRemoved(Array<GenericControllableItem*>)
 {
 	objectManagerListeners.call(&ObjectManagerListener::customParamsChanged, this);
 }
@@ -129,9 +139,24 @@ void ObjectManager::addItemInternal(Object* o, var data)
 	if (!isCurrentlyLoadingData) o->globalID->setValue(getFirstAvailableObjectID(o));
 }
 
+void ObjectManager::addItemsInternal(Array<Object*> items, var data)
+{
+	controllableContainers.move(controllableContainers.indexOf(&customParams), 0);
+	for (auto& o : items) o->addObjectListener(this);
+	if (!isCurrentlyLoadingData)
+	{
+		for (int i = 0; i < items.size(); i++) items[i]->globalID->setValue(getFirstAvailableObjectID(items[i]));
+	}
+}
+
 void ObjectManager::removeItemInternal(Object* o)
 {
 	o->removeObjectListener(this);
+}
+
+void ObjectManager::removeItemsInternal(Array<Object*> items)
+{
+	for (auto& o : items) o->removeObjectListener(this);
 }
 
 int ObjectManager::getFirstAvailableObjectID(Object* excludeObject)

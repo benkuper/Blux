@@ -172,7 +172,7 @@ void ObjectComponent::setupFromJSONDefinition(var data)
 var ObjectComponent::getSceneData()
 {
 	if (excludeFromScenes->boolValue()) return var(new DynamicObject());
-	return SceneHelpers::getParamsSceneData(this, { excludeFromScenes });
+	return SceneHelpers::getParamsSceneData(this, { excludeFromScenes }, true);
 }
 
 void ObjectComponent::updateSceneData(var& sceneData)
@@ -182,7 +182,7 @@ void ObjectComponent::updateSceneData(var& sceneData)
 void ObjectComponent::lerpFromSceneData(var startData, var endData, float weight)
 {
 	if (excludeFromScenes->boolValue()) return;
-	SceneHelpers::lerpSceneParams(this, startData, endData, weight);
+	SceneHelpers::lerpSceneParams(this, startData, endData, weight, true);
 }
 
 var ObjectComponent::getVizData()

@@ -47,10 +47,12 @@ public:
     void onContainerParameterChangedInternal(Parameter* p) override;
 
     void itemAdded(Sequence* s) override;
+    void itemsAdded(Array<Sequence*> items) override;
 
     void resetEffectTimes();
 
     void itemAdded(Effect* e) override;
+    void itemsAdded(Array<Effect*> items) override;
 
     var getJSONData() override;
     void loadJSONDataItemInternal(var data) override;

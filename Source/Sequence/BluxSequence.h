@@ -33,6 +33,7 @@ public:
     virtual void processRawData();
 
     virtual void itemAdded(SequenceLayer* layer) override;
+    virtual void itemsAdded(Array<SequenceLayer*> layers) override;
 
     void handleStartAtLoad() override;
 

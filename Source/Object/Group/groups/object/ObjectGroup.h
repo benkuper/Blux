@@ -58,7 +58,9 @@ public:
     BaseManager<ObjectTarget> objectsCC;
 
     void itemAdded(ObjectTarget* i) override;
+    void itemsAdded(Array<ObjectTarget*> items) override;
     void itemRemoved(ObjectTarget * i) override;
+    void itemsRemoved(Array<ObjectTarget*> items) override;
     void targetChanged(Object * newTarget, Object * previousTarget) override;
 
     void rebuildLinkedObjects();

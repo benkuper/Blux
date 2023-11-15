@@ -19,7 +19,9 @@ public:
     ~CustomOSCInterface();
 
     virtual void itemAdded(GenericControllableItem*) override;
+    virtual void itemsAdded(Array<GenericControllableItem*>) override;
     virtual void itemRemoved(GenericControllableItem*) override;
+    virtual void itemsRemoved(Array<GenericControllableItem*>) override;
 
     virtual void sendValuesForObjectInternal(Object* o) override;
 

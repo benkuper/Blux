@@ -93,6 +93,7 @@ public:
 	virtual void processMessageInternal(const OSCMessage&);
 
 	void itemAdded(OSCOutput* output) override;
+	void itemsAdded(Array<OSCOutput*> output) override;
 
 	//SEND
 	virtual void setupSenders();

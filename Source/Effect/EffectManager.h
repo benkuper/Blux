@@ -32,6 +32,7 @@ public:
     void setForceDisabled(bool value);
 
     void addItemInternal(Effect* e, var data) override;
+    void addItemsInternal(Array<Effect*> items, var data) override;
 
     virtual void processComponent(Object * o, ObjectComponent * c, HashMap<Parameter*, var> &values, float weightMultiplier = 1.0f, int id = -1);
     Array<ChainVizTarget *> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);

@@ -260,7 +260,17 @@ void SerialInterface::itemAdded(GenericControllableItem*)
 	customSerialListeners.call(&SerialInterfaceListener::customParamsChanged, this);
 }
 
+void SerialInterface::itemsAdded(Array<GenericControllableItem*>)
+{
+	customSerialListeners.call(&SerialInterfaceListener::customParamsChanged, this);
+}
+
 void SerialInterface::itemRemoved(GenericControllableItem*)
+{
+	customSerialListeners.call(&SerialInterfaceListener::customParamsChanged, this);
+}
+
+void SerialInterface::itemsRemoved(Array<GenericControllableItem*>)
 {
 	customSerialListeners.call(&SerialInterfaceListener::customParamsChanged, this);
 }

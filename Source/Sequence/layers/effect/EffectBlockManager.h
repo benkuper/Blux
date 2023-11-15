@@ -33,7 +33,9 @@ public:
     LayerBlock * createItem() override;
 
     void addItemInternal(LayerBlock* clip, var) override;
+    void addItemsInternal(Array<LayerBlock*> clips, var) override;
     void removeItemInternal(LayerBlock* clip) override;
+    void removeItemsInternal(Array<LayerBlock*> clips) override;
 
     void onControllableFeedbackUpdate(ControllableContainer* cc, Controllable* c) override;
 

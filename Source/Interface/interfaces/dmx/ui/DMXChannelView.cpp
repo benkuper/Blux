@@ -255,7 +255,7 @@ void DMXChannelItem::mouseDown(const MouseEvent& e)
 					{
 						if (IntParameter* ch = dynamic_cast<IntParameter*>(o->interfaceParameters->getParameterByName("startChannel")))
 						{
-							ch->setValue(channel);
+							ch->setValue(channel + 1);
 						}
 					}
 					ObjectManager::getInstance()->addItem(o);

@@ -9,6 +9,7 @@
 */
 
 #include "Scene/SceneIncludes.h"
+#include "Engine/BluxEngine.h"
 
 Scene::Scene(const String& name) :
 	BaseItem(name, false),
@@ -134,6 +135,16 @@ void Scene::itemAdded(Sequence* s)
 	((BluxSequence*)s)->manualStartAtLoad = true;
 }
 
+void Scene::itemsAdded(Array<Sequence*> items)
+{
+	for (auto& s : items)
+	{
+		if (!isCurrentlyLoadingData) s->startAtLoad->setValue(true);
+		((BluxSequence*)s)->manualStartAtLoad = true;
+	}
+}
+
+
 void Scene::resetEffectTimes()
 {
 	effectManager->resetEffectsTimes();
@@ -143,6 +154,15 @@ void Scene::itemAdded(Effect* e)
 {
 	e->sceneSaveMode->hideInEditor = true;
 }
+
+void Scene::itemsAdded(Array<Effect*> items)
+{
+	for (auto& e : items)
+	{
+		e->sceneSaveMode->hideInEditor = true;
+	}
+}
+
 
 var Scene::getJSONData()
 {

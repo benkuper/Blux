@@ -144,6 +144,11 @@ void OSCInterface::itemAdded(OSCOutput* output)
 	output->warningResolveInspectable = this;
 }
 
+void OSCInterface::itemsAdded(Array<OSCOutput*> outputs)
+{
+	for (auto& o : outputs) o->warningResolveInspectable = this;
+}
+
 void OSCInterface::setupSenders()
 {
 	for (auto& o : outputManager->items) o->setupSender();

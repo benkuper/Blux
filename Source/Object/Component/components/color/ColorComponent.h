@@ -58,6 +58,10 @@ public:
 	void setupShape(const String& type);
 	void setupFromJSONDefinition(var definition) override;
 
+	var getSceneData();
+	void updateSceneData(var& sceneData);
+	void lerpFromSceneData(var startData, var endData, float weight);
+
 	void update() override;
 	void fillComputedValueMap(HashMap<Parameter*, var>& values) override;
 	void updateComputedValues(HashMap<Parameter*, var>& values) override;

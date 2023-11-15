@@ -54,12 +54,16 @@ public:
     GenericControllableManager customParams;
 
     virtual void itemAdded(GenericControllableItem*) override;
+    virtual void itemsAdded(Array<GenericControllableItem*>) override;
     virtual void itemRemoved(GenericControllableItem*) override;
+    virtual void itemsRemoved(Array<GenericControllableItem*>) override;
 
     void downloadObjects();
     void updateFactoryDefinitions();
     void addItemInternal(Object* o, var data) override;
+    void addItemsInternal(Array<Object*> items, var data) override;
     void removeItemInternal(Object* o) override;
+    void removeItemsInternal(Array<Object*> items) override;
 
     int getFirstAvailableObjectID(Object* excludeObject = nullptr);
     Object* getObjectWithID(int id, Object* excludeObject = nullptr);

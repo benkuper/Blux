@@ -1,4 +1,3 @@
-#include "ObjectGroup.h"
 /*
   ==============================================================================
 
@@ -8,6 +7,8 @@
 
   ==============================================================================
 */
+
+#include "Object/ObjectIncludes.h"
 
 ObjectGroup::ObjectGroup() :
     Group(getTypeString()),
@@ -30,11 +31,31 @@ void ObjectGroup::itemAdded(ObjectTarget* i)
     generateRandomIDs();
 }
 
+void ObjectGroup::itemsAdded(Array<ObjectTarget*> items)
+{
+    for (auto& i : items)
+    {
+		i->addObjectTargetListener(this);
+		if (i->currentObject != nullptr) registerLinkedInspectable(i->currentObject);
+	}
+	generateRandomIDs();
+}
+
 void ObjectGroup::itemRemoved(ObjectTarget* i)
 {
     i->removeObjectTargetListener(this);
     if(!i->objectRef.wasObjectDeleted()) unregisterLinkedInspectable(i->currentObject);
     generateRandomIDs();
+}
+
+void ObjectGroup::itemsRemoved(Array<ObjectTarget*> items)
+{
+    for (auto& i : items)
+    {
+		i->removeObjectTargetListener(this);
+		if (!i->objectRef.wasObjectDeleted()) unregisterLinkedInspectable(i->currentObject);
+	}
+	generateRandomIDs();
 }
 
 void ObjectGroup::targetChanged(Object* newTarget, Object* previousTarget)

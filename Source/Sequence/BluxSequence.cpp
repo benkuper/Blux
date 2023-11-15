@@ -82,10 +82,20 @@ void BluxSequence::processRawData()
 
 void BluxSequence::itemAdded(SequenceLayer* layer)
 {
-	AudioLayer* al = dynamic_cast<AudioLayer*>(layer);
-	if (al != nullptr)
+	if (AudioLayer* al = dynamic_cast<AudioLayer*>(layer))
 	{
 		al->setAudioProcessorGraph(&AudioManager::getInstance()->graph, AUDIO_OUTPUT_GRAPH_ID);
+	}
+}
+
+void BluxSequence::itemsAdded(Array<SequenceLayer*> layers)
+{
+	for (auto& layer : layers)
+	{
+		if (AudioLayer* al = dynamic_cast<AudioLayer*>(layer))
+		{
+			al->setAudioProcessorGraph(&AudioManager::getInstance()->graph, AUDIO_OUTPUT_GRAPH_ID);
+		}
 	}
 }
 

@@ -28,7 +28,17 @@ void CustomOSCInterface::itemAdded(GenericControllableItem*)
 	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
 }
 
+void CustomOSCInterface::itemsAdded(Array<GenericControllableItem*>)
+{
+	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
+}
+
 void CustomOSCInterface::itemRemoved(GenericControllableItem*)
+{
+	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
+}
+
+void CustomOSCInterface::itemsRemoved(Array<GenericControllableItem*>)
 {
 	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
 }

@@ -52,6 +52,8 @@ BluxEngine::~BluxEngine()
 	GlobalSequenceManager::deleteInstance();
 	StageLayoutManager::deleteInstance();
 	ColorSourceLibrary::deleteInstance();
+
+	TimedEffectHiResTimer::getInstance()->stopTimer();
 	TimedEffectHiResTimer::deleteInstance();
 
 	InterfaceManager::deleteInstance();

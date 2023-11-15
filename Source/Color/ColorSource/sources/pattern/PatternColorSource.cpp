@@ -48,8 +48,8 @@ void RainbowColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalS
 	int resolution = colors.size();
 	for (int i = 0; i < resolution; i++)
 	{
-		float rel = fmodf((1 - (i * 1.0f / resolution)) * (float)GetSourceLinkedValue(density) + time, 1);
-		colors.set(i, Colour::fromHSV(rel, (float)GetSourceLinkedValue(saturation), (float)GetSourceLinkedValue(brightness), 1));
+		double rel = fmodf((1 - (i * 1.0f / resolution)) * (double)GetSourceLinkedValue(density) + time, 1);
+		colors.set(i, Colour::fromHSV(rel, (double)GetSourceLinkedValue(saturation), (double)GetSourceLinkedValue(brightness), 1));
 	}
 }
 
@@ -69,7 +69,7 @@ StrobeColorSource::~StrobeColorSource()
 
 void StrobeColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime)
 {
-	Colour c = fmodf(curTime, 1) < (float)GetSourceLinkedValue(onOffBalance) ? GetLinkedColor(colorON) : GetLinkedColor(colorOFF);
+	Colour c = fmodf(curTime, 1) < (double)GetSourceLinkedValue(onOffBalance) ? GetLinkedColor(colorON) : GetLinkedColor(colorOFF);
 	colors.fill(c);
 }
 
@@ -100,8 +100,8 @@ void NoiseColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalSec
 	int resolution = colors.size();
 	for (int i = 0; i < resolution; i++)
 	{
-		float v = (perlin->noise0_1((i * (float)GetSourceLinkedValue(scale)) / resolution, time) - .5f) * (float)GetSourceLinkedValue(contrast) + .5f + (float)GetSourceLinkedValue(balance) * 2;
-		colors.set(i, bColor.interpolatedWith(fColor, v).withMultipliedBrightness((float)GetSourceLinkedValue(brightness)));
+		double v = (perlin->noise0_1((i * (double)GetSourceLinkedValue(scale)) / resolution, time) - .5f) * (double)GetSourceLinkedValue(contrast) + .5f + (double)GetSourceLinkedValue(balance) * 2;
+		colors.set(i, bColor.interpolatedWith(fColor, v).withMultipliedBrightness((double)GetSourceLinkedValue(brightness)));
 	}
 }
 
@@ -133,25 +133,25 @@ void PointColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection
 
 	const int resolution = colors.size();
 
-	float sizeVal = GetSourceLinkedValue(size);
+	double sizeVal = GetSourceLinkedValue(size);
 	int extendVal = GetSourceLinkedValue(extendNum);
 
-	//float extendPos = position->floatValue() * extendNum->floatValue();
+	//double extendPos = position->doubleValue() * extendNum->doubleValue();
 
-	float relPos = ((float)GetSourceLinkedValue(position)/*extendPos */ - id % extendVal) * resolution;
-	float relStart = jmax<int>(relPos - (sizeVal * resolution / 2.f), 0);
-	float relEnd = jmin<int>(relPos + (sizeVal * resolution / 2.f), resolution);
-	float relSize = sizeVal * resolution * extendVal;
+	double relPos = ((double)GetSourceLinkedValue(position)/*extendPos */ - id % extendVal) * resolution;
+	double relStart = jmax<int>(relPos - (sizeVal * resolution / 2.f), 0);
+	double relEnd = jmin<int>(relPos + (sizeVal * resolution / 2.f), resolution);
+	double relSize = sizeVal * resolution * extendVal;
 
 	colors.fill(bColor);
 
 	for (int i = relStart; i <= relEnd && i < resolution; i++)
 	{
-		float diff = 1 - (fabsf(i - relPos) * 1.f / (relSize / ((float)GetSourceLinkedValue(fade) * 2 * extendVal)));
+		double diff = 1 - (fabsf(i - relPos) * 1.f / (relSize / ((double)GetSourceLinkedValue(fade) * 2 * extendVal)));
 
 		bool invert = id % 2 == 0 ? GetSourceLinkedValue(invertEvens) : GetSourceLinkedValue(invertOdds);
 		Colour c = bColor.interpolatedWith(pColor, diff);
-		colors.set(invert ? resolution - i : i, c.withMultipliedBrightness((float)GetSourceLinkedValue(brightness)));
+		colors.set(invert ? resolution - i : i, c.withMultipliedBrightness((double)GetSourceLinkedValue(brightness)));
 	}
 }
 
@@ -181,25 +181,25 @@ void MultiPointColorSource::fillColorsForObjectTimeInternal(Array<Colour, Critic
 	Colour pColor = GetLinkedColor(pointColor);
 
 	colors.fill(bColor);
-	float gapVal = GetSourceLinkedValue(gap);
+	double gapVal = GetSourceLinkedValue(gap);
 
-	if (gapVal == 0 || size->floatValue() == 0) return;
+	if (gapVal == 0 || size->doubleValue() == 0) return;
 
-	float targetPos = time;
+	double targetPos = time;
 	if (targetPos < 0) targetPos = fmodf(targetPos, -gapVal) + gapVal;
 
 	for (int i = 0; i < resolution; i++)
 	{
-		float relTotal = fmodf((1 - (i * 1.0f / resolution)), 1);
-		float relGap = fmodf((relTotal + gapVal + targetPos) / gapVal, 1);
-		float relCentered = 1 - fabsf((relGap - .5f) * 2) * 1 / (float)GetSourceLinkedValue(size);
+		double relTotal = fmodf((1 - (i * 1.0f / resolution)), 1);
+		double relGap = fmodf((relTotal + gapVal + targetPos) / gapVal, 1);
+		double relCentered = 1 - fabsf((relGap - .5f) * 2) * 1 / (double)GetSourceLinkedValue(size);
 
 		if (relCentered < 0) continue;
 
-		float relFadedVal = jmap<float>(jlimit<float>(0, 1, relCentered), 1 - (float)GetSourceLinkedValue(fade), 1);
+		double relFadedVal = jmap<double>(jlimit<double>(0, 1, relCentered), 1 - (double)GetSourceLinkedValue(fade), 1);
 
 		Colour c = bColor.interpolatedWith(pColor, relFadedVal);
-		colors.set(i, c.withMultipliedBrightness((float)GetSourceLinkedValue(brightness)));
+		colors.set(i, c.withMultipliedBrightness((double)GetSourceLinkedValue(brightness)));
 	}
 }
 
@@ -246,9 +246,9 @@ void GradientColorSource::fillColorsForObjectTimeInternal(Array<Colour, Critical
 
 	for (int i = 0; i < resolution; i++)
 	{
-		float p = fmodf(time + i * (float)GetSourceLinkedValue(density) / resolution, 1);
+		double p = fmodf(time + i * (double)GetSourceLinkedValue(density) / resolution, 1);
 		if (p < 0) p++;
-		colors.set(i, gradientTarget->getColorForPosition(p).withMultipliedBrightness((float)GetSourceLinkedValue(brightness)));
+		colors.set(i, gradientTarget->getColorForPosition(p).withMultipliedBrightness((double)GetSourceLinkedValue(brightness)));
 	}
 }
 

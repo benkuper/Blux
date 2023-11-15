@@ -9,6 +9,8 @@
 */
 
 
+#include "Sequence/SequenceIncludes.h"
+
 juce_ImplementSingleton(EffectBlockFactory)
 
 EffectBlockManager::EffectBlockManager(EffectLayer * layer) :
@@ -33,11 +35,31 @@ void EffectBlockManager::addItemInternal(LayerBlock* block, var data)
 	clip->addEffectBlockListener(this);
 }
 
+void EffectBlockManager::addItemsInternal(Array<LayerBlock*> blocks, var data)
+{
+	LayerBlockManager::addItemsInternal(blocks, data);
+	for (auto& b : blocks)
+	{
+		EffectBlock * clip = dynamic_cast<EffectBlock *>(b);
+		clip->addEffectBlockListener(this);
+	}
+}
+
 void EffectBlockManager::removeItemInternal(LayerBlock* block)
 {
 	LayerBlockManager::removeItemInternal(block);
 	EffectBlock * clip = dynamic_cast<EffectBlock *>(block);
 	clip->removeEffectBlockListener(this);
+}
+
+void EffectBlockManager::removeItemsInternal(Array<LayerBlock*> blocks)
+{
+	LayerBlockManager::removeItemsInternal(blocks);
+	for (auto& b : blocks)
+	{
+		EffectBlock * clip = dynamic_cast<EffectBlock *>(b);
+		clip->removeEffectBlockListener(this);
+	}
 }
 
 void EffectBlockManager::onControllableFeedbackUpdate(ControllableContainer* cc, Controllable* c)
