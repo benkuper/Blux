@@ -56,14 +56,13 @@ EffectBlock::~EffectBlock()
 
 }
 
-void EffectBlock::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id, float absoluteTime)
+void EffectBlock::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id, float absoluteTime, bool ignoreFade)
 {
 	if (effect == nullptr) return;
 
 	float factor = 1;
-	double relTimeTotal = absoluteTime - time->floatValue();
-	if (fadeIn->floatValue() > 0) factor *= fadeCurve.getValueAtPosition(jmin<double>(relTimeTotal / fadeIn->floatValue(), 1.f));
-	if (fadeOut->floatValue() > 0) factor *= fadeCurve.getValueAtPosition(jmin<double>((getTotalLength() - relTimeTotal) / fadeOut->floatValue(), 1.f));
+	
+	if (!ignoreFade) factor *= getFadeMultiplier(absoluteTime);
 
 	factor = jmax(factor, 0.f);
 
@@ -119,6 +118,17 @@ void EffectBlock::setCoreLength(float value, bool stretch, bool stickToCoreEnd)
 	}
 	settingLengthFromMethod = false;
 }
+
+float EffectBlock::getFadeMultiplier(float absoluteTime)
+{
+	double relTimeTotal = absoluteTime - time->floatValue();
+
+	float result = 1;
+	if (fadeIn->floatValue() > 0) result *= fadeCurve.getValueAtPosition(jmin<double>(relTimeTotal / fadeIn->floatValue(), 1.f));
+	if (fadeOut->floatValue() > 0) result *= fadeCurve.getValueAtPosition(jmin<double>((getTotalLength() - relTimeTotal) / fadeOut->floatValue(), 1.f));
+	return result;
+}
+
 
 void EffectBlock::effectParamControlModeChanged(Parameter* p)
 {

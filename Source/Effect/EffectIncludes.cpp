@@ -24,6 +24,7 @@
 #include "effects/override/FreezeEffect.cpp"
 #include "effects/override/OverrideEffect.cpp"
 #include "effects/override/CurveMapEffect.cpp"
+#include "effects/override/PointEffect.cpp"
 #include "effects/time/automation/AutomationEffect.cpp"
 #include "effects/time/automation/ui/AutomationEffectEditor.cpp"
 #include "effects/time/noise/NoiseEffect.cpp"

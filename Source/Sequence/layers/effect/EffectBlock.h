@@ -27,12 +27,14 @@ public:
 
 	bool settingLengthFromMethod;
 
-    virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
+    virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f, int id = -1, float time = -1, bool ignoreFade = false);
 
     void onContainerParameterChangedInternal(Parameter* p) override;
 	virtual void controllableStateChanged(Controllable* c) override;
 
 	void setCoreLength(float value, bool stretch = false, bool stickToCoreEnd = false) override;
+
+	float getFadeMultiplier(float absoluteTime);
 
 	void effectParamControlModeChanged(Parameter* p) override;
 

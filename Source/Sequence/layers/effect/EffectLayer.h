@@ -31,6 +31,8 @@ public:
 	Array<ChainVizTarget*> getChainVizTargetsForObjectAndComponent(Object* o, ComponentType t);
 	virtual void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f);
 
+	var getAverageValue(Array<var> values, Array<float> weights);
+
 	SequenceLayerTimeline* getTimelineUI() override;
 
 	String getTypeString() const override { return "Effect"; }

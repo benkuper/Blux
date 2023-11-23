@@ -155,7 +155,7 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 		HashMap<Parameter*, var>::Iterator it(targetValues);
 		while (it.next())
 		{
-			DBG("Set prev value " << it.getKey()->niceName << " : " << it.getValue().toString());
+			//DBG("Set prev value " << it.getKey()->niceName << " : " << it.getValue().toString());
 			prevVals->set(it.getKey(), it.getValue().clone());
 		}
 	}

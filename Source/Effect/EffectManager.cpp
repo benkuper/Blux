@@ -101,13 +101,7 @@ EffectFactory::EffectFactory()
 	defs.add(Factory<Effect>::Definition::createDef<AutomationEffect>("Dimmer")->addParam("types", DIMMER));
 	defs.add(Factory<Effect>::Definition::createDef<FreezeFloatEffect>("Dimmer")->addParam("types", DIMMER));
 	defs.add(Factory<Effect>::Definition::createDef<SmoothingEffect>("Dimmer")->addParam("types", DIMMER));
-
-	defs.add(Factory<Effect>::Definition::createDef<OverrideFloatEffect>("Shutter")->addParam("types", SHUTTER));
-	defs.add(Factory<Effect>::Definition::createDef<CurveMapEffect>("Shutter")->addParam("types", SHUTTER));
-	defs.add(Factory<Effect>::Definition::createDef<NoiseEffect>("Shutter")->addParam("types", SHUTTER));
-	defs.add(Factory<Effect>::Definition::createDef<AutomationEffect>("Shutter")->addParam("types", SHUTTER));
-	defs.add(Factory<Effect>::Definition::createDef<FreezeFloatEffect>("Shutter")->addParam("types", SHUTTER));
-	defs.add(Factory<Effect>::Definition::createDef<SmoothingEffect>("Shutter")->addParam("types", SHUTTER));
+	defs.add(Factory<Effect>::Definition::createDef<PointFloatEffect>("Dimmer")->addParam("types", DIMMER));
 
 	defs.add(Factory<Effect>::Definition::createDef<ColorSourceOverrideEffect>("Color")->addParam("types", COLOR));
 	defs.add(Factory<Effect>::Definition::createDef<HSVAdjustEffect>("Color")->addParam("types", COLOR));

@@ -1588,6 +1588,9 @@
     <ClCompile Include="..\..\Source\Effect\effects\override\OverrideEffect.cpp">
       <Filter>Blux\Source\Effect\effects\override</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Effect\effects\override\PointEffect.cpp">
+      <Filter>Blux\Source\Effect\effects\override</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.cpp">
       <Filter>Blux\Source\Effect\Filter\filters\group</Filter>
     </ClCompile>
@@ -5509,6 +5512,9 @@
       <Filter>Blux\Source\Effect\effects\override</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\effects\override\OverrideEffect.h">
+      <Filter>Blux\Source\Effect\effects\override</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Effect\effects\override\PointEffect.h">
       <Filter>Blux\Source\Effect\effects\override</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Effect\Filter\filters\group\GroupFilter.h">

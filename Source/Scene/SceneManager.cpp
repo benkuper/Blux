@@ -214,7 +214,7 @@ void SceneManager::processComponent(Object* o, ObjectComponent* c, HashMap<Param
 
 		HashMap<Parameter*, var>::Iterator copyIt(values);
 		while (copyIt.next()) prevSceneValues.set(copyIt.getKey(), copyIt.getValue().clone());
-		;
+		
 		previousScene->sequenceManager->processComponent(o, c, prevSceneValues);
 		previousScene->effectManager->processComponent(o, c, prevSceneValues);
 

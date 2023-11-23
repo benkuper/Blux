@@ -112,6 +112,7 @@
 		191A42B4289F42E9DEC514CD /* ColorSourceOverrideEffectEditor.h */ /* ColorSourceOverrideEffectEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceOverrideEffectEditor.h; path = ../../Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.h; sourceTree = SOURCE_ROOT; };
 		19BD00D4956B70F46D18AC84 /* DimmerComponent.cpp */ /* DimmerComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DimmerComponent.cpp; path = ../../Source/Object/Component/components/dimmer/DimmerComponent.cpp; sourceTree = SOURCE_ROOT; };
 		1BB80399C435A24F62550D49 /* ObjectGroupUI.h */ /* ObjectGroupUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ObjectGroupUI.h; path = ../../Source/Object/Group/groups/object/ui/ObjectGroupUI.h; sourceTree = SOURCE_ROOT; };
+		1C1F9CF7196B61E6B87B2436 /* PointEffect.cpp */ /* PointEffect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PointEffect.cpp; path = ../../Source/Effect/effects/override/PointEffect.cpp; sourceTree = SOURCE_ROOT; };
 		1C4C8B94AAA6A720C951E2CD /* SequenceIncludes.cpp */ /* SequenceIncludes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SequenceIncludes.cpp; path = ../../Source/Sequence/SequenceIncludes.cpp; sourceTree = SOURCE_ROOT; };
 		1CE67EA4A7B264A020E28F94 /* CustomComponent.cpp */ /* CustomComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CustomComponent.cpp; path = ../../Source/Object/Component/components/custom/CustomComponent.cpp; sourceTree = SOURCE_ROOT; };
 		1DF8689157F328CED11820E1 /* ObjectGroup.cpp */ /* ObjectGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectGroup.cpp; path = ../../Source/Object/Group/groups/object/ObjectGroup.cpp; sourceTree = SOURCE_ROOT; };
@@ -470,6 +471,7 @@
 		F241FA87D495EE229822F27D /* TimedEffectHiresTimer.cpp */ /* TimedEffectHiresTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TimedEffectHiresTimer.cpp; path = ../../Source/Common/Helpers/TimedEffectHiresTimer.cpp; sourceTree = SOURCE_ROOT; };
 		F273B71B8034FC657140C1A5 /* RawDataBlock.cpp */ /* RawDataBlock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RawDataBlock.cpp; path = ../../Source/Sequence/layers/rawdata/RawDataBlock.cpp; sourceTree = SOURCE_ROOT; };
 		F2BE404EBCF81E57AB1FFFEE /* HSVAdjustEffect.h */ /* HSVAdjustEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HSVAdjustEffect.h; path = ../../Source/Effect/effects/color/hsv/HSVAdjustEffect.h; sourceTree = SOURCE_ROOT; };
+		F75C27B80AAE6A7F26485F5C /* PointEffect.h */ /* PointEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PointEffect.h; path = ../../Source/Effect/effects/override/PointEffect.h; sourceTree = SOURCE_ROOT; };
 		F79452457CFF3768AB5FF919 /* InterfaceManager.h */ /* InterfaceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InterfaceManager.h; path = ../../Source/Interface/InterfaceManager.h; sourceTree = SOURCE_ROOT; };
 		F7C86E76FF3C01B3313764D0 /* BluxEngine.cpp */ /* BluxEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BluxEngine.cpp; path = ../../Source/Engine/BluxEngine.cpp; sourceTree = SOURCE_ROOT; };
 		F85F3A193455640F0E55418F /* DMXChannelView.cpp */ /* DMXChannelView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DMXChannelView.cpp; path = ../../Source/Interface/interfaces/dmx/ui/DMXChannelView.cpp; sourceTree = SOURCE_ROOT; };
@@ -1800,6 +1802,8 @@
 				DFE4C3236B1297457120B8F1,
 				3B4157E878CF22C9643E3956,
 				A3C745B6A567216E8B02DDAD,
+				1C1F9CF7196B61E6B87B2436,
+				F75C27B80AAE6A7F26485F5C,
 			);
 			name = override;
 			sourceTree = "<group>";
@@ -2034,8 +2038,8 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.0",
-					"JUCE_APP_VERSION_HEX=0x10200",
+					"JUCE_APP_VERSION=1.2.1b1",
+					"JUCE_APP_VERSION_HEX=0x10201",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -2175,8 +2179,8 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.0",
-					"JUCE_APP_VERSION_HEX=0x10200",
+					"JUCE_APP_VERSION=1.2.1b1",
+					"JUCE_APP_VERSION_HEX=0x10201",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -2269,8 +2273,8 @@
 					"JUCE_STANDALONE_APPLICATION=1",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.0",
-					"JUCE_APP_VERSION_HEX=0x10200",
+					"JUCE_APP_VERSION=1.2.1b1",
+					"JUCE_APP_VERSION_HEX=0x10201",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
