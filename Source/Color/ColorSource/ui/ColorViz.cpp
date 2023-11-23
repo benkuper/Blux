@@ -51,7 +51,7 @@ void ColorViz::paint(Graphics& g)
         g.setColour(c);
         g.fillEllipse(pr);
 
-        g.setColour(c.withAlpha(.5f));
+        g.setColour(c.brighter(.6f).withAlpha(.7f));
         g.drawEllipse(pr, 1);
     }
 }
