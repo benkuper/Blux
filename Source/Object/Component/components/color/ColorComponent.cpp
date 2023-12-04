@@ -11,6 +11,8 @@
 #include "Object/ObjectIncludes.h"
 #include "Interface/InterfaceIncludes.h"
 
+bool ColorComponent::isChangingMainColor = false;
+
 ColorComponent::ColorComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), COLOR, params),
 	dimmerComponent(nullptr),
@@ -267,6 +269,38 @@ void ColorComponent::onContainerParameterChangedInternal(Parameter* p)
 	{
 		if (pixelShape != nullptr) pixelShape->resolution = resolution->intValue();
 		update();
+	}
+}
+
+void ColorComponent::onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c)
+{
+	ObjectComponent::onControllableFeedbackUpdateInternal(cc, c);
+
+
+	if (!isChangingMainColor && colorSource != nullptr)
+	{
+		if (ColorParameter* cp = colorSource->getMainColorParameter())
+		{
+			if (c == cp)
+			{
+				isChangingMainColor = true;
+				Colour col = cp->getColor();
+				Array<Object*> selObjects = InspectableSelectionManager::mainSelectionManager->getInspectablesAs<Object>();
+				for (auto& o : selObjects)
+				{
+					if(o == object) continue;
+					if (ColorComponent* cc = dynamic_cast<ColorComponent*>(o->getComponentForType(ComponentType::COLOR)))
+					{
+						if (ColorParameter* ccp = cc->colorSource->getMainColorParameter())
+						{
+							ccp->setColor(col);
+						}
+					}
+				}
+				isChangingMainColor = false;
+			}
+		}
+		
 	}
 }
 

@@ -47,6 +47,7 @@ public:
 
 	Colour getLinkedColor(ColorParameter* p, Object* o, int id, float time);
 
+	virtual ColorParameter* getMainColorParameter() { return nullptr; }
 
 
 	class  ColorSourceListener

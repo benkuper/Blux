@@ -17,10 +17,12 @@ DimmerComponent::DimmerComponent(Object* o, var params) :
 {
 
 	saveAndLoadRecursiveData = true;
-	
 	value = (FloatParameter*)addComputedParameter(new FloatParameter("Value", "Value of the dimmer", 0, 0, 1));
+
+	curve.editorCanBeCollapsed = true;
 	curve.setCanBeDisabled(true);
 	curve.enabled->setValue(false);
+
 	curve.addKey(0, 0);
 	curve.addKey(1, 1);
 	addChildControllableContainer(&curve);

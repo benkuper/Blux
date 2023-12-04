@@ -50,6 +50,11 @@ ObjectGridUI::~ObjectGridUI()
 	{
 		item->componentManager->removeAsyncManagerListener(this);
 	}
+
+	if (ColorComponent* colorComp = item->getComponent<ColorComponent>())
+	{
+		colorComp->removeAsyncColorComponentListener(this);
+	}
 }
 
 void ObjectGridUI::paint(Graphics& g)
@@ -135,6 +140,7 @@ void ObjectGridUI::resized()
 		colorViz->setBounds(r.reduced(2));
 	}
 
+	if (mainColorUI != nullptr) mainColorUI->setBounds(getLocalBounds().removeFromRight(16).removeFromTop(16));
 
 }
 
@@ -149,9 +155,22 @@ void ObjectGridUI::updateUI()
 			addAndMakeVisible(colorViz.get());
 		}
 
+		if (mainColorUI != nullptr) removeChildComponent(mainColorUI.get());
+		mainColorUI.reset();
+		if (colorComp->colorSource != nullptr)
+		{
+			if (ColorParameter* cp = colorComp->colorSource->getMainColorParameter())
+			{
+				mainColorUI.reset(cp->createColorParamUI());
+				addAndMakeVisible(mainColorUI.get());
+			}
+		}
+
+		colorComp->addAsyncColorComponentListener(this);
 	}
 	else if (colorViz != nullptr)
 	{
+		mainColorUI.reset();
 		removeChildComponent(colorViz.get());
 		colorViz.reset();
 	}
@@ -414,6 +433,14 @@ void ObjectGridUI::visibilityChanged()
 void ObjectGridUI::newMessage(const ComponentManager::ManagerEvent& e)
 {
 	updateUI();
+}
+
+void ObjectGridUI::newMessage(const ColorComponent::ColorComponentEvent& e)
+{
+	if (e.type == ColorComponent::ColorComponentEvent::SOURCE_CHANGED)
+	{
+		updateUI();
+	}
 }
 
 void ObjectGridUI::handleRepaint()

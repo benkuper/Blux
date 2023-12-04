@@ -22,6 +22,7 @@ public:
 	ColorComponent(Object* o, var params);
 	~ColorComponent();
 
+	static bool isChangingMainColor;
 
 	IntParameter* resolution;
 	BoolParameter* useDimmerForOpacity;
@@ -71,6 +72,8 @@ public:
 	//virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false) override;
 
 	void onContainerParameterChangedInternal(Parameter* p) override;
+
+	void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 
 	var getJSONData() override;
 	void loadJSONDataItemInternal(var data) override;

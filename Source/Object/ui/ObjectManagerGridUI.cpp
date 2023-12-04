@@ -8,6 +8,9 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
+#include "Scene/SceneIncludes.h"
+
 ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
 	BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
 {

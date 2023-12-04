@@ -14,7 +14,8 @@ class ColorViz;
 
 class ObjectGridUI :
 	public BaseItemMinimalUI<Object>,
-	public ComponentManager::AsyncListener
+	public ComponentManager::AsyncListener,
+	public ColorComponent::AsyncColorComponentListener
 {
 public:
 	ObjectGridUI(Object* model);
@@ -34,6 +35,7 @@ public:
 	std::unique_ptr<IntParameterLabelUI> globalIDUI;
 	std::unique_ptr<FloatSliderUI> intensityUI;
 	std::unique_ptr<FloatSliderUI> computedIntensityUI;
+	std::unique_ptr<ColorParameterUI> mainColorUI;
 	std::unique_ptr<ColorViz> colorViz;
 
 	bool flashMode;
@@ -59,6 +61,7 @@ public:
 	void visibilityChanged() override;
 
 	void newMessage(const ComponentManager::ManagerEvent& e) override;
+	void newMessage(const ColorComponent::ColorComponentEvent& e) override;
 
 	void handleRepaint();
 };

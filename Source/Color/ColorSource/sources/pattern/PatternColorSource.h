@@ -21,6 +21,8 @@ public:
 
     virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
 
+    ColorParameter* getMainColorParameter() override { return sourceColor; }
+
     String getTypeString() const override { return "Solid Color"; }
     static SolidColorSource* create(var params) { return new SolidColorSource(params); }
 };
@@ -56,6 +58,8 @@ public:
 
     virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
 
+    ColorParameter* getMainColorParameter() override { return colorON; }
+
     String getTypeString() const override { return "Strobe"; }
     static StrobeColorSource* create(var params) { return new StrobeColorSource(params); }
 };
@@ -83,6 +87,8 @@ public:
 
     virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
    
+    ColorParameter* getMainColorParameter() override { return frontColor; }
+
     String getTypeString() const override { return "Noise"; }
     static NoiseColorSource* create(var params) { return new NoiseColorSource(params); }
 };
@@ -106,6 +112,8 @@ public:
 
     virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time = -1) override;
    
+    ColorParameter* getMainColorParameter() override { return pointColor; }
+
     String getTypeString() const override { return "Point"; }
     static PointColorSource* create(var params) { return new PointColorSource(params); }
 };
@@ -126,6 +134,8 @@ public:
 
     virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
     
+    ColorParameter* getMainColorParameter() override { return pointColor; }
+
     String getTypeString() const override { return "Multipoint"; }
     static MultiPointColorSource* create(var params) { return new MultiPointColorSource(params); }
 };
