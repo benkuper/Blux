@@ -97,6 +97,23 @@
                 file="Source/Common/ParameterLink/ParameterLink.cpp"/>
           <FILE id="YduDza" name="ParameterLink.h" compile="0" resource="0" file="Source/Common/ParameterLink/ParameterLink.h"/>
         </GROUP>
+        <GROUP id="{66774ECC-3983-A529-C940-821DF696EB61}" name="Spatializer">
+          <GROUP id="{4957C1CE-924E-C958-A9A1-CD19A0F92F67}" name="ui">
+            <FILE id="aE6KAO" name="SpatItemViewUI.cpp" compile="0" resource="0"
+                  file="Source/Common/Spatializer/ui/SpatItemViewUI.cpp"/>
+            <FILE id="YDVPTm" name="SpatItemViewUI.h" compile="0" resource="0"
+                  file="Source/Common/Spatializer/ui/SpatItemViewUI.h"/>
+            <FILE id="Yi71D2" name="SpatManagerView.cpp" compile="0" resource="0"
+                  file="Source/Common/Spatializer/ui/SpatManagerView.cpp"/>
+            <FILE id="YSYEH8" name="SpatManagerView.h" compile="0" resource="0"
+                  file="Source/Common/Spatializer/ui/SpatManagerView.h"/>
+          </GROUP>
+          <FILE id="TpAU3S" name="SpatItem.cpp" compile="0" resource="0" file="Source/Common/Spatializer/SpatItem.cpp"
+                skipPCH="0"/>
+          <FILE id="OYIqDm" name="SpatItem.h" compile="0" resource="0" file="Source/Common/Spatializer/SpatItem.h"/>
+          <FILE id="FhjYXN" name="SpatManager.cpp" compile="0" resource="0" file="Source/Common/Spatializer/SpatManager.cpp"/>
+          <FILE id="nJKgFy" name="SpatManager.h" compile="0" resource="0" file="Source/Common/Spatializer/SpatManager.h"/>
+        </GROUP>
         <GROUP id="{C95BFB6F-DA7A-E94F-D3B3-FBBABEAE83E5}" name="Zeroconf">
           <FILE id="trFfAs" name="ZeroconfManager.cpp" compile="0" resource="0"
                 file="Source/Common/Zeroconf/ZeroconfManager.cpp"/>

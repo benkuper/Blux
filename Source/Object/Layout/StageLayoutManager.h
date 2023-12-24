@@ -21,6 +21,7 @@ public:
     BoolParameter * showFilters;
     BoolParameter* lockObjectUIs;
     BoolParameter* lockFilterUIs;
+    BoolParameter* showSpat;
 
     StageLayoutManager();
     ~StageLayoutManager();

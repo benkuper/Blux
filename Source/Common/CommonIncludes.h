@@ -12,6 +12,11 @@
 
 #include "JuceHeader.h"
 
+#include "Spatializer/SpatItem.h"
+#include "Spatializer/SpatManager.h"
+#include "Spatializer/ui/SpatItemViewUI.h"
+#include "Spatializer/ui/SpatManagerView.h"
+
 #include "ParameterLink/ParameterLink.h"
 #include "ParameterLink/ui/LinkableParameterEditor.h"
 
@@ -35,5 +40,6 @@
 #include "MIDI/ui/MIDIDeviceParameterUI.h"
 
 #include "Zeroconf/ZeroconfManager.h"
+
 
 

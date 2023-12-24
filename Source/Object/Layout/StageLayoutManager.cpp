@@ -17,6 +17,7 @@ StageLayoutManager::StageLayoutManager() :
     showFilters = addBoolParameter("Show Filters", "If checked, this will show filters in view", true);
     lockObjectUIs = addBoolParameter("Lock Objects", "If checked, this will lock objects in place", false);
     lockFilterUIs = addBoolParameter("Lock Filters", "If checked, this will lock filters in place", false);
+    showSpat = addBoolParameter("Show Spat", "If checked, this will show spatializers in view", true);
 }
 
 StageLayoutManager::~StageLayoutManager()

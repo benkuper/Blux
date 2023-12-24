@@ -14,6 +14,7 @@ ParameterLink::ParameterLink(WeakReference<Parameter> p) :
 	linkType(NONE),
 	parameter(p),
 	isLinkable(true),
+	spatializer(nullptr),
 	//replacementHasMappingInputToken(false),
 	paramLinkNotifier(5)
 {
@@ -22,6 +23,7 @@ ParameterLink::ParameterLink(WeakReference<Parameter> p) :
 
 ParameterLink::~ParameterLink()
 {
+	if (ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->spatializer.removeBaseManagerListener(this);
 	//if (list != nullptr && !listRef.wasObjectDeleted())
 	//{
 	//	list->removeListListener(this);
@@ -33,9 +35,32 @@ void ParameterLink::setLinkType(LinkType type)
 	if (type == linkType) return;
 	linkType = type;
 
+	if (linkType != SPAT_X && linkType != SPAT_Z && linkType != SPAT_XZ)
+	{
+		spatializer = nullptr;
+		spatRef = nullptr;
+		if (ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->spatializer.removeBaseManagerListener(this);
+	}
+
 	parameter->setControllableFeedbackOnly(linkType != NONE);
 
 	notifyLinkUpdated();
+}
+
+void ParameterLink::setSpatLink(LinkType type, SpatItem* spat)
+{
+	if (type == linkType && spat == spatializer) return;
+	spatializer = spat;
+	spatRef = spatializer;
+
+
+	if (spatializer != nullptr)
+	{
+		ObjectManager::getInstance()->spatializer.addBaseManagerListener(this);
+		spatGhostName = "";
+	}
+
+	setLinkType(type);
 }
 
 void ParameterLink::setLinkedCustomParam(Parameter* p)
@@ -57,6 +82,50 @@ var ParameterLink::getLinkedValue(Object* o, int id)
 		return o->customParams->getParamValueFor(linkedCustomParam);
 	}
 	break;
+
+	case OBJECT_POSX:
+		return o->stagePosition->x;
+	case OBJECT_POSY:
+		return o->stagePosition->y;
+
+	case OBJECT_POSZ:
+		return o->stagePosition->z;
+
+	case OBJECT_POSXZ:
+	{
+		var val;
+		val.append(o->stagePosition->x);
+		if (parameter->value.size() > 1) val.append(o->stagePosition->z);
+		return val;
+	}
+	case OBJECT_POSXYZ:
+	{
+		var val;
+		val.append(o->stagePosition->x);
+		if (parameter->value.size() > 1) val.append(o->stagePosition->y);
+		if (parameter->value.size() > 2) val.append(o->stagePosition->z);
+
+		return val;
+	}
+
+	case SPAT_X:
+	case SPAT_Z:
+	case SPAT_XZ:
+	{
+		if (spatializer != nullptr && !spatRef.wasObjectDeleted())
+		{
+			Point<float> relPos = spatializer->getObjectPosition(o);
+			if (linkType == SPAT_X) return relPos.x;
+			else if (linkType == SPAT_Z) return relPos.y;
+			else
+			{
+				var val;
+				val.append(relPos.x);
+				if (parameter->value.size() > 1) val.append(relPos.y);
+				return val;
+			}
+		}
+	}
 	}
 
 	return parameter->getValue();
@@ -170,6 +239,51 @@ WeakReference<ControllableContainer> ParameterLink::getLinkedTargetContainer(Obj
 //}
 
 
+void ParameterLink::itemAdded(SpatItem* item)
+{
+	if (linkType != SPAT_X && linkType != SPAT_Z && linkType != SPAT_XZ) return;
+	if (spatializer != nullptr && !spatRef.wasObjectDeleted()) return;
+	if (spatGhostName == item->shortName) setSpatLink(linkType, item);
+}
+
+void ParameterLink::itemsAdded(Array<SpatItem*> items)
+{
+	if (linkType != SPAT_X && linkType != SPAT_Z && linkType != SPAT_XZ) return;
+	if (spatializer != nullptr && !spatRef.wasObjectDeleted()) return;
+
+	for (auto& item : items)
+	{
+		if (spatGhostName == item->shortName) setSpatLink(linkType, item);
+		return;
+	}
+}
+
+void ParameterLink::itemRemoved(SpatItem* item)
+{
+	if (linkType != SPAT_X && linkType != SPAT_Z && linkType != SPAT_XZ) return;
+	if (spatializer == item)
+	{
+		spatGhostName = spatializer->shortName;
+		spatializer = nullptr;
+		spatRef = nullptr;
+	}
+}
+
+void ParameterLink::itemsRemoved(Array<SpatItem*> items)
+{
+	if (linkType != SPAT_X && linkType != SPAT_Z && linkType != SPAT_XZ) return;
+	for (auto& item : items)
+	{
+		if (spatializer == item)
+		{
+			spatGhostName = spatializer->shortName;
+			spatializer = nullptr;
+			spatRef = nullptr;
+			return;
+		}
+	}
+}
+
 void ParameterLink::notifyLinkUpdated()
 {
 	parameterLinkListeners.call(&ParameterLinkListener::linkUpdated, this);
@@ -184,6 +298,7 @@ var ParameterLink::getJSONData()
 	{
 		data.getDynamicObject()->setProperty("linkType", linkType);
 		if (linkType == CUSTOM_PARAM) data.getDynamicObject()->setProperty("linkedCustomParamName", linkedCustomParam->shortName);
+		if (spatializer != nullptr && !spatRef.wasObjectDeleted()) data.getDynamicObject()->setProperty("spatializer", spatializer->shortName);
 	}
 
 	return data;
@@ -200,6 +315,13 @@ void ParameterLink::loadJSONData(var data)
 		{
 			linkedCustomParam = (Parameter*)gci->controllable;
 		}
+	}
+	else if (linkType == SPAT_X || linkType == SPAT_Z || linkType == SPAT_XZ)
+	{
+		spatializer = ObjectManager::getInstance()->spatializer.getItemWithName(data.getProperty("spatializer", ""));
+		spatRef = spatializer;
+
+		if (spatializer == nullptr) spatGhostName = data.getProperty("spatializer", "");	
 	}
 }
 

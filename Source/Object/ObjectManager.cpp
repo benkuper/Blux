@@ -32,6 +32,7 @@ ObjectManager::ObjectManager() :
 
 
 	addChildControllableContainer(&customParams);
+	addChildControllableContainer(&spatializer);
 
 	File f = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName) + "/objects");
 	if (!f.isDirectory())
@@ -270,6 +271,7 @@ var ObjectManager::getJSONData()
 {
 	var data = BaseManager::getJSONData();
 	data.getDynamicObject()->setProperty(customParams.shortName, customParams.getJSONData());
+	data.getDynamicObject()->setProperty(spatializer.shortName, spatializer.getJSONData());
 	return data;
 }
 
@@ -277,6 +279,7 @@ void ObjectManager::loadJSONDataManagerInternal(var data)
 {
 	customParams.loadJSONData(data.getProperty(customParams.shortName, var()));
 	BaseManager::loadJSONDataManagerInternal(data);
+	spatializer.loadJSONData(data.getProperty(spatializer.shortName, var()));
 }
 
 void ObjectManager::afterLoadJSONDataInternal()

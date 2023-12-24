@@ -25,6 +25,7 @@ Object::Object(var params) :
 
 	//hideInEditor = true;
 	editorIsCollapsed = true;
+	hideInEditor = true;
 
 	itemDataType = "Object";
 

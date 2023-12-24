@@ -200,6 +200,18 @@
     <ClCompile Include="..\..\Source\Common\ParameterLink\ParameterLink.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Spatializer\ui\SpatItemViewUI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Spatializer\ui\SpatManagerView.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Spatializer\SpatItem.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Spatializer\SpatManager.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Common\Zeroconf\ZeroconfManager.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -3831,6 +3843,10 @@
     <ClInclude Include="..\..\Source\Common\MIDI\MTCSender.h"/>
     <ClInclude Include="..\..\Source\Common\ParameterLink\ui\LinkableParameterEditor.h"/>
     <ClInclude Include="..\..\Source\Common\ParameterLink\ParameterLink.h"/>
+    <ClInclude Include="..\..\Source\Common\Spatializer\ui\SpatItemViewUI.h"/>
+    <ClInclude Include="..\..\Source\Common\Spatializer\ui\SpatManagerView.h"/>
+    <ClInclude Include="..\..\Source\Common\Spatializer\SpatItem.h"/>
+    <ClInclude Include="..\..\Source\Common\Spatializer\SpatManager.h"/>
     <ClInclude Include="..\..\Source\Common\Zeroconf\ZeroconfManager.h"/>
     <ClInclude Include="..\..\Source\Common\CommonIncludes.h"/>
     <ClInclude Include="..\..\Source\Color\ColorSource\sources\node\NodeColorSource.h"/>

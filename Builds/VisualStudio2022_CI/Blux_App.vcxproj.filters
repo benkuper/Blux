@@ -35,6 +35,12 @@
     <Filter Include="Blux\Source\Common\ParameterLink">
       <UniqueIdentifier>{B9A49933-5345-5A78-B6C3-CFAB91FC1E67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Common\Spatializer\ui">
+      <UniqueIdentifier>{77A6A72F-BDF8-D5B1-5F53-AF186122D1D7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blux\Source\Common\Spatializer">
+      <UniqueIdentifier>{E62797E8-CAFA-4DA9-9CE6-F03F6F8AC96E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Common\Zeroconf">
       <UniqueIdentifier>{E71E1089-89E9-F7F5-25BD-6C4BF8B6A4B7}</UniqueIdentifier>
     </Filter>
@@ -1389,6 +1395,18 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\ParameterLink\ParameterLink.cpp">
       <Filter>Blux\Source\Common\ParameterLink</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Spatializer\ui\SpatItemViewUI.cpp">
+      <Filter>Blux\Source\Common\Spatializer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Spatializer\ui\SpatManagerView.cpp">
+      <Filter>Blux\Source\Common\Spatializer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Spatializer\SpatItem.cpp">
+      <Filter>Blux\Source\Common\Spatializer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Common\Spatializer\SpatManager.cpp">
+      <Filter>Blux\Source\Common\Spatializer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Common\Zeroconf\ZeroconfManager.cpp">
       <Filter>Blux\Source\Common\Zeroconf</Filter>
@@ -5315,6 +5333,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\ParameterLink\ParameterLink.h">
       <Filter>Blux\Source\Common\ParameterLink</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Spatializer\ui\SpatItemViewUI.h">
+      <Filter>Blux\Source\Common\Spatializer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Spatializer\ui\SpatManagerView.h">
+      <Filter>Blux\Source\Common\Spatializer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Spatializer\SpatItem.h">
+      <Filter>Blux\Source\Common\Spatializer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Common\Spatializer\SpatManager.h">
+      <Filter>Blux\Source\Common\Spatializer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Common\Zeroconf\ZeroconfManager.h">
       <Filter>Blux\Source\Common\Zeroconf</Filter>

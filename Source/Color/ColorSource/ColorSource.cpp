@@ -11,6 +11,9 @@
 #include "Color/ColorIncludes.h"
 #include "Object/ObjectIncludes.h"
 
+#define GetLinkedValue(p) sourceParams.getLinkedValue(p, o, id, time)
+#define GetLinkedValueT(p, time) sourceParams.getLinkedValue(p, o, id, time)
+
 ColorSource::ColorSource(const String& name, var params) :
 	BaseItem(name, false),
 	sourceParams("Parameters"),
@@ -165,7 +168,7 @@ void TimedColorSource::linkToTemplate(ColorSource* st)
 
 void TimedColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
 {
-	float targetTime = getCurrentTime(time) - offsetByID->floatValue() * id + timeOffset->floatValue();
+	float targetTime = getCurrentTime(time) - (float)GetLinkedValue(offsetByID) * id + (float)GetLinkedValue(timeOffset);
 	fillColorsForObjectTimeInternal(colors, o, c, id, targetTime, time);
 }
 

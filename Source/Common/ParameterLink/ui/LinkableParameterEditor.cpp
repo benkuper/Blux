@@ -55,6 +55,20 @@ void LinkableParameterEditor::paint(Graphics& g)
 	case ParameterLink::CUSTOM_PARAM:
 		c = GREEN_COLOR.withBrightness(.7f);
 		break;
+
+	case ParameterLink::OBJECT_POSX:
+	case ParameterLink::OBJECT_POSY:
+	case ParameterLink::OBJECT_POSZ:
+	case ParameterLink::OBJECT_POSXZ:
+	case ParameterLink::OBJECT_POSXYZ:
+		c = YELLOW_COLOR.withBrightness(.7f);
+		break;
+
+	case ParameterLink::SPAT_X:
+	case ParameterLink::SPAT_Z:
+	case ParameterLink::SPAT_XZ:
+		c = Colours::rebeccapurple.withBrightness(.7f);
+		break;
 	}
 
 	if (!paramEditor->isShowing())
@@ -105,12 +119,33 @@ void LinkableParameterEditor::buttonClicked(Button* b)
 		}
 
 		p.addSeparator();
+
+		PopupMenu posSub;
+		posSub.addItem("Position X", [this]() {this->link->setLinkType(this->link->OBJECT_POSX); });
+		posSub.addItem("Position Y", [this]() {this->link->setLinkType(this->link->OBJECT_POSY); });
+		posSub.addItem("Position Z", [this]() {this->link->setLinkType(this->link->OBJECT_POSZ); });
+		posSub.addItem("Position XZ", [this]() {this->link->setLinkType(this->link->OBJECT_POSXZ); });
+		posSub.addItem("Position XYZ", [this]() {this->link->setLinkType(this->link->OBJECT_POSXYZ); });
+		p.addSubMenu("Position", posSub);
+
+		PopupMenu spatSub;
+		for (auto& spat : ObjectManager::getInstance()->spatializer.items)
+		{
+			PopupMenu spatM;
+			spatM.addItem("Position X", [this, spat]() {this->link->setSpatLink(this->link->SPAT_X, spat); });
+			spatM.addItem("Position Z", [this, spat]() {this->link->setSpatLink(this->link->SPAT_Z, spat); });
+			spatM.addItem("Position XZ", [this, spat]() {this->link->setSpatLink(this->link->SPAT_XZ, spat); });
+			spatSub.addSubMenu(spat->niceName, spatM);
+		}
+
+		p.addSubMenu("Spatializer", spatSub);
+
+		p.addSeparator();
 		p.addItem(-1, "Unlink", link->linkType != link->NONE);
 
 		p.showMenuAsync(PopupMenu::Options(), [this](int result)
 			{
 				if (result == -1) this->link->setLinkType(this->link->NONE);
-				else if (result == 1) this->link->setLinkType(this->link->OBJECT_ID);
 				else if (result >= 100) this->link->setLinkedCustomParam((Parameter*)ObjectManager::getInstance()->customParams.items[result - 100]->controllable);
 			}
 		);
@@ -140,6 +175,37 @@ String LinkableParameterEditor::getLinkLabel() const
 		s = "Custom : " + link->linkedCustomParam->niceName;
 		break;
 
+	case ParameterLink::OBJECT_POSX:
+		s = "Position X";
+		break;
+
+	case ParameterLink::OBJECT_POSY:
+		s = "Position Y";
+		break;
+
+	case ParameterLink::OBJECT_POSZ:
+		s = "Position Z";
+		break;
+
+	case ParameterLink::OBJECT_POSXZ:
+		s = "Position XZ";
+		break;
+
+	case ParameterLink::OBJECT_POSXYZ:
+		s = "Position XYZ";
+		break;
+
+	case ParameterLink::SPAT_X:
+		s = "Spat X (" + (link->spatializer != nullptr && !link->spatRef.wasObjectDeleted() ? link->spatializer->niceName : "[deleted]") + ")";
+		break;
+
+	case ParameterLink::SPAT_Z:
+		s = "Spat Z (" + (link->spatializer != nullptr && !link->spatRef.wasObjectDeleted() ? link->spatializer->niceName : "[deleted]") + ")";
+		break;
+
+	case ParameterLink::SPAT_XZ:
+		s = "Spat XZ (" + (link->spatializer != nullptr && !link->spatRef.wasObjectDeleted() ? link->spatializer->niceName : "[deleted]") + ")";
+		break;
 	}
 
 	return s;

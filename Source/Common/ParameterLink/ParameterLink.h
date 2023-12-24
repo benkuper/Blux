@@ -13,16 +13,21 @@
 class Object;
 
 class ParameterLink :
-    public Inspectable::InspectableListener
+    public Inspectable::InspectableListener,
+    public SpatManager::ManagerListener
 {
 public:
-    enum LinkType { NONE, CUSTOM_PARAM, OBJECT_ID };
+    enum LinkType { NONE, CUSTOM_PARAM, OBJECT_ID, OBJECT_POSX, OBJECT_POSY, OBJECT_POSZ, OBJECT_POSXZ, OBJECT_POSXYZ, SPAT_X, SPAT_Z, SPAT_XZ };
     
     ParameterLink(WeakReference<Parameter> p);
     ~ParameterLink();
 
     LinkType linkType;
     WeakReference<Parameter> parameter;
+
+    SpatItem* spatializer;
+    WeakReference<Inspectable> spatRef;
+    String spatGhostName;
 
     bool isLinkable;
 
@@ -33,6 +38,7 @@ public:
     //String replacementString;
 
     void setLinkType(LinkType type);
+    void setSpatLink(LinkType type, SpatItem* spat);
 
     void setLinkedCustomParam(Parameter * p);
     var getLinkedValue(Object * o, int id);
@@ -43,6 +49,11 @@ public:
     WeakReference<Controllable> getLinkedTarget(Object * o);
     WeakReference<ControllableContainer> getLinkedTargetContainer(Object *o);
 
+
+    void itemAdded(SpatItem* item) override;
+    void itemsAdded(Array<SpatItem*> items) override;
+    void itemRemoved(SpatItem* item) override;
+    void itemsRemoved(Array<SpatItem*> items) override;
     
     //String getReplacementString(int multiplexIndex);
 

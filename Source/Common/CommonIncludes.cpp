@@ -34,6 +34,9 @@
 #include "MIDI/ui/MIDIDeviceChooser.cpp"
 #include "MIDI/ui/MIDIDeviceParameterUI.cpp"
 
-
-
 #include "Zeroconf/ZeroconfManager.cpp"
+
+#include "Spatializer/SpatItem.cpp"
+#include "Spatializer/SpatManager.cpp"
+#include "Spatializer/ui/SpatItemViewUI.cpp"
+#include "Spatializer/ui/SpatManagerView.cpp"
