@@ -253,8 +253,11 @@ void ParameterLink::itemsAdded(Array<SpatItem*> items)
 
 	for (auto& item : items)
 	{
-		if (spatGhostName == item->shortName) setSpatLink(linkType, item);
-		return;
+		if (spatGhostName == item->shortName)
+		{
+			setSpatLink(linkType, item);
+			return;
+		}
 	}
 }
 

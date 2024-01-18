@@ -29,6 +29,8 @@ void ColorSourceOverrideEffect::setupSource(const String& type, ColorSource* tem
 		effectParams.removeChildControllableContainer(colorSource.get());
 	}
 
+	effectParams.clear();
+
 	ColorSource* cs = ColorSourceFactory::getInstance()->create(type);
 	colorSource.reset(cs);
 
