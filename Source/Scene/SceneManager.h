@@ -71,7 +71,7 @@ public:
 	void onContainerTriggerTriggered(Trigger* t) override;
 	void onContainerParameterChanged(Parameter* p) override;
 
-	void processMessage(const OSCMessage& m) override;
+	void processMessage(const OSCMessage& m, const String& clientId) override;
 
 	void inspectableDestroyed(Inspectable* i) override;
 

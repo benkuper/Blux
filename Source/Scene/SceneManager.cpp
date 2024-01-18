@@ -288,7 +288,7 @@ void SceneManager::onContainerParameterChanged(Parameter* p)
 	if (p == lockUI) for (auto& i : items) i->isUILocked->setValue(lockUI->boolValue());
 }
 
-void SceneManager::processMessage(const OSCMessage& m)
+void SceneManager::processMessage(const OSCMessage& m, const String& clientId)
 {
 	StringArray addSplit;
 	addSplit.addTokens(m.getAddressPattern().toString(), "/", "\"");
