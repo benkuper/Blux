@@ -138,18 +138,13 @@ void DMXInterface::setDMXValue(int net, int subnet, int universe, int startChann
 	DMXUniverse* u = getUniverse(net, subnet, universe);
 	for (int i = 0; i < values.size(); i++) u->updateValue(startChannel + i, values[i]);
 }
-
-void DMXInterface::dmxDeviceConnected()
+void DMXInterface::dmxDeviceSetupChanged(DMXDevice*)
 {
-	dmxConnected->setValue(true);
+	dmxConnected->setValue(dmxDevice->isConnected->boolValue());
 }
 
-void DMXInterface::dmxDeviceDisconnected()
-{
-	dmxConnected->setValue(false);
-}
 
-void DMXInterface::dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName)
+void DMXInterface::dmxDataInChanged(DMXDevice*, int net, int subnet, int universe, int priority, Array<uint8> values, const String& sourceName)
 {
 	if (isClearing || !enabled->boolValue()) return;
 
@@ -234,7 +229,7 @@ DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool c
 
 	if (!createIfNotExist) return nullptr;
 
-	DMXUniverse* u = new DMXUniverse(net, subnet, universe);
+	DMXUniverse* u = new DMXUniverse(net, subnet, universe, 100);
 	universes.add(u);
 	universeIdMap.set(index, u);
 	return u;

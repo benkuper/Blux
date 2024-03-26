@@ -332,7 +332,7 @@ inline DMXUniverse* RawDataLayer::getUniverse(int net, int subnet, int universe,
 
 	if (!createIfNotExist) return nullptr;
 
-	DMXUniverse* u = new DMXUniverse(net, subnet, universe);
+	DMXUniverse* u = new DMXUniverse(net, subnet, universe, 100);
 	universes.add(u);
 	universeIdMap.set(index, u);
 	return universeIdMap[index];

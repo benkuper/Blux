@@ -54,10 +54,8 @@ public:
 	//void send16BitDMXValue(int net, int subnet, int universe, int startChannel, int value, DMXByteOrder byteOrder);
 	//void send16BitDMXValues(int net, int subnet, int universe, int startChannel, Array<int> values, DMXByteOrder byteOrder);
 
-	void dmxDeviceConnected() override;
-	void dmxDeviceDisconnected() override;
-
-	void dmxDataInChanged(int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") override;
+	virtual void dmxDeviceSetupChanged(DMXDevice* device) override;
+	virtual void dmxDataInChanged(DMXDevice*, int net, int subnet, int universe, int priority, Array<uint8> values, const String& sourceName = "") override;
 
 	void prepareSendValues() override;
 	void sendValuesForObjectInternal(Object* o) override;

@@ -40,7 +40,7 @@ public:
 
 	virtual void sendValuesForObjectInternal(Object* o) override;
 
-    void serialDataReceived(const var&) override;
+    void serialDataReceived(SerialDevice*, const var&) override;
 
     virtual void sendMessage(const String& message, var params = var());
     virtual void sendBytes(Array<uint8> bytes, var params = var());

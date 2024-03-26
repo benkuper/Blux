@@ -9,6 +9,7 @@
 */
 
 #include "Interface/InterfaceIncludes.h"
+#include "Object/ObjectIncludes.h"
 
 SerialInterface::SerialInterface() :
 	Interface("Serial", true),
@@ -19,7 +20,6 @@ SerialInterface::SerialInterface() :
 	portParam = new SerialDeviceParameter("Port", "Serial Port to connect", true);
 	addParameter(portParam);
 	baudRate = addIntParameter("Baud Rate", "The connection speed. Common values are 9600, 57600, 115200", 115200, 9600, 1000000);
-	portParam->openBaudRate = baudRate->intValue();
 
 	isConnected = addBoolParameter("Is Connected", "This is checked if a serial port is connected.", false);
 	isConnected->setControllableFeedbackOnly(true);
@@ -112,11 +112,10 @@ void SerialInterface::onContainerParameterChangedInternal(Parameter* p)
 	}
 	else if (p == baudRate)
 	{
-		portParam->openBaudRate = baudRate->intValue();
 		if (port != nullptr && port->isOpen())
 		{
 			SerialDevice* d = portParam->getDevice();
-			if (d != nullptr) d->setBaudRate(portParam->openBaudRate);
+			if (d != nullptr) d->setBaudRate(baudRate->intValue());
 		}
 
 	}
@@ -156,7 +155,7 @@ void SerialInterface::sendValuesForObjectInternal(Object* o)
 	scriptManager->callFunctionOnAllItems("sendValuesForObject", args);
 }
 
-void SerialInterface::serialDataReceived(const var& data)
+void SerialInterface::serialDataReceived(SerialDevice*, const var& data)
 {
 	if (logIncomingData->boolValue())
 	{
