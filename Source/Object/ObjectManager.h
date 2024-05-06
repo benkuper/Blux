@@ -46,6 +46,8 @@ public:
 	IntParameter* gridThumbSize;
 	FloatParameter* defaultFlashValue;
 	BoolParameter* filterActiveInScene;
+	BoolParameter* showIconForColor;
+	BoolParameter* alwaysShowNamesInUI;
 	BoolParameter* lockUI;
 
 	URL downloadURL;

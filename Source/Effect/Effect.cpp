@@ -37,7 +37,7 @@ Effect::Effect(const String& name, var params) :
 	enabled->setValue(false); //This is to avoid dangerous object manipulation on effect creation
 
 	weight = addFloatParameter("Weight", "Weight of this effect", 1, 0, 1);
-	weight->defaultValue = 0; //this allows for scene lerp default to 0
+	weight->setDefaultValue(0.f, false); //this allows for scene lerp default to 0
 	weight->hideInEditor = true;
 
 

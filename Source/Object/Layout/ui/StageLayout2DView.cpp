@@ -50,7 +50,7 @@ StageLayout2DView::StageLayout2DView(const String& name) :
 	spatManagerView->setVisible(StageLayoutManager::getInstance()->showSpat->boolValue());
 
 	StageLayoutManager::getInstance()->addAsyncContainerListener(this);
-
+	manager->addAsyncContainerListener(this);
 	setShowSearchBar(true);
 
 	addExistingItems();
@@ -58,6 +58,8 @@ StageLayout2DView::StageLayout2DView(const String& name) :
 
 StageLayout2DView::~StageLayout2DView()
 {
+	if (!inspectable.wasObjectDeleted()) manager->removeAsyncContainerListener(this);
+
 	StageLayoutManager::getInstance()->removeAsyncContainerListener(this);
 }
 
@@ -145,6 +147,8 @@ void StageLayout2DView::newMessage(const ContainerAsyncEvent& e)
 				ui->setInterceptsMouseClicks(!locked, !locked);
 			}
 		}
+		else if (e.targetControllable == manager->showIconForColor) for (auto& i : itemsUI) i->updateUI();
+
 		break;
 	default:
 		break;

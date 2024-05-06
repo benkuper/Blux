@@ -8,11 +8,16 @@
   ==============================================================================
 */
 
+#include "Object/ObjectIncludes.h"
+
 GroupUI::GroupUI(Group* item) :
 	BaseItemUI(item),
 	flashMode(false)
 {
 	acceptedDropTypes.add("Object");
+
+	weightUI.reset(item->effectManager->globalWeight->createSlider());
+	addAndMakeVisible(weightUI.get());
 }
 
 GroupUI::~GroupUI()
@@ -106,6 +111,14 @@ bool GroupUI::keyStateChanged(bool isDown)
 		return true;
 	}
 	return false;
+}
+
+void GroupUI::resizedInternalHeader(Rectangle<int>& r)
+{
+	BaseItemUI::resizedInternalHeader(r);
+	r.removeFromRight(2);
+	r.removeFromLeft(2);
+	weightUI->setBounds(r.removeFromRight(100));
 }
 
 void GroupUI::itemDropped(const DragAndDropTarget::SourceDetails& details)

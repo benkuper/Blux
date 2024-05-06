@@ -9,6 +9,7 @@
 */
 
 #include "Effect/EffectIncludes.h"
+#include "EffectManager.h"
 
 juce_ImplementSingleton(EffectFactory);
 
@@ -18,6 +19,11 @@ EffectManager::EffectManager(Group* g) :
 	parentGroup(g)
 {
 	itemDataType = "Effect";
+
+	globalWeight = addFloatParameter("Weight", "Weight of the effect", 1, 0, 1);
+	globalWeight->setDefaultValue(0.f, false); //this allows for scene lerp default to 0
+	globalWeight->hideInEditor = true;
+	includeWeightInScenes = addBoolParameter("Include Weight in Scenes", "Include the manager's weight in the scene data", false);
 
 	managerFactory = EffectFactory::getInstance();
 
@@ -56,7 +62,7 @@ void EffectManager::processComponent(Object* o, ObjectComponent* c, HashMap<Para
 	for (auto& e : items)
 	{
 		if (!e->enabled->boolValue()) continue;
-		e->processComponent(o, c, values, weightMultiplier, id);
+		e->processComponent(o, c, values, weightMultiplier * globalWeight->floatValue(), id);
 	}
 }
 
@@ -78,6 +84,7 @@ void EffectManager::resetEffectsTimes()
 var EffectManager::getSceneData()
 {
 	var data(new DynamicObject());
+	if (includeWeightInScenes->boolValue()) data.getDynamicObject()->setProperty(globalWeight->getControlAddress(), globalWeight->getValue());
 	for (auto& e : items) data.getDynamicObject()->setProperty(e->shortName, e->getSceneData());
 	return data;
 }
@@ -88,9 +95,14 @@ void EffectManager::updateSceneData(var& sceneData)
 
 void EffectManager::lerpFromSceneData(var startData, var endData, float weight)
 {
+	if(includeWeightInScenes->boolValue()) globalWeight->setValue(jmap(weight, (float)startData, (float)endData));
 	for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
 }
 
+InspectableEditor* EffectManager::getEditorInternal(bool isRoot, Array<Inspectable*> inspectables)
+{
+	return new EffectManagerEditor(this, isRoot);
+}
 
 
 EffectFactory::EffectFactory()

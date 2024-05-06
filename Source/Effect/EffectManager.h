@@ -27,6 +27,9 @@ public:
 
     Group* parentGroup;
 
+    BoolParameter* includeWeightInScenes;
+    FloatParameter* globalWeight;
+
     bool forceDisabled;
 
     void setForceDisabled(bool value);
@@ -42,5 +45,6 @@ public:
     var getSceneData();
     void updateSceneData(var& sceneData);
     void lerpFromSceneData(var startData, var endData, float weight);
+    InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables= Array<Inspectable*>()) override;
 
 };

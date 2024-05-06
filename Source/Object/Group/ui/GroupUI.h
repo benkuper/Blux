@@ -19,12 +19,16 @@ public:
 
 
     bool flashMode;
+    std::unique_ptr<FloatSliderUI> weightUI;
+
 
     virtual void mouseDown(const MouseEvent& e) override;
     virtual void mouseDrag(const MouseEvent& e) override;
     virtual void mouseUp(const MouseEvent& e) override;
     
     virtual bool keyStateChanged(bool isDown) override;
+
+    virtual void resizedInternalHeader(Rectangle<int>& r) override;
 
     void itemDropped(const DragAndDropTarget::SourceDetails& details) override;
 };

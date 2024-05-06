@@ -22,13 +22,12 @@ ObjectGridUI::ObjectGridUI(Object* object) :
 	iconIntensityRef(nullptr),
 	flashMode(false)
 {
-
+	highlightOnMouseOver = true;
 	updateThumbnail();
 	bringToFrontOnSelect = false;
 	autoHideWhenDragging = false;
 
 	item->componentManager->addAsyncManagerListener(this);
-
 
 	globalIDUI.reset(item->globalID->createLabelUI());
 	globalIDUI->showLabel = false;
@@ -63,7 +62,7 @@ void ObjectGridUI::paint(Graphics& g)
 
 	if (!transparentBG)
 	{
-		g.setColour(bgColor);
+		g.setColour(isMouseOver() ? bgColor.brighter(.05f) : bgColor);
 		g.fillRoundedRectangle(getLocalBounds().toFloat(), 2);
 	}
 
@@ -92,28 +91,41 @@ void ObjectGridUI::paint(Graphics& g)
 			offMult = 1 - iconIntensityRef->floatValue();
 		}
 
+		Rectangle<float> imgR = r.reduced(6).toFloat();
 		g.setColour(Colours::white);
-		g.drawImage(objectImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
+		g.drawImage(objectImage, imgR.reduced(2), RectanglePlacement::centred);
 
 		if (iconIntensityRef != nullptr && objectONImage.isValid())
 		{
 			g.setColour(Colours::white.withAlpha((1 - offMult)));
-			g.drawImage(objectONImage, r.reduced(6).toFloat(), RectanglePlacement::centred);
+			g.drawImage(objectONImage, imgR.reduced(2), RectanglePlacement::centred);
+		}
+
+		if (ColorComponent* colorComp = item->getComponent<ColorComponent>())
+		{
+			if (colorComp->colorSource != nullptr)
+			{
+				g.setColour(colorComp->mainColor->getColor());
+				g.drawRoundedRectangle(imgR, 2, 2);
+			}
 		}
 	}
+
 }
 
 void ObjectGridUI::paintOverChildren(Graphics& g)
 {
 	if (!isVisible()) return;
 
-	if (!objectImage.isValid() || isMouseOver())
+	if (!objectImage.isValid() || isMouseOver() || ObjectManager::getInstance()->alwaysShowNamesInUI->boolValue())
 	{
-		g.setColour(bgColor.darker().withAlpha(.3f));
-		g.fillRoundedRectangle(getLocalBounds().toFloat(), 2);
-		g.setColour(Colours::white);
+		g.setColour(bgColor.darker().withAlpha(.5f));
+		g.fillRoundedRectangle(getLocalBounds().withSizeKeepingCentre(getWidth() * .7f, getHeight() * .3f).toFloat(), 4);
+		
+		g.setColour(Colours::white.withAlpha(isMouseOver()?.8f:.5f));
 		g.drawFittedText(item->niceName, getLocalBounds().reduced(4), Justification::centred, 3);
 	}
+
 
 	BaseItemMinimalUI::paintOverChildren(g);
 }
@@ -124,7 +136,7 @@ void ObjectGridUI::resized()
 
 	if (globalIDUI == nullptr) return;
 
-	globalIDUI->setVisible(r.getWidth() >= 90);
+	globalIDUI->setVisible(r.getWidth() >= 100);
 	if (globalIDUI->isVisible()) globalIDUI->setBounds(r.withSize(40, 16).reduced(2));
 
 
@@ -137,7 +149,7 @@ void ObjectGridUI::resized()
 
 	if (colorViz != nullptr)
 	{
-		colorViz->setBounds(r.reduced(2));
+		colorViz->setBounds(r.reduced(6));
 	}
 
 	if (mainColorUI != nullptr) mainColorUI->setBounds(getLocalBounds().removeFromRight(16).removeFromTop(16));
@@ -149,10 +161,15 @@ void ObjectGridUI::updateUI()
 {
 	if (ColorComponent* colorComp = item->getComponent<ColorComponent>())
 	{
-		if (colorViz == nullptr)
+		if (colorViz == nullptr && !ObjectManager::getInstance()->showIconForColor->boolValue())
 		{
 			colorViz.reset(new ColorViz(colorComp));
 			addAndMakeVisible(colorViz.get());
+		}
+		else if (colorViz != nullptr)
+		{
+			removeChildComponent(colorViz.get());
+			colorViz.reset();
 		}
 
 		if (mainColorUI != nullptr) removeChildComponent(mainColorUI.get());
@@ -416,6 +433,13 @@ void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 	if (DimmerComponent* ic = c->getParentAs<DimmerComponent>())
 	{
 		shouldRepaint = true;
+	}
+	else if (ColorComponent* cc = c->getParentAs<ColorComponent>())
+	{
+		if (colorViz == nullptr && c == cc->mainColor)
+		{
+			shouldRepaint = true;
+		}
 	}
 	else if (c == item->icon || c == item->customIcon)
 	{

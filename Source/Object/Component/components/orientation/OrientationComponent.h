@@ -10,6 +10,9 @@
 
 #pragma once
 
+#pragma warning(push)
+#pragma warning(disable: 4201)
+
 #include "Quaternion.hpp"
 #include "Vector2.hpp"
 #include "Vector3.hpp"
@@ -66,3 +69,5 @@ public:
 	String getTypeString() const override { return "Orientation"; }
 	static OrientationComponent* create(Object* o, var params) { return new OrientationComponent(o, params); }
 };
+
+#pragma warning(pop)

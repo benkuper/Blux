@@ -1,21 +1,32 @@
 /*
   ==============================================================================
 
-    GlobalEffectManagerUI.h
-    Created: 30 Sep 2020 1:37:01pm
-    Author:  bkupe
+	GlobalEffectManagerUI.h
+	Created: 30 Sep 2020 1:37:01pm
+	Author:  bkupe
 
   ==============================================================================
 */
 
 #pragma once
 
-class GlobalEffectManagerUI :
-    public BaseManagerShapeShifterUI<GlobalEffectManager, EffectGroup, BaseItemUI<EffectGroup>>
+class EffectGroupUI : public BaseItemUI<EffectGroup>
 {
 public:
-    GlobalEffectManagerUI(const String& name);
-    ~GlobalEffectManagerUI();
+	EffectGroupUI(EffectGroup* group);
+	~EffectGroupUI() {}
 
-    static GlobalEffectManagerUI* create(const String& name) { return new GlobalEffectManagerUI(name); }
+	std::unique_ptr<FloatSliderUI> weightUI;
+
+	void resizedInternalHeader(Rectangle<int>& r) override;
+};
+
+class GlobalEffectManagerUI :
+	public BaseManagerShapeShifterUI<GlobalEffectManager, EffectGroup, EffectGroupUI>
+{
+public:
+	GlobalEffectManagerUI(const String& name);
+	~GlobalEffectManagerUI();
+
+	static GlobalEffectManagerUI* create(const String& name) { return new GlobalEffectManagerUI(name); }
 };

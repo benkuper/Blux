@@ -21,8 +21,6 @@ public:
     BluxInspector(InspectableSelectionManager* s);
     ~BluxInspector();
 
-    std::unique_ptr<ColorViz> colorViz;
-
     virtual void setCurrentInspectables(Array<Inspectable*>inspectables = Array<Inspectable*>(), bool setInspectableSelection = true);
     
     void paint(Graphics& g) override;

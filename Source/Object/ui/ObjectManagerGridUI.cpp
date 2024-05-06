@@ -162,7 +162,7 @@ void ObjectManagerGridUI::newMessage(const ContainerAsyncEvent& e)
 	{
 	case ContainerAsyncEvent::ControllableFeedbackUpdate:
 		if (e.targetControllable == manager->gridThumbSize || e.targetControllable == manager->filterActiveInScene) resized();
-
+		else if(e.targetControllable == manager->showIconForColor) for (auto& i : itemsUI) i->updateUI();
 		break;
         default:
             break;
