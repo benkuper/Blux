@@ -197,7 +197,9 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 		FineMode fm = fineMode->getValueDataAsEnum<FineMode>();
 
 		int colorSize = cm == RGB ? 3 : (cm == RGBW || cm == WRGB) ? 4 : 5;
-
+		int finalColorSize = fm == None ? colorSize : colorSize * 2;
+		
+		
 		int temp = whiteTemperature->intValue();
 
 		for (int i = 0; i < outColors.size(); i++)
@@ -212,7 +214,7 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 				c.append(outColors[i].getFloatBlue());
 			}
 
-			int ch = targetChannel + i * colorSize;
+			int ch = targetChannel + i * finalColorSize;
 
 			for (int ci = 0; ci < colorSize; ci++)
 			{
