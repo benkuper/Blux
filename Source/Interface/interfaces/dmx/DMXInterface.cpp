@@ -144,7 +144,7 @@ void DMXInterface::dmxDeviceSetupChanged(DMXDevice*)
 }
 
 
-void DMXInterface::dmxDataInChanged(DMXDevice*, int net, int subnet, int universe, int priority, Array<uint8> values, const String& sourceName)
+void DMXInterface::dmxDataInChanged(DMXDevice*, int net, int subnet, int universe, Array<uint8> values, const String& sourceName)
 {
 	if (isClearing || !enabled->boolValue()) return;
 
@@ -229,7 +229,7 @@ DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool c
 
 	if (!createIfNotExist) return nullptr;
 
-	DMXUniverse* u = new DMXUniverse(net, subnet, universe, 100);
+	DMXUniverse* u = new DMXUniverse(net, subnet, universe);
 	universes.add(u);
 	universeIdMap.set(index, u);
 	return u;
