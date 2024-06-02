@@ -37,7 +37,7 @@ ObjectManager::ObjectManager() :
 	addChildControllableContainer(&spatializer);
 
 	File f = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getChildFile(String(ProjectInfo::projectName) + "/objects");
-	if (!f.isDirectory())
+	if (!f.exists() || !f.isDirectory())
 	{
 		downloadObjects();
 	}
