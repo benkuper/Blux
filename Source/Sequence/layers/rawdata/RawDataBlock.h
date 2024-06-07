@@ -56,6 +56,6 @@ public:
 
 	float getFadeFactorAtTime(float time);
 
-	DECLARE_ASYNC_EVENT(RawDataBlock, RawDataBlock, rawData, ENUM_LIST(LOADED, FADES_CHANGED));
+	DECLARE_ASYNC_EVENT(RawDataBlock, RawDataBlock, rawData, ENUM_LIST(LOADED, FADES_CHANGED), EVENT_ITEM_CHECK);
 	DECLARE_TYPE("Raw Data Block");
 };

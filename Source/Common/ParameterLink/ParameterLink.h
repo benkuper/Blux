@@ -73,7 +73,7 @@ public:
     void addParameterLinkListener(ParameterLinkListener* newListener) { parameterLinkListeners.add(newListener); }
     void removeParameterLinkListener(ParameterLinkListener* listener) { if (isLinkBeingDestroyed) return; parameterLinkListeners.remove(listener); }
 
-    DECLARE_ASYNC_EVENT(ParameterLink, ParameterLink, paramLink, ENUM_LIST(LINK_UPDATED, PREVIEW_UPDATED))
+    DECLARE_ASYNC_EVENT(ParameterLink, ParameterLink, paramLink, ENUM_LIST(LINK_UPDATED, PREVIEW_UPDATED), EVENT_NO_CHECK)
 
 private:
     bool isLinkBeingDestroyed;
