@@ -15,6 +15,7 @@ ParameterLink::ParameterLink(WeakReference<Parameter> p) :
 	parameter(p),
 	isLinkable(true),
 	spatializer(nullptr),
+	isLinkBeingDestroyed(false),
 	//replacementHasMappingInputToken(false),
 	paramLinkNotifier(5)
 {

@@ -71,9 +71,12 @@ public:
 
     ListenerList<ParameterLinkListener> parameterLinkListeners;
     void addParameterLinkListener(ParameterLinkListener* newListener) { parameterLinkListeners.add(newListener); }
-    void removeParameterLinkListener(ParameterLinkListener* listener) { parameterLinkListeners.remove(listener); }
+    void removeParameterLinkListener(ParameterLinkListener* listener) { if (isLinkBeingDestroyed) return; parameterLinkListeners.remove(listener); }
 
     DECLARE_ASYNC_EVENT(ParameterLink, ParameterLink, paramLink, ENUM_LIST(LINK_UPDATED, PREVIEW_UPDATED))
+
+private:
+    bool isLinkBeingDestroyed;
 };
 
 class ParamLinkContainer :
