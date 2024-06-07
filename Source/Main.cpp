@@ -17,8 +17,7 @@ void BluxApplication::initialiseInternal(const String&)
 	//Call after engine init
 	AppUpdater::getInstance()->setURLs("http://benjamin.kuperberg.fr/blux/releases/update.json", "http://benjamin.kuperberg.fr/blux/download/app/", "Blux");
 	HelpBox::getInstance()->helpURL = URL("http://benjamin.kuperberg.fr/blux/help/");
-	CrashDumpUploader::getInstance()->remoteURL = URL("http://benjamin.kuperberg.fr/blux/support/crash_report.php");
-	CrashDumpUploader::getInstance()->crashImage = ImageCache::getFromMemory(BinaryData::crash_png, BinaryData::crash_pngSize);
+	CrashDumpUploader::getInstance()->init("http://benjamin.kuperberg.fr/blux/support/crash_report.php", ImageCache::getFromMemory(BinaryData::crash_png, BinaryData::crash_pngSize));
 
 	DashboardManager::getInstance()->setupDownloadURL("http://benjamin.kuperberg.fr/download/dashboard/dashboard.php");
 
