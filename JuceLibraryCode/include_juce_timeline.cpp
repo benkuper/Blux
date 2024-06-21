@@ -5,4 +5,5 @@
 
 */
 
+#include "AppConfig.h"
 #include <juce_timeline/juce_timeline.cpp>

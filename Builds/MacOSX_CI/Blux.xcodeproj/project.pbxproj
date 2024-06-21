@@ -322,6 +322,7 @@
 		91823631670110779FB732B2 /* GlobalEffectManagerUI.cpp */ /* GlobalEffectManagerUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GlobalEffectManagerUI.cpp; path = ../../Source/Effect/ui/GlobalEffectManagerUI.cpp; sourceTree = SOURCE_ROOT; };
 		91B51EF38C21754319B7330F /* TimedEffect.h */ /* TimedEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimedEffect.h; path = ../../Source/Effect/effects/time/TimedEffect.h; sourceTree = SOURCE_ROOT; };
 		91B525614C6BDB67CCF7D8B9 /* solidcolor.png */ /* solidcolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = solidcolor.png; path = ../../Resources/colorsource/patterns/solidcolor.png; sourceTree = SOURCE_ROOT; };
+		91C3BCB31D81D7C05E05A4E5 /* AppConfig.h */ /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ../../JuceLibraryCode/AppConfig.h; sourceTree = SOURCE_ROOT; };
 		91D8251ED9B80805A02BD255 /* DMXChannelView.h */ /* DMXChannelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DMXChannelView.h; path = ../../Source/Interface/interfaces/dmx/ui/DMXChannelView.h; sourceTree = SOURCE_ROOT; };
 		91F008B594FA3AE37FE84393 /* ActionLayer.cpp */ /* ActionLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ActionLayer.cpp; path = ../../Source/Sequence/layers/action/ActionLayer.cpp; sourceTree = SOURCE_ROOT; };
 		9375257951C29092E736C5EB /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
@@ -1689,6 +1690,7 @@
 		E01E3285D72E4177B4477E1B /* JUCE Library Code */ = {
 			isa = PBXGroup;
 			children = (
+				91C3BCB31D81D7C05E05A4E5,
 				C1EF6A071CA9F578B6CAF58B,
 				FC51EE4B4940C44826922747,
 				560B8CE1FE4FD22367DC01FA,
@@ -1868,7 +1870,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1340;
-				ORGANIZATIONNAME = "";
+				ORGANIZATIONNAME = "Ben Kuper";
 				TargetAttributes = {
 					EB31FE114E9FF7145DD3CBF3 = {
 						SystemCapabilities = {
@@ -2037,42 +2039,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
-					"JUCE_DISPLAY_SPLASH_SCREEN=0",
-					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x7000c",
-					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_processors=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_utils=1",
-					"JUCE_MODULE_AVAILABLE_juce_core=1",
-					"JUCE_MODULE_AVAILABLE_juce_cryptography=1",
-					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
-					"JUCE_MODULE_AVAILABLE_juce_dmx=1",
-					"JUCE_MODULE_AVAILABLE_juce_events=1",
-					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
-					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
-					"JUCE_MODULE_AVAILABLE_juce_gui_extra=1",
-					"JUCE_MODULE_AVAILABLE_juce_opengl=1",
-					"JUCE_MODULE_AVAILABLE_juce_organicui=1",
-					"JUCE_MODULE_AVAILABLE_juce_osc=1",
-					"JUCE_MODULE_AVAILABLE_juce_serial=1",
-					"JUCE_MODULE_AVAILABLE_juce_simpleweb=1",
-					"JUCE_MODULE_AVAILABLE_juce_timeline=1",
-					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
-					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
-					"JUCE_FLOAT_COLOURS=1",
-					"JUCE_USE_WIN_WEBVIEW2=1",
-					"ORGANICUI_USE_SERVUS=1",
-					"ORGANICUI_USE_WEBSERVER=1",
-					"JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1",
-					"JUCE_ENABLE_BROADCAST_BY_DEFAULT=1",
-					"JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1",
-					"JUCE_IP_AND_PORT_DETECTION=1",
-					"JUCE_STANDALONE_APPLICATION=1",
+					"OSC_REMOTE_CONTROL_PORT=43000",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.1b6",
+					"JUCE_APP_VERSION=1.2.1b7",
 					"JUCE_APP_VERSION_HEX=0x10201",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2107,7 +2077,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lserial -lssl -lcrypto -lz";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
+				PRODUCT_BUNDLE_IDENTIFIER = benkuper.Blux;
 				PRODUCT_NAME = "Blux";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE_SKIPPED_SDK_FRAMEWORKS = OpenGL;
@@ -2180,42 +2150,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
-					"JUCE_DISPLAY_SPLASH_SCREEN=0",
-					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x7000c",
-					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_processors=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_utils=1",
-					"JUCE_MODULE_AVAILABLE_juce_core=1",
-					"JUCE_MODULE_AVAILABLE_juce_cryptography=1",
-					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
-					"JUCE_MODULE_AVAILABLE_juce_dmx=1",
-					"JUCE_MODULE_AVAILABLE_juce_events=1",
-					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
-					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
-					"JUCE_MODULE_AVAILABLE_juce_gui_extra=1",
-					"JUCE_MODULE_AVAILABLE_juce_opengl=1",
-					"JUCE_MODULE_AVAILABLE_juce_organicui=1",
-					"JUCE_MODULE_AVAILABLE_juce_osc=1",
-					"JUCE_MODULE_AVAILABLE_juce_serial=1",
-					"JUCE_MODULE_AVAILABLE_juce_simpleweb=1",
-					"JUCE_MODULE_AVAILABLE_juce_timeline=1",
-					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
-					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
-					"JUCE_FLOAT_COLOURS=1",
-					"JUCE_USE_WIN_WEBVIEW2=1",
-					"ORGANICUI_USE_SERVUS=1",
-					"ORGANICUI_USE_WEBSERVER=1",
-					"JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1",
-					"JUCE_ENABLE_BROADCAST_BY_DEFAULT=1",
-					"JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1",
-					"JUCE_IP_AND_PORT_DETECTION=1",
-					"JUCE_STANDALONE_APPLICATION=1",
+					"OSC_REMOTE_CONTROL_PORT=43000",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.1b6",
+					"JUCE_APP_VERSION=1.2.1b7",
 					"JUCE_APP_VERSION_HEX=0x10201",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2251,7 +2189,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lserial -lssl -lcrypto -lz";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
+				PRODUCT_BUNDLE_IDENTIFIER = benkuper.Blux;
 				PRODUCT_NAME = "Blux";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE_SKIPPED_SDK_FRAMEWORKS = OpenGL;
@@ -2275,42 +2213,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
-					"JUCE_DISPLAY_SPLASH_SCREEN=0",
-					"JUCE_USE_DARK_SPLASH_SCREEN=1",
-					"JUCE_PROJUCER_VERSION=0x7000c",
-					"JUCE_MODULE_AVAILABLE_juce_audio_basics=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_devices=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_formats=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_processors=1",
-					"JUCE_MODULE_AVAILABLE_juce_audio_utils=1",
-					"JUCE_MODULE_AVAILABLE_juce_core=1",
-					"JUCE_MODULE_AVAILABLE_juce_cryptography=1",
-					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
-					"JUCE_MODULE_AVAILABLE_juce_dmx=1",
-					"JUCE_MODULE_AVAILABLE_juce_events=1",
-					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
-					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
-					"JUCE_MODULE_AVAILABLE_juce_gui_extra=1",
-					"JUCE_MODULE_AVAILABLE_juce_opengl=1",
-					"JUCE_MODULE_AVAILABLE_juce_organicui=1",
-					"JUCE_MODULE_AVAILABLE_juce_osc=1",
-					"JUCE_MODULE_AVAILABLE_juce_serial=1",
-					"JUCE_MODULE_AVAILABLE_juce_simpleweb=1",
-					"JUCE_MODULE_AVAILABLE_juce_timeline=1",
-					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
-					"JUCE_STRICT_REFCOUNTEDPOINTER=1",
-					"JUCE_FLOAT_COLOURS=1",
-					"JUCE_USE_WIN_WEBVIEW2=1",
-					"ORGANICUI_USE_SERVUS=1",
-					"ORGANICUI_USE_WEBSERVER=1",
-					"JUCE_ALLOW_SPECIAL_CHARS_IN_ADDRESS=1",
-					"JUCE_ENABLE_BROADCAST_BY_DEFAULT=1",
-					"JUCE_EXCLUSIVE_BINDING_BY_DEFAULT=1",
-					"JUCE_IP_AND_PORT_DETECTION=1",
-					"JUCE_STANDALONE_APPLICATION=1",
+					"OSC_REMOTE_CONTROL_PORT=43000",
 					"JUCE_COREGRAPHICS_DRAW_ASYNC=1",
 					"JUCER_XCODE_MAC_2F3811D6=1",
-					"JUCE_APP_VERSION=1.2.1b6",
+					"JUCE_APP_VERSION=1.2.1b7",
 					"JUCE_APP_VERSION_HEX=0x10201",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
@@ -2346,7 +2252,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lserial -lssl -lcrypto -lz";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Blux;
+				PRODUCT_BUNDLE_IDENTIFIER = benkuper.Blux;
 				PRODUCT_NAME = "Blux";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE_SKIPPED_SDK_FRAMEWORKS = OpenGL;

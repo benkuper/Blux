@@ -13,7 +13,7 @@
     <key>CFBundleIconFile</key>
     <string>Icon.icns</string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.Blux</string>
+    <string>benkuper.Blux</string>
     <key>CFBundleName</key>
     <string>Blux</string>
     <key>CFBundleDisplayName</key>
@@ -23,11 +23,11 @@
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.2.1b6</string>
+    <string>1.2.1b7</string>
     <key>CFBundleVersion</key>
-    <string>1.2.1b6</string>
+    <string>1.2.1b7</string>
     <key>NSHumanReadableCopyright</key>
-    <string></string>
+    <string>Ben Kuper</string>
     <key>NSHighResolutionCapable</key>
     <true/>
   </dict>

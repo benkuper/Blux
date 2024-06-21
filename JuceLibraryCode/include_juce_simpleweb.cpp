@@ -5,4 +5,5 @@
 
 */
 
+#include "AppConfig.h"
 #include <juce_simpleweb/juce_simpleweb.cpp>

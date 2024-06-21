@@ -5,4 +5,5 @@
 
 */
 
+#include "AppConfig.h"
 #include <juce_serial/juce_serial.cpp>
