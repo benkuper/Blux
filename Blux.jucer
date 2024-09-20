@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" jucerFormatVersion="1"
-              version="1.2.1b7" headerPath="../../Source" cppLanguageStandard="17"
+              version="1.2.1b8" headerPath="../../Source" cppLanguageStandard="17"
               projectLineFeed="&#10;" bundleIdentifier="benkuper.Blux" defines="OSC_REMOTE_CONTROL_PORT=43000"
               companyName="Ben Kuper" companyCopyright="Ben Kuper" companyWebsite="https://benjamin.kuperberg.fr/blux">
   <MAINGROUP id="JrFmSt" name="Blux">
@@ -816,7 +816,7 @@
                        binaryPath="Binaries/Debug"/>
         <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
                        libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
-                       binaryPath="Binaries/" alwaysGenerateDebugSymbols="1"/>
+                       binaryPath="Binaries/" alwaysGenerateDebugSymbols="1" debugInformationFormat="ProgramDatabase"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics"/>

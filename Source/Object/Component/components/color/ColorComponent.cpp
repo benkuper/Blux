@@ -22,7 +22,7 @@ ColorComponent::ColorComponent(Object* o, var params) :
 	useDimmerForOpacity = addBoolParameter("Use Dimmer for Opacity", "If checked, use the dimmer component for color opacity", false);
 
 	colorMode = addEnumParameter("Color Mode", "Color mode for this object");
-	colorMode->addOption("RGB", RGB)->addOption("RGBW", RGBW)->addOption("WRGB", WRGB)->addOption("RGBAW", RGBAW)->addOption("RGBWA", RGBWA);
+	colorMode->addOption("RGB", RGB)->addOption("RGBW", RGBW)->addOption("WRGB", WRGB)->addOption("RGBAW", RGBAW)->addOption("RGBWA", RGBWA)->addOption("CMY", CMY);
 
 	fineMode = addEnumParameter("Fine Mode", "Fine Color Mode for this object. None means not using fine channels. Alternate means R/R fine, G/G fine, etc. Follow means R/G/B/R fine/G fine/ B fine, etc.");
 	fineMode->addOption("None", None)->addOption("Alternate", Alternate)->addOption("Follow", Follow);
@@ -196,10 +196,10 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 
 		FineMode fm = fineMode->getValueDataAsEnum<FineMode>();
 
-		int colorSize = cm == RGB ? 3 : (cm == RGBW || cm == WRGB) ? 4 : 5;
+		int colorSize = (cm == RGB || cm == CMY) ? 3 : (cm == RGBW || cm == WRGB) ? 4 : 5;
 		int finalColorSize = fm == None ? colorSize : colorSize * 2;
-		
-		
+
+
 		int temp = whiteTemperature->intValue();
 
 		for (int i = 0; i < outColors.size(); i++)
@@ -207,6 +207,12 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 			var c;
 			if (cm == RGBW || cm == WRGB) c = ColorHelpers::getRGBWFromRGB(outColors[i], temp);
 			else if (cm == RGBWA || cm == RGBAW) c = ColorHelpers::getRGBWAFromRGB(outColors[i], temp);
+			else if (cm == CMY)
+			{
+				c.append(1 - outColors[i].getFloatRed());
+				c.append(1 - outColors[i].getFloatGreen());
+				c.append(1 - outColors[i].getFloatBlue());
+			}
 			else
 			{
 				c.append(outColors[i].getFloatRed());
@@ -290,7 +296,7 @@ void ColorComponent::onControllableFeedbackUpdateInternal(ControllableContainer*
 				Array<Object*> selObjects = InspectableSelectionManager::mainSelectionManager->getInspectablesAs<Object>();
 				for (auto& o : selObjects)
 				{
-					if(o == object) continue;
+					if (o == object) continue;
 					if (ColorComponent* cc = dynamic_cast<ColorComponent*>(o->getComponentForType(ComponentType::COLOR)))
 					{
 						if (ColorParameter* ccp = cc->colorSource->getMainColorParameter())
@@ -302,7 +308,7 @@ void ColorComponent::onControllableFeedbackUpdateInternal(ControllableContainer*
 				isChangingMainColor = false;
 			}
 		}
-		
+
 	}
 }
 

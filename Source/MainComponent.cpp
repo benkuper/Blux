@@ -9,7 +9,6 @@ ApplicationCommandManager& getCommandManager();
 MainComponent::MainComponent()
 {
 	setSize(800, 600);
-	getCommandManager().registerAllCommandsForTarget(this);
 }
 
 MainComponent::~MainComponent()
