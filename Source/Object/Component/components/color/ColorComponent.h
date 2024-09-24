@@ -35,14 +35,15 @@ public:
 
 	std::unique_ptr<PixelShape> pixelShape;
 
-	enum ColorMode { RGB, RGBW, WRGB, RGBAW, RGBWA, CMY, MODES_MAX };
+	enum ColorMode { RGB, RGBW, WRGB, RGBAW, RGBWA, CMY, HS, MODES_MAX };
 	const int colorModeIndices[MODES_MAX][5] = {
 		{ 0, 1, 2, -1, -1},
 		{ 0, 1, 2, 3, -1 },
 		{ 3, 0, 1, 2, -1 },
 		{ 0, 1, 2, 4, 3 },
 		{ 0, 1, 2, 3, 4 },
-		{0,1,2,-1,-1 }
+		{ 0, 1, 2, -1, -1},
+		{ 0, 1, -1, -1, -1}
 	};
 
 	enum FineMode { None, Alternate, Follow };

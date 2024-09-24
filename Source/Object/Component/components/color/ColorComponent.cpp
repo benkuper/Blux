@@ -22,7 +22,7 @@ ColorComponent::ColorComponent(Object* o, var params) :
 	useDimmerForOpacity = addBoolParameter("Use Dimmer for Opacity", "If checked, use the dimmer component for color opacity", false);
 
 	colorMode = addEnumParameter("Color Mode", "Color mode for this object");
-	colorMode->addOption("RGB", RGB)->addOption("RGBW", RGBW)->addOption("WRGB", WRGB)->addOption("RGBAW", RGBAW)->addOption("RGBWA", RGBWA)->addOption("CMY", CMY);
+	colorMode->addOption("RGB", RGB)->addOption("RGBW", RGBW)->addOption("WRGB", WRGB)->addOption("RGBAW", RGBAW)->addOption("RGBWA", RGBWA)->addOption("CMY", CMY)->addOption("Hue-Saturation", HS);
 
 	fineMode = addEnumParameter("Fine Mode", "Fine Color Mode for this object. None means not using fine channels. Alternate means R/R fine, G/G fine, etc. Follow means R/G/B/R fine/G fine/ B fine, etc.");
 	fineMode->addOption("None", None)->addOption("Alternate", Alternate)->addOption("Follow", Follow);
@@ -196,7 +196,24 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 
 		FineMode fm = fineMode->getValueDataAsEnum<FineMode>();
 
-		int colorSize = (cm == RGB || cm == CMY) ? 3 : (cm == RGBW || cm == WRGB) ? 4 : 5;
+		int colorSize = 3;
+
+		switch (cm)
+		{
+		case HS:
+			colorSize = 2;
+			break;
+
+		case RGBW:
+		case WRGB:
+			colorSize = 4;
+			break;
+
+		default:
+			colorSize = 3;
+			break;
+		}
+
 		int finalColorSize = fm == None ? colorSize : colorSize * 2;
 
 
@@ -205,19 +222,41 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 		for (int i = 0; i < outColors.size(); i++)
 		{
 			var c;
-			if (cm == RGBW || cm == WRGB) c = ColorHelpers::getRGBWFromRGB(outColors[i], temp);
-			else if (cm == RGBWA || cm == RGBAW) c = ColorHelpers::getRGBWAFromRGB(outColors[i], temp);
-			else if (cm == CMY)
+
+			switch (cm)
 			{
+
+			case HS:
+			{
+				float h, s, b;
+				outColors[i].getHSB(h, s, b);
+
+				c.append(h);
+				c.append(s);
+			}
+			break;
+
+			case RGBW:
+			case WRGB:
+				c = ColorHelpers::getRGBWFromRGB(outColors[i], temp);
+				break;
+
+			case RGBAW:
+			case RGBWA:
+				c = ColorHelpers::getRGBWAFromRGB(outColors[i], temp);
+				break;
+
+			case CMY:
 				c.append(1 - outColors[i].getFloatRed());
 				c.append(1 - outColors[i].getFloatGreen());
 				c.append(1 - outColors[i].getFloatBlue());
-			}
-			else
-			{
+				break;
+
+			default:
 				c.append(outColors[i].getFloatRed());
 				c.append(outColors[i].getFloatGreen());
 				c.append(outColors[i].getFloatBlue());
+				break;
 			}
 
 			int ch = targetChannel + i * finalColorSize;
@@ -256,18 +295,6 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 
 	ObjectComponent::fillInterfaceDataInternal(i, data, params);
 }
-
-//void ColorComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
-//{
-//	int index = startChannel + (ignoreChannelOffset ? 0 : channelOffset);
-//	for (auto& c : outColors)
-//	{
-//		channelValueMap.set(index++, c.getFloatRed());
-//		channelValueMap.set(index++, c.getFloatGreen());
-//		channelValueMap.set(index++, c.getFloatBlue());
-//		//if(useAlpha) channelValueMap.set(index++, c.getFloatAlpha());
-//	}
-//}
 
 void ColorComponent::onContainerParameterChangedInternal(Parameter* p)
 {
