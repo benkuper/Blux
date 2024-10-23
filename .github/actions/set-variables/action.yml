@@ -1,0 +1,48 @@
+name: 'Set Variables'
+description: 'Set app version suffix'
+inputs:
+  os:
+    description: 'OS designator'
+    required: true
+outputs:
+  suffix:
+    description: 'Suffix for the compiled version'
+    value: ${{ steps.main.outputs.suffix }}
+
+  config:
+    description: 'Config to use (Win only)'
+    value: ${{ steps.main.outputs.config }}
+
+  dep:
+    description: 'Dependency file suffix'
+    value: ${{ steps.main.outputs.dep }}
+
+runs:
+  using: "composite"
+  steps: 
+    - name: Check Tag
+      id: main
+      run: |
+        if [[ $GITHUB_REF == *"refs/tags/"* ]]
+        then
+          echo "Found Tag : ${GITHUB_REF#refs/tags/}"
+          echo "suffix=${{ inputs.os }}-${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "config=Release" >> $GITHUB_OUTPUT
+          echo "dep=release" >> $GITHUB_OUTPUT
+        else
+          echo "suffix=${{ inputs.os }}-bleedingedge" >> $GITHUB_OUTPUT
+          echo "config=Release" >> $GITHUB_OUTPUT
+          echo "dep=release" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+      
+    - name: Set JUCE branch
+      run: |
+        if [[ "${{ github.ref }}" == "refs/heads/juce8" ]]
+        then
+          echo "Using JUCE 8 branch"
+          echo "juce-branch=juce8_local" >> $GITHUB_ENV
+        else
+          echo "juce-branch=develop-local" >> $GITHUB_ENV
+        fi
+      shell: bash

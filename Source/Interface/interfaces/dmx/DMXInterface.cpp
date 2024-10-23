@@ -17,14 +17,11 @@ DMXInterface::DMXInterface() :
 	Thread("DMX Interface"),
 	dmxInterfaceNotifier(20)
 {
+
 	dmxType = addEnumParameter("DMX Type", "Choose the type of dmx interface you want to connect");
 
 	dmxType->addOption("Open DMX", DMXDevice::OPENDMX)->addOption("Enttec DMX Pro", DMXDevice::ENTTEC_DMXPRO)->addOption("Enttec DMX MkII", DMXDevice::ENTTEC_MK2)->addOption("Art-Net", DMXDevice::ARTNET)->addOption("sACN/E1.31", DMXDevice::SACN);
 	dmxType->setValueWithKey("Open DMX");
-
-	dmxConnected = addBoolParameter("Connected", "DMX is connected ?", false);
-	dmxConnected->isControllableFeedbackOnly = true;
-	dmxConnected->isSavable = false;
 
 	defaultNet = addIntParameter("Net", "If appliccable the net for this universe", 0, 0, 15, false);
 	defaultSubnet = addIntParameter("Subnet", "If applicable the subnet for this universe", 0, 0, 15, false);
@@ -41,12 +38,6 @@ DMXInterface::DMXInterface() :
 	channelTestingFlashValue->hideInEditor = true;
 
 	setCurrentDMXDevice(DMXDevice::create((DMXDevice::Type)(int)dmxType->getValueData()));
-
-	//for (int i = 0; i < DMX_MAX_UNIVERSES;i++)
-	//{
-		//DMXUniverse * u = getUniverse(i >> 8 & 0xf, i >> 4 & 0xf, i & 0x7f);
-		//DBG("Create " << u->toString());
-	//}
 }
 
 DMXInterface::~DMXInterface()
@@ -92,17 +83,11 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 
 	dmxDevice.reset(d);
 
-	dmxConnected->hideInEditor = dmxDevice == nullptr || dmxDevice->type == DMXDevice::ARTNET;
-	dmxConnected->setValue(false);
-
 	if (dmxDevice != nullptr)
 	{
 		dmxDevice->enabled = enabled->boolValue();
 		dmxDevice->addDMXDeviceListener(this);
 		addChildControllableContainer(dmxDevice.get());
-		dmxConnected->setValue(true);
-
-
 
 		switch (dmxDevice->type)
 		{
@@ -130,7 +115,14 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 		}
 	}
 
+	interfaceNotifier.addMessage(new InterfaceEvent(InterfaceEvent::DEVICE_CHANGED, this));
+
 	if (enabled->boolValue() && dmxDevice != nullptr) startThread();
+}
+
+void DMXInterface::dmxDeviceSetupChanged(DMXDevice*)
+{
+	interfaceNotifier.addMessage(new InterfaceEvent(InterfaceEvent::DEVICE_CHANGED, this));
 }
 
 void DMXInterface::setDMXValue(int net, int subnet, int universe, int startChannel, Array<int> values)
@@ -138,11 +130,6 @@ void DMXInterface::setDMXValue(int net, int subnet, int universe, int startChann
 	DMXUniverse* u = getUniverse(net, subnet, universe);
 	for (int i = 0; i < values.size(); i++) u->updateValue(startChannel + i, values[i]);
 }
-void DMXInterface::dmxDeviceSetupChanged(DMXDevice*)
-{
-	dmxConnected->setValue(dmxDevice->isConnected->boolValue());
-}
-
 
 void DMXInterface::dmxDataInChanged(DMXDevice*, int net, int subnet, int universe, Array<uint8> values, const String& sourceName)
 {
@@ -212,15 +199,46 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 
 void DMXInterface::finishSendValues()
 {
-	GenericScopedLock lock(universesToSend.getLock());
-	universesToSend.clear();
+	bool hasOneDirty = false;
+	Array<DMXUniverse*> universesToAdd;
+
+	String sentUniverses = "";
+
+	bool sendOnChange = sendOnChangeOnly->boolValue();
+	bool log = logOutgoingData->boolValue();
+
 	for (auto& u : universes)
 	{
-		universesToSend.add(new DMXUniverse(u));
+		if (!u->isDirty && sendOnChange) continue;
+		universesToAdd.add(new DMXUniverse(u));
+		hasOneDirty |= u->isDirty;
 		u->isDirty = false;
+
+		if (log) sentUniverses += "\n" + u->toString();
+
+		Array<uint8> values(u->values.getRawDataPointer(), u->values.size());
+		dmxInterfaceNotifier.addMessage(new DMXInterfaceEvent(DMXInterfaceEvent::UNIVERSE_SENT, u, values));
 	}
+
+	universesToSend.clear();
+	universesToSend.addArray(universesToAdd);
+
+	outActivityTrigger->trigger();
+	if (hasOneDirty && log)
+	{
+		NLOG(niceName, "Sending Universes : " + sentUniverses);
+	}
+
+	
 }
 
+
+
+BoolParameter* DMXInterface::getConnectedParam()
+{
+	if (dmxDevice != nullptr) return dmxDevice->isConnected;
+	return nullptr;
+}
 
 DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool createIfNotExist)
 {
@@ -237,36 +255,34 @@ DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool c
 
 void DMXInterface::run()
 {
-
+	setPriority(Thread::Priority::high);
 	while (!threadShouldExit())
 	{
 		double loopStartTime = Time::getMillisecondCounterHiRes();
 
 		{
-			//if (dmxDevice == nullptr) return;
-
 			bool sendOnChange = sendOnChangeOnly->boolValue();
 
-			GenericScopedLock lock(universesToSend.getLock());
+			{
+				GenericScopedLock dlock(deviceLock);
+				if (dmxDevice == nullptr) continue;
+			}
+
+			GenericScopedLock ulock(universesToSend.getLock());
+
 			for (auto& u : universesToSend)
 			{
-				if (sendOnChange && !u->isDirty) continue;
+				if (sendOnChange && !u->isDirty)
 				{
-					GenericScopedLock lock(deviceLock);
-					if (dmxDevice != nullptr) dmxDevice->sendDMXValues(u);
+					DBG("skipping here");
+					continue;
 				}
 
-
-				if (logOutgoingData->boolValue())
-				{
-					outActivityTrigger->trigger();
-					NLOG(niceName, "Sending Universe " << u->toString());
-				}
-
-				Array<uint8> values(u->values.getRawDataPointer(), u->values.size());
-				dmxInterfaceNotifier.addMessage(new DMXInterfaceEvent(DMXInterfaceEvent::UNIVERSE_SENT, u, values));
+				dmxDevice->sendDMXValues(u);
 
 			}
+
+
 		}
 
 
@@ -274,8 +290,15 @@ void DMXInterface::run()
 		double diffTime = t - loopStartTime;
 		double rateMS = 1000.0 / sendRate->intValue();
 
+
+
 		double msToWait = rateMS - diffTime;
+
 		if (msToWait > 0) wait(msToWait);
+		else
+		{
+			LOGWARNING("DMX Interface loop took too long : " << (int)(diffTime) << "ms");
+		}
 
 	}
 }

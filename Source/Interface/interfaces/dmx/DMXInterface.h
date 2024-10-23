@@ -47,19 +47,17 @@ public:
 	void onContainerParameterChanged(Parameter* p) override;
 
 	void setCurrentDMXDevice(DMXDevice* d);
+	
+	void dmxDeviceSetupChanged(DMXDevice*) override;
 
 	void setDMXValue(int net, int subnet, int universe, int startChannel, Array<int> values);
-	//void sendDMXValues(int net, int subnet, int universe, int startChannel, Array<int> values);
-	//void sendDMXValue(int net, int subnet, int universe, int channel, int value);
-	//void send16BitDMXValue(int net, int subnet, int universe, int startChannel, int value, DMXByteOrder byteOrder);
-	//void send16BitDMXValues(int net, int subnet, int universe, int startChannel, Array<int> values, DMXByteOrder byteOrder);
-
-	virtual void dmxDeviceSetupChanged(DMXDevice* device) override;
 	virtual void dmxDataInChanged(DMXDevice*, int net, int subnet, int universe, Array<uint8> values, const String& sourceName = "") override;
 
 	void prepareSendValues() override;
 	void sendValuesForObjectInternal(Object* o) override;
 	void finishSendValues() override;
+
+	BoolParameter* getConnectedParam() override;
 
 	DMXUniverse* getUniverse(int net, int subnet, int universe, bool createIfNotExist = true);
 

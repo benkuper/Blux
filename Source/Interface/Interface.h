@@ -33,7 +33,11 @@ public:
     virtual void sendValuesForObjectInternal(Object* o) {}
     virtual void finishSendValues() {}
 
+    virtual BoolParameter* getConnectedParam() { return nullptr; }
+
     virtual ControllableContainer* getInterfaceParams() { return new ControllableContainer("Interface parameters"); }
 
     virtual InterfaceUI* createUI();
+
+    DECLARE_ASYNC_EVENT(Interface, Interface, interface, ENUM_LIST(DEVICE_CHANGED), EVENT_ITEM_CHECK);
 };

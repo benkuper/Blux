@@ -13,7 +13,8 @@
 #include "ui/InterfaceUI.h"
 
 Interface::Interface(String name, bool canHaveScripts) :
-	BaseItem(name, true, canHaveScripts)
+	BaseItem(name, true, canHaveScripts),
+	interfaceNotifier(5)
 {
 	saveAndLoadRecursiveData = true;
 

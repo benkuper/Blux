@@ -9,6 +9,7 @@
 */
 
 #include "Interface/InterfaceIncludes.h"
+#include "UI/AssetManager.h"
 
 InterfaceUI::InterfaceUI(Interface* item) :
 	BaseItemUI(item)
@@ -20,10 +21,15 @@ InterfaceUI::InterfaceUI(Interface* item) :
 	outActivityUI.reset(item->outActivityTrigger->createImageUI(AssetManager::getInstance()->outImage));
 	outActivityUI->showLabel = false;
 	addAndMakeVisible(outActivityUI.get());
+
+	updateConnectedUI();
+
+	item->addAsyncCoalescedInterfaceListener(this);
 }
 
 InterfaceUI::~InterfaceUI()
 {
+	item->removeAsyncInterfaceListener(this);
 }
 
 void InterfaceUI::paintOverChildren(Graphics& g)
@@ -49,6 +55,10 @@ void InterfaceUI::resizedHeader(Rectangle<int>& r)
 
 	outActivityUI->setBounds(r.removeFromRight(r.getHeight()));
 	inActivityUI->setBounds(r.removeFromRight(r.getHeight()));
+	if (connectedUI != nullptr)
+	{
+		connectedUI->setBounds(r.removeFromRight(r.getHeight()));
+	}
 }
 
 void InterfaceUI::mouseDown(const MouseEvent& e)
@@ -56,6 +66,37 @@ void InterfaceUI::mouseDown(const MouseEvent& e)
 	BaseItemUI::mouseDown(e);
 	if (e.eventComponent == inActivityUI.get()) item->logIncomingData->setValue(!item->logIncomingData->boolValue());
 	else if (e.eventComponent == outActivityUI.get()) item->logOutgoingData->setValue(!item->logOutgoingData->boolValue());
+}
+
+void InterfaceUI::updateConnectedUI()
+{
+	if (BoolParameter* p = item->getConnectedParam())
+	{
+		if (connectedUI != nullptr && connectedUI->parameter == p) return;
+
+		if (p == nullptr)
+		{
+			removeChildComponent(connectedUI.get());
+			connectedUI.reset();
+		}
+		else
+		{
+			connectedUI.reset(p->createToggle(BluxAssetManager::getImage("connected"), BluxAssetManager::getImage("disconnected")));
+			addAndMakeVisible(connectedUI.get());
+		}
+	}
+
+	resized();
+}
+
+void InterfaceUI::newMessage(const Interface::InterfaceEvent& e)
+{
+	switch (e.type)
+	{
+	case Interface::InterfaceEvent::DEVICE_CHANGED:
+		updateConnectedUI();
+		break;
+	}
 }
 
 
