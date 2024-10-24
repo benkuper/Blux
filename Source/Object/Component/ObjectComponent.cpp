@@ -49,16 +49,16 @@ void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 	{
 		interfaceParamCC.setNiceName("DMX Parameters");
 
-		int i = 1;
+		int i = componentParams.getProperty("channel", 1);
 		for (auto& cp : computedParameters)
 		{
 			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName + " Channel", "Channel for this parameter", i, 1, 512, true);
 			p->canBeDisabledByUser = true;
-			if (!checkDefaultInterfaceParamEnabled(cp)) cp->setEnabled(false);
+			if (!checkDefaultInterfaceParamEnabled(computedParamMap[cp])) p->setEnabled(false);
+			else  i += p->isComplex() ? p->value.size() : 1;
 
 			interfaceParams.add(p);
 			computedInterfaceMap.set(cp, p);
-			i += p->value.size();
 		}
 	}
 
@@ -169,7 +169,7 @@ void ObjectComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 
 void ObjectComponent::setupFromJSONDefinition(var data)
 {
-	//interfaceParams.loadJSONData(data.getProperty("interf")) = (int)data.getProperty("channel", 1) - 1; //-1 because it's an offset and definitions are defining with first channel = 1
+	componentParams = data;
 }
 
 var ObjectComponent::getSceneData()
@@ -180,7 +180,7 @@ var ObjectComponent::getSceneData()
 	for (auto& p : sceneDataParameters)
 	{
 		if (p == nullptr || p.wasObjectDeleted()) continue;
-		if(p->isControllableFeedbackOnly) continue;
+		if (p->isControllableFeedbackOnly) continue;
 		data.getDynamicObject()->setProperty(p->getControlAddress(this), p->getValue());
 	}
 

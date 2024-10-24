@@ -22,7 +22,8 @@ public:
     virtual ~ObjectComponent();
     
     Object* object;
-
+    var componentParams;
+    
     Parameter* mainParameter;
 
     ComponentType componentType;

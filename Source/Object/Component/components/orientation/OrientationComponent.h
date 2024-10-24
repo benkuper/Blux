@@ -55,6 +55,7 @@ public:
 	Point3DParameter* debugPos;
 
 
+
 	void setPanTiltFromTarget(Vec3 worldTarget);
 	Vec3 inverseTransformPoint(Vec3 localPos, Vec3 localRot, Vec3 localScale, Vec3 targetPos);
 

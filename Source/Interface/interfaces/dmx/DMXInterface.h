@@ -38,6 +38,7 @@ public:
 	OwnedArray<DMXUniverse> universes;
 	HashMap<int, DMXUniverse*> universeIdMap; //internally used
 
+
 	void clearItem() override;
 
 	void onContainerParameterChanged(Parameter* p) override;
