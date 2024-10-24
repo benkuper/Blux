@@ -14,7 +14,6 @@
 
 DMXInterface::DMXInterface() :
 	Interface(getTypeString()),
-	Thread("DMX Interface"),
 	dmxInterfaceNotifier(20)
 {
 
@@ -27,7 +26,6 @@ DMXInterface::DMXInterface() :
 	defaultSubnet = addIntParameter("Subnet", "If applicable the subnet for this universe", 0, 0, 15, false);
 	defaultUniverse = addIntParameter("Universe", "The universe", 0, 0, 15, false);
 
-	sendRate = addIntParameter("Send Rate", "The rate at which to send data.", 40, 1, 200);
 	sendOnChangeOnly = addBoolParameter("Send On Change Only", "Only send a universe if one of its channels has changed", false);
 
 
@@ -55,10 +53,7 @@ void DMXInterface::onContainerParameterChanged(Parameter* p)
 	Interface::onContainerParameterChanged(p);
 	if (p == enabled)
 	{
-		if (dmxDevice != nullptr) dmxDevice->enabled = enabled->boolValue();
-		if (enabled->boolValue() && dmxDevice != nullptr) startThread();
-		else stopThread(1000);
-
+		if (dmxDevice != nullptr) dmxDevice->setEnabled(enabled->boolValue());
 	}
 	else if (p == dmxType)
 	{
@@ -69,8 +64,6 @@ void DMXInterface::onContainerParameterChanged(Parameter* p)
 void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 {
 	if (dmxDevice.get() == d) return;
-
-	stopThread(1000);
 
 	GenericScopedLock lock(deviceLock);
 
@@ -116,8 +109,6 @@ void DMXInterface::setCurrentDMXDevice(DMXDevice* d)
 	}
 
 	interfaceNotifier.addMessage(new InterfaceEvent(InterfaceEvent::DEVICE_CHANGED, this));
-
-	if (enabled->boolValue() && dmxDevice != nullptr) startThread();
 }
 
 void DMXInterface::dmxDeviceSetupChanged(DMXDevice*)
@@ -192,7 +183,7 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 
 	for (int i = 0; i < channelsData.size(); i++)
 	{
-		if (logOutgoingData->boolValue()) NLOG(niceName, String(i + 1) << " : " << (int)(channelsData[i]));
+		//if (logOutgoingData->boolValue()) NLOG(niceName, String(i + 1) << " : " << (int)(channelsData[i]));
 		u->updateValue(i, (int)channelsData[i], sOnChangeOnly);
 	}
 }
@@ -200,36 +191,35 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 void DMXInterface::finishSendValues()
 {
 	bool hasOneDirty = false;
-	Array<DMXUniverse*> universesToAdd;
 
 	String sentUniverses = "";
 
 	bool sendOnChange = sendOnChangeOnly->boolValue();
 	bool log = logOutgoingData->boolValue();
 
+	GenericScopedLock lock(deviceLock);
+	if (dmxDevice == nullptr) return;
+
 	for (auto& u : universes)
 	{
 		if (!u->isDirty && sendOnChange) continue;
-		universesToAdd.add(new DMXUniverse(u));
 		hasOneDirty |= u->isDirty;
 		u->isDirty = false;
 
 		if (log) sentUniverses += "\n" + u->toString();
 
+		dmxDevice->setDMXValues(u);
+
 		Array<uint8> values(u->values.getRawDataPointer(), u->values.size());
 		dmxInterfaceNotifier.addMessage(new DMXInterfaceEvent(DMXInterfaceEvent::UNIVERSE_SENT, u, values));
 	}
 
-	universesToSend.clear();
-	universesToSend.addArray(universesToAdd);
-
 	outActivityTrigger->trigger();
+
 	if (hasOneDirty && log)
 	{
 		NLOG(niceName, "Sending Universes : " + sentUniverses);
 	}
-
-	
 }
 
 
@@ -253,55 +243,55 @@ DMXUniverse* DMXInterface::getUniverse(int net, int subnet, int universe, bool c
 	return u;
 }
 
-void DMXInterface::run()
-{
-	setPriority(Thread::Priority::high);
-	while (!threadShouldExit())
-	{
-		double loopStartTime = Time::getMillisecondCounterHiRes();
-
-		{
-			bool sendOnChange = sendOnChangeOnly->boolValue();
-
-			{
-				GenericScopedLock dlock(deviceLock);
-				if (dmxDevice == nullptr) continue;
-			}
-
-			GenericScopedLock ulock(universesToSend.getLock());
-
-			for (auto& u : universesToSend)
-			{
-				if (sendOnChange && !u->isDirty)
-				{
-					DBG("skipping here");
-					continue;
-				}
-
-				dmxDevice->sendDMXValues(u);
-
-			}
-
-
-		}
-
-
-		double t = Time::getMillisecondCounterHiRes();
-		double diffTime = t - loopStartTime;
-		double rateMS = 1000.0 / sendRate->intValue();
-
-
-
-		double msToWait = rateMS - diffTime;
-
-		if (msToWait > 0) wait(msToWait);
-		else
-		{
-			LOGWARNING("DMX Interface loop took too long : " << (int)(diffTime) << "ms");
-		}
-
-	}
-}
+//void DMXInterface::run()
+//{
+//	setPriority(Thread::Priority::high);
+//	while (!threadShouldExit())
+//	{
+//		double loopStartTime = Time::getMillisecondCounterHiRes();
+//
+//		{
+//			bool sendOnChange = sendOnChangeOnly->boolValue();
+//
+//			{
+//				GenericScopedLock dlock(deviceLock);
+//				if (dmxDevice == nullptr) continue;
+//			}
+//
+//			GenericScopedLock ulock(universesToSend.getLock());
+//
+//			for (auto& u : universesToSend)
+//			{
+//				if (sendOnChange && !u->isDirty)
+//				{
+//					DBG("skipping here");
+//					continue;
+//				}
+//
+//				dmxDevice->sendDMXValues(u);
+//
+//			}
+//
+//
+//		}
+//
+//
+//		double t = Time::getMillisecondCounterHiRes();
+//		double diffTime = t - loopStartTime;
+//		double rateMS = 1000.0 / sendRate->intValue();
+//
+//
+//
+//		double msToWait = rateMS - diffTime;
+//
+//		if (msToWait > 0) wait(msToWait);
+//		else
+//		{
+//			LOGWARNING("DMX Interface loop took too long : " << (int)(diffTime) << "ms");
+//		}
+//
+//	}
+//}
 
 InterfaceUI* DMXInterface::createUI()
 {

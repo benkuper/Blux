@@ -12,8 +12,7 @@
 
 class DMXInterface :
 	public Interface,
-	public DMXDevice::DMXDeviceListener,
-	public Thread
+	public DMXDevice::DMXDeviceListener
 {
 public:
 	DMXInterface();
@@ -30,7 +29,6 @@ public:
 	BoolParameter* channelTestingMode;
 	FloatParameter* channelTestingFlashValue;
 
-	IntParameter* sendRate;
 	BoolParameter* sendOnChangeOnly;
 
 	IntParameter* defaultNet;
@@ -39,8 +37,6 @@ public:
 
 	OwnedArray<DMXUniverse> universes;
 	HashMap<int, DMXUniverse*> universeIdMap; //internally used
-
-	OwnedArray<DMXUniverse, CriticalSection> universesToSend;
 
 	void clearItem() override;
 
@@ -60,8 +56,6 @@ public:
 	BoolParameter* getConnectedParam() override;
 
 	DMXUniverse* getUniverse(int net, int subnet, int universe, bool createIfNotExist = true);
-
-	void run() override;
 
 	class DMXParams : public ControllableContainer
 	{
