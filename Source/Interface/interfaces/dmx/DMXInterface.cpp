@@ -199,19 +199,22 @@ void DMXInterface::finishSendValues()
 
 	GenericScopedLock lock(deviceLock);
 	if (dmxDevice == nullptr) return;
-
-	for (auto& u : universes)
+	
 	{
-		if (!u->isDirty && sendOnChange) continue;
-		hasOneDirty |= u->isDirty;
-		u->isDirty = false;
+		GenericScopedLock ulock(universes.getLock());
+		for (auto& u : universes)
+		{
+			if (!u->isDirty && sendOnChange) continue;
+			hasOneDirty |= u->isDirty;
+			u->isDirty = false;
 
-		if (log) sentUniverses += "\n" + u->toString();
+			if (log) sentUniverses += "\n" + u->toString();
 
-		dmxDevice->setDMXValues(u);
+			dmxDevice->setDMXValues(u);
 
-		Array<uint8> values(u->values.getRawDataPointer(), u->values.size());
-		dmxInterfaceNotifier.addMessage(new DMXInterfaceEvent(DMXInterfaceEvent::UNIVERSE_SENT, u, values));
+			Array<uint8> values(u->values.getRawDataPointer(), u->values.size());
+			dmxInterfaceNotifier.addMessage(new DMXInterfaceEvent(DMXInterfaceEvent::UNIVERSE_SENT, u, values));
+		}
 	}
 
 	outActivityTrigger->trigger();
