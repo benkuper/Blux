@@ -30,6 +30,7 @@ public:
 	FloatParameter* channelTestingFlashValue;
 
 	BoolParameter* sendOnChangeOnly;
+	BoolParameter* forceSendDefaultUniverse;
 
 	IntParameter* defaultNet;
 	IntParameter* defaultSubnet;

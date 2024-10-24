@@ -21,6 +21,8 @@ public:
     std::unique_ptr<SimpleWebSocketServer> vizServer;
     void initVizServer();
 
+    void createNewGraphInternal() override;
+
     void connectionOpened(const String& id);
     void messageReceived(const String& id, const String& message);
 

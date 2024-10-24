@@ -26,7 +26,7 @@ ObjectManager::ObjectManager() :
 	gridThumbSize = addIntParameter("Thumb Size", "Size of thumbnails in grid view", 100, 32, 256);
 	defaultFlashValue = addFloatParameter("Flash Value", "Flash Value", .5f, 0, 1);
 	blackOut = addBoolParameter("Black Out", "Force 0 on all computed values", false);
-	updateRate = addIntParameter("Update Rate", "General update rate", 50, 1, 200);
+	updateRate = addIntParameter("Update Rate", "General update rate", 40, 1, 200);
 	filterActiveInScene = addBoolParameter("Show Only active", "Show only active objects in scene", false);
 	showIconForColor = addBoolParameter("Show Icon for Color", "Show icon for objects with Color Source", false);
 	alwaysShowNamesInUI = addBoolParameter("Always show names", "Always show names in UI", false);

@@ -105,6 +105,11 @@ void BluxEngine::initVizServer()
 	}
 }
 
+void BluxEngine::createNewGraphInternal()
+{
+	InterfaceManager::getInstance()->addItem(new DMXInterface());
+}
+
 void BluxEngine::connectionOpened(const String& id)
 {
 	sendAllData(id);
