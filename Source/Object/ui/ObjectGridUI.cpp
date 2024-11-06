@@ -161,10 +161,13 @@ void ObjectGridUI::updateUI()
 {
 	if (ColorComponent* colorComp = item->getComponent<ColorComponent>())
 	{
-		if (colorViz == nullptr && !ObjectManager::getInstance()->showIconForColor->boolValue())
+		if (!ObjectManager::getInstance()->showIconForColor->boolValue())
 		{
-			colorViz.reset(new ColorViz(colorComp));
-			addAndMakeVisible(colorViz.get());
+			if (colorViz == nullptr)
+			{
+				colorViz.reset(new ColorViz(colorComp));
+				addAndMakeVisible(colorViz.get());
+			}
 		}
 		else if (colorViz != nullptr)
 		{
@@ -307,6 +310,8 @@ void ObjectGridUI::mouseDown(const MouseEvent& e)
 
 		m.showMenuAsync(PopupMenu::Options(), [this](int result)
 			{
+				if (result == 0) return;
+
 				ColorSource* refColorSource = result < -1 ? ColorSourceLibrary::getInstance()->items[result + 10000] : nullptr;
 				String type = refColorSource != nullptr ? refColorSource->getTypeString() : (result > 0 ? ColorSourceFactory::getInstance()->defs[result - 1]->type : "");
 
