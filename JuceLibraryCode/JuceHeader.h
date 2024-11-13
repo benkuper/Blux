@@ -27,6 +27,7 @@
 #include <juce_graphics/juce_graphics.h>
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <juce_gui_extra/juce_gui_extra.h>
+#include <juce_javascript/juce_javascript.h>
 #include <juce_opengl/juce_opengl.h>
 #include <juce_organicui/juce_organicui.h>
 #include <juce_osc/juce_osc.h>
@@ -56,7 +57,7 @@ namespace ProjectInfo
 {
     const char* const  projectName    = "Blux";
     const char* const  companyName    = "Ben Kuper";
-    const char* const  versionString  = "1.3.0b1";
+    const char* const  versionString  = "1.3.0b2";
     const int          versionNumber  = 0x10300;
 }
 #endif

@@ -65,8 +65,8 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;OSC_REMOTE_CONTROL_PORT=43000;JUCER_VS2022_78B14C07=1;JUCE_APP_VERSION=1.3.0b1;JUCE_APP_VERSION_HEX=0x10300;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;..\..\..\JUCE\modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;OSC_REMOTE_CONTROL_PORT=43000;JUCER_VS2022_78B14C07=1;JUCE_APP_VERSION=1.3.0b2;JUCE_APP_VERSION_HEX=0x10300;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -80,8 +80,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;OSC_REMOTE_CONTROL_PORT=43000;JUCER_VS2022_78B14C07=1;JUCE_APP_VERSION=1.3.0b1;JUCE_APP_VERSION_HEX=0x10300;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;..\..\..\JUCE\modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;OSC_REMOTE_CONTROL_PORT=43000;JUCER_VS2022_78B14C07=1;JUCE_APP_VERSION=1.3.0b2;JUCE_APP_VERSION_HEX=0x10300;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
       <OutputFile>$(OutDir)\Blux.exe</OutputFile>
@@ -115,8 +115,8 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <DebugInformationFormat>None</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;OSC_REMOTE_CONTROL_PORT=43000;JUCER_VS2022_78B14C07=1;JUCE_APP_VERSION=1.3.0b1;JUCE_APP_VERSION_HEX=0x10300;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;..\..\..\JUCE\modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;OSC_REMOTE_CONTROL_PORT=43000;JUCER_VS2022_78B14C07=1;JUCE_APP_VERSION=1.3.0b2;JUCE_APP_VERSION_HEX=0x10300;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -130,8 +130,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;OSC_REMOTE_CONTROL_PORT=43000;JUCER_VS2022_78B14C07=1;JUCE_APP_VERSION=1.3.0b1;JUCE_APP_VERSION_HEX=0x10300;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\JUCE\modules;..\..\Modules;..\..\..\JUCE\modules;../../External/serial/include;../../External/asio;../../External/servus/include;../../External/dnssd/include;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;OSC_REMOTE_CONTROL_PORT=43000;JUCER_VS2022_78B14C07=1;JUCE_APP_VERSION=1.3.0b2;JUCE_APP_VERSION_HEX=0x10300;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;JucePlugin_Build_LV2=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
       <OutputFile>$(OutDir)\Blux.exe</OutputFile>
@@ -1682,16 +1682,13 @@
     <ClCompile Include="..\..\JUCE\modules\juce_core\files\juce_WildcardFileFilter.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\JUCE\modules\juce_core\javascript\juce_Javascript.cpp">
+    <ClCompile Include="..\..\JUCE\modules\juce_core\json\juce_JSON.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\JUCE\modules\juce_core\javascript\juce_JSON.cpp">
+    <ClCompile Include="..\..\JUCE\modules\juce_core\json\juce_JSONSerialisation_test.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\JUCE\modules\juce_core\javascript\juce_JSONSerialisation_test.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\JUCE\modules\juce_core\javascript\juce_JSONUtils.cpp">
+    <ClCompile Include="..\..\JUCE\modules\juce_core\json\juce_JSONUtils.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\JUCE\modules\juce_core\logging\juce_FileLogger.cpp">
@@ -3341,6 +3338,21 @@
     <ClCompile Include="..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_Javascript_test.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JavascriptEngine.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JSCursor.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JSObject.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\juce_javascript.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\JUCE\modules\juce_opengl\opengl\juce_gl.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -4229,6 +4241,7 @@
       <AdditionalOptions> /bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_javascript.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_organicui.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_organicui2.cpp"/>
@@ -4917,21 +4930,9 @@
     <ClInclude Include="..\..\JUCE\modules\juce_core\files\juce_RangedDirectoryIterator.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_core\files\juce_TemporaryFile.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_core\files\juce_WildcardFileFilter.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\containers\choc_Value.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\javascript\choc_javascript.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\javascript\choc_javascript_QuickJS.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\math\choc_MathHelpers.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\platform\choc_Assert.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\platform\choc_DisableAllWarnings.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\platform\choc_ReenableAllWarnings.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\text\choc_FloatToString.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\text\choc_JSON.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\text\choc_StringUtilities.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\choc\text\choc_UTF8.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\juce_Javascript.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\juce_JSON.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\juce_JSONSerialisation.h"/>
-    <ClInclude Include="..\..\JUCE\modules\juce_core\javascript\juce_JSONUtils.h"/>
+    <ClInclude Include="..\..\JUCE\modules\juce_core\json\juce_JSON.h"/>
+    <ClInclude Include="..\..\JUCE\modules\juce_core\json\juce_JSONSerialisation.h"/>
+    <ClInclude Include="..\..\JUCE\modules\juce_core\json\juce_JSONUtils.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_core\logging\juce_FileLogger.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_core\logging\juce_Logger.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_core\maths\juce_BigInteger.h"/>
@@ -5729,6 +5730,22 @@
     <ClInclude Include="..\..\JUCE\modules\juce_gui_extra\misc\juce_WebControlRelays.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_gui_extra\native\juce_NSViewFrameWatcher_mac.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\containers\choc_Value.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\javascript\choc_javascript.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\javascript\choc_javascript_QuickJS.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\math\choc_MathHelpers.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\platform\choc_Assert.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\platform\choc_DisableAllWarnings.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\platform\choc_ReenableAllWarnings.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\text\choc_FloatToString.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\text\choc_JSON.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\text\choc_StringUtilities.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\text\choc_UTF8.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\detail\juce_QuickJSHelpers.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JavascriptEngine.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JSCursor.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JSObject.h"/>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\juce_javascript.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_opengl\geometry\juce_Draggable3DOrientation.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_opengl\geometry\juce_Matrix3D.h"/>
     <ClInclude Include="..\..\JUCE\modules\juce_opengl\geometry\juce_Quaternion.h"/>
@@ -7024,12 +7041,12 @@
     <None Include="..\..\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\JUCE_README.md"/>
     <None Include="..\..\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\LICENSE.txt"/>
     <None Include="..\..\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\README.md"/>
-    <None Include="..\..\JUCE\modules\juce_core\javascript\choc\LICENSE.md"/>
     <None Include="..\..\JUCE\modules\juce_core\native\java\README.txt"/>
     <None Include="..\..\Modules\juce_dmx\README.md"/>
     <None Include="..\..\JUCE\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>
     <None Include="..\..\JUCE\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt"/>
     <None Include="..\..\JUCE\modules\juce_graphics\unicode\sheenbidi\JUCE_CHANGES.txt"/>
+    <None Include="..\..\..\JUCE\modules\juce_javascript\choc\LICENSE.md"/>
     <None Include="..\..\Modules\juce_organicui\resources\organicui_resources\JuceLibraryCode\ReadMe.txt"/>
     <None Include="..\..\Modules\juce_organicui\README.md"/>
     <None Include="..\..\Modules\juce_serial\README.md"/>
