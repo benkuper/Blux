@@ -209,6 +209,11 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 			colorSize = 4;
 			break;
 
+		case RGBAW:
+		case RGBWA:
+			colorSize = 5;
+			break;
+
 		default:
 			colorSize = 3;
 			break;
