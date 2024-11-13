@@ -52,7 +52,8 @@ void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 		int i = componentParams.getProperty("channel", 1);
 		for (auto& cp : computedParameters)
 		{
-			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName + " Channel", "Channel for this parameter", i, 1, 512, true);
+			IntParameter* p = interfaceParamCC.addIntParameter(cp->niceName + " Channel", "Channel for this parameter", 1, 1, 512, true);
+			p->setValue(i, false, true);
 			p->canBeDisabledByUser = true;
 			if (!checkDefaultInterfaceParamEnabled(computedParamMap[cp])) p->setEnabled(false);
 			else  i += p->isComplex() ? p->value.size() : 1;
