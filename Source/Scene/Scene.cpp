@@ -43,7 +43,7 @@ Scene::Scene(const String& name) :
 	isCurrent->dashboardDefaultLabelParentLevel = 1;
 	isCurrent->dashboardDefaultAppendLabel = true;
 
-	saveScene(); //is this good ?
+	if(!Engine::mainEngine->isLoadingFile) saveScene();
 
 	interpolationCurve.isSelectable = false;
 	interpolationCurve.length->setValue(1);
