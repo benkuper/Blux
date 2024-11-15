@@ -369,7 +369,7 @@ void ObjectGridUI::mouseUp(const MouseEvent& e)
 		else
 		{
 			Array<UndoableAction*> actions;
-			for (auto& o : objects) if (o->slideManipParameter != nullptr) actions.add(o->slideManipParameter->setUndoableValue(o->slideManipValueRef, o->slideManipParameter->floatValue(), true));
+			for (auto& o : objects) if (o->slideManipParameter != nullptr) actions.addArray(o->slideManipParameter->setUndoableValue(o->slideManipParameter->floatValue(), true));
 			UndoMaster::getInstance()->performActions("Change " + String(actions.size()) + " values ", actions);
 		}
 	}

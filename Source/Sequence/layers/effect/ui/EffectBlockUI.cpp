@@ -207,12 +207,12 @@ void EffectBlockUI::mouseUp(const MouseEvent& e)
 
 	if (e.eventComponent == &fadeInHandle)
 	{
-		effectBlock->fadeIn->setUndoableValue(fadeValueAtMouseDown, effectBlock->fadeIn->floatValue());
+		effectBlock->fadeIn->setUndoableValue(effectBlock->fadeIn->floatValue(), false, true);
 		resized();
 	}
 	else if (e.eventComponent == &fadeOutHandle)
 	{
-		effectBlock->fadeOut->setUndoableValue(fadeValueAtMouseDown, effectBlock->fadeOut->floatValue());
+		effectBlock->fadeOut->setUndoableValue(effectBlock->fadeOut->floatValue(), false, true);
 		resized();
 	}
 }

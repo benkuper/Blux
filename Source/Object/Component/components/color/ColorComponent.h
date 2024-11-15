@@ -22,8 +22,6 @@ public:
 	ColorComponent(Object* o, var params);
 	~ColorComponent();
 
-	static bool isChangingMainColor;
-
 	IntParameter* resolution;
 	BoolParameter* useDimmerForOpacity;
 
@@ -61,9 +59,6 @@ public:
 	void setupShape(const String& type);
 	void setupFromJSONDefinition(var definition) override;
 
-	var getSceneData();
-	void updateSceneData(var& sceneData);
-	void lerpFromSceneData(var startData, var endData, float weight);
 
 	void update() override;
 	void fillComputedValueMap(HashMap<Parameter*, var>& values) override;
@@ -75,7 +70,6 @@ public:
 
 	void onContainerParameterChangedInternal(Parameter* p) override;
 
-	void onControllableFeedbackUpdateInternal(ControllableContainer* cc, Controllable* c) override;
 
 	var getJSONData() override;
 	void loadJSONDataItemInternal(var data) override;

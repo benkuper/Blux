@@ -117,12 +117,12 @@ void RawDataBlockUI::mouseUp(const MouseEvent& e)
 
 	if (e.eventComponent == &fadeInHandle)
 	{
-		rawDataBlock->fadeIn->setUndoableValue(fadeValueAtMouseDown, rawDataBlock->fadeIn->floatValue());
+		rawDataBlock->fadeIn->setUndoableValue(rawDataBlock->fadeIn->floatValue(), false, true);
 		resized();
 	}
 	else if (e.eventComponent == &fadeOutHandle)
 	{
-		rawDataBlock->fadeOut->setUndoableValue(fadeValueAtMouseDown, rawDataBlock->fadeOut->floatValue());
+		rawDataBlock->fadeOut->setUndoableValue(rawDataBlock->fadeOut->floatValue(), false, true);
 		resized();
 	}
 }

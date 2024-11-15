@@ -149,7 +149,7 @@ void LayoutFilterStageView::mouseUp(const MouseEvent& e)
 {
     if (LayoutFilterStageViewUI* ui = dynamic_cast<LayoutFilterStageViewUI*>(e.eventComponent->getParentComponent()))
     {
-        if (e.eventComponent == &ui->handle) ui->filter->position->setUndoableVector(ui->posAtMouseDown, ui->filter->position->getVector());
+        if (e.eventComponent == &ui->handle) ui->filter->position->setUndoableVector(ui->filter->position->getVector());
     }
 }
 
