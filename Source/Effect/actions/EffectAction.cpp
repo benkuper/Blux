@@ -53,7 +53,7 @@ void EffectAction::setValueInternal(var value)
 	case DISABLE_EFFECT:
 		e->enabled->setValue((float)value == 1);
 		break;
-		
+
 	case SET_EFFECT_WEIGHT:
 		if (!value.isArray())
 		{
@@ -66,7 +66,7 @@ void EffectAction::setValueInternal(var value)
 
 void EffectAction::showMenuAndGetEffect(ControllableContainer* fromCC, std::function<void(ControllableContainer*)> returnFunc)
 {
-	Array<Effect *> effects;
+	Array<Effect*> effects;
 	PopupMenu m;
 
 	PopupMenu globalMenu;
@@ -135,4 +135,67 @@ void EffectAction::showMenuAndGetEffect(ControllableContainer* fromCC, std::func
 			returnFunc(effects[result - 1]);
 		}
 	);
+}
+
+
+//Effect Manager
+
+EffectManagerAction::EffectManagerAction(var params) :
+	Action(params),
+	weight(nullptr)
+{
+	actionType = (ActionType)(int)params.getProperty("actionType", SET_GROUP_EFFECT_WEIGHT);
+
+	target = addTargetParameter("Scene", "The Effect Manager to target");
+	target->targetType = TargetParameter::CONTAINER;
+	target->maxDefaultSearchLevel = 0;
+	switch (actionType)
+	{
+	case SET_GROUP_EFFECT_WEIGHT:
+		target->setRootContainer(GroupManager::getInstance());
+		break;
+
+	case SET_GLOBAL_EFFECT_WEIGHT:
+		target->setRootContainer(GlobalEffectManager::getInstance());
+		break;
+	}
+
+	weight = addFloatParameter("Weight", "The weight to set the effect to", 0, 0, 1);
+
+}
+
+EffectManagerAction::~EffectManagerAction()
+{
+}
+
+void EffectManagerAction::triggerInternal()
+{
+	if (effectManager == nullptr || effectManager->globalWeight == nullptr) return;
+	effectManager->globalWeight->setValue(weight->floatValue());
+}
+
+void EffectManagerAction::setValueInternal(var value)
+{
+	if (effectManager == nullptr || effectManager->globalWeight == nullptr) return;
+
+	weight->setValue(value);
+	effectManager->globalWeight->setValue(weight->floatValue());
+}
+
+void EffectManagerAction::onContainerParameterChangedInternal(Parameter* p)
+{
+	if (p == target)
+	{
+		if (ControllableContainer* cc = target->targetContainer.get())
+		{
+			if (Group* g = dynamic_cast<Group*>(cc))
+				effectManager = g->effectManager.get();
+			else if (EffectGroup* eg = dynamic_cast<EffectGroup*>(cc))
+				effectManager = &eg->effectManager;
+		}
+		else
+		{
+			effectManager = nullptr;
+		}
+	}
 }

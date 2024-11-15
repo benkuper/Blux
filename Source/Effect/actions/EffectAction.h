@@ -10,6 +10,28 @@
 
 #pragma once
 
+class EffectManagerAction :
+    public Action
+{
+public:
+    EffectManagerAction(var params);
+    ~EffectManagerAction();
+
+    enum ActionType { SET_GROUP_EFFECT_WEIGHT, SET_GLOBAL_EFFECT_WEIGHT };
+    ActionType actionType;
+
+    TargetParameter* target;
+    EffectManager* effectManager;
+    FloatParameter* weight;
+
+    void triggerInternal() override;
+    void setValueInternal(var value) override;
+
+	void onContainerParameterChangedInternal(Parameter* p) override;
+
+    static EffectManagerAction* create(var params) { return new EffectManagerAction(params); }
+};
+
 class EffectAction :
     public Action
 {
