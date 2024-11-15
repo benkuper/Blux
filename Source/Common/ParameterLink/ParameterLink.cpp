@@ -415,20 +415,23 @@ var ParamLinkContainer::getParamValue(Parameter* p, float time)
 
 	if (ParameterAutomation* a = p->automation.get())
 	{
-		if (dynamic_cast<Automation*>(a->automationContainer) != nullptr)
+		if (a->manualMode)
 		{
-			float value = ((Automation*)a->automationContainer)->getValueAtPosition(fmodf(time, a->lengthParamRef->floatValue()));
-			return value;
-		}
-		else if (dynamic_cast<GradientColorManager*>(a->automationContainer) != nullptr)
-		{
-			Colour value = ((GradientColorManager*)a->automationContainer)->getColorForPosition(fmodf(time, a->lengthParamRef->floatValue()));
-			var result;
-			result.append(value.getFloatRed());
-			result.append(value.getFloatGreen());
-			result.append(value.getFloatBlue());
-			result.append(value.getFloatAlpha());
-			return result;
+			if (dynamic_cast<Automation*>(a->automationContainer) != nullptr)
+			{
+				float value = ((Automation*)a->automationContainer)->getValueAtPosition(fmodf(time, a->lengthParamRef->floatValue()));
+				return value;
+			}
+			else if (dynamic_cast<GradientColorManager*>(a->automationContainer) != nullptr)
+			{
+				Colour value = ((GradientColorManager*)a->automationContainer)->getColorForPosition(fmodf(time, a->lengthParamRef->floatValue()));
+				var result;
+				result.append(value.getFloatRed());
+				result.append(value.getFloatGreen());
+				result.append(value.getFloatBlue());
+				result.append(value.getFloatAlpha());
+				return result;
+			}
 		}
 	}
 
