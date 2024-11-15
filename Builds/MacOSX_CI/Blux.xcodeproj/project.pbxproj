@@ -115,7 +115,6 @@
 		169E31B759069A038FB7AF3F /* ObjectManagerUI.cpp */ /* ObjectManagerUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectManagerUI.cpp; path = ../../Source/Object/ui/ObjectManagerUI.cpp; sourceTree = SOURCE_ROOT; };
 		16E52562C8E640D793776AF7 /* OSCOutputEditor.cpp */ /* OSCOutputEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = OSCOutputEditor.cpp; path = ../../Source/Interface/interfaces/osc/ui/OSCOutputEditor.cpp; sourceTree = SOURCE_ROOT; };
 		174FD188B87C29397A5DBE1A /* QuartzCore.framework */ /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		180AAE5D6387B9980BFC3AF6 /* juce_javascript */ /* juce_javascript */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_javascript; path = ../../../JUCE/modules/juce_javascript; sourceTree = SOURCE_ROOT; };
 		18823A2EA33470C00ADBA12A /* Filter.h */ /* Filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Filter.h; path = ../../Source/Effect/Filter/Filter.h; sourceTree = SOURCE_ROOT; };
 		1884ABE418F49D47EFBB44AE /* Security.framework */ /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		191A42B4289F42E9DEC514CD /* ColorSourceOverrideEffectEditor.h */ /* ColorSourceOverrideEffectEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceOverrideEffectEditor.h; path = ../../Source/Effect/effects/color/override/ui/ColorSourceOverrideEffectEditor.h; sourceTree = SOURCE_ROOT; };
@@ -401,6 +400,7 @@
 		BCB90CBFDA6561F8A804DF0E /* Group.h */ /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Group.h; path = ../../Source/Object/Group/Group.h; sourceTree = SOURCE_ROOT; };
 		BE1FBB28C015AC5EEF3302C9 /* OSCInterface.cpp */ /* OSCInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = OSCInterface.cpp; path = ../../Source/Interface/interfaces/osc/OSCInterface.cpp; sourceTree = SOURCE_ROOT; };
 		BE754173602670AE2D99EBE3 /* GroupManagerUI.cpp */ /* GroupManagerUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GroupManagerUI.cpp; path = ../../Source/Object/Group/ui/GroupManagerUI.cpp; sourceTree = SOURCE_ROOT; };
+		BEF6AC543A12C42DECEE43E3 /* juce_javascript */ /* juce_javascript */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_javascript; path = ../../JUCE/modules/juce_javascript; sourceTree = SOURCE_ROOT; };
 		BEFF2DBDA237A06B72E8A7F1 /* MIDIInterface.h */ /* MIDIInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MIDIInterface.h; path = ../../Source/Interface/interfaces/midi/MIDIInterface.h; sourceTree = SOURCE_ROOT; };
 		BF42209B4082FD4F3891D060 /* include_juce_core.mm */ /* include_juce_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_core.mm; path = ../../JuceLibraryCode/include_juce_core.mm; sourceTree = SOURCE_ROOT; };
 		BFC7E8F4D35ED6ABA6488DF8 /* GlobalEffectManagerUI.h */ /* GlobalEffectManagerUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GlobalEffectManagerUI.h; path = ../../Source/Effect/ui/GlobalEffectManagerUI.h; sourceTree = SOURCE_ROOT; };
@@ -817,7 +817,7 @@
 				A3311C31C46FEB77CADF3596,
 				167623348D43C60D9A891E70,
 				E375886F1ED0C7CEDF4E7076,
-				180AAE5D6387B9980BFC3AF6,
+				BEF6AC543A12C42DECEE43E3,
 				D7B9DC945ABF2D7230D89FF6,
 				69208D8485C1CB9E8AB276F9,
 				85D3C5F10C3FECC73E1BA306,
@@ -2078,7 +2078,6 @@
 					"$(SRCROOT)/../../JuceLibraryCode",
 					"$(SRCROOT)/../../JUCE/modules",
 					"$(SRCROOT)/../../Modules",
-					"$(SRCROOT)/../../../JUCE/modules",
 					"$(SRCROOT)/../../External/servus/include",
 					"$(SRCROOT)/../../External/dnssd/include",
 					"$(SRCROOT)/../../Source",
@@ -2096,7 +2095,7 @@
 					"\"../../Modules/juce_simpleweb/libs/MacOSX/${CURRENT_ARCH}\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../../JUCE/modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lserial -lssl -lcrypto -lz";
 				PRODUCT_BUNDLE_IDENTIFIER = benkuper.Blux;
 				PRODUCT_NAME = "Blux";
@@ -2188,7 +2187,6 @@
 					"$(SRCROOT)/../../JuceLibraryCode",
 					"$(SRCROOT)/../../JUCE/modules",
 					"$(SRCROOT)/../../Modules",
-					"$(SRCROOT)/../../../JUCE/modules",
 					"$(SRCROOT)/../../External/servus/include",
 					"$(SRCROOT)/../../External/dnssd/include",
 					"$(SRCROOT)/../../Source",
@@ -2207,7 +2205,7 @@
 				);
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../../JUCE/modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lserial -lssl -lcrypto -lz";
 				PRODUCT_BUNDLE_IDENTIFIER = benkuper.Blux;
 				PRODUCT_NAME = "Blux";
@@ -2251,7 +2249,6 @@
 					"$(SRCROOT)/../../JuceLibraryCode",
 					"$(SRCROOT)/../../JUCE/modules",
 					"$(SRCROOT)/../../Modules",
-					"$(SRCROOT)/../../../JUCE/modules",
 					"$(SRCROOT)/../../External/servus/include",
 					"$(SRCROOT)/../../External/dnssd/include",
 					"$(SRCROOT)/../../Source",
@@ -2270,7 +2267,7 @@
 				);
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../../JUCE/modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../JUCE/modules $(SRCROOT)/../../Modules $(SRCROOT)/../../External/servus/include $(SRCROOT)/../../External/dnssd/include $(SRCROOT)/../../Source";
 				OTHER_LDFLAGS = "-lServus -lserial -lssl -lcrypto -lz";
 				PRODUCT_BUNDLE_IDENTIFIER = benkuper.Blux;
 				PRODUCT_NAME = "Blux";

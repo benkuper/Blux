@@ -841,7 +841,7 @@
         <MODULEPATH id="juce_cryptography"/>
         <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
-        <MODULEPATH id="juce_javascript" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_javascript"/>
       </MODULEPATHS>
     </VS2022>
     <VS2022 targetFolder="Builds/VisualStudio2022_CI" extraCompilerFlags="/bigobj"
@@ -875,7 +875,7 @@
         <MODULEPATH id="juce_serial" path="Modules"/>
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
-        <MODULEPATH id="juce_javascript" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_javascript"/>
       </MODULEPATHS>
     </VS2022>
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
@@ -912,7 +912,7 @@
         <MODULEPATH id="juce_cryptography" path="JUCE/modules"/>
         <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
-        <MODULEPATH id="juce_javascript" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed"
@@ -943,7 +943,7 @@
         <MODULEPATH id="juce_cryptography" path="JUCE/modules"/>
         <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
-        <MODULEPATH id="juce_javascript" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
     <LINUX_MAKE targetFolder="Builds/Raspberry" externalLibraries="bluetooth&#10;Servus&#10;curl&#10;usb-1.0&#10;pthread&#10;atomic&#10;stdc++"
@@ -977,7 +977,7 @@
         <MODULEPATH id="juce_cryptography" path="JUCE/modules"/>
         <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
-        <MODULEPATH id="juce_javascript" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
     <LINUX_MAKE targetFolder="Builds/Raspberry64" smallIcon="kxAIe6" bigIcon="kxAIe6"
@@ -1010,7 +1010,7 @@
         <MODULEPATH id="juce_serial" path="Modules"/>
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
-        <MODULEPATH id="juce_javascript" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
