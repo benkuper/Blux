@@ -29,6 +29,7 @@ public:
     ComponentType componentType;
     BoolParameter* excludeFromScenes;
 
+	juce::CriticalSection interfaceParamsLock;
     ControllableContainer interfaceParamCC;
     Array<Parameter*> interfaceParams;
     HashMap<Parameter*, Parameter*> computedInterfaceMap;

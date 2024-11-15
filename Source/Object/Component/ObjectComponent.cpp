@@ -35,6 +35,7 @@ ObjectComponent::~ObjectComponent()
 
 void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 {
+	GenericScopedLock lock(interfaceParamsLock);
 
 	var oldData = interfaceParamsGhostData.isVoid() ? interfaceParamCC.getJSONData() : interfaceParamsGhostData;
 
@@ -71,6 +72,8 @@ void ObjectComponent::rebuildInterfaceParams(Interface* interface)
 
 Parameter* ObjectComponent::addComputedParameter(Parameter* p, ControllableContainer* parent, bool addToSceneParams)
 {
+	GenericScopedLock lock(interfaceParamsLock);
+
 	if (parent == nullptr) parent = this;
 	sourceParameters.add(p);
 	parent->addParameter(p);
@@ -93,8 +96,11 @@ Parameter* ObjectComponent::addComputedParameter(Parameter* p, ControllableConta
 
 void ObjectComponent::removeComputedParameter(Parameter* p)
 {
+	GenericScopedLock lock(interfaceParamsLock);
+
 	if (p == nullptr) return;
 	if (!computedParameters.contains(p)) return;
+
 
 	computedParameters.removeAllInstancesOf(p);
 
@@ -232,6 +238,7 @@ void ObjectComponent::fillInterfaceData(Interface* i, var data, var params)
 void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var params)
 {
 	//depending on interface, change what's happening here.
+	GenericScopedLock lock(interfaceParamsLock);
 
 	bool blackout = ObjectManager::getInstance()->blackOut->boolValue();
 
