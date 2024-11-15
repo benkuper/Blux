@@ -46,7 +46,7 @@ ObjectManager::ObjectManager() :
 		updateFactoryDefinitions();
 	}
 
-	startThread();
+	if (!Engine::mainEngine->isLoadingFile) startThread();
 	Engine::mainEngine->addEngineListener(this);
 }
 
@@ -284,12 +284,12 @@ void ObjectManager::loadJSONDataManagerInternal(var data)
 	spatializer.loadJSONData(data.getProperty(spatializer.shortName, var()));
 }
 
-void ObjectManager::afterLoadJSONDataInternal()
+void ObjectManager::startLoadFile()
 {
-	startThread();
+	stopThread(1000);
 }
 
-void ObjectManager::endLoadFile()
+void ObjectManager::fileLoaded()
 {
 	startThread();
 }

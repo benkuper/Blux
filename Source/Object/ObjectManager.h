@@ -89,9 +89,9 @@ public:
 
 	var getJSONData() override;
 	void loadJSONDataManagerInternal(var data) override;
-	void afterLoadJSONDataInternal() override;
 
-	void endLoadFile() override;
+	void startLoadFile() override;
+	void fileLoaded() override;
 	void engineCleared() override;
 
 	//Listener
