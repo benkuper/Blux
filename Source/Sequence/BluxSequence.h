@@ -37,6 +37,8 @@ public:
 
     void handleStartAtLoad() override;
 
+    String getPanelName() const override;
+
     ChainVizComponent* createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type) override;
 
     InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;

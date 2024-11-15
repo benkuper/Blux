@@ -10,6 +10,7 @@
 
 #include "Sequence/SequenceIncludes.h"
 #include "Audio/AudioManager.h"
+#include "Scene/Scene.h"
 #include "BluxSequence.h"
 
 BluxSequence::BluxSequence() :
@@ -102,6 +103,12 @@ void BluxSequence::itemsAdded(Array<SequenceLayer*> layers)
 void BluxSequence::handleStartAtLoad()
 {
 	//do nothing for start at load, handled by scene manager
+}
+
+String BluxSequence::getPanelName() const
+{
+	if (Scene* s = ControllableUtil::findParentAs<Scene>(parentContainer)) return s->niceName;
+	return niceName;
 }
 
 ChainVizComponent* BluxSequence::createVizComponent(Object* o, ComponentType ct, ChainVizTarget::ChainVizType type)

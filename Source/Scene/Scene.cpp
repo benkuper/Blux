@@ -21,16 +21,27 @@ Scene::Scene(const String& name) :
 
 	saveTrigger = addTrigger("Save", "Save the current state of things into this scene");
 	loadTrigger = addTrigger("Load", "Load this scene. This will change all parameters to what has been saved in this scene");
+	loadTrigger->dashboardDefaultLabelParentLevel = 1;
+
 	directLoadTrigger = addTrigger("Direct Load", "Directly load this scene. This will load without any timing");
+	directLoadTrigger->dashboardDefaultLabelParentLevel = 1;
+	directLoadTrigger->dashboardDefaultAppendLabel = true;
+
 	defaultLoadTime = addFloatParameter("Load Time", "Default load time, used when using the \"Load\" trigger.", BluxSettings::getInstance()->defaultSceneLoadTime->floatValue(), 0);
+	defaultLoadTime->dashboardDefaultLabelParentLevel = 1;
+	defaultLoadTime->dashboardDefaultAppendLabel = true;
 	defaultLoadTime->defaultUI = FloatParameter::TIME;
 
 	loadProgress = addFloatParameter("Load Progress", "Progress of the scene loading", 0, 0, 1);
 	loadProgress->setControllableFeedbackOnly(true);
+	loadProgress->dashboardDefaultLabelParentLevel = 1;
+	loadProgress->dashboardDefaultAppendLabel = true;
 
 	isCurrent = addBoolParameter("Is Current", "Is this scene the current one ?", false);
 	isCurrent->setControllableFeedbackOnly(true);
 	isCurrent->isSavable = false;
+	isCurrent->dashboardDefaultLabelParentLevel = 1;
+	isCurrent->dashboardDefaultAppendLabel = true;
 
 	saveScene(); //is this good ?
 
@@ -131,7 +142,7 @@ void Scene::onContainerParameterChangedInternal(Parameter* p)
 
 void Scene::itemAdded(Sequence* s)
 {
-	if(!isCurrentlyLoadingData) s->startAtLoad->setValue(true);
+	if (!isCurrentlyLoadingData) s->startAtLoad->setValue(true);
 	((BluxSequence*)s)->manualStartAtLoad = true;
 }
 
