@@ -28,6 +28,8 @@ ObjectComponent::ObjectComponent(Object* o, String name, ComponentType component
 	tagSelector = new TagSelector();
 	addParameter(tagSelector);
 
+	needsTag = addBoolParameter("Needs Tag", "If checked, this component will only be active if the object has a tag that matches the tag selector", false);
+
 	interfaceParamCC.hideInEditor = interfaceParams.isEmpty();
 	addChildControllableContainer(&interfaceParamCC);
 }

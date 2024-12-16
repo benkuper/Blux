@@ -107,7 +107,11 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 	FilterResult r = filterManager->getFilteredResultForComponent(o, c);
 	if (r.id == -1) return;
 
-	if (CustomTag* t = tagSelector->getTag()) if (c->tagSelector->getTag() != t) return;
+	if (CustomTag* t = tagSelector->getTag())
+	{
+		if (c->tagSelector->getTag() != t) return;
+	}
+	else if (c->needsTag->boolValue()) return;
 
 	int targetID = (id != -1 && r.id == o->globalID->intValue()) ? id : r.id;
 

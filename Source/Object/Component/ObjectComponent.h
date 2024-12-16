@@ -25,7 +25,8 @@ public:
     var componentParams;
 
 	TagSelector* tagSelector;
-    
+    BoolParameter* needsTag;
+
     Parameter* mainParameter;
 
     ComponentType componentType;
