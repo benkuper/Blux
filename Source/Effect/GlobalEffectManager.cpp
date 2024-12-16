@@ -58,6 +58,7 @@ void GlobalEffectManager::lerpFromSceneData(var startData, var endData, float we
 EffectGroup::EffectGroup() :
 	BaseItem("Effect Group")
 {
+	setHasCustomColor(true);
 	saveAndLoadRecursiveData = true;
 	addChildControllableContainer(&effectManager);
 

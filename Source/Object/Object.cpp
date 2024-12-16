@@ -21,6 +21,7 @@ Object::Object(var params) :
 	previousID(-1),
 	slideManipParameter(nullptr)
 {
+	setHasCustomColor(true);
 	showWarningInUI = true;
 	saveAndLoadRecursiveData = true;
 

@@ -15,7 +15,8 @@ Group::Group(String name) :
     BaseItem(name)
 {
     saveAndLoadRecursiveData = true;
- 
+    setHasCustomColor(true);
+
     effectManager.reset(new EffectManager(this));
     addChildControllableContainer(effectManager.get());
 }
