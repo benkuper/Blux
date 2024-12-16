@@ -9,6 +9,7 @@
 */
 
 #include "Object/ObjectIncludes.h"
+#include "CustomComponent.h"
 
 CustomComponent::CustomComponent(Object* o, var params) :
 	ObjectComponent(o, getTypeString(), CUSTOM, params)

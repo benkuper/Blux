@@ -40,6 +40,9 @@ Effect::Effect(const String& name, var params) :
 	weight->setDefaultValue(0.f, false); //this allows for scene lerp default to 0
 	weight->hideInEditor = true;
 
+	tagSelector = new TagSelector();
+	addParameter(tagSelector);
+
 
 	//excludeFromScenes->hideInEditor = true;
 
@@ -103,6 +106,8 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 
 	FilterResult r = filterManager->getFilteredResultForComponent(o, c);
 	if (r.id == -1) return;
+
+	if (CustomTag* t = tagSelector->getTag()) if (c->tagSelector->getTag() != t) return;
 
 	int targetID = (id != -1 && r.id == o->globalID->intValue()) ? id : r.id;
 

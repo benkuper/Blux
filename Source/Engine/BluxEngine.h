@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    BluxEngine.h
-    Created: 26 Sep 2020 10:01:11am
-    Author:  bkupe
+	BluxEngine.h
+	Created: 26 Sep 2020 10:01:11am
+	Author:  bkupe
 
   ==============================================================================
 */
@@ -12,43 +12,75 @@
 #include "JuceHeader.h"
 
 class BluxEngine : public Engine,
-    public SimpleWebSocketServer::Listener
+	public SimpleWebSocketServer::Listener
 {
 public:
-    BluxEngine();
-    ~BluxEngine();
+	BluxEngine();
+	~BluxEngine();
 
-    std::unique_ptr<SimpleWebSocketServer> vizServer;
-    void initVizServer();
+	std::unique_ptr<SimpleWebSocketServer> vizServer;
+	void initVizServer();
 
-    void createNewGraphInternal() override;
+	void createNewGraphInternal() override;
 
-    void connectionOpened(const String& id);
-    void messageReceived(const String& id, const String& message);
+	void connectionOpened(const String& id);
+	void messageReceived(const String& id, const String& message);
 
-    void sendAllData(const String& id = "");
-    void sendControllableData(Controllable* c);
-    void sendServerMessage(const String message = "", const String & id = "");
+	void sendAllData(const String& id = "");
+	void sendControllableData(Controllable* c);
+	void sendServerMessage(const String message = "", const String& id = "");
 
-    var getVizData();
+	var getVizData();
 
-    void onControllableFeedbackUpdate(ControllableContainer* cc, Controllable* c) override;
-    void clearInternal() override;
+	void onControllableFeedbackUpdate(ControllableContainer* cc, Controllable* c) override;
+	void clearInternal() override;
 
-    virtual String getMinimumRequiredFileVersion() override;
+	virtual String getMinimumRequiredFileVersion() override;
 
-    var getJSONData(bool includeNonOverriden = false) override;
-    void loadJSONDataInternalEngine(var data, ProgressTask * task) override;
+	var getJSONData(bool includeNonOverriden = false) override;
+	void loadJSONDataInternalEngine(var data, ProgressTask* task) override;
 };
 
-class BluxSettings : 
-    public ControllableContainer
+class BluxSettings :
+	public ControllableContainer
 {
 public:
-    juce_DeclareSingleton(BluxSettings, true);
+	juce_DeclareSingleton(BluxSettings, true);
 
-    BluxSettings();
-    ~BluxSettings();
+	BluxSettings();
+	~BluxSettings();
 
-    FloatParameter * defaultSceneLoadTime;
+	FloatParameter* defaultSceneLoadTime;
+
+
+};
+
+class CustomTag :
+	public BaseItem
+{
+public:
+	CustomTag();
+	~CustomTag();
+};
+
+
+class CustomTagsManager :
+	public BaseManager<CustomTag>
+{
+public:
+	juce_DeclareSingleton(CustomTagsManager, true);
+
+	CustomTagsManager();
+	~CustomTagsManager();
+
+};
+
+class TagSelector :
+	public TargetParameter
+{
+public:
+	TagSelector();
+	~TagSelector();
+
+	CustomTag* getTag();
 };

@@ -24,6 +24,7 @@ public:
 	Effect(const String& name = "Effect", var params = var());
 	~Effect();
 
+	TagSelector* tagSelector;
 	ParamLinkContainer effectParams;
 
 	enum BlendMode { OVERRIDE, ADD, MAX, MIN, MULTIPLY };

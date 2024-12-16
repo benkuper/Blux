@@ -25,6 +25,9 @@ ObjectComponent::ObjectComponent(Object* o, String name, ComponentType component
 	userCanDuplicate = false;
 	canBeReorderedInEditor = true;
 
+	tagSelector = new TagSelector();
+	addParameter(tagSelector);
+
 	interfaceParamCC.hideInEditor = interfaceParams.isEmpty();
 	addChildControllableContainer(&interfaceParamCC);
 }

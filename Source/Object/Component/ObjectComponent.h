@@ -23,6 +23,8 @@ public:
     
     Object* object;
     var componentParams;
+
+	TagSelector* tagSelector;
     
     Parameter* mainParameter;
 

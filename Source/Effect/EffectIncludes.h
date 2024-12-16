@@ -19,6 +19,7 @@ class FilterManager;
 
 #include "Object/ObjectIncludes.h"
 #include "Common/CommonIncludes.h"
+#include "Engine/BluxEngine.h"
 #include "Color/ColorIncludes.h"
 #include "ChainViz/ChainViz.h"
 

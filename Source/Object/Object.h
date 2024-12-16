@@ -63,7 +63,7 @@ public:
 	void rebuildInterfaceParams();
 
 	template<class T>
-	T* getComponent();
+	T* getComponent(CustomTag* tag = nullptr);
 	ObjectComponent* getComponentForType(ComponentType t);
 
 	void onContainerParameterChangedInternal(Parameter* p) override;
@@ -109,11 +109,14 @@ public:
 };
 
 template<class T>
-T* Object::getComponent()
+T* Object::getComponent(CustomTag* tag)
 {
 	for (auto& c : componentManager->items)
 	{
-		if (T* result = dynamic_cast<T*>(c)) return result;
+		if (T* result = dynamic_cast<T*>(c))
+		{
+			if (tag == nullptr || result->tagSelector->getTag() == tag) return result;
+		}
 	}
 	return nullptr;
 }

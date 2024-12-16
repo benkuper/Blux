@@ -152,6 +152,7 @@
 		292D0840926067699F8C1A81 /* OpenGL.framework */ /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		2978EC72B7EEDA927449DAB6 /* ActionTrigger.cpp */ /* ActionTrigger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ActionTrigger.cpp; path = ../../Source/Sequence/layers/action/ActionTrigger.cpp; sourceTree = SOURCE_ROOT; };
 		2A0F118BD09CA08D5A350664 /* ColorSource.cpp */ /* ColorSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorSource.cpp; path = ../../Source/Color/ColorSource/ColorSource.cpp; sourceTree = SOURCE_ROOT; };
+		2C95BD19C496B67335E2EA95 /* CustomComponentUI.cpp */ /* CustomComponentUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CustomComponentUI.cpp; path = ../../Source/Object/Component/components/custom/ui/CustomComponentUI.cpp; sourceTree = SOURCE_ROOT; };
 		2E3BA0B9295E6F46032AF07A /* RawDataBlockUI.h */ /* RawDataBlockUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RawDataBlockUI.h; path = ../../Source/Sequence/layers/rawdata/ui/RawDataBlockUI.h; sourceTree = SOURCE_ROOT; };
 		30D2F4768EB6A4F4226EC1CE /* TimedEffectHiresTimer.h */ /* TimedEffectHiresTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimedEffectHiresTimer.h; path = ../../Source/Common/Helpers/TimedEffectHiresTimer.h; sourceTree = SOURCE_ROOT; };
 		30D8F1C06D45396001CEDCC6 /* InterfaceManager.cpp */ /* InterfaceManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = InterfaceManager.cpp; path = ../../Source/Interface/InterfaceManager.cpp; sourceTree = SOURCE_ROOT; };
@@ -352,6 +353,7 @@
 		99713FF88A5A12A1D258D461 /* ColorViz.h */ /* ColorViz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorViz.h; path = ../../Source/Color/ColorSource/ui/ColorViz.h; sourceTree = SOURCE_ROOT; };
 		999FC659AD43F62B1DEE5442 /* video.png */ /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = ../../Resources/colorsource/video.png; sourceTree = SOURCE_ROOT; };
 		99AD8C8EA22E91EC8B868F07 /* Object2DView.h */ /* Object2DView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Object2DView.h; path = ../../Source/Object/Layout/ui/Object2DView.h; sourceTree = SOURCE_ROOT; };
+		9C59F4235FB2FD397036C422 /* CustomComponentUI.h */ /* CustomComponentUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CustomComponentUI.h; path = ../../Source/Object/Component/components/custom/ui/CustomComponentUI.h; sourceTree = SOURCE_ROOT; };
 		9C6F4470BB5ED17A378D7C6D /* include_juce_dmx.cpp */ /* include_juce_dmx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_dmx.cpp; path = ../../JuceLibraryCode/include_juce_dmx.cpp; sourceTree = SOURCE_ROOT; };
 		9E0879427050D6F9B806E4C0 /* LayoutFilterStageView.cpp */ /* LayoutFilterStageView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LayoutFilterStageView.cpp; path = ../../Source/Effect/Filter/filters/layout/ui/LayoutFilterStageView.cpp; sourceTree = SOURCE_ROOT; };
 		A0239D1303EFC3FCB068433C /* CoreMIDI.framework */ /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
@@ -1561,6 +1563,7 @@
 		B81482AA2134043300F1E772 /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				E9837605ADF40D5D17AEDDDA,
 				1CE67EA4A7B264A020E28F94,
 				0CA65DC94E84DAECA8B21801,
 			);
@@ -1775,6 +1778,15 @@
 			children = (
 				3FC867E710D0849A7509DB3E,
 				2816137E85284A65B59E05EA,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		E9837605ADF40D5D17AEDDDA /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				2C95BD19C496B67335E2EA95,
+				9C59F4235FB2FD397036C422,
 			);
 			name = ui;
 			sourceTree = "<group>";

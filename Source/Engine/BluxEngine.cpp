@@ -17,6 +17,8 @@
 #include "Audio/AudioManager.h"
 #include "Common/CommonIncludes.h"
 
+
+
 BluxEngine::BluxEngine() :
 	Engine("Blux", ".blux")
 {
@@ -31,6 +33,8 @@ BluxEngine::BluxEngine() :
 
 	GlobalSettings::getInstance()->addChildControllableContainer(BluxSettings::getInstance());
 	GlobalSettings::getInstance()->addChildControllableContainer(AudioManager::getInstance());
+
+	ProjectSettings::getInstance()->addChildControllableContainer(CustomTagsManager::getInstance());
 
 	ColorSourceFactory::getInstance(); //avoid initialization in other than main thread;
 
@@ -67,6 +71,7 @@ BluxEngine::~BluxEngine()
 
 	AudioManager::deleteInstance();
 	BluxSettings::deleteInstance();
+	CustomTagsManager::deleteInstance();
 
 	ColorSourceFactory::deleteInstance();
 
@@ -236,10 +241,51 @@ juce_ImplementSingleton(BluxSettings)
 BluxSettings::BluxSettings() :
 	ControllableContainer("Blux Settings")
 {
+
 	defaultSceneLoadTime = addFloatParameter("Default Scene Load Time", "The default load time to set the scenes to on creation", 1, 0);
 	defaultSceneLoadTime->defaultUI = FloatParameter::TIME;
+
 }
 
 BluxSettings::~BluxSettings()
 {
+}
+
+juce_ImplementSingleton(CustomTagsManager)
+
+CustomTagsManager::CustomTagsManager() :
+	BaseManager("Custom Tags")
+{
+	selectItemWhenCreated = false;
+}
+
+CustomTagsManager::~CustomTagsManager()
+{
+}
+
+CustomTag::CustomTag()
+{
+	isSelectable = false;
+	editorCanBeCollapsed = false;
+}
+
+CustomTag::~CustomTag()
+{
+}
+
+TagSelector::TagSelector() :
+	TargetParameter("Tag", "Select a tag", "", CustomTagsManager::getInstance())
+{
+	targetType = CONTAINER;
+	maxDefaultSearchLevel = 1;
+	showParentNameInEditor = false;
+}
+
+TagSelector::~TagSelector()
+{
+}
+
+CustomTag* TagSelector::getTag()
+{
+	return getTargetContainerAs<CustomTag>();
 }

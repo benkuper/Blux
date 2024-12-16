@@ -10,8 +10,8 @@
 
 #pragma once
 
-
 #include "Common/CommonIncludes.h"
+#include "Engine/BluxEngine.h"
 #include "Color/ColorIncludes.h"
 #include "ChainViz/ChainViz.h"
 

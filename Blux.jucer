@@ -530,6 +530,12 @@
           </GROUP>
           <GROUP id="{95663C75-73C8-432B-C499-B0F789F06966}" name="components">
             <GROUP id="{C04141F0-AC61-91AC-2B60-10A311C24F96}" name="custom">
+              <GROUP id="{468A0ACA-1A32-F37F-8E51-91B4424EA5C9}" name="ui">
+                <FILE id="XGtQj9" name="CustomComponentUI.cpp" compile="0" resource="0"
+                      file="Source/Object/Component/components/custom/ui/CustomComponentUI.cpp"/>
+                <FILE id="O4uVcG" name="CustomComponentUI.h" compile="0" resource="0"
+                      file="Source/Object/Component/components/custom/ui/CustomComponentUI.h"/>
+              </GROUP>
               <FILE id="HAaeBB" name="CustomComponent.cpp" compile="0" resource="0"
                     file="Source/Object/Component/components/custom/CustomComponent.cpp"/>
               <FILE id="S4AEMz" name="CustomComponent.h" compile="0" resource="0"
