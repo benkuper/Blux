@@ -119,9 +119,9 @@ InspectableEditor* FilterManager::getEditorInternal(bool isRoot, Array<Inspectab
     return new FilterManagerEditor(this, isRoot);
 }
 
-var FilterManager::getJSONData()
+var FilterManager::getJSONData(bool includeNonOverriden)
 {
-    var data = BaseManager::getJSONData();
+    var data = BaseManager::getJSONData(includeNonOverriden);
     //data.getDynamicObject()->setProperty("selectedComponents", componentSelector.getJSONData());
     return data;
 }

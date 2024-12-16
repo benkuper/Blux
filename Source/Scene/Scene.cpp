@@ -175,9 +175,9 @@ void Scene::itemsAdded(Array<Effect*> items)
 }
 
 
-var Scene::getJSONData()
+var Scene::getJSONData(bool includeNonOverriden)
 {
-	var data = BaseItem::getJSONData();
+	var data = BaseItem::getJSONData(includeNonOverriden);
 	data.getDynamicObject()->setProperty("sceneData", sceneData);
 	return data;
 }

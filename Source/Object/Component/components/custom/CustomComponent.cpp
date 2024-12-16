@@ -50,9 +50,9 @@ void CustomComponent::rebuildValues()
 	rebuildInterfaceParams(i);
 }
 
-var CustomComponent::getJSONData()
+var CustomComponent::getJSONData(bool includeNonOverriden)
 {
-	var data = ObjectComponent::getJSONData();
+	var data = ObjectComponent::getJSONData(includeNonOverriden);
 	//var valueNames;
 	//var valueRanges;
 	//for (auto& sp : sourceParameters)

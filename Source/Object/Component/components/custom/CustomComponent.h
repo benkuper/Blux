@@ -22,7 +22,7 @@ public:
 	void onContainerParameterChangedInternal(Parameter* p) override;
 	void rebuildValues();
 
-	var getJSONData() override;
+	var getJSONData(bool includeNonOverriden = false) override;
 	void loadJSONDataItemInternal(var data) override;
 
 	String getTypeString() const override { return "Custom"; }

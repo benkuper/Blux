@@ -269,9 +269,9 @@ void ObjectManager::finished(URL::DownloadTask* task, bool success)
 	updateFactoryDefinitions();
 }
 
-var ObjectManager::getJSONData()
+var ObjectManager::getJSONData(bool includeNonOverriden)
 {
-	var data = BaseManager::getJSONData();
+	var data = BaseManager::getJSONData(includeNonOverriden);
 	data.getDynamicObject()->setProperty(customParams.shortName, customParams.getJSONData());
 	data.getDynamicObject()->setProperty(spatializer.shortName, spatializer.getJSONData());
 	return data;

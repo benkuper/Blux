@@ -87,7 +87,7 @@ public:
 	virtual void progress(URL::DownloadTask* task, int64 downloaded, int64 total) override;
 	virtual void finished(URL::DownloadTask* task, bool success) override;
 
-	var getJSONData() override;
+	var getJSONData(bool includeNonOverriden = false) override;
 	void loadJSONDataManagerInternal(var data) override;
 
 	void startLoadFile() override;

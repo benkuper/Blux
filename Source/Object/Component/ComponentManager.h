@@ -65,6 +65,6 @@ public:
     void lerpFromSceneData(var startData, var endData, float weight);
 
     virtual var getVizData();
-    //var getJSONData() override;
+    //var getJSONData(bool includeNonOverriden = false) override;
     //void loadJSONDataInternal(var data) override;
 };

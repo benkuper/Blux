@@ -54,7 +54,7 @@ public:
     void itemAdded(Effect* e) override;
     void itemsAdded(Array<Effect*> items) override;
 
-    var getJSONData() override;
+    var getJSONData(bool includeNonOverriden = false) override;
     void loadJSONDataItemInternal(var data) override;
 
     String getTypeString() const override { return "Scene"; }

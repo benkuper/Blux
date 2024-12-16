@@ -84,9 +84,9 @@ FilterResult GroupFilter::getFilteredResultForComponentInternal(Object* o, Objec
     return FilterResult();
 }
 
-var GroupFilter::getJSONData()
+var GroupFilter::getJSONData(bool includeNonOverriden)
 {
-    var data = Filter::getJSONData();
+    var data = Filter::getJSONData(includeNonOverriden);
     var gData;
     for (auto& c : groups.controllables)
     {

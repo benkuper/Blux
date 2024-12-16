@@ -295,7 +295,7 @@ void ParameterLink::notifyLinkUpdated()
 }
 
 
-var ParameterLink::getJSONData()
+var ParameterLink::getJSONData(bool includeNonOverriden)
 {
 	var data(new DynamicObject());
 	if (isLinkable)
@@ -445,9 +445,9 @@ void ParamLinkContainer::linkUpdated(ParameterLink* p)
 }
 
 
-var ParamLinkContainer::getJSONData()
+var ParamLinkContainer::getJSONData(bool includeNonOverriden)
 {
-	var data = ControllableContainer::getJSONData();
+	var data = ControllableContainer::getJSONData(includeNonOverriden);
 
 	var pLinkData(new DynamicObject());
 	for (auto& pLink : paramLinks)

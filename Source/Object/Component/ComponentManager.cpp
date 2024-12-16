@@ -61,9 +61,9 @@ var ComponentManager::getVizData()
 }
 
 
-//var ComponentManager::getJSONData()
+//var ComponentManager::getJSONData(bool includeNonOverriden)
 //{
-//	var data = ControllableContainer::getJSONData();
+//	var data = ControllableContainer::getJSONData(includeNonOverriden);
 //	var cData;
 //	for (auto& c : items) cData.append(c->getJSONData());
 //	data.getDynamicObject()->setProperty("components", cData);

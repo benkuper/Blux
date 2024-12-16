@@ -48,11 +48,15 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Blux</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(LibraryPath);../../External/servus/lib/win/x64/debug;../../External/dnssd/lib;..\..\Modules\juce_simpleweb\libs\VisualStudio2022\$(Platform)\MDd</LibraryPath>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</PreBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</PostBuildEventUseInBuild>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\..\Binaries\App\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\App\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Blux</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(LibraryPath);../../External/servus/lib/win/x64/release;../../External/dnssd/lib;..\..\Modules\juce_simpleweb\libs\VisualStudio2022\$(Platform)\MD</LibraryPath>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</PreBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -998,7 +1002,7 @@
     <ClCompile Include="..\..\..\JUCE\modules\juce_audio_devices\native\juce_DirectSound_windows.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\JUCE\modules\juce_audio_devices\native\juce_JackAudio_linux.cpp">
+    <ClCompile Include="..\..\..\JUCE\modules\juce_audio_devices\native\juce_JackAudio.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_audio_devices\native\juce_Midi_android.cpp">
@@ -1545,6 +1549,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_audio_processors\utilities\juce_VST2ClientExtensions.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_audio_processors\utilities\juce_VST3ClientExtensions.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_audio_processors\juce_audio_processors.cpp">
@@ -2183,7 +2190,10 @@
     <ClCompile Include="..\..\..\JUCE\modules\juce_graphics\fonts\harfbuzz\hb-common.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\JUCE\modules\juce_graphics\fonts\harfbuzz\hb-coretext.cc">
+    <ClCompile Include="..\..\..\JUCE\modules\juce_graphics\fonts\harfbuzz\hb-coretext-font.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_graphics\fonts\harfbuzz\hb-coretext-shape.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_graphics\fonts\harfbuzz\hb-directwrite.cc">

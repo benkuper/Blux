@@ -57,9 +57,9 @@ void IDFilter::controllableAdded(Controllable* c)
 	}
 }
 
-var IDFilter::getJSONData()
+var IDFilter::getJSONData(bool includeNonOverriden)
 {
-	var data = Filter::getJSONData();
+	var data = Filter::getJSONData(includeNonOverriden);
 	var idData;
 	for (auto& c : ids.controllables)
 	{

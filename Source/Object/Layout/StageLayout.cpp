@@ -39,9 +39,9 @@ Vector3D<float> StageLayout::getObjectPosition(Object* o)
     return Vector3D<float>(p[0], p[1], p[2]);
 }
 
-var StageLayout::getJSONData()
+var StageLayout::getJSONData(bool includeNonOverriden)
 {
-    var data = BaseItem::getJSONData();
+    var data = BaseItem::getJSONData(includeNonOverriden);
     data.getDynamicObject()->setProperty("layoutData", layoutData);
     return data;
 }

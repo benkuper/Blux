@@ -71,7 +71,7 @@ public:
 	void onContainerParameterChangedInternal(Parameter* p) override;
 
 
-	var getJSONData() override;
+	var getJSONData(bool includeNonOverriden = false) override;
 	void loadJSONDataItemInternal(var data) override;
 
 	class ColorComponentEvent

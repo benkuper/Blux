@@ -24,7 +24,7 @@ public:
 
     void controllableAdded(Controllable* c) override;
 
-    var getJSONData() override;
+    var getJSONData(bool includeNonOverriden = false) override;
     void loadJSONDataInternal(var data) override;
 
     String getTypeString() const override { return "Filter by ID"; }

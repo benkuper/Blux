@@ -317,9 +317,9 @@ var ObjectComponent::getMappedValueForComputedParam(Interface* i, Parameter* cp)
 	return cp->getValue();
 }
 
-var ObjectComponent::getJSONData()
+var ObjectComponent::getJSONData(bool includeNonOverriden)
 {
-	var data = BaseItem::getJSONData();
+	var data = BaseItem::getJSONData(includeNonOverriden);
 	data.getDynamicObject()->setProperty("interfaceParams", interfaceParamCC.getJSONData());
 	return data;
 }

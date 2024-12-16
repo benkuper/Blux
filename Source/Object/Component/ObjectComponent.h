@@ -70,7 +70,7 @@ public:
 
     virtual var getMappedValueForComputedParam(Interface* i, Parameter* computedP);
 
-    var getJSONData() override;
+    var getJSONData(bool includeNonOverriden = false) override;
     void loadJSONDataItemInternal(var data) override;
 
 

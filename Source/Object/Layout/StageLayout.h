@@ -26,6 +26,6 @@ public:
 
     Vector3D<float> getObjectPosition(Object * o);
 
-    var getJSONData() override;
+    var getJSONData(bool includeNonOverriden = false) override;
     void loadJSONDataItemInternal(var data) override;
 };

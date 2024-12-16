@@ -181,9 +181,9 @@ String BluxEngine::getMinimumRequiredFileVersion()
 	return "1.0.0b1";
 }
 
-var BluxEngine::getJSONData()
+var BluxEngine::getJSONData(bool includeNonOverriden)
 {
-	var data = Engine::getJSONData();
+	var data = Engine::getJSONData(includeNonOverriden);
 
 	//save here
 	data.getDynamicObject()->setProperty(ColorSourceLibrary::getInstance()->shortName, ColorSourceLibrary::getInstance()->getJSONData());

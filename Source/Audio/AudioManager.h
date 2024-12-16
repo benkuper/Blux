@@ -38,6 +38,6 @@ public:
 	AudioProcessorPlayer player;
 	AudioProcessorGraph graph;
 
-	var getJSONData() override;
+	var getJSONData(bool includeNonOverriden = false) override;
 	void loadJSONDataInternal(var data) override;
 };

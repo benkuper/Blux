@@ -311,9 +311,9 @@ void ColorComponent::onContainerParameterChangedInternal(Parameter* p)
 }
 
 
-var ColorComponent::getJSONData()
+var ColorComponent::getJSONData(bool includeNonOverriden)
 {
-	var data = ObjectComponent::getJSONData();
+	var data = ObjectComponent::getJSONData(includeNonOverriden);
 	if (colorSource != nullptr)
 	{
 		data.getDynamicObject()->setProperty("colorSource", colorSource->getJSONData());

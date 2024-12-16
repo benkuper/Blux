@@ -37,7 +37,7 @@ public:
 
     virtual String getMinimumRequiredFileVersion() override;
 
-    var getJSONData() override;
+    var getJSONData(bool includeNonOverriden = false) override;
     void loadJSONDataInternalEngine(var data, ProgressTask * task) override;
 };
 

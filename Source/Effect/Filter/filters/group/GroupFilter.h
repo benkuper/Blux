@@ -24,7 +24,7 @@ public:
     bool isAffectingObject(Object* o) override;
     virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c) override;
 
-    var getJSONData() override;
+    var getJSONData(bool includeNonOverriden = false) override;
     void loadJSONDataItemInternal(var data) override;
 
     String getTypeString() const override { return "Filter by Group"; }

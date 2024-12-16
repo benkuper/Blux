@@ -31,6 +31,6 @@ public:
 
 	InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
 
-	var getJSONData() override;
+	var getJSONData(bool includeNonOverriden = false) override;
 	void loadJSONDataManagerInternal(var data) override;
 };

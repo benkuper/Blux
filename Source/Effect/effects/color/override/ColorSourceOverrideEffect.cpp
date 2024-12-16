@@ -55,9 +55,9 @@ void ColorSourceOverrideEffect::colorSourceParamControlModeChanged(Parameter* p)
 	effectListeners.call(&EffectListener::effectParamControlModeChanged, p);
 }
 
-var ColorSourceOverrideEffect::getJSONData()
+var ColorSourceOverrideEffect::getJSONData(bool includeNonOverriden)
 {
-	var data = ColorEffect::getJSONData();
+	var data = ColorEffect::getJSONData(includeNonOverriden);
 	if (colorSource != nullptr)
 	{
 		data.getDynamicObject()->setProperty("colorSource", colorSource->getJSONData());
