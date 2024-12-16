@@ -177,7 +177,7 @@ void BluxEngine::clearInternal()
 	GlobalSequenceManager::getInstance()->clear();
 	StageLayoutManager::getInstance()->clear();
 	ColorSourceLibrary::getInstance()->clear();
-
+	CustomTagsManager::getInstance()->clear();
 	InterfaceManager::getInstance()->clear();
 }
 

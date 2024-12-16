@@ -18,6 +18,8 @@ ObjectComponent::ObjectComponent(Object* o, String name, ComponentType component
 	mainParameter(nullptr),
 	interfaceParamCC("Interface Params")
 {
+	showWarningInUI = true;
+
 	saveAndLoadRecursiveData = true;
 
 	excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked ,this will not be included in scene data", false);
@@ -26,6 +28,8 @@ ObjectComponent::ObjectComponent(Object* o, String name, ComponentType component
 	canBeReorderedInEditor = true;
 
 	tagSelector = new TagSelector();
+	tagSelector->warningResolveInspectable = o;
+	tagSelector->showWarningInUI = true;
 	addParameter(tagSelector);
 
 	needsTag = addBoolParameter("Needs Tag", "If checked, this component will only be active if the object has a tag that matches the tag selector", false);
