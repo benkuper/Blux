@@ -262,6 +262,7 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 			if (channelP == nullptr || !channelP->enabled) continue;
 			int channel = channelP->intValue();
 			int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
+			if (targetChannel >= DMX_NUM_CHANNELS) break;
 
 			var mappedVal = getMappedValueForComputedParam(i, cp);
 			if (cp->isComplex())
