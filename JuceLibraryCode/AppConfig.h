@@ -20,7 +20,7 @@
 
 // [END_USER_CODE_SECTION]
 
-#define JUCE_PROJUCER_VERSION 0x80004
+#define JUCE_PROJUCER_VERSION 0x80006
 
 //==============================================================================
 #define JUCE_MODULE_AVAILABLE_juce_audio_basics          1
@@ -221,6 +221,10 @@
 
 #ifndef    JUCE_DISABLE_COREGRAPHICS_FONT_SMOOTHING
  //#define JUCE_DISABLE_COREGRAPHICS_FONT_SMOOTHING 0
+#endif
+
+#ifndef    JUCE_FLOAT_COLOURS
+ #define   JUCE_FLOAT_COLOURS 1
 #endif
 
 //==============================================================================
