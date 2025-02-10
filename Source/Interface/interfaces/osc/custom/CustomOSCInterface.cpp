@@ -25,21 +25,25 @@ CustomOSCInterface::~CustomOSCInterface()
 
 void CustomOSCInterface::itemAdded(GenericControllableItem*)
 {
+	if (isClearing) return;
 	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
 }
 
 void CustomOSCInterface::itemsAdded(Array<GenericControllableItem*>)
 {
+	if (isClearing) return;
 	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
 }
 
 void CustomOSCInterface::itemRemoved(GenericControllableItem*)
 {
+	if (isClearing) return;
 	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
 }
 
 void CustomOSCInterface::itemsRemoved(Array<GenericControllableItem*>)
 {
+	if (isClearing) return;
 	customOSCListeners.call(&CustomOSCInterfaceListener::customParamsChanged, this);
 }
 
