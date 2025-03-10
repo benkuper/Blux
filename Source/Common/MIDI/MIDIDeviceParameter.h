@@ -17,7 +17,7 @@ class MIDIDeviceParameter :
 	public MIDIManager::Listener
 {
 public:
-	MIDIDeviceParameter(const String &name);
+	MIDIDeviceParameter(const String &name, const String& description = "MIDI Devices to connect to");
 	~MIDIDeviceParameter();
 
 	MIDIInputDevice * inputDevice;
@@ -40,6 +40,7 @@ public:
 	MIDIDeviceParameterUI* createMIDIParameterUI(Array<MIDIDeviceParameter*> parameters = {});
 	ControllableUI * createDefaultUI(Array<Controllable*> controllables = {}) override;
 
+	var getJSONDataInternal() override;
 	void loadJSONDataInternal(var data) override;
 
 	String getTypeString() const override { return "MIDIDevice"; }

@@ -44,6 +44,7 @@ public:
 		virtual void noteOnReceived(const int &/*channel*/, const int &/*pitch*/, const int &/*velocity*/) {}
 		virtual void noteOffReceived(const int &/*channel*/, const int &/*pitch*/, const int &/*velocity*/) {}
 		virtual void controlChangeReceived(const int &/*channel*/, const int &/*number*/, const int &/*value*/) {}
+    virtual void programChangeReceived(const int &/*channel*/, const int &/*value*/) {}
 		virtual void sysExReceived(const MidiMessage &/*msg*/) {}
 		virtual void fullFrameTimecodeReceived(const MidiMessage&/*msg*/) {}
 		virtual void quarterFrameTimecodeReceived(const MidiMessage&/*msg*/) {}
@@ -55,6 +56,8 @@ public:
 		virtual void midiStartReceived() {}
 		virtual void midiStopReceived() {}
 		virtual void midiContinueReceived() {}
+		virtual void midiMachineControlCommandReceived(const MidiMessage::MidiMachineControlCommand &/*type*/) {}
+		virtual void midiMachineControlGotoReceived(const int&/*hours*/, const int&/*minutes*/, const int&/*seconds*/, const int&/*frames*/) {}
 	};
 
 	ListenerList<MIDIInputListener> inputListeners;
@@ -88,9 +91,11 @@ public:
 	void sendFullframeTimecode(int hours, int minutes, int seconds, int frames, MidiMessage::SmpteTimecodeType timecodeType);
 	void sendQuarterframe(int piece, int value);
 	void sendMidiMachineControlCommand(MidiMessage::MidiMachineControlCommand command);
+	void sendMidiMachineControlGoto(int hours, int minutes, int seconds, int frames);
 	void sendPitchWheel(int channel, int value);
 	void sendChannelPressure(int channel, int value);
 	void sendAfterTouch(int channel, int note, int value);
+	void sendMessage(const MidiMessage& m);
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MIDIOutputDevice)
 };

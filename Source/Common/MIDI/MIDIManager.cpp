@@ -12,6 +12,7 @@ juce_ImplementSingleton(MIDIManager)
 
 MIDIManager::MIDIManager()
 {
+
 	startTimer(500); //check devices each half seconds
 	checkDevices();
 }
@@ -22,6 +23,7 @@ MIDIManager::~MIDIManager()
 
 void MIDIManager::checkDevices()
 {
+
 
 	//INPUTS
 	Array<MidiDeviceInfo> inputInfos = MidiInput::getAvailableDevices();
@@ -58,6 +60,7 @@ void MIDIManager::checkDevices()
 
 	for (auto& d : outputs)
 	{
+
 		bool contains = false;
 		for (auto& i : outputInfos)
 		{
@@ -77,8 +80,32 @@ void MIDIManager::checkDevices()
 	}
 
 
+	int idIndex = 1; //keep track of ids
 	for (auto& i : outputInfos)
 	{
+
+		if (i.name == "Microsoft GS Wavetable Synth") continue; // remove this, nobody wants it anyway
+
+		//This is a ugly hack to take name from ordered input with same identifier, because WinRT stack has a bug and is still not fixed.
+		//See https://forum.juce.com/t/winrt-midi-output-wrong-device-names/43301/6
+
+		if (i.identifier.startsWith("{00000000-0000-0000-FFFF-FFFFFFFFFFFF}"))
+		{
+			String expectedID = "{00000000-0000-0000-FFFF-FFFFFFFFFFFF}";
+			if (idIndex > 1) expectedID += "-" + String(idIndex);
+
+			for (auto& ii : inputInfos)
+			{
+				if (ii.identifier == expectedID)
+				{
+					i.name = ii.name;
+					break;
+				}
+			}
+
+			idIndex++;
+		}
+
 		addOutputDeviceIfNotThere(i);
 	}
 }
@@ -89,7 +116,7 @@ void MIDIManager::addInputDeviceIfNotThere(const MidiDeviceInfo& info)
 	MIDIInputDevice* d = new MIDIInputDevice(info);
 	inputs.add(d);
 
-	NLOG("MIDI", "Device In Added : " << d->name << " (ID : " << d->id << ")");
+	NLOG("MIDI", "Device In Added : " << d->name);// << " (ID : " << d->id << ")");
 
 	listeners.call(&Listener::midiDeviceInAdded, d);
 }
@@ -100,7 +127,7 @@ void MIDIManager::addOutputDeviceIfNotThere(const MidiDeviceInfo& info)
 	MIDIOutputDevice* d = new MIDIOutputDevice(info);
 	outputs.add(d);
 
-	NLOG("MIDI", "Device Out Added : " << d->name << " (ID : " << d->id << ")");
+	NLOG("MIDI", "Device Out Added : " << d->name);// << " (ID : " << d->id << ")");
 
 	listeners.call(&Listener::midiDeviceOutAdded, d);
 }
@@ -109,7 +136,7 @@ void MIDIManager::removeInputDevice(MIDIInputDevice* d)
 {
 	inputs.removeObject(d, false);
 
-	NLOG("MIDI", "Device In Removed : " << d->name << " (ID : " << d->id << ")");
+	NLOG("MIDI", "Device In Removed : " << d->name);// << " (ID : " << d->id << ")");
 
 	listeners.call(&Listener::midiDeviceInRemoved, d);
 	delete d;
@@ -119,7 +146,7 @@ void MIDIManager::removeOutputDevice(MIDIOutputDevice* d)
 {
 	outputs.removeObject(d, false);
 
-	NLOG("MIDI", "Device Out Removed : " << d->name << " (ID : " << d->id << ")");
+	NLOG("MIDI", "Device Out Removed : " << d->name);// << " (ID : " << d->id << ")");
 
 	listeners.call(&Listener::midiDeviceOutRemoved, d);
 	delete d;
