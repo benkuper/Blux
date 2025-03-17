@@ -177,7 +177,7 @@ float TimedColorSource::getCurrentTime(float timeOverride)
 {
 	if (sourceTemplate != nullptr && !sourceTemplateRef.wasObjectDeleted()) return ((TimedColorSource*)sourceTemplate)->getCurrentTime();
 
-	return timeOverride >= 0 ? timeOverride * speed->floatValue() : curTime;
+	return timeOverride >= 0 ? timeOverride * speed->doubleValue() : curTime;
 }
 
 void TimedColorSource::hiResTimerCallback()
@@ -187,7 +187,7 @@ void TimedColorSource::hiResTimerCallback()
 
 void TimedColorSource::addTime()
 {
-	double newTime = Time::getMillisecondCounter() / 1000.0;
-	curTime += (newTime - timeAtLastUpdate) * speed->floatValue();
+	double newTime = Time::getMillisecondCounterHiRes() / 1000.0;
+	curTime += (newTime - timeAtLastUpdate) * speed->doubleValue();
 	timeAtLastUpdate = newTime;
 }
