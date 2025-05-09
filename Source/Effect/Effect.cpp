@@ -140,11 +140,9 @@ void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*,
 		Parameter* cp = it.getKey();
 		var initVal = values[cp];
 		var val = it.getValue().clone();
-		if (initVal != val)
-		{
-			var bVal = blendValue(initVal, val, targetWeight);
-			values.set(cp, bVal);
-		}
+
+		var bVal = blendValue(initVal, val, targetWeight);
+		values.set(cp, bVal);
 
 		if (cp == vizComputedParamRef && vizParameter != nullptr && !vizParameter.wasObjectDeleted()) vizParameter->setValue(values[cp]);
 	}
