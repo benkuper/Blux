@@ -11,7 +11,7 @@
 #pragma once
 
 class ColorSourceLibraryGridUI :
-    public BaseManagerShapeShifterUI<ColorSourceLibrary, ColorSource, ColorSourceGridUI>,
+    public ManagerShapeShifterUI<ColorSourceLibrary, ColorSource, ColorSourceGridUI>,
     public ContainerAsyncListener
 {
 public:

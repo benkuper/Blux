@@ -12,7 +12,7 @@
 #include "Scene/SceneIncludes.h"
 
 ObjectManagerGridUI::ObjectManagerGridUI(const String& name) :
-	BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
+	ManagerShapeShifterUI(name, ObjectManager::getInstance())
 {
 	highlightOnDragOver = false;
 
@@ -51,7 +51,7 @@ ObjectManagerGridUI::~ObjectManagerGridUI()
 
 void ObjectManagerGridUI::paint(Graphics& g)
 {
-	BaseManagerUI::paint(g);
+	ManagerUI::paint(g);
 
 	if (isDraggingOver)
 	{
@@ -68,7 +68,7 @@ void ObjectManagerGridUI::paint(Graphics& g)
 
 void ObjectManagerGridUI::resizedInternalHeader(Rectangle<int>& r)
 {
-	BaseManagerShapeShifterUI::resizedInternalHeader(r);
+	ManagerShapeShifterUI::resizedInternalHeader(r);
 	r.removeFromLeft(4);
 	activeInSceneUI->setBounds(r.removeFromLeft(100).reduced(3)); 
 	r.removeFromLeft(16);
@@ -137,13 +137,13 @@ void ObjectManagerGridUI::setPreviewData(var data)
 
 bool ObjectManagerGridUI::hasFiltering()
 {
-	if (BaseManagerUI::hasFiltering()) return true;
+	if (ManagerUI::hasFiltering()) return true;
 	return manager->filterActiveInScene->boolValue();
 }
 
 bool ObjectManagerGridUI::checkFilterForItem(ObjectGridUI* ui)
 {
-	if (!BaseManagerShapeShifterUI::checkFilterForItem(ui)) return false;
+	if (!ManagerShapeShifterUI::checkFilterForItem(ui)) return false;
 
 
 	if (manager->filterActiveInScene->boolValue() && SceneManager::getInstance()->currentScene != nullptr)

@@ -16,7 +16,7 @@ CustomOSCInterface::CustomOSCInterface() :
 	customParams("Custom Parameters", false, false, false, false)
 {
 	addChildControllableContainer(&customParams);
-	customParams.addBaseManagerListener(this);
+	customParams.addManagerListener(this);
 }
 
 CustomOSCInterface::~CustomOSCInterface()

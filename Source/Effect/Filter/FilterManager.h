@@ -11,7 +11,7 @@
 #pragma once
 
 class FilterManager :
-	public BaseManager<Filter>
+	public Manager<Filter>
 {
 public:
 	FilterManager();

@@ -12,7 +12,7 @@
 #include "ComponentManager.h"
 
 ComponentManager::ComponentManager(Object* o) :
-	BaseManager("Components"),
+	Manager("Components"),
 	factory(o)
 {
 	managerFactory = &factory;

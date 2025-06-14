@@ -11,7 +11,7 @@
 #pragma once
 
 class GroupManagerUI :
-    public BaseManagerShapeShifterUI<GroupManager, Group, GroupUI>
+    public ManagerShapeShifterUI<GroupManager, Group, GroupUI>
 {
 public:
     GroupManagerUI(const String &name);

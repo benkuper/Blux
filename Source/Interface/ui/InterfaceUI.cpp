@@ -12,7 +12,7 @@
 #include "UI/AssetManager.h"
 
 InterfaceUI::InterfaceUI(Interface* item) :
-	BaseItemUI(item)
+	ItemUI(item)
 {
 	inActivityUI.reset(item->inActivityTrigger->createImageUI(AssetManager::getInstance()->inImage));
 	inActivityUI->showLabel = false;
@@ -34,7 +34,7 @@ InterfaceUI::~InterfaceUI()
 
 void InterfaceUI::paintOverChildren(Graphics& g)
 {
-	BaseItemUI::paintOverChildren(g);
+	ItemUI::paintOverChildren(g);
 
 	if (item->logIncomingData != nullptr && item->logIncomingData->boolValue())
 	{
@@ -51,7 +51,7 @@ void InterfaceUI::paintOverChildren(Graphics& g)
 
 void InterfaceUI::resizedHeader(Rectangle<int>& r)
 {
-	BaseItemUI::resizedHeader(r);
+	ItemUI::resizedHeader(r);
 
 	outActivityUI->setBounds(r.removeFromRight(r.getHeight()));
 	inActivityUI->setBounds(r.removeFromRight(r.getHeight()));
@@ -63,7 +63,7 @@ void InterfaceUI::resizedHeader(Rectangle<int>& r)
 
 void InterfaceUI::mouseDown(const MouseEvent& e)
 {
-	BaseItemUI::mouseDown(e);
+	ItemUI::mouseDown(e);
 	if (e.eventComponent == inActivityUI.get()) item->logIncomingData->setValue(!item->logIncomingData->boolValue());
 	else if (e.eventComponent == outActivityUI.get()) item->logOutgoingData->setValue(!item->logOutgoingData->boolValue());
 }

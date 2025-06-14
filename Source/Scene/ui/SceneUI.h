@@ -11,7 +11,7 @@
 #pragma once
 
 class SceneUI :
-    public BaseItemUI<Scene>
+    public ItemUI<Scene>
 {
 public:
     SceneUI(Scene* scene);

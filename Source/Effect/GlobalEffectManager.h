@@ -29,7 +29,7 @@ public:
 };
 
 class GlobalEffectManager :
-    public BaseManager<EffectGroup>
+    public Manager<EffectGroup>
 {
 public:
     juce_DeclareSingleton(GlobalEffectManager, true);

@@ -13,7 +13,7 @@
 juce_ImplementSingleton(InterfaceManager)
 
 InterfaceManager::InterfaceManager() :
-    BaseManager("Interfaces")
+    Manager("Interfaces")
 {
     managerFactory = &factory;
 

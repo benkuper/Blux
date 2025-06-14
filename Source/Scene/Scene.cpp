@@ -55,7 +55,7 @@ Scene::Scene(const String& name) :
 
 	sequenceManager.reset(new BluxSequenceManager());
 	sequenceManager->selectItemWhenCreated = false;
-	sequenceManager->addBaseManagerListener(this);
+	sequenceManager->addManagerListener(this);
 
 	effectManager.reset(new EffectManager());
 
@@ -64,7 +64,7 @@ Scene::Scene(const String& name) :
 	addChildControllableContainer(&loadActions);
 	addChildControllableContainer(&unloadActions);
 
-	effectManager->addBaseManagerListener(this);
+	effectManager->addManagerListener(this);
 }
 
 Scene::~Scene()

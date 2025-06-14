@@ -254,7 +254,7 @@ BluxSettings::~BluxSettings()
 juce_ImplementSingleton(CustomTagsManager)
 
 CustomTagsManager::CustomTagsManager() :
-	BaseManager("Custom Tags")
+	Manager("Custom Tags")
 {
 	selectItemWhenCreated = false;
 }

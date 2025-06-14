@@ -20,7 +20,7 @@ public:
 };
 
 class ActionManager :
-    public BaseManager<Action>
+    public Manager<Action>
 {
 public:
     ActionManager(const String &name = "Actions");

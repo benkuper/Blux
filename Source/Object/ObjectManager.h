@@ -13,7 +13,7 @@
 class ObjectManagerCustomParams;
 
 class SubObjectManager :
-	public BaseManager<Object>
+	public Manager<Object>
 {
 public:
 	SubObjectManager();
@@ -22,7 +22,7 @@ public:
 
 
 class ObjectManager :
-	public BaseManager<Object>,
+	public Manager<Object>,
 	public Object::ObjectListener,
 	public Thread,
 	public URL::DownloadTask::Listener,

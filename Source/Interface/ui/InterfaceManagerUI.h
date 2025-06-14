@@ -14,7 +14,7 @@
 #include "InterfaceUI.h"
 
 class InterfaceManagerUI :
-    public BaseManagerShapeShifterUI<InterfaceManager, Interface, InterfaceUI>
+    public ManagerShapeShifterUI<InterfaceManager, Interface, InterfaceUI>
 {
 public:
     InterfaceManagerUI(const String &name);

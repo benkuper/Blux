@@ -32,8 +32,8 @@ OSCInterface::OSCInterface(const String& name, bool canHaveScripts) :
 	if (!Engine::mainEngine->isLoadingFile) setupReceiver();
 
 	//Send
-	outputManager.reset(new BaseManager<OSCOutput>("OSC Outputs"));
-	outputManager->addBaseManagerListener(this);
+	outputManager.reset(new Manager<OSCOutput>("OSC Outputs"));
+	outputManager->addManagerListener(this);
 
 	addChildControllableContainer(outputManager.get());
 

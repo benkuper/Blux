@@ -13,7 +13,7 @@
 class LayoutFilterStageView;
 
 class StageLayout2DView :
-	public BaseManagerShapeShifterViewUI<ObjectManager, Object, Object2DView>,
+	public ManagerShapeShifterViewUI<ObjectManager, Object, Object2DView>,
 	public ContainerAsyncListener
 {
 public:

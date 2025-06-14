@@ -9,7 +9,7 @@
 */
 
 StageLayoutManagerUI::StageLayoutManagerUI(const String& name) :
-    BaseManagerShapeShifterUI(name, StageLayoutManager::getInstance(), true)
+    ManagerShapeShifterUI(name, StageLayoutManager::getInstance(), true)
 {
     addExistingItems();
 }

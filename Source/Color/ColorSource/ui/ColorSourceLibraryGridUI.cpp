@@ -9,7 +9,7 @@
 */
 
 ColorSourceLibraryGridUI::ColorSourceLibraryGridUI(const String& name) :
-    BaseManagerShapeShifterUI(name, ColorSourceLibrary::getInstance())
+    ManagerShapeShifterUI(name, ColorSourceLibrary::getInstance())
 {
 	thumbSizeUI.reset(manager->gridThumbSize->createSlider());
 	addAndMakeVisible(thumbSizeUI.get());
@@ -27,7 +27,7 @@ ColorSourceLibraryGridUI::~ColorSourceLibraryGridUI()
 
 void ColorSourceLibraryGridUI::resizedInternalHeader(Rectangle<int>& r)
 {
-	BaseManagerShapeShifterUI::resizedInternalHeader(r);
+	ManagerShapeShifterUI::resizedInternalHeader(r);
 	thumbSizeUI->setBounds(r.removeFromLeft(150).reduced(3));
 }
 

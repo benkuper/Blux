@@ -9,7 +9,7 @@
 */
 
 GroupManagerUI::GroupManagerUI(const String& name) :
-    BaseManagerShapeShifterUI(name, GroupManager::getInstance())
+    ManagerShapeShifterUI(name, GroupManager::getInstance())
 {
     setShowSearchBar(true);
     addExistingItems();

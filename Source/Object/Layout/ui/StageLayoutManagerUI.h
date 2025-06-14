@@ -11,7 +11,7 @@
 #pragma once
 
 class StageLayoutManagerUI :
-    public BaseManagerShapeShifterUI<StageLayoutManager, StageLayout, StageLayoutUI>
+    public ManagerShapeShifterUI<StageLayoutManager, StageLayout, StageLayoutUI>
 {
 public:
     StageLayoutManagerUI(const String& name);

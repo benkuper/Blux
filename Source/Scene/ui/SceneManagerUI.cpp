@@ -12,7 +12,7 @@
 #include "SceneManagerUI.h"
 
 SceneManagerUI::SceneManagerUI(const String& name) :
-	BaseManagerShapeShifterUI(name, SceneManager::getInstance())
+	ManagerShapeShifterUI(name, SceneManager::getInstance())
 {
 	animateItemOnAdd = false;
 
@@ -49,7 +49,7 @@ SceneManagerUI::~SceneManagerUI()
 
 void SceneManagerUI::mouseEnter(const MouseEvent& e)
 {
-	BaseManagerShapeShifterUI::mouseEnter(e);
+	ManagerShapeShifterUI::mouseEnter(e);
 	SceneManager::PreviewMode m = manager->previewMode->getValueDataAsEnum<SceneManager::PreviewMode>();
 	if (m == SceneManager::HOVER)
 	{
@@ -63,7 +63,7 @@ void SceneManagerUI::mouseEnter(const MouseEvent& e)
 
 void SceneManagerUI::mouseExit(const MouseEvent& e)
 {
-	BaseManagerShapeShifterUI::mouseExit(e);
+	ManagerShapeShifterUI::mouseExit(e);
 	SceneManager::PreviewMode m = manager->previewMode->getValueDataAsEnum<SceneManager::PreviewMode>();
 	if (m == SceneManager::HOVER)
 	{
@@ -76,7 +76,7 @@ void SceneManagerUI::mouseExit(const MouseEvent& e)
 
 void SceneManagerUI::resizedInternalHeader(Rectangle<int>& r)
 {
-	BaseManagerShapeShifterUI::resizedInternalHeader(r);
+	ManagerShapeShifterUI::resizedInternalHeader(r);
 
 	Rectangle<int> pr = r.removeFromLeft(80);
 	prevSceneUI->setBounds(pr.removeFromTop(pr.getHeight() / 2).reduced(1));
@@ -99,7 +99,7 @@ void SceneManagerUI::newMessage(const SceneManagerEvent& e)
 
 void SceneManagerUI::newMessage(const InspectableSelectionManager::SelectionEvent& e)
 {
-	BaseManagerUI::newMessage(e);
+	ManagerUI::newMessage(e);
 
 	if (e.type == InspectableSelectionManager::SelectionEvent::SELECTION_CHANGED)
 	{

@@ -11,7 +11,7 @@
 #pragma once
 
 class MIDIMappingManager :
-    public BaseManager<MIDIMapping>
+    public Manager<MIDIMapping>
 {
 public:
     MIDIMappingManager();

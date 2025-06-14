@@ -12,7 +12,7 @@
 #include "Effect/Filter/filters/layout/ui/LayoutFilterStageView.h"
 
 StageLayout2DView::StageLayout2DView(const String& name) :
-	BaseManagerShapeShifterViewUI(name, ObjectManager::getInstance())
+	ManagerShapeShifterViewUI(name, ObjectManager::getInstance())
 {
 	animateItemOnAdd = false;
 
@@ -77,7 +77,7 @@ void StageLayout2DView::setPreviewData(var data)
 
 void StageLayout2DView::resized()
 {
-	BaseManagerShapeShifterViewUI::resized();
+	ManagerShapeShifterViewUI::resized();
 
 	Rectangle<int> r = getLocalBounds().removeFromTop(headerSize);
 	r.setLeft(searchBar->getRight() + 8);

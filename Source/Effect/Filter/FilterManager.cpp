@@ -11,7 +11,7 @@
 #include "Effect/EffectIncludes.h"
 
 FilterManager::FilterManager() :
-    BaseManager("Filters")
+    Manager("Filters")
 {
     itemDataType = "Filter";
 
@@ -121,13 +121,13 @@ InspectableEditor* FilterManager::getEditorInternal(bool isRoot, Array<Inspectab
 
 var FilterManager::getJSONData(bool includeNonOverriden)
 {
-    var data = BaseManager::getJSONData(includeNonOverriden);
+    var data = Manager::getJSONData(includeNonOverriden);
     //data.getDynamicObject()->setProperty("selectedComponents", componentSelector.getJSONData());
     return data;
 }
 
 void FilterManager::loadJSONDataManagerInternal(var data)
 {
-    BaseManager::loadJSONDataManagerInternal(data);
+    Manager::loadJSONDataManagerInternal(data);
     //componentSelector.loadJSONData(data.getProperty("selectedComponents", var()));
 }

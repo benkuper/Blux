@@ -14,7 +14,7 @@
 juce_ImplementSingleton(EffectFactory);
 
 EffectManager::EffectManager(Group* g) :
-	BaseManager("Effects"),
+	Manager("Effects"),
 	forceDisabled(false),
 	parentGroup(g)
 {

@@ -17,7 +17,7 @@ Image SceneUI::seqImage;
 
 
 SceneUI::SceneUI(Scene* scene) :
-	BaseItemUI(scene)
+	ItemUI(scene)
 {
 
 	if (fxImage.isNull()) fxImage = ImageCache::getFromMemory(BinaryData::fx_png, BinaryData::fx_pngSize);
@@ -46,7 +46,7 @@ SceneUI::~SceneUI()
 
 void SceneUI::paint(Graphics& g)
 {
-	BaseItemUI::paint(g);
+	ItemUI::paint(g);
 	if (item->sequenceManager->items.size() > 0) g.drawImage(seqImage, seqRect);
 	if (item->effectManager->items.size() > 0) g.drawImage(fxImage, fxRect);
 }
@@ -66,21 +66,21 @@ void SceneUI::resizedInternalHeader(Rectangle<int>& r)
 
 void SceneUI::mouseEnter(const MouseEvent& e)
 {
-	BaseItemUI::mouseEnter(e);
+	ItemUI::mouseEnter(e);
 	SceneManager::PreviewMode m = SceneManager::getInstance()->previewMode->getValueDataAsEnum<SceneManager::PreviewMode>();
 	if (m == SceneManager::HOVER) showPreview(true);
 }
 
 void SceneUI::mouseExit(const MouseEvent& e)
 {
-	BaseItemUI::mouseExit(e);
+	ItemUI::mouseExit(e);
 	SceneManager::PreviewMode m = SceneManager::getInstance()->previewMode->getValueDataAsEnum<SceneManager::PreviewMode>();
 	if (m == SceneManager::HOVER) showPreview(false);
 }
 
 void SceneUI::mouseDown(const MouseEvent& e)
 {
-	BaseItemUI::mouseDown(e);
+	ItemUI::mouseDown(e);
 	if (e.mods.isLeftButtonDown())
 	{
 		if (e.mods.isAltDown())
@@ -125,7 +125,7 @@ void SceneUI::mouseDoubleClick(const MouseEvent& e)
 		}
 	}
 
-	BaseItemUI::mouseDoubleClick(e);
+	ItemUI::mouseDoubleClick(e);
 }
 
 void SceneUI::itemDropped(const DragAndDropTarget::SourceDetails& details)
@@ -160,7 +160,7 @@ void SceneUI::showPreview(bool doShow)
 
 void SceneUI::controllableFeedbackUpdateInternal(Controllable* c)
 {
-	BaseItemUI::controllableFeedbackUpdateInternal(c);
+	ItemUI::controllableFeedbackUpdateInternal(c);
 	if (c == item->defaultLoadTime)
 	{
 		loadProgressUI->setVisible(item->defaultLoadTime->floatValue() > 0);

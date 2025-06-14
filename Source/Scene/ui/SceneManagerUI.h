@@ -11,7 +11,7 @@
 #pragma once
 
 class SceneManagerUI :
-    public BaseManagerShapeShifterUI<SceneManager, Scene, SceneUI>,
+    public ManagerShapeShifterUI<SceneManager, Scene, SceneUI>,
     public AsyncSceneListener
 {
 public:

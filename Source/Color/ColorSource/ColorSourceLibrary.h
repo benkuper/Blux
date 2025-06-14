@@ -11,7 +11,7 @@
 #pragma once
 
 class ColorSourceLibrary :
-    public BaseManager<ColorSource>
+    public Manager<ColorSource>
 {
 public:
     juce_DeclareSingleton(ColorSourceLibrary, true);

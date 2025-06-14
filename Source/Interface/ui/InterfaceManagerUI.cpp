@@ -11,7 +11,7 @@
 #include "InterfaceManagerUI.h"
 
 InterfaceManagerUI::InterfaceManagerUI(const String& name) :
-    BaseManagerShapeShifterUI(name, InterfaceManager::getInstance())
+    ManagerShapeShifterUI(name, InterfaceManager::getInstance())
 {
     addExistingItems();
 }

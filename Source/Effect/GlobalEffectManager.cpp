@@ -13,7 +13,7 @@
 juce_ImplementSingleton(GlobalEffectManager)
 
 GlobalEffectManager::GlobalEffectManager() :
-	BaseManager("Global Effects")
+	Manager("Global Effects")
 {
 	itemDataType = EffectGroup::getTypeStringStatic();
 }

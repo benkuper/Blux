@@ -11,7 +11,7 @@
 #include "Object/ObjectIncludes.h"
 
 GroupUI::GroupUI(Group* item) :
-	BaseItemUI(item),
+	ItemUI(item),
 	flashMode(false)
 {
 	acceptedDropTypes.add("Object");
@@ -26,7 +26,7 @@ GroupUI::~GroupUI()
 
 void GroupUI::mouseDown(const MouseEvent& e)
 {
-	BaseItemUI::mouseDown(e);
+	ItemUI::mouseDown(e);
 
 	if (e.mods.isAltDown())
 	{
@@ -53,7 +53,7 @@ void GroupUI::mouseDrag(const MouseEvent& e)
 	}
 	else
 	{
-		BaseItemUI::mouseDrag(e);
+		ItemUI::mouseDrag(e);
 	}
 }
 
@@ -81,7 +81,7 @@ void GroupUI::mouseUp(const MouseEvent& e)
 	}
 	else
 	{
-		BaseItemUI::mouseUp(e);
+		ItemUI::mouseUp(e);
 	}
 }
 
@@ -115,7 +115,7 @@ bool GroupUI::keyStateChanged(bool isDown)
 
 void GroupUI::resizedInternalHeader(Rectangle<int>& r)
 {
-	BaseItemUI::resizedInternalHeader(r);
+	ItemUI::resizedInternalHeader(r);
 	r.removeFromRight(2);
 	r.removeFromLeft(2);
 	weightUI->setBounds(r.removeFromRight(100));
@@ -146,5 +146,5 @@ void GroupUI::itemDropped(const DragAndDropTarget::SourceDetails& details)
 		NLOGWARNING(item->niceName, "Drop not supported for type : " << dataType);
 	}
 
-	BaseItemUI::itemDropped(details);
+	ItemUI::itemDropped(details);
 }

@@ -24,7 +24,7 @@ ParameterLink::ParameterLink(WeakReference<Parameter> p) :
 
 ParameterLink::~ParameterLink()
 {
-	if (ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->spatializer.removeBaseManagerListener(this);
+	if (ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->spatializer.removeManagerListener(this);
 	//if (list != nullptr && !listRef.wasObjectDeleted())
 	//{
 	//	list->removeListListener(this);
@@ -40,7 +40,7 @@ void ParameterLink::setLinkType(LinkType type)
 	{
 		spatializer = nullptr;
 		spatRef = nullptr;
-		if (ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->spatializer.removeBaseManagerListener(this);
+		if (ObjectManager::getInstanceWithoutCreating() != nullptr) ObjectManager::getInstance()->spatializer.removeManagerListener(this);
 	}
 
 	parameter->setControllableFeedbackOnly(linkType != NONE);
@@ -57,7 +57,7 @@ void ParameterLink::setSpatLink(LinkType type, SpatItem* spat)
 
 	if (spatializer != nullptr)
 	{
-		ObjectManager::getInstance()->spatializer.addBaseManagerListener(this);
+		ObjectManager::getInstance()->spatializer.addManagerListener(this);
 		spatGhostName = "";
 	}
 

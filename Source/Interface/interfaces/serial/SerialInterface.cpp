@@ -30,7 +30,7 @@ SerialInterface::SerialInterface() :
 	scriptObject.getDynamicObject()->setMethod(sendBytesId, SerialInterface::sendBytesFromScript);
 
 	addChildControllableContainer(&customParams);
-	customParams.addBaseManagerListener(this);
+	customParams.addManagerListener(this);
 }
 
 SerialInterface::~SerialInterface()

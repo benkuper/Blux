@@ -114,7 +114,7 @@ Object::Object(var params) :
 	addChildControllableContainer(customParams.get());
 
 	//componentManager->userCanAddItemsManually = params.getProperty("isCustom", ftalse);
-	componentManager->addBaseManagerListener(this);
+	componentManager->addManagerListener(this);
 	componentsChanged();//force one time here to set things from components
 
 	addChildControllableContainer(componentManager.get());
@@ -142,7 +142,7 @@ Object::~Object()
 void Object::clearItem()
 {
 	effectManager->clear();
-	componentManager->removeBaseManagerListener(this);
+	componentManager->removeManagerListener(this);
 	if (!sourceInterfaceParamsRef.wasObjectDeleted() && sourceInterfaceParamsRef != nullptr)
 	{
 		sourceInterfaceParamsRef->removeControllableContainerListener(this);

@@ -11,7 +11,7 @@
 #pragma once
 
 class InterfaceUI :
-    public BaseItemUI<Interface>,
+    public ItemUI<Interface>,
     public Interface::AsyncListener
 {
 public:

@@ -13,7 +13,7 @@
 juce_ImplementSingleton(SceneManager)
 
 SceneManager::SceneManager() :
-	BaseManager("Scenes"),
+	Manager("Scenes"),
 	Thread("Scene Load"),
 	previousScene(nullptr),
 	currentScene(nullptr),

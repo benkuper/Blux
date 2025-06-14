@@ -11,7 +11,7 @@
 juce_ImplementSingleton(StageLayoutManager)
 
 StageLayoutManager::StageLayoutManager() :
-    BaseManager("Stage Layouts")
+    Manager("Stage Layouts")
 {
     iconSize = addFloatParameter("Icon Size", "Size of icons in view", 80,32,256);
     showFilters = addBoolParameter("Show Filters", "If checked, this will show filters in view", true);

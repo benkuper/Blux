@@ -11,7 +11,7 @@
 #pragma once
 
 class GroupUI :
-    public BaseItemUI<Group>
+    public ItemUI<Group>
 {
 public:
     GroupUI(Group * item);

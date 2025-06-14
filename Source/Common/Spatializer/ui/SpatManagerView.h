@@ -11,7 +11,7 @@
 #pragma once
 
 class SpatManagerView :
-	public BaseManagerViewUI<SpatManager, SpatItem, SpatItemViewUI>
+	public ManagerViewUI<SpatManager, SpatItem, SpatItemViewUI>
 {
 public:
 	SpatManagerView(SpatManager* manager);

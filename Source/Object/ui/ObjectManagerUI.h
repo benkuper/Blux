@@ -11,7 +11,7 @@
 #pragma once
 
 class ObjectManagerUI :
-    public BaseManagerShapeShifterUI<ObjectManager, Object, ObjectUI>
+    public ManagerShapeShifterUI<ObjectManager, Object, ObjectUI>
 {
 public:
     ObjectManagerUI(const String & name);

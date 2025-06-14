@@ -9,7 +9,7 @@
 */
 
 ObjectUI::ObjectUI(Object* item) :
-    BaseItemUI(item)
+    ItemUI(item)
 {
 }
 

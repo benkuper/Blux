@@ -66,7 +66,7 @@ public:
 
 
 class CustomTagsManager :
-	public BaseManager<CustomTag>
+	public Manager<CustomTag>
 {
 public:
 	juce_DeclareSingleton(CustomTagsManager, true);

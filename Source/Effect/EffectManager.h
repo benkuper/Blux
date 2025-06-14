@@ -19,7 +19,7 @@ public:
 };
 
 class EffectManager :
-    public BaseManager<Effect>
+    public Manager<Effect>
 {
 public:
     EffectManager(Group * g = nullptr);

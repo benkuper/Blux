@@ -11,7 +11,7 @@
 #pragma once
 
 class ObjectUI :
-    public BaseItemUI<Object>
+    public ItemUI<Object>
 {
 public:
     ObjectUI(Object* item);

@@ -49,7 +49,7 @@ public:
 };
 
 class ComponentManager :
-    public BaseManager<ObjectComponent>
+    public Manager<ObjectComponent>
 {
 public:
     ComponentManager(Object * o);

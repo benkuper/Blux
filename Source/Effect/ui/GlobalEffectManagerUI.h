@@ -10,7 +10,7 @@
 
 #pragma once
 
-class EffectGroupUI : public BaseItemUI<EffectGroup>
+class EffectGroupUI : public ItemUI<EffectGroup>
 {
 public:
 	EffectGroupUI(EffectGroup* group);
@@ -22,7 +22,7 @@ public:
 };
 
 class GlobalEffectManagerUI :
-	public BaseManagerShapeShifterUI<GlobalEffectManager, EffectGroup, EffectGroupUI>
+	public ManagerShapeShifterUI<GlobalEffectManager, EffectGroup, EffectGroupUI>
 {
 public:
 	GlobalEffectManagerUI(const String& name);

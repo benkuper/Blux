@@ -27,7 +27,7 @@ TimedEffect::TimedEffect(const String& name, var params) :
 	offsetByID = effectParams.addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
 	//offsetByValue = effectParams.addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
 
-	ObjectManager::getInstance()->addBaseManagerListener(this);
+	ObjectManager::getInstance()->addManagerListener(this);
 	ObjectManager::getInstance()->addObjectManagerListener(this);
 }
 
@@ -35,7 +35,7 @@ TimedEffect::~TimedEffect()
 {
 	if (ObjectManager::getInstanceWithoutCreating() != nullptr)
 	{
-		ObjectManager::getInstance()->removeBaseManagerListener(this);
+		ObjectManager::getInstance()->removeManagerListener(this);
 		ObjectManager::getInstance()->removeObjectManagerListener(this);
 	}
 }

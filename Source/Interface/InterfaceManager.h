@@ -13,7 +13,7 @@
 #include "Interface.h"
 
 class InterfaceManager :
-    public BaseManager<Interface>
+    public Manager<Interface>
 {
 public:
     juce_DeclareSingleton(InterfaceManager, true)

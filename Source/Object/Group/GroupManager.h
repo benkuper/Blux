@@ -14,7 +14,7 @@ class Object;
 class ObjectComponent;
 
 class GroupManager :
-    public BaseManager<Group>
+    public Manager<Group>
 {
 public:
     juce_DeclareSingleton(GroupManager, true);

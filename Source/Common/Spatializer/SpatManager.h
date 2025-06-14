@@ -11,7 +11,7 @@
 #pragma once
 
 class SpatManager :
-    public BaseManager<SpatItem>
+    public Manager<SpatItem>
 {
 public:
     SpatManager();

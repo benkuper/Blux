@@ -23,14 +23,14 @@ BluxSequence::BluxSequence() :
 	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", RawDataLayer::getTypeStringStatic(), &RawDataLayer::create, this));
 	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Audio", &AudioLayer::create, this, true));
 
-	layerManager->addBaseManagerListener(this);
+	layerManager->addManagerListener(this);
 
 	setAudioDeviceManager(&AudioManager::getInstance()->am);
 }
 
 BluxSequence::~BluxSequence()
 {
-	layerManager->removeBaseManagerListener(this);
+	layerManager->removeManagerListener(this);
 }
 
 bool BluxSequence::isAffectingObject(Object* o)

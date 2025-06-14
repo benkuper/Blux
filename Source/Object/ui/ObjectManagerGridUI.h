@@ -11,7 +11,7 @@
 #pragma once
 
 class ObjectManagerGridUI :
-	public BaseManagerShapeShifterUI<ObjectManager, Object, ObjectGridUI>,
+	public ManagerShapeShifterUI<ObjectManager, Object, ObjectGridUI>,
 	public ContainerAsyncListener,
 	public AsyncSceneListener
 {

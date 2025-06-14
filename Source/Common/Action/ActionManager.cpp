@@ -36,7 +36,7 @@ ActionFactory::ActionFactory()
 }
 
 ActionManager::ActionManager(const String& name) :
-	BaseManager(name)
+	Manager(name)
 {
 	managerFactory = ActionFactory::getInstance();
 }

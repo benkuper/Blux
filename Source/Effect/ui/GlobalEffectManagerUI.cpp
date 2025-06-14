@@ -9,7 +9,7 @@
 */
 
 GlobalEffectManagerUI::GlobalEffectManagerUI(const String& name) :
-	BaseManagerShapeShifterUI(name, GlobalEffectManager::getInstance())
+	ManagerShapeShifterUI(name, GlobalEffectManager::getInstance())
 {
 	setShowSearchBar(true);
 	addExistingItems();
@@ -20,7 +20,7 @@ GlobalEffectManagerUI::~GlobalEffectManagerUI()
 }
 
 EffectGroupUI::EffectGroupUI(EffectGroup* item) :
-	BaseItemUI(item)
+	ItemUI(item)
 {
 	weightUI.reset(item->effectManager.globalWeight->createSlider());
 	addAndMakeVisible(weightUI.get());
@@ -28,7 +28,7 @@ EffectGroupUI::EffectGroupUI(EffectGroup* item) :
 
 void EffectGroupUI::resizedInternalHeader(Rectangle<int>& r)
 {
-	BaseItemUI::resizedInternalHeader(r);
+	ItemUI::resizedInternalHeader(r);
 	r.removeFromRight(2);
 	r.removeFromLeft(2);
 	weightUI->setBounds(r.removeFromRight(100));

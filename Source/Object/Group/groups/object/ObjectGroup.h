@@ -48,14 +48,14 @@ public:
 
 class ObjectGroup :
     public Group,
-    public BaseManager<ObjectTarget>::ManagerListener,
+    public Manager<ObjectTarget>::ManagerListener,
     public ObjectTarget::ObjectTargetListener
 {
 public:
     ObjectGroup();
     ~ObjectGroup();
 
-    BaseManager<ObjectTarget> objectsCC;
+    Manager<ObjectTarget> objectsCC;
 
     void itemAdded(ObjectTarget* i) override;
     void itemsAdded(Array<ObjectTarget*> items) override;

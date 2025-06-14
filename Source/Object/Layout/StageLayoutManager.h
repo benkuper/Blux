@@ -11,7 +11,7 @@
 #pragma once
 
 class StageLayoutManager :
-    public BaseManager<StageLayout>
+    public Manager<StageLayout>
 {
 public:
     juce_DeclareSingleton(StageLayoutManager, true);

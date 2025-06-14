@@ -9,7 +9,7 @@
 */
 
 MIDIMappingManager::MIDIMappingManager() :
-    BaseManager("Mappings")
+    Manager("Mappings")
 {
 }
 

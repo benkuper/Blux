@@ -14,7 +14,7 @@ class Object;
 class ObjectComponent;
 
 class SceneManager :
-	public BaseManager<Scene>,
+	public Manager<Scene>,
 	public Inspectable::InspectableListener,
 	public SceneListener,
 	public OSCRemoteControl::RemoteControlListener,

@@ -52,7 +52,7 @@ class OSCInterface :
 	public Interface,
 	public OSCReceiver::Listener<OSCReceiver::RealtimeCallback>,
 	public Thread, //for zeroconf async creation (smoother when creating an OSC module)
-	public BaseManager<OSCOutput>::ManagerListener
+	public Manager<OSCOutput>::ManagerListener
 {
 public:
 	OSCInterface(const String &name = "OSC", bool canHaveScript = false);
@@ -81,7 +81,7 @@ public:
 	Servus servus;
 
 	std::unique_ptr<EnablingControllableContainer> receiveCC;
-	std::unique_ptr<BaseManager<OSCOutput>> outputManager;
+	std::unique_ptr<Manager<OSCOutput>> outputManager;
 
 	//Script
 	const Identifier oscEventId = "oscEvent";

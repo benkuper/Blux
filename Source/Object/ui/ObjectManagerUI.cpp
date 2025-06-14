@@ -9,7 +9,7 @@
 */
 
 ObjectManagerUI::ObjectManagerUI(const String& name) :
-    BaseManagerShapeShifterUI(name, ObjectManager::getInstance())
+    ManagerShapeShifterUI(name, ObjectManager::getInstance())
 {
     setShowSearchBar(true);
     addExistingItems();

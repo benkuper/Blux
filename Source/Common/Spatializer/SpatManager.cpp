@@ -11,7 +11,7 @@
 #include "Common/CommonIncludes.h"
 
 SpatManager::SpatManager() :
-    BaseManager("Spatializer")
+    Manager("Spatializer")
 {
     selectItemWhenCreated = false;
 }

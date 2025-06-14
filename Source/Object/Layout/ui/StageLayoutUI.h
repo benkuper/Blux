@@ -11,7 +11,7 @@
 #pragma once
 
 class StageLayoutUI :
-    public BaseItemUI<StageLayout>
+    public ItemUI<StageLayout>
 {
 public:
     StageLayoutUI(StageLayout* item);

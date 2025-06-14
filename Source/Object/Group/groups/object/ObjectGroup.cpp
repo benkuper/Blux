@@ -14,7 +14,7 @@ ObjectGroup::ObjectGroup() :
     Group(getTypeString()),
     objectsCC("Objects")
 {
-    objectsCC.addBaseManagerListener(this);
+    objectsCC.addManagerListener(this);
     objectsCC.selectItemWhenCreated = false;
     addChildControllableContainer(&objectsCC, false, 0);
 }

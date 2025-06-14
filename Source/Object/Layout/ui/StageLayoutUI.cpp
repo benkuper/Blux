@@ -9,7 +9,7 @@
 */
 
 StageLayoutUI::StageLayoutUI(StageLayout* item) :
-	BaseItemUI(item)
+	ItemUI(item)
 {
 }
 
@@ -19,7 +19,7 @@ StageLayoutUI::~StageLayoutUI()
 
 void StageLayoutUI::mouseDown(const MouseEvent& e)
 {
-	BaseItemUI::mouseDown(e);
+	ItemUI::mouseDown(e);
 
 	if (e.mods.isRightButtonDown())
 	{

@@ -13,7 +13,7 @@
 juce_ImplementSingleton(GroupManager)
 
 GroupManager::GroupManager() :
-	BaseManager("Groups")
+	Manager("Groups")
 {
 	managerFactory = &factory;
 

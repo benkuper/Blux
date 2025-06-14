@@ -11,7 +11,7 @@
 #include "Common/CommonIncludes.h"
 
 SpatManagerView::SpatManagerView(SpatManager* manager) :
-	BaseManagerViewUI(manager->niceName, manager)
+	ManagerViewUI(manager->niceName, manager)
 {
 	transparentBG = true;
 	autoFilterHitTestOnItems = true;

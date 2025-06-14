@@ -14,7 +14,7 @@
 juce_ImplementSingleton(ObjectManager);
 
 ObjectManager::ObjectManager() :
-	BaseManager("Objects"),
+	Manager("Objects"),
 	Thread("ObjectManager"),
 	customParams("Custom Parameters", false, false, true, true)
 {
@@ -60,7 +60,7 @@ ObjectManager::~ObjectManager()
 void ObjectManager::clear()
 {
 	stopThread(1000);
-	BaseManager::clear();
+	Manager::clear();
 }
 
 
@@ -271,7 +271,7 @@ void ObjectManager::finished(URL::DownloadTask* task, bool success)
 
 var ObjectManager::getJSONData(bool includeNonOverriden)
 {
-	var data = BaseManager::getJSONData(includeNonOverriden);
+	var data = Manager::getJSONData(includeNonOverriden);
 	data.getDynamicObject()->setProperty(customParams.shortName, customParams.getJSONData());
 	data.getDynamicObject()->setProperty(spatializer.shortName, spatializer.getJSONData());
 	return data;
@@ -280,7 +280,7 @@ var ObjectManager::getJSONData(bool includeNonOverriden)
 void ObjectManager::loadJSONDataManagerInternal(var data)
 {
 	customParams.loadJSONData(data.getProperty(customParams.shortName, var()));
-	BaseManager::loadJSONDataManagerInternal(data);
+	Manager::loadJSONDataManagerInternal(data);
 	spatializer.loadJSONData(data.getProperty(spatializer.shortName, var()));
 }
 
@@ -405,7 +405,7 @@ Parameter* ObjectManagerCustomParams::getActiveCustomParamForName(const String& 
 
 
 SubObjectManager::SubObjectManager() :
-	BaseManager("Sub-Objects")
+	Manager("Sub-Objects")
 {
 	managerFactory = &ObjectManager::getInstance()->factory;
 	selectItemWhenCreated = false;
