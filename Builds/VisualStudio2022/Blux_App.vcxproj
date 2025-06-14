@@ -4248,6 +4248,9 @@
     <ClCompile Include="..\..\Modules\juce_timeline\juce_timeline.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\juce_timeline2.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_timeline\TimelineAppCommands.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -4290,6 +4293,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_simpleweb.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_simpleweb2.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline2.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Viz\Viz.h"/>

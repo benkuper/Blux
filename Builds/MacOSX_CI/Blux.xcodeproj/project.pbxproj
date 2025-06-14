@@ -22,6 +22,7 @@
 		28D3F38EE71FEC83E38B0661 /* include_juce_simpleweb2.cpp */ = {isa = PBXBuildFile; fileRef = BC2B5905A623E67B6D8CA12E; };
 		2E233C645B61C18278D682B8 /* include_juce_cryptography.mm */ = {isa = PBXBuildFile; fileRef = E20E1BF657D4CB4A5167A95A; };
 		3040094A24A5F912A26CF614 /* include_juce_audio_processors.mm */ = {isa = PBXBuildFile; fileRef = 7093A269A5A9525BDD04127A; };
+		31B7608771AC94F70C0CB978 /* include_juce_timeline2.cpp */ = {isa = PBXBuildFile; fileRef = 5FCBEF6ECFAF610DE93A8618; };
 		32522ACB3AA5D03A96CAC624 /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = CD4C9B99D0453E293EB844AE; };
 		384EF104808DC081FF58C1DF /* MainIncludes.cpp */ = {isa = PBXBuildFile; fileRef = D213A4D9A48A19A3081BC0B8; };
 		38A38AFD9658A6BEB4D7A28F /* MetalKit.framework */ = {isa = PBXBuildFile; fileRef = AA819F7F79CEDBCC96D8CB44; settings = { ATTRIBUTES = (Weak, ); }; };
@@ -243,6 +244,7 @@
 		5E00C517266F6467ED6DB131 /* GroupFilter.h */ /* GroupFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GroupFilter.h; path = ../../Source/Effect/Filter/filters/group/GroupFilter.h; sourceTree = SOURCE_ROOT; };
 		5F90EE49163CA926C874F05A /* ObjectIncludes.cpp */ /* ObjectIncludes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectIncludes.cpp; path = ../../Source/Object/ObjectIncludes.cpp; sourceTree = SOURCE_ROOT; };
 		5F9AA39E209565E59C82855B /* ColorComponent.cpp */ /* ColorComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorComponent.cpp; path = ../../Source/Object/Component/components/color/ColorComponent.cpp; sourceTree = SOURCE_ROOT; };
+		5FCBEF6ECFAF610DE93A8618 /* include_juce_timeline2.cpp */ /* include_juce_timeline2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_timeline2.cpp; path = ../../JuceLibraryCode/include_juce_timeline2.cpp; sourceTree = SOURCE_ROOT; };
 		5FDD1FDFFE742235E27F101F /* ObjectManagerUI.h */ /* ObjectManagerUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ObjectManagerUI.h; path = ../../Source/Object/ui/ObjectManagerUI.h; sourceTree = SOURCE_ROOT; };
 		61CE3447666AC70AD92CE5DD /* EffectBlockManager.cpp */ /* EffectBlockManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EffectBlockManager.cpp; path = ../../Source/Sequence/layers/effect/EffectBlockManager.cpp; sourceTree = SOURCE_ROOT; };
 		627742083830E3A02D2379F1 /* EffectBlockManager.h */ /* EffectBlockManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EffectBlockManager.h; path = ../../Source/Sequence/layers/effect/EffectBlockManager.h; sourceTree = SOURCE_ROOT; };
@@ -1740,6 +1742,7 @@
 				8B357F6B05C7CF3B2D388284,
 				BC2B5905A623E67B6D8CA12E,
 				B502773EB5D6F1AB021FC165,
+				5FCBEF6ECFAF610DE93A8618,
 				006DA9E2FF4CD9E76DE57C8A,
 			);
 			name = "JUCE Library Code";
@@ -2002,6 +2005,7 @@
 				18949DB23AA80E82FABAC4E9,
 				28D3F38EE71FEC83E38B0661,
 				C1CEE9B5BB944A3E81E7797B,
+				31B7608771AC94F70C0CB978,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

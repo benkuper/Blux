@@ -5743,6 +5743,9 @@
     <ClCompile Include="..\..\Modules\juce_timeline\juce_timeline.cpp">
       <Filter>JUCE Modules\juce_timeline</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\juce_timeline2.cpp">
+      <Filter>JUCE Modules\juce_timeline</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_timeline\TimelineAppCommands.cpp">
       <Filter>JUCE Modules\juce_timeline</Filter>
     </ClCompile>
@@ -5837,6 +5840,9 @@
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline2.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
   </ItemGroup>

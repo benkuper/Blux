@@ -115,6 +115,7 @@ OBJECTS_APP := \
   $(JUCE_OBJDIR)/include_juce_simpleweb_acec7570.o \
   $(JUCE_OBJDIR)/include_juce_simpleweb2_f0c24e8c.o \
   $(JUCE_OBJDIR)/include_juce_timeline_e6183ffd.o \
+  $(JUCE_OBJDIR)/include_juce_timeline2_dd0fd59f.o \
 
 .PHONY: clean all strip
 
@@ -342,6 +343,11 @@ $(JUCE_OBJDIR)/include_juce_simpleweb2_f0c24e8c.o: ../../JuceLibraryCode/include
 $(JUCE_OBJDIR)/include_juce_timeline_e6183ffd.o: ../../JuceLibraryCode/include_juce_timeline.cpp
 	-$(V_AT)mkdir -p $(@D)
 	@echo "Compiling include_juce_timeline.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_juce_timeline2_dd0fd59f.o: ../../JuceLibraryCode/include_juce_timeline2.cpp
+	-$(V_AT)mkdir -p $(@D)
+	@echo "Compiling include_juce_timeline2.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/execinfo.cmd:

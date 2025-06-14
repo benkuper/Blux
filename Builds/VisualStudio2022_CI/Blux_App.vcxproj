@@ -97,7 +97,7 @@
       <AdditionalLibraryDirectories>../../External/servus/lib/win/x64/debug;../../External/dnssd/lib;..\..\Modules\juce_simpleweb\libs\VisualStudio2022\$(Platform)\MDd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LargeAddressAware>true</LargeAddressAware>
       <AdditionalDependencies>Servus.lib;dnssd.lib;Setupapi.lib;libssl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>/HEAP:0x400000,0x10000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/HEAP:0x200000,0x10000 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -150,7 +150,7 @@
       <LargeAddressAware>true</LargeAddressAware>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <AdditionalDependencies>Servus.lib;dnssd.lib;Setupapi.lib;libssl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>/HEAP:0x400000,0x10000 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/HEAP:0x200000,0x10000 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -4248,6 +4248,9 @@
     <ClCompile Include="..\..\Modules\juce_timeline\juce_timeline.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\juce_timeline2.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_timeline\TimelineAppCommands.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -4290,6 +4293,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_simpleweb.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_simpleweb2.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_timeline2.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Viz\Viz.h"/>
