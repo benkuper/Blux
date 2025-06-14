@@ -99,7 +99,7 @@ void SceneManagerUI::newMessage(const SceneManagerEvent& e)
 
 void SceneManagerUI::newMessage(const InspectableSelectionManager::SelectionEvent& e)
 {
-	ManagerUI::newMessage(e);
+	BaseManagerUI::newMessage(e);
 
 	if (e.type == InspectableSelectionManager::SelectionEvent::SELECTION_CHANGED)
 	{

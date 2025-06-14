@@ -15,7 +15,7 @@
 juce_ImplementSingleton(ObjectUITimer)
 
 ObjectGridUI::ObjectGridUI(Object* object) :
-	BaseItemMinimalUI(object),
+	ItemMinimalUI(object),
 	shouldRepaint(false),
 	transparentBG(false),
 	previewIntensity(0),
@@ -127,7 +127,7 @@ void ObjectGridUI::paintOverChildren(Graphics& g)
 	}
 
 
-	BaseItemMinimalUI::paintOverChildren(g);
+	ItemMinimalUI::paintOverChildren(g);
 }
 
 void ObjectGridUI::resized()
@@ -286,7 +286,7 @@ void ObjectGridUI::setPreviewData(var data)
 
 void ObjectGridUI::mouseDown(const MouseEvent& e)
 {
-	BaseItemMinimalUI::mouseDown(e);
+	ItemMinimalUI::mouseDown(e);
 
 	if (e.mods.isLeftButtonDown())
 	{
@@ -333,7 +333,7 @@ void ObjectGridUI::mouseDown(const MouseEvent& e)
 
 void ObjectGridUI::mouseDrag(const MouseEvent& e)
 {
-	BaseItemMinimalUI::mouseDrag(e);
+	ItemMinimalUI::mouseDrag(e);
 
 	if (e.mods.isAltDown())
 	{
@@ -350,7 +350,7 @@ void ObjectGridUI::mouseDrag(const MouseEvent& e)
 
 void ObjectGridUI::mouseUp(const MouseEvent& e)
 {
-	BaseItemMinimalUI::mouseUp(e);
+	ItemMinimalUI::mouseUp(e);
 
 	if (e.mods.isAltDown())
 	{
@@ -455,7 +455,7 @@ void ObjectGridUI::controllableFeedbackUpdateInternal(Controllable* c)
 
 void ObjectGridUI::visibilityChanged()
 {
-	BaseItemMinimalUI::visibilityChanged();
+	ItemMinimalUI::visibilityChanged();
 	if (colorViz != nullptr) colorViz->setVisible(isVisible());
 }
 

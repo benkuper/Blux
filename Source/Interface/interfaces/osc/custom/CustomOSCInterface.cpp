@@ -64,7 +64,7 @@ void CustomOSCInterface::sendValuesForObjectInternal(Object* o)
 	args.add(o->getScriptObject());
 	args.add(data);
 	args.add(itfParams);
-	scriptManager->callFunctionOnAllItems("sendValuesForObject", args);
+	scriptManager->callFunctionOnAllScripts("sendValuesForObject", args);
 }
 
 CustomOSCInterface::CustomOSCParams::CustomOSCParams(CustomOSCInterface* i) :

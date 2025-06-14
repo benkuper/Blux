@@ -11,7 +11,7 @@
 #include "Common/CommonIncludes.h"
 
 SpatItemViewUI::SpatItemViewUI(SpatItem* item) :
-	BaseItemMinimalUI(item)
+	ItemMinimalUI(item)
 {
 	autoHideWhenDragging = false;
 	drawEmptyDragIcon = true;

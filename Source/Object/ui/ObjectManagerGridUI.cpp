@@ -141,14 +141,21 @@ bool ObjectManagerGridUI::hasFiltering()
 	return manager->filterActiveInScene->boolValue();
 }
 
-bool ObjectManagerGridUI::checkFilterForItem(ObjectGridUI* ui)
+bool ObjectManagerGridUI::checkFilterForItem(BaseItemMinimalUI* ui)
 {
 	if (!ManagerShapeShifterUI::checkFilterForItem(ui)) return false;
 
 
 	if (manager->filterActiveInScene->boolValue() && SceneManager::getInstance()->currentScene != nullptr)
 	{
-		if (!SceneManager::getInstance()->currentScene->isObjectActiveInScene(ui->item)) return false;
+		if (ObjectGridUI* gridUI = dynamic_cast<ObjectGridUI*>(ui))
+		{
+			if (!SceneManager::getInstance()->currentScene->isObjectActiveInScene(gridUI->item)) return false;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	return true;

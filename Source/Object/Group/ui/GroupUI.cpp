@@ -126,7 +126,7 @@ void GroupUI::itemDropped(const DragAndDropTarget::SourceDetails& details)
 	String dataType = details.description.getProperty("dataType", "");
 	if (dataType == "Object")
 	{
-		if (BaseItemMinimalUI<Object>* bi = static_cast<BaseItemMinimalUI<Object>*>(details.sourceComponent.get()))
+		if (ItemMinimalUI<Object>* bi = static_cast<ItemMinimalUI<Object>*>(details.sourceComponent.get()))
 		{
 			if (Object* o = dynamic_cast<Object*>(bi->item))
 			{

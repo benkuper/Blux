@@ -152,7 +152,7 @@ void SerialInterface::sendValuesForObjectInternal(Object* o)
 	var itfParams = ((CustomSerialParams*)o->interfaceParameters.get())->getParamValues();
 	args.add(itfParams);
 
-	scriptManager->callFunctionOnAllItems("sendValuesForObject", args);
+	scriptManager->callFunctionOnAllScripts("sendValuesForObject", args);
 }
 
 void SerialInterface::serialDataReceived(SerialDevice*, const var& data)

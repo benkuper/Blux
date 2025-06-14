@@ -11,7 +11,7 @@
 #pragma once
 
 class ColorSourceGridUI :
-    public BaseItemMinimalUI<ColorSource>
+    public ItemMinimalUI<ColorSource>
 {
 public:
     ColorSourceGridUI(ColorSource* item);

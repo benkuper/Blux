@@ -13,7 +13,7 @@
 class ColorViz;
 
 class ObjectGridUI :
-	public BaseItemMinimalUI<Object>,
+	public ItemMinimalUI<Object>,
 	public ComponentManager::AsyncListener,
 	public ColorComponent::AsyncColorComponentListener
 {

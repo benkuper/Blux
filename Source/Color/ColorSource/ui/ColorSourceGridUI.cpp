@@ -10,7 +10,7 @@
 
 
 ColorSourceGridUI::ColorSourceGridUI(ColorSource* item) :
-	BaseItemMinimalUI(item)
+	ItemMinimalUI(item)
 {
 	if (item->imgPath.existsAsFile())
 	{
@@ -49,7 +49,7 @@ void ColorSourceGridUI::paint(Graphics& g)
 
 void ColorSourceGridUI::mouseDown(const MouseEvent& e)
 {
-	BaseItemMinimalUI::mouseDown(e);
+	ItemMinimalUI::mouseDown(e);
 
 	if (e.mods.isRightButtonDown())
 	{

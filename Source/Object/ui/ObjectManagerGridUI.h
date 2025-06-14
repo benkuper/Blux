@@ -33,7 +33,7 @@ public:
 	void setPreviewData(var data = var());
 
 	bool hasFiltering() override;
-	bool checkFilterForItem(ObjectGridUI* ui) override;
+	bool checkFilterForItem(BaseItemMinimalUI* ui) override;
 
 	void newMessage(const ContainerAsyncEvent& e) override;
 	void newMessage(const SceneManagerEvent& e) override;
