@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" jucerFormatVersion="1"
-              version="1.3.0b6" headerPath="../../Source" cppLanguageStandard="17"
-              projectLineFeed="&#10;" bundleIdentifier="benkuper.Blux" defines="OSC_REMOTE_CONTROL_PORT=43000"
-              companyName="Ben Kuper" companyCopyright="Ben Kuper" companyWebsite="https://benjamin.kuperberg.fr/blux">
+              version="1.3.0b6" headerPath="../../Source&#10;../../External/servus/include&#10;../../External/dnssd/include"
+              cppLanguageStandard="17" projectLineFeed="&#10;" bundleIdentifier="benkuper.Blux"
+              defines="OSC_REMOTE_CONTROL_PORT=43000" companyName="Ben Kuper"
+              companyCopyright="Ben Kuper" companyWebsite="https://benjamin.kuperberg.fr/blux">
   <MAINGROUP id="JrFmSt" name="Blux">
     <GROUP id="{F4AB717D-518C-A0FF-B239-BA1E19B27460}" name="Resources">
       <GROUP id="{D480A22D-FF94-A2C7-497D-7DF800FA9A18}" name="colorsource">
@@ -820,11 +821,9 @@
             smallIcon="kxAIe6" bigIcon="kxAIe6" extraCompilerFlags="/bigobj"
             extraLinkerFlags="/HEAP:0x200000,0x10000">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/asio" libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
                        binaryPath="Binaries/Debug"/>
-        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
+        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/asio" libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
                        binaryPath="Binaries/" alwaysGenerateDebugSymbols="1" debugInformationFormat="ProgramDatabase"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -854,11 +853,9 @@
             extraLinkerFlags="/HEAP:0x400000,0x10000" externalLibraries="Servus.lib&#10;dnssd.lib"
             smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/asio" libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
                        binaryPath="Binaries/CI"/>
-        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/asio&#10;../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
+        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/asio" libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
                        alwaysGenerateDebugSymbols="1" binaryPath="Binaries/CI"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -888,15 +885,12 @@
                bigIcon="kxAIe6" xcodeValidArchs="arm64,x86_64" customPList="&lt;plist&gt;&#10;&lt;dict&gt;&#10;&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&#10;&#9;&lt;dict&gt;&#10;&#9;&#9;&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;&#10;&#9;&#9;&lt;true/&gt;&#10;&#9;&lt;/dict&gt;&#10;&lt;/dict&gt;&#10;&lt;/plist&gt;"
                extraDefs="JUCE_COREGRAPHICS_DRAW_ASYNC=1">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/osx/debug" osxCompatibility="10.11 SDK"
-                       macOSDeploymentTarget="10.11"/>
-        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/osx/release" macOSDeploymentTarget="10.11"
-                       osxCompatibility="10.11 SDK" binaryPath="Release"/>
-        <CONFIGURATION isDebug="0" name="ReleaseSilicon" headerPath="../../External/servus/include&#10;../../External/dnssd/include"
-                       libraryPath="../../External/servus/lib/silicon/release" macOSDeploymentTarget="10.11"
-                       osxCompatibility="10.11 SDK" binaryPath="Release"/>
+        <CONFIGURATION isDebug="1" name="Debug" libraryPath="../../External/servus/lib/osx/debug"
+                       osxCompatibility="10.11 SDK" macOSDeploymentTarget="10.11"/>
+        <CONFIGURATION isDebug="0" name="Release" libraryPath="../../External/servus/lib/osx/release"
+                       macOSDeploymentTarget="10.11" osxCompatibility="10.11 SDK" binaryPath="Release"/>
+        <CONFIGURATION isDebug="0" name="ReleaseSilicon" libraryPath="../../External/servus/lib/silicon/release"
+                       macOSDeploymentTarget="10.11" osxCompatibility="10.11 SDK" binaryPath="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_timeline" path="Modules"/>
@@ -924,10 +918,8 @@
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed"
                 externalLibraries="Servus&#10;usb-1.0" smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0&#10;"
-                       libraryPath="../../External/servus/lib/linux&#10;/usr/lib/x86_64-linux-gnu/"/>
-        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0"
-                       libraryPath="../../External/servus/lib/linux&#10;/usr/lib/x86_64-linux-gnu/"/>
+        <CONFIGURATION isDebug="1" name="Debug" libraryPath="../../External/servus/lib/linux&#10;/usr/lib/x86_64-linux-gnu/"/>
+        <CONFIGURATION isDebug="0" name="Release" libraryPath="../../External/servus/lib/linux&#10;/usr/lib/x86_64-linux-gnu/"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_timeline" path="Modules"/>
@@ -953,14 +945,12 @@
       </MODULEPATHS>
     </LINUX_MAKE>
     <LINUX_MAKE targetFolder="Builds/Raspberry" externalLibraries="bluetooth&#10;Servus&#10;curl&#10;usb-1.0&#10;pthread&#10;atomic&#10;stdc++"
-                extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed&#10;-lm"
+                extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed&#10;-Wl,--export-dynamic&#10;-fvisibility=default&#10;-lm"
                 smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0&#10;"
-                       libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"
+        <CONFIGURATION isDebug="1" name="Debug" libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"
                        linuxArchitecture="-march=armv8-a"/>
-        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0"
-                       libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"
+        <CONFIGURATION isDebug="0" name="Release" libraryPath="../../External/servus/lib/raspberry&#10;/usr/lib/arm-linux-gnueabihf"
                        linuxArchitecture="-march=armv8-a"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -991,10 +981,8 @@
                 externalLibraries="bluetooth&#10;Servus&#10;curl&#10;usb-1.0&#10;pthread&#10;atomic&#10;stdc++"
                 extraCompilerFlags="-Wno-multichar">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0&#10;"
-                       libraryPath="../../External/servus/lib/raspberry64"/>
-        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/serial/include&#10;../../External/servus/include&#10;../../External/dnssd/include&#10;../../External/libusb/include/libusb-1.0"
-                       libraryPath="../../External/servus/lib/raspberry64&#10;"/>
+        <CONFIGURATION isDebug="1" name="Debug" libraryPath="../../External/servus/lib/raspberry64"/>
+        <CONFIGURATION isDebug="0" name="Release" libraryPath="../../External/servus/lib/raspberry64&#10;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>

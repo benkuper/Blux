@@ -9,7 +9,7 @@ env:
 jobs:
   windows:
     name: Windows
-    if: true # always skip job (heap space needs fix)
+    # if: false # always skip job
     runs-on: windows-2022
     strategy:
       matrix:
@@ -47,7 +47,7 @@ jobs:
           Get-Content "$env:temp\vcvars.txt" | Foreach-Object { if ($_ -match "^(.*?)=(.*)$") { Set-Content "env:\$($matches[1])" $matches[2] }}
      
       - name: Build
-        run:  msbuild "Builds/VisualStudio2022_CI/${{ env.ProjectName }}.sln" /m /verbosity:normal /p:Configuration=${{ steps.set_variables.outputs.config }}
+        run:  msbuild "Builds/VisualStudio2022_CI/${{ env.ProjectName }}.sln" /p:PreferredToolArchitecture=x64 /m /verbosity:normal /p:Configuration=${{ steps.set_variables.outputs.config }}
 
       - name: Create Package
         id: create_package
@@ -133,7 +133,7 @@ jobs:
           packagesbuild ${{ env.ProjectName }}.pkgproj
           PKGNAME=${{ env.ProjectName }}-${{ steps.set_variables.outputs.suffix }}.pkg
           mv ${{ env.ProjectName }}.pkg $PKGNAME
-          echo "::set-output name=pkg-name::$PKGNAME"
+          echo "pkg-name=$PKGNAME" >> $GITHUB_OUTPUT
         working-directory: ./Package
 
       - name: Upload
@@ -148,6 +148,7 @@ jobs:
 
     name: Linux
     runs-on: ubuntu-22.04
+    container: tommagnier/chataigne-linux-x64-build:debian11
 
     steps:
       - name: Checkout repo
@@ -172,13 +173,11 @@ jobs:
         id: install_deps
         #shell: bash {0} # Opt out of fail-fast behavior (necessary to ignore fetch errors)
         run: |
-          sudo apt-get update
-          echo "Installing JUCE lib dependencies and extra tools"
-          sudo apt-get install -qyf libcurl3-gnutls libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev libxcomposite-dev mesa-common-dev libasound2-dev freeglut3-dev libcurl4-gnutls-dev libasound2-dev libjack-dev libbluetooth-dev libgtk-3-dev libwebkit2gtk-4.0-dev libsdl2-dev libfuse2 libfuse2 libusb-1.0-0-dev libhidapi-dev ladspa-sdk libssl-dev
-          sudo apt-get install -qy curl
+          # Most dependencies are already installed in the Docker image. Uncomment the following lines if you need more
+          # apt-get update && apt-get install ...
 
-          cd ${{ github.workspace }}
-          wget "https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage"
+          cd $GITHUB_WORKSPACE
+          wget "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
           chmod a+x appimagetool-x86_64.AppImage
 
       # - name: Start SSH via ngrok
@@ -199,7 +198,8 @@ jobs:
 
       - name: Build
         run: |
-          cd ${{ github.workspace }}/Builds/LinuxMakefile
+          cd $GITHUB_WORKSPACE/Builds/LinuxMakefile
+          gcc --version
           make -j2 CONFIG=Release
 
       - name: Create AppImage
@@ -210,7 +210,7 @@ jobs:
 
           PKGNAME=${{ env.ProjectName }}-linux-${{ steps.set_variables.outputs.suffix }}.AppImage
           echo "pkg-name=$PKGNAME" >> $GITHUB_OUTPUT
-          ${{ github.workspace }}/appimagetool-x86_64.AppImage ${{ env.ProjectName }}.AppDir $PKGNAME
+          ARCH=x86_64 $GITHUB_WORKSPACE/appimagetool-x86_64.AppImage --appimage-extract-and-run ${{ env.ProjectName }}.AppDir $PKGNAME
         working-directory: ./Builds/LinuxMakefile
 
       - name: Upload
@@ -230,7 +230,7 @@ jobs:
         include:
         - arch: armhf
           cpu: arm1176 #suitable for all Pi versions
-          base_image: raspios_lite:2021-05-07 
+          base_image: raspios_lite:2022-04-04 
           cpu_info: raspberrypi_zero_w
           buildFolder: "Raspberry"
           buildConfig: "Release"
@@ -265,15 +265,8 @@ jobs:
 
       - name: Download and prepare AppImage
         run: |
-          sudo apt-get update
-          sudo apt-get install libfuse2 # required on ubuntu 22.04
-
-          wget "https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage"
+          wget "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
           chmod a+x appimagetool-x86_64.AppImage
-
-          echo "Downloading AppImage runtime for ${{ matrix.arch }}"
-          wget "https://github.com/AppImage/AppImageKit/releases/download/13/runtime-${{ matrix.arch }}"
-
           mkdir -p ./Builds/${{ matrix.buildFolder }}/${{ env.ProjectName }}.AppDir/usr/bin/
         working-directory: ${{ github.workspace }}
 
@@ -300,7 +293,7 @@ jobs:
         run: |
           PKGNAME=${{ env.ProjectName }}-linux-${{ steps.set_variables.outputs.suffix }}.AppImage
           echo "pkg-name=$PKGNAME" >> $GITHUB_OUTPUT
-          ${{ github.workspace }}/appimagetool-x86_64.AppImage --runtime-file ${{ github.workspace }}/runtime-${{ matrix.arch }} ${{ env.ProjectName }}.AppDir $PKGNAME
+          ARCH=${{ matrix.arch }} ${{ github.workspace }}/appimagetool-x86_64.AppImage --appimage-extract-and-run ${{ env.ProjectName }}.AppDir $PKGNAME
         working-directory: ./Builds/${{ matrix.buildFolder }}
 
       - name: Upload
