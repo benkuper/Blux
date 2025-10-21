@@ -848,6 +848,7 @@
         <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
         <MODULEPATH id="juce_javascript"/>
+        <MODULEPATH id="juce_audio_processors_headless"/>
       </MODULEPATHS>
     </VS2022>
     <VS2022 targetFolder="Builds/VisualStudio2022_CI" extraCompilerFlags="/Zm1000 /bigobj"
@@ -880,6 +881,7 @@
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
         <MODULEPATH id="juce_javascript"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="JUCE/modules"/>
       </MODULEPATHS>
     </VS2022>
     <XCODE_MAC targetFolder="Builds/MacOSX_CI" externalLibraries="Servus" smallIcon="kxAIe6"
@@ -914,6 +916,7 @@
         <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
         <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraLinkerFlags="-Wl,-rpath,&quot;lib&quot;&#10;-Wl,--as-needed"
@@ -943,6 +946,7 @@
         <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
         <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
     <LINUX_MAKE targetFolder="Builds/Raspberry" externalLibraries="bluetooth&#10;Servus&#10;curl&#10;usb-1.0&#10;pthread&#10;atomic&#10;stdc++"
@@ -975,6 +979,7 @@
         <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_serial" path="Modules"/>
         <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
     <LINUX_MAKE targetFolder="Builds/Raspberry64" smallIcon="kxAIe6" bigIcon="kxAIe6"
@@ -1006,6 +1011,7 @@
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
         <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -1014,6 +1020,8 @@
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_processors_headless" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="0"/>
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
