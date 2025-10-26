@@ -5335,28 +5335,22 @@
     <ClCompile Include="..\..\Modules\juce_organicui\manager\ui\BaseItemEditor.cpp">
       <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Modules\juce_organicui\manager\ui\BaseItemMinimalUI.cpp">
-      <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Modules\juce_organicui\manager\ui\BaseItemUI.cpp">
-      <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Modules\juce_organicui\manager\ui\BaseManagerUI.cpp">
-      <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\manager\ui\GenericControllableItemEditor.cpp">
       <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\manager\BaseItem.cpp">
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Modules\juce_organicui\manager\BaseManager.cpp">
-      <Filter>JUCE Modules\juce_organicui\manager</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\manager\GenericControllableItem.cpp">
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\manager\GenericControllableManager.cpp">
+      <Filter>JUCE Modules\juce_organicui\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\manager\ItemGroup.cpp">
+      <Filter>JUCE Modules\juce_organicui\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\manager\Manager.cpp">
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\outliner\Outliner.cpp">
@@ -11031,19 +11025,16 @@
     <ClInclude Include="..\..\Modules\juce_organicui\manager\ui\BaseItemEditor.h">
       <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Modules\juce_organicui\manager\ui\BaseItemMinimalUI.h">
-      <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\manager\ui\BaseItemUI.h">
-      <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Modules\juce_organicui\manager\ui\BaseManagerUI.h">
       <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\manager\ui\GenericControllableItemEditor.h">
       <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\manager\ui\GenericManagerEditor.h">
+      <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\manager\ui\ItemMinimalUI.h">
       <Filter>JUCE Modules\juce_organicui\manager\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\manager\ui\ItemUI.h">
@@ -11067,9 +11058,6 @@
     <ClInclude Include="..\..\Modules\juce_organicui\manager\BaseItemListener.h">
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Modules\juce_organicui\manager\BaseManager.h">
-      <Filter>JUCE Modules\juce_organicui\manager</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\manager\Factory.h">
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
     </ClInclude>
@@ -11086,9 +11074,6 @@
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\manager\ManagerListener.h">
-      <Filter>JUCE Modules\juce_organicui\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Modules\juce_organicui\manager\NestingManager.h">
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\outliner\Outliner.h">
