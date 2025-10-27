@@ -126,11 +126,11 @@ void OSCInterface::processMessage(const OSCMessage& msg)
 		var args = var(Array<var>()); //initialize force array
 		for (auto& a : msg) args.append(OSCHelpers::argumentToVar(a));
 		params.add(args);
-		scriptManager->callFunctionOnAllScripts(oscEventId, params);
+		scriptManager->callFunctionOnAllItems(oscEventId, params);
 
 		for (auto& entry : scriptCallbacks)
 			if (std::get<0>(entry).matches(msg.getAddressPattern().toString()))
-				scriptManager->callFunctionOnAllScripts(std::get<1>(entry), params);
+				scriptManager->callFunctionOnAllItems(std::get<1>(entry), params);
 	}
 }
 

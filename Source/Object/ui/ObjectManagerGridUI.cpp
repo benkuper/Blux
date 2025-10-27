@@ -141,7 +141,7 @@ bool ObjectManagerGridUI::hasFiltering()
 	return manager->filterActiveInScene->boolValue();
 }
 
-bool ObjectManagerGridUI::checkFilterForItem(BaseItemMinimalUI* ui)
+bool ObjectManagerGridUI::checkFilterForItem(ObjectGridUI* ui)
 {
 	if (!ManagerShapeShifterUI::checkFilterForItem(ui)) return false;
 
