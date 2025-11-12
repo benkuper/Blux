@@ -26,8 +26,8 @@ public:
 	void updateSceneData(var& sceneData);
 	void lerpFromSceneData(var startData, var endData, float weight);
 
-	bool isAffectingObject(Object* o);
-	FilterResult getFilteredResultForComponent(Object* o, ObjectComponent* c);
+	bool isAffectingObject(Object* o, int localID = -1);
+	FilterResult getFilteredResultForComponent(Object* o, ObjectComponent* c, int localID = -1);
 
 	InspectableEditor* getEditorInternal(bool isRoot, Array<Inspectable*> inspectables = {}) override;
 

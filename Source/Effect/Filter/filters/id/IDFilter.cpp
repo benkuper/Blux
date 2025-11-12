@@ -26,9 +26,12 @@ IDFilter::~IDFilter()
 {
 }
 
-bool IDFilter::isAffectingObject(Object* o)
+bool IDFilter::isAffectingObject(Object* o, int localID)
 {
-	int oid = o->globalID->intValue();
+	int oid = localID;
+	IDMode m = idMode->getValueDataAsEnum<IDMode>();
+	if (localID == -1 || m == GLOBAL) oid = o->globalID->intValue();
+
 	for (int i = 0; i < ids.controllables.size(); i++)
 	{
 		if (oid == ((IntParameter*)ids.controllables[i])->intValue())
@@ -40,9 +43,9 @@ bool IDFilter::isAffectingObject(Object* o)
 	return invert->boolValue();
 }
 
-FilterResult IDFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)
+FilterResult IDFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c, int localID)
 {
-	int oid = o->globalID->intValue();
+	int oid = localID != -1 ? localID : o->globalID->intValue();
 	for (int i = 0; i < ids.controllables.size(); i++) if (oid == ((IntParameter*)ids.controllables[i])->intValue()) return FilterResult({ i, 1 });
 	return FilterResult();
 }

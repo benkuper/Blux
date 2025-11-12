@@ -50,6 +50,6 @@ void PictureColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalS
 
 		float h = 0, s = 0, b = 0;
 		picture.getPixelAt(tx, ty).getHSB(h, s, b);
-		colors.set(i, Colour::fromHSV(h + (float)GetSourceLinkedValue(hue), jmin(1.0f, s * (float)GetSourceLinkedValue(saturation)), jmin(1.0f, b * (float)GetSourceLinkedValue(brightness)), 1));
+		colors.set(i, Colour::fromHSV(h + (float)GetSourceLinkedValue(hue), jmin(1.0f, s * (float)GetSourceLinkedValue(saturation)), jmin(1.0f, b * (float)GetSourceLinkedValue(brightness)), 1.f));
 	}
 }

@@ -62,6 +62,10 @@
  #define   JUCE_ASIO 1
 #endif
 
+#ifndef    JUCE_ASIO_USE_EXTERNAL_SDK
+ //#define JUCE_ASIO_USE_EXTERNAL_SDK 0
+#endif
+
 #ifndef    JUCE_WASAPI
  //#define JUCE_WASAPI 1
 #endif

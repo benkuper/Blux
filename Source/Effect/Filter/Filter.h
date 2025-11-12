@@ -27,14 +27,14 @@ public:
     virtual ~Filter();
 
 
-    enum IDMode { NO_CHANGE, LOCAL, LOCAL_REVERSE, RANDOMIZED };
+    enum IDMode { NO_CHANGE, LOCAL, LOCAL_REVERSE, RANDOMIZED, GLOBAL };
     EnumParameter* idMode;
     BoolParameter* invert;
     BoolParameter* excludeFromScenes;
 
-    virtual bool isAffectingObject(Object* o);
-    FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c);
-    virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c);
+    virtual bool isAffectingObject(Object* o, int localID = -1);
+    FilterResult getFilteredResultForComponent(Object* o, ObjectComponent * c, int localID = -1);
+    virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent* c, int localID = -1);
     
     var getSceneData();
     void updateSceneData(var& sceneData);

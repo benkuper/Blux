@@ -14,7 +14,7 @@ Filter::Filter(const String& name) :
 	itemDataType = "Filter";
 	saveAndLoadRecursiveData = true;
 	idMode = addEnumParameter("ID Mode", "Chooses how to handle re-identification depending on the filtered content", true);
-	idMode->addOption("Do not change", NO_CHANGE, false)->addOption("Use local", LOCAL)->addOption("Use local reversed", LOCAL_REVERSE)->addOption("Use local randomized", RANDOMIZED);
+	idMode->addOption("Do not change", NO_CHANGE, false)->addOption("Use local", LOCAL)->addOption("Use local reversed", LOCAL_REVERSE)->addOption("Use local randomized", RANDOMIZED)->addOption("Use global", GLOBAL);
 	idMode->setValueWithData(LOCAL);
 
 	excludeFromScenes = addBoolParameter("Exclude From Scenes", "If checked, this will not be saved in scene", false);
@@ -27,17 +27,17 @@ Filter::~Filter()
 {
 }
 
-bool Filter::isAffectingObject(Object* o)
+bool Filter::isAffectingObject(Object* o, int localID)
 {
 	return true;
 }
 
-FilterResult Filter::getFilteredResultForComponent(Object* o, ObjectComponent* c)
+FilterResult Filter::getFilteredResultForComponent(Object* o, ObjectComponent* c, int localID)
 {
 	if (!enabled->boolValue()) return FilterResult();
 
 	IDMode m = idMode->getValueDataAsEnum<IDMode>();
-	FilterResult r = getFilteredResultForComponentInternal(o, c);
+	FilterResult r = getFilteredResultForComponentInternal(o, c, localID);
 	
 	if (invert->boolValue())
 	{
@@ -57,9 +57,9 @@ FilterResult Filter::getFilteredResultForComponent(Object* o, ObjectComponent* c
 	return FilterResult({ m != NO_CHANGE ? r.id : o->globalID->intValue(), r.weight });
 }
 
-FilterResult Filter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)
+FilterResult Filter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c, int localID)
 {
-	return FilterResult({ o->globalID->intValue(), 1 });
+	return FilterResult({ localID != -1 ? localID : o->globalID->intValue(), 1});
 }
 
 var Filter::getSceneData()

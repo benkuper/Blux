@@ -44,27 +44,15 @@ void FilterManager::lerpFromSceneData(var startData, var endData, float weight)
     for (auto& i : items) i->lerpFromSceneData(startData.getProperty(i->shortName, var()), endData.getProperty(i->shortName, var()), weight);
 }
 
-bool FilterManager::isAffectingObject(Object* o)
+bool FilterManager::isAffectingObject(Object* o, int localID)
 {
-    //bool hasSelectedComponents = false;
-    //for (auto& c : o->componentManager->items)
-    //{
-    //    if (componentSelector.selectedComponents[c->componentType])
-    //    {
-    //        hasSelectedComponents = true;
-    //        break;
-    //    }
-    //}
-    
-    //if (!hasSelectedComponents) return false;
-
     if (items.size() == 0) return true;
 
     WeightOperator wo = weightOperator->getValueDataAsEnum<WeightOperator>();
 
     for (auto& f : items)
     {
-        if (f->isAffectingObject(o))
+        if (f->isAffectingObject(o, localID))
         {
             if (wo == MAX || wo == MULTIPLY) return true;
         }
@@ -77,7 +65,7 @@ bool FilterManager::isAffectingObject(Object* o)
     return false;
 }
 
-FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectComponent* c)
+FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectComponent* c, int localID)
 {
     //if (c != nullptr && !componentSelector.selectedComponents[c->componentType]) return FilterResult();
 
@@ -96,7 +84,7 @@ FilterResult FilterManager::getFilteredResultForComponent(Object* o, ObjectCompo
             if (wo == MAX) result.weight = 0; //initialize weight
         }
 
-        FilterResult r = f->getFilteredResultForComponent(o, c);
+        FilterResult r = f->getFilteredResultForComponent(o, c, localID);
         //if (r.id >= 0) return r;
         if (r.id >= 0)
         {

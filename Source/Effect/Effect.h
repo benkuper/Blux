@@ -52,7 +52,7 @@ public:
 	//viz
 	WeakReference<Parameter> vizParameter;
 	WeakReference<Parameter> vizComputedParamRef
-		; 
+		;
 	void setParentGroup(Group* g);
 
 	void setForceDisabled(bool value);
@@ -69,8 +69,8 @@ public:
 	void clearPrevValues();
 
 
-	virtual bool isAffectingObject(Object* o);
-	virtual bool isAffectingObjectAndComponent(Object* o, ComponentType t);
+	virtual bool isAffectingObject(Object* o, int localID = -1);
+	virtual bool isAffectingObjectAndComponent(Object* o, ComponentType t, int localID = -1);
 	void processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier = 1.0f, int id = -1, float time = -1);
 	virtual void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1);
 

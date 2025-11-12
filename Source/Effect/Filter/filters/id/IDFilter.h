@@ -19,8 +19,8 @@ public:
 
     ControllableContainer ids;
     
-    bool isAffectingObject(Object* o) override;
-    virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent * c) override;
+    bool isAffectingObject(Object* o, int localID = -1) override;
+    virtual FilterResult getFilteredResultForComponentInternal(Object* o, ObjectComponent * c, int localID = -1) override;
 
     void controllableAdded(Controllable* c) override;
 

@@ -49,12 +49,12 @@ void LayoutFilter::clearItem()
     broadcaster.sendChangeMessage();
 }
 
-bool LayoutFilter::isAffectingObject(Object* o)
+bool LayoutFilter::isAffectingObject(Object* o, int localID)
 {
     return true;
 }
 
-FilterResult LayoutFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c)
+FilterResult LayoutFilter::getFilteredResultForComponentInternal(Object* o, ObjectComponent* c, int localID)
 {
     if (size->floatValue() == 0) return FilterResult();
    
@@ -76,5 +76,5 @@ FilterResult LayoutFilter::getFilteredResultForComponentInternal(Object* o, Obje
     float weight = fadeCurve.getValueAtPosition(p);
 
     if (weight <= 0) return FilterResult();
-    return FilterResult({ o->globalID->intValue(), weight });
+    return FilterResult({ localID, weight });
 }

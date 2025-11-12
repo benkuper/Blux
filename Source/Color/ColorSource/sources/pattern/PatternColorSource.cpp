@@ -49,7 +49,7 @@ void RainbowColorSource::fillColorsForObjectTimeInternal(Array<Colour, CriticalS
 	for (int i = 0; i < resolution; i++)
 	{
 		double rel = fmodf((1 - (i * 1.0f / resolution)) * (double)GetSourceLinkedValue(density) + time, 1);
-		colors.set(i, Colour::fromHSV(rel, (double)GetSourceLinkedValue(saturation), (double)GetSourceLinkedValue(brightness), 1));
+		colors.set(i, Colour::fromHSV(rel, (double)GetSourceLinkedValue(saturation), (double)GetSourceLinkedValue(brightness), 1.f));
 	}
 }
 

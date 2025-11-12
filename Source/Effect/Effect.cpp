@@ -69,15 +69,15 @@ Effect::~Effect()
 {
 }
 
-bool Effect::isAffectingObject(Object* o)
+bool Effect::isAffectingObject(Object* o, int localID)
 {
-	return 	filterManager->isAffectingObject(o);
+	return 	filterManager->isAffectingObject(o, localID);
 }
 
-bool Effect::isAffectingObjectAndComponent(Object* o, ComponentType t)
+bool Effect::isAffectingObjectAndComponent(Object* o, ComponentType t, int localID)
 {
 	if (!typeFilters.isEmpty() && !typeFilters.contains(t)) return false;
-	if (!isAffectingObject(o)) return false;
+	if (!isAffectingObject(o, localID)) return false;
 
 	return true;
 }
@@ -102,9 +102,9 @@ void Effect::setForceDisabled(bool value)
 
 void Effect::processComponent(Object* o, ObjectComponent* c, HashMap<Parameter*, var>& values, float weightMultiplier, int id, float time)
 {
-	if (!isAffectingObjectAndComponent(o, c->componentType))return;
+	if (!isAffectingObjectAndComponent(o, c->componentType, id)) return;
 
-	FilterResult r = filterManager->getFilteredResultForComponent(o, c);
+	FilterResult r = filterManager->getFilteredResultForComponent(o, c, id);
 	if (r.id == -1) return;
 
 	if (CustomTag* t = tagSelector->getTag())
