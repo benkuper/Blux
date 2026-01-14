@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="aq6sUu" name="Blux" projectType="guiapp" jucerFormatVersion="1"
-              version="1.3.0b7" headerPath="../../Source&#10;../../External/servus/include&#10;../../External/dnssd/include"
+              version="1.3.0b8" headerPath="../../Source&#10;../../External/servus/include&#10;../../External/dnssd/include"
               cppLanguageStandard="17" projectLineFeed="&#10;" bundleIdentifier="benkuper.Blux"
               defines="OSC_REMOTE_CONTROL_PORT=43000" companyName="Ben Kuper"
               companyCopyright="Ben Kuper" companyWebsite="https://benjamin.kuperberg.fr/blux">
@@ -818,39 +818,39 @@
                JUCE_USE_WIN_WEBVIEW2="1" JUCE_FLOAT_COLOURS="1" JUCE_USE_FLOAT_COLOURS="1"
                JUCE_USE_WINRT_MIDI="1" JUCE_ASIO="1"/>
   <EXPORTFORMATS>
-    <VS2022 targetFolder="Builds/VisualStudio2022" externalLibraries="Servus.lib&#10;dnssd.lib"
-            smallIcon="kxAIe6" bigIcon="kxAIe6" extraCompilerFlags="/bigobj"
-            extraLinkerFlags="/HEAP:0x200000,0x10000">
+    <VS2026 targetFolder="Builds/VisualStudio2026" extraLinkerFlags="/HEAP:0x200000,0x10000"
+            extraCompilerFlags="/bigobj" externalLibraries="Servus.lib&#10;dnssd.lib"
+            smallIcon="kxAIe6" bigIcon="kxAIe6">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" headerPath="../../External/asio" libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
-                       binaryPath="Binaries/Debug"/>
-        <CONFIGURATION isDebug="0" name="Release" headerPath="../../External/asio" libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
-                       binaryPath="Binaries/" alwaysGenerateDebugSymbols="1" debugInformationFormat="ProgramDatabase"/>
+        <CONFIGURATION isDebug="1" name="Debug" libraryPath="../../External/servus/lib/win/x64/debug&#10;../../External/dnssd/lib"
+                       binaryPath="Binaries/Debug" headerPath="../../External/asio"/>
+        <CONFIGURATION isDebug="0" name="Release" libraryPath="../../External/servus/lib/win/x64/release&#10;../../External/dnssd/lib"
+                       binaryPath="Binaries/" headerPath="../../External/asio"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics"/>
         <MODULEPATH id="juce_audio_devices"/>
         <MODULEPATH id="juce_audio_formats"/>
         <MODULEPATH id="juce_audio_processors"/>
+        <MODULEPATH id="juce_audio_processors_headless"/>
         <MODULEPATH id="juce_audio_utils"/>
         <MODULEPATH id="juce_core"/>
+        <MODULEPATH id="juce_cryptography"/>
         <MODULEPATH id="juce_data_structures"/>
+        <MODULEPATH id="juce_dmx" path="Modules"/>
         <MODULEPATH id="juce_events"/>
         <MODULEPATH id="juce_graphics"/>
         <MODULEPATH id="juce_gui_basics"/>
         <MODULEPATH id="juce_gui_extra"/>
+        <MODULEPATH id="juce_javascript"/>
         <MODULEPATH id="juce_opengl"/>
         <MODULEPATH id="juce_organicui" path="Modules"/>
         <MODULEPATH id="juce_osc"/>
+        <MODULEPATH id="juce_serial" path="Modules"/>
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
-        <MODULEPATH id="juce_cryptography"/>
-        <MODULEPATH id="juce_dmx" path="Modules"/>
-        <MODULEPATH id="juce_serial" path="Modules"/>
-        <MODULEPATH id="juce_javascript"/>
-        <MODULEPATH id="juce_audio_processors_headless"/>
       </MODULEPATHS>
-    </VS2022>
+    </VS2026>
     <VS2022 targetFolder="Builds/VisualStudio2022_CI" extraCompilerFlags="/Zm1000 /bigobj"
             extraLinkerFlags="/HEAP:0x400000,0x10000" externalLibraries="Servus.lib&#10;dnssd.lib"
             smallIcon="kxAIe6" bigIcon="kxAIe6">

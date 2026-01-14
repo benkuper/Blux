@@ -81,3 +81,7 @@ Builds/MacOSX_CI/build
 Builds/VisualStudio2019/
 
 *.pkg
+
+Builds/VisualStudio2026/
+
+Builds/VisualStudio2022/
