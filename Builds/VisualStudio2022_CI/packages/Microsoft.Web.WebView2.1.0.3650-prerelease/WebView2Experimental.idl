@@ -1,0 +1,2154 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+
+import "../../edge_embedded_browser/client/win/current/WebView2.idl";
+
+[uuid(07abc5eb-fae4-4485-bf29-083ac335408b), version(1.0)]
+library WebView2Experimental {
+// Interface forward declarations
+
+interface ICoreWebView2Experimental20;
+interface ICoreWebView2Experimental30;
+interface ICoreWebView2ExperimentalDedicatedWorkerCreatedEventHandler;
+interface ICoreWebView2Experimental31;
+interface ICoreWebView2Experimental32;
+interface ICoreWebView2ExperimentalSensitivityInfoChangedEventHandler;
+interface ICoreWebView2ExperimentalCompositionController4;
+interface ICoreWebView2ExperimentalCompositionController6;
+interface ICoreWebView2ExperimentalDragStartingEventHandler;
+interface ICoreWebView2ExperimentalDedicatedWorker;
+interface ICoreWebView2ExperimentalDedicatedWorkerDedicatedWorkerCreatedEventHandler;
+interface ICoreWebView2ExperimentalDedicatedWorkerDestroyingEventHandler;
+interface ICoreWebView2ExperimentalDedicatedWorkerWebMessageReceivedEventHandler;
+interface ICoreWebView2ExperimentalDedicatedWorkerCreatedEventArgs;
+interface ICoreWebView2ExperimentalDragStartingEventArgs;
+interface ICoreWebView2ExperimentalEnvironment3;
+interface ICoreWebView2ExperimentalUpdateRuntimeCompletedHandler;
+interface ICoreWebView2ExperimentalEnvironment12;
+interface ICoreWebView2ExperimentalRenderAdapterLUIDChangedEventHandler;
+interface ICoreWebView2ExperimentalEnvironment15;
+interface ICoreWebView2ExperimentalRestartRequestedEventHandler;
+interface ICoreWebView2ExperimentalFrame7;
+interface ICoreWebView2ExperimentalFrame9;
+interface ICoreWebView2ExperimentalFrameDedicatedWorkerCreatedEventHandler;
+interface ICoreWebView2ExperimentalMipSensitivityLabel;
+interface ICoreWebView2ExperimentalProfile7;
+interface ICoreWebView2ExperimentalClearCustomDataPartitionCompletedHandler;
+interface ICoreWebView2ExperimentalProfile13;
+interface ICoreWebView2ExperimentalProfile14;
+interface ICoreWebView2ExperimentalRestartRequestedEventArgs;
+interface ICoreWebView2ExperimentalSensitivityInfo;
+interface ICoreWebView2ExperimentalSensitivityLabelCollectionView;
+interface ICoreWebView2ExperimentalSensitivityLabel;
+interface ICoreWebView2ExperimentalServiceWorker;
+interface ICoreWebView2ExperimentalServiceWorkerDestroyingEventHandler;
+interface ICoreWebView2ExperimentalServiceWorkerWebMessageReceivedEventHandler;
+interface ICoreWebView2ExperimentalServiceWorkerActivatedEventArgs;
+interface ICoreWebView2ExperimentalServiceWorkerManager;
+interface ICoreWebView2ExperimentalServiceWorkerRegisteredEventHandler;
+interface ICoreWebView2ExperimentalGetServiceWorkerRegistrationsCompletedHandler;
+// Skipping ICoreWebView2ExperimentalGetServiceWorkerRegistrationsCompletedHandler forward declaration
+interface ICoreWebView2ExperimentalServiceWorkerRegistrationCollectionView;
+interface ICoreWebView2ExperimentalServiceWorkerRegisteredEventArgs;
+interface ICoreWebView2ExperimentalServiceWorkerRegistration;
+interface ICoreWebView2ExperimentalServiceWorkerActivatedEventHandler;
+interface ICoreWebView2ExperimentalServiceWorkerRegistrationUnregisteringEventHandler;
+interface ICoreWebView2ExperimentalSettings9;
+interface ICoreWebView2ExperimentalSharedWorker;
+interface ICoreWebView2ExperimentalSharedWorkerDestroyingEventHandler;
+interface ICoreWebView2ExperimentalSharedWorkerCreatedEventArgs;
+interface ICoreWebView2ExperimentalSharedWorkerManager;
+interface ICoreWebView2ExperimentalSharedWorkerCreatedEventHandler;
+interface ICoreWebView2ExperimentalGetSharedWorkersCompletedHandler;
+interface ICoreWebView2ExperimentalSharedWorkerCollectionView;
+interface ICoreWebView2ExperimentalTexture;
+interface ICoreWebView2ExperimentalTextureStream;
+interface ICoreWebView2ExperimentalTextureStreamErrorReceivedEventHandler;
+interface ICoreWebView2ExperimentalTextureStreamStartRequestedEventHandler;
+interface ICoreWebView2ExperimentalTextureStreamStoppedEventHandler;
+interface ICoreWebView2ExperimentalTextureStreamWebTextureReceivedEventHandler;
+interface ICoreWebView2ExperimentalTextureStreamWebTextureStreamStoppedEventHandler;
+interface ICoreWebView2ExperimentalTextureStreamErrorReceivedEventArgs;
+interface ICoreWebView2ExperimentalTextureStreamWebTextureReceivedEventArgs;
+interface ICoreWebView2ExperimentalUpdateRuntimeResult;
+interface ICoreWebView2ExperimentalWebTexture;
+interface ICoreWebView2ExperimentalWindowControlsOverlay;
+// Enums and structs
+
+/// Specifies the restart requested priority level.
+[v1_enum]
+typedef enum COREWEBVIEW2_RESTART_REQUESTED_PRIORITY {
+  /// Developer should remind user to restart.
+  COREWEBVIEW2_RESTART_REQUESTED_PRIORITY_NORMAL = 1000,
+  /// Developer should prompt user to restart as soon as possible.
+  COREWEBVIEW2_RESTART_REQUESTED_PRIORITY_HIGH = 2000,
+} COREWEBVIEW2_RESTART_REQUESTED_PRIORITY;
+
+/// Specifies the kind of sensitivity label applied to web content.
+/// Sensitivity labels are used to classify and protect content based on
+/// its sensitivity level.
+/// 
+/// This enumeration is designed to be extensible. New values may be added
+/// in future versions. Applications should not implement a default case
+/// that assumes knowledge of all possible label kinds to ensure forward
+/// compatibility.
+[v1_enum]
+typedef enum COREWEBVIEW2_SENSITIVITY_LABEL_KIND {
+  /// Represents a Microsoft Information Protection (MIP) sensitivity label.
+  COREWEBVIEW2_SENSITIVITY_LABEL_KIND_MIP,
+} COREWEBVIEW2_SENSITIVITY_LABEL_KIND;
+
+/// Represents the state of sensitivity label detection and processing
+/// for web content loaded in the WebView2 control.
+[v1_enum]
+typedef enum COREWEBVIEW2_SENSITIVITY_LABELS_STATE {
+  /// Indicates that none of the loaded pages are in the allow list. Hence
+  /// sensitivity labels are not applicable.
+  COREWEBVIEW2_SENSITIVITY_LABELS_STATE_NOT_APPLICABLE,
+  /// Indicates that WebView2 has loaded pages from the allow list that
+  /// can report sensitivity labels, but the label are not available
+  /// yet complete.
+  COREWEBVIEW2_SENSITIVITY_LABELS_STATE_PENDING,
+  /// Indicates that WebView2 has loaded pages from the allow list,
+  /// and the labels about the content are available now.
+  COREWEBVIEW2_SENSITIVITY_LABELS_STATE_AVAILABLE,
+} COREWEBVIEW2_SENSITIVITY_LABELS_STATE;
+
+/// Kinds of errors that can be reported by the `ErrorReceived` event.
+[v1_enum]
+typedef enum COREWEBVIEW2_TEXTURE_STREAM_ERROR_KIND {
+  /// CreateTexture/PresentTexture and so on should return failed HRESULT if
+  /// the texture stream is in the stopped state rather than using the
+  /// error event. But there can be edge cases where the browser process
+  /// knows the texture stream is in the stopped state and the host app
+  /// process texture stream doesn't yet know that. Like the 10 second issue
+  /// or if the script side has stopped the stream.
+  COREWEBVIEW2_TEXTURE_STREAM_ERROR_KIND_NO_VIDEO_TRACK_STARTED,
+  /// The texture already has been removed using CloseTexture.
+  COREWEBVIEW2_TEXTURE_STREAM_ERROR_KIND_TEXTURE_ERROR,
+  /// The texture to be presented is already in use for rendering.
+  /// Call GetAvailableTexture to determine an available texture to present.
+  /// The developer can technically call PresentTexture multiple times,
+  /// but the first call make input texture "in use" until the browser
+  /// renders it and returns the texture as "recycle" so that it can be a member
+  /// of available textures.
+  COREWEBVIEW2_TEXTURE_STREAM_ERROR_KIND_TEXTURE_IN_USE,
+} COREWEBVIEW2_TEXTURE_STREAM_ERROR_KIND;
+
+/// Status of UpdateRuntime operation result.
+[v1_enum]
+typedef enum COREWEBVIEW2_UPDATE_RUNTIME_STATUS {
+  /// Latest version of Edge WebView2 Runtime is installed.
+  /// No update for Edge WebView2 Runtime is available, or Edge WebView2
+  /// Runtime is updated successfully and latest version is now installed.
+  COREWEBVIEW2_UPDATE_RUNTIME_STATUS_LATEST_VERSION_INSTALLED,
+  /// Edge WebView2 Runtime update is already running, which could be
+  /// triggered by auto update or by other UpdateRuntime request from some app.
+  COREWEBVIEW2_UPDATE_RUNTIME_STATUS_UPDATE_ALREADY_RUNNING,
+  /// Edge WebView2 Runtime update is blocked by group policy.
+  COREWEBVIEW2_UPDATE_RUNTIME_STATUS_BLOCKED_BY_POLICY,
+  /// Edge WebView2 Runtime update failed.
+  /// See `ExtendedError` property of UpdateRuntimeResult for more
+  /// information about the failure.
+  COREWEBVIEW2_UPDATE_RUNTIME_STATUS_FAILED,
+} COREWEBVIEW2_UPDATE_RUNTIME_STATUS;
+
+/// Matrix that represents a 3D transform. This transform is used to
+/// calculate correct coordinates when calling
+/// CreateCoreWebView2PointerInfoFromPointerId. This is equivalent to a
+/// D2D1_MATRIX_4X4_F
+typedef struct COREWEBVIEW2_MATRIX_4X4 {
+  /// The value in the first row and first column of the matrix.
+  FLOAT _11;
+  /// The value in the first row and second column of the matrix.
+  FLOAT _12;
+  /// The value in the first row and third column of the matrix.
+  FLOAT _13;
+  /// The value in the first row and fourth column of the matrix.
+  FLOAT _14;
+  /// The value in the second row and first column of the matrix.
+  FLOAT _21;
+  /// The value in the second row and second column of the matrix.
+  FLOAT _22;
+  /// The value in the second row and third column of the matrix.
+  FLOAT _23;
+  /// The value in the second row and fourth column of the matrix.
+  FLOAT _24;
+  /// The value in the third row and first column of the matrix.
+  FLOAT _31;
+  /// The value in the third row and second column of the matrix.
+  FLOAT _32;
+  /// The value in the third row and third column of the matrix.
+  FLOAT _33;
+  /// The value in the third row and fourth column of the matrix.
+  FLOAT _34;
+  /// The value in the fourth row and first column of the matrix.
+  FLOAT _41;
+  /// The value in the fourth row and second column of the matrix.
+  FLOAT _42;
+  /// The value in the fourth row and third column of the matrix.
+  FLOAT _43;
+  /// The value in the fourth row and fourth column of the matrix.
+  FLOAT _44;
+} COREWEBVIEW2_MATRIX_4X4;
+
+// End of enums and structs
+
+/// Receives `RenderAdapterLUIDChanged` events.
+[uuid(431721e0-0f18-4d7b-bd4d-e5b1522bb110), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalRenderAdapterLUIDChangedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalEnvironment12* sender,
+      [in] IUnknown* args);
+}
+
+/// Receives `ErrorReceived` events.
+[uuid(52cb8898-c711-401a-8f97-3646831ba72d), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTextureStreamErrorReceivedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalTextureStream* sender,
+      [in] ICoreWebView2ExperimentalTextureStreamErrorReceivedEventArgs* args);
+}
+/// Receives `StartRequested` events.
+[uuid(62d09330-00a9-41bf-a9ae-55aaef8b3c44), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTextureStreamStartRequestedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalTextureStream* sender,
+      [in] IUnknown* args);
+}
+/// Receives `Stopped` events.
+[uuid(4111102a-d19f-4438-af46-efc563b2b9cf), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTextureStreamStoppedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalTextureStream* sender,
+      [in] IUnknown* args);
+}
+/// Receives `WebTextureReceived` events.
+[uuid(9ea4228c-295a-11ed-a261-0242ac120002), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTextureStreamWebTextureReceivedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalTextureStream* sender,
+      [in] ICoreWebView2ExperimentalTextureStreamWebTextureReceivedEventArgs* args);
+}
+/// Receives `WebTextureStreamStopped` events.
+[uuid(77eb4638-2f05-11ed-a261-0242ac120002), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTextureStreamWebTextureStreamStoppedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalTextureStream* sender,
+      [in] IUnknown* args);
+}
+
+/// This is ICoreWebView2ExperimentalEnvironment12 that returns the texture
+/// stream interface.
+[uuid(96c27a45-f142-4873-80ad-9d0cd899b2b9), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalEnvironment12 : IUnknown {
+  /// Registers the stream id that the host can handle, providing a
+  /// texture stream when requested from the WebView2's JavaScript code.
+  /// The host can register multiple unique stream instances, each with
+  /// a unique stream ID, enabling the host to stream from different sources
+  /// concurrently.
+  /// The host should call this only once for unique streamId. The second
+  /// call of already created streamId without destroying
+  /// ICoreWebView2ExperimentalTextureStream object will return an error.
+  /// 'd3dDevice' is used for creating shared IDXGI resource and NT shared
+  /// of it. The host should use Adapter of the LUID from the GetRenderAdapterLUID
+  /// for creating the D3D Device.
+  HRESULT CreateTextureStream(
+      [in] LPCWSTR streamId,
+      [in] IUnknown* d3dDevice,
+      [out, retval ] ICoreWebView2ExperimentalTextureStream** value);
+  /// Get the graphics adapter LUID of the renderer. The host should use this
+  /// LUID adapter when creating D3D device to use with CreateTextureStream().
+  [propget] HRESULT RenderAdapterLUID([out, retval] UINT64* value);
+  /// Listens for change of graphics adapter LUID of the browser.
+  /// The host can get the updated LUID by RenderAdapterLUID. It is expected
+  /// that the host updates texture's d3d Device with SetD3DDevice,
+  /// removes existing textures and creates new texture.
+  HRESULT add_RenderAdapterLUIDChanged(
+      [in] ICoreWebView2ExperimentalRenderAdapterLUIDChangedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+  /// Remove listener for RenderAdapterLUIDChange event.
+  HRESULT remove_RenderAdapterLUIDChanged(
+      [in] EventRegistrationToken token);
+}
+
+/// This is the interface that handles texture streaming.
+[uuid(afca8431-633f-4528-abfe-7fc3bedd8962), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTextureStream : IUnknown {
+  /// Get the stream ID of the object that is used when calling CreateTextureStream.
+  /// The caller must free the returned string with CoTaskMemFree. See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT Id([out, retval] LPWSTR* value);
+  /// Adds an allowed URI origin. The stream requests could be made from
+  /// any frame, including iframes, but the origin of the page in the frames
+  /// must be registered first in order for the request to succeed.
+  /// The added origin will be persistent until
+  /// ICoreWebView2ExperimentalTextureStream is destroyed or
+  /// RemoveAllowedOrigin is called.
+  /// The renderer does not support wildcard so it will compare
+  /// literal string input to the requesting frame's page's origin after
+  /// normalization. The page origin will be normalized so ASCII characters
+  /// in the scheme and hostname will be lowercased, and non-ASCII characters
+  /// in the hostname will be normalized to their punycode form.
+  /// For example `HTTPS://WWW.ㄓ.COM` will be normalized to
+  /// `https://www.xn--kfk.com` for comparison. So, the input string
+  /// should have a scheme like `https://`. For example,
+  /// `https://www.valid-host.com`, `http://www.valid-host.com` are
+  /// valid origins but `www.valid-host.com`, or `https://*.valid-host.com.` are not
+  /// valid origins. If invalid origin is provided, the API will return an error
+  /// of E_INVALIDARG.
+  /// getTextureStream() will fail unless the requesting frame's origin URI is
+  /// added to the allowed origins.
+  /// If `value` is TRUE, then the origin will also be added to WebTexture's
+  /// allowed origin.
+  HRESULT AddAllowedOrigin([in] LPCWSTR origin, [in] BOOL value);
+  /// Remove added origin, which was added by AddAllowedOrigin.
+  /// The allowed or disallowed origins will take effect only when Javascript
+  /// request a streaming. So, once the streaming started, it does not stop
+  /// streaming.
+  HRESULT RemoveAllowedOrigin([in] LPCWSTR origin);
+  /// Listens for stream requests from the Javascript's getTextureStream call
+  /// for this stream's id. It is called for the first request only, and will
+  /// not be called with subsequent requests of same stream id from any pages
+  /// in the middle of request handling or after it returns success.
+  /// The request is regarded as success only when the host provides the stream,
+  /// Present API call, within 10s after being requested.
+
+  /// The texture stream becomes 'Started' state once it starts sending a texture
+  /// until it calls Stop API or receives 'Stopped' event.
+  HRESULT add_StartRequested(
+      [in] ICoreWebView2ExperimentalTextureStreamStartRequestedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+  /// Remove listener for StartRequest event.
+  HRESULT remove_StartRequested(
+      [in] EventRegistrationToken token);
+  /// Listen to stop stream request once the stream started.
+  /// It is called when user stop all streaming requests from
+  /// the renderers (Javascript) or the host calls the Stop API. The renderer
+  /// can stream again by calling the streaming request API.
+  /// The renderer cleared all registered Textures before sending
+  /// the stop request event so that the callback of the next start request
+  /// should register the textures again.
+  /// The event is triggered when all requests for given stream id closed
+  /// by the Javascript, or the host's Stop API call.
+  /// texture related API calls after this event will return an error
+  /// of HRESULT_FROM_WIN32(ERROR_INVALID_STATE).
+  HRESULT add_Stopped(
+      [in] ICoreWebView2ExperimentalTextureStreamStoppedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+  /// Remove listener for Stopped event.
+  HRESULT remove_Stopped(
+      [in] EventRegistrationToken token);
+  /// Creates texture that will be referenced by the host and the browser.
+  /// By using the texture mechanism, the host does not have to
+  /// send respective texture to the renderer, instead it notifies it
+  /// with internal texture id, which is the identity of the texture.
+  /// The texture is 2D texture, IDXGIResource, format and will be
+  /// exposed through shared HANDLE or IUnknown type through ICoreWebView2ExperimentalTexture.
+  /// Whenever the host has new texture to write, it should ask
+  /// reusable ICoreWebView2ExperimentalTexture from the GetAvailableTexture,
+  /// which returns ICoreWebView2ExperimentalTexture.
+  /// If the GetAvailableTexture returns an error, then the host calls the
+  /// CreateTexture to allocate new texture.
+  /// The API also registers created shared handle to the browser once it
+  /// created the resource.
+  ///
+  /// Unit for width and height is texture unit (in texels)
+  /// [D3D11_TEXTURE2D_DESC](/windows/win32/api/d3d11/ns-d3d11-d3d11_texture2d_desc).
+  HRESULT CreateTexture(
+    [in] UINT32 widthInTexels,
+    [in] UINT32 heightInTexels,
+    [out, retval] ICoreWebView2ExperimentalTexture** texture);
+  /// Returns reuseable texture for video frame rendering.
+  /// Once the renderer finishes rendering of texture's video frame, which
+  /// was requested by Present, the renderer informs the host so that it can
+  /// be reused. The host has to create new texture with CreateTexture
+  /// if the API return an error HRESULT_FROM_WIN32(ERROR_NO_MORE_ITEMS).
+  HRESULT GetAvailableTexture([out, retval] ICoreWebView2ExperimentalTexture** texture);
+  /// Removes texture when the host removes the backed 2D texture.
+  /// The host can save the resources by deleting 2D textures
+  /// when it changes the frame sizes. The API will send a message
+  /// to the browser where it will remove texture.
+  HRESULT CloseTexture([in] ICoreWebView2ExperimentalTexture* texture);
+  /// Adds the provided `ICoreWebView2Texture` to the video stream as the
+  /// next frame. The `ICoreWebView2Texture` must not be closed.
+  /// The `ICoreWebView2Texture` must have been obtained via a call to
+  /// `ICoreWebView2TextureStream::GetAvailableTexture` or `
+  /// ICoreWebView2TextureStream::CreateTexture` from this `ICoreWebView2TextureStream`.
+  /// If the `ICoreWebView2Texture` is closed or was created from a different
+  /// `ICoreWebView2TextureStream` this method will return `E_INVALIDARG`.
+  /// You should write your video frame data to the `ICoreWebView2Texture`
+  /// before calling this method.
+
+  /// After this method completes WebView2 will take some time asynchronously
+  /// to send the texture to the WebView2 processes to be added to the video stream.
+  /// Do not close or otherwise change the provided `ICoreWebView2Texture` after
+  /// calling this method. Doing so may result in the texture not being added to
+  /// the texture stream and the `ErrorReceived` event may be raised.
+  HRESULT PresentTexture([in] ICoreWebView2ExperimentalTexture* texture);
+
+  /// Stops this texture stream from streaming and moves it into the stopped state.
+  /// When moving to the stopped state the `ICoreWebView2TextureStream Stopped`
+  /// event will be raised and in script the `MediaStreamTrack ended` event will
+  /// be raised. Once stopped, script may again call `Webview.getTextureStream`
+  /// moving the texture stream back to the start requested state.
+  /// See the `StartRequested` event for details.
+
+  /// Once stopped, calls to CreateTexture, GetAvailableTexture,
+  /// PresentTexture, and CloseTexture will fail with
+  /// HRESULT_FROM_WIN32(ERROR_INVALID_STATE).
+  /// The `Stop` method is implicitly called when the texture stream object is
+  /// destroyed.
+  HRESULT Stop();
+  /// The `ErrorReceived` event is raised when an error with this texture
+  /// stream occurs asynchronously.
+  HRESULT add_ErrorReceived(
+      [in] ICoreWebView2ExperimentalTextureStreamErrorReceivedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+  /// Remove listener for ErrorReceived event.
+  HRESULT remove_ErrorReceived([in] EventRegistrationToken token);
+  /// Set the D3D device this texture stream should use for creating shared
+  /// texture resources. When the RenderAdapterLUIDChanged event is raised you
+  /// should create a new D3D device using the RenderAdapterLUID property and
+  /// call SetD3DDevice with the new D3D device.
+  /// See the `CreateTextureStream` `d3dDevice` parameter for more details.
+  HRESULT SetD3DDevice([in] IUnknown* d3dDevice);
+  /// Event handler for receiving texture by Javascript.
+  /// The WebTextureReceived event is raised when script sends a video frame to
+  /// this texture stream. Allowed script will call `chrome.webview.
+  /// registerTextureStream` to register a MediaStream with a specified texture
+  /// stream. Video frames added to that MediaStream will be raised in the
+  /// WebTextureReceived event. See `registerTextureStream` for details.
+  /// Script is allowed to call registerTextureStream if it is from an HTML
+  /// document with an origin allowed via
+  /// `ICoreWebView2TextureStream::AddAllowedOrigin` with the
+  /// `allowWebTexture` parameter set. See `AddAllowedOrigin` for details.
+  HRESULT add_WebTextureReceived(
+      [in] ICoreWebView2ExperimentalTextureStreamWebTextureReceivedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+  /// Remove listener for WebTextureReceived event.
+  HRESULT remove_WebTextureReceived([in] EventRegistrationToken token);
+  /// The WebTextureStreamStopped event is raised when script unregisters its
+  /// MediaStream from this texture stream. Script that has previously called
+  /// `chrome.webview.registerTextureStream`, can call `chrome.webview.
+  /// unregisterTextureStream` which will raise this event and then close
+  /// associated ICoreWebView2WebTexture objects in the browser side. You should
+  /// ensure that you release any references to associated
+  /// ICoreWebView2WebTexture objects and their underlying resources.
+
+  /// Once stopped, script may start again by calling `chrome.webview.
+  /// registerTextureStream` and sending more frames. In this case the
+  /// `ICoreWebView2TextureStream WebTextureReceived` event will be raised again.
+  HRESULT add_WebTextureStreamStopped(
+      [in] ICoreWebView2ExperimentalTextureStreamWebTextureStreamStoppedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+  /// Remove listener for WebTextureStreamStopped event.
+  HRESULT remove_WebTextureStreamStopped([in] EventRegistrationToken token);
+}
+
+/// The UpdateRuntime operation result.
+[uuid(DD503E49-AB19-47C0-B2AD-6DDD09CC3E3A), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalUpdateRuntimeResult : IUnknown {
+
+  /// The status for the UpdateRuntime operation.
+  [propget] HRESULT Status(
+      [out, retval] COREWEBVIEW2_UPDATE_RUNTIME_STATUS* status);
+
+  /// The update error that occurred while trying to update Edge WebView2 Runtime.
+  /// ExtendedError will be S_OK if Status is not `COREWEBVIEW2_UPDATE_RUNTIME_STATUS_FAILED`
+  /// or `COREWEBVIEW2_UPDATE_RUNTIME_STATUS_BLOCKED_BY_POLICY`.
+  [propget] HRESULT ExtendedError([out, retval] HRESULT* error);
+}
+
+/// Receives `DragStarting` events.
+[uuid(3b149321-83c3-5d1f-b03f-a42899bc1c15), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalDragStartingEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2CompositionController* sender,
+      [in] ICoreWebView2ExperimentalDragStartingEventArgs* args);
+}
+
+
+/// A continuation of the ICoreWebView2CompositionController4 interface.
+/// This interface includes an API which exposes the DragStarting event.
+[uuid(975d6824-6a02-5e98-ab7c-e4679d5357f4), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalCompositionController6 : IUnknown {
+  /// Adds an event handler for the `DragStarting` event.
+  /// `DragStarting` is a deferrable event that is raised when the WebView2
+  /// detects a drag started within the WebView2.
+  /// WebView2's default drag behavior is to synchronously call DoDragDrop when
+  /// it detects drag. This event's args expose the data WebView2 uses to call
+  /// DoDragDrop to allow users to implement their own drag logic and override
+  /// WebView2's.
+  /// Handlers of this event must set the `Handled` event to true in order to
+  /// override WebView2's default logic. When invoking drag logic asynchronously
+  /// using a deferral, handlers must take care to follow these steps in order:
+  ///   * Invoke asynchronous drag logic
+  ///   * Set the event args `Handled` property true
+  ///   * Complete the deferral
+  /// In the asynchronous case, WebView2 decides whether or not to invoke its
+  /// default drag logic when the deferral completes. So the event args'
+  /// `Handled` property must be true when the deferral is completed.
+  /// \snippet ScenarioDragDropOverride.cpp DragStarting
+  HRESULT add_DragStarting(
+      [in] ICoreWebView2ExperimentalDragStartingEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_DragStarting`.
+  HRESULT remove_DragStarting(
+      [in] EventRegistrationToken token);
+
+
+}
+
+
+/// Receives `DedicatedWorkerCreated` events.
+[uuid(a85b1b35-f6d7-5ae6-9fd7-57905deff79f), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalDedicatedWorkerDedicatedWorkerCreatedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalDedicatedWorker* sender,
+      [in] ICoreWebView2ExperimentalDedicatedWorkerCreatedEventArgs* args);
+}
+/// Receives `Destroying` events.
+[uuid(72473d5f-cba2-57ca-a42e-03610a349fef), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalDedicatedWorkerDestroyingEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalDedicatedWorker* sender,
+      [in] IUnknown* args);
+}
+/// Receives `WebMessageReceived` events.
+[uuid(b366218b-0bb8-58a3-ac33-f40a2235366e), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalDedicatedWorkerWebMessageReceivedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalDedicatedWorker* sender,
+      [in] ICoreWebView2WebMessageReceivedEventArgs* args);
+}
+
+
+/// This interface represents a dedicated worker in WebView2 and provides methods
+/// and properties for interacting with it, such as getting the script uri,
+/// posting messages, managing events related to the creation of child workers,
+/// termination etc.
+[uuid(66833876-edba-5a60-8508-7da64504a9d2), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalDedicatedWorker : IUnknown {
+  /// A string representing the Uri of the script that the worker is executing.
+  /// 
+  /// The `scriptUri` is a fully qualified URI, including the scheme, host, and path.
+  /// In contrast, the `scriptURL` property of the `Worker` object in the DOM returns the relative
+  /// URL of the script being executed by the worker. For more details on DOM API, see the
+  /// [DOM API documentation](https://developer.mozilla.org/docs/Web/API/Worker/scriptURL).
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how normalization is performed.
+  /// The same process applies to the `scriptURL` when a worker is created from DOM API.
+  /// The `scriptUri` property reflects this normalization, ensuring that the URL is standardized. For example,
+  /// `HTTPS://EXAMPLE.COM/worker.js` is canonicalized to `https://example.com/worker.js`;
+  /// `https://bÃ¼cher.de/worker.js` is canonicalized to `https://xn--bcher-kva.de/worker.js`.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT ScriptUri([out, retval] LPWSTR* value);
+
+
+
+  /// Adds an event handler for the `DedicatedWorkerCreated` event.
+  /// Subscribe to this event that gets raised when a new dedicated worker is created from a
+  /// dedicated worker.
+  /// 
+  /// A Dedicated Worker is a type of web worker that allows you to run Javascript
+  /// code in the background without blocking the main thread, making them useful
+  /// for tasks like heavy computations, data processing, and parallel execution.
+  /// It is "dedicated" because it is linked to a single parent document and cannot
+  /// be shared with other scripts.
+  /// 
+  /// This event is raised when a dedicated creates a dedicated worker using the
+  /// `new Worker("/worker.js")` method. See the
+  /// [Worker](https://developer.mozilla.org/docs/Web/API/Worker/Worker)
+  /// for more information.
+  HRESULT add_DedicatedWorkerCreated(
+      [in] ICoreWebView2ExperimentalDedicatedWorkerDedicatedWorkerCreatedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_DedicatedWorkerCreated`.
+  HRESULT remove_DedicatedWorkerCreated(
+      [in] EventRegistrationToken token);
+
+  /// Adds an event handler for the `Destroying` event.
+  /// Add an event handler for the `Destroying` event that is raised when the
+  /// worker object is Destroying.
+  /// 
+  /// A worker object is Destroying when the worker script is terminated or when
+  /// the `CoreWebView2DedicatedWorker` object is Destroying.
+  /// 
+  /// If the worker has already been destroyed before the event handler is registered,
+  /// the handler will never be called.
+  HRESULT add_Destroying(
+      [in] ICoreWebView2ExperimentalDedicatedWorkerDestroyingEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_Destroying`.
+  HRESULT remove_Destroying(
+      [in] EventRegistrationToken token);
+
+  /// Adds an event handler for the `WebMessageReceived` event.
+  /// Add an event handler for the `WebMessageReceived` event.
+  /// `WebMessageReceived` is fired, when the
+  /// `ICoreWebView2Settings::IsWebMessageEnabled` setting is set TRUE and the
+  /// worker runs `self.chrome.webview.postMessage`. The `postMessage` function
+  /// is `void postMessage(object)` where object is any object supported by JSON
+  /// conversion.
+  /// 
+  /// If the worker calls `postMessage` multiple times, the corresponding
+  /// `WebMessageReceived` events are guaranteed to be fired in the same order.
+  /// 
+  /// 
+  /// \snippet ScenarioDedicatedWorkerPostMessage.cpp WebMessageReceived
+  HRESULT add_WebMessageReceived(
+      [in] ICoreWebView2ExperimentalDedicatedWorkerWebMessageReceivedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_WebMessageReceived`.
+  HRESULT remove_WebMessageReceived(
+      [in] EventRegistrationToken token);
+
+
+  /// Posts the specified webMessageAsJson to this worker.
+  /// The worker receives the message by subscribing to the `message` event of the
+  /// `self.chrome.webview` of the worker.
+  /// 
+  /// ```cpp
+  /// self.chrome.webview.addEventListener('message', handler)
+  /// self.chrome.webview.removeEventListener('message', handler)
+  /// ```
+  /// 
+  /// The event args is an instance of `MessageEvent`. The
+  /// `ICoreWebView2Settings::IsWebMessageEnabled` setting must be `TRUE` or
+  /// the web message will not be sent. The `data` property of the event arg 
+  /// is the `webMessageAsJson` string parameter parsed as a JSON string into a 
+  /// JS object. The `source` property of the event arg is the path
+  /// to the worker script. The message is delivered asynchronously. 
+  /// If the worker is terminated or destroyed before the message is posted,
+  /// the message is discarded.
+  /// Worker Javascript may subscribe and unsubscribe to the event 
+  /// using the following code:
+  /// ```javascript
+  /// self.chrome.webview.addEventListener('message', handler)
+  /// self.chrome.webview.removeEventListener('message', handler)
+  /// ```
+  /// ```cpp
+  /// See also the equivalent methods: `ICoreWebView2::PostWebMessageAsJson`,
+  /// `ICoreWebView2Frame::PostWebMessageAsJson`,
+  /// `ICoreWebView2ServiceWorker::PostWebMessageAsJson`.
+  /// ```
+  /// 
+  /// 
+  /// \snippet ScenarioDedicatedWorkerPostMessage.cpp PostWebMessageAsJson
+  HRESULT PostWebMessageAsJson(
+      [in] LPCWSTR webMessageAsJson
+  );
+
+  /// Posts a message that is a simple string rather than a JSON string
+  /// representation of a JavaScript object. This behaves exactly the same
+  /// manner as `PostWebMessageAsJson`, but the `data` property of the event
+  /// arg of the `self.chrome.webview` message is a string with the same
+  /// value as `webMessageAsString`.  Use this instead of
+  /// `PostWebMessageAsJson` if you want to communicate using simple strings
+  /// rather than JSON objects. Please see `PostWebMessageAsJson` for
+  /// additional information.
+  /// ```cpp
+  /// See also the equivalent methods: `ICoreWebView2::PostWebMessageAsString`,
+  /// `ICoreWebView2Frame::PostWebMessageAsString`,
+  /// `ICoreWebView2ServiceWorker::PostWebMessageAsString`.
+  /// ```
+  HRESULT PostWebMessageAsString(
+      [in] LPCWSTR webMessageAsString
+  );
+
+
+}
+
+
+
+/// Event args for the `DedicatedWorkerCreated` event.
+[uuid(910c52af-8129-516d-ab9a-b524e377d8ac), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalDedicatedWorkerCreatedEventArgs : IUnknown {
+  /// The associated frame information that created the dedicated worker.
+  /// This can be used to get the frame source, name, frameId,
+  /// and parent frame information.
+  [propget] HRESULT OriginalSourceFrameInfo([out, retval] ICoreWebView2FrameInfo** value);
+
+
+  /// The dedicated worker that was created.
+  [propget] HRESULT Worker([out, retval] ICoreWebView2ExperimentalDedicatedWorker** value);
+
+
+
+}
+
+
+
+/// Event args for the `DragStarting` event.
+[uuid(5e70e0e8-5cd0-5cfa-8f6f-d91b48a3755c), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalDragStartingEventArgs : IUnknown {
+  /// The [OLE DROPEFFECT](/windows/win32/com/dropeffect-constants)
+  /// values this drag data supports.
+  [propget] HRESULT AllowedDropEffects([out, retval] DWORD* value);
+
+
+  /// The data to be dragged.
+  [propget] HRESULT Data([out, retval] IDataObject** value);
+
+
+  /// Gets the `Handled` property.
+  [propget] HRESULT Handled([out, retval] BOOL* value);
+
+
+  /// Indicates whether this event has been handled by the app.  If the
+  /// app handles this event, WebView2 will not initiate drag drop.  If
+  /// the app does not handle the event, WebView2 will initiate its own
+  /// drag drop logic.
+  [propput] HRESULT Handled([in] BOOL value);
+
+
+  /// The position at which drag was detected given in WebView2 relative
+  /// coordinates
+  [propget] HRESULT Position([out, retval] POINT* value);
+
+
+
+  /// Returns an `ICoreWebView2Deferral` object. Use this operation to complete
+  /// the CoreWebView2DragStartingEventArgs.
+  /// 
+  /// Until the deferral is completed, subsequent attempts to initiate drag
+  /// in the WebView2 will fail and if the cursor was changed as part of
+  /// drag it will not restore.
+  HRESULT GetDeferral(
+      [out, retval] ICoreWebView2Deferral** value);
+
+
+}
+
+
+/// Receives `RestartRequested` events.
+[uuid(a5d3e2ac-fee2-59c9-bd70-9e68181a95a1), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalRestartRequestedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2Environment* sender,
+      [in] ICoreWebView2ExperimentalRestartRequestedEventArgs* args);
+}
+
+
+/// This is the ICoreWebView2Environment Experimental interface for
+/// detecting critical update.
+[uuid(74ce74ee-b71c-5015-8728-39ebf3b59a89), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalEnvironment15 : IUnknown {
+  /// Adds an event handler for the `RestartRequested` event.
+  /// Add an event handler for the `RestartRequested` event.
+  /// `RestartRequested` event is raised when there is a need to restart WebView2 process
+  /// in order to apply certain beneficial updates.
+  /// 
+  /// `RestartRequested` gives developers the awareness of these necessary WebView2 restarts,
+  /// allowing developers to resolve issues faster than waiting for end users to restart the app.
+  /// Developer might want to give end users the ability to save their state before restarting.
+  /// For apps with multiple processes that host WebView2s that share the same user data folder you
+  /// need to make sure all WebView2 instances are closed and the associated WebView2 Runtime
+  /// browser process exits. See `BrowserProcessExited` for more details.
+  /// 
+  /// \snippet AppWindow.cpp RestartRequested
+  HRESULT add_RestartRequested(
+      [in] ICoreWebView2ExperimentalRestartRequestedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_RestartRequested`.
+  HRESULT remove_RestartRequested(
+      [in] EventRegistrationToken token);
+
+
+}
+
+
+
+/// This is the ICoreWebView2 experimental interface for custom data partition.
+[uuid(5a4d0ecf-3fe5-4456-ace5-d317cca0eff1), object, pointer_default(unique)]
+interface ICoreWebView2Experimental20 : IUnknown {
+  /// Gets the `CustomDataPartitionId` property.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT CustomDataPartitionId([out, retval] LPWSTR* value);
+
+
+  /// Sets the `CustomDataPartitionId` property.
+  /// This API requires enabling 2 experimental browser features to work properly.
+  /// These features will be enabled by default in the future.
+  /// Before these features are enabled by default, please enable them by ensuring
+  /// `--enable-features=ThirdPartyStoragePartitioning,PartitionedCookies` is set in
+  /// `AdditionalBrowserArguments` in `CoreWebView2EnvironmentOptions` used to create
+  /// CoreWebView2Environment. If these features are not enabled, all data are treated
+  /// as unpartitioned and stored in the global default location for the profile.
+  /// When it is set, the page in the WebView will act as if the page were hosted in a
+  /// top level site uniquely associated with the `customDataPartitionId  ` and have a separate
+  /// storage partition as described in https://developer.chrome.com/docs/privacy-sandbox/storage-partitioning/
+  /// and separate cookie partition as described in https://developer.chrome.com/docs/privacy-sandbox/chips/
+  /// with all cookies partitioned.
+  /// If `customDataPartitionId` is nullptr or empty string, the page inside the
+  /// WebView will work normally with data treated as unpartitioned.
+  /// The `customDataPartitionId` parameter is case sensitive. The default is
+  /// an empty string. There is no restriction on the length or what characters
+  /// can be used in partition id.
+  /// The change of the custom data partition id will be applied to new
+  /// page or iframe navigations and not impact existing pages and iframes.
+  /// To avoid accidentally using the new partition id for new page or iframe navigations
+  /// started by the old page, it is recommended to create a new WebView for new partition
+  /// instead of changing partition. If you really have to change partition, it is
+  /// recommended to navigate to a blank page before setting the new partition
+  /// id and navigating to a page with the new partition.
+  /// 
+  /// As setting custom data partition id does not change DOM security
+  /// model, developers should be very careful for WebViews with opener and
+  /// opened window relationship, especially when the pages in the WebViews
+  /// have same origin, like when the opened window is the same website or
+  /// about:blank. The pages in these WebViews can access each other's DOM and
+  /// therefore can potentially access DOM storage and cookies in different
+  /// partition for the same website. It is recommended to set the same custom
+  /// data partition id for these WebViews, unless there is an absolute need
+  /// to set different partition ids and only trusted code is hosted in them.
+  /// 
+  /// \snippet AppWindow.cpp CreateCoreWebView2EnvironmentWithOptions
+  /// 
+  /// \snippet SettingsComponent.cpp CustomDataPartitionId
+  [propput] HRESULT CustomDataPartitionId([in] LPCWSTR value);
+
+
+
+}
+
+
+
+/// This interface is an extension of the ICoreWebView2CompositionController.
+/// An object implementing ICoreWebView2ExperimentalCompositionController4
+/// interface will also implement ICoreWebView2CompositionController.
+[uuid(e6041d7f-18ac-4654-a04e-8b3f81251c33), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalCompositionController4 : IUnknown {
+  /// Returns the UI Automation Provider for the WebView.
+  [propget] HRESULT AutomationProvider([out, retval] IUnknown** value);
+
+
+
+  /// A helper function to convert a pointerId received from the system into
+  /// an ICoreWebView2ExperimentalPointerInfo.
+  /// parentWindow is the HWND that contains the WebView. This can be any HWND
+  /// in the hwnd tree that contains the WebView.
+  /// The COREWEBVIEW2_MATRIX_4X4 is the transform from that HWND to the WebView.
+  /// The returned ICoreWebView2ExperimentalPointerInfo is used in SendPointerInfo.
+  /// The pointer type must be either pen or touch or the function will fail.
+  HRESULT CreateCoreWebView2PointerInfoFromPointerId(
+      [in] UINT32 PointerId,
+      [in] HWND ParentWindow,
+      [in] COREWEBVIEW2_MATRIX_4X4 transform
+      , [out, retval] ICoreWebView2PointerInfo** value);
+
+
+}
+
+
+/// Receives the result of the `UpdateRuntime` method.
+[uuid(f1d2d722-3721-499c-87f5-4c405260697a), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalUpdateRuntimeCompletedHandler : IUnknown {
+
+  /// Provides the result of the corresponding asynchronous method.
+  HRESULT Invoke([in] HRESULT errorCode, [in] ICoreWebView2ExperimentalUpdateRuntimeResult* result);
+}
+
+
+/// This interface is an extension of the ICoreWebView2Environment that manages
+/// updating Edge WebView2 Runtime. An object implementing the
+/// ICoreWebView2ExperimentalEnvironment3 interface will also implement
+/// ICoreWebView2Environment.
+[uuid(9a2be885-7f0b-4b26-b6dd-c969baa00bf1), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalEnvironment3 : IUnknown {
+  /// Try to update the installed Microsoft Edge WebView2 Runtime.
+  /// This will potentially result in a new version of the Edge WebView2
+  /// Runtime being installed and `NewBrowserVersionAvailable` event being raised.
+  /// There is no guarantee on the order of that event being raised and
+  /// UpdateRuntime's completed handler being invoked. Besides the
+  /// `NewBrowserVersionAvailable` event, there will be no impact to any
+  /// currently running WebView2s when the update is installed.
+  /// Even though the Edge WebView2 Runtime update is installed for the machine
+  /// and available to all users, the update will happen silently and not show
+  /// elevation prompt.
+  /// This will not impact Edge browser installations.
+  /// The latest version can always be queried using the
+  /// `GetAvailableCoreWebView2BrowserVersionString` API.
+  /// The UpdateRuntime method is only supported for an installed Edge WebView2
+  /// Runtime. When running a fixed version Edge WebView2 Runtime or non stable
+  /// channel Edge browser, this API will return `HRESULT_FROM_WIN32(ERROR_NOT_SUPPORTED)`.
+  /// There could only be one active UpdateRuntime operation in an app process,
+  /// and calling this API before the completed handler for a previous call is invoked
+  /// will fail with `HRESULT_FROM_WIN32(ERROR_BUSY)`.
+  /// Calling this API repeatedly in a short period of time, will also fail with
+  /// `HRESULT_FROM_WIN32(ERROR_BUSY)`. To protect accidental abuse of the update
+  /// service, the implementation throttles the calls of this API to 3 times within
+  /// 5 minutes in a process. The exact throttling limit can change in the future.
+  /// Edge update service can only support one update request at a time globally.
+  /// If there is already an update operation running in the Edge update service,
+  /// UpdateRuntime request will result in the completed handler being invoked with a
+  /// result that has `Status` of `COREWEBVIEW2_UPDATE_RUNTIME_STATUS_UPDATE_ALREADY_RUNNING`.
+  /// As the running update could succeed or fail, the app should retry later if
+  /// `NewBrowserVersionAvailable` event has not been raised.
+  /// The UpdateRuntime operation is associated with the CoreWebView2Environment
+  /// object and any ongoing UpdateRuntime operation will be aborted when the
+  /// associated CoreWebView2Environment along with the CoreWebView2 objects that
+  /// are created by the CoreWebView2Environment object are all released. In this
+  /// case, the completed handler will be invoked with `S_OK` as `errorCode` and a
+  /// result object with `Status` of COREWEBVIEW2_UPDATE_RUNTIME_STATUS_FAILED and
+  /// `ExtendedError` as `E_ABORT`.
+  /// 
+  /// \snippet AppWindow.cpp UpdateRuntime
+  HRESULT UpdateRuntime(
+      [in] ICoreWebView2ExperimentalUpdateRuntimeCompletedHandler* handler);
+
+
+}
+
+
+/// Receives the result of the `ClearCustomDataPartition` method.
+[uuid(fe753727-5758-4fea-8cad-1e685b9c3ae8), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalClearCustomDataPartitionCompletedHandler : IUnknown {
+
+  /// Provides the result of the corresponding asynchronous method.
+  HRESULT Invoke([in] HRESULT errorCode);
+}
+
+
+/// This is the ICoreWebView2 experimental profile interface.
+[uuid(11a14762-7780-46a1-a1c3-73de812dae12), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalProfile7 : IUnknown {
+  /// Clears all DOM storage and cookies in the custom data partition
+  /// identified by the `customDataPartitionId`.
+  /// If `customDataPartitionId` is nullptr or empty string, the API will fail with
+  /// E_INVALIDARG. If no partition is found for the specified `customDataPartitionId`,
+  /// the API succeeds without doing anything.
+  /// As DOM storage and cookies in the custom data partition is also browsing
+  /// data, they will also be cleared when `ClearBrowsingData`,
+  /// `ClearBrowsingDataInTimeRange` or `ClearBrowsingDataAll` is called and
+  /// the clearing condition is met.
+  /// 
+  /// \snippet AppWindow.cpp ClearCustomDataPartition
+  HRESULT ClearCustomDataPartition(
+      [in] LPCWSTR CustomDataPartitionId
+      , [in] ICoreWebView2ExperimentalClearCustomDataPartitionCompletedHandler* handler);
+
+
+}
+
+
+
+/// A continuation of the `ICoreWebView2Frame` interface to support
+/// UseOverrideTimerWakeInterval property.
+[uuid(792db210-2297-54e6-8c57-0cee4d38cd8b), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalFrame7 : IUnknown {
+  /// Gets the `UseOverrideTimerWakeInterval` property.
+  [propget] HRESULT UseOverrideTimerWakeInterval([out, retval] BOOL* value);
+
+
+  /// Indicates whether timer wake interval should be overridden for the frame.
+  /// When `TRUE`, timers in the frame will run at most at the interval set
+  /// by `PreferredOverrideTimerWakeIntervalInMilliseconds`. All frames in the
+  /// WebView that set this property to `TRUE` are subject to the same timer
+  /// wake interval. When `FALSE`, and for main frame, the timer wake interval
+  /// will be determined by page state and the corresponding interval value for
+  /// that state, set by the matching property in `CoreWebView2Settings`.
+  /// Defaults to `FALSE` unless set otherwise.
+  [propput] HRESULT UseOverrideTimerWakeInterval([in] BOOL value);
+
+
+
+}
+
+
+/// Receives `DedicatedWorkerCreated` events.
+[uuid(3e28d307-9d58-5306-8097-a79301de4f05), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalFrameDedicatedWorkerCreatedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2Frame* sender,
+      [in] ICoreWebView2ExperimentalDedicatedWorkerCreatedEventArgs* args);
+}
+
+
+/// A continuation of the `ICoreWebView2Frame` interface to manage dedicated
+/// workers.
+[uuid(1a405e33-a7f7-5d18-a863-1ed39bc29602), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalFrame9 : IUnknown {
+  /// Adds an event handler for the `DedicatedWorkerCreated` event.
+  /// Subscribe to this event that gets raised when a new dedicated worker is created
+  /// from an iframe.
+  /// 
+  /// A Dedicated Worker is a type of web worker that allows you to run Javascript
+  /// code in the background without blocking the main thread, making them useful
+  /// for tasks like heavy computations, data processing, and parallel execution.
+  /// It is "dedicated" because it is linked to a single parent document and cannot
+  /// be shared with other scripts.
+  /// 
+  /// This event is raised when a web application creates a dedicated worker using the
+  /// `new Worker("/worker.js")` method. See the
+  /// [Worker](https://developer.mozilla.org/docs/Web/API/Worker/Worker)
+  /// for more information.
+  HRESULT add_DedicatedWorkerCreated(
+      [in] ICoreWebView2ExperimentalFrameDedicatedWorkerCreatedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_DedicatedWorkerCreated`.
+  HRESULT remove_DedicatedWorkerCreated(
+      [in] EventRegistrationToken token);
+
+
+}
+
+
+
+/// Interface for Microsoft Information Protection (MIP) sensitivity labels.
+/// This interface provides specific information about MIP labels, including
+/// label identification and organizational context.
+/// 
+/// \snippet ScenarioSensitivityLabel.cpp MipSensitivityLabels
+[uuid(1a562888-3031-5375-b8c5-8afd573e79c8), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalMipSensitivityLabel : IUnknown {
+  /// The unique identifier for the Microsoft Information Protection label.
+  /// This string contains a GUID that uniquely identifies the specific
+  /// sensitivity label within the organization's MIP policy configuration.
+  /// The GUID follows the format:
+  /// `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` (with dashes, no extra braces).
+  /// eg: `3fa85f64-5717-4562-b3fc-2c963f66afa6`
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT LabelId([out, retval] LPWSTR* value);
+
+
+  /// The unique identifier for the organization that owns the MIP label.
+  /// This string contains a GUID that identifies the Azure Active Directory
+  /// tenant or organization that configured and deployed the sensitivity label.
+  /// The GUID follows the format:
+  /// `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` (with dashes, no extra braces).
+  /// eg: `44567f64-8712-1789-ac3f-15aa3f66ab12`
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT OrganizationId([out, retval] LPWSTR* value);
+
+
+
+}
+
+
+
+/// A continuation of the ICoreWebView2Profile interface to manage service and shared
+/// workers.
+[uuid(99758b67-f881-5e0e-8f02-ef3a27503091), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalProfile13 : IUnknown {
+  /// Get the service worker manager to monitor service worker registrations and
+  /// interact with the service workers associated with the current profile.
+  /// 
+  /// \snippet ScenarioServiceWorkerManager.cpp ServiceWorkerManager
+  [propget] HRESULT ServiceWorkerManager([out, retval] ICoreWebView2ExperimentalServiceWorkerManager** value);
+
+
+  /// Get the shared worker manager to monitor shared worker creations and interact
+  /// with the shared workers associated with the current profile.
+  /// 
+  /// \snippet ScenarioSharedWorkerManager.cpp SharedWorkerManager
+  [propget] HRESULT SharedWorkerManager([out, retval] ICoreWebView2ExperimentalSharedWorkerManager** value);
+
+
+
+}
+
+
+
+/// This is the ICoreWebView2Profile interface for PageInteractionRestrictionManager allowlist management.
+[uuid(591ffebf-33d9-5e0f-847b-c14f001d2607), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalProfile14 : IUnknown {
+  /// Sets the allowlist of URLs that are allowed to access the PageInteractionRestrictionManager API.
+  /// 
+  /// This method configures an allowlist of URLs that determines which web pages
+  /// can use the PageInteractionRestrictionManager API. Only URLs that match 
+  /// entries in this allowlist (either exact matches or wildcard patterns) will
+  /// have access to the PageInteractionRestrictionManager functionality.
+  /// 
+  /// URL Matching Logic:
+  /// The allowlist accepts both exact URL strings and wildcard patterns.
+  /// For wildcard patterns, `*` matches zero or more characters.
+  /// 
+  /// For detailed URL matching examples, refer to the table at [`AddWebResourceRequestedFilter`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.web.webview2.core.corewebview2.addwebresourcerequestedfilter).
+  /// \snippet ScenarioSensitivityLabel.cpp SetAllowList
+  HRESULT SetPageInteractionRestrictionManagerAllowList(
+      [in] UINT32 allowlistCount,
+      [in] LPCWSTR* allowlist
+  );
+
+
+}
+
+
+
+/// Event args for the `RestartRequested` event.
+[uuid(40bb5778-6d85-5008-bbf4-22cc808b2737), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalRestartRequestedEventArgs : IUnknown {
+  /// Restart requested priority.
+  [propget] HRESULT Priority([out, retval] COREWEBVIEW2_RESTART_REQUESTED_PRIORITY* value);
+
+
+
+}
+
+
+/// A collection of ICoreWebView2ExperimentalSensitivityLabel.
+[uuid(d308e652-8a72-5b4f-bce4-a68dfc1ef792), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSensitivityLabelCollectionView : IUnknown {
+  /// The number of elements contained in the collection.
+  [propget] HRESULT Count([out, retval] UINT32* value);
+
+  /// Gets the element at the given index.
+  HRESULT GetValueAtIndex([in] UINT32 index, [out, retval] ICoreWebView2ExperimentalSensitivityLabel** value);
+}
+
+
+/// This interface provides information about sensitivity of a web page
+/// loaded in the WebView2 control. It contains the current state of
+/// sensitivity label detection and a collection of all sensitivity labels
+/// that have been reported by the web page via
+/// [`Page Interaction Restriction Manager`](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/PageInteractionRestrictionManager/explainer.md).
+[uuid(262ac1ce-8b69-5773-b7fa-d832eb50dc05), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSensitivityInfo : IUnknown {
+  /// Gets a read-only collection of all sensitivity labels detected in the
+  /// current web document. This collection contains list of sensitivity
+  /// labels that have been reported by the web content.
+  /// `SensitivityLabels` are valid only if SensitivityLabelsState is
+  /// `COREWEBVIEW2_SENSITIVITY_LABELS_STATE_AVAILABLE`.
+  /// In case SensitivityLabelsState is `COREWEBVIEW2_SENSITIVITY_LABELS_STATE_NOT_APPLICABLE`
+  /// this collection will be empty.
+  /// In case SensitivityLabelsState is `COREWEBVIEW2_SENSITIVITY_LABELS_STATE_PENDING`
+  /// this will return nullptr.
+  /// 
+  /// \snippet ScenarioSensitivityLabel.cpp SensitivityLabels
+  [propget] HRESULT SensitivityLabels([out, retval] ICoreWebView2ExperimentalSensitivityLabelCollectionView** value);
+
+
+  /// Gets the current state of sensitivity label detection.
+  /// Refer `COREWEBVIEW2_SENSITIVITY_LABELS_STATE` for different states.
+  [propget] HRESULT SensitivityLabelsState([out, retval] COREWEBVIEW2_SENSITIVITY_LABELS_STATE* value);
+
+
+
+}
+
+
+
+/// Interface for different sensitivity label kinds used in WebView2.
+/// This interface provides functionality for accessing sensitivity
+/// label information applied to web content. Different label types
+/// (such as `ICoreWebView2MipSensitivityLabel`) provide
+/// specific label information and metadata.
+[uuid(5c27e6f2-baa6-5646-b726-db80a77b7345), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSensitivityLabel : IUnknown {
+  /// Gets the type of the sensitivity label applied to the web content.
+  /// This property identifies which sensitivity label system is being used
+  /// (such as Microsoft Information Protection or other label providers).
+  /// Applications can use this information to determine how to interpret
+  /// and handle the label data, as different label types may have different
+  /// metadata formats, protection requirements, and policy enforcement
+  /// mechanisms.
+  [propget] HRESULT LabelKind([out, retval] COREWEBVIEW2_SENSITIVITY_LABEL_KIND* value);
+
+
+
+}
+
+
+/// Receives `Destroying` events.
+[uuid(c7528449-5674-5e34-b990-ff4cef046214), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerDestroyingEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalServiceWorker* sender,
+      [in] IUnknown* args);
+}
+/// Receives `WebMessageReceived` events.
+[uuid(65f0a1a6-a295-5a9f-8041-70db71566f98), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerWebMessageReceivedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalServiceWorker* sender,
+      [in] ICoreWebView2WebMessageReceivedEventArgs* args);
+}
+
+
+/// This interface represents a service worker in WebView2 and provides methods and properties
+/// for interacting with it, such as getting the script uri, posting messages to it etc.
+[uuid(245a7bb7-7c31-582d-95ee-0f2d99d2f5b0), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorker : IUnknown {
+  /// A string representing the Uri of the script that the worker is executing.
+  /// 
+  /// The `scriptUri` is a fully qualified URI, including the scheme, host, and path.
+  /// In contrast, the `scriptURL` property of the `Worker` object in the DOM returns the relative
+  /// URL of the script being executed by the worker. For more details on DOM API, see the
+  /// [DOM API documentation](https://developer.mozilla.org/docs/Web/API/Worker/scriptURL).
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how normalization is performed.
+  /// The same process applies to the `scriptURL` when a worker is registered from DOM API.
+  /// The `scriptUri` property reflects this normalization, ensuring that the URL is standardized. For example,
+  /// `HTTPS://EXAMPLE.COM/worker.js` is canonicalized to `https://example.com/worker.js`;
+  /// `https://bÃ¼cher.de/worker.js` is canonicalized to `https://xn--bcher-kva.de/worker.js`.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT ScriptUri([out, retval] LPWSTR* value);
+
+
+
+  /// Adds an event handler for the `Destroying` event.
+  /// Add an event handler for the `Destroying` event that is raised when the
+  /// worker object is Destroying.
+  /// 
+  /// A worker object is Destroying when the worker script is terminated or when
+  /// the `CoreWebView2ServiceWorker` object is Destroying.
+  /// 
+  /// If the worker has already been destroyed before the event handler is registered,
+  /// the handler will never be called.
+  HRESULT add_Destroying(
+      [in] ICoreWebView2ExperimentalServiceWorkerDestroyingEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_Destroying`.
+  HRESULT remove_Destroying(
+      [in] EventRegistrationToken token);
+
+  /// Adds an event handler for the `WebMessageReceived` event.
+  /// Add an event handler for the `WebMessageReceived` event.
+  /// `WebMessageReceived` is fired, when the
+  /// `ICoreWebView2Settings::IsWebMessageEnabled` setting is set TRUE and the
+  /// worker runs `self.chrome.webview.postMessage`. The `postMessage` function
+  /// is `void postMessage(object)` where object is any object supported by JSON
+  /// conversion.
+  /// 
+  /// If the worker calls `postMessage` multiple times, the corresponding
+  /// `WebMessageReceived` events are guaranteed to be fired in the same order.
+  /// 
+  /// 
+  /// \snippet ScenarioServiceWorkerPostMessage.cpp WebMessageReceived
+  HRESULT add_WebMessageReceived(
+      [in] ICoreWebView2ExperimentalServiceWorkerWebMessageReceivedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_WebMessageReceived`.
+  HRESULT remove_WebMessageReceived(
+      [in] EventRegistrationToken token);
+
+
+  /// Posts the specified webMessageAsJson to this worker.
+  /// The worker receives the message by subscribing to the `message` event of the
+  /// `self.chrome.webview` of the worker.
+  /// 
+  /// ```cpp
+  /// self.chrome.webview.addEventListener('message', handler)
+  /// self.chrome.webview.removeEventListener('message', handler)
+  /// ```
+  /// 
+  /// The event args is an instance of `MessageEvent`. The
+  /// `ICoreWebView2Settings::IsWebMessageEnabled` setting must be `TRUE` or
+  /// the web message will not be sent. The `data` property of the event arg 
+  /// is the `webMessageAsJson` string parameter parsed as a JSON string into a 
+  /// JS object. The `source` property of the event arg is the path
+  /// to the worker script. The message is delivered asynchronously. 
+  /// If the worker is terminated or destroyed before the message is posted,
+  /// the message is discarded.
+  /// Worker Javascript may subscribe and unsubscribe to the event 
+  /// using the following code:
+  /// ```javascript
+  /// self.chrome.webview.addEventListener('message', handler)
+  /// self.chrome.webview.removeEventListener('message', handler)
+  /// ```
+  /// ```cpp
+  /// See also the equivalent methods: `ICoreWebView2::PostWebMessageAsJson`,
+  /// `ICoreWebView2Frame::PostWebMessageAsJson`,
+  /// `ICoreWebView2DedicatedWorker::PostWebMessageAsJson`.
+  /// ```
+  /// 
+  /// 
+  /// \snippet ScenarioServiceWorkerPostMessage.cpp PostWebMessageAsJson
+  HRESULT PostWebMessageAsJson(
+      [in] LPCWSTR webMessageAsJson
+  );
+
+  /// Posts a message that is a simple string rather than a JSON string
+  /// representation of a JavaScript object. This behaves exactly the same
+  /// manner as `PostWebMessageAsJson`, but the `data` property of the event
+  /// arg of the `self.chrome.webview` message is a string with the same
+  /// value as `webMessageAsString`.  Use this instead of
+  /// `PostWebMessageAsJson` if you want to communicate using simple strings
+  /// rather than JSON objects. Please see `PostWebMessageAsJson` for
+  /// additional information.
+  /// ```cpp
+  /// See also the equivalent methods: `ICoreWebView2::PostWebMessageAsString`
+  /// `ICoreWebView2Frame::PostWebMessageAsString`,
+  /// `ICoreWebView2DedicatedWorker::PostWebMessageAsString`.
+  /// ```
+  HRESULT PostWebMessageAsString(
+      [in] LPCWSTR webMessageAsString
+  );
+
+
+}
+
+
+
+/// Event args for the `ServiceWorkerActivated` event.
+[uuid(5685c4b6-a514-58b2-9721-b61ef4ccd9d8), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerActivatedEventArgs : IUnknown {
+  /// The service worker that was activated.
+  [propget] HRESULT ActiveServiceWorker([out, retval] ICoreWebView2ExperimentalServiceWorker** value);
+
+
+
+}
+
+
+/// Receives the result of the `GetServiceWorkerRegistrations` method.
+[uuid(ea83432f-6528-592f-903b-0917eb0fd9c7), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalGetServiceWorkerRegistrationsCompletedHandler : IUnknown {
+
+  /// Provides the result of the corresponding asynchronous method.
+  HRESULT Invoke([in] HRESULT errorCode, [in] ICoreWebView2ExperimentalServiceWorkerRegistrationCollectionView* result);
+}
+// Skipping ICoreWebView2ExperimentalGetServiceWorkerRegistrationsCompletedHandler redefinition
+
+
+/// Receives `ServiceWorkerRegistered` events.
+[uuid(c024c910-4df2-54a3-b5c1-6152ca0e4577), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerRegisteredEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalServiceWorkerManager* sender,
+      [in] ICoreWebView2ExperimentalServiceWorkerRegisteredEventArgs* args);
+}
+
+/// A collection of ICoreWebView2ExperimentalServiceWorkerRegistration.
+[uuid(83d8cfa9-ef83-5447-9431-91c203c4c9d8), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerRegistrationCollectionView : IUnknown {
+  /// The number of elements contained in the collection.
+  [propget] HRESULT Count([out, retval] UINT32* value);
+
+  /// Gets the element at the given index.
+  HRESULT GetValueAtIndex([in] UINT32 index, [out, retval] ICoreWebView2ExperimentalServiceWorkerRegistration** value);
+}
+
+
+/// This interface manages registrations for service workers in WebView2.
+[uuid(a2d52fd4-9b10-5971-8499-c67d1560f47a), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerManager : IUnknown {
+  /// Adds an event handler for the `ServiceWorkerRegistered` event.
+  /// A ServiceWorker is a specific type of worker that takes a JavaScript file
+  /// that can control the web-page/site that it is associated with,
+  /// intercepting and modifying navigation and resource requests, and caching
+  /// resources in a very granular fashion to give you complete control
+  /// over how app behaves in certain situations.
+  /// 
+  /// Service workers essentially act as proxy servers that sit between web
+  /// applications, the browser, and the network (when available). They run in
+  /// a different context from the web page, which means they have no direct access
+  /// to the DOM. Unlike dedicated and shared workers, which may have direct access to a
+  /// global scope shared with other scripts, service workers operate in isolation
+  /// from the DOM, ensuring a more secure and controlled environment.
+  /// 
+  /// This event is raised when a web application registers a service worker using the
+  /// `navigator.serviceWorker.register("/sw.js")` method. See the
+  /// [Service Worker Registration](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration)
+  /// for more information.
+  /// 
+  /// 
+  /// \snippet ScenarioServiceWorkerManager.cpp ServiceWorkerRegistered
+  HRESULT add_ServiceWorkerRegistered(
+      [in] ICoreWebView2ExperimentalServiceWorkerRegisteredEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_ServiceWorkerRegistered`.
+  HRESULT remove_ServiceWorkerRegistered(
+      [in] EventRegistrationToken token);
+
+
+  /// Gets a list of the service worker registrations under the same profile.
+  /// 
+  /// This method returns a list of `CoreWebView2ServiceWorkerRegistration` objects,
+  /// each representing a service worker registration.
+  /// 
+  /// This method corresponds to the `getRegistrations` method of the `ServiceWorkerContainer`
+  /// object in the DOM which returns a Promise that resolves to an array of
+  /// `ServiceWorkerRegistration` objects. See the [MDN documentation]
+  /// (https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistrations) for more information.
+  HRESULT GetServiceWorkerRegistrations(
+      [in] ICoreWebView2ExperimentalGetServiceWorkerRegistrationsCompletedHandler* handler);
+  /// Gets the service worker registrations associated with the specified scope.
+  /// If a service worker has been registered for the given scope, it gets the
+  /// list of `CoreWebView2ServiceWorkerRegistration` objects otherwise returns
+  /// empty list.
+  /// 
+  /// If the service worker is registered with a `scope` of '/app/' for an application
+  /// at https://example.com/, you should specify the full qualified URI i.e.,
+  /// https://example.com/app/ when calling this method. If the scope was not explicitly
+  /// specified during registration, you should use the directory where the service worker
+  /// script resides, for example, https://example.com/app/.
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how provided `scriptUri` normalization is performed. For example, `HTTPS://mÃ¼nchen.de/`
+  /// will be normalized to `https://www.xn--kfk.com` for comparison.
+  /// 
+  /// This corresponds to the `getRegistration` method of the `ServiceWorkerContainer`
+  /// object in the DOM which returns a Promise that resolves to a `ServiceWorkerRegistration`
+  /// object. See the [MDN documentation]
+  /// (https://developer.mozilla.org/docs/Web/API/ServiceWorkerContainer/getRegistration) for more information.
+  /// 
+  /// If scopeUri is empty string or null or invalid, the completed handler immediately returns
+  /// `E_INVALIDARG` and with a null pointer.
+  HRESULT GetServiceWorkerRegistrationsForScope(
+      [in] LPCWSTR scopeUri
+      , [in] ICoreWebView2ExperimentalGetServiceWorkerRegistrationsCompletedHandler* handler);
+
+
+}
+
+
+
+/// Event args for the `ServiceWorkerRegistered` event.
+[uuid(c6172932-407a-553b-b4d1-cdd12605eb6a), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerRegisteredEventArgs : IUnknown {
+  /// The service worker that was registered.
+  [propget] HRESULT ServiceWorkerRegistration([out, retval] ICoreWebView2ExperimentalServiceWorkerRegistration** value);
+
+
+
+}
+
+
+/// Receives `ServiceWorkerActivated` events.
+[uuid(ecaa9897-769d-5ece-a1e5-8859818caf86), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerActivatedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalServiceWorkerRegistration* sender,
+      [in] ICoreWebView2ExperimentalServiceWorkerActivatedEventArgs* args);
+}
+/// Receives `Unregistering` events.
+[uuid(bec01d14-6ad9-5257-9ff6-84f01baa0cca), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerRegistrationUnregisteringEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalServiceWorkerRegistration* sender,
+      [in] IUnknown* args);
+}
+
+
+/// This interface represents a service worker registration in WebView2 and provides methods
+/// and properties for interacting with it, such as getting the scope uri, active service worker,
+/// listening for service worker activation, unregistering events etc.
+[uuid(06003f5e-af92-5e7e-b497-3fa167dd37c2), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalServiceWorkerRegistration : IUnknown {
+  /// The active service worker that was created. If there is no active service worker,
+  /// it returns a null pointer.
+  /// The active service worker is the service worker that controls the pages within
+  /// the scope of the registration. See the [Service Worker]
+  /// (https://developer.mozilla.org/docs/Web/API/ServiceWorker) for more information.
+  /// 
+  /// This corresponds to the `active` property of the `ServiceWorkerRegistration` object in the DOM.
+  /// For more information, see the [MDN documentation]
+  /// (https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/active).
+  [propget] HRESULT ActiveServiceWorker([out, retval] ICoreWebView2ExperimentalServiceWorker** value);
+
+
+  /// A string representing the URI of the origin where the worker is executing.
+  /// 
+  /// If a worker created with `ScriptUri` set to https://example.com/worker.js, the origin
+  /// will be https://example.com/.
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how normalization is performed.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT Origin([out, retval] LPWSTR* value);
+
+
+  /// The `scopeUri` is a fully qualified URI, including the scheme, host and path,
+  /// that specifies the range of URLs a service worker can control.
+  /// 
+  /// When registering a service worker, if no scope is specified, it defaults to the
+  /// directory where the service worker script resides. For example, if the script is
+  /// located at https://example.com/app/sw.js, the default `scopeUri` would be
+  /// https://example.com/app/. However, if a scope is provided, it is defined relative
+  /// to the application's base URI. For instance, if an application at
+  /// https://example.com/ registers a service worker with a scope of /app/, the resulting
+  /// `scopeUri` is https://example.com/app/.
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how normalization is performed.
+  /// The same process applies to the `Scope` when a service worker is registered from DOM API.
+  /// The `scopeUri` property reflects this normalization, ensuring that the URI is standardized. For example,
+  /// `HTTPS://EXAMPLE.COM/app/` is canonicalized to `https://example.com/app/`;
+  /// `https://bÃ¼cher.de/` is canonicalized to `https://xn--bcher-kva.de/`.
+  /// 
+  /// The `scope` property of the `ServiceWorkerRegistration` object in the DOM returns
+  /// the relative URL based on the application's base URI, while this property always
+  /// returns a fully qualified URI.  For more information on DOM API, see the
+  /// [MDN documentation](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/scope).
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT ScopeUri([out, retval] LPWSTR* value);
+
+
+  /// A string representing the URI of the top-level document that the worker is associated with.
+  /// 
+  /// If a worker is created with `ScriptUri` set to https://example.com/worker.js, the top-level origin
+  /// is https://example.com/. If the same worker is created from a iframe at https://example.com/ which is hosted on
+  /// https://example2.com/, the top-level origin is https://example2.com/.
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how normalization is performed.
+  /// 
+  /// When CustomDataPartitionId is set, the `TopLevelOrigin` will be a generated
+  /// site like guid.invalid. For example, if the top-level document is https://example.com/worker.js,
+  /// the top-level origin will be `https://guid.invalid/`.
+  /// 
+  /// For more details see `ICoreWebView2Experimental20::CustomDataPartitionId`.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT TopLevelOrigin([out, retval] LPWSTR* value);
+
+
+
+  /// Adds an event handler for the `ServiceWorkerActivated` event.
+  /// Adds an event handler for the `ServiceWorkerActivated` event.
+  /// 
+  /// This event is raised when a service worker is activated. A service worker is
+  /// activated when its script has been successfully registered and it is ready to
+  /// control the pages within the scope of the registration.
+  /// 
+  /// This event is also raised when an updated version of a service worker reaches the active state.
+  /// In such a case, the existing CoreWebView2ServiceWorker object is destroying, and this event is
+  /// raised with a new CoreWebView2ServiceWorker object representing the updated service worker.
+  /// The active service worker is the one that receives fetch and message events for the pages it controls.
+  /// See the [Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/active)
+  /// documentation for more information.
+  /// 
+  /// If you register for the `ServiceWorkerActivated` event and the registration already
+  /// has an active worker, the event handler is not called immediately. Instead, it waits
+  /// for the next activation event to occur. Therefore, you should first check if an active
+  /// service worker is running by using the `ActiveServiceWorker` property.
+  HRESULT add_ServiceWorkerActivated(
+      [in] ICoreWebView2ExperimentalServiceWorkerActivatedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_ServiceWorkerActivated`.
+  HRESULT remove_ServiceWorkerActivated(
+      [in] EventRegistrationToken token);
+
+  /// Adds an event handler for the `Unregistering` event.
+  /// Add an event handler for the `Unregistering` event that is raised when the worker registration is
+  /// unregistered using the JS api `registration.unregister()`. See the
+  /// [Unregister](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/unregister)
+  /// for more information.
+  HRESULT add_Unregistering(
+      [in] ICoreWebView2ExperimentalServiceWorkerRegistrationUnregisteringEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_Unregistering`.
+  HRESULT remove_Unregistering(
+      [in] EventRegistrationToken token);
+
+
+}
+
+
+
+/// A continuation of the `ICoreWebView2Settings` interface to support
+/// timer wake intervals.
+[uuid(0a4cf350-b8ab-5821-81b0-9c58a592423f), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSettings9 : IUnknown {
+  /// Gets the `PreferredBackgroundTimerWakeIntervalInMilliseconds` property.
+  [propget] HRESULT PreferredBackgroundTimerWakeIntervalInMilliseconds([out, retval] INT32* value);
+
+
+  /// The preferred timer wake up interval (in milliseconds) to use for timer
+  /// tasks in script (`setTimeout` and `setInterval`), when the WebView is in
+  /// background state, with no intensive throttling. A WebView is in background
+  /// state when its `IsVisible` property is `FALSE`. Intensive throttling is a
+  /// substate of background state. For more details about intensive throttling,
+  /// see [Intensive throttling of Javascript timer wake ups](https://chromestatus.com/feature/4718288976216064).
+  /// 
+  /// A wake up interval is the amount of time that needs to pass before the
+  /// WebView2 Runtime checks for new timer tasks to run.
+  /// 
+  /// The WebView2 Runtime will try to respect the preferred interval set by the
+  /// application, but the effective value will be constrained by resource and
+  /// platform limitations. Setting a value of `0` means a preference of 0 ms
+  /// between timer wake ups. The default value is a constant determined by the
+  /// running version of the WebView2 Runtime. Setting the value of this
+  /// property will take effect immediately. All other background state policies
+  /// (including intensive throttling) are effective independently of this
+  /// setting.
+  /// 
+  /// For example, an application might use a background value of 100 ms to
+  /// relax the default background value (usually 1000 ms). In this case, timers
+  /// will run at most every 100 ms.
+  [propput] HRESULT PreferredBackgroundTimerWakeIntervalInMilliseconds([in] INT32 value);
+
+
+  /// Gets the `PreferredForegroundTimerWakeIntervalInMilliseconds` property.
+  [propget] HRESULT PreferredForegroundTimerWakeIntervalInMilliseconds([out, retval] INT32* value);
+
+
+  /// The preferred timer wake up interval (in milliseconds) to use for timer
+  /// tasks in script (`setTimeout` and `setInterval`), when the WebView is in
+  /// foreground state. A WebView is in foreground state when its `IsVisible`
+  /// property is `TRUE`. This aligns to the Chromium concept of foreground,
+  /// which means programmatically visible, even if occluded. For more details,
+  /// see [Page Visibility API](https://developer.mozilla.org/docs/Web/API/Page_Visibility_API).
+  /// 
+  /// A wake up interval is the amount of time that needs to pass before the
+  /// WebView2 Runtime checks for new timer tasks to run.
+  /// 
+  /// The WebView2 Runtime will try to respect the preferred interval set by the
+  /// application, but the effective value will be constrained by resource and
+  /// platform limitations. Setting a value of `0` means a preference of 0 ms
+  /// between timer wake ups. The default value is a constant determined by the
+  /// running version of the WebView2 Runtime. Setting the value of this
+  /// property will take effect immediately.
+  /// 
+  /// For example, an application might use a foreground value of 30 ms for
+  /// moderate throttling scenarios. In this case, timers will run at most every
+  /// 30 ms. Or the application could get and match the default background value
+  /// (usually 1000 ms).
+  [propput] HRESULT PreferredForegroundTimerWakeIntervalInMilliseconds([in] INT32 value);
+
+
+  /// Gets the `PreferredIntensiveTimerWakeIntervalInMilliseconds` property.
+  [propget] HRESULT PreferredIntensiveTimerWakeIntervalInMilliseconds([out, retval] INT32* value);
+
+
+  /// The preferred timer wake up interval (in milliseconds) to use for timer
+  /// tasks in script (`setTimeout` and `setInterval`), when the WebView is in
+  /// background state with intensive throttling. Intensive throttling is a
+  /// substate of background state. For more details about intensive
+  /// throttling, see
+  /// [Intensive throttling of Javascript timer wake ups](https://chromestatus.com/feature/4718288976216064).
+  /// 
+  /// A wake up interval is the amount of time that needs to pass before the
+  /// WebView2 Runtime checks for new timer tasks to run.
+  /// 
+  /// The WebView2 Runtime will try to respect the preferred interval set by the
+  /// application, but the effective value will be constrained by resource and
+  /// platform limitations. Setting a value of `0` means a preference of 0 ms
+  /// between timer wake ups. The default value is a constant determined by the
+  /// running version of the WebView2 Runtime. Setting the value of this
+  /// property will take effect immediately.
+  [propput] HRESULT PreferredIntensiveTimerWakeIntervalInMilliseconds([in] INT32 value);
+
+
+  /// Gets the `PreferredOverrideTimerWakeIntervalInMilliseconds` property.
+  [propget] HRESULT PreferredOverrideTimerWakeIntervalInMilliseconds([out, retval] INT32* value);
+
+
+  /// The preferred timer wake up interval (in milliseconds) to use for timer
+  /// tasks in script (`setTimeout` and `setInterval`), in frames whose
+  /// `UseOverrideTimerWakeInterval` property is set to `TRUE`, regardless of
+  /// whether they are in foreground or background state. This is a category
+  /// specific to WebView2 with no corresponding state in the Chromium tab state
+  /// model.
+  /// 
+  /// A wake up interval is the amount of time that needs to pass before the
+  /// WebView2 Runtime checks for new timer tasks to run.
+  /// 
+  /// The WebView2 Runtime will try to respect the preferred interval set by the
+  /// application, but the effective value will be constrained by resource and
+  /// platform limitations. Setting a value of `0` means a preference of 0 ms
+  /// between timer wake ups. The default value is a constant determined by the
+  /// running version of the WebView2 Runtime.  Setting the value of this
+  /// property will take effect immediately.
+  /// 
+  /// For example, an application might use an override timer wake interval of
+  /// 30 ms to reduce resource consumption from third party frames in the
+  /// WebView. In this case, timers will run at most every 30 ms.
+  [propput] HRESULT PreferredOverrideTimerWakeIntervalInMilliseconds([in] INT32 value);
+
+
+
+}
+
+
+/// Receives `Destroying` events.
+[uuid(5a459f84-fd04-5cce-a998-6fab56f09eeb), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSharedWorkerDestroyingEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalSharedWorker* sender,
+      [in] IUnknown* args);
+}
+
+
+/// This interface represents a shared worker in WebView2 and provides methods and
+/// properties for interacting with it, such as listening to destroying events,
+/// getting the script URI, origin, and top-level origin of the worker etc.
+[uuid(bcd39c8d-48bb-5f1b-be22-89f9c0c4484a), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSharedWorker : IUnknown {
+  /// A string representing the URI of the origin where the worker is executing.
+  /// 
+  /// If a worker created with `ScriptUri` set to https://example.com/worker.js, the origin
+  /// will be https://example.com/.
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how normalization is performed.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT Origin([out, retval] LPWSTR* value);
+
+
+  /// A string representing the Uri of the script that the worker is executing.
+  /// 
+  /// The `scriptUri` is a fully qualified URI, including the scheme, host, and path.
+  /// In contrast, the `scriptURL` property of the `Worker` object in the DOM returns the relative
+  /// URL of the script being executed by the worker. For more details on DOM API, see the
+  /// [DOM API documentation](https://developer.mozilla.org/docs/Web/API/Worker/scriptURL).
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how normalization is performed.
+  /// The same process applies to the `scriptURL` when a worker is created from DOM API.
+  /// The `scriptUri` property reflects this normalization, ensuring that the URL is standardized. For example,
+  /// `HTTPS://EXAMPLE.COM/worker.js` is canonicalized to `https://example.com/worker.js`;
+  /// `https://bÃ¼cher.de/worker.js` is canonicalized to `https://xn--bcher-kva.de/worker.js`.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT ScriptUri([out, retval] LPWSTR* value);
+
+
+  /// A string representing the URI of the top-level document that the worker is associated with.
+  /// 
+  /// If a worker is created with `ScriptUri` set to https://example.com/worker.js, the top-level origin
+  /// is https://example.com/. If the same worker is created from a iframe at https://example.com/ which is hosted on
+  /// https://example2.com/, the top-level origin is https://example2.com/.
+  /// 
+  /// Refer to the Host Name Canonicalization for
+  /// details on how normalization is performed.
+  /// 
+  /// When CustomDataPartitionId is set, the `TopLevelOrigin` will be a generated
+  /// site like guid.invalid. For example, if the top-level document is https://example.com/worker.js,
+  /// the top-level origin will be https://guid.invalid/.
+  /// 
+  /// For more details see `ICoreWebView2Experimental20::CustomDataPartitionId`.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT TopLevelOrigin([out, retval] LPWSTR* value);
+
+
+
+  /// Adds an event handler for the `Destroying` event.
+  /// Add an event handler for the `Destroying` event that is raised when the
+  /// worker object is Destroying.
+  /// 
+  /// A worker object is Destroying when the worker script is terminated or when
+  /// the `CoreWebView2SharedWorker` object is Destroying.
+  /// 
+  /// If the worker has already been destroyed before the event handler is registered,
+  /// the handler will never be called.
+  HRESULT add_Destroying(
+      [in] ICoreWebView2ExperimentalSharedWorkerDestroyingEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_Destroying`.
+  HRESULT remove_Destroying(
+      [in] EventRegistrationToken token);
+
+
+}
+
+
+
+/// Event args for the `SharedWorkerCreated` event.
+[uuid(9f6615b0-08f1-5baa-9c95-a02a1dc56d3f), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSharedWorkerCreatedEventArgs : IUnknown {
+  /// The shared worker that was created.
+  [propget] HRESULT Worker([out, retval] ICoreWebView2ExperimentalSharedWorker** value);
+
+
+
+}
+
+
+/// Receives the result of the `GetSharedWorkers` method.
+[uuid(1f3179ae-15e5-51e4-8583-be0caf85adc7), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalGetSharedWorkersCompletedHandler : IUnknown {
+
+  /// Provides the result of the corresponding asynchronous method.
+  HRESULT Invoke([in] HRESULT errorCode, [in] ICoreWebView2ExperimentalSharedWorkerCollectionView* result);
+}
+
+/// Receives `SharedWorkerCreated` events.
+[uuid(79cb8524-b842-551a-8d31-5f824b6955ed), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSharedWorkerCreatedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2ExperimentalSharedWorkerManager* sender,
+      [in] ICoreWebView2ExperimentalSharedWorkerCreatedEventArgs* args);
+}
+
+/// A collection of ICoreWebView2ExperimentalSharedWorker.
+[uuid(f8842b09-0108-5575-a965-3d76fd267050), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSharedWorkerCollectionView : IUnknown {
+  /// The number of elements contained in the collection.
+  [propget] HRESULT Count([out, retval] UINT32* value);
+
+  /// Gets the element at the given index.
+  HRESULT GetValueAtIndex([in] UINT32 index, [out, retval] ICoreWebView2ExperimentalSharedWorker** value);
+}
+
+
+/// This interface manages shared workers in WebView2.
+[uuid(9b897103-d035-551f-892e-3e8f2916d03e), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSharedWorkerManager : IUnknown {
+  /// Adds an event handler for the `SharedWorkerCreated` event.
+  /// Add an event handler for the `SharedWorkerCreated` event.
+  /// 
+  /// A SharedWorker is a specific type of worker that can be accessed from several
+  /// browsing contexts, such as multiple windows, iframes, or even other workers.
+  /// Unlike Dedicated Workers, which have their own separate global scope, SharedWorkers
+  /// share a common global scope called SharedWorkerGlobalScope.
+  /// 
+  /// This event is raised when a web application creates a shared worker using the
+  /// `new SharedWorker("worker.js")` method. See the
+  /// [Shared Worker](https://developer.mozilla.org/docs/Web/API/SharedWorker)
+  /// for more information.
+  /// 
+  /// 
+  /// \snippet ScenarioSharedWorkerManager.cpp SharedWorkerCreated
+  HRESULT add_SharedWorkerCreated(
+      [in] ICoreWebView2ExperimentalSharedWorkerCreatedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_SharedWorkerCreated`.
+  HRESULT remove_SharedWorkerCreated(
+      [in] EventRegistrationToken token);
+
+
+  /// Gets a list of the shared workers created under the same profile.
+  HRESULT GetSharedWorkers(
+      [in] ICoreWebView2ExperimentalGetSharedWorkersCompletedHandler* handler);
+
+
+}
+
+
+
+/// The texture that the host writes to so that the Renderer
+/// will render on it.
+[uuid(0836f09c-34bd-47bf-914a-99fb56ae2d07), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTexture : IUnknown {
+  /// A handle to OS shared memory containing the texture. You can open it
+  /// with `ID3D11Device1::OpenSharedResource1` and write your texture data
+  /// to it. Do not close it yourself. The underlying texture will be closed
+  /// by WebView2. Do not change the texture after calling
+  /// `ICoreWebView2TextureStream::PresentTexture` before you can retrieve it
+  /// again with `GetAvailableTexture`, or you the frame may not be
+  /// rendered and the `ICoreWebView2TextureStream ErrorReceived` event will
+  /// be raised.
+  [propget] HRESULT Handle([out, retval] HANDLE* value);
+
+  /// D2D texture resource that the host can write to.
+  /// 
+  /// The IUnknown type that could be query interface to IDXGIResource.
+  [propget] HRESULT Resource([out, retval] IUnknown** value);
+
+
+  /// Gets the `Timestamp` property.
+  [propget] HRESULT Timestamp([out, retval] UINT64* value);
+
+
+  /// The timestamp of presenting texture.
+  [propput] HRESULT Timestamp([in] UINT64 value);
+
+
+
+}
+
+
+
+/// The event args for the `ICoreWebViewTextureStream ErrorReceived` event.
+[uuid(0e1730c1-03df-4ad2-b847-be4d63adf700), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTextureStreamErrorReceivedEventArgs : IUnknown {
+  /// The kind of error that has occurred.
+  [propget] HRESULT Kind([out, retval] COREWEBVIEW2_TEXTURE_STREAM_ERROR_KIND* value);
+
+
+  /// The texture with which this error is associated. For the
+  /// `COREWEBVIEW2_TEXTURE_STREAM_ERROR_KIND` error kind,
+  /// this property will be `nullptr`.
+  [propget] HRESULT Texture([out, retval] ICoreWebView2ExperimentalTexture** value);
+
+
+
+}
+
+
+
+/// The event args for the `WebTextureReceived` event.
+[uuid(a4c2fa3a-295a-11ed-a261-0242ac120002), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalTextureStreamWebTextureReceivedEventArgs : IUnknown {
+  /// The web texture that is received.
+  [propget] HRESULT WebTexture([out, retval] ICoreWebView2ExperimentalWebTexture** value);
+
+
+
+}
+
+
+
+/// Received texture that the renderer writes to so that the host
+/// will read on it.
+[uuid(b94265ae-4c1e-11ed-bdc3-0242ac120002), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalWebTexture : IUnknown {
+  /// texture handle. The handle's lifetime is owned by the
+  /// ICoreWebView2TextureStream object so the host must not close it.
+  /// The same handle value will be used for same texture so the host can use
+  /// handle value as a unique texture key.
+  /// If the host opens its own resources by handle, then it is suggested
+  /// that the host removes those resources when the handle's texture size
+  /// is changed because the browser also removed previously allocated different
+  /// sized textures when image size is changed.
+  [propget] HRESULT Handle([out, retval] HANDLE* value);
+
+  /// Direct2D texture resource.
+  /// The same resource value will be used for same texture so the host can use
+  /// resource value as a unique texture key.
+  /// ICoreWebView2ExperimentalTextureStream object has a reference of the resource
+  /// so ICoreWebView2ExperimentalWebTexture holds same resource object for
+  /// the same texture.
+  [propget] HRESULT Resource([out, retval] IUnknown** value);
+
+
+  /// The timestamp of the web texture. Javascript can set this value
+  /// with any value, but it is suggested to use same value of its original
+  /// video frame that is a value of PresentTexture so that the host is able to
+  /// tell the receiving texture delta.
+  [propget] HRESULT Timestamp([out, retval] UINT64* value);
+
+
+
+}
+
+
+
+/// This is the ICoreWebView2ExperimentalWindowControlsOverlay.
+[uuid(69854fbf-8515-58cd-881c-49db610c8fbe), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalWindowControlsOverlay : IUnknown {
+  /// Gets the `BackgroundColor` property.
+  [propget] HRESULT BackgroundColor([out, retval] COREWEBVIEW2_COLOR* value);
+
+
+  /// The `BackgroundColor` property allows you to set a background color
+  /// for the overlay. Based on the background color you choose, Webview2 
+  /// will automatically calculate a foreground and hover color.
+  /// Defaults to \#f3f3f3
+  [propput] HRESULT BackgroundColor([in] COREWEBVIEW2_COLOR value);
+
+
+  /// Gets the `Height` property.
+  [propget] HRESULT Height([out, retval] UINT32* value);
+
+
+  /// The `Height` property in pixels, allows you to set the height of the overlay and
+  /// title bar area. Defaults to 48px. 
+  /// 
+  /// \snippet ScenarioWindowControlsOverlay.cpp WindowControlsOverlay
+  [propput] HRESULT Height([in] UINT32 value);
+
+
+  /// Gets the `IsEnabled` property.
+  [propget] HRESULT IsEnabled([out, retval] BOOL* value);
+
+
+  /// The `IsEnabled` property allows you to opt in to using
+  /// the WebView2 window controls overlay. Defaults to `FALSE`.
+  /// 
+  /// When this property is `TRUE`, WebView2 will draw its own minimize, maximize,
+  /// and close buttons on the top right corner of the Webview2. 
+  /// 
+  /// When using this you should configure your app window to not display its default
+  /// window control buttons. You are responsible for creating a title bar for your app
+  /// by using the available space to the left of the controls overlay. In doing so, 
+  /// you can utilize the [IsNonClientRegionSupportEnabled](https://learn.microsoft.com/en-us/microsoft-edge/webview2/reference/win32/icorewebview2settings9?view=webview2-1.0.2739.15)
+  /// API to enable draggable regions for your custom title bar.
+  /// 
+  /// The Overlay buttons will sit on top of the HTML content, and will prevent mouse interactions
+  /// with any elements directly below it, so you should avoid placing content there. 
+  /// To that end, there are four [CSS environment variables](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/window-controls-overlay#use-css-environment-variables-to-stay-clear-of-the-overlay) 
+  /// defined to help you get the dimensions of the available titlebar area to the left of the overlay.
+  /// Similarly the navigator object will contain a [WindowControlsOverlay](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/window-controls-overlay#react-to-overlay-changes)
+  /// property which can be used to get the titlebar area as a rect, 
+  /// and listen for changes to the size of that area.
+  /// 
+  /// \snippet ScenarioWindowControlsOverlay.cpp WindowControlsOverlay
+  [propput] HRESULT IsEnabled([in] BOOL value);
+
+
+
+}
+
+
+/// Receives `DedicatedWorkerCreated` events.
+[uuid(cba7462c-52c1-5706-8bbc-e9fc36476de4), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalDedicatedWorkerCreatedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2* sender,
+      [in] ICoreWebView2ExperimentalDedicatedWorkerCreatedEventArgs* args);
+}
+
+
+/// A continuation of the ICoreWebView2 interface to manage dedicated
+/// workers.
+[uuid(247b094a-02c9-5ed2-962f-651d0e20c507), object, pointer_default(unique)]
+interface ICoreWebView2Experimental30 : IUnknown {
+  /// Adds an event handler for the `DedicatedWorkerCreated` event.
+  /// Subscribe to this event that gets raised when a new dedicated worker is created.
+  /// 
+  /// A Dedicated Worker is a type of web worker that allows you to run Javascript
+  /// code in the background without blocking the main thread, making them useful
+  /// for tasks like heavy computations, data processing, and parallel execution.
+  /// It is "dedicated" because it is linked to a single parent document and cannot
+  /// be shared with other scripts.
+  /// 
+  /// This event is raised when a web application creates a dedicated worker using the
+  /// `new Worker("/worker.js")` method. See the
+  /// [Worker](https://developer.mozilla.org/docs/Web/API/Worker/Worker)
+  /// for more information.
+  /// 
+  /// 
+  /// \snippet ScenarioDedicatedWorker.cpp DedicatedWorkerCreated
+  HRESULT add_DedicatedWorkerCreated(
+      [in] ICoreWebView2ExperimentalDedicatedWorkerCreatedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_DedicatedWorkerCreated`.
+  HRESULT remove_DedicatedWorkerCreated(
+      [in] EventRegistrationToken token);
+
+
+}
+
+
+
+/// This interface is an extension of `ICoreWebView2` to configure the window controls overlay.
+[uuid(e68b6e14-da59-5e50-aa3e-0a190d1f04d3), object, pointer_default(unique)]
+interface ICoreWebView2Experimental31 : IUnknown {
+  /// This getter API provides access to the window controls overlay object.
+  /// \snippet ScenarioWindowControlsOverlay.cpp WindowControlsOverlay
+  [propget] HRESULT WindowControlsOverlay([out, retval] ICoreWebView2ExperimentalWindowControlsOverlay** value);
+
+
+
+}
+
+
+/// Receives `SensitivityInfoChanged` events.
+[uuid(ada2e261-0e15-5b64-8422-f4373eb0d552), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalSensitivityInfoChangedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2* sender,
+      [in] IUnknown* args);
+}
+
+
+/// Extension of the `ICoreWebView2` interface that provides sensitivity
+/// classification of a web page. This interface enables applications to
+/// monitor and respond to changes in the sensitivity classification of web
+/// content loaded in the WebView2 control. When sensitivity labels are
+/// detected, updated, or removed from web pages, the `SensitivityInfoChanged`
+/// event is raised.
+[uuid(862c39a8-f64f-5a97-bae2-db5651020b34), object, pointer_default(unique)]
+interface ICoreWebView2Experimental32 : IUnknown {
+  /// Gets the current state of sensitivity label detection for the content
+  /// loaded in the WebView2 control.
+  /// See `ICoreWebView2SensitivityInfo` for more details.
+  /// 
+  /// \snippet ScenarioSensitivityLabel.cpp SensitivityInfo
+  [propget] HRESULT SensitivityInfo([out, retval] ICoreWebView2ExperimentalSensitivityInfo** value);
+
+
+
+  /// Adds an event handler for the `SensitivityInfoChanged` event.
+  /// Event raised when the sensitivity label classification of web page changes.
+  /// Web page may report sensitivity labels via
+  /// [`Page Interaction Restriction Manager`](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/PageInteractionRestrictionManager/explainer.md).
+  /// This event is triggered when the WebView2 control detects a change in the
+  /// sensitivity labels associated with the currently loaded web page.
+  /// Changes can occur when navigating to a new page in the main frame,
+  /// when the existing page updates its sensitivity label information.
+  /// On navigation to a new page `SensitivityInfoChanged` event is raised
+  /// just after the `NavigationStarting` event. Applications can subscribe
+  /// to this event to receive notifications about sensitivity changes.
+  /// The event handler can then query the `SensitivityInfo` property
+  /// to get the latest sensitivity label information and take appropriate
+  /// actions based on the updated sensitivity classification.
+  /// 
+  /// \snippet ScenarioSensitivityLabel.cpp SensitivityInfoChanged
+  HRESULT add_SensitivityInfoChanged(
+      [in] ICoreWebView2ExperimentalSensitivityInfoChangedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_SensitivityInfoChanged`.
+  HRESULT remove_SensitivityInfoChanged(
+      [in] EventRegistrationToken token);
+
+
+}
+
+
+/// Interop interface for the CoreWebView2CompositionController WinRT object to
+/// allow WinRT end developers to be able to access the COM interface arguments.
+/// This interface is implemented by the
+/// Microsoft.Web.WebView2.Core.CoreWebView2CompositionController runtime class.
+[uuid(6b0bf729-3d27-46c6-901c-5f1516d32de1), object, pointer_default(unique)]
+interface ICoreWebView2ExperimentalCompositionControllerInterop3 : IUnknown {
+  /// Adds an event handler for the `DragStarting` event.  `DragStarting` is
+  /// raised when the WebView2 detects a drag started within the WebView2.
+  /// This event can be used to override WebView2's default drag starting
+  /// logic.
+  HRESULT add_DragStarting(
+      [in] ICoreWebView2ExperimentalDragStartingEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_DragStarting`.
+  HRESULT remove_DragStarting(
+      [in] EventRegistrationToken token);
+
+
+}
+}
