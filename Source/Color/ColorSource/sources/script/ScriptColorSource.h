@@ -10,6 +10,8 @@
 
 #pragma once
 
+class Script;
+
 class ScriptColorSource :
     public TimedColorSource
 {
@@ -17,7 +19,8 @@ public:
     ScriptColorSource(var params = var());
     ~ScriptColorSource();
 
-    //NodeManager nodeManager;
+    std::unique_ptr<Script> script;
+    const Identifier updateColorsIdentifier = "updateColors";
 
     virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* comp, int id, float time, float originalTime) override;
 

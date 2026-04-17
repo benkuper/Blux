@@ -37,6 +37,11 @@ RainbowColorSource::RainbowColorSource(var params) :
 	saturation = sourceParams.addFloatParameter("Saturation", "Saturation", 1, 0, 1);
 	offset = sourceParams.addFloatParameter("Offset", "The offset of the rainbow, in cycles", 0);
 	density = sourceParams.addFloatParameter("Density", "The cycle density of the rainbow", 1);
+
+	brightness->isCustomizableByUser = true;
+	saturation->isCustomizableByUser = true;
+	offset->isCustomizableByUser = true;
+	density->isCustomizableByUser = true;
 }
 
 RainbowColorSource::~RainbowColorSource()
@@ -61,6 +66,10 @@ StrobeColorSource::StrobeColorSource(var params) :
 	colorON = sourceParams.addColorParameter("Color ON", "", Colours::white);
 	colorOFF = sourceParams.addColorParameter("Color OFF", "", Colours::black);
 	onOffBalance = sourceParams.addFloatParameter("On-Off Balance", "The balance between on and off time. 0.5s means equals on and off time. .8 means 80% on time, 20% off time.", .5f, 0, 1);
+	
+	colorON->isCustomizableByUser = true;
+	colorOFF->isCustomizableByUser = true;
+	onOffBalance->isCustomizableByUser = true;
 }
 
 StrobeColorSource::~StrobeColorSource()
@@ -84,6 +93,13 @@ NoiseColorSource::NoiseColorSource(var params) :
 	balance = sourceParams.addFloatParameter("Balance", "The balance between colors", 0, -1, 1);
 	contrast = sourceParams.addFloatParameter("Contrast", "", 3);
 	scale = sourceParams.addFloatParameter("Scale", "", 3);
+
+	brightness->isCustomizableByUser = true;
+	frontColor->isCustomizableByUser = true;
+	bgColor->isCustomizableByUser = true;
+	balance->isCustomizableByUser = true;
+	contrast->isCustomizableByUser = true;
+	scale->isCustomizableByUser = true;
 
 	perlin.reset(new siv::PerlinNoise());
 }
@@ -120,6 +136,16 @@ PointColorSource::PointColorSource(var params) :
 	extendNum = sourceParams.addIntParameter("Num Props", "The number of props the point is navigating through", 1, 1);
 	invertEvens = sourceParams.addBoolParameter("Invert Evens", "If checked, swap the direction of props with even IDs", false);
 	invertOdds = sourceParams.addBoolParameter("Invert Odds", "If checked, swap the direction of props with odd IDs", false);
+
+	brightness->isCustomizableByUser = true;
+	pointColor->isCustomizableByUser = true;
+	bgColor->isCustomizableByUser = true;
+	position->isCustomizableByUser = true;
+	size->isCustomizableByUser = true;
+	fade->isCustomizableByUser = true;
+	extendNum->isCustomizableByUser = true;
+	invertEvens->isCustomizableByUser = true;
+	invertOdds->isCustomizableByUser = true;
 }
 
 PointColorSource::~PointColorSource()
@@ -167,6 +193,13 @@ MultiPointColorSource::MultiPointColorSource(var params) :
 	gap = sourceParams.addFloatParameter("Gap", "The gap between lines per prop", .25f, 0, 1);
 	size = sourceParams.addFloatParameter("Size", "Size of the point, relative to the gap", .5f, 0, 1);
 	fade = sourceParams.addFloatParameter("Fade", "The fading of the point", 1, 0, 1);
+
+	brightness->isCustomizableByUser = true;
+	pointColor->isCustomizableByUser = true;
+	bgColor->isCustomizableByUser = true;
+	gap->isCustomizableByUser = true;
+	size->isCustomizableByUser = true;
+	fade->isCustomizableByUser = true;
 }
 
 MultiPointColorSource::~MultiPointColorSource()
@@ -213,6 +246,9 @@ GradientColorSource::GradientColorSource(var params) :
 	gradient->setAllowKeysOutside(false);
 	sourceParams.addChildControllableContainer(gradient.get());
 	gradientTarget = gradient.get();
+
+	brightness->isCustomizableByUser = true;
+	density->isCustomizableByUser = true;
 }
 
 GradientColorSource::~GradientColorSource()

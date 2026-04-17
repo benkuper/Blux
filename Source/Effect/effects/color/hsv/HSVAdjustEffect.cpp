@@ -16,6 +16,10 @@ HSVAdjustEffect::HSVAdjustEffect(var params) :
     hue = effectParams.addFloatParameter("Hue Shift", "Shifts the hue, 1 is full rainbow rotation", 0);
     saturation = effectParams.addFloatParameter("Saturation", "Shifts the hue, 1 is full rainbow rotation", 0, -1, 1);
     brightness = effectParams.addFloatParameter("Brightness", "Shifts the hue, 1 is full rainbow rotation", 0, -1, 1);
+
+	hue->isCustomizableByUser = true;
+	saturation->isCustomizableByUser = true;
+	brightness->isCustomizableByUser = true;
 }
 
 HSVAdjustEffect::~HSVAdjustEffect()

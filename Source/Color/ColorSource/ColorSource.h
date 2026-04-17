@@ -72,7 +72,7 @@ public:
 
 class TimedColorSource :
 	public ColorSource,
-	public TimedEffectHiResTimer::TimerListener
+   public TimedEffectHiResTimer::TimerListener
 {
 public:
 	TimedColorSource(const String& name, var params = var());
@@ -84,14 +84,14 @@ public:
 	FloatParameter* offsetByID;
 
 	double timeAtLastUpdate;
-	double curTime;
+  HashMap<Object*, float> curTimes;
 
 	void linkToTemplate(ColorSource* st) override;
 
 	virtual void fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1) override;
 	virtual void fillColorsForObjectTimeInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time, float originalTime) { }
 
-	virtual float getCurrentTime(float timeOverride = -1);
+    virtual float getCurrentTime(Object* o, float timeOverride = -1);
 
 	virtual void addTime();
 

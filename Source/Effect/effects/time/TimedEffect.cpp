@@ -19,12 +19,15 @@ TimedEffect::TimedEffect(const String& name, var params) :
 
 	speed = effectParams.addFloatParameter("Speed", "The speed at which play this", 1);
 	speed->canBeAutomated = false;
+	speed->isCustomizableByUser = true;
 
 	timeOffset = effectParams.addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
 	timeOffset->defaultUI = FloatParameter::TIME;
+	timeOffset->isCustomizableByUser = true;
 	resetTimeTrigger = effectParams.addTrigger("Reset Time", "When triggered, this will reset this effect's internal time to 0.");
 	autoResetOnNonZero = effectParams.addBoolParameter("Auto Reset on NonZero", "", false);
 	offsetByID = effectParams.addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
+	offsetByID->isCustomizableByUser = true;
 	//offsetByValue = effectParams.addFloatParameter("Time Offset By Value", "Time Offset by parameter inside a component", 0);
 
 	ObjectManager::getInstance()->addManagerListener(this);

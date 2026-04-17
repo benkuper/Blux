@@ -126,17 +126,18 @@ void ColorSource::controllableFeedbackUpdate(ControllableContainer* cc, Controll
 
 
 TimedColorSource::TimedColorSource(const String& name, var params) :
-	ColorSource(name, params),
-	curTime(0)
+  ColorSource(name, params)
 {
 	speed = sourceParams.addFloatParameter("Speed", "The speed at which play this", .5f);
+	speed->isCustomizableByUser = true;
 	timeOffset = sourceParams.addFloatParameter("Time Offset", "This allows for offsetting the time, for manual position animation for example.", 0);
 	timeOffset->defaultUI = FloatParameter::TIME;
+	timeOffset->isCustomizableByUser = true;
 
 	offsetByID = sourceParams.addFloatParameter("Time Offset By ID", "Time Offset by object ID", 0);
+	offsetByID->isCustomizableByUser = true;
 
 	timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
-	curTime = 0;
 	
 	TimedEffectHiResTimer::getInstance()->addTimerListener(this);
 }
@@ -155,6 +156,7 @@ void TimedColorSource::linkToTemplate(ColorSource* st)
 	{
 		speed->hideInEditor = false;
 		speed->setControllableFeedbackOnly(false);
+       timeAtLastUpdate = Time::getMillisecondCounterHiRes() / 1000.0;
 		if (TimedEffectHiResTimer::getInstanceWithoutCreating() != nullptr) TimedEffectHiResTimer::getInstance()->addTimerListener(this);
 	}
 	else
@@ -168,16 +170,20 @@ void TimedColorSource::linkToTemplate(ColorSource* st)
 
 void TimedColorSource::fillColorsForObjectInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time)
 {
-	float targetTime = getCurrentTime(time) - (float)GetLinkedValue(offsetByID) * id + (float)GetLinkedValue(timeOffset);
+   float targetTime = getCurrentTime(o, time) - (float)GetLinkedValue(offsetByID) * id + (float)GetLinkedValue(timeOffset);
 	fillColorsForObjectTimeInternal(colors, o, c, id, targetTime, time);
 }
 
 
-float TimedColorSource::getCurrentTime(float timeOverride)
+float TimedColorSource::getCurrentTime(Object* o, float timeOverride)
 {
-	if (sourceTemplate != nullptr && !sourceTemplateRef.wasObjectDeleted()) return ((TimedColorSource*)sourceTemplate)->getCurrentTime();
+   if (sourceTemplate != nullptr && !sourceTemplateRef.wasObjectDeleted()) return ((TimedColorSource*)sourceTemplate)->getCurrentTime(o, timeOverride);
 
-	return timeOverride >= 0 ? timeOverride * speed->doubleValue() : curTime;
+	if (o == nullptr) return timeOverride >= 0 ? timeOverride * speed->doubleValue() : 0;
+	if (!curTimes.contains(o)) curTimes.set(o, 0);
+	int id = o->globalID->intValue();
+
+   return timeOverride >= 0 ? timeOverride * (float)sourceParams.getLinkedValue(speed, o, id, timeOverride) : curTimes[o];
 }
 
 void TimedColorSource::hiResTimerCallback()
@@ -188,6 +194,14 @@ void TimedColorSource::hiResTimerCallback()
 void TimedColorSource::addTime()
 {
 	double newTime = Time::getMillisecondCounterHiRes() / 1000.0;
-	curTime += (newTime - timeAtLastUpdate) * speed->doubleValue();
+
+	HashMap<Object*, float>::Iterator it(curTimes);
+	while (it.next())
+	{
+		Object* o = it.getKey();
+		int id = o->globalID->intValue();
+       curTimes.set(o, it.getValue() + (newTime - timeAtLastUpdate) * (float)sourceParams.getLinkedValue(speed, o, id, 0));
+	}
+
 	timeAtLastUpdate = newTime;
 }

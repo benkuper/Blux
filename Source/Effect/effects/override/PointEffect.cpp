@@ -15,7 +15,9 @@ PointEffect::PointEffect(const String& name, var params) :
 	fadeCurve("Fade Curve")
 {
 	position = effectParams.addFloatParameter("Position", "Position of the point", 0);
+	position->isCustomizableByUser = true;
 	radius = effectParams.addFloatParameter("Radius", "Radius of the point", 2);
+	radius->isCustomizableByUser = true;
 	
 	if (!Engine::mainEngine->isLoadingFile)
 	{
