@@ -4,7 +4,7 @@ on:
 
 env:
   ProjectName: Blux
-  PackagesVersion: 1.2.10
+  PackagesVersion: 1.2.11
 
 jobs:
   windows:
