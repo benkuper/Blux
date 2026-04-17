@@ -206,11 +206,11 @@ void OrientationComponent::fillInterfaceData(Interface* i, var data, var params)
 
 			for (auto& p : panTilts)
 			{
-
 				Parameter* pCh = computedInterfaceMap[paramComputedMap[p]];
 				if (pCh != nullptr || pCh->enabled)
 				{
 					int pChannel = channelOffset + pCh->intValue() - 1;
+					if (pChannel < 0 || pChannel + 1 >= channelsData.size()) continue;
 
 					float pVal = (float)channelsData[pChannel];
 					int pVal1 = floor(pVal);
@@ -218,12 +218,22 @@ void OrientationComponent::fillInterfaceData(Interface* i, var data, var params)
 
 					channelsData[pChannel] = pVal1;
 					channelsData[pChannel + 1] = pVal2;
-
 				}
 			}
 		}
 	}
+}
 
+int OrientationComponent::getDMXChannelSpanForComputedParameter(Parameter* computedParameter)
+{
+	if (computedParameter == paramComputedMap[pan] || computedParameter == paramComputedMap[tilt]) return usePreciseChannels->boolValue() ? 2 : 1;
+	return ObjectComponent::getDMXChannelSpanForComputedParameter(computedParameter);
+}
+
+int OrientationComponent::getDMXSplitStrideForComputedParameter(Parameter* computedParameter)
+{
+	if (computedParameter == paramComputedMap[pan] || computedParameter == paramComputedMap[tilt]) return getDMXChannelSpanForComputedParameter(computedParameter);
+	return ObjectComponent::getDMXSplitStrideForComputedParameter(computedParameter);
 }
 
 var OrientationComponent::getMappedValueForComputedParam(Interface* i, Parameter* cp)

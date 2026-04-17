@@ -24,6 +24,8 @@ public:
 
 	virtual void updateComputedValues(HashMap<Parameter*, var>& values) override;
 	virtual void fillInterfaceData(Interface* i, var data, var params) override;// (HashMap<int, float>& channelValueMap, int startChannel, bool 
+	int getDMXChannelSpanForComputedParameter(Parameter* computedParameter) override;
+	int getDMXSplitStrideForComputedParameter(Parameter* computedParameter) override;
 
 	String getTypeString() const override { return "Dimmer"; }
 	static DimmerComponent* create(Object* o, var params) { return new DimmerComponent(o, params); }

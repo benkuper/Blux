@@ -10,19 +10,19 @@
 
 #pragma once
 
-//class ScriptEffect :
-//    public Effect
-//{
-//public:
-//    ScriptEffect(const String& name = "Override", var params = var());
-//    virtual ~ScriptEffect();
-//
-//
-//    FloatParameter* value;
-//
-//    void processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time = -1) override;
-//
-//    String getTypeString() const override { return getTypeStringStatic(); }
-//    const static String getTypeStringStatic() { return "Script"; }
-//    static OverrideFloatEffect* create(var params) { return new OverrideFloatEffect(params); }
-//};
+class Script;
+
+class ScriptEffect :
+    public ColorEffect
+{
+public:
+    ScriptEffect(var params = var());
+    virtual ~ScriptEffect();
+
+    std::unique_ptr<Script> script;
+    const Identifier updateColorsIdentifier = "updateColors";
+
+    void processedEffectColorsInternal(Array<Colour, CriticalSection>& colors, Object* o, ColorComponent* c, int id, float time = -1) override;
+
+    DECLARE_TYPE("Script Effect")
+};

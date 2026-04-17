@@ -18,6 +18,8 @@ ObjectManager::ObjectManager() :
 	Thread("ObjectManager"),
 	customParams("Custom Parameters", false, false, true, true)
 {
+    processIdleEvent.signal();
+
 	itemDataType = "Object";
 	selectItemWhenCreated = true;
 
@@ -213,10 +215,92 @@ var ObjectManager::getVizData()
 	return data;
 }
 
+ObjectManager::ScopedProcessSuspender::ScopedProcessSuspender(const String& reason) :
+	suspendToken(0)
+{
+	if (ObjectManager* om = ObjectManager::getInstanceWithoutCreating()) suspendToken = om->suspendProcessing(reason);
+}
+
+ObjectManager::ScopedProcessSuspender::~ScopedProcessSuspender()
+{
+	if (suspendToken == 0) return;
+	if (ObjectManager* om = ObjectManager::getInstanceWithoutCreating()) om->resumeProcessing(suspendToken);
+}
+
+int ObjectManager::suspendProcessing(const String&)
+{
+	const bool isCalledFromProcessThread = isThreadRunning() && Thread::getCurrentThreadId() == getThreadId();
+	int suspendToken = 0;
+	bool shouldWaitForIdle = false;
+
+	{
+		const ScopedLock sl(processSuspendLock);
+		suspendToken = nextProcessSuspendToken++;
+		processSuspendTokens.add(suspendToken);
+		shouldWaitForIdle = !isCalledFromProcessThread && isThreadRunning() && isProcessUpdateRunning;
+	}
+
+	processSuspendEvent.signal();
+
+	while (shouldWaitForIdle && isThreadRunning())
+	{
+		{
+			const ScopedLock sl(processSuspendLock);
+			if (!isProcessUpdateRunning) break;
+		}
+
+		processIdleEvent.wait(20);
+	}
+
+	return suspendToken;
+}
+
+void ObjectManager::resumeProcessing(int suspendToken)
+{
+	if (suspendToken == 0) return;
+
+	{
+		const ScopedLock sl(processSuspendLock);
+		processSuspendTokens.removeFirstMatchingValue(suspendToken);
+	}
+
+	processSuspendEvent.signal();
+}
+
+bool ObjectManager::isProcessingSuspended()
+{
+	const ScopedLock sl(processSuspendLock);
+	return processSuspendTokens.size() > 0;
+}
+
 void ObjectManager::run()
 {
 	while (!threadShouldExit())
 	{
+      while (!threadShouldExit())
+		{
+			bool isSuspended = false;
+			{
+				const ScopedLock sl(processSuspendLock);
+				isSuspended = processSuspendTokens.size() > 0;
+				if (isSuspended)
+				{
+					isProcessUpdateRunning = false;
+					processIdleEvent.signal();
+				}
+				else
+				{
+					isProcessUpdateRunning = true;
+					processIdleEvent.reset();
+				}
+			}
+
+			if (!isSuspended) break;
+			processSuspendEvent.wait(20);
+		}
+
+		if (threadShouldExit()) break;
+
 		long millisBefore = Time::getMillisecondCounter();
 
 		objectManagerListeners.call(&ObjectManagerListener::updateStart);
@@ -233,6 +317,12 @@ void ObjectManager::run()
 
 		objectManagerListeners.call(&ObjectManagerListener::updateFinish);
 		for (auto& i : InterfaceManager::getInstance()->items) i->finishSendValues(); //interfaces should listen to updateStart and updateFinish
+
+		{
+			const ScopedLock sl(processSuspendLock);
+			isProcessUpdateRunning = false;
+			processIdleEvent.signal();
+		}
 
 		long millisAfter = Time::getMillisecondCounter();
 		long millisToSleep = jmax<long>(1, 1000.0 / updateRate->intValue() - (millisAfter - millisBefore));

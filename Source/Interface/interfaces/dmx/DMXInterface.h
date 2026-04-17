@@ -31,10 +31,13 @@ public:
 
 	BoolParameter* sendOnChangeOnly;
 	BoolParameter* forceSendDefaultUniverse;
+	EnumParameter* universeSplitMode;
 
 	IntParameter* defaultNet;
 	IntParameter* defaultSubnet;
 	IntParameter* defaultUniverse;
+
+	enum UniverseSplitMode { CHANNEL_WISE, COMPONENT_STRIDE };
 
 	OwnedArray<DMXUniverse> universes;
 	HashMap<int, DMXUniverse*> universeIdMap; //internally used

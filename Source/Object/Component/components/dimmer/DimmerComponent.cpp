@@ -71,3 +71,15 @@ void DimmerComponent::fillInterfaceData(Interface* i, var data, var params)
 		if (useFineValue->boolValue() && targetChannel + 1 < channelsData.size()) channelsData[targetChannel + 1] = fmodf(pVal, 1) * 255;
 	}
 }
+
+int DimmerComponent::getDMXChannelSpanForComputedParameter(Parameter* computedParameter)
+{
+	if (computedParameter == paramComputedMap[value]) return useFineValue->boolValue() ? 2 : 1;
+	return ObjectComponent::getDMXChannelSpanForComputedParameter(computedParameter);
+}
+
+int DimmerComponent::getDMXSplitStrideForComputedParameter(Parameter* computedParameter)
+{
+	if (computedParameter == paramComputedMap[value]) return getDMXChannelSpanForComputedParameter(computedParameter);
+	return ObjectComponent::getDMXSplitStrideForComputedParameter(computedParameter);
+}

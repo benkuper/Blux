@@ -64,6 +64,8 @@ public:
 
 	void updateComputedValues(HashMap<Parameter*, var>& values) override;
 	void fillInterfaceData(Interface* i, var data, var params) override;
+	int getDMXChannelSpanForComputedParameter(Parameter* computedParameter) override;
+	int getDMXSplitStrideForComputedParameter(Parameter* computedParameter) override;
 
 	var getMappedValueForComputedParam(Interface* i, Parameter* cp) override;
 

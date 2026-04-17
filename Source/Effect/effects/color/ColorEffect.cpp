@@ -23,13 +23,12 @@ ColorEffect::~ColorEffect()
 void ColorEffect::processComponentInternal(Object* o, ObjectComponent* c, const HashMap<Parameter*, var>& values, HashMap<Parameter*, var>& targetValues, int id, float time)
 {
 	if (c->componentType != COLOR) return;
-	ColorComponent* cComp = (ColorComponent*)c;
-
-	int resolution = cComp->resolution->intValue();
-	Array<Colour, CriticalSection> targetColors;
-	targetColors.resize(resolution);
+	//ColorComponent* cComp = (ColorComponent*)c;
 
 	var sourceColors = values[nullptr]; // using nullptr to hold colors or whatever is not related to a computed parameter
+	int resolution = sourceColors.size();
+	Array<Colour, CriticalSection> targetColors;
+	targetColors.resize(resolution);
 
 	if (fillWithOriginalColors)
 	{

@@ -129,9 +129,21 @@ void ColorComponent::fillComputedValueMap(HashMap<Parameter*, var>& values)
 void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 {
 	var colValues = values[nullptr].clone(); //using nullptr as placeholders for values not linked to a computed parameter
+	const int computedResolution = colValues.size();
 
-	jassert(colValues.size() == resolution->intValue());
-	jassert(colValues[0].size() >= 4);
+    if (outColors.size() != computedResolution)
+	{
+		outColors.resize(computedResolution);
+	}
+
+	if (computedResolution != sourceColors.size())
+	{
+		return;
+	}
+
+	jassert(computedResolution == sourceColors.size());
+	jassert(computedResolution == outColors.size());
+	jassert(computedResolution == 0 || colValues[0].size() >= 4);
 
 
 	if (ObjectManager::getInstance()->blackOut->boolValue())
@@ -156,7 +168,7 @@ void ColorComponent::updateComputedValues(HashMap<Parameter*, var>& values)
 			if (dimmerComponent != nullptr) mult = dimmerComponent->mainParameter->floatValue();
 		}
 
-		for (int i = 0; i < colValues.size(); i++)
+      for (int i = 0; i < computedResolution; i++)
 		{
 			if (colValues[i].size() < 4) continue;
 			var col;
@@ -299,12 +311,73 @@ void ColorComponent::fillInterfaceDataInternal(Interface* i, var data, var param
 	ObjectComponent::fillInterfaceDataInternal(i, data, params);
 }
 
+int ColorComponent::getDMXChannelSpanForComputedParameter(Parameter* computedParameter)
+{
+	if (computedParameter != paramComputedMap[mainColor]) return ObjectComponent::getDMXChannelSpanForComputedParameter(computedParameter);
+
+	ColorMode cm = (ColorMode)colorMode->intValue();
+	FineMode fm = fineMode->getValueDataAsEnum<FineMode>();
+
+	int colorSize = 3;
+
+	switch (cm)
+	{
+	case HS:
+		colorSize = 2;
+		break;
+
+	case RGBW:
+	case WRGB:
+		colorSize = 4;
+		break;
+
+	case RGBAW:
+	case RGBWA:
+		colorSize = 5;
+		break;
+
+	default:
+		colorSize = 3;
+		break;
+	}
+
+	const int finalColorSize = fm == None ? colorSize : colorSize * 2;
+	const int pixelCount = jmax(1, jmax(outColors.size(), resolution->intValue()));
+	return pixelCount * finalColorSize;
+}
+
+int ColorComponent::getDMXSplitStrideForComputedParameter(Parameter* computedParameter)
+{
+	if (computedParameter != paramComputedMap[mainColor]) return ObjectComponent::getDMXSplitStrideForComputedParameter(computedParameter);
+
+	ColorMode cm = (ColorMode)colorMode->intValue();
+
+	switch (cm)
+	{
+	case HS:
+		return fineMode->getValueDataAsEnum<FineMode>() == None ? 2 : 4;
+
+	case RGBW:
+	case WRGB:
+		return fineMode->getValueDataAsEnum<FineMode>() == None ? 4 : 8;
+
+	case RGBAW:
+	case RGBWA:
+		return fineMode->getValueDataAsEnum<FineMode>() == None ? 5 : 10;
+
+	default:
+		return fineMode->getValueDataAsEnum<FineMode>() == None ? 3 : 6;
+	}
+}
+
 void ColorComponent::onContainerParameterChangedInternal(Parameter* p)
 {
 	ObjectComponent::onContainerParameterChangedInternal(p);
 
 	if (p == resolution)
 	{
+     ObjectManager::ScopedProcessSuspender processSuspender("Color component resolution change");
+
 		if (pixelShape != nullptr) pixelShape->resolution = resolution->intValue();
 		update();
 	}

@@ -10,7 +10,31 @@
 
 #include "Interface/InterfaceIncludes.h"
 #include "Object/ObjectIncludes.h"
-#include "DMXInterface.h"
+
+namespace
+{
+	struct DMXChannelMapping
+	{
+		int universeOffset = 0;
+		int channel = 0;
+	};
+
+	void getUniverseAddressForOffset(DMXInterface* dmxInterface, int baseNet, int baseSubnet, int baseUniverse, int universeOffset, int& outNet, int& outSubnet, int& outUniverse)
+	{
+		if (dmxInterface != nullptr && dmxInterface->dmxDevice != nullptr && dmxInterface->dmxDevice->type == DMXDevice::ARTNET)
+		{
+			const int universeIndex = DMXUniverse::getUniverseIndex(baseNet, baseSubnet, baseUniverse) + universeOffset;
+			outNet = (universeIndex >> 8) & 0x7f;
+			outSubnet = (universeIndex >> 4) & 0xf;
+			outUniverse = universeIndex & 0xf;
+			return;
+		}
+
+		outNet = baseNet;
+		outSubnet = baseSubnet;
+		outUniverse = baseUniverse + universeOffset;
+	}
+}
 
 DMXInterface::DMXInterface() :
 	Interface(getTypeString()),
@@ -28,6 +52,9 @@ DMXInterface::DMXInterface() :
 
 	sendOnChangeOnly = addBoolParameter("Send On Change Only", "Only send a universe if one of its channels has changed", false);
 	forceSendDefaultUniverse = addBoolParameter("Force Send Default Universe", "Force sending the default universe even if no objects are sending to it", true);
+	universeSplitMode = addEnumParameter("Universe Split Mode", "How values should be split when a DMX object spans across multiple universes");
+	universeSplitMode->addOption("Channel-wise", CHANNEL_WISE)->addOption("Stride-aware", COMPONENT_STRIDE);
+	universeSplitMode->setValueWithData(CHANNEL_WISE);
 
 	channelTestingMode = addBoolParameter("Channel Testing Mode", "Is testing with the Channel view ?", false);
 	channelTestingMode->hideInEditor = true;
@@ -152,21 +179,103 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 
 	jassert(dmxParams != nullptr);
 
-	int channelOffset = dmxParams->startChannel->intValue() - 1; //channelOffset is zero based to fill the universe array
-
 	var params(new DynamicObject());
-	params.getDynamicObject()->setProperty("channelOffset", channelOffset);
+ params.getDynamicObject()->setProperty("channelOffset", 0);
 
 	//Store these channels in local universe
 	int net = dmxParams->net->enabled ? dmxParams->net->intValue() : defaultNet->intValue();
 	int subnet = dmxParams->subnet->enabled ? dmxParams->subnet->intValue() : defaultSubnet->intValue();
 	int universe = dmxParams->universe->enabled ? dmxParams->universe->intValue() : defaultUniverse->intValue();
-	DMXUniverse* u = getUniverse(net, subnet, universe);
+    const int channelOffset = dmxParams->startChannel->intValue() - 1;
+	const bool strideAwareSplit = universeSplitMode->getValueDataAsEnum<UniverseSplitMode>() == COMPONENT_STRIDE;
 
+	Array<ObjectComponent::DMXDataRange> dataRanges;
+	int numChannels = 0;
+	for (auto& c : o->componentManager->items)
+	{
+		if (!c->enabled->boolValue()) continue;
+
+		Array<ObjectComponent::DMXDataRange> componentRanges = c->getDMXDataRanges();
+		for (auto& range : componentRanges)
+		{
+			if (range.numChannels <= 0) continue;
+			dataRanges.add(range);
+			numChannels = jmax(numChannels, range.startChannel + range.numChannels);
+		}
+	}
+
+	if (numChannels <= 0) return;
+
+	Array<int> groupLengths;
+	groupLengths.resize(numChannels);
+	for (int i = 0; i < numChannels; ++i) groupLengths.set(i, 1);
+
+	if (strideAwareSplit)
+	{
+		for (auto& range : dataRanges)
+		{
+			const int rangeEnd = range.startChannel + range.numChannels;
+			const int stride = jlimit(1, jmax(1, range.numChannels), range.splitStride);
+			if (stride <= 1) continue;
+
+			for (int splitStart = range.startChannel; splitStart < rangeEnd; splitStart += stride)
+			{
+				groupLengths.set(splitStart, jmax(groupLengths[splitStart], jmin(stride, rangeEnd - splitStart)));
+			}
+		}
+	}
+
+	Array<DMXChannelMapping> channelMappings;
+	channelMappings.resize(numChannels);
+
+	int currentUniverseOffset = 0;
+	int currentChannel = channelOffset;
+	for (int i = 0; i < numChannels; ++i)
+	{
+		const int groupLength = strideAwareSplit ? jmax(1, groupLengths[i]) : 1;
+		const int remainingInUniverse = DMX_NUM_CHANNELS - currentChannel;
+		if (groupLength > remainingInUniverse)
+		{
+			currentUniverseOffset++;
+			currentChannel = 0;
+		}
+
+		DMXChannelMapping mapping;
+		mapping.universeOffset = currentUniverseOffset;
+		mapping.channel = currentChannel;
+		channelMappings.set(i, mapping);
+
+		currentChannel++;
+		if (currentChannel >= DMX_NUM_CHANNELS)
+		{
+			currentUniverseOffset++;
+			currentChannel = 0;
+		}
+	}
+
+	HashMap<int, DMXUniverse*> universesByOffset;
+	auto getMappedUniverse = [&](int universeOffset)
+		{
+			if (universesByOffset.contains(universeOffset)) return universesByOffset[universeOffset];
+
+			int targetNet = net;
+			int targetSubnet = subnet;
+			int targetUniverse = universe;
+			getUniverseAddressForOffset(this, net, subnet, universe, universeOffset, targetNet, targetSubnet, targetUniverse);
+
+			DMXUniverse* mappedUniverse = getUniverse(targetNet, targetSubnet, targetUniverse);
+			universesByOffset.set(universeOffset, mappedUniverse);
+			return mappedUniverse;
+		};
 
 	var channelsData;
-	channelsData.resize(DMX_NUM_CHANNELS);
-	for (int i = 0; i < u->values.size(); i++) channelsData[i] = u->values[i];
+	channelsData.resize(numChannels);
+	for (int i = 0; i < numChannels; ++i)
+	{
+		const DMXChannelMapping& mapping = channelMappings.getReference(i);
+		DMXUniverse* mappedUniverse = getMappedUniverse(mapping.universeOffset);
+		channelsData[i] = mappedUniverse->values[mapping.channel];
+	}
 
 	var data(new DynamicObject());
 	data.getDynamicObject()->setProperty("channels", channelsData);
@@ -179,7 +288,12 @@ void DMXInterface::sendValuesForObjectInternal(Object* o)
 
 
 	bool sOnChangeOnly = sendOnChangeOnly->boolValue();
-	for (int i = 0; i < channelsData.size(); i++) u->updateValue(i, (int)channelsData[i], sOnChangeOnly);
+   for (int i = 0; i < channelsData.size(); i++)
+	{
+		const DMXChannelMapping& mapping = channelMappings.getReference(i);
+		DMXUniverse* mappedUniverse = getMappedUniverse(mapping.universeOffset);
+		mappedUniverse->updateValue(mapping.channel, (int)channelsData[i], sOnChangeOnly);
+	}
 }
 
 void DMXInterface::finishSendValues()

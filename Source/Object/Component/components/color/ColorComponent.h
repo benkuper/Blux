@@ -65,6 +65,8 @@ public:
 	void updateComputedValues(HashMap<Parameter*, var>& values) override;
 
 	virtual void fillInterfaceDataInternal(Interface* i, var data, var params) override;// (HashMap<int, float>& channelValueMap, int startChannel, bool 
+	int getDMXChannelSpanForComputedParameter(Parameter* computedParameter) override;
+	int getDMXSplitStrideForComputedParameter(Parameter* computedParameter) override;
 
 	//virtual void fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false) override;
 

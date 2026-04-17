@@ -58,6 +58,7 @@ class FilterManager;
 #include "effects/orientation/OrientationEffect.h"
 
 #include "effects/customcomponent/CustomComponentEffect.h"
+#include "effects/script/ScriptEffect.h"
 
 #include "Filter/Filter.h"
 #include "Filter/FilterManager.h"

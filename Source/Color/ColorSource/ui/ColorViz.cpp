@@ -51,8 +51,11 @@ void ColorViz::paint(Graphics& g)
         g.setColour(c);
         g.fillEllipse(pr);
 
-        g.setColour(c.brighter(.8f).withAlpha(.7f));
-        g.drawEllipse(pr, 1);
+        if (resolution < 50)
+        {
+            g.setColour(c.brighter(.8f).withAlpha(.7f));
+            g.drawEllipse(pr, 1);
+        }
     }
 }
 

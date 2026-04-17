@@ -262,13 +262,13 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 			if (channelP == nullptr || !channelP->enabled) continue;
 			int channel = channelP->intValue();
 			int targetChannel = channelOffset + channel - 1; //convert local channel to 0-based
-			if (targetChannel >= DMX_NUM_CHANNELS) break;
+			if (targetChannel >= channelsData.size()) break;
 
 			var mappedVal = getMappedValueForComputedParam(i, cp);
 			if (cp->isComplex())
 			{
 				var val = cp->getValue();
-				for (int i = 0; i < val.size(); i++) channelsData[targetChannel + i] = blackout ? 0.f : (float)mappedVal[i];
+				for (int i = 0; i < val.size() && targetChannel + i < channelsData.size(); i++) channelsData[targetChannel + i] = blackout ? 0.f : (float)mappedVal[i];
 			}
 			else
 			{
@@ -287,20 +287,41 @@ void ObjectComponent::fillInterfaceDataInternal(Interface* i, var data, var para
 	}
 }
 
-//void ObjectComponent::fillOutValueMap(HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset)
-//{
-//	int sChannel = startChannel + (ignoreChannelOffset ? 0 : channelOffset);
-//
-//	for (int i = 0; i < computedParameters.size(); i++)
-//	{
-//		Parameter* p = computedParameters[i];
-//		if (p->isComplex())
-//		{
-//			for (int j = 0; j < p->value.size(); j++) channelValueMap.set(sChannel + paramChannels[i] + j, (float)p->value[j]); //remap to 0-255 automatically
-//		}
-//		else channelValueMap.set(sChannel + paramChannels[i], p->floatValue()); //remap to 0-255 automatically
-//	}
-//}
+int ObjectComponent::getDMXChannelSpanForComputedParameter(Parameter* computedParameter)
+{
+	if (computedParameter == nullptr) return 0;
+
+	if (!computedParameter->isComplex()) return 1;
+
+	var value = computedParameter->getValue();
+	return value.isArray() ? jmax(1, value.size()) : 1;
+}
+
+int ObjectComponent::getDMXSplitStrideForComputedParameter(Parameter* computedParameter)
+{
+	return jmax(1, getDMXChannelSpanForComputedParameter(computedParameter));
+}
+
+Array<ObjectComponent::DMXDataRange> ObjectComponent::getDMXDataRanges()
+{
+	GenericScopedLock lock(interfaceParamsLock);
+
+	Array<ObjectComponent::DMXDataRange> ranges;
+	for (auto& cp : computedParameters)
+	{
+		Parameter* channelP = computedInterfaceMap[cp];
+		if (channelP == nullptr || !channelP->enabled) continue;
+
+		ObjectComponent::DMXDataRange range;
+		range.startChannel = channelP->intValue() - 1;
+		range.numChannels = getDMXChannelSpanForComputedParameter(cp);
+		range.splitStride = jlimit(1, jmax(1, range.numChannels), getDMXSplitStrideForComputedParameter(cp));
+
+		if (range.numChannels > 0) ranges.add(range);
+	}
+
+	return ranges;
+}
 
 var ObjectComponent::getMappedValueForComputedParam(Interface* i, Parameter* cp)
 {

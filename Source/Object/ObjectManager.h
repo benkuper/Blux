@@ -109,7 +109,30 @@ public:
 	void addObjectManagerListener(ObjectManagerListener* newListener) { objectManagerListeners.add(newListener); }
 	void removeObjectManagerListener(ObjectManagerListener* listener) { objectManagerListeners.remove(listener); }
 
+   class ScopedProcessSuspender
+	{
+	public:
+		ScopedProcessSuspender(const String& reason = String());
+		~ScopedProcessSuspender();
+
+	private:
+		int suspendToken;
+	};
+
+	int suspendProcessing(const String& reason = String());
+	void resumeProcessing(int suspendToken);
+	bool isProcessingSuspended();
+
 	ObjectManagerCustomParams* getCustomParams();
+
+	private:
+
+	CriticalSection processSuspendLock;
+	Array<int> processSuspendTokens;
+	WaitableEvent processSuspendEvent;
+	WaitableEvent processIdleEvent;
+	int nextProcessSuspendToken = 1;
+	bool isProcessUpdateRunning = false;
 };
 
 class ObjectManagerCustomParams :

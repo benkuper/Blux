@@ -118,6 +118,7 @@ EffectFactory::EffectFactory()
 	defs.add(Factory<Effect>::Definition::createDef<ColorSourceOverrideEffect>("Color")->addParam("types", COLOR));
 	defs.add(Factory<Effect>::Definition::createDef<HSVAdjustEffect>("Color")->addParam("types", COLOR));
 	defs.add(Factory<Effect>::Definition::createDef<GradientRemapEffect>("Color")->addParam("types", COLOR));
+	defs.add(Factory<Effect>::Definition::createDef<ScriptEffect>("Color")->addParam("types", COLOR));
 
 	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetEffect>("Orientation")->addParam("types", ORIENTATION));
 	defs.add(Factory<Effect>::Definition::createDef<OrientationTargetNoiseEffect>("Orientation")->addParam("types", ORIENTATION));

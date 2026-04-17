@@ -17,6 +17,12 @@ class ObjectComponent :
     public BaseItem
 {
 public:
+	struct DMXDataRange
+	{
+		int startChannel = 0;
+		int numChannels = 0;
+		int splitStride = 1;
+	};
 
     ObjectComponent(Object* o = nullptr, String name = "Component", ComponentType componentType = CUSTOM, var params = var());
     virtual ~ObjectComponent();
@@ -70,6 +76,9 @@ public:
     virtual void fillInterfaceData(Interface* i, var data, var params);// (HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false);
     virtual void fillInterfaceDataInternal(Interface* i, var data, var params);// (HashMap<int, float>& channelValueMap, int startChannel, bool ignoreChannelOffset = false);
     //virtual void fillOutValueMap(HashMap<int, float> &channelValueMap, int startChannel, bool ignoreChannelOffset = false);
+    virtual int getDMXChannelSpanForComputedParameter(Parameter* computedParameter);
+    virtual int getDMXSplitStrideForComputedParameter(Parameter* computedParameter);
+    virtual Array<DMXDataRange> getDMXDataRanges();
 
     virtual var getMappedValueForComputedParam(Interface* i, Parameter* computedP);
 
