@@ -180,10 +180,12 @@ float TimedColorSource::getCurrentTime(Object* o, float timeOverride)
    if (sourceTemplate != nullptr && !sourceTemplateRef.wasObjectDeleted()) return ((TimedColorSource*)sourceTemplate)->getCurrentTime(o, timeOverride);
 
 	if (o == nullptr) return timeOverride >= 0 ? timeOverride * speed->doubleValue() : 0;
-	if (!curTimes.contains(o)) curTimes.set(o, 0);
+
+	const ScopedLock sl(curTimesLock);
+	float& storedTime = getOrCreateTimeForObject(o);
 	int id = o->globalID->intValue();
 
-   return timeOverride >= 0 ? timeOverride * (float)sourceParams.getLinkedValue(speed, o, id, timeOverride) : curTimes[o];
+   return timeOverride >= 0 ? timeOverride * (float)sourceParams.getLinkedValue(speed, o, id, timeOverride) : storedTime;
 }
 
 void TimedColorSource::hiResTimerCallback()
@@ -191,16 +193,47 @@ void TimedColorSource::hiResTimerCallback()
 	addTime();
 }
 
+float& TimedColorSource::getOrCreateTimeForObject(Object* o)
+{
+	for (auto& entry : curTimes)
+	{
+		if (!entry.objectRef.wasObjectDeleted() && entry.objectRef.get() == o)
+			return entry.time;
+	}
+
+	ObjectTime entry;
+	entry.objectRef = o;
+	entry.time = 0.f;
+	curTimes.add(entry);
+	return curTimes.getReference(curTimes.size() - 1).time;
+}
+
 void TimedColorSource::addTime()
 {
 	double newTime = Time::getMillisecondCounterHiRes() / 1000.0;
+	const double delta = newTime - timeAtLastUpdate;
 
-	HashMap<Object*, float>::Iterator it(curTimes);
-	while (it.next())
+	const ScopedLock sl(curTimesLock);
+
+	for (int i = curTimes.size(); --i >= 0;)
 	{
-		Object* o = it.getKey();
-		int id = o->globalID->intValue();
-       curTimes.set(o, it.getValue() + (newTime - timeAtLastUpdate) * (float)sourceParams.getLinkedValue(speed, o, id, 0));
+		ObjectTime& entry = curTimes.getReference(i);
+
+		if (entry.objectRef.wasObjectDeleted() || entry.objectRef.get() == nullptr)
+		{
+			curTimes.remove(i);
+			continue;
+		}
+
+		Object* o = dynamic_cast<Object*>(entry.objectRef.get());
+		if (o == nullptr || o->globalID == nullptr)
+		{
+			curTimes.remove(i);
+			continue;
+		}
+
+		const int id = o->globalID->intValue();
+		entry.time += (float)(delta * (double)sourceParams.getLinkedValue(speed, o, id, 0));
 	}
 
 	timeAtLastUpdate = newTime;
