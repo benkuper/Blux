@@ -84,7 +84,16 @@ public:
 	FloatParameter* offsetByID;
 
 	double timeAtLastUpdate;
-  HashMap<Object*, float> curTimes;
+
+	/** Per-object playback times. Weak refs so deleted Objects cannot dangle on the hi-res timer thread. */
+	struct ObjectTime
+	{
+		WeakReference<Inspectable> objectRef;
+		float time = 0.f;
+	};
+
+	CriticalSection curTimesLock;
+	Array<ObjectTime> curTimes;
 
 	void linkToTemplate(ColorSource* st) override;
 
@@ -97,5 +106,7 @@ public:
 
 	virtual void hiResTimerCallback() override;
 
+private:
+	float& getOrCreateTimeForObject(Object* o);
 };
 
