@@ -56,7 +56,17 @@ jobs:
           Set-Variable -Name "PKGNAME" -Value "${{ env.ProjectName }}-${{ steps.set_variables.outputs.suffix }}"
           Invoke-WebRequest "${{ secrets.DEPDIRURL }}${{ env.ProjectName }}-win-x64-${{ steps.set_variables.outputs.dep }}-dependencies.zip" -OutFile ./deps.zip
           7z e deps.zip -aoa
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency extraction failed' }
+
+          # Blux uses Chataigne's Windows playback runtime.
+          $mpvPackage = Join-Path $env:RUNNER_TEMP 'Chataigne-win-x64-release-dependencies.zip'
+          Invoke-WebRequest 'https://benjamin.kuperberg.fr/chataigne/user/data/Chataigne-win-x64-release-dependencies.zip' -OutFile $mpvPackage
+          tar.exe -xf $mpvPackage libmpv-2.dll mpv-licenses
+          if ($LASTEXITCODE -ne 0 -or !(Test-Path -LiteralPath './libmpv-2.dll' -PathType Leaf)) { throw 'Could not stage libmpv-2.dll' }
+          Set-Content -LiteralPath './mpv-licenses/source-url.txt' -Value 'https://benjamin.kuperberg.fr/chataigne/user/data/Chataigne-win-x64-mpv-sources.tar.xz'
+
           &"C:/Program Files (x86)/Inno Setup 6/ISCC.exe" "${{ github.workspace }}/install.iss" /O. /F$PKGNAME
+          if ($LASTEXITCODE -ne 0) { throw 'Installer compilation failed' }
           echo "::set-output name=pkg-name::$PKGNAME.exe"
         working-directory: ./Binaries/CI/App
 
@@ -221,32 +231,32 @@ jobs:
           pass: ${{ secrets.UPLOADPASS }}
   
   raspberrypi:
-    # if: false # tmp disable
-
-    name: Raspberry Pi
+    name: Raspberry Pi (${{ matrix.arch }})
     runs-on: ubuntu-22.04
+    defaults:
+      run:
+        shell: bash
     strategy:
+      fail-fast: false
       matrix:
         include:
         - arch: armhf
-          cpu: arm1176 #suitable for all Pi versions
-          base_image: raspios_lite:2022-04-04 
-          cpu_info: raspberrypi_zero_w
-          buildFolder: "Raspberry"
-          buildConfig: "Release"
-          
-        - arch: aarch64
-          cpu: cortex-a53
-          base_image: raspios_lite_arm64:2022-04-04
-          cpu_info: raspberrypi_zero2_w_arm64_w
-          buildFolder: "Raspberry64"
-          buildConfig: "Release"
+          deb_arch: armhf
+          gnu_type: arm-linux-gnueabihf
+          arch_flags: "-march=armv7-a -mfpu=neon-vfpv4 -mfloat-abi=hard"
+          buildFolder: Raspberry
+          servusFolder: raspberry
 
-      fail-fast: false
+        - arch: aarch64
+          deb_arch: arm64
+          gnu_type: aarch64-linux-gnu
+          arch_flags: "-march=armv8-a"
+          buildFolder: Raspberry64
+          servusFolder: raspberry64
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           submodules: 'recursive'
 
@@ -257,45 +267,95 @@ jobs:
           os: ${{ matrix.arch }}
 
       - name: Checkout JUCE
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           repository: benkuper/JUCE
           ref: ${{ env.juce-branch }}
           path: JUCE
 
-      - name: Download and prepare AppImage
+      - name: Install cross-compiler and target libraries
+        env:
+          DEB_ARCH: ${{ matrix.deb_arch }}
+          GNU_TYPE: ${{ matrix.gnu_type }}
         run: |
-          wget "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
-          chmod a+x appimagetool-x86_64.AppImage
-          mkdir -p ./Builds/${{ matrix.buildFolder }}/${{ env.ProjectName }}.AppDir/usr/bin/
-        working-directory: ${{ github.workspace }}
+          sudo dpkg --add-architecture "$DEB_ARCH"
+          # Use the same Ubuntu-signed mirrors as Chataigne for amd64 and ARM.
+          for suite in jammy jammy-updates jammy-security; do
+            echo "deb [arch=amd64] https://mirrors.mit.edu/ubuntu $suite main universe"
+            echo "deb [arch=$DEB_ARCH] https://mirrors.mit.edu/ubuntu-ports $suite main universe"
+          done | sudo tee /etc/apt/sources.list
 
-      - name: Install dependencies and build
-        id: build
-        uses: pguyot/arm-runner-action@v2
-        with:
-          image_additional_mb: 2048
-          base_image: ${{ matrix.base_image }}
-          cpu: ${{ matrix.cpu }}
-          copy_artifact_path: Builds/${{ matrix.buildFolder }}/build/${{ env.ProjectName }}
-          copy_artifact_dest: Builds/${{ matrix.buildFolder }}/${{ env.ProjectName }}.AppDir/usr/bin/
-          commands: |
-            # Bullseye security packages moved to the Debian archive.
-            sed -i 's#http://security.debian.org/debian-security#https://archive.debian.org/debian-security#g' /etc/apt/sources.list
-            apt-get update
-            echo "Installing JUCE lib dependencies and extra tools"
-            apt-get install -qyf libcurl3-gnutls libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev libxcomposite-dev mesa-common-dev libasound2-dev freeglut3-dev libcurl4-gnutls-dev libasound2-dev libjack-dev libbluetooth-dev libgtk-3-dev libwebkit2gtk-4.0-dev libsdl2-dev libusb-1.0-0-dev libhidapi-dev ladspa-sdk libssl-dev
-            apt-get install -qy curl
+          sudo apt-get -o Acquire::Retries=5 -o Acquire::https::Timeout=30 --error-on=any update
 
-            cd Builds/${{ matrix.buildFolder }}
-            make -j2 CONFIG=${{ matrix.buildConfig }}
+          # Both architectures must use the same version, even while mirrors sync.
+          native_headers=linux-libc-dev:amd64
+          target_headers="linux-libc-dev:$DEB_ARCH"
+          headers_version=$(comm -12 \
+            <(apt-cache madison "$native_headers" | awk '{print $3}' | sort -u) \
+            <(apt-cache madison "$target_headers" | awk '{print $3}' | sort -u) | sort -V | tail -n 1)
+          if [[ -z "$headers_version" ]]; then
+            echo "::error::No shared linux-libc-dev version for amd64 and $DEB_ARCH"
+            exit 1
+          fi
+
+          sudo apt-get -o Acquire::Retries=5 -o Acquire::https::Timeout=30 install -y --no-install-recommends --allow-downgrades \
+            "g++-$GNU_TYPE" "$native_headers=$headers_version" "$target_headers=$headers_version" \
+            "libasound2-dev:$DEB_ARCH" "libjack-jackd2-dev:$DEB_ARCH" ladspa-sdk \
+            "libfreetype6-dev:$DEB_ARCH" "libfontconfig1-dev:$DEB_ARCH" \
+            "libx11-dev:$DEB_ARCH" "libxcomposite-dev:$DEB_ARCH" "libxcursor-dev:$DEB_ARCH" \
+            "libxinerama-dev:$DEB_ARCH" "libxext-dev:$DEB_ARCH" "libxrandr-dev:$DEB_ARCH" \
+            "libwebkit2gtk-4.0-dev:$DEB_ARCH" "libgl1-mesa-dev:$DEB_ARCH" \
+            "libcurl4-openssl-dev:$DEB_ARCH" "libssl-dev:$DEB_ARCH" \
+            "libbluetooth-dev:$DEB_ARCH" "libusb-1.0-0-dev:$DEB_ARCH" "libhidapi-dev:$DEB_ARCH"
+
+      - name: Cross-compile Blux
+        env:
+          GNU_TYPE: ${{ matrix.gnu_type }}
+          PKG_CONFIG_LIBDIR: /usr/lib/${{ matrix.gnu_type }}/pkgconfig:/usr/share/pkgconfig
+          ARCH_FLAGS: ${{ matrix.arch_flags }}
+        working-directory: ./Builds/${{ matrix.buildFolder }}
+        run: |
+          unset PKG_CONFIG_PATH
+          make -j"$(nproc)" CONFIG=Release \
+            CC="$GNU_TYPE-gcc" CXX="$GNU_TYPE-g++" AR="$GNU_TYPE-ar" STRIP="$GNU_TYPE-strip" \
+            JUCE_ARCH_LABEL="${{ matrix.arch }}" TARGET_ARCH="$ARCH_FLAGS"
 
       - name: Create AppImage
         id: create_package
+        env:
+          ARCH: ${{ matrix.arch }}
+          GNU_TYPE: ${{ matrix.gnu_type }}
         run: |
-          PKGNAME=${{ env.ProjectName }}-linux-${{ steps.set_variables.outputs.suffix }}.AppImage
-          echo "pkg-name=$PKGNAME" >> $GITHUB_OUTPUT
-          ARCH=${{ matrix.arch }} ${{ github.workspace }}/appimagetool-x86_64.AppImage --appimage-extract-and-run ${{ env.ProjectName }}.AppDir $PKGNAME
+          appdir="$ProjectName.AppDir"
+          binary="build/$ProjectName"
+          libdir="/usr/lib/$GNU_TYPE"
+          mkdir -p "$appdir/usr/bin" "$appdir/usr/lib"
+          # The AppDir template contains libraries from the old Bullseye build.
+          find "$appdir/usr/lib" -mindepth 1 -maxdepth 1 \( -type f -o -type l \) -delete
+          cp "$binary" "$appdir/usr/bin/"
+          ln -sfn blux.png "$appdir/.DirIcon"
+          cp -L "../../External/servus/lib/${{ matrix.servusFolder }}/libServus.so" "$appdir/usr/lib/libServus.so.6"
+          cp -L "$libdir/libbluetooth.so.3" "$libdir/libusb-1.0.so.0" "$libdir/libhidapi-hidraw.so.0" "$appdir/usr/lib/"
+
+          # Verify the target ABI before shipping the AppImage.
+          max_glibc=$("$GNU_TYPE-objdump" -T "$binary" | sed -nE 's/.*GLIBC_([0-9.]+).*/\1/p' | sort -V | tail -n 1)
+          if [[ -z "$max_glibc" ]] || ! dpkg --compare-versions "$max_glibc" le 2.35; then
+            echo "::error::Expected glibc 2.35 or earlier, found ${max_glibc:-no versioned symbols}"
+            exit 1
+          fi
+          echo "Highest required glibc version: $max_glibc"
+          needed=$("$GNU_TYPE-readelf" -d "$binary")
+          if [[ "$needed" =~ lib(ssl|crypto)\.so\.1\.1 ]]; then
+            echo '::error::Raspberry Pi build still links against OpenSSL 1.1'
+            exit 1
+          fi
+
+          tool="$RUNNER_TEMP/appimagetool-x86_64.AppImage"
+          curl --fail --location --retry 3 --output "$tool" https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x "$tool"
+          pkg_name="$ProjectName-linux-${{ steps.set_variables.outputs.suffix }}.AppImage"
+          "$tool" --appimage-extract-and-run --no-appstream "$appdir" "$pkg_name"
+          echo "pkg-name=$pkg_name" >> "$GITHUB_OUTPUT"
         working-directory: ./Builds/${{ matrix.buildFolder }}
 
       - name: Upload

@@ -89,6 +89,7 @@ public:
 
 		bool hasVideoLayer = false;
 		bool hasFrame = false;
+		String clipStatus;
 		for (int index = sequence->layerManager->items.size(); --index >= 0;)
 		{
 			auto* layer = dynamic_cast<BluxVideoLayer*>(sequence->layerManager->items[index]);
@@ -96,12 +97,12 @@ public:
 			hasVideoLayer = true;
 			if (!layer->enabled->boolValue()) continue;
 
-			hasFrame |= drawClip(g, *layer, layer->loadedClip.get(), layer->currentClip.get(), layer->moviePlayer.get());
-			hasFrame |= drawClip(g, *layer, layer->loadedOverlapClip.get(), layer->overlapClip.get(), layer->overlapPlayer.get());
+			hasFrame |= drawClip(g, *layer, layer->loadedClip.get(), layer->currentClip.get(), layer->moviePlayer.get(), clipStatus);
+			hasFrame |= drawClip(g, *layer, layer->loadedOverlapClip.get(), layer->overlapClip.get(), layer->overlapPlayer.get(), clipStatus);
 		}
 
 		if (!hasVideoLayer) drawStatus(g, "Add a Video layer to the sequence.");
-		else if (!hasFrame) drawStatus(g, "Move the playhead over a video clip.");
+		else if (!hasFrame) drawStatus(g, clipStatus.isEmpty() ? "Move the playhead over a video clip." : clipStatus);
 	}
 
 private:
@@ -131,11 +132,20 @@ private:
 		g.drawFittedText(message, getLocalBounds().reduced(12), Justification::centred, 2);
 	}
 
-	bool drawClip(Graphics& g, VideoLayer& layer, VideoLayerClip* loaded, VideoLayerClip* active, VideoPlayerEngine* engine)
+	bool drawClip(Graphics& g, VideoLayer& layer, VideoLayerClip* loaded, VideoLayerClip* active, VideoPlayerEngine* engine, String& clipStatus)
 	{
-		if (loaded == nullptr || loaded != active || engine == nullptr) return false;
-		const auto frame = static_cast<BluxMpvPlayer*>(engine)->getFrame();
-		if (!frame.isValid()) return false;
+		if (active == nullptr || engine == nullptr) return false;
+		auto& player = static_cast<BluxMpvPlayer&>(*engine);
+		const auto frame = loaded == active ? player.getFrame() : Image();
+		if (!frame.isValid())
+		{
+			const auto path = active->filePath->getAbsolutePath();
+			const auto error = player.getLoadError(path);
+			if (error.isNotEmpty()) clipStatus = error;
+			else if (clipStatus.isEmpty())
+				clipStatus = path.isEmpty() ? "Choose a media file for the video clip." : "Waiting for a video frame...";
+			return false;
+		}
 
 		const auto area = getLocalBounds();
 		const auto fit = RectanglePlacement(RectanglePlacement::centred)

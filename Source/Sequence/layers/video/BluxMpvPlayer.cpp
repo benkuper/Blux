@@ -162,12 +162,18 @@ void BluxMpvPlayer::releaseEngine()
 
 bool BluxMpvPlayer::load(const String& filePath)
 {
-	if (!File::isAbsolutePath(filePath)) return false;
+	loadErrorPath = filePath;
+	loadError.clear();
 
-	const File file(filePath);
-	if (!file.existsAsFile()) return false;
+	const File file = File::isAbsolutePath(filePath) ? File(filePath) : File();
+	if (!file.existsAsFile())
+	{
+		loadError = "The video file could not be found.";
+		return false;
+	}
 	if (!openEngine())
 	{
+		loadError = "Video playback is unavailable because libmpv could not start.";
 		Logger::writeToLog("Video playback requires libmpv with software rendering support. Set BLUX_MPV_DIR or place libmpv beside Blux.");
 		return false;
 	}
@@ -192,7 +198,11 @@ bool BluxMpvPlayer::load(const String& filePath)
 
 	const auto fullPath = file.getFullPathName();
 	const char* args[] = { "loadfile", fullPath.toRawUTF8(), "replace", nullptr };
-	if (BluxMpvApi::get().command(handle, ++loadRequest, args) < 0) return false;
+	if (BluxMpvApi::get().command(handle, ++loadRequest, args) < 0)
+	{
+		loadError = "The video file could not be opened.";
+		return false;
+	}
 
 	startTimerHz(60);
 	return true;
@@ -342,6 +352,7 @@ void BluxMpvPlayer::timerCallback()
 
 	if (failed && !loaded)
 	{
+		loadError = "The video file could not be opened.";
 		unload();
 		notifyFileEnd();
 		return;

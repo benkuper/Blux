@@ -30,6 +30,7 @@ SetupWindowTitle={#ApplicationName} {#ApplicationVersion} Setup
 [Files]
 Source: "Binaries/CI/App/{#ApplicationName}.exe"; DestDir: "{app}" ; Flags: ignoreversion
 Source: "Binaries/CI/App/*.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Binaries/CI/App/mpv-licenses/*"; DestDir: "{app}/mpv-licenses"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#ApplicationName}"; Filename: "{app}\{#ApplicationName}.exe"

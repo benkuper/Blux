@@ -40,6 +40,7 @@ public:
 	juce::AudioProcessor* getAudioProcessor() override { return nullptr; }
 
 	juce::Image getFrame() const { return frame; }
+	juce::String getLoadError(const juce::String& filePath) const { return filePath == loadErrorPath ? loadError : juce::String(); }
 
 private:
 	bool openEngine();
@@ -52,6 +53,8 @@ private:
 	mpv_handle* handle = nullptr;
 	mpv_render_context* renderer = nullptr;
 	juce::String path;
+	juce::String loadErrorPath;
+	juce::String loadError;
 	juce::File sourceFile;
 	juce::Image frame;
 	std::vector<unsigned char> pixels;
