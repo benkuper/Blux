@@ -16,6 +16,7 @@
 
 #include "actions/SequenceAction.cpp"
 
+#include "layers/video/BluxMpvPlayer.cpp"
 #include "BluxSequence.cpp"
 #include "BluxSequenceManager.cpp"
 

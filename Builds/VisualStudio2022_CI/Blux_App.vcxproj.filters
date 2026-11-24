@@ -302,6 +302,9 @@
     <Filter Include="Blux\Source\Sequence\layers\effect">
       <UniqueIdentifier>{AA9B35EF-4396-199D-8CEE-A104C506A783}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blux\Source\Sequence\layers\video">
+      <UniqueIdentifier>{73E35253-6A1D-E471-5AE7-FE5F5809E485}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Blux\Source\Sequence\layers">
       <UniqueIdentifier>{5A666696-3611-C167-153D-8889D2916290}</UniqueIdentifier>
     </Filter>
@@ -1043,6 +1046,9 @@
     <Filter Include="JUCE Modules\juce_organicui\app">
       <UniqueIdentifier>{713F9F29-C2A1-3D8F-4394-6A948FA0175D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\juce_organicui\assistant">
+      <UniqueIdentifier>{8DD35572-B7B3-6647-631B-9B2CD7EA1F95}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\juce_organicui\automation\common\fitting\intern">
       <UniqueIdentifier>{129F2071-932D-39D0-7756-2F0D13FA6835}</UniqueIdentifier>
     </Filter>
@@ -1186,6 +1192,9 @@
     </Filter>
     <Filter Include="JUCE Modules\juce_organicui\manager">
       <UniqueIdentifier>{D49E0848-0015-8A56-24E0-5F6D7323BCE1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_organicui\mcp">
+      <UniqueIdentifier>{83168FCD-AC90-E3C7-9CDD-EA719DC84EC3}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_organicui\outliner">
       <UniqueIdentifier>{B17F69BA-D688-9888-1C58-CAEC6EC7496B}</UniqueIdentifier>
@@ -1400,6 +1409,9 @@
     <Filter Include="JUCE Modules\juce_simpleweb">
       <UniqueIdentifier>{927B0C0F-A737-BF56-1213-11FFF1B9E758}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\juce_timeline\mcp">
+      <UniqueIdentifier>{1382703F-6991-9B53-57D4-337F68F54646}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\juce_timeline\resources">
       <UniqueIdentifier>{D391EFE7-9D9C-64D9-7CA8-C06DBE64F72C}</UniqueIdentifier>
     </Filter>
@@ -1432,6 +1444,12 @@
     </Filter>
     <Filter Include="JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\Trigger">
       <UniqueIdentifier>{38321AC7-8947-F0A1-5A3D-3731F17C3F35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui">
+      <UniqueIdentifier>{91B0804E-C75A-2757-427A-F3FF33011C33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video">
+      <UniqueIdentifier>{192DB0A6-52A3-A361-BA7A-2CBDA7439769}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers">
       <UniqueIdentifier>{AB1A1199-96AB-2A7E-9E0C-870A25DEB6A5}</UniqueIdentifier>
@@ -1932,6 +1950,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\layers\effect\EffectLayer.cpp">
       <Filter>Blux\Source\Sequence\layers\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Sequence\layers\video\BluxMpvPlayer.cpp">
+      <Filter>Blux\Source\Sequence\layers\video</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Sequence\ui\BluxSequenceChainVizUI.cpp">
       <Filter>Blux\Source\Sequence\ui</Filter>
@@ -4894,19 +4915,19 @@
     <ClCompile Include="..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_Javascript_test.cpp">
+    <ClCompile Include="..\..\JUCE\modules\juce_javascript\javascript\juce_Javascript_test.cpp">
       <Filter>JUCE Modules\juce_javascript\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JavascriptEngine.cpp">
+    <ClCompile Include="..\..\JUCE\modules\juce_javascript\javascript\juce_JavascriptEngine.cpp">
       <Filter>JUCE Modules\juce_javascript\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JSCursor.cpp">
+    <ClCompile Include="..\..\JUCE\modules\juce_javascript\javascript\juce_JSCursor.cpp">
       <Filter>JUCE Modules\juce_javascript\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JSObject.cpp">
+    <ClCompile Include="..\..\JUCE\modules\juce_javascript\javascript\juce_JSObject.cpp">
       <Filter>JUCE Modules\juce_javascript\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\JUCE\modules\juce_javascript\juce_javascript.cpp">
+    <ClCompile Include="..\..\JUCE\modules\juce_javascript\juce_javascript.cpp">
       <Filter>JUCE Modules\juce_javascript</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JUCE\modules\juce_opengl\opengl\juce_gl.cpp">
@@ -4959,6 +4980,21 @@
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\app\OrganicMainComponentCommands.cpp">
       <Filter>JUCE Modules\juce_organicui\app</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\assistant\AssistantController.cpp">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\assistant\AssistantCore.cpp">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\assistant\AssistantPanel.cpp">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\assistant\AssistantProvider.cpp">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\assistant\ClaudeProvider.cpp">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\automation\common\fitting\intern\curve_fit_corners_detect.c">
       <Filter>JUCE Modules\juce_organicui\automation\common\fitting\intern</Filter>
@@ -5284,6 +5320,9 @@
     <ClCompile Include="..\..\Modules\juce_organicui\dashboard\SharedTextureDashboardItem.cpp">
       <Filter>JUCE Modules\juce_organicui\dashboard</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\engine\AppVersion.cpp">
+      <Filter>JUCE Modules\juce_organicui\engine</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\engine\Engine.cpp">
       <Filter>JUCE Modules\juce_organicui\engine</Filter>
     </ClCompile>
@@ -5370,6 +5409,21 @@
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\manager\Manager.cpp">
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\mcp\McpConnectionPanel.cpp">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\mcp\McpConnectionSettings.cpp">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\mcp\McpCore.cpp">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\mcp\McpServer.cpp">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_organicui\mcp\OrganicMcpProvider.cpp">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_organicui\outliner\Outliner.cpp">
       <Filter>JUCE Modules\juce_organicui\outliner</Filter>
@@ -5674,6 +5728,9 @@
     <ClCompile Include="..\..\Modules\juce_simpleweb\SimpleWebSocketServer.cpp">
       <Filter>JUCE Modules\juce_simpleweb</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\mcp\TimelineMcpProvider.cpp">
+      <Filter>JUCE Modules\juce_timeline\mcp</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Modules\juce_timeline\resources\BinaryData.cpp">
       <Filter>JUCE Modules\juce_timeline\resources</Filter>
     </ClCompile>
@@ -5766,6 +5823,27 @@
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\Trigger\TriggerLayer.cpp">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\Trigger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui\VideoLayerClipManagerUI.cpp">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui\VideoLayerClipUI.cpp">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui\VideoLayerPanel.cpp">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui\VideoLayerTimeline.cpp">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\VideoLayer.cpp">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\VideoLayerClip.cpp">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\VideoLayerClipManager.cpp">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\ui\SequenceLayerPanel.cpp">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\ui</Filter>
@@ -6420,6 +6498,9 @@
     <ClInclude Include="..\..\Source\Sequence\layers\effect\EffectLayer.h">
       <Filter>Blux\Source\Sequence\layers\effect</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Sequence\layers\video\BluxMpvPlayer.h">
+      <Filter>Blux\Source\Sequence\layers\video</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Sequence\ui\BluxSequenceChainVizUI.h">
       <Filter>Blux\Source\Sequence\ui</Filter>
     </ClInclude>
@@ -6639,7 +6720,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_audio_basics\utilities\juce_SmoothedValue.h">
       <Filter>JUCE Modules\juce_audio_basics\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
       <Filter>JUCE Modules\juce_audio_basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_audio_devices\audio_io\juce_AudioDeviceManager.h">
@@ -6954,7 +7035,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_audio_devices\sources\juce_AudioTransportSource.h">
       <Filter>JUCE Modules\juce_audio_devices\sources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_audio_devices\juce_audio_devices.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_audio_devices\juce_audio_devices.h">
       <Filter>JUCE Modules\juce_audio_devices</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_audio_formats\codecs\flac\libFLAC\include\private\bitmath.h">
@@ -7248,7 +7329,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_audio_formats\sampler\juce_Sampler.h">
       <Filter>JUCE Modules\juce_audio_formats\sampler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
       <Filter>JUCE Modules\juce_audio_formats</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_audio_processors\format\juce_AudioPluginFormatManagerHelpers.h">
@@ -7299,7 +7380,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_audio_processors\utilities\juce_PluginHostType.h">
       <Filter>JUCE Modules\juce_audio_processors\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors\juce_audio_processors.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_audio_processors\juce_audio_processors.h">
       <Filter>JUCE Modules\juce_audio_processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_audio_processors_headless\format\juce_AudioPluginFormat.h">
@@ -7917,7 +7998,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_audio_processors_headless\utilities\juce_VST3Interface.h">
       <Filter>JUCE Modules\juce_audio_processors_headless\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_audio_processors_headless\juce_audio_processors_headless.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_audio_processors_headless\juce_audio_processors_headless.h">
       <Filter>JUCE Modules\juce_audio_processors_headless</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_audio_utils\audio_cd\juce_AudioCDBurner.h">
@@ -7962,7 +8043,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_audio_utils\players\juce_SoundPlayer.h">
       <Filter>JUCE Modules\juce_audio_utils\players</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_audio_utils\juce_audio_utils.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_audio_utils\juce_audio_utils.h">
       <Filter>JUCE Modules\juce_audio_utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_core\containers\juce_AbstractFifo.h">
@@ -8454,7 +8535,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_core\zip\juce_zlib.h">
       <Filter>JUCE Modules\juce_core\zip</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_core\juce_core.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_core\juce_core.h">
       <Filter>JUCE Modules\juce_core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_cryptography\encryption\juce_BlowFish.h">
@@ -8475,7 +8556,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_cryptography\hashing\juce_Whirlpool.h">
       <Filter>JUCE Modules\juce_cryptography\hashing</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_cryptography\juce_cryptography.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_cryptography\juce_cryptography.h">
       <Filter>JUCE Modules\juce_cryptography</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_data_structures\app_properties\juce_ApplicationProperties.h">
@@ -8505,7 +8586,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.h">
       <Filter>JUCE Modules\juce_data_structures\values</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_data_structures\juce_data_structures.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_data_structures\juce_data_structures.h">
       <Filter>JUCE Modules\juce_data_structures</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_dmx\device\sacn\e131.h">
@@ -8518,6 +8599,9 @@
       <Filter>JUCE Modules\juce_dmx\device</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_dmx\device\DMXEnttecProDevice.h">
+      <Filter>JUCE Modules\juce_dmx\device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_dmx\device\DMXInputMerger.h">
       <Filter>JUCE Modules\juce_dmx\device</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_dmx\device\DMXOpenUSBDevice.h">
@@ -8634,7 +8718,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_events\timers\juce_Timer.h">
       <Filter>JUCE Modules\juce_events\timers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_events\juce_events.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_events\juce_events.h">
       <Filter>JUCE Modules\juce_events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_graphics\colour\juce_Colour.h">
@@ -9807,7 +9891,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_graphics\unicode\sheenbidi\Source\StatusStack.h">
       <Filter>JUCE Modules\juce_graphics\unicode\sheenbidi\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_graphics\juce_graphics.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_graphics\juce_graphics.h">
       <Filter>JUCE Modules\juce_graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_gui_basics\accessibility\enums\juce_AccessibilityActions.h">
@@ -10422,7 +10506,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_gui_basics\windows\juce_WindowUtils.h">
       <Filter>JUCE Modules\juce_gui_basics\windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_gui_basics\juce_gui_basics.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_gui_basics\juce_gui_basics.h">
       <Filter>JUCE Modules\juce_gui_basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_gui_extra\code_editor\juce_CodeDocument.h">
@@ -10515,55 +10599,55 @@
     <ClInclude Include="..\..\JUCE\modules\juce_gui_extra\native\juce_NSViewFrameWatcher_mac.h">
       <Filter>JUCE Modules\juce_gui_extra\native</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\containers\choc_Value.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\containers\choc_Value.h">
       <Filter>JUCE Modules\juce_javascript\choc\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\javascript\choc_javascript.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\javascript\choc_javascript.h">
       <Filter>JUCE Modules\juce_javascript\choc\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\javascript\choc_javascript_QuickJS.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\javascript\choc_javascript_QuickJS.h">
       <Filter>JUCE Modules\juce_javascript\choc\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\math\choc_MathHelpers.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\math\choc_MathHelpers.h">
       <Filter>JUCE Modules\juce_javascript\choc\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\platform\choc_Assert.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\platform\choc_Assert.h">
       <Filter>JUCE Modules\juce_javascript\choc\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\platform\choc_DisableAllWarnings.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\platform\choc_DisableAllWarnings.h">
       <Filter>JUCE Modules\juce_javascript\choc\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\platform\choc_ReenableAllWarnings.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\platform\choc_ReenableAllWarnings.h">
       <Filter>JUCE Modules\juce_javascript\choc\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\text\choc_FloatToString.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\text\choc_FloatToString.h">
       <Filter>JUCE Modules\juce_javascript\choc\text</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\text\choc_JSON.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\text\choc_JSON.h">
       <Filter>JUCE Modules\juce_javascript\choc\text</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\text\choc_StringUtilities.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\text\choc_StringUtilities.h">
       <Filter>JUCE Modules\juce_javascript\choc\text</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\choc\text\choc_UTF8.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\choc\text\choc_UTF8.h">
       <Filter>JUCE Modules\juce_javascript\choc\text</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\detail\juce_QuickJSHelpers.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\detail\juce_QuickJSHelpers.h">
       <Filter>JUCE Modules\juce_javascript\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JavascriptEngine.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\javascript\juce_JavascriptEngine.h">
       <Filter>JUCE Modules\juce_javascript\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JSCursor.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\javascript\juce_JSCursor.h">
       <Filter>JUCE Modules\juce_javascript\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\javascript\juce_JSObject.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\javascript\juce_JSObject.h">
       <Filter>JUCE Modules\juce_javascript\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_javascript\juce_javascript.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_javascript\juce_javascript.h">
       <Filter>JUCE Modules\juce_javascript</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JUCE\modules\juce_opengl\geometry\juce_Draggable3DOrientation.h">
@@ -10638,7 +10722,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_opengl\utils\juce_OpenGLAppComponent.h">
       <Filter>JUCE Modules\juce_opengl\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_opengl\juce_opengl.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_opengl\juce_opengl.h">
       <Filter>JUCE Modules\juce_opengl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\app\CrashHandler.h">
@@ -10649,6 +10733,21 @@
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\app\OrganicMainComponent.h">
       <Filter>JUCE Modules\juce_organicui\app</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\assistant\AssistantController.h">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\assistant\AssistantCore.h">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\assistant\AssistantPanel.h">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\assistant\AssistantProvider.h">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\assistant\ClaudeProvider.h">
+      <Filter>JUCE Modules\juce_organicui\assistant</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\automation\common\fitting\intern\curve_fit_inline.h">
       <Filter>JUCE Modules\juce_organicui\automation\common\fitting\intern</Filter>
@@ -10692,6 +10791,9 @@
     <ClInclude Include="..\..\Modules\juce_organicui\automation\easing\Easing.h">
       <Filter>JUCE Modules\juce_organicui\automation\easing</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\automation\easing\EasingMath.h">
+      <Filter>JUCE Modules\juce_organicui\automation\easing</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\automation\parameter\ui\ParameterAutomationEditor.h">
       <Filter>JUCE Modules\juce_organicui\automation\parameter\ui</Filter>
     </ClInclude>
@@ -10720,6 +10822,9 @@
       <Filter>JUCE Modules\juce_organicui\automation</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\automation\AutomationKey.h">
+      <Filter>JUCE Modules\juce_organicui\automation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\automation\AutomationKeySearch.h">
       <Filter>JUCE Modules\juce_organicui\automation</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\comment\ui\CommentManagerViewUI.h">
@@ -10986,6 +11091,9 @@
     <ClInclude Include="..\..\Modules\juce_organicui\dashboard\SharedTextureDashboardItem.h">
       <Filter>JUCE Modules\juce_organicui\dashboard</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\engine\AppVersion.h">
+      <Filter>JUCE Modules\juce_organicui\engine</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\engine\Engine.h">
       <Filter>JUCE Modules\juce_organicui\engine</Filter>
     </ClInclude>
@@ -11120,6 +11228,24 @@
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\manager\ManagerListener.h">
       <Filter>JUCE Modules\juce_organicui\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\mcp\McpConnectionPanel.h">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\mcp\McpConnectionSettings.h">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\mcp\McpCore.h">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\mcp\McpManagerAdapter.h">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\mcp\McpServer.h">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_organicui\mcp\OrganicMcpProvider.h">
+      <Filter>JUCE Modules\juce_organicui\mcp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_organicui\outliner\Outliner.h">
       <Filter>JUCE Modules\juce_organicui\outliner</Filter>
@@ -11289,7 +11415,7 @@
     <ClInclude Include="..\..\JUCE\modules\juce_osc\osc\juce_OSCTypes.h">
       <Filter>JUCE Modules\juce_osc\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JUCE\modules\juce_osc\juce_osc.h">
+    <ClInclude Include="..\..\JUCE\modules\juce_osc\juce_osc.h">
       <Filter>JUCE Modules\juce_osc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_serial\lib\cobs\cobs.h">
@@ -14172,6 +14298,9 @@
     <ClInclude Include="..\..\Modules\juce_simpleweb\juce_simpleweb.h">
       <Filter>JUCE Modules\juce_simpleweb</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\mcp\TimelineMcpProvider.h">
+      <Filter>JUCE Modules\juce_timeline\mcp</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Modules\juce_timeline\resources\BinaryData.h">
       <Filter>JUCE Modules\juce_timeline\resources</Filter>
     </ClInclude>
@@ -14208,11 +14337,17 @@
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\audio\AudioLayerClipManager.h">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\audio</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\audio\TimelineAudioTransportSource.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\audio</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\Block\ui\LayerBlockManagerUI.h">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\Block\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\Block\ui\LayerBlockUI.h">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\Block\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\Block\BlockTransitions.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\Block</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\Block\LayerBlock.h">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\Block</Filter>
@@ -14265,6 +14400,33 @@
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\Trigger\TriggerLayer.h">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\Trigger</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui\VideoLayerClipManagerUI.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui\VideoLayerClipUI.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui\VideoLayerPanel.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui\VideoLayerTimeline.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\VideoFileHelpers.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\VideoLayer.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\VideoLayerClip.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\VideoLayerClipManager.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\layers\video\VideoPlayerEngine.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\layers\video</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Layer\ui\SequenceLayerPanel.h">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence\Layer\ui</Filter>
     </ClInclude>
@@ -14308,6 +14470,9 @@
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\Sequence.h">
+      <Filter>JUCE Modules\juce_timeline\timeline\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Modules\juce_timeline\timeline\Sequence\SequencePlaybackClock.h">
       <Filter>JUCE Modules\juce_timeline\timeline\Sequence</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Modules\juce_timeline\timeline\ui\SequenceManagerUI.h">
@@ -14477,7 +14642,7 @@
     <None Include="..\..\JUCE\modules\juce_graphics\unicode\sheenbidi\JUCE_CHANGES.txt">
       <Filter>JUCE Modules\juce_graphics\unicode\sheenbidi</Filter>
     </None>
-    <None Include="..\..\..\JUCE\modules\juce_javascript\choc\LICENSE.md">
+    <None Include="..\..\JUCE\modules\juce_javascript\choc\LICENSE.md">
       <Filter>JUCE Modules\juce_javascript\choc</Filter>
     </None>
     <None Include="..\..\Modules\juce_organicui\resources\organicui_resources\JuceLibraryCode\ReadMe.txt">

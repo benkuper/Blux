@@ -161,6 +161,10 @@ void SerialInterface::serialDataReceived(SerialDevice*, const var& data)
 	{
 		NLOG(niceName, "Received : " + data.toString());
 	}
+
+	Array<var> args;
+	args.add(data.toString());
+	scriptManager->callFunctionOnAllItems("dataReceived", args);
 }
 
 void SerialInterface::sendMessage(const String& message, var)

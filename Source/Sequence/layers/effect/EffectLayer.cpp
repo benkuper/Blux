@@ -11,6 +11,7 @@
 
 #include "Sequence/SequenceIncludes.h"
 #include "Effect/EffectIncludes.h"
+#include "EffectLayer.h"
 
 EffectLayer::EffectLayer(Sequence* s, var params) :
 	SequenceLayer(s, "Effect"),
@@ -151,6 +152,11 @@ var EffectLayer::getAverageValue(Array<var> values, Array<float> weights)
 	}
 
 	return result;
+}
+
+void EffectLayer::getSnapTimes(Array<float>* arrayToFill)
+{
+
 }
 
 

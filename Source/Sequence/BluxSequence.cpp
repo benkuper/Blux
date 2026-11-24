@@ -12,6 +12,151 @@
 #include "Audio/AudioManager.h"
 #include "Scene/Scene.h"
 #include "BluxSequence.h"
+#include "layers/video/BluxMpvPlayer.h"
+
+namespace
+{
+class BluxVideoLayer final : public VideoLayer
+{
+public:
+	BluxVideoLayer(Sequence* sequence, var params) : VideoLayer(sequence, params)
+	{
+		for (auto* slot : { &moviePlayer, &overlapPlayer })
+		{
+			auto player = std::make_unique<BluxMpvPlayer>();
+			player->addListener(this);
+			*slot = std::move(player);
+		}
+	}
+
+	static VideoLayer* create(Sequence* sequence, var params)
+	{
+		return new BluxVideoLayer(sequence, params);
+	}
+
+	void playerFileLoaded(VideoPlayerEngine* player) override
+	{
+		VideoLayer::playerFileLoaded(player);
+		cacheFrame(player, static_cast<BluxMpvPlayer*>(player)->getFrame());
+	}
+
+	void playerFrameUpdate() override
+	{
+		cacheFrame(moviePlayer.get(), static_cast<BluxMpvPlayer&>(*moviePlayer).getFrame());
+		cacheFrame(overlapPlayer.get(), static_cast<BluxMpvPlayer&>(*overlapPlayer).getFrame());
+	}
+
+private:
+	void cacheFrame(VideoPlayerEngine* player, const Image& frame)
+	{
+		auto* clip = player == moviePlayer.get() ? loadedClip.get() : loadedOverlapClip.get();
+		if (clip == nullptr || !frame.isValid()) return;
+		const double time = player->getPosition();
+		if (clip->needsThumbnail(time)) clip->cacheThumbnail(time, frame);
+	}
+};
+
+class BluxVideoPreview final : public ShapeShifterContentComponent, private Timer
+{
+public:
+	explicit BluxVideoPreview(const String& contentName) : ShapeShifterContentComponent(contentName)
+	{
+		contentIsFlexible = true;
+		setOpaque(true);
+	}
+
+	void visibilityChanged() override
+	{
+		if (isShowing()) startTimerHz(30);
+		else stopTimer();
+	}
+
+	void parentHierarchyChanged() override
+	{
+		visibilityChanged();
+	}
+
+	void paint(Graphics& g) override
+	{
+		g.fillAll(Colours::black);
+
+		auto* sequence = getSequence();
+		if (sequence == nullptr)
+		{
+			drawStatus(g, "Open a sequence to preview its video.");
+			return;
+		}
+
+		bool hasVideoLayer = false;
+		bool hasFrame = false;
+		for (int index = sequence->layerManager->items.size(); --index >= 0;)
+		{
+			auto* layer = dynamic_cast<BluxVideoLayer*>(sequence->layerManager->items[index]);
+			if (layer == nullptr) continue;
+			hasVideoLayer = true;
+			if (!layer->enabled->boolValue()) continue;
+
+			hasFrame |= drawClip(g, *layer, layer->loadedClip.get(), layer->currentClip.get(), layer->moviePlayer.get());
+			hasFrame |= drawClip(g, *layer, layer->loadedOverlapClip.get(), layer->overlapClip.get(), layer->overlapPlayer.get());
+		}
+
+		if (!hasVideoLayer) drawStatus(g, "Add a Video layer to the sequence.");
+		else if (!hasFrame) drawStatus(g, "Move the playhead over a video clip.");
+	}
+
+private:
+	void timerCallback() override { repaint(); }
+
+	static Sequence* getSequence()
+	{
+		if (auto* panels = ShapeShifterManager::getInstanceWithoutCreating())
+		{
+			if (auto* timeMachine = panels->getContentForType<TimeMachineView>())
+			{
+				if (timeMachine->editor != nullptr && timeMachine->editor->sequenceRef != nullptr)
+					return timeMachine->editor->sequence;
+			}
+		}
+		auto* selection = InspectableSelectionManager::mainSelectionManager;
+		if (selection == nullptr) return nullptr;
+		if (auto* sequence = selection->getInspectableAs<Sequence>()) return sequence;
+		if (auto* container = selection->getInspectableAs<ControllableContainer>())
+			return ControllableUtil::findParentAs<Sequence>(container);
+		return ControllableUtil::findParentAs<Sequence>(selection->getInspectableAs<Controllable>());
+	}
+
+	void drawStatus(Graphics& g, const String& message)
+	{
+		g.setColour(Colours::white.withAlpha(0.6f));
+		g.drawFittedText(message, getLocalBounds().reduced(12), Justification::centred, 2);
+	}
+
+	bool drawClip(Graphics& g, VideoLayer& layer, VideoLayerClip* loaded, VideoLayerClip* active, VideoPlayerEngine* engine)
+	{
+		if (loaded == nullptr || loaded != active || engine == nullptr) return false;
+		const auto frame = static_cast<BluxMpvPlayer*>(engine)->getFrame();
+		if (!frame.isValid()) return false;
+
+		const auto area = getLocalBounds();
+		const auto fit = RectanglePlacement(RectanglePlacement::centred)
+			.appliedTo(frame.getBounds(), area).toFloat();
+		auto destination = fit.withSizeKeepingCentre(fit.getWidth() * loaded->getRenderScaleX(),
+			fit.getHeight() * loaded->getRenderScaleY());
+		destination.translate(area.getWidth() * loaded->getRenderXPercent() / 100.0f,
+			area.getHeight() * loaded->getRenderYPercent() / 100.0f);
+
+		g.setOpacity(jlimit(0.0f, 1.0f, loaded->getRenderOpacity() * layer.getClipFadeFactor(loaded)));
+		g.drawImage(frame, destination, RectanglePlacement::stretchToFit);
+		g.setOpacity(1.0f);
+		return true;
+	}
+};
+}
+
+ShapeShifterContent* BluxSequence::createVideoPreview(const String& contentName)
+{
+	return new BluxVideoPreview(contentName);
+}
 
 BluxSequence::BluxSequence() :
 	manualStartAtLoad(false)
@@ -22,6 +167,7 @@ BluxSequence::BluxSequence() :
 	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Actions", &ActionLayer::create, this));
 	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", RawDataLayer::getTypeStringStatic(), &RawDataLayer::create, this));
 	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Audio", &AudioLayer::create, this, true));
+	layerManager->factory.defs.add(SequenceLayerManager::LayerDefinition::createDef("", "Video", &BluxVideoLayer::create, this, false, true));
 
 	layerManager->addManagerListener(this);
 

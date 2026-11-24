@@ -33,6 +33,8 @@ public:
 
 	var getAverageValue(Array<var> values, Array<float> weights);
 
+	void getSnapTimes(Array<float>* arrayToFill) override;
+
 	SequenceLayerTimeline* getTimelineUI() override;
 
 	String getTypeString() const override { return "Effect"; }

@@ -761,6 +761,11 @@
             <FILE id="R5w4Cg" name="EffectLayer.cpp" compile="0" resource="0" file="Source/Sequence/layers/effect/EffectLayer.cpp"/>
             <FILE id="BvxoZk" name="EffectLayer.h" compile="0" resource="0" file="Source/Sequence/layers/effect/EffectLayer.h"/>
           </GROUP>
+          <GROUP id="{2468A024-6E21-4E33-9BAE-60C63A0572F6}" name="video">
+            <FILE id="Ra5Hq1" name="BluxMpvPlayer.cpp" compile="0" resource="0"
+                  file="Source/Sequence/layers/video/BluxMpvPlayer.cpp"/>
+            <FILE id="oI1kY7" name="BluxMpvPlayer.h" compile="0" resource="0" file="Source/Sequence/layers/video/BluxMpvPlayer.h"/>
+          </GROUP>
         </GROUP>
         <GROUP id="{AE5943CE-1256-27AF-6FA1-07A5B0B5A099}" name="ui">
           <FILE id="gL8G91" name="BluxSequenceChainVizUI.cpp" compile="0" resource="0"
@@ -880,7 +885,7 @@
         <MODULEPATH id="juce_serial" path="Modules"/>
         <MODULEPATH id="juce_simpleweb" path="Modules"/>
         <MODULEPATH id="juce_timeline" path="Modules"/>
-        <MODULEPATH id="juce_javascript"/>
+        <MODULEPATH id="juce_javascript" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors_headless" path="JUCE/modules"/>
       </MODULEPATHS>
     </VS2022>

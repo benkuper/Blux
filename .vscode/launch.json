@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Blux",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/Binaries/Debug/App/Blux.exe",
+            "cwd": "${workspaceFolder}/Binaries/Debug/App",
+            "preLaunchTask": "Build Blux (Debug)"
+        }
+    ]
+}

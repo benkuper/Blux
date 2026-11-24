@@ -28,6 +28,7 @@ void MainComponent::init()
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(GlobalEffectManager::getInstance()->niceName, &GlobalEffectManagerUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(GlobalSequenceManager::getInstance()->niceName, &GlobalSequenceManagerUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Sequence Editor", &TimeMachineView::create));
+	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Video Preview", &BluxSequence::createVideoPreview));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition(StageLayoutManager::getInstance()->niceName, &StageLayoutManagerUI::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 2D View", &StageLayout2DView::create));
 	ShapeShifterFactory::getInstance()->defs.add(new ShapeShifterDefinition("Stage 3D View", &VizPanel::create));

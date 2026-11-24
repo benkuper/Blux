@@ -76,6 +76,10 @@ Builds/MacOSX_CI/build
 *.AppImage
 
 .vscode
+!/.vscode/
+/.vscode/*
+!/.vscode/launch.json
+!/.vscode/tasks.json
 
 
 Builds/VisualStudio2019/

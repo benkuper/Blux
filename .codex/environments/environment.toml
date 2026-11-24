@@ -1,0 +1,8 @@
+version = 1
+name = "Blux"
+
+[[actions]]
+name = "run_debug"
+icon = "run"
+command = 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\run_debug.ps1'
+platform = "win32"

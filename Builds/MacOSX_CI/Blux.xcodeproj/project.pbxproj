@@ -160,6 +160,7 @@
 		30D2F4768EB6A4F4226EC1CE /* TimedEffectHiresTimer.h */ /* TimedEffectHiresTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimedEffectHiresTimer.h; path = ../../Source/Common/Helpers/TimedEffectHiresTimer.h; sourceTree = SOURCE_ROOT; };
 		30D8F1C06D45396001CEDCC6 /* InterfaceManager.cpp */ /* InterfaceManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = InterfaceManager.cpp; path = ../../Source/Interface/InterfaceManager.cpp; sourceTree = SOURCE_ROOT; };
 		31995FA54E5C1A136885E42E /* ChainViz.h */ /* ChainViz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChainViz.h; path = ../../Source/ChainViz/ChainViz.h; sourceTree = SOURCE_ROOT; };
+		31A188508828AA6B254F4104 /* BluxMpvPlayer.h */ /* BluxMpvPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BluxMpvPlayer.h; path = ../../Source/Sequence/layers/video/BluxMpvPlayer.h; sourceTree = SOURCE_ROOT; };
 		31C24D863378BC9F5222BAFB /* ObjectManagerGridUI.cpp */ /* ObjectManagerGridUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectManagerGridUI.cpp; path = ../../Source/Object/ui/ObjectManagerGridUI.cpp; sourceTree = SOURCE_ROOT; };
 		31D276D93A0237AD71442C1C /* CustomOSCInterface.h */ /* CustomOSCInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CustomOSCInterface.h; path = ../../Source/Interface/interfaces/osc/custom/CustomOSCInterface.h; sourceTree = SOURCE_ROOT; };
 		31FDD1DB9D28D698CAAF5882 /* juce_serial */ /* juce_serial */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_serial; path = ../../Modules/juce_serial; sourceTree = SOURCE_ROOT; };
@@ -402,6 +403,7 @@
 		B95911886BDAFE05FF9B4A6D /* ColorSourceLibraryGridUI.h */ /* ColorSourceLibraryGridUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ColorSourceLibraryGridUI.h; path = ../../Source/Color/ColorSource/ui/ColorSourceLibraryGridUI.h; sourceTree = SOURCE_ROOT; };
 		B9899BF6B1C9591F9465B335 /* ScriptEffect.h */ /* ScriptEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScriptEffect.h; path = ../../Source/Effect/effects/script/ScriptEffect.h; sourceTree = SOURCE_ROOT; };
 		B98A2B5D475952244DE0BAED /* InterfaceIncludes.h */ /* InterfaceIncludes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InterfaceIncludes.h; path = ../../Source/Interface/InterfaceIncludes.h; sourceTree = SOURCE_ROOT; };
+		BA248CCDF11733B58D360972 /* BluxMpvPlayer.cpp */ /* BluxMpvPlayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BluxMpvPlayer.cpp; path = ../../Source/Sequence/layers/video/BluxMpvPlayer.cpp; sourceTree = SOURCE_ROOT; };
 		BB1ACA8463C5ABCBD8477B97 /* ColorSourceFactory.cpp */ /* ColorSourceFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ColorSourceFactory.cpp; path = ../../Source/Color/ColorSource/ColorSourceFactory.cpp; sourceTree = SOURCE_ROOT; };
 		BBD0245748092E82EFD46A13 /* ObjectCustomView.cpp */ /* ObjectCustomView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectCustomView.cpp; path = ../../Source/Object/ui/ObjectCustomView.cpp; sourceTree = SOURCE_ROOT; };
 		BC2B5905A623E67B6D8CA12E /* include_juce_simpleweb2.cpp */ /* include_juce_simpleweb2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_simpleweb2.cpp; path = ../../JuceLibraryCode/include_juce_simpleweb2.cpp; sourceTree = SOURCE_ROOT; };
@@ -687,6 +689,7 @@
 				C468617678BC908939F82328,
 				B9A99678F14A28B02A9B7F22,
 				BB68B59941A35F33BF4291A6,
+				AD41715E8A932802691FBFC4,
 			);
 			name = layers;
 			sourceTree = "<group>";
@@ -1528,6 +1531,15 @@
 				6EEFD1B561DFEB30D90DF2DA,
 			);
 			name = ui;
+			sourceTree = "<group>";
+		};
+		AD41715E8A932802691FBFC4 /* video */ = {
+			isa = PBXGroup;
+			children = (
+				BA248CCDF11733B58D360972,
+				31A188508828AA6B254F4104,
+			);
+			name = video;
 			sourceTree = "<group>";
 		};
 		AE4DBE693570DBE4510F8B48 /* osc */ = {

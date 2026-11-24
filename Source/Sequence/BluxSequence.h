@@ -23,6 +23,8 @@ public:
     BluxSequence();
     ~BluxSequence();
 
+    static ShapeShifterContent* createVideoPreview(const String& contentName);
+
     bool manualStartAtLoad;
 
     bool isAffectingObject(Object* o);
