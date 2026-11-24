@@ -70,7 +70,7 @@ jobs:
   osx:
     # if: false # tmp disable
     name: OSX
-    runs-on: macos-latest
+    runs-on: macos-15
     
     strategy:
       matrix:
@@ -280,6 +280,8 @@ jobs:
           copy_artifact_path: Builds/${{ matrix.buildFolder }}/build/${{ env.ProjectName }}
           copy_artifact_dest: Builds/${{ matrix.buildFolder }}/${{ env.ProjectName }}.AppDir/usr/bin/
           commands: |
+            # Bullseye security packages moved to the Debian archive.
+            sed -i 's#http://security.debian.org/debian-security#https://archive.debian.org/debian-security#g' /etc/apt/sources.list
             apt-get update
             echo "Installing JUCE lib dependencies and extra tools"
             apt-get install -qyf libcurl3-gnutls libfreetype6-dev libx11-dev libxinerama-dev libxrandr-dev libxcursor-dev libxcomposite-dev mesa-common-dev libasound2-dev freeglut3-dev libcurl4-gnutls-dev libasound2-dev libjack-dev libbluetooth-dev libgtk-3-dev libwebkit2gtk-4.0-dev libsdl2-dev libusb-1.0-0-dev libhidapi-dev ladspa-sdk libssl-dev
